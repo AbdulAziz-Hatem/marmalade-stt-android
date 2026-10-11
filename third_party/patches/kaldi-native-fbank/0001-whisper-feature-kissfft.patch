@@ -1,0 +1,230 @@
+From: Marmalade STT <noreply@localhost>
+Subject: [PATCH] Whisper features: kissfft instead of a naive DFT; reuse the FFT plan (#53)
+
+Not upstream; ours. WhisperFeatureComputer (the log-mel front-end of
+Whisper and Qwen3-ASR in sherpa-onnx) used whisper.cpp's recursive radix-2
+FFT. For the 400-point frame it halves 400 -> 200 -> 100 -> 50 -> 25 and then
+runs a naive DFT with a sin and a cos per term: 14.4 ms of one core per
+second of audio on the benchmark host (Ryzen AI Max+ 395), 8-15 % of Qwen3-ASR's
+decode time. It now uses knf's own Rfft (kissfft, mixed radix): 0.16 ms.
+The features differ only by float rounding: at most 5.2e-4 after Whisper's
+normalisation, whose range is 2.0.
+
+Rfft also allocated its kissfft plan (malloc plus twiddle factors) on every
+frame. The plan is now made once per Rfft. That speeds up the Kaldi fbank
+(Parakeet, Canary, Nemotron) 2.8x and leaves its output bit-identical.
+
+The naive DFT is still in v1.22.3 (the latest release) and on master
+as of 2026-10-02.
+---
+--- a/kaldi-native-fbank/csrc/rfft.cc
++++ b/kaldi-native-fbank/csrc/rfft.cc
+@@ -39,8 +39,17 @@
+       fprintf(stderr, "n should be positive. Given: %d \n", n);
+       exit(-1);
+     }
++
++    // Marmalade STT (#53): allocated once, not per frame. kiss_fftr_alloc()
++    // mallocs and computes the twiddle factors.
++    cfg_ = kiss_fftr_alloc(n_, inverse_, nullptr, nullptr);
+   }
+ 
++  ~RfftImpl() { kiss_fftr_free(cfg_); }
++
++  RfftImpl(const RfftImpl &) = delete;
++  RfftImpl &operator=(const RfftImpl &) = delete;
++
+   void Compute(float *in_out) {
+     if (!inverse_) {
+       Forward(in_out);
+@@ -59,13 +68,9 @@
+ 
+  private:
+   void Forward(float *in_out) const {
+-    kiss_fftr_cfg cfg = kiss_fftr_alloc(n_, 0, nullptr, nullptr);
+-
+     std::vector<kiss_fft_cpx> out(n_ / 2 + 1);
+ 
+-    kiss_fftr(cfg, in_out, out.data());
+-
+-    kiss_fftr_free(cfg);
++    kiss_fftr(cfg_, in_out, out.data());
+ 
+     in_out[0] = out[0].r;
+     in_out[1] = out[n_ / 2].r;
+@@ -89,16 +94,13 @@
+       out[i].i = in_out[2 * i + 1];
+     }
+ 
+-    kiss_fftr_cfg cfg = kiss_fftr_alloc(n_, 1, nullptr, nullptr);
+-
+-    kiss_fftri(cfg, out.data(), in_out);
+-
+-    kiss_fftr_free(cfg);
++    kiss_fftri(cfg_, out.data(), in_out);
+   }
+ 
+  private:
+   int32_t n_;
+   bool inverse_ = false;
++  kiss_fftr_cfg cfg_ = nullptr;
+ };
+ 
+ Rfft::Rfft(int32_t n, bool inverse /*=false*/)
+--- a/kaldi-native-fbank/csrc/whisper-feature.cc
++++ b/kaldi-native-fbank/csrc/whisper-feature.cc
+@@ -25,10 +25,6 @@
+ #include "kaldi-native-fbank/csrc/log.h"
+ #include "kaldi-native-fbank/csrc/mel-computations.h"
+ 
+-#ifndef M_2PI
+-#define M_2PI 6.283185307179586476925286766559005
+-#endif
+-
+ namespace knf {
+ 
+ std::string WhisperFeatureOptions::ToString() const {
+@@ -39,90 +35,6 @@
+   return os.str();
+ }
+ 
+-static void dft(const std::vector<float> &in, std::vector<float> *out) {
+-  // this function is modified from
+-  // https://github.com/ggerganov/whisper.cpp/blob/master/whisper.cpp#L2353
+-  int32_t N = in.size();
+-
+-  out->resize(N * 2);
+-
+-  auto M_2PI_over_N = M_2PI / N;
+-  for (int32_t k = 0; k < N; ++k) {
+-    float re = 0;
+-    float im = 0;
+-
+-    for (int32_t n = 0; n < N; ++n) {
+-      float angle = M_2PI_over_N * k * n;
+-      re += in[n] * cos(angle);
+-      im -= in[n] * sin(angle);
+-    }
+-
+-    (*out)[k * 2 + 0] = re;
+-    (*out)[k * 2 + 1] = im;
+-  }
+-}
+-
+-// Cooley-Tukey FFT
+-// poor man's implementation - use something better
+-// input is real-valued
+-// output is complex-valued
+-static void fft(const std::vector<float> &in, std::vector<float> *out) {
+-  // this function is copied from
+-  // https://github.com/ggerganov/whisper.cpp/blob/master/whisper.cpp#L2373C1-L2429C1
+-
+-  int32_t N = in.size();
+-  out->resize(N * 2);
+-
+-  if (N == 1) {
+-    (*out)[0] = in[0];
+-    (*out)[1] = 0;
+-    return;
+-  }
+-
+-  if (N % 2 == 1) {
+-    dft(in, out);
+-    return;
+-  }
+-
+-  std::vector<float> even;
+-  std::vector<float> odd;
+-
+-  even.reserve(N / 2);
+-  odd.reserve(N / 2);
+-
+-  for (int32_t i = 0; i != N; ++i) {
+-    if (i % 2 == 0) {
+-      even.push_back(in[i]);
+-    } else {
+-      odd.push_back(in[i]);
+-    }
+-  }
+-
+-  std::vector<float> even_fft;
+-  std::vector<float> odd_fft;
+-
+-  fft(even, &even_fft);
+-  fft(odd, &odd_fft);
+-
+-  for (int32_t k = 0; k < N / 2; ++k) {
+-    float theta = M_2PI * k / N;
+-
+-    float re = cos(theta);
+-    float im = -sin(theta);
+-
+-    float re_odd = odd_fft[2 * k + 0];
+-    float im_odd = odd_fft[2 * k + 1];
+-
+-    (*out)[2 * k + 0] = even_fft[2 * k + 0] + re * re_odd - im * im_odd;
+-    (*out)[2 * k + 1] = even_fft[2 * k + 1] + re * im_odd + im * re_odd;
+-
+-    (*out)[2 * (k + N / 2) + 0] =
+-        even_fft[2 * k + 0] - re * re_odd + im * im_odd;
+-    (*out)[2 * (k + N / 2) + 1] =
+-        even_fft[2 * k + 1] - re * im_odd - im * re_odd;
+-  }
+-}
+-
+ WhisperFeatureComputer::WhisperFeatureComputer(
+     const WhisperFeatureOptions &opts /*= {}*/)
+     : opts_(opts) {
+@@ -142,6 +54,11 @@
+   mel_opts.is_librosa = true;
+ 
+   mel_banks_ = std::make_unique<MelBanks>(mel_opts, opts_.frame_opts, 1.0f);
++  // Marmalade STT (#53): kissfft's mixed-radix real FFT. The radix-2 FFT
++  // from whisper.cpp used here before ends in a naive O(N^2) DFT, with a
++  // sin and a cos per term, when N is not a power of two: the 400-point
++  // frame took ~100x longer.
++  rfft_ = std::make_unique<Rfft>(opts_.frame_opts.PaddedWindowSize());
+ }
+ 
+ void WhisperFeatureComputer::Compute(float /*signal_raw_log_energy*/,
+@@ -151,14 +68,17 @@
+   KNF_CHECK_EQ(signal_frame->size(), frame_opts_.PaddedWindowSize());
+   // we have already applied window function to signal_frame before
+   // calling this method
+-  std::vector<float> fft_out;
+-  fft(*signal_frame, &fft_out);
++  rfft_->Compute(signal_frame->data());  // signal_frame is modified in-place
+ 
++  // Rfft's layout: [re0, re(N/2), re1, im1, re2, im2, ...]
++  const float *p = signal_frame->data();
+   int32_t num_fft = signal_frame->size();
+   std::vector<float> power(num_fft / 2 + 1);
+-  for (int32_t i = 0; i <= num_fft / 2; ++i) {
+-    float re = fft_out[2 * i + 0];
+-    float im = fft_out[2 * i + 1];
++  power[0] = p[0] * p[0];
++  power[num_fft / 2] = p[1] * p[1];
++  for (int32_t i = 1; i < num_fft / 2; ++i) {
++    float re = p[2 * i + 0];
++    float im = p[2 * i + 1];
+     power[i] = re * re + im * im;
+   }
+ 
+--- a/kaldi-native-fbank/csrc/whisper-feature.h
++++ b/kaldi-native-fbank/csrc/whisper-feature.h
+@@ -26,6 +26,7 @@
+ 
+ #include "kaldi-native-fbank/csrc/feature-window.h"
+ #include "kaldi-native-fbank/csrc/mel-computations.h"
++#include "kaldi-native-fbank/csrc/rfft.h"
+ 
+ namespace knf {
+ 
+@@ -61,6 +62,7 @@
+ 
+  private:
+   std::unique_ptr<MelBanks> mel_banks_;
++  std::unique_ptr<Rfft> rfft_;  // Marmalade STT (#53)
+   WhisperFeatureOptions opts_;
+ };
+ 

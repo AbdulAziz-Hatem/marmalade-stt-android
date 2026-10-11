@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Brand names, the same in every language (#51) -->
+    <string name="app_name" translatable="false">Marmalade STT</string>
+    <!-- Brand wordmark: always lowercase (marmalade-design). -->
+    <string name="wordmark" translatable="false">marmalade</string>
+
+    <!-- Joins the items of a list, e.g. "English, Spanish"; Chinese and Japanese use "、".
+         \u0020 keeps the trailing space. -->
+    <string name="list_separator">,\u0020</string>
+    <!-- A name in quotation marks, e.g. “Google voice typing” -->
+    <string name="quoted_name">“%1$s”</string>
+    <!-- This file's own BCP-47 tag, so the app knows which language its UI resolved to
+         (rememberUiLocale): language names follow it, not the phone's locale (#51) -->
+    <string name="ui_locale">en</string>
+
+    <!-- Bottom navigation -->
+    <string name="nav_dictate">Dictate</string>
+    <string name="nav_engines">Engines</string>
+    <string name="nav_settings">Settings</string>
+
+    <!-- Dictate -->
+    <!-- Mic button: content description by action, state description by session phase -->
+    <string name="dictate_start">Start dictation</string>
+    <string name="dictate_stop">Stop dictation</string>
+    <string name="dictate_state_idle">Not listening</string>
+    <string name="dictate_state_loading">Loading</string>
+    <string name="dictate_state_listening">Listening</string>
+    <string name="dictate_state_finishing">Finishing</string>
+    <!-- Status line under the transcript -->
+    <string name="dictate_status_loading">Loading model…</string>
+    <string name="dictate_status_listening">Listening</string>
+    <string name="dictate_status_hearing">Hearing you…</string>
+    <string name="dictate_status_finishing">Finishing…</string>
+    <string name="dictate_status_catching_up">Catching up…</string>
+    <string name="dictate_empty">Your words appear here. Everything you say stays on your phone.</string>
+    <string name="dictate_copy">Copy</string>
+    <string name="dictate_copied">Copied</string>
+    <string name="dictate_clear">Clear</string>
+    <string name="dictate_no_speech">Didn\'t catch anything</string>
+    <string name="dictate_error_mic">Couldn\'t use the microphone</string>
+    <string name="dictate_error_model">The speech model couldn\'t be loaded</string>
+    <string name="dictate_error_recognition">Something went wrong while transcribing</string>
+    <string name="dictate_too_slow">This engine is too slow for this phone. A smaller one on the Engines tab will keep up.</string>
+    <string name="dictate_error_busy">Dictation is already running somewhere else. Try again in a moment.</string>
+    <string name="dictate_no_model_title">Download a speech model to start dictating</string>
+    <string name="dictate_no_model_body">The model runs on your phone. You download it once, then dictation works offline.</string>
+    <string name="dictate_no_model_action">Choose a model</string>
+    <string name="dictate_mic_title">The app needs your microphone</string>
+    <string name="dictate_mic_body">It listens only while you dictate. What you say becomes text on your phone and is never saved or sent anywhere.</string>
+    <string name="dictate_mic_body_blocked">Microphone access is turned off for this app. You can turn it on in the app\'s settings, under Permissions.</string>
+    <string name="dictate_mic_allow">Allow microphone</string>
+    <string name="dictate_mic_open_settings">Open settings</string>
+    <string name="dictate_mic_settings_failed">Couldn\'t open settings. Open Android Settings, then Apps, then Marmalade STT.</string>
+
+    <!-- Engines list -->
+    <string name="engines_title">Engines</string>
+
+    <!-- Engine install state (shared by the cards, the info dialog and the setup guide) -->
+    <string name="engine_status_not_installed">Not downloaded yet</string>
+    <string name="engine_status_downloading">Downloading · %1$s</string>
+    <string name="engine_status_paused">Paused · %1$s</string>
+    <string name="engine_status_ready">Ready</string>
+    <string name="engine_status_corrupt">Model files are damaged: %1$s</string>
+    <!-- Download progress, e.g. "123 of 299 MB": %1$s is the bare number, %2$s the total with its unit -->
+    <string name="engine_progress_bytes">%1$s of %2$s</string>
+    <string name="engine_progress_description">Download progress</string>
+    <string name="engine_failure_not_available">This model isn\'t available for download right now. Try again later.</string>
+    <string name="engine_failure_no_space">There isn\'t enough free storage for this model. Free up some space and try again.</string>
+    <string name="engine_failure_network">The download was interrupted. Check your connection and try again. It will pick up where it left off.</string>
+    <string name="engine_failure_generic">The model couldn\'t be installed. Try again.</string>
+    <!-- What is wrong, after "Model files are damaged: "; %1$s is a file name, e.g. "encoder.int8.onnx" -->
+    <string name="engine_corrupt_outdated">The installed files don\'t match this version of the app.</string>
+    <string name="engine_corrupt_missing">%1$s is missing.</string>
+    <string name="engine_corrupt_wrong_size">%1$s has the wrong size.</string>
+    <string name="engine_corrupt_damaged">%1$s is damaged.</string>
+    <string name="engine_failure_checksum">A downloaded file didn\'t match what we expected, so it was deleted. Try again to download it fresh.</string>
+
+    <!-- Engine actions -->
+    <string name="engine_action_download">Download</string>
+    <string name="engine_action_resume">Resume</string>
+    <string name="engine_action_retry">Retry</string>
+    <string name="engine_action_download_again">Download again</string>
+    <string name="engine_action_cancel">Cancel</string>
+    <string name="engine_action_remove_download">Remove download</string>
+    <string name="engine_action_check_files">Check files</string>
+    <string name="engine_action_checking">Checking files…</string>
+    <string name="engine_action_remove">Remove</string>
+    <string name="engine_dialog_cancel">Cancel</string>
+    <string name="engine_download_confirm_title">Download %1$s?</string>
+    <string name="engine_download_confirm_body">This downloads %1$s from the internet, once. After that the engine works offline, and nothing you say leaves your phone.</string>
+    <string name="engine_remove_confirm_title">Remove %1$s?</string>
+    <string name="engine_remove_confirm_body">This deletes the model files (%1$s) from your phone. You can download them again any time.</string>
+    <string name="engine_remove_download_failed">Couldn\'t remove the download. Try again.</string>
+    <string name="engine_remove_failed">Couldn\'t remove the model files. Try again.</string>
+    <string name="engine_check_ok">All files are intact</string>
+    <string name="engine_check_damaged">Some model files are damaged. Download them again to fix this.</string>
+    <string name="engine_check_failed">Couldn\'t check the files. Try again.</string>
+    <!-- The name of Android's notification channel for model download progress (Settings → Apps → Notifications) -->
+    <string name="download_channel_name">Speech model downloads</string>
+
+    <!-- Engine info dialog (and the card's spec column labels) -->
+    <string name="engine_detail_languages">Languages</string>
+    <string name="engine_detail_size_on_disk">Size on disk</string>
+    <string name="engine_detail_download_size">Download size</string>
+    <string name="engine_detail_license">License</string>
+    <string name="engine_detail_source">Source</string>
+    <string name="engine_detail_speed">Speed</string>
+    <string name="engine_speed_cost">%1$s× the decoding time of Parakeet Ultra (estimated)</string>
+    <string name="engine_speed_reference">Parakeet Ultra is the speed reference</string>
+    <string name="engine_speed_phone_unmeasured">This phone hasn\'t been measured yet</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_back">Back</string>
+    <string name="settings_save_failed">Couldn\'t save the setting. Try again.</string>
+    <string name="settings_speech">Speech</string>
+    <string name="settings_speech_keep_loaded">Keep engine ready</string>
+    <string name="settings_speech_keep_loaded_desc">Starts listening faster. Worth turning on if you use voice input often, for example for accessibility. Uses about 0.6 to 3 GB of memory while the app is open, depending on the engine.</string>
+    <!-- Settings → End of speech (#43) -->
+    <string name="settings_end">End of speech</string>
+    <string name="settings_end_keyboard">Voice keyboard</string>
+    <string name="settings_end_apps">Other apps and the speak-now popup</string>
+    <string name="settings_end_tap">Tap to stop</string>
+    <string name="settings_end_tap_desc">The mic stays on until you tap it. Your words are typed when you stop.</string>
+    <string name="settings_end_smart_turn">Auto-stop with Smart Turn</string>
+    <string name="settings_end_smart_turn_desc">Stops when you sound finished, so a pause to think doesn\'t cut you off.</string>
+    <string name="settings_end_pause">Auto-stop after a pause</string>
+    <string name="settings_end_pause_desc">Stops when you pause. Set how long under Pause length.</string>
+    <string name="settings_end_word">Say an end word</string>
+    <string name="settings_end_word_desc">Stops when you say the end word on its own, like “over”. The word isn\'t typed.</string>
+    <string name="settings_end_lock_hint">Tip: in an auto-stop mode, hold the mic to keep listening until you tap it.</string>
+    <string name="settings_dialog_cancel">Cancel</string>
+    <string name="settings_speech_pause">Pause length</string>
+    <string name="settings_speech_pause_desc">How long a pause ends a sentence on the Dictate tab, and stops listening in Auto-stop after a pause. Longer lets you pause to think.</string>
+    <!-- The pause length shown next to the slider, e.g. "1.2 s" -->
+    <string name="settings_speech_pause_value">%1$.1f s</string>
+    <!-- What TalkBack says for the slider value, e.g. "1.2 seconds" -->
+    <string name="settings_speech_pause_state">%1$.1f seconds</string>
+    <string name="settings_patience">Smart Turn patience</string>
+    <!-- %1$s is the chosen patience, e.g. "Normal" -->
+    <string name="settings_patience_desc">%1$s. How long it waits before deciding you\'re done.</string>
+    <string name="settings_patience_quick">Quick</string>
+    <string name="settings_patience_quick_desc">Stops sooner, but cuts you off more often.</string>
+    <string name="settings_patience_normal">Normal</string>
+    <string name="settings_patience_normal_desc">Waits through most pauses to think.</string>
+    <string name="settings_patience_relaxed">Relaxed</string>
+    <string name="settings_patience_relaxed_desc">Waits longer before it stops. Good if you pause a lot.</string>
+    <string name="settings_end_words">End words</string>
+    <string name="settings_end_words_hint">Separate them with commas.</string>
+    <!-- Settings → Support (#44), marmalade-tts-android's wording -->
+    <string name="settings_support">Support</string>
+    <string name="settings_support_dev">Support development</string>
+    <string name="settings_support_dev_desc">Donate via GitHub Sponsors. Voluntary and not tax-deductible.</string>
+    <string name="settings_more_marmalade">More Marmalade</string>
+    <string name="settings_more_marmalade_desc">Other Marmalade apps on GitHub.</string>
+    <string name="settings_report_bug">Report a bug</string>
+    <string name="settings_report_bug_desc">Something broken or misheard? Opens a GitHub issue with the details filled in.</string>
+    <string name="settings_about">About</string>
+    <string name="settings_about_row">About Marmalade STT</string>
+    <string name="settings_about_row_desc">Version %1$s · licenses, privacy</string>
+
+    <!-- About -->
+    <string name="about_title">About</string>
+    <string name="about_version">Version %1$s</string>
+    <string name="about_tagline">Private speech-to-text that runs on your phone.</string>
+    <string name="about_privacy">Privacy policy</string>
+    <string name="about_privacy_desc">What stays on your phone (everything you say) and what the app downloads. No tracking, no accounts.</string>
+    <!-- Shown above the English privacy policy in a translated UI (#51). Empty in English, so
+         English shows no note. Translations say: "This policy is in English. Summary: speech is
+         recognized on your phone, never by a cloud or online speech service. Audio is never saved
+         or uploaded. No analytics, tracking or accounts. The internet is used only to download
+         speech models." Only facts PRIVACY.md states. -->
+    <string name="about_privacy_english_note"></string>
+    <string name="about_privacy_load_failed">Couldn\'t load the privacy policy. It\'s also in the repository as PRIVACY.md.</string>
+    <string name="about_licenses">Open-source licenses</string>
+    <string name="about_licenses_desc">Licenses for the app and the components it ships.</string>
+
+    <!-- Open-source licenses -->
+    <string name="licenses_licensing">Licensing</string>
+    <string name="licenses_component_summary" translatable="false">%1$s · %2$s</string>
+    <string name="licenses_view_full">View full license</string>
+    <string name="license_text_title">License</string>
+    <string name="license_text_not_bundled">License text is not bundled. See the link on the previous screen.</string>
+    <string name="license_text_load_failed">Could not load the license text. See the upstream link on the previous screen.</string>
+
+    <!-- Voice keyboard (#5). Error texts reuse the dictate_error_* strings. -->
+    <string name="ime_name">Marmalade voice typing</string>
+    <string name="ime_subtype_label">Voice typing</string>
+    <string name="ime_status_loading">Loading model…</string>
+    <string name="ime_status_listening">Listening</string>
+    <string name="ime_status_hearing">Hearing you…</string>
+    <string name="ime_status_finishing">Finishing…</string>
+    <string name="ime_status_paused">Paused. Tap the mic to go on.</string>
+    <string name="ime_speak_now">Speak now</string>
+    <string name="ime_cancel">Back to keyboard</string>
+    <string name="ime_done">Done</string>
+    <string name="ime_pause">Pause listening</string>
+    <string name="ime_resume">Resume listening</string>
+    <string name="ime_no_model">Download a speech model in Marmalade STT to use voice typing.</string>
+    <string name="ime_open_app">Open Marmalade STT</string>
+    <string name="ime_mic_needed">Voice typing needs the microphone. It listens only while this panel is open.</string>
+    <string name="ime_mic_allow">Allow microphone</string>
+    <string name="ime_mic_blocked">Microphone access is off for Marmalade STT. Turn it on under Permissions, then go back to your app.</string>
+
+    <!-- Speech input dialog (RECOGNIZE_SPEECH) and RecognitionService (#5) -->
+    <string name="recognizer_label" translatable="false">Marmalade STT</string>
+    <string name="recognizer_speak_now">Speak now</string>
+    <string name="recognizer_cancel">Cancel</string>
+    <string name="recognizer_done">Done</string>
+    <string name="recognizer_try_again">Try again</string>
+    <string name="recognizer_no_model">Download a speech model in Marmalade STT to use speech input.</string>
+    <string name="recognizer_open_app">Open Marmalade STT</string>
+    <string name="recognizer_mic_blocked">Speech input needs the microphone. Turn it on in the app\'s settings, under Permissions.</string>
+    <string name="recognizer_open_settings">Open settings</string>
+    <string name="recognizer_mic_stop">Stop listening</string>
+
+    <!-- Press and hold the mic to lock listening (#43): keyboard panel and speak-now popup -->
+    <string name="lock_status">Locked: tap to stop</string>
+    <!-- What TalkBack says for the locked mic's state -->
+    <string name="lock_state">Locked</string>
+    <!-- TalkBack's name for the mic's press-and-hold action -->
+    <string name="lock_action">Lock listening</string>
+
+    <!-- Text cleanup (Settings section, dictionary and snippet editors). Help text condenses textproc/README.md. -->
+    <string name="cleanup_section">Text cleanup</string>
+    <string name="cleanup_fillers">Remove filler words</string>
+    <string name="cleanup_fillers_desc">Removes “um”, “uh”, “er”, “hmm” and similar. Real words like “umbrella” are kept.</string>
+    <string name="cleanup_commands">Voice commands</string>
+    <string name="cleanup_commands_desc">Say “new line”, “new paragraph”, or “scratch that” to remove the last sentence.</string>
+    <string name="cleanup_punctuation">Punctuation words</string>
+    <string name="cleanup_punctuation_desc">Also say “period”, “comma”, “question mark”… Off by default: they\'re ordinary words too.</string>
+    <!-- #42: prefixes an English-only rule's description while the speech isn't English. %1$s is the description. -->
+    <string name="cleanup_english_only">English only. %1$s</string>
+    <string name="cleanup_itn">Write numbers as digits</string>
+    <string name="cleanup_itn_desc">“Twenty five percent” becomes “25%”, “nine thirty pm” becomes “9:30 pm”. Small numbers like “three boxes” stay as words.</string>
+    <string name="cleanup_capitalize">Capitalize sentences</string>
+    <string name="cleanup_capitalize_desc">A capital letter at the start of each sentence and line. Nothing is ever lowercased.</string>
+    <string name="cleanup_dictionary">Replacement dictionary</string>
+    <string name="cleanup_dictionary_desc_none">Fix words the app keeps getting wrong.</string>
+    <plurals name="cleanup_dictionary_desc">
+        <item quantity="one">%1$d rule · fix words the app keeps getting wrong</item>
+        <item quantity="other">%1$d rules · fix words the app keeps getting wrong</item>
+    </plurals>
+    <string name="cleanup_snippets">Snippets</string>
+    <string name="cleanup_snippets_desc_none">Say a trigger phrase to insert saved text, like your address.</string>
+    <plurals name="cleanup_snippets_desc">
+        <item quantity="one">%1$d snippet · say a trigger phrase to insert saved text</item>
+        <item quantity="other">%1$d snippets · say a trigger phrase to insert saved text</item>
+    </plurals>
+
+    <string name="cleanup_save">Save</string>
+    <string name="cleanup_cancel">Cancel</string>
+    <string name="cleanup_delete">Delete</string>
+    <!-- TalkBack: what tapping a dictionary rule or snippet does. A click label: TalkBack says "Double-tap to Edit" (see "Click labels" in docs/i18n/TRANSLATING.md) -->
+    <string name="cleanup_edit_action">Edit</string>
+
+    <!-- "teh" is the README's deliberate misspelling example. -->
+    <string name="cleanup_dictionary_help" tools:ignore="Typos">Each rule turns a word or phrase the app keeps getting wrong into what you meant.\n\n• Matches whole words in any case: “teh” matches “Teh” but not “tehran”.\n• In Chinese and Japanese, which have no spaces between words, a phrase also matches inside a sentence. In Korean it also matches with a particle attached: “메일” matches “메일을”.\n• A capital letter on the right side is kept as written. Otherwise the case follows what was heard: “Teh” becomes “The”.\n• Leave the right side empty to delete the phrase.\n• When rules overlap, the longest match wins.</string>
+    <string name="cleanup_dictionary_empty">No rules yet. Tap “Add rule” to fix a word the app keeps getting wrong.</string>
+    <string name="cleanup_dictionary_add">Add rule</string>
+    <string name="cleanup_dictionary_edit">Edit rule</string>
+    <string name="cleanup_dictionary_from">What\'s heard</string>
+    <string name="cleanup_dictionary_to">Write instead</string>
+    <string name="cleanup_dictionary_to_hint">Leave empty to delete the phrase.</string>
+    <string name="cleanup_dictionary_from_breaks_export">Can\'t contain “->” or start with “#”.</string>
+    <!-- Shown in the rule dialog when the left side matches another rule; %1$s is that rule's left side -->
+    <string name="cleanup_dictionary_replaces">Replaces your rule for “%1$s”.</string>
+    <!-- Right side of an empty-replacement rule in the list, e.g. "basically → (deleted)" -->
+    <string name="cleanup_dictionary_deleted">(deleted)</string>
+    <!-- TalkBack for a rule row, e.g. "teh becomes the" -->
+    <string name="cleanup_dictionary_rule_description">%1$s becomes %2$s</string>
+    <!-- TalkBack for a rule with an empty right side -->
+    <string name="cleanup_dictionary_rule_deletes_description">%1$s is deleted</string>
+    <string name="cleanup_import">Import</string>
+    <string name="cleanup_export">Copy all</string>
+    <string name="cleanup_exported">Rules copied</string>
+    <string name="cleanup_import_title">Import rules</string>
+    <string name="cleanup_import_help">Paste one rule per line, as wrong -> right. Lines starting with # are ignored. A rule for a word you already have replaces it.</string>
+    <string name="cleanup_import_field">Rules</string>
+    <string name="cleanup_import_none">No rules found yet.</string>
+    <plurals name="cleanup_import_found">
+        <item quantity="one">%1$d rule found.</item>
+        <item quantity="other">%1$d rules found.</item>
+    </plurals>
+    <plurals name="cleanup_import_skipped">
+        <item quantity="one">%1$d line isn\'t a rule and will be skipped.</item>
+        <item quantity="other">%1$d lines aren\'t rules and will be skipped.</item>
+    </plurals>
+
+    <string name="cleanup_snippets_help">Say a trigger phrase and it\'s replaced by your saved text, exactly as written, line breaks included.\n\n• Triggers match whole words in any case: “my email” matches “My email” but not “my emailing”.\n• In Chinese and Japanese, which have no spaces between words, a trigger also matches inside a sentence. In Korean it also matches with a particle attached: “메일” matches “메일을”.\n• Nothing else changes the saved text: no filler removal, commands or capitals.\n• Said on its own, only the saved text is inserted.</string>
+    <string name="cleanup_snippets_empty">No snippets yet. Tap “Add snippet” to save text you often need.</string>
+    <string name="cleanup_snippets_add">Add snippet</string>
+    <string name="cleanup_snippets_edit">Edit snippet</string>
+    <string name="cleanup_snippets_trigger">Trigger phrase</string>
+    <string name="cleanup_snippets_text">Text to insert</string>
+    <!-- Shown in the snippet dialog when the trigger matches another snippet; %1$s is that trigger -->
+    <string name="cleanup_snippets_replaces">Replaces your snippet for “%1$s”.</string>
+
+    <!-- Setup guide (onboarding) -->
+    <!-- Top bar title, e.g. "Step 2 of 6" -->
+    <string name="onboarding_step_of">Step %1$d of %2$d</string>
+    <string name="onboarding_close">Close setup guide</string>
+    <string name="onboarding_back">Back</string>
+    <string name="onboarding_next">Next</string>
+    <string name="onboarding_skip">Skip</string>
+    <string name="onboarding_get_started">Get started</string>
+    <string name="onboarding_try_it">Try it</string>
+    <string name="onboarding_settings_failed">Couldn\'t open Android\'s settings. Open them from your home screen instead.</string>
+    <!-- Toasts over Settings when only a fallback page opened (#79): where to go from there. -->
+    <string name="settings_hint_voice_input">Search Settings for “Voice input”, then pick Marmalade STT.</string>
+    <string name="settings_hint_keyboards">Search Settings for “Keyboard”, then turn on Marmalade voice typing.</string>
+    <string name="settings_hint_app_details">Find Marmalade STT under Apps, then turn on the microphone under Permissions.</string>
+    <string name="onboarding_welcome_title">Welcome to Marmalade STT</string>
+    <string name="onboarding_welcome_body">Speak, and Marmalade STT types it out: on its own Dictate screen, or as voice input in other apps. A few quick steps get it ready.</string>
+    <string name="onboarding_privacy_title">Private by design</string>
+    <!-- Must say what PRIVACY.md says, no more -->
+    <string name="onboarding_privacy_body">Speech is recognized on your phone, never by a cloud or online speech service, Google\'s included. Audio is never saved or uploaded. No analytics, no tracking, no accounts, no API keys. The internet is used only to download speech models.</string>
+    <!-- Setup guide, welcome page: the title of a card with the accessibility icon and a switch that turns on the High contrast colour preset (settings_color_high_contrast) for the whole app. Use the platform's usual word for accessibility -->
+    <string name="onboarding_high_contrast">Accessibility mode</string>
+    <!-- Under onboarding_high_contrast: what the switch turns on, the High contrast colour preset (settings_color_high_contrast) -->
+    <string name="onboarding_high_contrast_desc">High contrast colors</string>
+    <string name="onboarding_mic_title">Allow the microphone</string>
+    <string name="onboarding_mic_body">Marmalade STT needs the microphone to hear you. It is used only while dictation is on.</string>
+    <string name="onboarding_mic_granted">Microphone access is on</string>
+    <string name="onboarding_mic_denied">Without the microphone, Marmalade STT can\'t hear you. You can allow it now, or skip and allow it later.</string>
+    <string name="onboarding_mic_blocked">Microphone access is turned off for this app. Turn it on under Permissions on the app\'s settings page.</string>
+    <string name="onboarding_mic_allow">Allow microphone</string>
+    <string name="onboarding_mic_open_settings">Open app settings</string>
+    <string name="onboarding_model_title">Download a speech model</string>
+    <string name="onboarding_model_body">Speech is recognized by a model that runs on your phone. It is downloaded once; after that, dictation works offline.</string>
+    <string name="onboarding_model_downloading_note">Setup continues once the model is ready. The download keeps going if the screen turns off or you leave the app.</string>
+    <string name="onboarding_keyboard_title">Turn on the voice keyboard</string>
+    <string name="onboarding_keyboard_body">The Marmalade voice keyboard is how you dictate into other apps: keyboards\' mic keys open it. Turn on “Marmalade voice typing” in Android\'s keyboard settings, then come back here.</string>
+    <string name="onboarding_keyboard_open">Open keyboard settings</string>
+    <string name="onboarding_keyboard_on">The voice keyboard is on</string>
+    <string name="onboarding_keyboard_off">The voice keyboard is off</string>
+    <string name="onboarding_keyboard_warning">Android warns that any keyboard you turn on could collect what you type. That warning is standard. Marmalade STT only types what you dictate, and nothing leaves your phone.</string>
+    <!-- The Pixel's second dialog: the keyboard isn't direct-boot aware (models live in credential-encrypted storage). -->
+    <string name="onboarding_keyboard_unlock_note">Some phones then show a second message: after a reboot, the app can\'t start until you unlock your phone. That\'s fine too. Tap OK.</string>
+    <string name="onboarding_futo_checking">Asking FUTO Keyboard…</string>
+    <string name="onboarding_futo_selected">FUTO Keyboard uses Marmalade STT for voice input</string>
+    <string name="onboarding_futo_not_selected">FUTO Keyboard uses a different voice input</string>
+    <string name="onboarding_futo_use">Use Marmalade STT in FUTO</string>
+    <string name="onboarding_futo_check_again">Check again</string>
+    <string name="onboarding_futo_manual_title">Set it up yourself</string>
+    <string name="onboarding_futo_manual_body">In FUTO Keyboard, open Settings → Voice Input and turn on “Disable built-in voice input” (“Use voice input provided by external app”). FUTO\'s microphone button then opens the Marmalade voice keyboard from the previous step.</string>
+    <!-- FUTO Keyboard 0.1.30 caches the voice input and crashes once after another voice keyboard is turned off (FUTO's bug). -->
+    <string name="onboarding_futo_crash_once">If FUTO Keyboard closes the first time you tap its microphone, tap it again.</string>
+    <string name="onboarding_done_title">You\'re all set</string>
+    <string name="onboarding_done_body">Try it on the Dictate screen: tap the microphone and speak.</string>
+    <string name="onboarding_done_title_partial">Ready when you are</string>
+    <string name="onboarding_done_body_partial">Some steps are still open. You can finish them any time.</string>
+    <string name="onboarding_done_reopen">You can open this guide again from Settings.</string>
+    <string name="onboarding_summary_mic">Microphone</string>
+    <string name="onboarding_summary_mic_on">Allowed</string>
+    <string name="onboarding_summary_mic_off">Not allowed yet</string>
+    <string name="onboarding_summary_model">Speech model</string>
+    <string name="onboarding_summary_model_ready">Ready</string>
+    <string name="onboarding_summary_model_downloading">Downloading</string>
+    <string name="onboarding_summary_model_missing">Not downloaded. Get it from the Engines tab.</string>
+    <string name="onboarding_summary_model_attention">Download not finished. See the Engines tab.</string>
+    <string name="onboarding_summary_keyboard">Voice keyboard</string>
+    <string name="onboarding_summary_keyboard_on">On</string>
+    <string name="onboarding_summary_keyboard_off">Off</string>
+    <string name="onboarding_summary_futo">FUTO Keyboard</string>
+    <string name="onboarding_summary_futo_on">Uses Marmalade STT</string>
+    <string name="onboarding_summary_futo_off">Uses a different voice input</string>
+    <string name="onboarding_settings_row">Setup guide</string>
+    <string name="onboarding_settings_row_desc">Microphone, speech engine, keyboards and speech service</string>
+</resources>

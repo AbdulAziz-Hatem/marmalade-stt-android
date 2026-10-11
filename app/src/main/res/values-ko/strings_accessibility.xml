@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Screen-reader-only text and other strings added by the accessibility pass (#68). -->
+<resources>
+    <!-- Shared -->
+    <string name="a11y_download_started">%1$s 다운로드 중</string>
+    <string name="a11y_download_ready">%1$s 엔진이 준비되었습니다</string>
+    <string name="a11y_download_failed">%1$s 다운로드에 실패했습니다</string>
+    <string name="a11y_download_paused">%1$s 다운로드가 일시중지되었습니다</string>
+
+    <!-- Settings, dictionary, snippets, licences, privacy -->
+    <string name="a11y_open_in_browser">브라우저로 이동</string>
+    <string name="a11y_rule_deleted">규칙이 삭제되었습니다</string>
+    <string name="a11y_snippet_deleted">상용구가 삭제되었습니다</string>
+    <string name="a11y_end_words_reverted">종료 단어가 변경되지 않았습니다. 단어를 하나 이상 입력하세요</string>
+
+    <!-- Engines, benchmark -->
+    <string name="a11y_engine_action_named">%2$s, %1$s</string>
+    <string name="a11y_engine_download_named">%1$s 다운로드, %2$s</string>
+    <string name="a11y_benchmark_finished">벤치마크가 완료되었습니다</string>
+
+    <!-- Dictate, voice keyboard, speech sheet -->
+
+    <!-- Onboarding -->
+    <string name="a11y_onboarding_step_pane">%1$s: %2$s</string>
+    <string name="a11y_onboarding_recommended">이 휴대전화에 추천: %1$s</string>
+
+</resources>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- A/B-Benchmark für Entwickler -->
+    <string name="benchmark_title">Benchmark</string>
+    <string name="benchmark_note">Nimm eine Aufnahme auf, dann transkribiert jede installierte Engine sie nacheinander: laden, transkribieren, entladen. Jede Engine bekommt dieselben Segmente von Silero VAD. Streaming-Engines erhalten jedes Segment in 100-ms-Blöcken, so schnell das Modell sie annimmt, nicht in Echtzeit. Die Aufnahme bleibt im Arbeitsspeicher und wird nie gespeichert. Werte auf einem Emulator taugen nur zum Vergleich der Engines untereinander.</string>
+
+    <string name="benchmark_section_take">Aufnahme</string>
+    <string name="benchmark_record">Aufnehmen</string>
+    <string name="benchmark_stop">Stopp</string>
+    <string name="benchmark_play">Abspielen</string>
+    <string name="benchmark_stop_playback">Wiedergabe stoppen</string>
+    <string name="benchmark_elapsed">%1$s s / %2$d s</string>
+    <string name="benchmark_level">Eingangspegel</string>
+    <string name="benchmark_take_length">Aufnahme: %1$s</string>
+    <string name="benchmark_take_length_soft_agc">Aufnahme: %1$s, von der App ausgepegelt (dieses Smartphone hat keine eingebaute Mikrofon-Pegelregelung)</string>
+    <plurals name="benchmark_no_take">
+        <item quantity="one">Noch keine Aufnahme. Nimm bis zu %1$d Sekunde Sprache auf.</item>
+        <item quantity="other">Noch keine Aufnahme. Nimm bis zu %1$d Sekunden Sprache auf.</item>
+    </plurals>
+
+    <string name="benchmark_section_reference">Referenztext (optional)</string>
+    <string name="benchmark_reference_label">Was du gesagt hast</string>
+    <string name="benchmark_reference_hint">Gib ein, was du gesagt hast, um pro Engine eine Wortfehlerrate (WER) zu erhalten.</string>
+
+    <string name="benchmark_section_engines">Engines</string>
+    <string name="benchmark_no_engines">Es sind keine Engines installiert. Installiere welche im Tab „Engines“ (aktiviere Entwickler-Engines in den Einstellungen, um die Kandidaten zu sehen).</string>
+    <string name="benchmark_run">Benchmark starten</string>
+    <string name="benchmark_run_again">Erneut starten</string>
+    <string name="benchmark_running">%1$s läuft (%2$d von %3$d)…</string>
+
+    <string name="benchmark_section_results">Ergebnisse</string>
+    <string name="benchmark_metric_load">Laden %1$s</string>
+    <string name="benchmark_metric_decode">Decodieren %1$s</string>
+    <string name="benchmark_metric_rtf">RTF %1$s</string>
+    <string name="benchmark_metric_rss">Peak-RSS (Stichprobe) %1$s</string>
+    <string name="benchmark_metric_wer">WER %1$s</string>
+    <string name="benchmark_empty_transcript">(keine Sprache erkannt)</string>
+    <string name="benchmark_raw">Roh: %1$s</string>
+    <string name="benchmark_failed_load">Laden fehlgeschlagen: %1$s</string>
+    <string name="benchmark_failed_transcribe">Transkribieren fehlgeschlagen: %1$s</string>
+    <string name="benchmark_failed_release">Transkribiert, aber Entladen fehlgeschlagen: %1$s</string>
+    <string name="benchmark_copy_markdown">Als Markdown kopieren</string>
+    <string name="benchmark_copied">Kopiert</string>
+
+    <!-- Snackbar-Hinweise -->
+    <string name="benchmark_error_mic">Aufnahme nicht möglich. Nutzt eine andere App das Mikrofon?</string>
+    <string name="benchmark_error_empty">Es wurde nichts aufgenommen. Versuche es noch einmal.</string>
+    <string name="benchmark_error_playback">Die Aufnahme konnte nicht abgespielt werden.</string>
+    <string name="benchmark_error_no_engines">Keine installierten Engines zum Ausführen.</string>
+    <string name="benchmark_error_run">Der Benchmark wurde wegen eines Fehlers abgebrochen.</string>
+
+    <!-- Mikrofonberechtigung -->
+    <string name="benchmark_mic_title">Der Benchmark braucht dein Mikrofon</string>
+    <string name="benchmark_mic_body">Er nimmt eine Aufnahme auf, behält sie nur im Arbeitsspeicher und speichert oder sendet sie nie.</string>
+</resources>

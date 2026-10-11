@@ -1,0 +1,128 @@
+{
+  "tag": "emumem30",
+  "started": "20261002-040508",
+  "device": "unknown Android SDK built for x86_64 (Android 15, SDK 35)",
+  "seed": 1790939108183,
+  "order": [
+    "parakeet-ultra@4\/cpu"
+  ],
+  "fastCores": [],
+  "cooldownSeconds": 5,
+  "clips": [
+    {
+      "name": "ls30-x",
+      "audioMs": 30580
+    }
+  ],
+  "results": [
+    {
+      "engine": "parakeet-ultra",
+      "displayName": "Parakeet Ultra",
+      "threads": 4,
+      "tuning": "cpu",
+      "pinnedCores": null,
+      "family": "NEMO_TRANSDUCER",
+      "developer": false,
+      "loadMs": 2186,
+      "threadAffinity": {
+        "0-3": 32
+      },
+      "warmupMs": 6006,
+      "decodes": [
+        {
+          "clip": "ls30-x",
+          "audioMs": 30580,
+          "utterances": 1,
+          "decodeMs": 5160,
+          "rtf": 0.16873773708306083,
+          "wer": 0,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth. The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure."
+        }
+      ],
+      "rtfByLength": {
+        "ls30": 0.16873773708306083,
+        "ls": 0.16873773708306083
+      },
+      "sessions": {
+        "loadMs": 2146,
+        "cold": {
+          "clip": "ls30-x",
+          "audioMs": 30580,
+          "firstPartialMs": 449,
+          "endToFinalMs": 5673,
+          "partials": 15,
+          "finals": 1,
+          "wer": 0,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth. The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure.",
+          "error": null
+        },
+        "runs": [
+          {
+            "clip": "ls30-x",
+            "audioMs": 30580,
+            "firstPartialMs": 577,
+            "endToFinalMs": 5191,
+            "partials": 14,
+            "finals": 1,
+            "wer": 0,
+            "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth. The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure.",
+            "error": null
+          }
+        ],
+        "byLength": {
+          "ls30": {
+            "firstPartialMs": 577,
+            "endToFinalMs": 5191
+          }
+        },
+        "warmUpMs": 2360,
+        "coldWarmed": {
+          "clip": "ls30-x",
+          "audioMs": 30580,
+          "firstPartialMs": 455,
+          "endToFinalMs": 5998,
+          "partials": 15,
+          "finals": 1,
+          "wer": 0,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth. The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure.",
+          "error": null
+        }
+      },
+      "peakRssMb": 1610,
+      "baselineRssMb": 172,
+      "envBefore": {
+        "thermal": 0,
+        "batteryPct": 100,
+        "batteryTempC": 25,
+        "plugged": true,
+        "screenOn": true
+      },
+      "envAfter": {
+        "thermal": 0,
+        "batteryPct": 100,
+        "batteryTempC": 25,
+        "plugged": true,
+        "screenOn": true
+      },
+      "maxThermal": 0,
+      "disturbed": null
+    }
+  ],
+  "probeMs": 199,
+  "probeRuns": [
+    196,
+    199,
+    199,
+    200,
+    199
+  ],
+  "probeThreads": 3,
+  "probeEnv": {
+    "thermal": 0,
+    "batteryPct": 100,
+    "batteryTempC": 25,
+    "plugged": true,
+    "screenOn": true
+  },
+  "finished": "20261002-040721"
+}

@@ -1,0 +1,32 @@
+<p>Marmalade STT, konuşmanızı telefonunuzda metne dönüştürür. Onu klavyenizin (FUTO Keyboard, HeliBoard, FlorisBoard ve diğerleri) ve Android'den ses girişi isteyen uygulamaların ses girişi olarak kullanın. Sesiniz cihazdan asla çıkmaz.</p>
+
+<ul>
+<li><b>Gizli.</b> Konuşma telefonda tanınır. Ses asla kaydedilmez veya karşıya yüklenmez</li>
+<li><b>Çevrimdışı.</b> Bir konuşma motorunu bir kez indirdikten sonra bağlantı olmadan çalışır</li>
+<li><b>Canlı metin.</b> Çoğu motorda sözleriniz siz konuşurken gerçek zamanlı olarak görünür</li>
+<li><b>Bitirdiğinizi anlar.</b> “Şimdi konuşun” penceresinin varsayılanı olan Smart Turn, bitirmiş gibi görünene kadar bekler; böylece düşünmek için verdiğiniz bir ara sözünüzü nadiren keser</li>
+<li><b>Çok dilli.</b> 100 dil; diliniz için en iyi motor otomatik olarak seçilir</li>
+<li><b>Temiz çıktı.</b> Dolgu kelimeleri kaldırılır, sayılar rakamla yazılır; kendi değiştirmeleriniz ve sesle eklenen hazır metinler</li>
+<li><b>Ücretsiz ve açık kaynak.</b> Reklam yok, hesap yok, analiz yok</li>
+</ul>
+
+<p><b>GİZLİLİK ODAKLI TASARIM</b></p>
+<p>Analiz yok, izleme yok, çökme raporu yok, hesap yok ve bize ait bir sunucu yok. İnternet yalnızca seçtiğiniz konuşma motorlarını GitHub'dan indirmek için kullanılır ve her dosya sabitlenmiş bir SHA-256 karmasıyla doğrulanır. Android yedeklemesi kapalıdır, bu yüzden hiçbir şey buluta kopyalanmaz.</p>
+
+<p><b>NE ZAMAN DURACAĞINA SİZ KARAR VERİRSİNİZ</b></p>
+<p>“Şimdi konuşun” penceresinde ve diğer uygulamalarda Marmalade, konuşmanızı bitirdiğinizi anlamak için varsayılan olarak Smart Turn v3 teknolojisini kullanır. Elleri kullanmaya gerek yok. Sözünüzü çok erken mi kesiyor? Duraklamada durmaya geçin veya bunun yerine bir bitiş kelimesi belirleyin. Klavyede siz dokunana kadar dinler ya da o da Smart Turn kullanabilir.</p>
+
+<p><b>TEMİZ METİN</b></p>
+<p>İsteğe bağlı temizleme büyük harfleri düzeltir; İngilizcede ise dolgu kelimelerini kaldırır, “new line” ve “period” gibi komutları gerçek karşılıklarına dönüştürür ve sayıları rakamla yazar. Motorun yanlış anladığı adlar için değiştirmeler ve sık yazdığınız metinler için hazır metinler her dilde çalışır.</p>
+
+<p><b>KLAVYENİZLE ÇALIŞIR</b></p>
+<p>“Marmalade Sesle Yazma” seçeneğini açın; klavyenizin mikrofon tuşu, söylediklerinizi yazan küçük bir Marmalade sesli klavyesi açar. FUTO Keyboard, HeliBoard, FlorisBoard, AnySoftKeyboard, Unexpected Keyboard, AOSP klavyesi ve ses tuşu olan diğer klavyelerle çalışır.</p>
+
+<p><b>TELEFONUNUZA UYGUN BİR MOTOR</b></p>
+<p>Kurulum rehberi dilinize, telefonunuzun belleğine ve hızına uygun bir konuşma motoru önerir; dilerseniz başka modelleri de indirip deneyebilirsiniz.</p>
+
+<p><b>DİLLER</b></p>
+<p>Hızlı motorlar İngilizce, Bulgarca, Hırvatça, Çekçe, Danca, Felemenkçe, Estonca, Fince, Fransızca, Almanca, Yunanca, Macarca, İtalyanca, Letonca, Litvanca, Maltaca, Lehçe, Portekizce, Romence, Rusça, Slovakça, Slovence, İspanyolca, İsveççe, Ukraynaca, Japonca, Hintçe, Arapça ve Vietnamcayı kapsar. Çince ve Korece, Whisper'dan daha hafif olan Qwen3-ASR'yi kullanır. Diğer diller daha fazla gecikmeyle Whisper Large v3 Turbo üzerinden çalışır.</p>
+
+<p><b>AÇIK KAYNAK</b></p>
+<p>Marmalade STT, MIT lisanslıdır. Desteklemek isterseniz Ayarlar → Destek bölümünde GitHub Sponsors bağlantısı bulunur; uygulama her iki durumda da aynıdır.</p>

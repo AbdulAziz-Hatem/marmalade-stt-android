@@ -1,0 +1,329 @@
+{
+  "tag": "ort-xnn",
+  "started": "20261002-015429",
+  "device": "Google Pixel 8a (Android 17, SDK 37)",
+  "seed": 1790931269470,
+  "order": [
+    "nemotron-3-5-streaming-1120ms@4\/xnnpack-nospin-verbose",
+    "parakeet-tdt-110m-en@4\/xnnpack-nospin-verbose",
+    "parakeet-ultra@4\/xnnpack-nospin-verbose",
+    "whisper-turbo@4\/xnnpack-nospin-verbose",
+    "distil-small-en@4\/xnnpack-nospin-verbose",
+    "nemotron-3-5-streaming-560ms@4\/xnnpack-nospin-verbose"
+  ],
+  "fastCores": [
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "cooldownSeconds": 5,
+  "clips": [
+    {
+      "name": "ls05-1",
+      "audioMs": 4955
+    }
+  ],
+  "results": [
+    {
+      "engine": "nemotron-3-5-streaming-1120ms",
+      "displayName": "Nemotron 3.5 Streaming",
+      "threads": 4,
+      "tuning": "xnnpack-nospin-verbose",
+      "pinnedCores": null,
+      "family": "STREAMING_TRANSDUCER",
+      "developer": false,
+      "loadMs": 3956,
+      "threadAffinity": {
+        "0-7": 43
+      },
+      "warmupMs": 2953,
+      "decodes": [
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 2771,
+          "rtf": 0.5592330978809283,
+          "wer": 0.08333333333333333,
+          "text": "Or an eye of gifts and graces, showering fruits and coined gold"
+        }
+      ],
+      "rtfByLength": {
+        "ls05": 0.5592330978809283,
+        "ls": 0.5592330978809283
+      },
+      "peakRssMb": 900,
+      "baselineRssMb": 189,
+      "envBefore": {
+        "thermal": 0,
+        "batteryPct": 36,
+        "batteryTempC": 33.8,
+        "plugged": true,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 0,
+        "batteryPct": 36,
+        "batteryTempC": 33.8,
+        "plugged": true,
+        "screenOn": false
+      },
+      "maxThermal": 0,
+      "disturbed": null
+    },
+    {
+      "engine": "parakeet-tdt-110m-en",
+      "displayName": "Parakeet TDT_CTC 110M (English)",
+      "threads": 4,
+      "tuning": "xnnpack-nospin-verbose",
+      "pinnedCores": null,
+      "family": "NEMO_TRANSDUCER",
+      "developer": false,
+      "loadMs": 2004,
+      "threadAffinity": {
+        "0-7": 43
+      },
+      "warmupMs": 528,
+      "decodes": [
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 464,
+          "rtf": 0.09364278506559032,
+          "wer": 0.16666666666666666,
+          "text": "or an eye of gifts and graces, showering fruits in coined gold"
+        }
+      ],
+      "rtfByLength": {
+        "ls05": 0.09364278506559032,
+        "ls": 0.09364278506559032
+      },
+      "peakRssMb": 397,
+      "baselineRssMb": 234,
+      "envBefore": {
+        "thermal": 0,
+        "batteryPct": 36,
+        "batteryTempC": 33.8,
+        "plugged": true,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 0,
+        "batteryPct": 36,
+        "batteryTempC": 33.8,
+        "plugged": true,
+        "screenOn": false
+      },
+      "maxThermal": 0,
+      "disturbed": null
+    },
+    {
+      "engine": "parakeet-ultra",
+      "displayName": "Parakeet Ultra",
+      "threads": 4,
+      "tuning": "xnnpack-nospin-verbose",
+      "pinnedCores": null,
+      "family": "NEMO_TRANSDUCER",
+      "developer": true,
+      "loadMs": 4343,
+      "threadAffinity": {
+        "0-7": 43
+      },
+      "warmupMs": 1582,
+      "decodes": [
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 1451,
+          "rtf": 0.29283551967709387,
+          "wer": 0.16666666666666666,
+          "text": "or an eye of gifts and graces, showering fruits in coined gold."
+        }
+      ],
+      "rtfByLength": {
+        "ls05": 0.29283551967709387,
+        "ls": 0.29283551967709387
+      },
+      "peakRssMb": 958,
+      "baselineRssMb": 254,
+      "envBefore": {
+        "thermal": 0,
+        "batteryPct": 36,
+        "batteryTempC": 33.8,
+        "plugged": true,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 0,
+        "batteryPct": 36,
+        "batteryTempC": 33.8,
+        "plugged": true,
+        "screenOn": false
+      },
+      "maxThermal": 0,
+      "disturbed": null
+    },
+    {
+      "engine": "whisper-turbo",
+      "displayName": "Whisper Large v3 Turbo",
+      "threads": 4,
+      "tuning": "xnnpack-nospin-verbose",
+      "pinnedCores": null,
+      "family": "WHISPER",
+      "developer": true,
+      "loadMs": 4941,
+      "threadAffinity": {
+        "0-7": 37
+      },
+      "warmupMs": 3986,
+      "decodes": [
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 3928,
+          "rtf": 0.7927346115035317,
+          "wer": 0.16666666666666666,
+          "text": "Or an eye of gifts and graces, showering fruits and cointed gold?"
+        }
+      ],
+      "rtfByLength": {
+        "ls05": 0.7927346115035317,
+        "ls": 0.7927346115035317
+      },
+      "peakRssMb": 1408,
+      "baselineRssMb": 308,
+      "envBefore": {
+        "thermal": 0,
+        "batteryPct": 36,
+        "batteryTempC": 33.8,
+        "plugged": true,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 0,
+        "batteryPct": 36,
+        "batteryTempC": 33.8,
+        "plugged": true,
+        "screenOn": false
+      },
+      "maxThermal": 0,
+      "disturbed": null
+    },
+    {
+      "engine": "distil-small-en",
+      "displayName": "Distil-Whisper Small (English)",
+      "threads": 4,
+      "tuning": "xnnpack-nospin-verbose",
+      "pinnedCores": null,
+      "family": "WHISPER",
+      "developer": true,
+      "loadMs": 1867,
+      "threadAffinity": {
+        "0-7": 37
+      },
+      "warmupMs": 1917,
+      "decodes": [
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 1583,
+          "rtf": 0.3194752774974773,
+          "wer": 0.16666666666666666,
+          "text": "Or an eye of gifts and graces, showering fruit and coined gold."
+        }
+      ],
+      "rtfByLength": {
+        "ls05": 0.3194752774974773,
+        "ls": 0.3194752774974773
+      },
+      "peakRssMb": 702,
+      "baselineRssMb": 419,
+      "envBefore": {
+        "thermal": 0,
+        "batteryPct": 36,
+        "batteryTempC": 33.8,
+        "plugged": true,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 0,
+        "batteryPct": 36,
+        "batteryTempC": 33.8,
+        "plugged": true,
+        "screenOn": false
+      },
+      "maxThermal": 0,
+      "disturbed": null
+    },
+    {
+      "engine": "nemotron-3-5-streaming-560ms",
+      "displayName": "Nemotron 3.5 Streaming",
+      "threads": 4,
+      "tuning": "xnnpack-nospin-verbose",
+      "pinnedCores": null,
+      "family": "STREAMING_TRANSDUCER",
+      "developer": false,
+      "loadMs": 4804,
+      "threadAffinity": {
+        "0-7": 43
+      },
+      "warmupMs": 4465,
+      "decodes": [
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 4252,
+          "rtf": 0.8581231079717457,
+          "wer": 0.08333333333333333,
+          "text": "Or an eye of gifts and graces, showering fruits and coined gold"
+        }
+      ],
+      "rtfByLength": {
+        "ls05": 0.8581231079717457,
+        "ls": 0.8581231079717457
+      },
+      "peakRssMb": 1088,
+      "baselineRssMb": 403,
+      "envBefore": {
+        "thermal": 0,
+        "batteryPct": 36,
+        "batteryTempC": 33.8,
+        "plugged": true,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 0,
+        "batteryPct": 36,
+        "batteryTempC": 33.8,
+        "plugged": true,
+        "screenOn": false
+      },
+      "maxThermal": 0,
+      "disturbed": null
+    }
+  ],
+  "probeMs": 240,
+  "probeRuns": [
+    239,
+    240,
+    238,
+    243,
+    243
+  ],
+  "probeThreads": 4,
+  "probeEnv": {
+    "thermal": 0,
+    "batteryPct": 36,
+    "batteryTempC": 33.8,
+    "plugged": true,
+    "screenOn": false
+  },
+  "finished": "20261002-023210"
+}

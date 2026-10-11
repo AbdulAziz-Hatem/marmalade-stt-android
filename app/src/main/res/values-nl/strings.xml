@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- List separator, quoted name, UI locale -->
+    <string name="list_separator">,\u0020</string>
+    <string name="quoted_name">“%1$s”</string>
+    <string name="ui_locale">nl</string>
+
+    <!-- Bottom navigation -->
+    <string name="nav_dictate">Dicteren</string>
+    <string name="nav_engines">Engines</string>
+    <string name="nav_settings">Instellingen</string>
+
+    <!-- Dictate -->
+    <string name="dictate_start">Dicteren starten</string>
+    <string name="dictate_stop">Dicteren stoppen</string>
+    <string name="dictate_state_idle">Luistert niet</string>
+    <string name="dictate_state_loading">Laden</string>
+    <string name="dictate_state_listening">Luistert</string>
+    <string name="dictate_state_finishing">Afronden</string>
+    <string name="dictate_status_loading">Model laden…</string>
+    <string name="dictate_status_listening">Luistert</string>
+    <string name="dictate_status_hearing">Ik hoor je…</string>
+    <string name="dictate_status_finishing">Afronden…</string>
+    <string name="dictate_status_catching_up">Inhalen…</string>
+    <string name="dictate_empty">Je woorden verschijnen hier. Alles wat je zegt, blijft op je telefoon.</string>
+    <string name="dictate_copy">Kopiëren</string>
+    <string name="dictate_copied">Gekopieerd</string>
+    <string name="dictate_clear">Wissen</string>
+    <string name="dictate_no_speech">Niets opgevangen</string>
+    <string name="dictate_error_mic">Kan de microfoon niet gebruiken</string>
+    <string name="dictate_error_model">Kan het spraakmodel niet laden</string>
+    <string name="dictate_error_recognition">Er ging iets mis bij het transcriberen</string>
+    <string name="dictate_too_slow">Deze engine is te traag voor deze telefoon. Een kleinere engine op het tabblad Engines kan het wel bijhouden.</string>
+    <string name="dictate_error_busy">Er wordt al ergens anders gedicteerd. Probeer het zo opnieuw.</string>
+    <string name="dictate_no_model_title">Download een spraakmodel om te dicteren</string>
+    <string name="dictate_no_model_body">Het model draait op je telefoon. Je downloadt het één keer, daarna werkt dicteren offline.</string>
+    <string name="dictate_no_model_action">Kies een model</string>
+    <string name="dictate_mic_title">De app heeft je microfoon nodig</string>
+    <string name="dictate_mic_body">Er wordt alleen geluisterd terwijl je dicteert. Wat je zegt, wordt tekst op je telefoon en wordt nooit opgeslagen of ergens naartoe gestuurd.</string>
+    <string name="dictate_mic_body_blocked">Microfoontoegang staat uit voor deze app. Je kunt deze aanzetten in de app-instellingen, onder Rechten.</string>
+    <string name="dictate_mic_allow">Microfoon toestaan</string>
+    <string name="dictate_mic_open_settings">Instellingen openen</string>
+    <string name="dictate_mic_settings_failed">Kan de instellingen niet openen. Open Instellingen van Android, dan Apps en dan Marmalade STT.</string>
+
+    <!-- Engines list -->
+    <string name="engines_title">Engines</string>
+
+    <!-- Engine install state -->
+    <string name="engine_status_not_installed">Nog niet gedownload</string>
+    <string name="engine_status_downloading">Downloaden · %1$s</string>
+    <string name="engine_status_paused">Gepauzeerd · %1$s</string>
+    <string name="engine_status_ready">Klaar</string>
+    <string name="engine_status_corrupt">Modelbestanden zijn beschadigd: %1$s</string>
+    <string name="engine_progress_bytes">%1$s van %2$s</string>
+    <string name="engine_progress_description">Downloadvoortgang</string>
+    <string name="engine_failure_not_available">Dit model kan nu niet worden gedownload. Probeer het later opnieuw.</string>
+    <string name="engine_failure_no_space">Er is niet genoeg vrije opslagruimte voor dit model. Maak ruimte vrij en probeer het opnieuw.</string>
+    <string name="engine_failure_network">De download is onderbroken. Controleer je verbinding en probeer het opnieuw. De download gaat verder waar hij was gebleven.</string>
+    <string name="engine_failure_generic">Kan het model niet installeren. Probeer het opnieuw.</string>
+    <!-- After "Modelbestanden zijn beschadigd: "; %1$s is a file name -->
+    <string name="engine_corrupt_outdated">De geïnstalleerde bestanden passen niet bij deze versie van de app.</string>
+    <string name="engine_corrupt_missing">%1$s ontbreekt.</string>
+    <string name="engine_corrupt_wrong_size">%1$s heeft de verkeerde grootte.</string>
+    <string name="engine_corrupt_damaged">%1$s is beschadigd.</string>
+    <string name="engine_failure_checksum">Een gedownload bestand kwam niet overeen met wat we verwachtten en is daarom verwijderd. Probeer het nog een keer om het opnieuw te downloaden.</string>
+
+    <!-- Engine actions -->
+    <string name="engine_action_download">Downloaden</string>
+    <string name="engine_action_resume">Hervatten</string>
+    <string name="engine_action_retry">Opnieuw proberen</string>
+    <string name="engine_action_download_again">Opnieuw downloaden</string>
+    <string name="engine_action_cancel">Annuleren</string>
+    <string name="engine_action_remove_download">Download verwijderen</string>
+    <string name="engine_action_check_files">Bestanden controleren</string>
+    <string name="engine_action_checking">Bestanden controleren…</string>
+    <string name="engine_action_remove">Verwijderen</string>
+    <string name="engine_dialog_cancel">Annuleren</string>
+    <string name="engine_download_confirm_title">%1$s downloaden?</string>
+    <string name="engine_download_confirm_body">Hiermee download je eenmalig %1$s van internet. Daarna werkt de engine offline en verlaat niets van wat je zegt je telefoon.</string>
+    <string name="engine_remove_confirm_title">%1$s verwijderen?</string>
+    <string name="engine_remove_confirm_body">Hiermee verwijder je de modelbestanden (%1$s) van je telefoon. Je kunt ze altijd opnieuw downloaden.</string>
+    <string name="engine_remove_download_failed">Kan de download niet verwijderen. Probeer het opnieuw.</string>
+    <string name="engine_remove_failed">Kan de modelbestanden niet verwijderen. Probeer het opnieuw.</string>
+    <string name="engine_check_ok">Alle bestanden zijn in orde</string>
+    <string name="engine_check_damaged">Sommige modelbestanden zijn beschadigd. Download ze opnieuw om dit op te lossen.</string>
+    <string name="engine_check_failed">Kan de bestanden niet controleren. Probeer het opnieuw.</string>
+    <string name="download_channel_name">Downloads van spraakmodellen</string>
+
+    <!-- Engine info dialog -->
+    <string name="engine_detail_languages">Talen</string>
+    <string name="engine_detail_size_on_disk">Grootte op telefoon</string>
+    <string name="engine_detail_download_size">Downloadgrootte</string>
+    <string name="engine_detail_license">Licentie</string>
+    <string name="engine_detail_source">Bron</string>
+    <string name="engine_detail_speed">Snelheid</string>
+    <string name="engine_speed_cost">%1$s× de decodeertijd van Parakeet Ultra (geschat)</string>
+    <string name="engine_speed_reference">Parakeet Ultra is de snelheidsreferentie</string>
+    <string name="engine_speed_phone_unmeasured">Deze telefoon is nog niet gemeten</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Instellingen</string>
+    <string name="settings_back">Terug</string>
+    <string name="settings_save_failed">Kan de instelling niet opslaan. Probeer het opnieuw.</string>
+    <string name="settings_speech">Spraak</string>
+    <string name="settings_speech_keep_loaded">Engine klaar houden</string>
+    <string name="settings_speech_keep_loaded_desc">Begint sneller met luisteren. Handig als je spraakinvoer vaak gebruikt, bijvoorbeeld voor toegankelijkheid. Gebruikt ongeveer 0,6 tot 3 GB geheugen zolang de app open is, afhankelijk van de engine.</string>
+    <!-- Settings → End of speech -->
+    <string name="settings_end">Einde van het spreken</string>
+    <string name="settings_end_keyboard">Spraaktoetsenbord</string>
+    <string name="settings_end_apps">Andere apps en het venster “Nu spreken”</string>
+    <string name="settings_end_tap">Tik om te stoppen</string>
+    <string name="settings_end_tap_desc">De microfoon blijft aan tot je erop tikt. Je woorden worden getypt als je stopt.</string>
+    <string name="settings_end_smart_turn">Automatisch stoppen met Smart Turn</string>
+    <string name="settings_end_smart_turn_desc">Stopt als het klinkt alsof je klaar bent, zodat een denkpauze je niet onderbreekt.</string>
+    <string name="settings_end_pause">Automatisch stoppen na een pauze</string>
+    <string name="settings_end_pause_desc">Stopt als je pauzeert. Stel bij Pauzeduur in hoe lang.</string>
+    <string name="settings_end_word">Zeg een eindwoord</string>
+    <string name="settings_end_word_desc">Stopt als je het eindwoord los uitspreekt, zoals “over”. Het woord wordt niet getypt.</string>
+    <string name="settings_end_lock_hint">Tip: in een stand met automatisch stoppen houd je de microfoon ingedrukt om te blijven luisteren tot je erop tikt.</string>
+    <string name="settings_dialog_cancel">Annuleren</string>
+    <string name="settings_speech_pause">Pauzeduur</string>
+    <string name="settings_speech_pause_desc">Hoe lang een pauze moet zijn om een zin af te sluiten op het tabblad Dicteren en om het luisteren te stoppen bij Automatisch stoppen na een pauze. Langer geeft je tijd om na te denken.</string>
+    <string name="settings_speech_pause_value">%1$.1f s</string>
+    <string name="settings_speech_pause_state">%1$.1f seconden</string>
+    <string name="settings_patience">Geduld van Smart Turn</string>
+    <string name="settings_patience_desc">%1$s. Hoe lang het wacht voordat het besluit dat je klaar bent.</string>
+    <string name="settings_patience_quick">Snel</string>
+    <string name="settings_patience_quick_desc">Stopt eerder met luisteren, maar onderbreekt je vaker.</string>
+    <string name="settings_patience_normal">Normaal</string>
+    <string name="settings_patience_normal_desc">Wacht de meeste denkpauzes af.</string>
+    <string name="settings_patience_relaxed">Ontspannen</string>
+    <string name="settings_patience_relaxed_desc">Wacht langer voordat het stopt met luisteren. Handig als je vaak pauzeert.</string>
+    <string name="settings_end_words">Eindwoorden</string>
+    <string name="settings_end_words_hint">Scheid ze met komma\'s.</string>
+    <!-- Settings → Support -->
+    <string name="settings_support">Ondersteuning</string>
+    <string name="settings_support_dev">Ontwikkeling steunen</string>
+    <string name="settings_support_dev_desc">Doneer via GitHub Sponsors. Vrijwillig en niet fiscaal aftrekbaar.</string>
+    <string name="settings_more_marmalade">Meer van Marmalade</string>
+    <string name="settings_more_marmalade_desc">Andere Marmalade-apps op GitHub.</string>
+    <string name="settings_report_bug">Een bug melden</string>
+    <string name="settings_report_bug_desc">Werkt er iets niet of is iets verkeerd verstaan? Opent een GitHub-issue met de details al ingevuld.</string>
+    <string name="settings_about">Over</string>
+    <string name="settings_about_row">Over Marmalade STT</string>
+    <string name="settings_about_row_desc">Versie %1$s · licenties, privacy</string>
+
+    <!-- About -->
+    <string name="about_title">Over</string>
+    <string name="about_version">Versie %1$s</string>
+    <string name="about_tagline">Privé spraak-naar-tekst die op je telefoon draait.</string>
+    <string name="about_privacy">Privacybeleid</string>
+    <string name="about_privacy_desc">Wat op je telefoon blijft (alles wat je zegt) en wat de app downloadt. Geen tracking, geen accounts.</string>
+    <string name="about_privacy_english_note">Dit beleid is in het Engels. Samenvatting: spraak wordt herkend op je telefoon, nooit door een spraakherkenningsdienst in de cloud of online. Audio wordt nooit opgeslagen of geüpload. Geen analyse, tracking of accounts. Internet wordt alleen gebruikt om spraakmodellen te downloaden.</string>
+    <string name="about_privacy_load_failed">Kan het privacybeleid niet laden. Het staat ook in de repository als PRIVACY.md.</string>
+    <string name="about_licenses">Opensource-licenties</string>
+    <string name="about_licenses_desc">Licenties voor de app en de onderdelen die erin zitten.</string>
+
+    <!-- Open-source licenses -->
+    <string name="licenses_licensing">Licenties</string>
+    <string name="licenses_view_full">Volledige licentie bekijken</string>
+    <string name="license_text_title">Licentie</string>
+    <string name="license_text_not_bundled">De licentietekst zit niet in de app. Zie de link op het vorige scherm.</string>
+    <string name="license_text_load_failed">Kan de licentietekst niet laden. Zie de link naar de bron op het vorige scherm.</string>
+
+    <!-- Voice keyboard -->
+    <string name="ime_name">Spraakgestuurd typen van Marmalade</string>
+    <string name="ime_subtype_label">Spraakgestuurd typen</string>
+    <string name="ime_status_loading">Model laden…</string>
+    <string name="ime_status_listening">Luistert</string>
+    <string name="ime_status_hearing">Ik hoor je…</string>
+    <string name="ime_status_finishing">Afronden…</string>
+    <string name="ime_status_paused">Gepauzeerd. Tik op de microfoon om verder te gaan.</string>
+    <string name="ime_speak_now">Nu spreken</string>
+    <string name="ime_cancel">Terug naar toetsenbord</string>
+    <string name="ime_done">Klaar</string>
+    <string name="ime_pause">Luisteren pauzeren</string>
+    <string name="ime_resume">Luisteren hervatten</string>
+    <string name="ime_no_model">Download een spraakmodel in Marmalade STT om spraakgestuurd typen te gebruiken.</string>
+    <string name="ime_open_app">Marmalade STT openen</string>
+    <string name="ime_mic_needed">Spraakgestuurd typen heeft de microfoon nodig. Er wordt alleen geluisterd zolang dit paneel open is.</string>
+    <string name="ime_mic_allow">Microfoon toestaan</string>
+    <string name="ime_mic_blocked">Microfoontoegang staat uit voor Marmalade STT. Zet deze aan onder Rechten en ga daarna terug naar je app.</string>
+
+    <!-- Speech input dialog and RecognitionService -->
+    <string name="recognizer_speak_now">Nu spreken</string>
+    <string name="recognizer_cancel">Annuleren</string>
+    <string name="recognizer_done">Klaar</string>
+    <string name="recognizer_try_again">Opnieuw proberen</string>
+    <string name="recognizer_no_model">Download een spraakmodel in Marmalade STT om spraakherkenning te gebruiken.</string>
+    <string name="recognizer_open_app">Marmalade STT openen</string>
+    <string name="recognizer_mic_blocked">Spraakherkenning heeft de microfoon nodig. Zet deze aan in de app-instellingen, onder Rechten.</string>
+    <string name="recognizer_open_settings">Instellingen openen</string>
+    <string name="recognizer_mic_stop">Stoppen met luisteren</string>
+
+    <!-- Press and hold the mic to lock listening -->
+    <string name="lock_status">Vergrendeld: tik om te stoppen</string>
+    <string name="lock_state">Vergrendeld</string>
+    <string name="lock_action">Luisteren vergrendelen</string>
+
+    <!-- Text cleanup. Dictionary rules are "vervangingen": Dutch "regel" also means a line of text, which the import help needs. -->
+    <string name="cleanup_section">Tekst opschonen</string>
+    <string name="cleanup_fillers">Stopwoordjes verwijderen</string>
+    <string name="cleanup_fillers_desc">Verwijdert “um”, “uh”, “er”, “hmm” en dergelijke. Echte woorden zoals “umbrella” blijven staan.</string>
+    <string name="cleanup_commands">Spraakopdrachten</string>
+    <string name="cleanup_commands_desc">Zeg “new line” of “new paragraph”, of “scratch that” om de laatste zin te verwijderen.</string>
+    <string name="cleanup_punctuation">Leestekens uitspreken</string>
+    <string name="cleanup_punctuation_desc">Zeg ook “period”, “comma”, “question mark”… Standaard uit: het zijn ook gewone woorden.</string>
+    <string name="cleanup_english_only">Alleen Engels. %1$s</string>
+    <string name="cleanup_itn">Getallen in cijfers schrijven</string>
+    <string name="cleanup_itn_desc">“Twenty five percent” wordt “25%”, “nine thirty pm” wordt “9:30 pm”. Kleine getallen zoals “three boxes” blijven woorden.</string>
+    <string name="cleanup_capitalize">Zinnen met een hoofdletter beginnen</string>
+    <string name="cleanup_capitalize_desc">Een hoofdletter aan het begin van elke zin en regel. Er wordt nooit iets naar kleine letters omgezet.</string>
+    <string name="cleanup_dictionary">Vervangingswoordenboek</string>
+    <string name="cleanup_dictionary_desc_none">Verbeter woorden die de app steeds verkeerd verstaat.</string>
+    <plurals name="cleanup_dictionary_desc">
+        <item quantity="one">%1$d vervanging · verbeter woorden die de app steeds verkeerd verstaat</item>
+        <item quantity="other">%1$d vervangingen · verbeter woorden die de app steeds verkeerd verstaat</item>
+    </plurals>
+    <string name="cleanup_snippets">Tekstfragmenten</string>
+    <string name="cleanup_snippets_desc_none">Zeg een triggerzin om opgeslagen tekst in te voegen, zoals je adres.</string>
+    <plurals name="cleanup_snippets_desc">
+        <item quantity="one">%1$d tekstfragment · zeg een triggerzin om opgeslagen tekst in te voegen</item>
+        <item quantity="other">%1$d tekstfragmenten · zeg een triggerzin om opgeslagen tekst in te voegen</item>
+    </plurals>
+
+    <string name="cleanup_save">Opslaan</string>
+    <string name="cleanup_cancel">Annuleren</string>
+    <string name="cleanup_delete">Verwijderen</string>
+    <string name="cleanup_edit_action">Bewerken</string>
+
+    <!-- "teh" is the README's deliberate misspelling example (the rule holds in any language). -->
+    <string name="cleanup_dictionary_help" tools:ignore="Typos">Elke vervanging zet een woord of woordgroep die de app steeds verkeerd verstaat om in wat je bedoelde.\n\n• Werkt op hele woorden, ongeacht hoofdletters: “teh” komt overeen met “Teh”, maar niet met “tehran”.\n• In het Chinees en Japans, die geen spaties tussen woorden hebben, komt een woordgroep ook midden in een zin overeen. In het Koreaans ook met een partikel eraan vast: “메일” komt overeen met “메일을”.\n• Een hoofdletter aan de rechterkant blijft zoals je hem typt. Anders volgen de hoofdletters wat er werd gehoord: “Teh” wordt “The”.\n• Laat de rechterkant leeg om de woordgroep te verwijderen.\n• Als vervangingen overlappen, wint de langste overeenkomst.</string>
+    <string name="cleanup_dictionary_empty">Nog geen vervangingen. Tik op “Vervanging toevoegen” om een woord te verbeteren dat de app steeds verkeerd verstaat.</string>
+    <string name="cleanup_dictionary_add">Vervanging toevoegen</string>
+    <string name="cleanup_dictionary_edit">Vervanging bewerken</string>
+    <string name="cleanup_dictionary_from">Wat er gehoord wordt</string>
+    <string name="cleanup_dictionary_to">Schrijf in plaats daarvan</string>
+    <string name="cleanup_dictionary_to_hint">Laat leeg om de woordgroep te verwijderen.</string>
+    <string name="cleanup_dictionary_from_breaks_export">Mag geen “->” bevatten of met “#” beginnen.</string>
+    <string name="cleanup_dictionary_replaces">Overschrijft je vervanging voor “%1$s”.</string>
+    <string name="cleanup_dictionary_deleted">(verwijderd)</string>
+    <string name="cleanup_dictionary_rule_description">%1$s wordt %2$s</string>
+    <string name="cleanup_dictionary_rule_deletes_description">%1$s wordt verwijderd</string>
+    <string name="cleanup_import">Importeren</string>
+    <string name="cleanup_export">Alles kopiëren</string>
+    <string name="cleanup_exported">Vervangingen gekopieerd</string>
+    <string name="cleanup_import_title">Vervangingen importeren</string>
+    <string name="cleanup_import_help">Plak één vervanging per regel, als fout -> goed. Regels die met # beginnen, worden genegeerd. Een vervanging voor een woord dat je al hebt, vervangt de bestaande.</string>
+    <string name="cleanup_import_field">Vervangingen</string>
+    <string name="cleanup_import_none">Nog geen vervangingen gevonden.</string>
+    <plurals name="cleanup_import_found">
+        <item quantity="one">%1$d vervanging gevonden.</item>
+        <item quantity="other">%1$d vervangingen gevonden.</item>
+    </plurals>
+    <plurals name="cleanup_import_skipped">
+        <item quantity="one">%1$d regel is geen vervanging en wordt overgeslagen.</item>
+        <item quantity="other">%1$d regels zijn geen vervangingen en worden overgeslagen.</item>
+    </plurals>
+
+    <string name="cleanup_snippets_help">Zeg een triggerzin en die wordt vervangen door je opgeslagen tekst, precies zoals die is geschreven, inclusief regeleinden.\n\n• Triggerzinnen werken op hele woorden, ongeacht hoofdletters: “mijn e-mail” komt overeen met “Mijn e-mail”, maar niet met “mijn e-mailadres”.\n• In het Chinees en Japans, die geen spaties tussen woorden hebben, komt een triggerzin ook midden in een zin overeen. In het Koreaans ook met een partikel eraan vast: “메일” komt overeen met “메일을”.\n• Verder verandert er niets aan de opgeslagen tekst: geen stopwoordjes verwijderen, geen opdrachten of hoofdletters.\n• Zeg je de triggerzin los, dan wordt alleen de opgeslagen tekst ingevoegd.</string>
+    <string name="cleanup_snippets_empty">Nog geen tekstfragmenten. Tik op “Tekstfragment toevoegen” om tekst op te slaan die je vaak nodig hebt.</string>
+    <string name="cleanup_snippets_add">Tekstfragment toevoegen</string>
+    <string name="cleanup_snippets_edit">Tekstfragment bewerken</string>
+    <string name="cleanup_snippets_trigger">Triggerzin</string>
+    <string name="cleanup_snippets_text">Tekst om in te voegen</string>
+    <string name="cleanup_snippets_replaces">Overschrijft je tekstfragment voor “%1$s”.</string>
+
+    <!-- Setup guide -->
+    <string name="onboarding_step_of">Stap %1$d van %2$d</string>
+    <string name="onboarding_close">Installatiehulp sluiten</string>
+    <string name="onboarding_back">Terug</string>
+    <string name="onboarding_next">Volgende</string>
+    <string name="onboarding_skip">Overslaan</string>
+    <string name="onboarding_get_started">Aan de slag</string>
+    <string name="onboarding_try_it">Proberen</string>
+    <string name="onboarding_settings_failed">Kan de instellingen van Android niet openen. Open ze in plaats daarvan vanaf je startscherm.</string>
+    <!-- Toasts over Settings when only a fallback page opened (#79): where to go from there. -->
+    <string name="settings_hint_voice_input">Zoek in Instellingen naar “Spraakinvoer” en kies dan Marmalade STT.</string>
+    <string name="settings_hint_keyboards">Zoek in Instellingen naar “Toetsenbord” en zet dan Spraakgestuurd typen van Marmalade aan.</string>
+    <string name="settings_hint_app_details">Zoek Marmalade STT onder Apps en zet dan de microfoon aan onder Rechten.</string>
+    <string name="onboarding_welcome_title">Welkom bij Marmalade STT</string>
+    <string name="onboarding_welcome_body">Spreek, en Marmalade STT typt het uit: op het eigen scherm Dicteren, of als spraakinvoer in andere apps. Met een paar snelle stappen is alles klaar.</string>
+    <string name="onboarding_privacy_title">Standaard privé</string>
+    <string name="onboarding_privacy_body">Spraak wordt herkend op je telefoon, nooit door een spraakherkenningsdienst in de cloud of online, ook niet die van Google. Audio wordt nooit opgeslagen of geüpload. Geen analyse, geen tracking, geen accounts, geen API-sleutels. Internet wordt alleen gebruikt om spraakmodellen te downloaden.</string>
+    <string name="onboarding_high_contrast">Toegankelijkheidsmodus</string>
+    <string name="onboarding_high_contrast_desc">Kleuren met hoog contrast</string>
+    <string name="onboarding_mic_title">Microfoon toestaan</string>
+    <string name="onboarding_mic_body">Marmalade STT heeft de microfoon nodig om je te horen. Die wordt alleen gebruikt als dicteren aan staat.</string>
+    <string name="onboarding_mic_granted">Microfoontoegang staat aan</string>
+    <string name="onboarding_mic_denied">Zonder microfoon kan Marmalade STT je niet horen. Je kunt de microfoon nu toestaan, of overslaan en later toestaan.</string>
+    <string name="onboarding_mic_blocked">Microfoontoegang staat uit voor deze app. Zet deze aan onder Rechten op de instellingenpagina van de app.</string>
+    <string name="onboarding_mic_allow">Microfoon toestaan</string>
+    <string name="onboarding_mic_open_settings">App-instellingen openen</string>
+    <string name="onboarding_model_title">Download een spraakmodel</string>
+    <string name="onboarding_model_body">Spraak wordt herkend door een model dat op je telefoon draait. Het wordt één keer gedownload; daarna werkt dicteren offline.</string>
+    <string name="onboarding_model_downloading_note">De installatie gaat verder zodra het model klaar is. Het downloaden gaat door als het scherm uitgaat of als je de app verlaat.</string>
+    <string name="onboarding_keyboard_title">Zet het spraaktoetsenbord aan</string>
+    <string name="onboarding_keyboard_body">Met het spraaktoetsenbord van Marmalade dicteer je in andere apps: de microfoontoetsen van toetsenborden openen het. Zet “Spraakgestuurd typen van Marmalade” aan in de toetsenbordinstellingen van Android en kom daarna hier terug.</string>
+    <string name="onboarding_keyboard_open">Toetsenbordinstellingen openen</string>
+    <string name="onboarding_keyboard_on">Het spraaktoetsenbord staat aan</string>
+    <string name="onboarding_keyboard_off">Het spraaktoetsenbord staat uit</string>
+    <string name="onboarding_keyboard_warning">Android waarschuwt dat elk toetsenbord dat je aanzet, kan verzamelen wat je typt. Die waarschuwing is standaard. Marmalade STT typt alleen wat je dicteert, en niets verlaat je telefoon.</string>
+    <string name="onboarding_keyboard_unlock_note">Sommige telefoons tonen daarna een tweede melding: na een herstart kan de app pas starten als je je telefoon ontgrendelt. Ook dat is prima. Tik op OK.</string>
+    <string name="onboarding_futo_checking">FUTO Keyboard raadplegen…</string>
+    <string name="onboarding_futo_selected">FUTO Keyboard gebruikt Marmalade STT voor spraakinvoer</string>
+    <string name="onboarding_futo_not_selected">FUTO Keyboard gebruikt een andere spraakinvoer</string>
+    <string name="onboarding_futo_use">Marmalade STT gebruiken in FUTO</string>
+    <string name="onboarding_futo_check_again">Opnieuw controleren</string>
+    <string name="onboarding_futo_manual_title">Zelf instellen</string>
+    <string name="onboarding_futo_manual_body">Open in FUTO Keyboard Instellingen → Steminvoer en zet “Schakel ingebouwde steminvoer uit” aan (“Gebruik steminvoer van een externe app”). De microfoonknop van FUTO opent daarna het spraaktoetsenbord van Marmalade uit de vorige stap.</string>
+    <string name="onboarding_futo_crash_once">Als FUTO Keyboard sluit de eerste keer dat je op de microfoon tikt, tik er dan nog een keer op.</string>
+    <string name="onboarding_done_title">Alles is klaar</string>
+    <string name="onboarding_done_body">Probeer het op het scherm Dicteren: tik op de microfoon en spreek.</string>
+    <string name="onboarding_done_title_partial">Klaar wanneer jij dat bent</string>
+    <string name="onboarding_done_body_partial">Er staan nog een paar stappen open. Je kunt ze altijd afronden.</string>
+    <string name="onboarding_done_reopen">Je kunt deze hulp opnieuw openen via Instellingen.</string>
+    <string name="onboarding_summary_mic">Microfoon</string>
+    <string name="onboarding_summary_mic_on">Toegestaan</string>
+    <string name="onboarding_summary_mic_off">Nog niet toegestaan</string>
+    <string name="onboarding_summary_model">Spraakmodel</string>
+    <string name="onboarding_summary_model_ready">Klaar</string>
+    <string name="onboarding_summary_model_downloading">Downloaden</string>
+    <string name="onboarding_summary_model_missing">Niet gedownload. Download het op het tabblad Engines.</string>
+    <string name="onboarding_summary_model_attention">Download niet voltooid. Zie het tabblad Engines.</string>
+    <string name="onboarding_summary_keyboard">Spraaktoetsenbord</string>
+    <string name="onboarding_summary_keyboard_on">Aan</string>
+    <string name="onboarding_summary_keyboard_off">Uit</string>
+    <string name="onboarding_summary_futo">FUTO Keyboard</string>
+    <string name="onboarding_summary_futo_on">Gebruikt Marmalade STT</string>
+    <string name="onboarding_summary_futo_off">Gebruikt een andere spraakinvoer</string>
+    <string name="onboarding_settings_row">Installatiehulp</string>
+    <string name="onboarding_settings_row_desc">Microfoon, spraakengine, toetsenborden en spraakherkenningsservice</string>
+</resources>

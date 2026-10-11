@@ -1,0 +1,32 @@
+<p>Marmalade STT mengubah ucapan Anda menjadi teks di ponsel Anda. Gunakan sebagai input suara keyboard Anda (FUTO Keyboard, HeliBoard, FlorisBoard, dan lainnya), serta aplikasi yang meminta input ucapan dari Android. Suara Anda tidak pernah keluar dari perangkat.</p>
+
+<ul>
+<li><b>Privat.</b> Ucapan dikenali di ponsel. Audio tidak pernah disimpan atau diupload</li>
+<li><b>Offline.</b> Setelah mesin ucapan didownload satu kali, aplikasi berfungsi tanpa koneksi</li>
+<li><b>Teks langsung.</b> Menampilkan kata-kata Anda secara real time saat Anda berbicara, di sebagian besar mesin</li>
+<li><b>Tahu kapan Anda selesai.</b> Smart Turn, default untuk pop-up “Bicaralah sekarang”, menunggu sampai Anda terdengar selesai, jadi jeda untuk berpikir jarang memotong ucapan Anda</li>
+<li><b>Multibahasa.</b> 100 bahasa, dengan mesin terbaik untuk bahasa Anda dipilih otomatis</li>
+<li><b>Hasil yang rapi.</b> Kata pengisi dihapus, angka ditulis sebagai digit, plus penggantian dan cuplikan teks milik Anda sendiri yang disisipkan lewat suara</li>
+<li><b>Gratis dan open source.</b> Tanpa iklan, tanpa akun, tanpa analitik</li>
+</ul>
+
+<p><b>DIRANCANG UNTUK PRIVASI</b></p>
+<p>Tanpa analitik, tanpa pelacakan, tanpa laporan error, tanpa akun, dan tanpa server milik kami. Internet hanya digunakan untuk mendownload mesin ucapan yang Anda pilih, dari GitHub, dan setiap file diperiksa dengan hash SHA-256 yang telah ditetapkan. Pencadangan Android dinonaktifkan, sehingga tidak ada yang disalin ke cloud.</p>
+
+<p><b>ANDA YANG MENENTUKAN KAPAN BERHENTI</b></p>
+<p>Di pop-up “Bicaralah sekarang” dan aplikasi lain, Marmalade secara default menggunakan teknologi Smart Turn v3 untuk mendeteksi kapan Anda selesai berbicara. Tanpa perlu menyentuh apa pun. Terlalu cepat memotong ucapan Anda? Beralihlah ke berhenti saat jeda, atau tetapkan kata penutup. Di keyboard, Marmalade mendengarkan sampai Anda mengetuk, atau dapat juga menggunakan Smart Turn.</p>
+
+<p><b>TEKS YANG RAPI</b></p>
+<p>Pembersihan opsional memperbaiki huruf kapital, dan dalam bahasa Inggris menghapus kata pengisi, mengubah “new line” dan “period” menjadi baris baru dan titik sungguhan, serta menulis angka sebagai digit. Penggantian untuk nama yang salah dikenali mesin, dan cuplikan untuk teks yang sering Anda ketik, berfungsi dalam bahasa apa pun.</p>
+
+<p><b>BERFUNGSI DENGAN KEYBOARD ANDA</b></p>
+<p>Aktifkan “Pengetikan suara Marmalade”, dan tombol mikrofon keyboard Anda akan membuka keyboard suara kecil Marmalade yang mengetik apa yang Anda ucapkan. Berfungsi dengan FUTO Keyboard, HeliBoard, FlorisBoard, AnySoftKeyboard, Unexpected Keyboard, keyboard AOSP, dan keyboard lain yang memiliki tombol suara.</p>
+
+<p><b>MESIN YANG SESUAI DENGAN PONSEL ANDA</b></p>
+<p>Panduan penyiapan merekomendasikan mesin ucapan untuk bahasa Anda serta memori dan kecepatan ponsel Anda, dengan opsi untuk mendownload dan mencoba model lain.</p>
+
+<p><b>BAHASA</b></p>
+<p>Mesin cepat mencakup bahasa Inggris, Bulgaria, Kroasia, Ceko, Denmark, Belanda, Estonia, Finlandia, Prancis, Jerman, Yunani, Hungaria, Italia, Latvia, Lituania, Malta, Polandia, Portugis, Rumania, Rusia, Slovakia, Slovenia, Spanyol, Swedia, Ukraina, Jepang, Hindi, Arab, dan Vietnam. Bahasa Tionghoa dan Korea menggunakan Qwen3-ASR, yang lebih ringan daripada Whisper. Bahasa lain berfungsi melalui Whisper Large v3 Turbo, dengan jeda waktu lebih lama.</p>
+
+<p><b>OPEN SOURCE</b></p>
+<p>Marmalade STT berlisensi MIT. Jika Anda ingin mendukungnya, Setelan → Dukungan menautkan ke GitHub Sponsors; aplikasinya tetap sama apa pun pilihan Anda.</p>

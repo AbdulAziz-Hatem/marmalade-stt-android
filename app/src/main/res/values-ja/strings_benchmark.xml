@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 開発者向け A/B ベンチマーク -->
+    <string name="benchmark_title">ベンチマーク</string>
+    <string name="benchmark_note">1 回録音すると、インストール済みのエンジンが順番に文字起こしします（読み込み、文字起こし、解放）。どのエンジンにも同じ Silero VAD のセグメントが渡されます。ストリーミングエンジンには、各セグメントを 100 ms ずつ、リアルタイムではなくモデルが受け取れる限りの速さで送ります。録音はメモリ内にのみ保持され、保存されることはありません。エミュレーターでの数値は、エンジン同士の比較にしか使えません。</string>
+
+    <string name="benchmark_section_take">録音</string>
+    <string name="benchmark_record">録音</string>
+    <string name="benchmark_stop">停止</string>
+    <string name="benchmark_play">再生</string>
+    <string name="benchmark_stop_playback">再生を停止</string>
+    <string name="benchmark_elapsed">%1$s 秒 / %2$d 秒</string>
+    <string name="benchmark_level">入力レベル</string>
+    <string name="benchmark_take_length">録音：%1$s</string>
+    <string name="benchmark_take_length_soft_agc">録音：%1$s（この端末にはマイクの自動ゲイン調整がないため、アプリで音量を調整しました）</string>
+    <plurals name="benchmark_no_take">
+        <item quantity="other">まだ録音がありません。最大 %1$d 秒の音声を録音してください。</item>
+    </plurals>
+
+    <string name="benchmark_section_reference">参照テキスト（任意）</string>
+    <string name="benchmark_reference_label">話した内容</string>
+    <string name="benchmark_reference_hint">話した内容を入力すると、エンジンごとの単語誤り率（WER）が表示されます。</string>
+
+    <string name="benchmark_section_engines">エンジン</string>
+    <string name="benchmark_no_engines">エンジンがインストールされていません。「エンジン」タブでインストールしてください（候補を表示するには、「設定」で「開発者向けエンジン」をオンにします）。</string>
+    <string name="benchmark_run">ベンチマークを実行</string>
+    <string name="benchmark_run_again">もう一度実行</string>
+    <string name="benchmark_running">%1$s を実行中（%2$d / %3$d）…</string>
+
+    <string name="benchmark_section_results">結果</string>
+    <string name="benchmark_metric_load">読み込み %1$s</string>
+    <string name="benchmark_metric_decode">デコード %1$s</string>
+    <string name="benchmark_metric_rtf">RTF %1$s</string>
+    <string name="benchmark_metric_rss">ピーク RSS（サンプリング）%1$s</string>
+    <string name="benchmark_metric_wer">WER %1$s</string>
+    <string name="benchmark_empty_transcript">（音声を認識できませんでした）</string>
+    <string name="benchmark_raw">整形前：%1$s</string>
+    <string name="benchmark_failed_load">読み込めませんでした：%1$s</string>
+    <string name="benchmark_failed_transcribe">文字起こしできませんでした：%1$s</string>
+    <string name="benchmark_failed_release">文字起こしは完了しましたが、解放できませんでした：%1$s</string>
+    <string name="benchmark_copy_markdown">Markdown としてコピー</string>
+    <string name="benchmark_copied">コピーしました</string>
+
+    <!-- スナックバー -->
+    <string name="benchmark_error_mic">録音できませんでした。他のアプリがマイクを使用していませんか？</string>
+    <string name="benchmark_error_empty">何も録音されませんでした。もう一度お試しください。</string>
+    <string name="benchmark_error_playback">録音を再生できませんでした。</string>
+    <string name="benchmark_error_no_engines">実行できるインストール済みのエンジンがありません。</string>
+    <string name="benchmark_error_run">エラーが発生したため、ベンチマークを停止しました。</string>
+
+    <!-- マイクの権限 -->
+    <string name="benchmark_mic_title">ベンチマークにはマイクが必要です</string>
+    <string name="benchmark_mic_body">1 回分を録音してメモリ内にのみ保持します。保存や送信はしません。</string>
+</resources>

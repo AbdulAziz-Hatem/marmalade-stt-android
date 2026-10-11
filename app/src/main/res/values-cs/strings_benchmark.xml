@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Developer A/B benchmark -->
+    <string name="benchmark_title">Benchmark</string>
+    <string name="benchmark_note">Nahrajte jeden záznam a každý nainstalovaný modul ho postupně přepíše: načtení, přepis, uvolnění. Všechny moduly dostanou stejné segmenty ze Silero VAD. Streamovací moduly dostávají každý segment po 100ms blocích tak rychle, jak je model přijímá, ne v reálném čase. Záznam zůstává v paměti a nikdy se neukládá. Čísla z emulátoru se hodí jen ke vzájemnému porovnání modulů.</string>
+
+    <string name="benchmark_section_take">Záznam</string>
+    <string name="benchmark_record">Nahrát</string>
+    <string name="benchmark_stop">Zastavit</string>
+    <string name="benchmark_play">Přehrát</string>
+    <string name="benchmark_stop_playback">Zastavit přehrávání</string>
+    <string name="benchmark_elapsed">%1$s s / %2$d s</string>
+    <string name="benchmark_level">Úroveň vstupu</string>
+    <string name="benchmark_take_length">Záznam: %1$s</string>
+    <string name="benchmark_take_length_soft_agc">Záznam: %1$s, hlasitost vyrovnala aplikace (tento telefon nemá vestavěné řízení zisku mikrofonu)</string>
+    <plurals name="benchmark_no_take">
+        <item quantity="one">Zatím žádný záznam. Nahrajte až %1$d sekundu řeči.</item>
+        <item quantity="few">Zatím žádný záznam. Nahrajte až %1$d sekundy řeči.</item>
+        <item quantity="many">Zatím žádný záznam. Nahrajte až %1$d sekundy řeči.</item>
+        <item quantity="other">Zatím žádný záznam. Nahrajte až %1$d sekund řeči.</item>
+    </plurals>
+
+    <string name="benchmark_section_reference">Referenční text (volitelné)</string>
+    <string name="benchmark_reference_label">Vyslovený text</string>
+    <string name="benchmark_reference_hint">Napište, co zaznělo, a získáte chybovost slov (WER) pro každý modul.</string>
+
+    <string name="benchmark_section_engines">Moduly</string>
+    <string name="benchmark_no_engines">Nejsou nainstalované žádné moduly. Nainstalujte je na kartě Moduly (kandidáty uvidíte, když v Nastavení zapnete Moduly pro vývojáře).</string>
+    <string name="benchmark_run">Spustit benchmark</string>
+    <string name="benchmark_run_again">Spustit znovu</string>
+    <string name="benchmark_running">Běží %1$s (%2$d z %3$d)…</string>
+
+    <string name="benchmark_section_results">Výsledky</string>
+    <string name="benchmark_metric_load">Načtení %1$s</string>
+    <string name="benchmark_metric_decode">Dekódování %1$s</string>
+    <string name="benchmark_metric_rtf">RTF %1$s</string>
+    <string name="benchmark_metric_rss">Max. RSS (vzorkováno) %1$s</string>
+    <string name="benchmark_metric_wer">WER %1$s</string>
+    <string name="benchmark_empty_transcript">(žádná řeč nerozpoznána)</string>
+    <string name="benchmark_raw">Bez úprav: %1$s</string>
+    <string name="benchmark_failed_load">Nelze načíst: %1$s</string>
+    <string name="benchmark_failed_transcribe">Nelze přepsat: %1$s</string>
+    <string name="benchmark_failed_release">Přepsáno, ale nelze uvolnit: %1$s</string>
+    <string name="benchmark_copy_markdown">Kopírovat jako Markdown</string>
+    <string name="benchmark_copied">Zkopírováno</string>
+
+    <!-- Snackbar notices -->
+    <string name="benchmark_error_mic">Nahrávání se nezdařilo. Nepoužívá mikrofon jiná aplikace?</string>
+    <string name="benchmark_error_empty">Nic se nenahrálo. Zkuste to znovu.</string>
+    <string name="benchmark_error_playback">Záznam se nepodařilo přehrát.</string>
+    <string name="benchmark_error_no_engines">Žádné nainstalované moduly ke spuštění.</string>
+    <string name="benchmark_error_run">Benchmark se kvůli chybě zastavil.</string>
+
+    <!-- Mic permission -->
+    <string name="benchmark_mic_title">Benchmark potřebuje mikrofon</string>
+    <string name="benchmark_mic_body">Nahraje jeden záznam, uchová ho jen v paměti a nikdy ho neukládá ani neodesílá.</string>
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Settings → Appearance -->
+    <string name="settings_appearance">Giao diện</string>
+    <string name="settings_mode">Chế độ</string>
+    <string name="settings_mode_system">Theo hệ thống</string>
+    <string name="settings_mode_light">Sáng</string>
+    <string name="settings_mode_dark">Tối</string>
+    <string name="settings_color">Màu</string>
+    <string name="settings_color_system">Hình nền</string>
+    <string name="settings_color_midnight">Nửa đêm</string>
+    <string name="settings_color_forest">Rừng</string>
+    <string name="settings_color_berry">Quả mọng</string>
+    <string name="settings_color_high_contrast">Tương phản cao</string>
+</resources>

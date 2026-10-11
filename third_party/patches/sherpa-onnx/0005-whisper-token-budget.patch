@@ -1,0 +1,84 @@
+From: Marmalade STT <noreply@localhost>
+Subject: [PATCH] Per-stream token budget for Whisper's greedy decoder (#54)
+
+Not upstream; ours, on top of 0002-0004. 0002 left Whisper free to run to
+its own 224 tokens (n_text_ctx / 2). That is too many for a decode that
+falls into a loop (224 decoder steps: seconds on the host, tens of seconds
+on a phone, waited through after the user taps stop) and too few for Hindi,
+whose byte-level BPE needs up to 17 tokens a second, so 13 s of speech
+already reached it. The stream option "max_new_tokens" (as Qwen3-ASR's)
+now replaces n_text_ctx / 2: lower stops a loop sooner, higher lets a dense
+language go on to what the self-attention cache holds (the existing offset
+check stops at n_text_ctx - 1 positions). 0 or unset keeps n_text_ctx / 2.
+---
+--- a/sherpa-onnx/csrc/offline-recognizer-whisper-impl.h
++++ b/sherpa-onnx/csrc/offline-recognizer-whisper-impl.h
+@@ -142,7 +142,9 @@ class OfflineRecognizerWhisperImpl : public OfflineRecognizerImpl {
+       auto results =
+           decoder_->Decode(std::move(cross_kv.first),
+                            std::move(cross_kv.second), num_frames,
+-                           [s] { return s->IsCancelled(); });
++                           [s] { return s->IsCancelled(); },
++                           // Marmalade STT (#54): a per-stream step budget.
++                           s->GetOptionInt("max_new_tokens", 0));
+ 
+       auto r = Convert(results[0], symbol_table_);
+       s->SetResult(r);
+--- a/sherpa-onnx/csrc/offline-whisper-decoder.h
++++ b/sherpa-onnx/csrc/offline-whisper-decoder.h
+@@ -29,12 +29,17 @@ class OfflineWhisperDecoder {
+    *                              decoder step; true stops with the tokens
+    *                              decoded so far. May be empty.
+    *
++   * @param max_new_tokens       Marmalade STT (#54): stop after this many
++   *                              tokens (at most what the n_text_ctx cache
++   *                              holds); 0 for Whisper's own n_text_ctx / 2.
++   *
+    * @return Return a vector of size `N` containing the decoded results.
+    */
+   virtual std::vector<OfflineWhisperDecoderResult> Decode(
+       Ort::Value n_layer_cross_k, Ort::Value n_layer_cross_v,
+       int32_t num_feature_frames,
+-      const std::function<bool()> &is_cancelled = {}) = 0;
++      const std::function<bool()> &is_cancelled = {},
++      int32_t max_new_tokens = 0) = 0;
+ 
+   virtual void SetConfig(const OfflineWhisperModelConfig &config) = 0;
+ };
+--- a/sherpa-onnx/csrc/offline-whisper-greedy-search-decoder.cc
++++ b/sherpa-onnx/csrc/offline-whisper-greedy-search-decoder.cc
+@@ -23,7 +23,7 @@ void OfflineWhisperGreedySearchDecoder::SetConfig(
+ std::vector<OfflineWhisperDecoderResult>
+ OfflineWhisperGreedySearchDecoder::Decode(
+     Ort::Value cross_k, Ort::Value cross_v, int32_t num_feature_frames,
+-    const std::function<bool()> &is_cancelled) {
++    const std::function<bool()> &is_cancelled, int32_t max_new_tokens) {
+   auto memory_info =
+       Ort::MemoryInfo::CreateCpu(OrtDeviceAllocator, OrtMemTypeDefault);
+ 
+@@ -198,6 +198,13 @@ OfflineWhisperGreedySearchDecoder::Decode(
+   // truncated scripts that take many byte-level BPE tokens per word
+   // (98 of 100 FLEURS Hindi clips lost their end).
+   int32_t num_possible_tokens = n_text_ctx / 2;
++  // Marmalade STT (#54): the caller's budget instead. Below n_text_ctx / 2 a
++  // looping decode stops sooner; above it a dense language (Hindi) can go on
++  // to what the self-attention cache holds (the offset check below stops it
++  // at n_text_ctx - 1 positions, prompt included).
++  if (max_new_tokens > 0) {
++    num_possible_tokens = max_new_tokens;
++  }
+ 
+   for (int32_t i = 0; i < num_possible_tokens; ++i) {
+     if (max_token_id == eot) {
+--- a/sherpa-onnx/csrc/offline-whisper-greedy-search-decoder.h
++++ b/sherpa-onnx/csrc/offline-whisper-greedy-search-decoder.h
+@@ -20,7 +20,8 @@ class OfflineWhisperGreedySearchDecoder : public OfflineWhisperDecoder {
+ 
+   std::vector<OfflineWhisperDecoderResult> Decode(
+       Ort::Value cross_k, Ort::Value cross_v, int32_t num_feature_frames,
+-      const std::function<bool()> &is_cancelled = {}) override;
++      const std::function<bool()> &is_cancelled = {},
++      int32_t max_new_tokens = 0) override;
+ 
+   void SetConfig(const OfflineWhisperModelConfig &config) override;
+ 

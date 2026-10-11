@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="list_separator">,\u0020</string>
+    <string name="quoted_name">“%1$s”</string>
+    <string name="ui_locale">ko</string>
+    <!-- Bottom navigation -->
+    <string name="nav_dictate">받아쓰기</string>
+    <string name="nav_engines">엔진</string>
+    <string name="nav_settings">설정</string>
+
+    <!-- Dictate -->
+    <string name="dictate_start">받아쓰기 시작</string>
+    <string name="dictate_stop">받아쓰기 중지</string>
+    <string name="dictate_state_idle">듣고 있지 않음</string>
+    <string name="dictate_state_loading">로드 중</string>
+    <string name="dictate_state_listening">듣는 중</string>
+    <string name="dictate_state_finishing">마무리 중</string>
+    <string name="dictate_status_loading">모델 로드 중…</string>
+    <string name="dictate_status_listening">듣는 중</string>
+    <string name="dictate_status_hearing">음성 감지 중…</string>
+    <string name="dictate_status_finishing">마무리 중…</string>
+    <string name="dictate_status_catching_up">따라잡는 중…</string>
+    <string name="dictate_empty">말한 내용이 여기에 표시됩니다. 말하는 모든 내용은 휴대전화에만 남습니다.</string>
+    <string name="dictate_copy">복사</string>
+    <string name="dictate_copied">복사됨</string>
+    <string name="dictate_clear">지우기</string>
+    <string name="dictate_no_speech">아무 말도 듣지 못했습니다</string>
+    <string name="dictate_error_mic">마이크를 사용할 수 없습니다</string>
+    <string name="dictate_error_model">음성 모델을 로드할 수 없습니다</string>
+    <string name="dictate_error_recognition">텍스트로 변환하는 중에 문제가 발생했습니다</string>
+    <string name="dictate_too_slow">이 엔진은 이 휴대전화에서 너무 느립니다. 엔진 탭에서 더 작은 엔진을 고르면 속도를 따라갈 수 있습니다.</string>
+    <string name="dictate_error_busy">다른 곳에서 이미 받아쓰기가 실행 중입니다. 잠시 후 다시 시도하세요.</string>
+    <string name="dictate_no_model_title">받아쓰기를 시작하려면 음성 모델을 다운로드하세요</string>
+    <string name="dictate_no_model_body">모델은 휴대전화에서 실행됩니다. 한 번만 다운로드하면 그다음부터는 오프라인으로 받아쓸 수 있습니다.</string>
+    <string name="dictate_no_model_action">모델 선택</string>
+    <string name="dictate_mic_title">이 앱에는 마이크가 필요합니다</string>
+    <string name="dictate_mic_body">받아쓰는 동안에만 듣습니다. 말한 내용은 휴대전화에서 텍스트로 변환되며, 저장되거나 어디로도 전송되지 않습니다.</string>
+    <string name="dictate_mic_body_blocked">이 앱의 마이크 액세스가 꺼져 있습니다. 앱 설정의 권한에서 켤 수 있습니다.</string>
+    <string name="dictate_mic_allow">마이크 허용</string>
+    <string name="dictate_mic_open_settings">설정 열기</string>
+    <string name="dictate_mic_settings_failed">설정을 열 수 없습니다. Android 설정에서 앱 → Marmalade STT를 여세요.</string>
+
+    <!-- Engines list -->
+    <string name="engines_title">엔진</string>
+
+    <!-- Engine install state -->
+    <string name="engine_status_not_installed">아직 다운로드하지 않음</string>
+    <string name="engine_status_downloading">다운로드 중 · %1$s</string>
+    <string name="engine_status_paused">일시중지됨 · %1$s</string>
+    <string name="engine_status_ready">준비됨</string>
+    <string name="engine_status_corrupt">모델 파일 손상: %1$s</string>
+    <string name="engine_progress_bytes">%1$s/%2$s</string>
+    <string name="engine_progress_description">다운로드 진행률</string>
+    <string name="engine_failure_not_available">지금은 이 모델을 다운로드할 수 없습니다. 나중에 다시 시도하세요.</string>
+    <string name="engine_failure_no_space">이 모델을 저장할 여유 공간이 부족합니다. 공간을 확보한 후 다시 시도하세요.</string>
+    <string name="engine_failure_network">다운로드가 중단되었습니다. 연결을 확인하고 다시 시도하세요. 중단된 지점부터 이어서 다운로드합니다.</string>
+    <string name="engine_failure_generic">모델을 설치할 수 없습니다. 다시 시도하세요.</string>
+    <string name="engine_corrupt_outdated">설치된 파일이 이 버전의 앱과 맞지 않습니다.</string>
+    <string name="engine_corrupt_missing">%1$s 파일이 없습니다.</string>
+    <string name="engine_corrupt_wrong_size">%1$s 파일의 크기가 잘못되었습니다.</string>
+    <string name="engine_corrupt_damaged">%1$s 파일이 손상되었습니다.</string>
+    <string name="engine_failure_checksum">다운로드한 파일이 예상과 달라 삭제했습니다. 다시 시도하면 새로 다운로드합니다.</string>
+
+    <!-- Engine actions -->
+    <string name="engine_action_download">다운로드</string>
+    <string name="engine_action_resume">재개</string>
+    <string name="engine_action_retry">다시 시도</string>
+    <string name="engine_action_download_again">다시 다운로드</string>
+    <string name="engine_action_cancel">취소</string>
+    <string name="engine_action_remove_download">다운로드 삭제</string>
+    <string name="engine_action_check_files">파일 확인</string>
+    <string name="engine_action_checking">파일 확인 중…</string>
+    <string name="engine_action_remove">제거</string>
+    <string name="engine_dialog_cancel">취소</string>
+    <string name="engine_download_confirm_title">%1$s 엔진을 다운로드할까요?</string>
+    <string name="engine_download_confirm_body">인터넷에서 %1$s 크기의 파일을 한 번 다운로드합니다. 그다음부터 엔진은 오프라인으로 작동하며, 말하는 내용은 휴대전화 밖으로 나가지 않습니다.</string>
+    <string name="engine_remove_confirm_title">%1$s 엔진을 제거할까요?</string>
+    <string name="engine_remove_confirm_body">휴대전화에서 모델 파일(%1$s)이 삭제됩니다. 언제든지 다시 다운로드할 수 있습니다.</string>
+    <string name="engine_remove_download_failed">다운로드를 삭제할 수 없습니다. 다시 시도하세요.</string>
+    <string name="engine_remove_failed">모델 파일을 삭제할 수 없습니다. 다시 시도하세요.</string>
+    <string name="engine_check_ok">모든 파일이 정상입니다</string>
+    <string name="engine_check_damaged">일부 모델 파일이 손상되었습니다. 다시 다운로드하면 해결됩니다.</string>
+    <string name="engine_check_failed">파일을 확인할 수 없습니다. 다시 시도하세요.</string>
+    <string name="download_channel_name">음성 모델 다운로드</string>
+
+    <!-- Engine info dialog -->
+    <string name="engine_detail_languages">언어</string>
+    <string name="engine_detail_size_on_disk">설치 크기</string>
+    <string name="engine_detail_download_size">다운로드 크기</string>
+    <string name="engine_detail_license">라이선스</string>
+    <string name="engine_detail_source">출처</string>
+    <string name="engine_detail_speed">속도</string>
+    <string name="engine_speed_cost">Parakeet Ultra 대비 디코딩 시간 %1$s배(추정)</string>
+    <string name="engine_speed_reference">Parakeet Ultra가 속도 기준입니다</string>
+    <string name="engine_speed_phone_unmeasured">이 휴대전화는 아직 측정하지 않았습니다</string>
+
+    <!-- Settings -->
+    <string name="settings_title">설정</string>
+    <string name="settings_back">뒤로</string>
+    <string name="settings_save_failed">설정을 저장할 수 없습니다. 다시 시도하세요.</string>
+    <string name="settings_speech">음성</string>
+    <string name="settings_speech_keep_loaded">엔진 준비 상태 유지</string>
+    <string name="settings_speech_keep_loaded_desc">더 빨리 듣기 시작합니다. 접근성 등의 이유로 음성 입력을 자주 사용한다면 켜 두는 것이 좋습니다. 앱이 열려 있는 동안 엔진에 따라 약 0.6~3GB의 메모리를 사용합니다.</string>
+    <!-- Settings → End of speech -->
+    <string name="settings_end">중지 방식</string>
+    <string name="settings_end_keyboard">음성 키보드</string>
+    <string name="settings_end_apps">다른 앱 및 “말하세요” 팝업</string>
+    <string name="settings_end_tap">탭하여 중지</string>
+    <string name="settings_end_tap_desc">마이크를 탭할 때까지 계속 켜져 있습니다. 중지하면 말한 내용이 입력됩니다.</string>
+    <string name="settings_end_smart_turn">Smart Turn으로 자동 중지</string>
+    <string name="settings_end_smart_turn_desc">말을 마친 것처럼 들리면 중지하므로, 생각하느라 잠시 멈춰도 말이 끊기지 않습니다.</string>
+    <string name="settings_end_pause">말을 멈추면 자동 중지</string>
+    <string name="settings_end_pause_desc">말을 멈추면 중지합니다. 시간은 “멈춤 시간”에서 설정하세요.</string>
+    <string name="settings_end_word">종료 단어 말하기</string>
+    <string name="settings_end_word_desc">“over”처럼 종료 단어만 따로 말하면 중지합니다. 종료 단어는 입력되지 않습니다.</string>
+    <string name="settings_end_lock_hint">팁: 자동 중지 모드에서 마이크를 길게 누르면 탭할 때까지 계속 듣습니다.</string>
+    <string name="settings_dialog_cancel">취소</string>
+    <string name="settings_speech_pause">멈춤 시간</string>
+    <string name="settings_speech_pause_desc">받아쓰기 탭에서는 얼마나 멈추면 문장이 끝나는지, “말을 멈추면 자동 중지”에서는 얼마나 멈추면 듣기를 중지하는지 정합니다. 길게 설정하면 생각하느라 멈춰도 됩니다.</string>
+    <string name="settings_speech_pause_value">%1$.1f초</string>
+    <string name="settings_speech_pause_state">%1$.1f초</string>
+    <string name="settings_patience">Smart Turn 대기 시간</string>
+    <string name="settings_patience_desc">%1$s. 말을 마쳤다고 판단하기 전에 얼마나 기다릴지 정합니다.</string>
+    <string name="settings_patience_quick">빠름</string>
+    <string name="settings_patience_quick_desc">더 빨리 듣기를 중지하지만 말이 끊기는 경우가 많아집니다.</string>
+    <string name="settings_patience_normal">보통</string>
+    <string name="settings_patience_normal_desc">생각하느라 멈추는 경우를 대부분 기다려 줍니다.</string>
+    <string name="settings_patience_relaxed">여유</string>
+    <string name="settings_patience_relaxed_desc">듣기를 중지하기 전에 더 오래 기다립니다. 자주 멈추는 경우에 적합합니다.</string>
+    <string name="settings_end_words">종료 단어</string>
+    <string name="settings_end_words_hint">쉼표로 구분하세요.</string>
+    <!-- Settings → Support -->
+    <string name="settings_support">후원</string>
+    <string name="settings_support_dev">개발 후원</string>
+    <string name="settings_support_dev_desc">GitHub Sponsors를 통해 기부합니다. 자발적인 기부이며 세금 공제 대상이 아닙니다.</string>
+    <string name="settings_more_marmalade">Marmalade 앱 더보기</string>
+    <string name="settings_more_marmalade_desc">GitHub에 있는 다른 Marmalade 앱입니다.</string>
+    <string name="settings_report_bug">버그 신고</string>
+    <string name="settings_report_bug_desc">뭔가 문제가 있거나 잘못 알아들었나요? 세부정보가 미리 입력된 GitHub 이슈를 엽니다.</string>
+    <string name="settings_about">정보</string>
+    <string name="settings_about_row">Marmalade STT 정보</string>
+    <string name="settings_about_row_desc">버전 %1$s · 라이선스, 개인정보</string>
+
+    <!-- About -->
+    <string name="about_title">정보</string>
+    <string name="about_version">버전 %1$s</string>
+    <string name="about_tagline">휴대전화에서 실행되어 개인정보를 지키는 음성 텍스트 변환.</string>
+    <string name="about_privacy">개인정보처리방침</string>
+    <string name="about_privacy_desc">휴대전화에 남는 것(말하는 모든 내용)과 앱이 다운로드하는 것. 추적도 계정도 없습니다.</string>
+    <string name="about_privacy_english_note">이 방침은 영어로 되어 있습니다. 요약: 음성은 휴대전화에서 인식되며, 클라우드나 온라인 음성 서비스는 절대 사용하지 않습니다. 오디오는 저장되거나 업로드되지 않습니다. 분석, 추적, 계정이 없습니다. 인터넷은 음성 모델을 다운로드할 때만 사용합니다.</string>
+    <string name="about_privacy_load_failed">개인정보처리방침을 불러올 수 없습니다. 저장소의 PRIVACY.md에서도 볼 수 있습니다.</string>
+    <string name="about_licenses">오픈소스 라이선스</string>
+    <string name="about_licenses_desc">앱과 앱에 포함된 구성요소의 라이선스입니다.</string>
+
+    <!-- Open-source licenses -->
+    <string name="licenses_licensing">라이선스</string>
+    <string name="licenses_view_full">전체 라이선스 보기</string>
+    <string name="license_text_title">라이선스</string>
+    <string name="license_text_not_bundled">라이선스 전문이 포함되어 있지 않습니다. 이전 화면의 링크를 확인하세요.</string>
+    <string name="license_text_load_failed">라이선스 전문을 불러올 수 없습니다. 이전 화면의 원본 링크를 확인하세요.</string>
+
+    <!-- Voice keyboard -->
+    <string name="ime_name">Marmalade 음성 입력</string>
+    <string name="ime_subtype_label">음성 입력</string>
+    <string name="ime_status_loading">모델 로드 중…</string>
+    <string name="ime_status_listening">듣는 중</string>
+    <string name="ime_status_hearing">음성 감지 중…</string>
+    <string name="ime_status_finishing">마무리 중…</string>
+    <string name="ime_status_paused">일시중지됨. 계속하려면 마이크를 탭하세요.</string>
+    <string name="ime_speak_now">말하세요</string>
+    <string name="ime_cancel">키보드로 돌아가기</string>
+    <string name="ime_done">완료</string>
+    <string name="ime_pause">듣기 일시중지</string>
+    <string name="ime_resume">듣기 재개</string>
+    <string name="ime_no_model">음성 입력을 사용하려면 Marmalade STT에서 음성 모델을 다운로드하세요.</string>
+    <string name="ime_open_app">Marmalade STT 열기</string>
+    <string name="ime_mic_needed">음성 입력에는 마이크가 필요합니다. 이 패널이 열려 있는 동안에만 듣습니다.</string>
+    <string name="ime_mic_allow">마이크 허용</string>
+    <string name="ime_mic_blocked">Marmalade STT의 마이크 액세스가 꺼져 있습니다. 권한에서 켠 다음 사용하던 앱으로 돌아가세요.</string>
+
+    <!-- Speech input dialog and RecognitionService -->
+    <string name="recognizer_speak_now">말하세요</string>
+    <string name="recognizer_cancel">취소</string>
+    <string name="recognizer_done">완료</string>
+    <string name="recognizer_try_again">다시 시도</string>
+    <string name="recognizer_no_model">음성 입력을 사용하려면 Marmalade STT에서 음성 모델을 다운로드하세요.</string>
+    <string name="recognizer_open_app">Marmalade STT 열기</string>
+    <string name="recognizer_mic_blocked">음성 입력에는 마이크가 필요합니다. 앱 설정의 권한에서 켜세요.</string>
+    <string name="recognizer_open_settings">설정 열기</string>
+    <string name="recognizer_mic_stop">듣기 중지</string>
+
+    <!-- Press and hold the mic to lock listening -->
+    <string name="lock_status">잠김: 탭하여 중지</string>
+    <string name="lock_state">잠김</string>
+    <string name="lock_action">듣기 잠금</string>
+
+    <!-- Text cleanup -->
+    <string name="cleanup_section">텍스트 정리</string>
+    <string name="cleanup_fillers">군말 제거</string>
+    <string name="cleanup_fillers_desc">“um”, “uh”, “er”, “hmm” 같은 군말을 제거합니다. “umbrella”처럼 실제 단어는 그대로 둡니다.</string>
+    <string name="cleanup_commands">음성 명령</string>
+    <string name="cleanup_commands_desc">“new line”, “new paragraph”라고 말하거나, 마지막 문장을 지우려면 “scratch that”이라고 말하세요.</string>
+    <string name="cleanup_punctuation">문장부호 단어</string>
+    <string name="cleanup_punctuation_desc">“period”, “comma”, “question mark” 등도 말할 수 있습니다. 일반 단어이기도 하므로 기본적으로 꺼져 있습니다.</string>
+    <string name="cleanup_english_only">영어만 해당. %1$s</string>
+    <string name="cleanup_itn">숫자를 아라비아 숫자로 쓰기</string>
+    <string name="cleanup_itn_desc">“Twenty five percent”는 “25%”로, “nine thirty pm”은 “9:30 pm”으로 바뀝니다. “three boxes”처럼 작은 수는 단어로 둡니다.</string>
+    <string name="cleanup_capitalize">문장 첫 글자 대문자로</string>
+    <string name="cleanup_capitalize_desc">각 문장과 줄의 첫 글자를 대문자로 씁니다. 소문자로 바꾸는 일은 없습니다.</string>
+    <string name="cleanup_dictionary">대체 사전</string>
+    <string name="cleanup_dictionary_desc_none">앱이 계속 잘못 알아듣는 단어를 고칩니다.</string>
+    <plurals name="cleanup_dictionary_desc">
+        <item quantity="other">규칙 %1$d개 · 앱이 계속 잘못 알아듣는 단어 고치기</item>
+    </plurals>
+    <string name="cleanup_snippets">상용구</string>
+    <string name="cleanup_snippets_desc_none">트리거 문구를 말하면 주소 같은 저장된 텍스트를 삽입합니다.</string>
+    <plurals name="cleanup_snippets_desc">
+        <item quantity="other">상용구 %1$d개 · 트리거 문구를 말해 저장된 텍스트 삽입</item>
+    </plurals>
+
+    <string name="cleanup_save">저장</string>
+    <string name="cleanup_cancel">취소</string>
+    <string name="cleanup_delete">삭제</string>
+    <string name="cleanup_edit_action">수정</string>
+
+    <string name="cleanup_dictionary_help">각 규칙은 앱이 계속 잘못 알아듣는 단어나 구문을 원래 말하려던 내용으로 바꿉니다.\n\n• 대소문자와 관계없이 단어 전체가 일치해야 합니다: “teh”는 “Teh”와 일치하지만 “tehran”과는 일치하지 않습니다.\n• 단어 사이에 띄어쓰기가 없는 중국어와 일본어에서는 문장 중간에 있는 구문도 일치합니다. 한국어에서는 조사가 붙어 있어도 일치합니다: “메일”은 “메일을”과 일치합니다.\n• 오른쪽에 쓴 대문자는 쓴 그대로 유지됩니다. 그렇지 않으면 들린 대로 대소문자가 정해집니다: “Teh”는 “The”가 됩니다.\n• 오른쪽을 비워 두면 해당 구문이 삭제됩니다.\n• 규칙이 겹치면 가장 길게 일치하는 규칙이 적용됩니다.</string>
+    <string name="cleanup_dictionary_empty">아직 규칙이 없습니다. 앱이 계속 잘못 알아듣는 단어를 고치려면 “규칙 추가”를 탭하세요.</string>
+    <string name="cleanup_dictionary_add">규칙 추가</string>
+    <string name="cleanup_dictionary_edit">규칙 수정</string>
+    <string name="cleanup_dictionary_from">들린 말</string>
+    <string name="cleanup_dictionary_to">대신 쓸 말</string>
+    <string name="cleanup_dictionary_to_hint">비워 두면 해당 구문이 삭제됩니다.</string>
+    <string name="cleanup_dictionary_from_breaks_export">“->” 기호를 포함하거나 “#” 기호로 시작할 수 없습니다.</string>
+    <string name="cleanup_dictionary_replaces">“%1$s”에 대한 기존 규칙을 대체합니다.</string>
+    <string name="cleanup_dictionary_deleted">(삭제됨)</string>
+    <string name="cleanup_dictionary_rule_description">%1$s 대신 %2$s</string>
+    <string name="cleanup_dictionary_rule_deletes_description">%1$s 삭제됨</string>
+    <string name="cleanup_import">가져오기</string>
+    <string name="cleanup_export">모두 복사</string>
+    <string name="cleanup_exported">규칙 복사됨</string>
+    <string name="cleanup_import_title">규칙 가져오기</string>
+    <string name="cleanup_import_help">한 줄에 규칙 하나씩, 잘못된 말 -> 올바른 말 형식으로 붙여넣으세요. #으로 시작하는 줄은 무시됩니다. 이미 규칙이 있는 단어는 새 규칙으로 대체됩니다.</string>
+    <string name="cleanup_import_field">규칙</string>
+    <string name="cleanup_import_none">아직 찾은 규칙이 없습니다.</string>
+    <plurals name="cleanup_import_found">
+        <item quantity="other">규칙 %1$d개를 찾았습니다.</item>
+    </plurals>
+    <plurals name="cleanup_import_skipped">
+        <item quantity="other">%1$d줄은 규칙이 아니므로 건너뜁니다.</item>
+    </plurals>
+
+    <string name="cleanup_snippets_help">트리거 문구를 말하면 저장된 텍스트로 바뀝니다. 줄바꿈까지 쓴 그대로 들어갑니다.\n\n• 트리거는 대소문자와 관계없이 단어 전체가 일치해야 합니다: “my email”은 “My email”과 일치하지만 “my emailing”과는 일치하지 않습니다.\n• 단어 사이에 띄어쓰기가 없는 중국어와 일본어에서는 문장 중간에 있는 트리거도 일치합니다. 한국어에서는 조사가 붙어 있어도 일치합니다: “메일”은 “메일을”과 일치합니다.\n• 저장된 텍스트는 다른 어떤 처리로도 바뀌지 않습니다. 군말 제거, 명령, 대문자 변환이 적용되지 않습니다.\n• 트리거 문구만 따로 말하면 저장된 텍스트만 삽입됩니다.</string>
+    <string name="cleanup_snippets_empty">아직 상용구가 없습니다. 자주 쓰는 텍스트를 저장하려면 “상용구 추가”를 탭하세요.</string>
+    <string name="cleanup_snippets_add">상용구 추가</string>
+    <string name="cleanup_snippets_edit">상용구 수정</string>
+    <string name="cleanup_snippets_trigger">트리거 문구</string>
+    <string name="cleanup_snippets_text">삽입할 텍스트</string>
+    <string name="cleanup_snippets_replaces">“%1$s”에 대한 기존 상용구를 대체합니다.</string>
+
+    <!-- Setup guide (onboarding) -->
+    <string name="onboarding_step_of">%2$d단계 중 %1$d단계</string>
+    <string name="onboarding_close">설정 가이드 닫기</string>
+    <string name="onboarding_back">뒤로</string>
+    <string name="onboarding_next">다음</string>
+    <string name="onboarding_skip">건너뛰기</string>
+    <string name="onboarding_get_started">시작하기</string>
+    <string name="onboarding_try_it">사용해 보기</string>
+    <string name="onboarding_settings_failed">Android 설정을 열 수 없습니다. 홈 화면에서 직접 여세요.</string>
+    <!-- Toasts over Settings when only a fallback page opened (#79): where to go from there. -->
+    <string name="settings_hint_voice_input">설정에서 “음성 입력”을 검색한 다음 Marmalade STT를 선택하세요.</string>
+    <string name="settings_hint_keyboards">설정에서 “키보드”를 검색한 다음 “Marmalade 음성 입력”을 켜세요.</string>
+    <string name="settings_hint_app_details">앱에서 Marmalade STT를 찾은 다음 권한에서 마이크를 켜세요.</string>
+    <string name="onboarding_welcome_title">Marmalade STT에 오신 것을 환영합니다</string>
+    <string name="onboarding_welcome_body">말하면 Marmalade STT가 받아 적습니다. 앱 자체의 받아쓰기 화면에서, 또는 다른 앱의 음성 입력으로 사용할 수 있습니다. 몇 가지 간단한 단계만 거치면 준비가 끝납니다.</string>
+    <string name="onboarding_privacy_title">설계부터 개인정보 보호</string>
+    <string name="onboarding_privacy_body">음성은 휴대전화에서 인식되며, Google을 포함한 어떤 클라우드나 온라인 음성 서비스도 사용하지 않습니다. 오디오는 저장되거나 업로드되지 않습니다. 분석, 추적, 계정, API 키가 없습니다. 인터넷은 음성 모델을 다운로드할 때만 사용합니다.</string>
+    <string name="onboarding_high_contrast">접근성 모드</string>
+    <string name="onboarding_high_contrast_desc">고대비 색상</string>
+    <string name="onboarding_mic_title">마이크 허용</string>
+    <string name="onboarding_mic_body">Marmalade STT가 말을 들으려면 마이크가 필요합니다. 마이크는 받아쓰기가 켜져 있는 동안에만 사용됩니다.</string>
+    <string name="onboarding_mic_granted">마이크 액세스가 켜져 있습니다</string>
+    <string name="onboarding_mic_denied">마이크가 없으면 Marmalade STT가 말을 들을 수 없습니다. 지금 허용하거나, 건너뛰고 나중에 허용할 수 있습니다.</string>
+    <string name="onboarding_mic_blocked">이 앱의 마이크 액세스가 꺼져 있습니다. 앱 설정 페이지의 권한에서 켜세요.</string>
+    <string name="onboarding_mic_allow">마이크 허용</string>
+    <string name="onboarding_mic_open_settings">앱 설정 열기</string>
+    <string name="onboarding_model_title">음성 모델 다운로드</string>
+    <string name="onboarding_model_body">음성은 휴대전화에서 실행되는 모델이 인식합니다. 한 번만 다운로드하면 그다음부터는 오프라인으로 받아쓸 수 있습니다.</string>
+    <string name="onboarding_model_downloading_note">모델이 준비되면 설정을 계속할 수 있습니다. 화면이 꺼지거나 앱을 나가도 다운로드는 계속됩니다.</string>
+    <string name="onboarding_keyboard_title">음성 키보드 켜기</string>
+    <string name="onboarding_keyboard_body">Marmalade 음성 키보드로 다른 앱에서 받아쓸 수 있습니다. 키보드의 마이크 키를 누르면 이 키보드가 열립니다. Android 키보드 설정에서 “Marmalade 음성 입력”을 켠 다음 여기로 돌아오세요.</string>
+    <string name="onboarding_keyboard_open">키보드 설정 열기</string>
+    <string name="onboarding_keyboard_on">음성 키보드가 켜져 있습니다</string>
+    <string name="onboarding_keyboard_off">음성 키보드가 꺼져 있습니다</string>
+    <string name="onboarding_keyboard_warning">Android는 사용 설정하는 모든 키보드가 입력 내용을 수집할 수 있다고 경고합니다. 이는 표준 경고입니다. Marmalade STT는 받아쓴 내용만 입력하며, 어떤 내용도 휴대전화 밖으로 나가지 않습니다.</string>
+    <string name="onboarding_keyboard_unlock_note">일부 휴대전화에서는 이어서 두 번째 메시지가 표시됩니다. 재부팅 후 휴대전화를 잠금 해제하기 전까지는 앱을 시작할 수 없다는 내용입니다. 이것도 괜찮습니다. 확인을 탭하세요.</string>
+    <string name="onboarding_futo_checking">FUTO Keyboard에 확인하는 중…</string>
+    <string name="onboarding_futo_selected">FUTO Keyboard가 음성 입력에 Marmalade STT를 사용합니다</string>
+    <string name="onboarding_futo_not_selected">FUTO Keyboard가 다른 음성 입력을 사용합니다</string>
+    <string name="onboarding_futo_use">FUTO에서 Marmalade STT 사용</string>
+    <string name="onboarding_futo_check_again">다시 확인</string>
+    <string name="onboarding_futo_manual_title">직접 설정하기</string>
+    <string name="onboarding_futo_manual_body">FUTO Keyboard에서 설정 → 음성 입력을 열고 “내장 음성 입력 비활성화”(“외부 앱에서 제공하는 음성 입력 사용”)를 켜세요. 그러면 FUTO의 마이크 버튼이 이전 단계의 Marmalade 음성 키보드를 엽니다.</string>
+    <string name="onboarding_futo_crash_once">FUTO Keyboard의 마이크를 처음 탭했을 때 키보드가 닫히면 다시 탭하세요.</string>
+    <string name="onboarding_done_title">모든 준비가 끝났습니다</string>
+    <string name="onboarding_done_body">받아쓰기 화면에서 사용해 보세요. 마이크를 탭하고 말하면 됩니다.</string>
+    <string name="onboarding_done_title_partial">준비되면 언제든지 시작하세요</string>
+    <string name="onboarding_done_body_partial">아직 완료하지 않은 단계가 있습니다. 언제든지 마칠 수 있습니다.</string>
+    <string name="onboarding_done_reopen">이 가이드는 설정에서 다시 열 수 있습니다.</string>
+    <string name="onboarding_summary_mic">마이크</string>
+    <string name="onboarding_summary_mic_on">허용됨</string>
+    <string name="onboarding_summary_mic_off">아직 허용 안 됨</string>
+    <string name="onboarding_summary_model">음성 모델</string>
+    <string name="onboarding_summary_model_ready">준비됨</string>
+    <string name="onboarding_summary_model_downloading">다운로드 중</string>
+    <string name="onboarding_summary_model_missing">다운로드 안 됨. 엔진 탭에서 받으세요.</string>
+    <string name="onboarding_summary_model_attention">다운로드가 완료되지 않았습니다. 엔진 탭을 확인하세요.</string>
+    <string name="onboarding_summary_keyboard">음성 키보드</string>
+    <string name="onboarding_summary_keyboard_on">켜짐</string>
+    <string name="onboarding_summary_keyboard_off">꺼짐</string>
+    <string name="onboarding_summary_futo">FUTO Keyboard</string>
+    <string name="onboarding_summary_futo_on">Marmalade STT 사용 중</string>
+    <string name="onboarding_summary_futo_off">다른 음성 입력 사용 중</string>
+    <string name="onboarding_settings_row">설정 가이드</string>
+    <string name="onboarding_settings_row_desc">마이크, 음성 엔진, 키보드, 음성 인식 서비스</string>
+</resources>

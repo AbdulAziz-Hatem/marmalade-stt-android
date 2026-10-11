@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- List separator, quoted name, UI locale -->
+    <string name="list_separator">,\u0020</string>
+    <string name="quoted_name">”%1$s”</string>
+    <string name="ui_locale">sv</string>
+
+    <!-- Bottom navigation -->
+    <string name="nav_dictate">Diktera</string>
+    <string name="nav_engines">Motorer</string>
+    <string name="nav_settings">Inställningar</string>
+
+    <!-- Dictate -->
+    <string name="dictate_start">Starta diktering</string>
+    <string name="dictate_stop">Stoppa diktering</string>
+    <string name="dictate_state_idle">Lyssnar inte</string>
+    <string name="dictate_state_loading">Läser in</string>
+    <string name="dictate_state_listening">Lyssnar</string>
+    <string name="dictate_state_finishing">Avslutar</string>
+    <string name="dictate_status_loading">Läser in modellen…</string>
+    <string name="dictate_status_listening">Lyssnar</string>
+    <string name="dictate_status_hearing">Jag hör dig…</string>
+    <string name="dictate_status_finishing">Avslutar…</string>
+    <string name="dictate_status_catching_up">Hinner ikapp…</string>
+    <string name="dictate_empty">Dina ord visas här. Allt du säger stannar på telefonen.</string>
+    <string name="dictate_copy">Kopiera</string>
+    <string name="dictate_copied">Kopierat</string>
+    <string name="dictate_clear">Rensa</string>
+    <string name="dictate_no_speech">Uppfattade ingenting</string>
+    <string name="dictate_error_mic">Det gick inte att använda mikrofonen</string>
+    <string name="dictate_error_model">Det gick inte att läsa in talmodellen</string>
+    <string name="dictate_error_recognition">Något gick fel vid transkriberingen</string>
+    <string name="dictate_too_slow">Den här motorn är för långsam för telefonen. En mindre motor på fliken Motorer hänger med.</string>
+    <string name="dictate_error_busy">Diktering pågår redan någon annanstans. Försök igen om en stund.</string>
+    <string name="dictate_no_model_title">Ladda ned en talmodell för att börja diktera</string>
+    <string name="dictate_no_model_body">Modellen körs på telefonen. Du laddar ned den en gång, sedan fungerar dikteringen offline.</string>
+    <string name="dictate_no_model_action">Välj en modell</string>
+    <string name="dictate_mic_title">Appen behöver mikrofonen</string>
+    <string name="dictate_mic_body">Den lyssnar bara medan du dikterar. Det du säger blir text på telefonen och varken sparas eller skickas någonstans.</string>
+    <string name="dictate_mic_body_blocked">Mikrofonåtkomst är avstängd för den här appen. Du kan aktivera den i appens inställningar under Behörigheter.</string>
+    <string name="dictate_mic_allow">Tillåt mikrofonen</string>
+    <string name="dictate_mic_open_settings">Öppna inställningarna</string>
+    <string name="dictate_mic_settings_failed">Det gick inte att öppna inställningarna. Öppna Androids Inställningar, sedan Appar och sedan Marmalade STT.</string>
+
+    <!-- Engines list -->
+    <string name="engines_title">Motorer</string>
+
+    <!-- Engine install state -->
+    <string name="engine_status_not_installed">Inte nedladdad än</string>
+    <string name="engine_status_downloading">Laddar ned · %1$s</string>
+    <string name="engine_status_paused">Pausad · %1$s</string>
+    <string name="engine_status_ready">Klar</string>
+    <string name="engine_status_corrupt">Modellfilerna är skadade: %1$s</string>
+    <string name="engine_progress_bytes">%1$s av %2$s</string>
+    <string name="engine_progress_description">Nedladdningsförlopp</string>
+    <string name="engine_failure_not_available">Den här modellen går inte att ladda ned just nu. Försök igen senare.</string>
+    <string name="engine_failure_no_space">Det finns inte tillräckligt med ledigt lagringsutrymme för den här modellen. Frigör utrymme och försök igen.</string>
+    <string name="engine_failure_network">Nedladdningen avbröts. Kontrollera anslutningen och försök igen. Den fortsätter där den slutade.</string>
+    <string name="engine_failure_generic">Det gick inte att installera modellen. Försök igen.</string>
+    <!-- After "Modellfilerna är skadade: "; %1$s is a file name -->
+    <string name="engine_corrupt_outdated">De installerade filerna matchar inte den här versionen av appen.</string>
+    <string name="engine_corrupt_missing">%1$s saknas.</string>
+    <string name="engine_corrupt_wrong_size">%1$s har fel storlek.</string>
+    <string name="engine_corrupt_damaged">%1$s är skadad.</string>
+    <string name="engine_failure_checksum">En nedladdad fil stämde inte med det vi förväntade oss, så den raderades. Försök igen för att ladda ned den på nytt.</string>
+
+    <!-- Engine actions -->
+    <string name="engine_action_download">Ladda ned</string>
+    <string name="engine_action_resume">Återuppta</string>
+    <string name="engine_action_retry">Försök igen</string>
+    <string name="engine_action_download_again">Ladda ned igen</string>
+    <string name="engine_action_cancel">Avbryt</string>
+    <string name="engine_action_remove_download">Ta bort nedladdningen</string>
+    <string name="engine_action_check_files">Kontrollera filerna</string>
+    <string name="engine_action_checking">Kontrollerar filerna…</string>
+    <string name="engine_action_remove">Ta bort</string>
+    <string name="engine_dialog_cancel">Avbryt</string>
+    <string name="engine_download_confirm_title">Ladda ned %1$s?</string>
+    <string name="engine_download_confirm_body">Det här laddar ned %1$s från internet, en gång. Därefter fungerar motorn offline och inget du säger lämnar telefonen.</string>
+    <string name="engine_remove_confirm_title">Ta bort %1$s?</string>
+    <string name="engine_remove_confirm_body">Det här raderar modellfilerna (%1$s) från telefonen. Du kan ladda ned dem igen när du vill.</string>
+    <string name="engine_remove_download_failed">Det gick inte att ta bort nedladdningen. Försök igen.</string>
+    <string name="engine_remove_failed">Det gick inte att ta bort modellfilerna. Försök igen.</string>
+    <string name="engine_check_ok">Alla filer är intakta</string>
+    <string name="engine_check_damaged">Vissa modellfiler är skadade. Ladda ned dem igen för att åtgärda det.</string>
+    <string name="engine_check_failed">Det gick inte att kontrollera filerna. Försök igen.</string>
+    <string name="download_channel_name">Nedladdning av talmodeller</string>
+
+    <!-- Engine info dialog -->
+    <string name="engine_detail_languages">Språk</string>
+    <string name="engine_detail_size_on_disk">Storlek på telefonen</string>
+    <string name="engine_detail_download_size">Nedladdningsstorlek</string>
+    <string name="engine_detail_license">Licens</string>
+    <string name="engine_detail_source">Källa</string>
+    <string name="engine_detail_speed">Hastighet</string>
+    <string name="engine_speed_cost">%1$s× avkodningstiden för Parakeet Ultra (uppskattat)</string>
+    <string name="engine_speed_reference">Parakeet Ultra är hastighetsreferensen</string>
+    <string name="engine_speed_phone_unmeasured">Den här telefonen har inte mätts än</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Inställningar</string>
+    <string name="settings_back">Tillbaka</string>
+    <string name="settings_save_failed">Det gick inte att spara inställningen. Försök igen.</string>
+    <string name="settings_speech">Tal</string>
+    <string name="settings_speech_keep_loaded">Håll motorn redo</string>
+    <string name="settings_speech_keep_loaded_desc">Börjar lyssna snabbare. Värt att aktivera om du använder röstinmatning ofta, till exempel för tillgänglighet. Använder ungefär 0,6 till 3 GB minne medan appen är öppen, beroende på motor.</string>
+    <!-- Settings → End of speech -->
+    <string name="settings_end">Talets slut</string>
+    <string name="settings_end_keyboard">Rösttangentbord</string>
+    <string name="settings_end_apps">Andra appar och fönstret ”Tala nu”</string>
+    <string name="settings_end_tap">Tryck för att stoppa</string>
+    <string name="settings_end_tap_desc">Mikrofonen är på tills du trycker på den. Dina ord skrivs när du stoppar.</string>
+    <string name="settings_end_smart_turn">Autostopp med Smart Turn</string>
+    <string name="settings_end_smart_turn_desc">Stoppar när det låter som att du är klar, så att en tankepaus inte avbryter dig.</string>
+    <string name="settings_end_pause">Autostopp efter paus</string>
+    <string name="settings_end_pause_desc">Stoppar när du pausar. Ställ in hur länge under Pauslängd.</string>
+    <string name="settings_end_word">Säg ett slutord</string>
+    <string name="settings_end_word_desc">Stoppar när du säger slutordet för sig självt, till exempel ”over”. Ordet skrivs inte.</string>
+    <string name="settings_end_lock_hint">Tips: i ett autostoppläge kan du hålla in mikrofonen så lyssnar den tills du trycker på den.</string>
+    <string name="settings_dialog_cancel">Avbryt</string>
+    <string name="settings_speech_pause">Pauslängd</string>
+    <string name="settings_speech_pause_desc">Hur lång paus som avslutar en mening på fliken Diktera och stoppar lyssningen i Autostopp efter paus. Längre ger dig tid att tänka.</string>
+    <string name="settings_speech_pause_value">%1$.1f s</string>
+    <string name="settings_speech_pause_state">%1$.1f sekunder</string>
+    <string name="settings_patience">Tålamod för Smart Turn</string>
+    <string name="settings_patience_desc">%1$s. Hur länge den väntar innan den avgör att du är klar.</string>
+    <string name="settings_patience_quick">Snabbt</string>
+    <string name="settings_patience_quick_desc">Slutar lyssna tidigare men avbryter dig oftare.</string>
+    <string name="settings_patience_normal">Normalt</string>
+    <string name="settings_patience_normal_desc">Väntar ut de flesta tankepauser.</string>
+    <string name="settings_patience_relaxed">Avslappnat</string>
+    <string name="settings_patience_relaxed_desc">Väntar längre innan den slutar lyssna. Bra om du pausar mycket.</string>
+    <string name="settings_end_words">Slutord</string>
+    <string name="settings_end_words_hint">Separera dem med kommatecken.</string>
+    <!-- Settings → Support -->
+    <string name="settings_support">Stöd</string>
+    <string name="settings_support_dev">Stöd utvecklingen</string>
+    <string name="settings_support_dev_desc">Donera via GitHub Sponsors. Frivilligt och inte avdragsgillt.</string>
+    <string name="settings_more_marmalade">Mer från Marmalade</string>
+    <string name="settings_more_marmalade_desc">Andra Marmalade-appar på GitHub.</string>
+    <string name="settings_report_bug">Rapportera ett fel</string>
+    <string name="settings_report_bug_desc">Är något trasigt eller felhört? Öppnar ett ärende på GitHub med detaljerna ifyllda.</string>
+    <string name="settings_about">Om</string>
+    <string name="settings_about_row">Om Marmalade STT</string>
+    <string name="settings_about_row_desc">Version %1$s · licenser, integritet</string>
+
+    <!-- About -->
+    <string name="about_title">Om</string>
+    <string name="about_version">Version %1$s</string>
+    <string name="about_tagline">Privat tal-till-text som körs på telefonen.</string>
+    <string name="about_privacy">Integritetspolicy</string>
+    <string name="about_privacy_desc">Vad som stannar på telefonen (allt du säger) och vad appen laddar ned. Ingen spårning, inga konton.</string>
+    <string name="about_privacy_english_note">Den här policyn är på engelska. Sammanfattning: tal känns igen på din telefon, aldrig av en moln- eller onlinetjänst för taligenkänning. Ljud varken sparas eller laddas upp. Ingen analys, ingen spårning, inga konton. Internet används bara för att ladda ned talmodeller.</string>
+    <string name="about_privacy_load_failed">Det gick inte att läsa in integritetspolicyn. Den finns också i kodförrådet som PRIVACY.md.</string>
+    <string name="about_licenses">Licenser för öppen källkod</string>
+    <string name="about_licenses_desc">Licenser för appen och komponenterna den innehåller.</string>
+
+    <!-- Open-source licenses -->
+    <string name="licenses_licensing">Licensiering</string>
+    <string name="licenses_view_full">Visa hela licensen</string>
+    <string name="license_text_title">Licens</string>
+    <string name="license_text_not_bundled">Licenstexten medföljer inte. Se länken på föregående skärm.</string>
+    <string name="license_text_load_failed">Det gick inte att läsa in licenstexten. Se länken till källan på föregående skärm.</string>
+
+    <!-- Voice keyboard -->
+    <string name="ime_name">Marmalade-röstinmatning</string>
+    <string name="ime_subtype_label">Röstinmatning</string>
+    <string name="ime_status_loading">Läser in modellen…</string>
+    <string name="ime_status_listening">Lyssnar</string>
+    <string name="ime_status_hearing">Jag hör dig…</string>
+    <string name="ime_status_finishing">Avslutar…</string>
+    <string name="ime_status_paused">Pausad. Tryck på mikrofonen för att fortsätta.</string>
+    <string name="ime_speak_now">Tala nu</string>
+    <string name="ime_cancel">Tillbaka till tangentbordet</string>
+    <string name="ime_done">Klar</string>
+    <string name="ime_pause">Pausa lyssningen</string>
+    <string name="ime_resume">Fortsätt lyssna</string>
+    <string name="ime_no_model">Ladda ned en talmodell i Marmalade STT för att använda röstinmatning.</string>
+    <string name="ime_open_app">Öppna Marmalade STT</string>
+    <string name="ime_mic_needed">Röstinmatning behöver mikrofonen. Den lyssnar bara medan den här panelen är öppen.</string>
+    <string name="ime_mic_allow">Tillåt mikrofonen</string>
+    <string name="ime_mic_blocked">Mikrofonåtkomst är avstängd för Marmalade STT. Aktivera den under Behörigheter och gå sedan tillbaka till din app.</string>
+
+    <!-- Speech input dialog and RecognitionService -->
+    <string name="recognizer_speak_now">Tala nu</string>
+    <string name="recognizer_cancel">Avbryt</string>
+    <string name="recognizer_done">Klar</string>
+    <string name="recognizer_try_again">Försök igen</string>
+    <string name="recognizer_no_model">Ladda ned en talmodell i Marmalade STT för att använda taligenkänning.</string>
+    <string name="recognizer_open_app">Öppna Marmalade STT</string>
+    <string name="recognizer_mic_blocked">Taligenkänning behöver mikrofonen. Aktivera den i appens inställningar under Behörigheter.</string>
+    <string name="recognizer_open_settings">Öppna inställningarna</string>
+    <string name="recognizer_mic_stop">Sluta lyssna</string>
+
+    <!-- Press and hold the mic to lock listening -->
+    <string name="lock_status">Låst: tryck för att stoppa</string>
+    <string name="lock_state">Låst</string>
+    <string name="lock_action">Lås lyssningen</string>
+
+    <!-- Text cleanup -->
+    <string name="cleanup_section">Textrensning</string>
+    <string name="cleanup_fillers">Ta bort utfyllnadsord</string>
+    <string name="cleanup_fillers_desc">Tar bort ”um”, ”uh”, ”er”, ”hmm” och liknande. Riktiga ord som ”umbrella” behålls.</string>
+    <string name="cleanup_commands">Röstkommandon</string>
+    <string name="cleanup_commands_desc">Säg ”new line” eller ”new paragraph”, eller ”scratch that” för att ta bort den senaste meningen.</string>
+    <string name="cleanup_punctuation">Uttalade skiljetecken</string>
+    <string name="cleanup_punctuation_desc">Säg också ”period”, ”comma”, ”question mark”… Av som standard: de är också vanliga ord.</string>
+    <string name="cleanup_english_only">Endast engelska. %1$s</string>
+    <string name="cleanup_itn">Skriv tal med siffror</string>
+    <string name="cleanup_itn_desc">”Twenty five percent” blir ”25%”, ”nine thirty pm” blir ”9:30 pm”. Små tal som ”three boxes” förblir ord.</string>
+    <string name="cleanup_capitalize">Stor bokstav i början av meningar</string>
+    <string name="cleanup_capitalize_desc">Stor bokstav i början av varje mening och rad. Inget görs någonsin om till små bokstäver.</string>
+    <string name="cleanup_dictionary">Ersättningsordlista</string>
+    <string name="cleanup_dictionary_desc_none">Rätta ord som appen ofta uppfattar fel.</string>
+    <plurals name="cleanup_dictionary_desc">
+        <item quantity="one">%1$d regel · rätta ord som appen ofta uppfattar fel</item>
+        <item quantity="other">%1$d regler · rätta ord som appen ofta uppfattar fel</item>
+    </plurals>
+    <string name="cleanup_snippets">Textsnuttar</string>
+    <string name="cleanup_snippets_desc_none">Säg en utlösarfras för att infoga sparad text, till exempel din adress.</string>
+    <plurals name="cleanup_snippets_desc">
+        <item quantity="one">%1$d textsnutt · säg en utlösarfras för att infoga sparad text</item>
+        <item quantity="other">%1$d textsnuttar · säg en utlösarfras för att infoga sparad text</item>
+    </plurals>
+
+    <string name="cleanup_save">Spara</string>
+    <string name="cleanup_cancel">Avbryt</string>
+    <string name="cleanup_delete">Radera</string>
+    <string name="cleanup_edit_action">Redigera</string>
+
+    <!-- "teh" is the README's deliberate misspelling example (the rule holds in any language). -->
+    <string name="cleanup_dictionary_help" tools:ignore="Typos">Varje regel gör om ett ord eller en fras som appen ofta uppfattar fel till det du menade.\n\n• Matchar hela ord oavsett skiftläge: ”teh” matchar ”Teh” men inte ”tehran”.\n• På kinesiska och japanska, som saknar mellanslag mellan orden, matchar en fras även inuti en mening. På koreanska matchar den även med en partikel fäst vid ordet: ”메일” matchar ”메일을”.\n• En stor bokstav på höger sida behålls som den är skriven. Annars följer skiftläget det som hördes: ”Teh” blir ”The”.\n• Lämna höger sida tom för att ta bort frasen.\n• När regler överlappar vinner den längsta matchningen.</string>
+    <string name="cleanup_dictionary_empty">Inga regler än. Tryck på ”Lägg till regel” för att rätta ett ord som appen ofta uppfattar fel.</string>
+    <string name="cleanup_dictionary_add">Lägg till regel</string>
+    <string name="cleanup_dictionary_edit">Redigera regel</string>
+    <string name="cleanup_dictionary_from">Det som hörs</string>
+    <string name="cleanup_dictionary_to">Skriv i stället</string>
+    <string name="cleanup_dictionary_to_hint">Lämna tomt för att ta bort frasen.</string>
+    <string name="cleanup_dictionary_from_breaks_export">Får inte innehålla ”->” eller börja med ”#”.</string>
+    <string name="cleanup_dictionary_replaces">Ersätter din regel för ”%1$s”.</string>
+    <string name="cleanup_dictionary_deleted">(tas bort)</string>
+    <string name="cleanup_dictionary_rule_description">%1$s blir %2$s</string>
+    <string name="cleanup_dictionary_rule_deletes_description">%1$s tas bort</string>
+    <string name="cleanup_import">Importera</string>
+    <string name="cleanup_export">Kopiera alla</string>
+    <string name="cleanup_exported">Reglerna har kopierats</string>
+    <string name="cleanup_import_title">Importera regler</string>
+    <string name="cleanup_import_help">Klistra in en regel per rad, som fel -> rätt. Rader som börjar med # ignoreras. En regel för ett ord du redan har ersätter den gamla.</string>
+    <string name="cleanup_import_field">Regler</string>
+    <string name="cleanup_import_none">Inga regler hittades än.</string>
+    <plurals name="cleanup_import_found">
+        <item quantity="one">%1$d regel hittades.</item>
+        <item quantity="other">%1$d regler hittades.</item>
+    </plurals>
+    <plurals name="cleanup_import_skipped">
+        <item quantity="one">%1$d rad är inte en regel och hoppas över.</item>
+        <item quantity="other">%1$d rader är inte regler och hoppas över.</item>
+    </plurals>
+
+    <string name="cleanup_snippets_help">Säg en utlösarfras så ersätts den av din sparade text, exakt som den är skriven, radbrytningar inräknade.\n\n• Utlösarfraser matchar hela ord oavsett skiftläge: ”min e-post” matchar ”Min e-post” men inte ”min e-postlista”.\n• På kinesiska och japanska, som saknar mellanslag mellan orden, matchar en utlösarfras även inuti en mening. På koreanska matchar den även med en partikel fäst vid ordet: ”메일” matchar ”메일을”.\n• Inget annat ändrar den sparade texten: ingen borttagning av utfyllnadsord, inga kommandon eller stora bokstäver.\n• Säger du frasen för sig själv infogas bara den sparade texten.</string>
+    <string name="cleanup_snippets_empty">Inga textsnuttar än. Tryck på ”Lägg till textsnutt” för att spara text du ofta behöver.</string>
+    <string name="cleanup_snippets_add">Lägg till textsnutt</string>
+    <string name="cleanup_snippets_edit">Redigera textsnutt</string>
+    <string name="cleanup_snippets_trigger">Utlösarfras</string>
+    <string name="cleanup_snippets_text">Text att infoga</string>
+    <string name="cleanup_snippets_replaces">Ersätter din textsnutt för ”%1$s”.</string>
+
+    <!-- Setup guide -->
+    <string name="onboarding_step_of">Steg %1$d av %2$d</string>
+    <string name="onboarding_close">Stäng konfigurationsguiden</string>
+    <string name="onboarding_back">Tillbaka</string>
+    <string name="onboarding_next">Nästa</string>
+    <string name="onboarding_skip">Hoppa över</string>
+    <string name="onboarding_get_started">Kom igång</string>
+    <string name="onboarding_try_it">Testa</string>
+    <string name="onboarding_settings_failed">Det gick inte att öppna Androids inställningar. Öppna dem från startskärmen i stället.</string>
+    <!-- Toasts over Settings when only a fallback page opened (#79): where to go from there. -->
+    <string name="settings_hint_voice_input">Sök efter ”Röstinmatning” i Inställningar och välj sedan Marmalade STT.</string>
+    <string name="settings_hint_keyboards">Sök efter ”Tangentbord” i Inställningar och aktivera sedan Marmalade-röstinmatning.</string>
+    <string name="settings_hint_app_details">Hitta Marmalade STT under Appar och aktivera sedan mikrofonen under Behörigheter.</string>
+    <string name="onboarding_welcome_title">Välkommen till Marmalade STT</string>
+    <string name="onboarding_welcome_body">Prata, så skriver Marmalade STT ned det: på sin egen Diktera-skärm eller som röstinmatning i andra appar. Några snabba steg så är den redo.</string>
+    <string name="onboarding_privacy_title">Privat från grunden</string>
+    <string name="onboarding_privacy_body">Tal känns igen på din telefon, aldrig av en moln- eller onlinetjänst för taligenkänning, inte heller Googles. Ljud varken sparas eller laddas upp. Ingen analys, ingen spårning, inga konton, inga API-nycklar. Internet används bara för att ladda ned talmodeller.</string>
+    <string name="onboarding_high_contrast">Tillgänglighetsläge</string>
+    <string name="onboarding_high_contrast_desc">Färger med hög kontrast</string>
+    <string name="onboarding_mic_title">Tillåt mikrofonen</string>
+    <string name="onboarding_mic_body">Marmalade STT behöver mikrofonen för att höra dig. Den används bara medan dikteringen är på.</string>
+    <string name="onboarding_mic_granted">Mikrofonåtkomst är på</string>
+    <string name="onboarding_mic_denied">Utan mikrofonen kan Marmalade STT inte höra dig. Du kan tillåta den nu, eller hoppa över och tillåta den senare.</string>
+    <string name="onboarding_mic_blocked">Mikrofonåtkomst är avstängd för den här appen. Aktivera den under Behörigheter på appens inställningssida.</string>
+    <string name="onboarding_mic_allow">Tillåt mikrofonen</string>
+    <string name="onboarding_mic_open_settings">Öppna appinställningarna</string>
+    <string name="onboarding_model_title">Ladda ned en talmodell</string>
+    <string name="onboarding_model_body">Talet känns igen av en modell som körs på telefonen. Den laddas ned en gång, sedan fungerar dikteringen offline.</string>
+    <string name="onboarding_model_downloading_note">Konfigurationen fortsätter när modellen är klar. Nedladdningen fortsätter även om skärmen släcks eller om du lämnar appen.</string>
+    <string name="onboarding_keyboard_title">Aktivera rösttangentbordet</string>
+    <string name="onboarding_keyboard_body">Med Marmalades rösttangentbord dikterar du i andra appar: tangentbordens mikrofontangenter öppnar det. Aktivera ”Marmalade-röstinmatning” i Androids tangentbordsinställningar och kom sedan tillbaka hit.</string>
+    <string name="onboarding_keyboard_open">Öppna tangentbordsinställningarna</string>
+    <string name="onboarding_keyboard_on">Rösttangentbordet är på</string>
+    <string name="onboarding_keyboard_off">Rösttangentbordet är av</string>
+    <string name="onboarding_keyboard_warning">Android varnar för att alla tangentbord du aktiverar kan samla in det du skriver. Den varningen är standard. Marmalade STT skriver bara det du dikterar, och inget lämnar telefonen.</string>
+    <string name="onboarding_keyboard_unlock_note">Vissa telefoner visar sedan ett andra meddelande: efter en omstart kan appen inte starta förrän du låser upp telefonen. Det är också okej. Tryck på OK.</string>
+    <string name="onboarding_futo_checking">Frågar FUTO Keyboard…</string>
+    <string name="onboarding_futo_selected">FUTO Keyboard använder Marmalade STT för röstinmatning</string>
+    <string name="onboarding_futo_not_selected">FUTO Keyboard använder en annan röstinmatning</string>
+    <string name="onboarding_futo_use">Använd Marmalade STT i FUTO</string>
+    <string name="onboarding_futo_check_again">Kontrollera igen</string>
+    <string name="onboarding_futo_manual_title">Ställ in det själv</string>
+    <!-- FUTO Keyboard has no Swedish translation of these menus, so its English labels are quoted. -->
+    <string name="onboarding_futo_manual_body">Öppna FUTO Keyboards inställningar, gå till Voice Input och aktivera ”Disable built-in voice input” (”Use voice input provided by external app”). FUTO:s mikrofonknapp öppnar sedan Marmalades rösttangentbord från föregående steg.</string>
+    <string name="onboarding_futo_crash_once">Om FUTO Keyboard stängs första gången du trycker på dess mikrofon, tryck igen.</string>
+    <string name="onboarding_done_title">Allt är klart</string>
+    <string name="onboarding_done_body">Testa på Diktera-skärmen: tryck på mikrofonen och prata.</string>
+    <string name="onboarding_done_title_partial">Redo när du vill</string>
+    <string name="onboarding_done_body_partial">Några steg återstår. Du kan slutföra dem när du vill.</string>
+    <string name="onboarding_done_reopen">Du kan öppna guiden igen från Inställningar.</string>
+    <string name="onboarding_summary_mic">Mikrofon</string>
+    <string name="onboarding_summary_mic_on">Tillåten</string>
+    <string name="onboarding_summary_mic_off">Inte tillåten än</string>
+    <string name="onboarding_summary_model">Talmodell</string>
+    <string name="onboarding_summary_model_ready">Klar</string>
+    <string name="onboarding_summary_model_downloading">Laddar ned</string>
+    <string name="onboarding_summary_model_missing">Inte nedladdad. Hämta den på fliken Motorer.</string>
+    <string name="onboarding_summary_model_attention">Nedladdningen är inte klar. Se fliken Motorer.</string>
+    <string name="onboarding_summary_keyboard">Rösttangentbord</string>
+    <string name="onboarding_summary_keyboard_on">På</string>
+    <string name="onboarding_summary_keyboard_off">Av</string>
+    <string name="onboarding_summary_futo">FUTO Keyboard</string>
+    <string name="onboarding_summary_futo_on">Använder Marmalade STT</string>
+    <string name="onboarding_summary_futo_off">Använder en annan röstinmatning</string>
+    <string name="onboarding_settings_row">Konfigurationsguide</string>
+    <string name="onboarding_settings_row_desc">Mikrofon, taligenkänningsmotor, tangentbord och taligenkänningstjänst</string>
+</resources>

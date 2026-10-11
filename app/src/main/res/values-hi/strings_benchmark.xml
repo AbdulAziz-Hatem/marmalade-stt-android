@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Developer A/B benchmark -->
+    <string name="benchmark_title">बेंचमार्क</string>
+    <string name="benchmark_note">एक टेक रिकॉर्ड करें, फिर हर इंस्टॉल किया गया इंजन बारी-बारी से उसे टेक्स्ट में बदलता है: लोड, ट्रांसक्राइब, अनलोड। हर इंजन को Silero VAD के एक जैसे सेगमेंट मिलते हैं। स्ट्रीमिंग इंजनों को हर सेगमेंट 100 ms के टुकड़ों में उतनी तेज़ी से दिया जाता है जितनी तेज़ी से मॉडल उन्हें ले सके, रियल टाइम में नहीं। टेक सिर्फ़ मेमोरी में रहता है और कभी सेव नहीं होता। एम्युलेटर पर मिले नंबर सिर्फ़ इंजनों की आपस में तुलना के काम के हैं।</string>
+
+    <string name="benchmark_section_take">टेक</string>
+    <string name="benchmark_record">रिकॉर्ड करें</string>
+    <string name="benchmark_stop">रोकें</string>
+    <string name="benchmark_play">चलाएँ</string>
+    <string name="benchmark_stop_playback">प्लेबैक रोकें</string>
+    <string name="benchmark_elapsed">%1$s s / %2$d s</string>
+    <string name="benchmark_level">इनपुट लेवल</string>
+    <string name="benchmark_take_length">टेक: %1$s</string>
+    <string name="benchmark_take_length_soft_agc">टेक: %1$s, लेवल ऐप ने ठीक किया (इस फ़ोन में माइक गेन का बिल्ट-इन कंट्रोल नहीं है)</string>
+    <plurals name="benchmark_no_take">
+        <item quantity="one">अभी कोई टेक नहीं। ज़्यादा से ज़्यादा %1$d सेकंड तक बोलकर रिकॉर्ड करें।</item>
+        <item quantity="other">अभी कोई टेक नहीं। ज़्यादा से ज़्यादा %1$d सेकंड तक बोलकर रिकॉर्ड करें।</item>
+    </plurals>
+
+    <string name="benchmark_section_reference">रेफ़रेंस टेक्स्ट (वैकल्पिक)</string>
+    <string name="benchmark_reference_label">आपने क्या कहा</string>
+    <string name="benchmark_reference_hint">हर इंजन की शब्द त्रुटि दर (WER) जानने के लिए वह टाइप करें जो आपने कहा।</string>
+
+    <string name="benchmark_section_engines">इंजन</string>
+    <string name="benchmark_no_engines">कोई इंजन इंस्टॉल नहीं है। इंजन टैब पर कुछ इंस्टॉल करें (बाकी विकल्प देखने के लिए सेटिंग में “डेवलपर इंजन” चालू करें)।</string>
+    <string name="benchmark_run">बेंचमार्क चलाएँ</string>
+    <string name="benchmark_run_again">फिर से चलाएँ</string>
+    <string name="benchmark_running">%1$s चल रहा है (%3$d में से %2$d)…</string>
+
+    <string name="benchmark_section_results">नतीजे</string>
+    <string name="benchmark_metric_load">लोड %1$s</string>
+    <string name="benchmark_metric_decode">डिकोड %1$s</string>
+    <string name="benchmark_metric_rtf">RTF %1$s</string>
+    <string name="benchmark_metric_rss">पीक RSS (सैंपल किया गया) %1$s</string>
+    <string name="benchmark_metric_wer">WER %1$s</string>
+    <string name="benchmark_empty_transcript">(कोई स्पीच नहीं पहचानी गई)</string>
+    <string name="benchmark_raw">सफ़ाई से पहले: %1$s</string>
+    <string name="benchmark_failed_load">लोड नहीं हो सका: %1$s</string>
+    <string name="benchmark_failed_transcribe">ट्रांसक्राइब नहीं हो सका: %1$s</string>
+    <string name="benchmark_failed_release">ट्रांसक्राइब हो गया, पर अनलोड नहीं हो सका: %1$s</string>
+    <string name="benchmark_copy_markdown">Markdown के रूप में कॉपी करें</string>
+    <string name="benchmark_copied">कॉपी हो गया</string>
+
+    <!-- Snackbar notices -->
+    <string name="benchmark_error_mic">रिकॉर्ड नहीं हो सका। क्या कोई दूसरा ऐप माइक्रोफ़ोन इस्तेमाल कर रहा है?</string>
+    <string name="benchmark_error_empty">कुछ रिकॉर्ड नहीं हुआ। फिर से कोशिश करें।</string>
+    <string name="benchmark_error_playback">टेक नहीं चल सका।</string>
+    <string name="benchmark_error_no_engines">चलाने के लिए कोई इंस्टॉल किया गया इंजन नहीं है।</string>
+    <string name="benchmark_error_run">एक गड़बड़ी की वजह से बेंचमार्क रुक गया।</string>
+
+    <!-- Mic permission -->
+    <string name="benchmark_mic_title">बेंचमार्क को आपके माइक्रोफ़ोन की ज़रूरत है</string>
+    <string name="benchmark_mic_body">यह एक टेक रिकॉर्ड करता है, उसे सिर्फ़ मेमोरी में रखता है और कभी सेव नहीं करता, न कहीं भेजता है।</string>
+</resources>

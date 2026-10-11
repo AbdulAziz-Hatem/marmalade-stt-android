@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!--
+      INTERNET is used ONLY to download speech models (per-file downloads
+      from pinned URLs, verified by SHA-256, into app-private storage).
+      Audio never leaves the device. No telemetry, no analytics, no crash
+      reporting, no backend of our own. See PRIVACY.md.
+    -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!--
+      RECORD_AUDIO feeds the on-device recognizer only. Audio is held in
+      memory for the utterance being transcribed and is never written to
+      storage or sent anywhere (ARCHITECTURE.md D10).
+    -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <!--
+      A model download runs in a "data sync" foreground service, or Android
+      15+ cuts the app's network a few seconds after the screen turns off
+      or the user switches apps (#74).
+    -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+
+    <!--
+      Package visibility (Android 11+), for the setup guide only:
+      - input methods: Android hides other apps' keyboards from
+        InputMethodManager's lists without this, so the guide couldn't see
+        which keyboards are on, or an enabled Google voice typing that wins
+        the mic keys (#61, checked on the emulator);
+      - FUTO Keyboard's packages: whether one is installed, and its voice
+        input switch activity (ui/onboarding/FutoVoiceInput.kt).
+      Naming a package makes all its components visible.
+    -->
+    <queries>
+        <intent>
+            <action android:name="android.view.InputMethod" />
+        </intent>
+        <package android:name="org.futo.inputmethod.latin" />
+        <package android:name="org.futo.inputmethod.latin.unstable" />
+        <package android:name="org.futo.inputmethod.latin.playstore" />
+        <!--
+          Settings screens SystemSettings checks before opening them (#79).
+          Settings itself runs as the system user and is always visible; the
+          actions also cover handlers some phone makers put in other apps.
+          Visibility only, no permission.
+        -->
+        <package android:name="com.android.settings" />
+        <intent>
+            <action android:name="android.settings.SETTINGS" />
+        </intent>
+        <intent>
+            <action android:name="android.settings.VOICE_INPUT_SETTINGS" />
+        </intent>
+        <intent>
+            <action android:name="android.settings.INPUT_METHOD_SETTINGS" />
+        </intent>
+        <intent>
+            <action android:name="android.settings.APPLICATION_DETAILS_SETTINGS" />
+            <data android:scheme="package" />
+        </intent>
+        <intent>
+            <action android:name="android.settings.MANAGE_APPLICATIONS_SETTINGS" />
+        </intent>
+    </queries>
+
+    <!--
+      Backup is fully off: allowBackup="false" covers Android 11 and older,
+      dataExtractionRules covers Android 12+ (cloud backup AND device-to-
+      device transfer). Nothing the app stores should leave the phone, and
+      downloaded models are large and re-downloadable anyway.
+
+      usesCleartextTraffic="false" is already the platform default at
+      targetSdk >= 28; stating it means a dependency that merges in
+      usesCleartextTraffic="true" fails the manifest merge instead of
+      silently winning.
+    -->
+    <application
+        android:name="app.marmalade.stt.MarmaladeSttApplication"
+        android:allowBackup="false"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:localeConfig="@xml/locales_config"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:usesCleartextTraffic="false"
+        android:theme="@style/Theme.MarmaladeStt">
+
+        <!-- Runs only while a model download does (ModelDownloads, #74). -->
+        <service
+            android:name="app.marmalade.stt.install.ModelDownloadService"
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
+
+        <activity
+            android:name="app.marmalade.stt.MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.MarmaladeStt">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!--
+          Voice keyboard (ARCHITECTURE.md D6). Its only subtype has
+          imeSubtypeMode="voice", which is what FUTO Keyboard's "External
+          engine" list and other keyboards' mic keys look for (#61: README
+          "Works with"). The keyboard
+          listens while it is shown and switches back to the previous keyboard
+          when done. The component name is fixed: onboarding (#10) links to it.
+        -->
+        <service
+            android:name="app.marmalade.stt.ime.VoiceInputService"
+            android:exported="true"
+            android:label="@string/ime_name"
+            android:permission="android.permission.BIND_INPUT_METHOD">
+            <intent-filter>
+                <action android:name="android.view.InputMethod" />
+            </intent-filter>
+            <meta-data
+                android:name="android.view.im"
+                android:resource="@xml/voice_input_method" />
+        </service>
+
+        <!--
+          Asks for the microphone on the voice keyboard's behalf: an input
+          method can't show the permission dialog itself.
+        -->
+        <activity
+            android:name="app.marmalade.stt.ime.MicPermissionActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:noHistory="true"
+            android:taskAffinity=""
+            android:theme="@style/Theme.MarmaladeStt.Translucent" />
+
+        <!--
+          ACTION_RECOGNIZE_SPEECH (D6): the mic buttons in apps and
+          keyboards that ask Android for "speech input" and expect text back.
+          configChanges: a rotation or theme switch must not restart the
+          listening session; Compose follows the new configuration by itself.
+        -->
+        <activity
+            android:name="app.marmalade.stt.recognizer.RecognizeSpeechActivity"
+            android:configChanges="density|fontScale|keyboard|keyboardHidden|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
+            android:excludeFromRecents="true"
+            android:exported="true"
+            android:label="@string/recognizer_label"
+            android:theme="@style/Theme.MarmaladeStt.Translucent">
+            <intent-filter>
+                <action android:name="android.speech.action.RECOGNIZE_SPEECH" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!--
+          RecognitionService (D6): apps that use android.speech.SpeechRecognizer,
+          once Marmalade STT is chosen as the device's speech recognition
+          service (or when an app asks for this component by name).
+          No permission on purpose: any app may bind it, and Android checks
+          the calling app's RECORD_AUDIO before a session starts.
+        -->
+        <service
+            android:name="app.marmalade.stt.recognizer.MarmaladeRecognitionService"
+            android:exported="true"
+            tools:ignore="ExportedService"
+            android:label="@string/recognizer_label">
+            <intent-filter>
+                <action android:name="android.speech.RecognitionService" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data
+                android:name="android.speech"
+                android:resource="@xml/recognition_service" />
+        </service>
+    </application>
+
+</manifest>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Setup guide: the keyboards' mic keys and Android's speech recognition service.
+         Android's labels as in AOSP Czech; FUTO's and Fossify's from their Czech translations. -->
+    <string name="onboarding_mic_key_title">Diktujte z klávesnice</string>
+    <string name="onboarding_mic_key_body">Většina klávesnic má tlačítko mikrofonu. Takhle se z každé vaší klávesnice dostanete k Marmalade STT.</string>
+    <string name="onboarding_mic_key_needs_voice_keyboard">Nejdřív zapněte hlasovou klávesnici Marmalade (předchozí krok): tlačítka mikrofonu otevírají právě ji.</string>
+    <string name="onboarding_mic_key_other_voice_title">Vypněte ostatní hlasové klávesnice</string>
+    <string name="onboarding_mic_key_other_voice">Také zapnuto: %1$s. Většina tlačítek mikrofonu otevře první zapnutou hlasovou klávesnici a Android řadí předinstalované na začátek. Vypněte je v nastavení klávesnic Androidu (na většině telefonů Nastavení → Systém → Klávesnice → Softwarová klávesnice).</string>
+    <string name="onboarding_mic_key_current">%1$s (používá se)</string>
+    <string name="onboarding_kb_first">Klepněte na tlačítko mikrofonu této klávesnice. Otevře první zapnutou hlasovou klávesnici, takže nechte zapnuté jen Hlasové zadávání Marmalade. Nemá tlačítko mikrofonu? Hledejte tlačítko hlasového zadávání v jejím nastavení nebo na panelu nástrojů.</string>
+    <string name="onboarding_kb_first_hidden">Klepněte na tlačítko mikrofonu této klávesnice a ze všech hlasových klávesnic nechte zapnuté jen Hlasové zadávání Marmalade. Tato klávesnice uvidí Marmalade, až když s ní v této aplikaci něco napíšete: pokud tlačítko mikrofonu chybí nebo nic nedělá, napište s ní písmeno do pole níže. Po restartu telefonu to udělejte znovu.</string>
+    <string name="onboarding_kb_chooser">Klepněte na tlačítko hlasového zadávání této klávesnice a vyberte Hlasové zadávání Marmalade. Klávesnice si volbu zapamatuje.</string>
+    <string name="onboarding_kb_fossify">V nastavení Fossify Keyboard nastavte „Způsob psaní hlasem“ na Hlasové zadávání Marmalade; na panelu nástrojů se pak objeví mikrofon. Fossify uvidí Marmalade, až když s ní v této aplikaci něco napíšete: pokud Marmalade v seznamu není nebo mikrofon nic nedělá, napište s Fossify nejdřív písmeno do pole níže. Po restartu telefonu to udělejte znovu.</string>
+    <string name="onboarding_kb_swiftkey">Mikrofon SwiftKey používá vlastní hlasové zadávání Microsoftu. Když vypnete „Multimodální psaní hlasem“ (nastavení SwiftKey → Rich Input), požádá místo toho Android o rozpoznání řeči, což může otevřít Marmalade STT. Zatím jsme to nemohli otestovat.</string>
+    <string name="onboarding_kb_own_engine">Tlačítko mikrofonu této klávesnice vždy používá její vlastní hlasové zadávání. Chcete-li místo něj použít Marmalade, klepněte na navigační liště na tlačítko klávesnice a vyberte Hlasové zadávání Marmalade.</string>
+    <string name="onboarding_kb_google_only">Tlačítko mikrofonu této klávesnice otevírá jen Hlasové zadávání Google. Chcete-li místo něj použít Marmalade, klepněte na navigační liště na tlačítko klávesnice a vyberte Hlasové zadávání Marmalade.</string>
+    <string name="onboarding_kb_no_mic">Tato klávesnice nemá tlačítko mikrofonu. Chcete-li použít Marmalade, klepněte na navigační liště na tlačítko klávesnice a vyberte Hlasové zadávání Marmalade.</string>
+    <string name="onboarding_kb_unknown">Vyzkoušejte tlačítko mikrofonu této klávesnice v poli níže. Klávesnice, jejichž tlačítko mikrofonu přepíná na hlasovou klávesnici, otevřou Hlasové zadávání Marmalade; nechte ho jako jedinou zapnutou hlasovou klávesnici.</string>
+    <string name="onboarding_kb_futo">FUTO Keyboard</string>
+    <string name="onboarding_try_label">Vyzkoušejte to tady</string>
+    <string name="onboarding_try_hint">Klepněte do pole a pak na tlačítko mikrofonu na klávesnici.</string>
+
+    <string name="onboarding_speech_title">Rozpoznávání řeči pro jiné aplikace</string>
+    <string name="onboarding_speech_body">Některé aplikace mají tlačítko mikrofonu, které používá službu rozpoznávání řeči Androidu. Vyberte jako tuto službu Marmalade STT a i tyto aplikace budou rozpoznávat vaši řeč přímo ve vašem telefonu.</string>
+    <string name="onboarding_speech_on">Marmalade STT je službou rozpoznávání řeči Androidu</string>
+    <string name="onboarding_speech_off">Marmalade STT není službou rozpoznávání řeči Androidu</string>
+    <string name="onboarding_speech_open">Otevřít nastavení</string>
+    <!-- The step's directions follow the page "Open settings" lands on (#79), with each Android release's own Settings labels. -->
+    <!-- Android 9. The Voice input row is hidden while the assistant is also the voice service (Google). -->
+    <string name="onboarding_speech_path_assist_9">V Nastavení otevřete Aplikace a oznámení → Rozšířená nastavení → Výchozí aplikace → Asistence a hlasové zadávání → Hlasové zadávání a vyberte Marmalade STT. Pokud tam Hlasové zadávání není, nejdřív u položky Asistenční aplikace vyberte Žádné.</string>
+    <!-- Android 10 -->
+    <string name="onboarding_speech_path_assist_10">V Nastavení otevřete Aplikace a oznámení → Rozšířená nastavení → Výchozí aplikace → Asistenční aplikace → Hlasové zadávání a vyberte Marmalade STT. Pokud tam Hlasové zadávání není, nejdřív u položky Asistenční aplikace vyberte Žádné.</string>
+    <!-- Android 11 -->
+    <string name="onboarding_speech_path_assist_11">V Nastavení otevřete Aplikace a oznámení → Rozšířená nastavení → Výchozí aplikace → Aplikace digitálního asistenta → Hlasové zadávání a vyberte Marmalade STT. Pokud tam Hlasové zadávání není, nejdřív u položky Výchozí aplikace dig. asistenta vyberte Žádné.</string>
+    <!-- Android 12 -->
+    <string name="onboarding_speech_path_assist">V Nastavení otevřete Aplikace → Výchozí aplikace → Aplikace digitálního asistenta → Hlasové zadávání a vyberte Marmalade STT.</string>
+    <!-- Android 13. Voice input is under the page's Speech heading. -->
+    <string name="onboarding_speech_path_languages_input">V Nastavení otevřete Systém → Jazyky a zadávání → Hlasové zadávání a vyberte Marmalade STT.</string>
+    <!-- Android 14 to 16. Voice input is under the page's Speech heading. -->
+    <string name="onboarding_speech_path_languages">V Nastavení otevřete Systém → Jazyky → Hlasové zadávání a vyberte Marmalade STT.</string>
+    <!-- Android 16 with Language & region, and Android 17. Speech is a row of that page. -->
+    <string name="onboarding_speech_path_language_region">V Nastavení otevřete Systém → Jazyk a oblast → Řeč → Hlasové zadávání a vyberte Marmalade STT.</string>
+    <!-- No known page opens (other phone makers) -->
+    <string name="onboarding_speech_path_search">V Nastavení vyhledejte „Hlasové zadávání“, otevřete ho a vyberte Marmalade STT.</string>
+    <string name="onboarding_speech_elsewhere">Některé telefony to mají jinde: v Nastavení vyhledejte „Hlasové zadávání“.</string>
+    <string name="onboarding_speech_force_stop">Pokud u Marmalade STT vynutíte ukončení, Android přepne zpět na jinou službu. Pak Marmalade vyberte znovu.</string>
+
+    <string name="onboarding_summary_other_voice">Ostatní hlasové klávesnice</string>
+    <string name="onboarding_summary_other_voice_on">Stále zapnuto: %1$s</string>
+    <string name="onboarding_summary_speech">Služba rozpoznávání řeči</string>
+    <string name="onboarding_summary_speech_on">Marmalade STT</string>
+    <string name="onboarding_summary_speech_off">Jiná aplikace nebo žádná</string>
+</resources>

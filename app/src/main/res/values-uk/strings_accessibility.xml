@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Screen-reader-only text and other strings added by the accessibility pass (#68). -->
+<resources>
+    <!-- Shared -->
+    <string name="a11y_download_started">Завантажується %1$s</string>
+    <string name="a11y_download_ready">Рушій %1$s готовий</string>
+    <string name="a11y_download_failed">Не вдалося завантажити %1$s</string>
+    <string name="a11y_download_paused">Завантаження %1$s призупинено</string>
+
+    <!-- Settings, dictionary, snippets, licences, privacy -->
+    <string name="a11y_open_in_browser">Відкрити в браузері</string>
+    <string name="a11y_rule_deleted">Правило видалено</string>
+    <string name="a11y_snippet_deleted">Шаблон видалено</string>
+    <string name="a11y_end_words_reverted">Стоп-слова не змінено: введіть принаймні одне слово</string>
+
+    <!-- Engines, benchmark -->
+    <string name="a11y_engine_action_named">%1$s, %2$s</string>
+    <string name="a11y_engine_download_named">Завантажити %1$s, %2$s</string>
+    <string name="a11y_benchmark_finished">Бенчмарк завершено</string>
+
+    <!-- Dictate, voice keyboard, speech sheet -->
+
+    <!-- Onboarding -->
+    <string name="a11y_onboarding_step_pane">%1$s: %2$s</string>
+    <string name="a11y_onboarding_recommended">Рекомендовано для цього телефона: %1$s</string>
+
+</resources>

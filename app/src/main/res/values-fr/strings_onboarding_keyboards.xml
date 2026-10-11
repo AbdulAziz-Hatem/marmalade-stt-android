@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Setup guide: the keyboards' mic keys and Android's speech recognition service (#61).
+         Other apps' labels are theirs (Fossify, SwiftKey); Android's are AOSP Settings' French. -->
+    <string name="onboarding_mic_key_title">Dicter depuis votre clavier</string>
+    <string name="onboarding_mic_key_body">La plupart des claviers ont une touche micro. Voici comment chacun de vos claviers accède à Marmalade STT.</string>
+    <string name="onboarding_mic_key_needs_voice_keyboard">Activez d\'abord le clavier vocal Marmalade (l\'étape précédente)&#160;: les touches micro l\'ouvrent.</string>
+    <string name="onboarding_mic_key_other_voice_title">Désactiver les autres claviers vocaux</string>
+    <!-- %1$s: the other voice keyboards' names, quoted -->
+    <string name="onboarding_mic_key_other_voice">Également activés&#160;: %1$s. La plupart des touches micro ouvrent le premier clavier vocal activé, et Android place en tête ceux qui sont préinstallés. Désactivez-les dans les paramètres du clavier d\'Android (sur la plupart des téléphones, Paramètres → Système → Clavier → Clavier à l\'écran).</string>
+    <string name="onboarding_mic_key_current">%1$s (actuel)</string>
+    <string name="onboarding_kb_first">Appuyez sur sa touche micro. Elle ouvre le premier clavier vocal activé&#160;: gardez donc «&#160;Saisie vocale Marmalade&#160;» comme seul clavier vocal activé. Pas de touche micro&#160;? Cherchez une touche de saisie vocale dans ses paramètres ou sa barre d\'outils.</string>
+    <string name="onboarding_kb_first_hidden">Appuyez sur sa touche micro, et gardez «&#160;Saisie vocale Marmalade&#160;» comme seul clavier vocal activé. Ce clavier ne voit Marmalade qu\'une fois que vous avez saisi du texte avec lui dans cette application&#160;: si la touche micro manque ou ne fait rien, tapez une lettre avec lui dans le champ ci-dessous. Après un redémarrage du téléphone, recommencez.</string>
+    <string name="onboarding_kb_chooser">Appuyez sur sa touche vocale et choisissez «&#160;Saisie vocale Marmalade&#160;». Il retient votre choix.</string>
+    <string name="onboarding_kb_fossify">Dans les paramètres de Fossify Keyboard, réglez «&#160;Méthode de saisie vocale&#160;» sur «&#160;Saisie vocale Marmalade&#160;»&#160;; sa barre d\'outils affiche alors un micro. Fossify ne voit Marmalade qu\'une fois que vous avez saisi du texte avec lui dans cette application&#160;: si Marmalade n\'est pas dans la liste, ou si le micro ne fait rien, tapez d\'abord une lettre avec Fossify dans le champ ci-dessous. Après un redémarrage du téléphone, recommencez.</string>
+    <string name="onboarding_kb_swiftkey">Le micro de SwiftKey utilise la saisie vocale de Microsoft. Si «&#160;Saisie vocale multimodale&#160;» est désactivée (paramètres de SwiftKey → Entrée enrichie), il demande plutôt la saisie vocale à Android, ce qui peut ouvrir Marmalade STT. Nous n\'avons pas encore pu le tester.</string>
+    <string name="onboarding_kb_own_engine">Sa touche micro utilise toujours sa propre saisie vocale. Pour utiliser Marmalade à la place, appuyez sur le bouton clavier dans la barre de navigation et choisissez «&#160;Saisie vocale Marmalade&#160;».</string>
+    <string name="onboarding_kb_google_only">Sa touche micro n\'ouvre que la saisie vocale Google. Pour utiliser Marmalade à la place, appuyez sur le bouton clavier dans la barre de navigation et choisissez «&#160;Saisie vocale Marmalade&#160;».</string>
+    <string name="onboarding_kb_no_mic">Il n\'a pas de touche micro. Pour utiliser Marmalade, appuyez sur le bouton clavier dans la barre de navigation et choisissez «&#160;Saisie vocale Marmalade&#160;».</string>
+    <string name="onboarding_kb_unknown">Essayez sa touche micro dans le champ ci-dessous. Les claviers dont la touche micro bascule vers un clavier vocal ouvrent «&#160;Saisie vocale Marmalade&#160;»&#160;; gardez-le comme seul clavier vocal activé.</string>
+    <string name="onboarding_kb_futo">FUTO Keyboard</string>
+    <string name="onboarding_try_label">Essayer ici</string>
+    <string name="onboarding_try_hint">Appuyez sur le champ, puis sur la touche micro de votre clavier.</string>
+
+    <string name="onboarding_speech_title">Reconnaissance vocale pour les autres applications</string>
+    <string name="onboarding_speech_body">Certaines applications ont un bouton micro qui utilise le service de reconnaissance vocale d\'Android. Choisissez Marmalade STT comme service, et votre voix y est aussi reconnue sur votre téléphone.</string>
+    <string name="onboarding_speech_on">Marmalade STT est le service de reconnaissance vocale d\'Android</string>
+    <string name="onboarding_speech_off">Marmalade STT n\'est pas le service de reconnaissance vocale d\'Android</string>
+    <string name="onboarding_speech_open">Ouvrir les paramètres</string>
+    <!-- The step's directions follow the page "Open settings" lands on (#79), with each Android release's own Settings labels. -->
+    <!-- Android 9. The Voice input row is hidden while the assistant is also the voice service (Google). -->
+    <string name="onboarding_speech_path_assist_9">Dans Paramètres, ouvrez Applis et notifications → Préférences avancées → Applications par défaut → Assist. et saisie vocale → Saisie vocale, puis choisissez Marmalade STT. Si Saisie vocale n\'apparaît pas, réglez d\'abord Application d\'assistance sur Aucune.</string>
+    <!-- Android 10 -->
+    <string name="onboarding_speech_path_assist_10">Dans Paramètres, ouvrez Applis et notifications → Paramètres avancés → Applications par défaut → Application d\'assistance → Saisie vocale, puis choisissez Marmalade STT. Si Saisie vocale n\'apparaît pas, réglez d\'abord Application d\'assistance sur Aucune.</string>
+    <!-- Android 11 -->
+    <string name="onboarding_speech_path_assist_11">Dans Paramètres, ouvrez Applis et notifications → Paramètres avancés → Applications par défaut → Assistant numérique → Saisie vocale, puis choisissez Marmalade STT. Si Saisie vocale n\'apparaît pas, réglez d\'abord Assistant numérique par défaut sur Aucune.</string>
+    <!-- Android 12 -->
+    <string name="onboarding_speech_path_assist">Dans Paramètres, ouvrez Applications → Applis par défaut → Appli d\'assistant numérique → Saisie vocale, puis choisissez Marmalade STT.</string>
+    <!-- Android 13. Voice input is under the page's Speech heading. -->
+    <string name="onboarding_speech_path_languages_input">Dans Paramètres, ouvrez Système → Langues et saisie → Saisie vocale, puis choisissez Marmalade STT.</string>
+    <!-- Android 14 to 16. Voice input is under the page's Speech heading. -->
+    <string name="onboarding_speech_path_languages">Dans Paramètres, ouvrez Système → Langues → Saisie vocale, puis choisissez Marmalade STT.</string>
+    <!-- Android 16 with Language & region, and Android 17. Speech is a row of that page. -->
+    <string name="onboarding_speech_path_language_region">Dans Paramètres, ouvrez Système → Langue et région → Voix → Saisie vocale, puis choisissez Marmalade STT.</string>
+    <!-- No known page opens (other phone makers) -->
+    <string name="onboarding_speech_path_search">Recherchez «&#160;Saisie vocale&#160;» dans Paramètres, ouvrez-la, puis choisissez Marmalade STT.</string>
+    <string name="onboarding_speech_elsewhere">Sur certains téléphones, c\'est ailleurs&#160;: recherchez «&#160;Saisie vocale&#160;» dans Paramètres.</string>
+    <string name="onboarding_speech_force_stop">Si vous forcez l\'arrêt de Marmalade STT, Android passe à un autre service. Choisissez alors de nouveau Marmalade.</string>
+
+    <string name="onboarding_summary_other_voice">Autres claviers vocaux</string>
+    <!-- %1$s: their names, quoted -->
+    <string name="onboarding_summary_other_voice_on">Toujours activés&#160;: %1$s</string>
+    <string name="onboarding_summary_speech">Service de reconnaissance vocale</string>
+    <string name="onboarding_summary_speech_on">Marmalade STT</string>
+    <string name="onboarding_summary_speech_off">Une autre application, ou aucune</string>
+</resources>

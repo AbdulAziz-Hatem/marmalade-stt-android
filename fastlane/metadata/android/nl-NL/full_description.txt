@@ -1,0 +1,32 @@
+<p>Marmalade STT zet je spraak om in tekst op je telefoon. Gebruik de app als spraakinvoer van je toetsenbord (FUTO Keyboard, HeliBoard, FlorisBoard en andere) en van apps die Android om spraakinvoer vragen. Je stem verlaat je toestel nooit.</p>
+
+<ul>
+<li><b>Privé.</b> Spraak wordt op de telefoon herkend. Audio wordt nooit opgeslagen of geüpload</li>
+<li><b>Offline.</b> Na het eenmalig downloaden van een spraakengine werkt de app zonder verbinding</li>
+<li><b>Live tekst.</b> Toont je woorden in realtime terwijl je spreekt, bij de meeste engines</li>
+<li><b>Weet wanneer je klaar bent.</b> Smart Turn, de standaard voor het venster “Nu spreken”, wacht tot je klinkt alsof je klaar bent, zodat een denkpauze je zelden onderbreekt</li>
+<li><b>Meertalig.</b> 100 talen, en de beste engine voor jouw taal wordt automatisch gekozen</li>
+<li><b>Nette tekst.</b> Stopwoordjes verwijderd, getallen in cijfers, je eigen vervangingen en uitgesproken tekstfragmenten</li>
+<li><b>Gratis en open source.</b> Geen advertenties, geen accounts, geen analyse</li>
+</ul>
+
+<p><b>STANDAARD PRIVÉ</b></p>
+<p>Geen analyse, geen tracking, geen crashrapporten, geen accounts en geen eigen server. Internet wordt alleen gebruikt om de spraakengines te downloaden die je kiest, van GitHub, en elk bestand wordt gecontroleerd met een vastgelegde SHA-256-hash. De Android-back-up staat uit, dus er wordt niets naar de cloud gekopieerd.</p>
+
+<p><b>JIJ BEPAALT WANNEER HET STOPT</b></p>
+<p>In het venster “Nu spreken” en in andere apps gebruikt Marmalade standaard de technologie Smart Turn v3 om te bepalen wanneer je bent uitgesproken. Je handen heb je er niet voor nodig. Onderbreekt het je te vroeg? Schakel over op stoppen na een pauze, of stel in plaats daarvan een eindwoord in. Op het toetsenbord luistert het tot je tikt, of het kan ook Smart Turn gebruiken.</p>
+
+<p><b>NETTE TEKST</b></p>
+<p>Het optionele opschonen corrigeert hoofdletters, en in het Engels verwijdert het ook stopwoordjes, maakt het van “new line” en “period” een echte nieuwe regel en punt en schrijft het getallen in cijfers. Vervangingen voor namen die de engine verkeerd verstaat, en tekstfragmenten voor tekst die je vaak typt, werken in elke taal.</p>
+
+<p><b>WERKT MET JE TOETSENBORD</b></p>
+<p>Zet “Spraakgestuurd typen van Marmalade” aan en de microfoontoets van je toetsenbord opent een klein Marmalade-paneel dat typt wat je zegt. Het werkt met FUTO Keyboard, HeliBoard, FlorisBoard, AnySoftKeyboard, Unexpected Keyboard, het AOSP-toetsenbord en andere met een spraaktoets.</p>
+
+<p><b>EEN ENGINE DIE BIJ JE TELEFOON PAST</b></p>
+<p>De installatiehulp raadt een spraakengine aan voor je taal en voor het geheugen en de snelheid van je telefoon, met de mogelijkheid om andere modellen te downloaden en uit te proberen.</p>
+
+<p><b>TALEN</b></p>
+<p>Snelle engines dekken Engels, Bulgaars, Kroatisch, Tsjechisch, Deens, Nederlands, Estisch, Fins, Frans, Duits, Grieks, Hongaars, Italiaans, Lets, Litouws, Maltees, Pools, Portugees, Roemeens, Russisch, Slowaaks, Sloveens, Spaans, Zweeds, Oekraïens, Japans, Hindi, Arabisch en Vietnamees. Chinees en Koreaans krijgen Qwen3-ASR, dat lichter is dan Whisper. Andere talen werken via Whisper Large v3 Turbo, met meer vertraging.</p>
+
+<p><b>OPEN SOURCE</b></p>
+<p>Marmalade STT valt onder de MIT-licentie. Wil je het project steunen, dan linkt Instellingen → Ondersteuning naar GitHub Sponsors; de app is hoe dan ook dezelfde.</p>

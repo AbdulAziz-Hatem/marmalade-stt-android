@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Guide de configuration : moteur recommandé -->
+<resources>
+    <string name="onboarding_recommend_checking">Analyse de votre téléphone…</string>
+    <string name="onboarding_recommend_best_fit">Notre premier choix pour dicter en %1$s, adapté à la mémoire et à la vitesse de ce téléphone.</string>
+    <string name="onboarding_recommend_lighter">Un moteur plus léger, adapté à la mémoire et à la vitesse de ce téléphone.</string>
+    <string name="onboarding_recommend_may_be_slow">Le meilleur choix pour dicter en %1$s, mais il peut être lent sur ce téléphone.</string>
+    <string name="onboarding_recommend_low_memory">Le moteur le plus léger pour dicter en %1$s. Ce téléphone a peu de mémoire pour lui&#160;: il peut être lent ou être fermé par Android.</string>
+    <string name="onboarding_recommend_uncovered">Aucun moteur ne transcrit encore en %1$s, celui-ci transcrit donc en %2$s.</string>
+    <plurals name="onboarding_recommend_languages">
+        <item quantity="one">%d langue, détectée automatiquement.</item>
+        <item quantity="many">%d de langues, détectées automatiquement.</item>
+        <item quantity="other">%d langues, détectées automatiquement.</item>
+    </plurals>
+    <string name="onboarding_recommend_other">Vous pourrez choisir un autre moteur plus tard dans l\'onglet Moteurs.</string>
+</resources>

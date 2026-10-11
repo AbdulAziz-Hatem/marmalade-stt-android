@@ -1,0 +1,163 @@
+{
+  "tag": "emu47-nemotron-3-5-streaming-560ms-cpu-to28",
+  "started": "20261002-045445",
+  "device": "unknown Android SDK built for x86_64 (Android 15, SDK 35)",
+  "seed": 1790942085971,
+  "order": [
+    "nemotron-3-5-streaming-560ms@3/cpu"
+  ],
+  "fastCores": [],
+  "cooldownSeconds": 5,
+  "clips": [
+    {
+      "name": "ls05-1",
+      "audioMs": 4955
+    },
+    {
+      "name": "ls10-1",
+      "audioMs": 10970
+    },
+    {
+      "name": "ls20-1",
+      "audioMs": 19610
+    },
+    {
+      "name": "ls28-1",
+      "audioMs": 27180
+    }
+  ],
+  "results": [
+    {
+      "engine": "nemotron-3-5-streaming-560ms",
+      "displayName": "Nemotron 3.5 Streaming",
+      "threads": 3,
+      "tuning": "cpu",
+      "pinnedCores": null,
+      "family": "STREAMING_TRANSDUCER",
+      "developer": false,
+      "loadMs": 1907,
+      "threadAffinity": {
+        "0-3": 30
+      },
+      "warmupMs": 3282,
+      "decodes": [
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 3113,
+          "rtf": 0.6282542885973764,
+          "wer": 0.08333333333333333,
+          "text": "Or an eye of gifts and graces, showering fruits and coined gold"
+        },
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 3480,
+          "rtf": 0.7023208879919274,
+          "wer": 0.08333333333333333,
+          "text": "Or an eye of gifts and graces, showering fruits and coined gold"
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 6983,
+          "rtf": 0.6365542388331814,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject and urging the unconstitutionality of the measure"
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 7019,
+          "rtf": 0.6398359161349134,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject and urging the unconstitutionality of the measure"
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 11875,
+          "rtf": 0.6055583885772565,
+          "wer": 0.02,
+          "text": "Nevertheless, the mustard seed among the smallest of all seeds has attained the proportions of a tree and the birds of the air are nesting in its branches. The acorn is now in oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 12083,
+          "rtf": 0.6161652218255992,
+          "wer": 0.02,
+          "text": "Nevertheless, the mustard seed among the smallest of all seeds has attained the proportions of a tree and the birds of the air are nesting in its branches. The acorn is now in oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls28-1",
+          "audioMs": 27180,
+          "utterances": 1,
+          "decodeMs": 15961,
+          "rtf": 0.587233259749816,
+          "wer": 0,
+          "text": "He passes abruptly from persons to ideas and numbers and from ideas and numbers to persons from the heavens to man from astronomy to physiology he confuses or rather does not distinguish subject and object first and final causes and is dreaming of geometrical figures lost in a flux of sense"
+        },
+        {
+          "clip": "ls28-1",
+          "audioMs": 27180,
+          "utterances": 1,
+          "decodeMs": 16301,
+          "rtf": 0.5997424576894775,
+          "wer": 0,
+          "text": "He passes abruptly from persons to ideas and numbers and from ideas and numbers to persons from the heavens to man from astronomy to physiology he confuses or rather does not distinguish subject and object first and final causes and is dreaming of geometrical figures lost in a flux of sense"
+        }
+      ],
+      "rtfByLength": {
+        "ls05": 0.6652875882946518,
+        "ls10": 0.6381950774840474,
+        "ls20": 0.6108618052014279,
+        "ls28": 0.5934878587196468,
+        "ls": 0.6124132982540063
+      },
+      "peakRssMb": 940,
+      "baselineRssMb": 175,
+      "envBefore": {
+        "thermal": 0,
+        "batteryPct": 100,
+        "batteryTempC": 25,
+        "plugged": true,
+        "screenOn": true
+      },
+      "envAfter": {
+        "thermal": 0,
+        "batteryPct": 100,
+        "batteryTempC": 25,
+        "plugged": true,
+        "screenOn": true
+      },
+      "maxThermal": 0,
+      "disturbed": null,
+      "arena": false
+    }
+  ],
+  "probeMs": 204,
+  "probeRuns": [
+    197,
+    205,
+    204,
+    208,
+    203
+  ],
+  "probeThreads": 3,
+  "probeEnv": {
+    "thermal": 0,
+    "batteryPct": 100,
+    "batteryTempC": 25,
+    "plugged": true,
+    "screenOn": true
+  },
+  "finished": "20261002-045615",
+  "note": "#47: run with an interim build where tuning \"cpu\" meant ORT arena off for every engine and \"cpu-arena\" on; \"arena\" in each result was added afterwards from that."
+}

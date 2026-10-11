@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Ajustes → Desarrollador -->
+    <string name="settings_developer">Desarrollador</string>
+    <string name="settings_developer_engines">Motores para desarrolladores</string>
+    <string name="settings_developer_engines_desc">Muestra motores de voz adicionales para pruebas y mediciones de rendimiento. Descargas grandes, no pensadas para el uso diario.</string>
+    <string name="settings_developer_benchmark">Banco de pruebas A/B</string>
+    <string name="settings_developer_benchmark_desc">Compara los motores instalados con una misma grabación.</string>
+    <string name="settings_developer_speed">Volver a medir la velocidad</string>
+    <string name="settings_developer_speed_measuring">Midiendo…</string>
+    <string name="settings_developer_speed_measured">Puntuación de velocidad %1$s</string>
+    <string name="settings_developer_speed_unmeasured">Aún sin medir</string>
+    <string name="settings_developer_speed_done">Puntuación de velocidad: %1$s</string>
+    <string name="settings_developer_speed_failed">No se pudo medir la velocidad del teléfono</string>
+    <!-- Ajuste de ONNX Runtime -->
+    <string name="settings_developer_ort_tuning">Ajuste del entorno de ejecución</string>
+    <string name="settings_developer_ort_tuning_desc">Espera activa de hilos y fijación a núcleos de ONNX Runtime, para mediciones. Se aplica la próxima vez que se cargue un motor.</string>
+    <string name="settings_developer_ort_tuning_default">Predeterminado (%1$s)</string>
+    <string name="settings_developer_ort_tuning_cpu">CPU</string>
+    <string name="settings_developer_ort_tuning_no_spinning">sin espera activa</string>
+    <string name="settings_developer_ort_tuning_pinned">fijado a núcleos rápidos</string>
+
+    <!-- Etiquetas de los motores -->
+    <string name="engine_badge_in_use">En uso</string>
+    <string name="engine_badge_developer">Desarrollador</string>
+    <string name="engine_badge_developer_long">Motor para desarrolladores</string>
+    <string name="engine_badge_may_be_slow_long">Puede ir lento en este teléfono</string>
+    <string name="engine_badge_streaming">Streaming</string>
+    <string name="engine_streaming_steps">Streaming · pasos de %1$d ms</string>
+
+    <!-- Elegir el motor -->
+    <string name="engine_action_use">Usar</string>
+    <string name="engine_action_use_named">Usar %1$s</string>
+    <string name="engine_use_failed">No se pudo cambiar de motor. Inténtalo de nuevo.</string>
+
+    <!-- Idioma del motor -->
+    <string name="engine_language">Idioma de este motor</string>
+    <string name="engine_language_auto">Detección automática</string>
+    <string name="engine_language_cancel">Cancelar</string>
+    <string name="engine_language_failed">No se pudo guardar el idioma. Inténtalo de nuevo.</string>
+</resources>

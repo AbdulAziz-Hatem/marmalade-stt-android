@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="engine_badge_recommended">Recomendado para este celular</string>
+    <string name="engine_info">Sobre o %1$s</string>
+    <string name="engine_show_more">Mostrar mais</string>
+    <string name="engine_card_size_download">%1$s de download</string>
+    <string name="engine_card_size_on_disk">%1$s no seu celular</string>
+    <string name="engine_action_download_size">Baixar · %1$s</string>
+    <string name="engine_dialog_close">Fechar</string>
+    <string name="engine_progress_percent">%1$d%%</string>
+    <string name="engine_status_failed_short">Falha no download</string>
+    <string name="engine_status_corrupt_short">Arquivos danificados</string>
+
+    <string name="engines_other">Outros motores (%1$d)</string>
+    <string name="engines_other_expanded">Expandido</string>
+    <string name="engines_other_collapsed">Recolhido</string>
+
+    <!-- Velocidade -->
+    <string name="engine_speed_tier_fastest">O mais rápido neste celular</string>
+    <string name="engine_speed_tier_very_fast">Muito rápido neste celular</string>
+    <string name="engine_speed_tier_fast">Rápido neste celular</string>
+    <string name="engine_speed_tier_moderate">Velocidade moderada neste celular</string>
+    <string name="engine_speed_unmeasured">Não medido</string>
+    <string name="engine_speed_word_fastest">O mais rápido</string>
+    <string name="engine_speed_word_very_fast">Muito rápido</string>
+    <string name="engine_speed_word_fast">Rápido</string>
+    <string name="engine_speed_word_moderate">Moderado</string>
+    <string name="engine_speed_word_slow">Lento</string>
+
+    <!-- Qualidade -->
+    <string name="engine_detail_quality">Qualidade</string>
+    <string name="engine_quality_best">Excelente</string>
+    <string name="engine_quality_great">Ótima</string>
+    <string name="engine_quality_good">Boa</string>
+    <string name="engine_quality_fair">Razoável</string>
+    <string name="engine_quality_basic">Básica</string>
+    <string name="engine_quality_not_rated">Sem avaliação</string>
+    <string name="engine_quality_in_language">%1$s (%2$s)</string>
+    <string name="engine_quality_tested_in">Testado em %1$s</string>
+    <string name="engine_quality_source_english">Dos nossos testes com LibriSpeech, FLEURS e AMI, em inglês</string>
+    <string name="engine_quality_source_fleurs">Dos nossos testes com FLEURS, em %1$s</string>
+    <string name="engine_quality_source_two_sets">Dos nossos testes com %1$s e %2$s, em %3$s</string>
+    <string name="engine_quality_source_none">Ainda não testado</string>
+
+    <!-- Idiomas -->
+    <plurals name="engine_languages_count">
+        <item quantity="one">%d idioma</item>
+        <item quantity="many">%d de idiomas</item>
+        <item quantity="other">%d idiomas</item>
+    </plurals>
+    <string name="engine_languages_see_all">Ver os %1$d</string>
+    <string name="engine_languages_open">Mostrar idiomas</string>
+
+    <!-- Diálogo de detalhes -->
+    <string name="engine_detail_speed_text">%1$s. %2$s.</string>
+    <string name="engine_detail_chunk">Tamanho do bloco</string>
+    <string name="engine_chunk_steps">O texto chega em passos de %1$d ms.</string>
+
+    <!-- Resumo de uma linha de cada motor (nomes de motores e modelos ficam como estão) -->
+    <string name="engine_desc_parakeet_ultra">Parakeet TDT 0.6B v3 com pós-treinamento da Moondream: os mesmos 25 idiomas, detectados automaticamente.</string>
+    <string name="engine_desc_parakeet_110m">Modelo pequeno da NVIDIA para inglês: uma fração do tamanho dos outros Parakeets, e rápido.</string>
+    <string name="engine_desc_parakeet_ja">Modelo da NVIDIA para japonês: o mais preciso para japonês e muito mais rápido que o Whisper. Usa poucas vírgulas.</string>
+    <string name="engine_desc_canary_180m">Modelo codificador-decodificador minúsculo da NVIDIA: inglês, espanhol, alemão e francês. Escolha o idioma; ele não consegue detectá-lo.</string>
+    <string name="engine_desc_nemotron_35">Modelo de streaming da NVIDIA para híndi, árabe e vietnamita: o texto aparece enquanto você fala.</string>
+    <string name="engine_desc_whisper_turbo">OpenAI Whisper large-v3-turbo, multilíngue. O Whisper mais preciso. O texto aparece quando você faz uma pausa.</string>
+    <string name="engine_desc_granite">Modelo CTC da IBM para inglês: o mais preciso nos nossos testes em inglês. Maiúsculas e pontuação vêm do formatador do próprio app.</string>
+    <string name="engine_desc_qwen3">Modelo offline da Alibaba com um pequeno decodificador de modelo de linguagem: 30 idiomas, detectados automaticamente. O texto aparece quando você faz uma pausa.</string>
+    <string name="engine_desc_qwen3_users">Modelo da Alibaba para chinês e coreano, com um pequeno decodificador de modelo de linguagem: o mais preciso para chinês. O texto aparece quando você faz uma pausa.</string>
+</resources>

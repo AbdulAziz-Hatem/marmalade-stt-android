@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Setup guide: recommended engine -->
+    <string name="onboarding_recommend_checking">正在检测你的手机…</string>
+    <string name="onboarding_recommend_best_fit">我们为%1$s首选的引擎，也适合这部手机的内存和速度。</string>
+    <string name="onboarding_recommend_lighter">一个更轻量的引擎，适合这部手机的内存和速度。</string>
+    <string name="onboarding_recommend_may_be_slow">最适合%1$s的引擎，但在这部手机上可能较慢。</string>
+    <string name="onboarding_recommend_low_memory">适用于%1$s的最精简引擎。这部手机的内存不太够，它可能运行较慢，或被 Android 关闭。</string>
+    <string name="onboarding_recommend_uncovered">目前还没有引擎能转写%1$s，因此这里选的是%2$s引擎。</string>
+    <plurals name="onboarding_recommend_languages">
+        <item quantity="other">支持 %d 种语言，自动检测。</item>
+    </plurals>
+    <string name="onboarding_recommend_other">之后你可以在“引擎”标签页选择其他引擎。</string>
+</resources>

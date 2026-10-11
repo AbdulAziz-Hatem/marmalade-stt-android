@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Settings → Appearance -->
+    <string name="settings_appearance">Utseende</string>
+    <string name="settings_mode">Läge</string>
+    <string name="settings_mode_system">System</string>
+    <string name="settings_mode_light">Ljust</string>
+    <string name="settings_mode_dark">Mörkt</string>
+    <string name="settings_color">Färg</string>
+    <string name="settings_color_system">Bakgrund</string>
+    <string name="settings_color_midnight">Midnatt</string>
+    <string name="settings_color_forest">Skog</string>
+    <string name="settings_color_berry">Bär</string>
+    <string name="settings_color_high_contrast">Hög kontrast</string>
+</resources>

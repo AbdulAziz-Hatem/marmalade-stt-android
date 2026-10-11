@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Setup guide: the recommended engine. -->
+<resources>
+    <string name="onboarding_recommend_checking">Kontrollerar telefonen…</string>
+    <string name="onboarding_recommend_best_fit">Vårt förstahandsval för %1$s, och den passar telefonens minne och hastighet.</string>
+    <string name="onboarding_recommend_lighter">En lättare motor som passar telefonens minne och hastighet.</string>
+    <string name="onboarding_recommend_may_be_slow">Det bästa valet för %1$s, men den kan vara långsam på den här telefonen.</string>
+    <string name="onboarding_recommend_low_memory">Den snålaste motorn för %1$s. Telefonen har lite minne för den, så den kan vara långsam eller avslutas av Android.</string>
+    <string name="onboarding_recommend_uncovered">Ingen motor transkriberar %1$s än, så den här är för %2$s.</string>
+    <plurals name="onboarding_recommend_languages">
+        <item quantity="one">%d språk, identifieras automatiskt.</item>
+        <item quantity="other">%d språk, identifieras automatiskt.</item>
+    </plurals>
+    <string name="onboarding_recommend_other">Du kan välja en annan motor på fliken Motorer senare.</string>
+</resources>

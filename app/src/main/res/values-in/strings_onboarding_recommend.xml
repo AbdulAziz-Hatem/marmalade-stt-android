@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="onboarding_recommend_checking">Memeriksa ponsel Anda…</string>
+    <string name="onboarding_recommend_best_fit">Pilihan utama kami untuk bahasa %1$s, dan sesuai dengan memori serta kecepatan ponsel ini.</string>
+    <string name="onboarding_recommend_lighter">Mesin yang lebih ringan dan sesuai dengan memori serta kecepatan ponsel ini.</string>
+    <string name="onboarding_recommend_may_be_slow">Paling cocok untuk bahasa %1$s, tetapi mungkin lambat di ponsel ini.</string>
+    <string name="onboarding_recommend_low_memory">Mesin paling ringan untuk bahasa %1$s. Memori ponsel ini terbatas untuk mesin ini, jadi mesin ini mungkin lambat atau ditutup oleh Android.</string>
+    <string name="onboarding_recommend_uncovered">Belum ada mesin yang mendukung bahasa %1$s, jadi mesin ini untuk bahasa %2$s.</string>
+    <!-- After the reason, for an engine that detects the language itself -->
+    <plurals name="onboarding_recommend_languages">
+        <item quantity="other">%d bahasa, terdeteksi otomatis.</item>
+    </plurals>
+    <string name="onboarding_recommend_other">Anda dapat memilih mesin lain di tab Mesin nanti.</string>
+</resources>

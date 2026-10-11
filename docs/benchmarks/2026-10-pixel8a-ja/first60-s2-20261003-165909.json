@@ -1,0 +1,621 @@
+{
+  "tag": "first60-s2",
+  "started": "20261003-165909",
+  "device": "Google Pixel 8a (Android 17, SDK 37)",
+  "seed": 2,
+  "order": [
+    "parakeet-ja@4\/cpu-arena",
+    "parakeet-ultra@4\/cpu-noarena",
+    "parakeet-ultra@4\/cpu-arena",
+    "parakeet-ja@4\/cpu-noarena"
+  ],
+  "fastCores": [
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "cooldownSeconds": 60,
+  "clips": [
+    {
+      "name": "ls05-2",
+      "audioMs": 5485
+    },
+    {
+      "name": "ja02",
+      "audioMs": 15600
+    },
+    {
+      "name": "ls28-1",
+      "audioMs": 27180
+    },
+    {
+      "name": "ja01",
+      "audioMs": 12660
+    },
+    {
+      "name": "ls10-1",
+      "audioMs": 10970
+    },
+    {
+      "name": "ls10-2",
+      "audioMs": 9730
+    },
+    {
+      "name": "ls05-1",
+      "audioMs": 4955
+    },
+    {
+      "name": "ls20-2",
+      "audioMs": 20150
+    },
+    {
+      "name": "ls20-1",
+      "audioMs": 19610
+    },
+    {
+      "name": "ls28-2",
+      "audioMs": 27120
+    }
+  ],
+  "results": [
+    {
+      "engine": "parakeet-ja",
+      "displayName": "Parakeet TDT_CTC 0.6B (Japanese)",
+      "threads": 4,
+      "tuning": "cpu-arena",
+      "arena": true,
+      "pinnedCores": null,
+      "family": "NEMO_CTC",
+      "developer": false,
+      "loadMs": 4121,
+      "threadAffinity": {
+        "0-7": 30
+      },
+      "warmupMs": 160,
+      "warmup": "silence",
+      "decodes": [
+        {
+          "clip": "ls05-2",
+          "audioMs": 5485,
+          "utterances": 1,
+          "decodeMs": 330,
+          "rtf": 0.0601640838650866,
+          "wer": 1,
+          "text": "チェジ"
+        },
+        {
+          "clip": "ja02",
+          "audioMs": 15600,
+          "utterances": 1,
+          "decodeMs": 468,
+          "rtf": 0.03,
+          "wer": 1,
+          "text": "香港島はその名のとおり香港の領土であり観光の目玉として多くの観光客が訪れる場所です。"
+        },
+        {
+          "clip": "ls28-1",
+          "audioMs": 27180,
+          "utterances": 1,
+          "decodeMs": 1658,
+          "rtf": 0.061000735835172924,
+          "wer": 1,
+          "text": "そう"
+        },
+        {
+          "clip": "ja01",
+          "audioMs": 12660,
+          "utterances": 1,
+          "decodeMs": 519,
+          "rtf": 0.04099526066350711,
+          "wer": 1,
+          "text": "その結果組織が協力して障害を克服するプロセスは顧客のニーズに応えるための新しい革新的なプロセスにつながる可能性があります"
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 629,
+          "rtf": 0.05733819507748405,
+          "wer": 1,
+          "text": ""
+        },
+        {
+          "clip": "ls10-2",
+          "audioMs": 9730,
+          "utterances": 1,
+          "decodeMs": 546,
+          "rtf": 0.05611510791366906,
+          "wer": 1,
+          "text": "そう。"
+        },
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 313,
+          "rtf": 0.06316851664984864,
+          "wer": 1,
+          "text": "ングー"
+        },
+        {
+          "clip": "ls20-2",
+          "audioMs": 20150,
+          "utterances": 1,
+          "decodeMs": 1184,
+          "rtf": 0.058759305210918114,
+          "wer": 1,
+          "text": "ズ"
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 1155,
+          "rtf": 0.05889852116267211,
+          "wer": 1,
+          "text": "ム。"
+        },
+        {
+          "clip": "ls28-2",
+          "audioMs": 27120,
+          "utterances": 1,
+          "decodeMs": 1657,
+          "rtf": 0.06109882005899705,
+          "wer": 1,
+          "text": "エモーメン"
+        }
+      ],
+      "rtfByLength": {
+        "ls05": 0.06159003831417625,
+        "ja02": 0.03,
+        "ls28": 0.06104972375690608,
+        "ja01": 0.04099526066350711,
+        "ls10": 0.05676328502415459,
+        "ls20": 0.05882796780684105,
+        "ls": 0.059680511182108625
+      },
+      "peakRssMb": 1019,
+      "baselineRssMb": 193,
+      "envBefore": {
+        "thermal": 0,
+        "batteryPct": 60,
+        "batteryTempC": 36.1,
+        "plugged": false,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 0,
+        "batteryPct": 60,
+        "batteryTempC": 36.1,
+        "plugged": false,
+        "screenOn": false
+      },
+      "maxThermal": 0,
+      "disturbed": null
+    },
+    {
+      "engine": "parakeet-ultra",
+      "displayName": "Parakeet Ultra",
+      "threads": 4,
+      "tuning": "cpu-noarena",
+      "arena": false,
+      "pinnedCores": null,
+      "family": "NEMO_TRANSDUCER",
+      "developer": false,
+      "loadMs": 4071,
+      "threadAffinity": {
+        "0-7": 36
+      },
+      "warmupMs": 111,
+      "warmup": "silence",
+      "decodes": [
+        {
+          "clip": "ls05-2",
+          "audioMs": 5485,
+          "utterances": 1,
+          "decodeMs": 467,
+          "rtf": 0.08514129443938012,
+          "wer": 0,
+          "text": "their assumed character changed with their changing opportunities or necessities."
+        },
+        {
+          "clip": "ja02",
+          "audioMs": 15600,
+          "utterances": 1,
+          "decodeMs": 733,
+          "rtf": 0.04698717948717949,
+          "wer": 5.333333333333333,
+          "text": "Hongkong toa sonona no tori Hongkongo joodo teori Kankon verematos te okono kanko kia otoseleva sures."
+        },
+        {
+          "clip": "ls28-1",
+          "audioMs": 27180,
+          "utterances": 1,
+          "decodeMs": 2840,
+          "rtf": 0.10448859455481972,
+          "wer": 0.0196078431372549,
+          "text": "he passes abruptly from persons to ideas and numbers, and from ideas and numbers to persons, from the heavens to men, from astronomy to physiology. He confuses, or rather does not distinguish subject and object, first and final causes, and is dreaming of geometrical figures lost in a flux of sense."
+        },
+        {
+          "clip": "ja01",
+          "audioMs": 12660,
+          "utterances": 1,
+          "decodeMs": 735,
+          "rtf": 0.058056872037914695,
+          "wer": 1,
+          "text": ""
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 989,
+          "rtf": 0.09015496809480401,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls10-2",
+          "audioMs": 9730,
+          "utterances": 1,
+          "decodeMs": 838,
+          "rtf": 0.08612538540596094,
+          "wer": 0.03571428571428571,
+          "text": "Observe again what care the law took in the pursuit of wisdom, searching out the deep things of the world, and applying them to the use of men."
+        },
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 523,
+          "rtf": 0.10554994954591322,
+          "wer": 0.16666666666666666,
+          "text": "or an eye of gifts and graces, showering fruits in coined gold."
+        },
+        {
+          "clip": "ls20-2",
+          "audioMs": 20150,
+          "utterances": 1,
+          "decodeMs": 2004,
+          "rtf": 0.09945409429280397,
+          "wer": 0.02040816326530612,
+          "text": "when the music, by its bursts of melody, carried away these illustrious dancers, when the simple, untutored pantomime of that period only the more natural on account of the very indifferent acting of the august actors, had reached its culminating point of triumph, the theatre shook with tumultuous applause."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 2032,
+          "rtf": 0.10362060173380928,
+          "wer": 0,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls28-2",
+          "audioMs": 27120,
+          "utterances": 1,
+          "decodeMs": 3345,
+          "rtf": 0.12334070796460177,
+          "wer": 0.013888888888888888,
+          "text": "In a moment he communicated his thoughts to his companions, and in the next moment they resolved to turn back and carry her off to please Rudolfo. For the rich, who are open handed always find parasites ready to encourage their bad propensities, and thus to conceive this wicked design, to communicate it, approve it, resolve on ravishing Leocadia, and to carry that design into effect was the work of a moment."
+        }
+      ],
+      "rtfByLength": {
+        "ls05": 0.09482758620689655,
+        "ja02": 0.04698717948717949,
+        "ls28": 0.11390423572744014,
+        "ja01": 0.058056872037914695,
+        "ls10": 0.08826086956521739,
+        "ls20": 0.10150905432595574,
+        "ls": 0.10413738019169329
+      },
+      "peakRssMb": 1097,
+      "baselineRssMb": 153,
+      "envBefore": {
+        "thermal": 0,
+        "batteryPct": 60,
+        "batteryTempC": 35.4,
+        "plugged": false,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 0,
+        "batteryPct": 60,
+        "batteryTempC": 36.4,
+        "plugged": false,
+        "screenOn": false
+      },
+      "maxThermal": 0,
+      "disturbed": null
+    },
+    {
+      "engine": "parakeet-ultra",
+      "displayName": "Parakeet Ultra",
+      "threads": 4,
+      "tuning": "cpu-arena",
+      "arena": true,
+      "pinnedCores": null,
+      "family": "NEMO_TRANSDUCER",
+      "developer": false,
+      "loadMs": 4144,
+      "threadAffinity": {
+        "0-7": 36
+      },
+      "warmupMs": 130,
+      "warmup": "silence",
+      "decodes": [
+        {
+          "clip": "ls05-2",
+          "audioMs": 5485,
+          "utterances": 1,
+          "decodeMs": 428,
+          "rtf": 0.0780309936189608,
+          "wer": 0,
+          "text": "their assumed character changed with their changing opportunities or necessities."
+        },
+        {
+          "clip": "ja02",
+          "audioMs": 15600,
+          "utterances": 1,
+          "decodeMs": 606,
+          "rtf": 0.03884615384615384,
+          "wer": 5.333333333333333,
+          "text": "Hongkong toa sonona no tori Hongkongo joodo teori Kankon verematos te okono kanko kia otoseleva sures."
+        },
+        {
+          "clip": "ls28-1",
+          "audioMs": 27180,
+          "utterances": 1,
+          "decodeMs": 2018,
+          "rtf": 0.0742457689477557,
+          "wer": 0.0196078431372549,
+          "text": "he passes abruptly from persons to ideas and numbers, and from ideas and numbers to persons, from the heavens to men, from astronomy to physiology. He confuses, or rather does not distinguish subject and object, first and final causes, and is dreaming of geometrical figures lost in a flux of sense."
+        },
+        {
+          "clip": "ja01",
+          "audioMs": 12660,
+          "utterances": 1,
+          "decodeMs": 627,
+          "rtf": 0.0495260663507109,
+          "wer": 1,
+          "text": ""
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 854,
+          "rtf": 0.07784867821330903,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls10-2",
+          "audioMs": 9730,
+          "utterances": 1,
+          "decodeMs": 780,
+          "rtf": 0.08016443987667009,
+          "wer": 0.03571428571428571,
+          "text": "Observe again what care the law took in the pursuit of wisdom, searching out the deep things of the world, and applying them to the use of men."
+        },
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 456,
+          "rtf": 0.09202825428859737,
+          "wer": 0.16666666666666666,
+          "text": "or an eye of gifts and graces, showering fruits in coined gold."
+        },
+        {
+          "clip": "ls20-2",
+          "audioMs": 20150,
+          "utterances": 1,
+          "decodeMs": 1607,
+          "rtf": 0.07975186104218362,
+          "wer": 0.02040816326530612,
+          "text": "when the music, by its bursts of melody, carried away these illustrious dancers, when the simple, untutored pantomime of that period only the more natural on account of the very indifferent acting of the august actors, had reached its culminating point of triumph, the theatre shook with tumultuous applause."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 1536,
+          "rtf": 0.07832738398776135,
+          "wer": 0,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls28-2",
+          "audioMs": 27120,
+          "utterances": 1,
+          "decodeMs": 2303,
+          "rtf": 0.0849188790560472,
+          "wer": 0.013888888888888888,
+          "text": "In a moment he communicated his thoughts to his companions, and in the next moment they resolved to turn back and carry her off to please Rudolfo. For the rich, who are open handed always find parasites ready to encourage their bad propensities, and thus to conceive this wicked design, to communicate it, approve it, resolve on ravishing Leocadia, and to carry that design into effect was the work of a moment."
+        }
+      ],
+      "rtfByLength": {
+        "ls05": 0.08467432950191571,
+        "ja02": 0.03884615384615384,
+        "ls28": 0.07957642725598527,
+        "ja01": 0.0495260663507109,
+        "ls10": 0.07893719806763284,
+        "ls20": 0.07904929577464789,
+        "ls": 0.07972843450479233
+      },
+      "peakRssMb": 1431,
+      "baselineRssMb": 157,
+      "envBefore": {
+        "thermal": 0,
+        "batteryPct": 60,
+        "batteryTempC": 35.7,
+        "plugged": false,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 0,
+        "batteryPct": 60,
+        "batteryTempC": 36.1,
+        "plugged": false,
+        "screenOn": false
+      },
+      "maxThermal": 0,
+      "disturbed": null
+    },
+    {
+      "engine": "parakeet-ja",
+      "displayName": "Parakeet TDT_CTC 0.6B (Japanese)",
+      "threads": 4,
+      "tuning": "cpu-noarena",
+      "arena": false,
+      "pinnedCores": null,
+      "family": "NEMO_CTC",
+      "developer": false,
+      "loadMs": 4112,
+      "threadAffinity": {
+        "0-7": 30
+      },
+      "warmupMs": 86,
+      "warmup": "silence",
+      "decodes": [
+        {
+          "clip": "ls05-2",
+          "audioMs": 5485,
+          "utterances": 1,
+          "decodeMs": 355,
+          "rtf": 0.06472196900638104,
+          "wer": 1,
+          "text": "チェジ"
+        },
+        {
+          "clip": "ja02",
+          "audioMs": 15600,
+          "utterances": 1,
+          "decodeMs": 508,
+          "rtf": 0.03256410256410256,
+          "wer": 1,
+          "text": "香港島はその名のとおり香港の領土であり観光の目玉として多くの観光客が訪れる場所です。"
+        },
+        {
+          "clip": "ls28-1",
+          "audioMs": 27180,
+          "utterances": 1,
+          "decodeMs": 2351,
+          "rtf": 0.08649742457689477,
+          "wer": 1,
+          "text": "そう"
+        },
+        {
+          "clip": "ja01",
+          "audioMs": 12660,
+          "utterances": 1,
+          "decodeMs": 630,
+          "rtf": 0.04976303317535545,
+          "wer": 1,
+          "text": "その結果組織が協力して障害を克服するプロセスは顧客のニーズに応えるための新しい革新的なプロセスにつながる可能性があります"
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 776,
+          "rtf": 0.0707383773928897,
+          "wer": 1,
+          "text": ""
+        },
+        {
+          "clip": "ls10-2",
+          "audioMs": 9730,
+          "utterances": 1,
+          "decodeMs": 630,
+          "rtf": 0.06474820143884892,
+          "wer": 1,
+          "text": "そう。"
+        },
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 357,
+          "rtf": 0.07204843592330978,
+          "wer": 1,
+          "text": "ングー"
+        },
+        {
+          "clip": "ls20-2",
+          "audioMs": 20150,
+          "utterances": 1,
+          "decodeMs": 1811,
+          "rtf": 0.08987593052109182,
+          "wer": 1,
+          "text": "ズ"
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 2925,
+          "rtf": 0.14915859255481898,
+          "wer": 1,
+          "text": "ム。"
+        },
+        {
+          "clip": "ls28-2",
+          "audioMs": 27120,
+          "utterances": 1,
+          "decodeMs": 2812,
+          "rtf": 0.10368731563421829,
+          "wer": 1,
+          "text": "エモーメン"
+        }
+      ],
+      "rtfByLength": {
+        "ls05": 0.0681992337164751,
+        "ja02": 0.03256410256410256,
+        "ls28": 0.0950828729281768,
+        "ja01": 0.04976303317535545,
+        "ls10": 0.06792270531400967,
+        "ls20": 0.11911468812877264,
+        "ls": 0.09598242811501598
+      },
+      "peakRssMb": 953,
+      "baselineRssMb": 155,
+      "envBefore": {
+        "thermal": 0,
+        "batteryPct": 59,
+        "batteryTempC": 35.7,
+        "plugged": false,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 0,
+        "batteryPct": 59,
+        "batteryTempC": 36.7,
+        "plugged": false,
+        "screenOn": false
+      },
+      "maxThermal": 0,
+      "disturbed": null
+    }
+  ],
+  "probeMs": 237,
+  "probeRuns": [
+    237,
+    239,
+    235,
+    236,
+    238
+  ],
+  "probeThreads": 4,
+  "probeEnv": {
+    "thermal": 0,
+    "batteryPct": 60,
+    "batteryTempC": 36.1,
+    "plugged": false,
+    "screenOn": false
+  },
+  "finished": "20261003-170331"
+}

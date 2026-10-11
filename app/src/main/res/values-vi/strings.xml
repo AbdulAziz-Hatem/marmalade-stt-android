@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="list_separator">,\u0020</string>
+    <string name="quoted_name">“%1$s”</string>
+    <string name="ui_locale">vi</string>
+    <!-- Bottom navigation -->
+    <string name="nav_dictate">Đọc chính tả</string>
+    <string name="nav_engines">Công cụ</string>
+    <string name="nav_settings">Cài đặt</string>
+
+    <!-- Dictate -->
+    <string name="dictate_start">Bắt đầu đọc chính tả</string>
+    <string name="dictate_stop">Dừng đọc chính tả</string>
+    <string name="dictate_state_idle">Không nghe</string>
+    <string name="dictate_state_loading">Đang tải</string>
+    <string name="dictate_state_listening">Đang nghe</string>
+    <string name="dictate_state_finishing">Đang hoàn tất</string>
+    <string name="dictate_status_loading">Đang tải mô hình…</string>
+    <string name="dictate_status_listening">Đang nghe</string>
+    <string name="dictate_status_hearing">Đang nghe bạn nói…</string>
+    <string name="dictate_status_finishing">Đang hoàn tất…</string>
+    <string name="dictate_status_catching_up">Đang bắt kịp…</string>
+    <string name="dictate_empty">Lời bạn nói sẽ xuất hiện ở đây. Mọi điều bạn nói đều ở lại trên điện thoại.</string>
+    <string name="dictate_copy">Sao chép</string>
+    <string name="dictate_copied">Đã sao chép</string>
+    <string name="dictate_clear">Xóa</string>
+    <string name="dictate_no_speech">Không nghe được gì</string>
+    <string name="dictate_error_mic">Không dùng được micrô</string>
+    <string name="dictate_error_model">Không tải được mô hình giọng nói</string>
+    <string name="dictate_error_recognition">Đã xảy ra lỗi khi chép lời</string>
+    <string name="dictate_too_slow">Công cụ này quá chậm với điện thoại này. Một công cụ nhỏ hơn trong thẻ Công cụ sẽ theo kịp.</string>
+    <string name="dictate_error_busy">Tính năng đọc chính tả đang chạy ở nơi khác. Hãy thử lại sau giây lát.</string>
+    <string name="dictate_no_model_title">Tải một mô hình giọng nói xuống để bắt đầu đọc chính tả</string>
+    <string name="dictate_no_model_body">Mô hình chạy trên điện thoại của bạn. Bạn chỉ cần tải xuống một lần, sau đó có thể đọc chính tả khi không có mạng.</string>
+    <string name="dictate_no_model_action">Chọn mô hình</string>
+    <string name="dictate_mic_title">Ứng dụng cần dùng micrô</string>
+    <string name="dictate_mic_body">Ứng dụng chỉ nghe khi bạn đọc chính tả. Lời bạn nói được chuyển thành văn bản trên điện thoại và không bao giờ được lưu hay gửi đi đâu cả.</string>
+    <string name="dictate_mic_body_blocked">Quyền truy cập micrô đang tắt đối với ứng dụng này. Bạn có thể bật trong phần Quyền của mục cài đặt ứng dụng.</string>
+    <string name="dictate_mic_allow">Cho phép dùng micrô</string>
+    <string name="dictate_mic_open_settings">Mở cài đặt</string>
+    <string name="dictate_mic_settings_failed">Không mở được phần cài đặt. Hãy mở Cài đặt của Android, chọn Ứng dụng, rồi chọn Marmalade STT.</string>
+
+    <!-- Engines list -->
+    <string name="engines_title">Công cụ</string>
+
+    <!-- Engine install state -->
+    <string name="engine_status_not_installed">Chưa tải xuống</string>
+    <string name="engine_status_downloading">Đang tải xuống · %1$s</string>
+    <string name="engine_status_paused">Đã tạm dừng · %1$s</string>
+    <string name="engine_status_ready">Sẵn sàng</string>
+    <string name="engine_status_corrupt">Tệp mô hình bị hỏng: %1$s</string>
+    <string name="engine_progress_bytes">%1$s/%2$s</string>
+    <string name="engine_progress_description">Tiến trình tải xuống</string>
+    <string name="engine_failure_not_available">Hiện không thể tải mô hình này xuống. Hãy thử lại sau.</string>
+    <string name="engine_failure_no_space">Không đủ dung lượng trống cho mô hình này. Hãy giải phóng bớt dung lượng rồi thử lại.</string>
+    <string name="engine_failure_network">Quá trình tải xuống bị gián đoạn. Hãy kiểm tra kết nối rồi thử lại. Quá trình tải sẽ tiếp tục từ chỗ đã dừng.</string>
+    <string name="engine_failure_generic">Không cài đặt được mô hình. Hãy thử lại.</string>
+    <string name="engine_corrupt_outdated">Các tệp đã cài đặt không khớp với phiên bản ứng dụng này.</string>
+    <string name="engine_corrupt_missing">Thiếu %1$s.</string>
+    <string name="engine_corrupt_wrong_size">%1$s có kích thước không đúng.</string>
+    <string name="engine_corrupt_damaged">%1$s bị hỏng.</string>
+    <string name="engine_failure_checksum">Một tệp đã tải xuống không khớp với dữ liệu dự kiến nên đã bị xóa. Hãy thử lại để tải xuống bản mới.</string>
+
+    <!-- Engine actions -->
+    <string name="engine_action_download">Tải xuống</string>
+    <string name="engine_action_resume">Tiếp tục</string>
+    <string name="engine_action_retry">Thử lại</string>
+    <string name="engine_action_download_again">Tải lại</string>
+    <string name="engine_action_cancel">Hủy</string>
+    <string name="engine_action_remove_download">Xóa bản tải xuống</string>
+    <string name="engine_action_check_files">Kiểm tra tệp</string>
+    <string name="engine_action_checking">Đang kiểm tra tệp…</string>
+    <string name="engine_action_remove">Gỡ bỏ</string>
+    <string name="engine_dialog_cancel">Hủy</string>
+    <string name="engine_download_confirm_title">Tải xuống %1$s?</string>
+    <string name="engine_download_confirm_body">Thao tác này tải %1$s từ Internet xuống, chỉ một lần. Sau đó, công cụ hoạt động không cần mạng và không có lời nào bạn nói rời khỏi điện thoại.</string>
+    <string name="engine_remove_confirm_title">Gỡ bỏ %1$s?</string>
+    <string name="engine_remove_confirm_body">Thao tác này xóa các tệp mô hình (%1$s) khỏi điện thoại. Bạn có thể tải lại bất cứ lúc nào.</string>
+    <string name="engine_remove_download_failed">Không xóa được bản tải xuống. Hãy thử lại.</string>
+    <string name="engine_remove_failed">Không xóa được tệp mô hình. Hãy thử lại.</string>
+    <string name="engine_check_ok">Tất cả các tệp đều nguyên vẹn</string>
+    <string name="engine_check_damaged">Một số tệp mô hình bị hỏng. Hãy tải lại để khắc phục.</string>
+    <string name="engine_check_failed">Không kiểm tra được các tệp. Hãy thử lại.</string>
+    <string name="download_channel_name">Tải xuống mô hình giọng nói</string>
+
+    <!-- Engine info dialog -->
+    <string name="engine_detail_languages">Ngôn ngữ</string>
+    <string name="engine_detail_size_on_disk">Dung lượng trên máy</string>
+    <string name="engine_detail_download_size">Kích thước tải xuống</string>
+    <string name="engine_detail_license">Giấy phép</string>
+    <string name="engine_detail_source">Nguồn</string>
+    <string name="engine_detail_speed">Tốc độ</string>
+    <string name="engine_speed_cost">Gấp %1$s lần thời gian giải mã của Parakeet Ultra (ước tính)</string>
+    <string name="engine_speed_reference">Parakeet Ultra là mốc so sánh tốc độ</string>
+    <string name="engine_speed_phone_unmeasured">Chưa đo tốc độ của điện thoại này</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Cài đặt</string>
+    <string name="settings_back">Quay lại</string>
+    <string name="settings_save_failed">Không lưu được cài đặt. Hãy thử lại.</string>
+    <string name="settings_speech">Giọng nói</string>
+    <string name="settings_speech_keep_loaded">Giữ công cụ sẵn sàng</string>
+    <string name="settings_speech_keep_loaded_desc">Bắt đầu nghe nhanh hơn. Nên bật nếu bạn thường xuyên nhập bằng giọng nói, chẳng hạn vì lý do hỗ trợ tiếp cận. Dùng khoảng 0,6 đến 3 GB bộ nhớ khi ứng dụng đang mở, tùy theo công cụ.</string>
+    <!-- Settings → End of speech -->
+    <string name="settings_end">Cách dừng</string>
+    <string name="settings_end_keyboard">Bàn phím giọng nói</string>
+    <string name="settings_end_apps">Ứng dụng khác và cửa sổ “Hãy nói”</string>
+    <string name="settings_end_tap">Nhấn để dừng</string>
+    <string name="settings_end_tap_desc">Micrô vẫn bật cho đến khi bạn nhấn vào. Lời bạn nói được nhập khi bạn dừng.</string>
+    <string name="settings_end_smart_turn">Tự dừng bằng Smart Turn</string>
+    <string name="settings_end_smart_turn_desc">Dừng khi nghe như bạn đã nói xong, nên việc ngừng lại suy nghĩ không làm bạn bị ngắt lời.</string>
+    <string name="settings_end_pause">Tự dừng khi ngừng nói</string>
+    <string name="settings_end_pause_desc">Dừng khi bạn ngừng nói. Đặt thời gian trong “Thời gian ngừng”.</string>
+    <string name="settings_end_word">Nói từ kết thúc</string>
+    <string name="settings_end_word_desc">Dừng khi bạn nói riêng từ kết thúc, ví dụ “over”. Từ này không được nhập.</string>
+    <string name="settings_end_lock_hint">Mẹo: ở chế độ tự dừng, hãy nhấn giữ micrô để nghe liên tục cho đến khi bạn nhấn vào.</string>
+    <string name="settings_dialog_cancel">Hủy</string>
+    <string name="settings_speech_pause">Thời gian ngừng</string>
+    <string name="settings_speech_pause_desc">Ngừng bao lâu thì kết thúc một câu trong thẻ Đọc chính tả, và ngừng nghe trong chế độ “Tự dừng khi ngừng nói”. Đặt dài hơn để có thể ngừng lại suy nghĩ.</string>
+    <string name="settings_speech_pause_value">%1$.1f giây</string>
+    <string name="settings_speech_pause_state">%1$.1f giây</string>
+    <string name="settings_patience">Độ kiên nhẫn của Smart Turn</string>
+    <string name="settings_patience_desc">%1$s. Thời gian chờ trước khi xác định bạn đã nói xong.</string>
+    <string name="settings_patience_quick">Nhanh</string>
+    <string name="settings_patience_quick_desc">Dừng nghe sớm hơn nhưng hay ngắt lời bạn hơn.</string>
+    <string name="settings_patience_normal">Bình thường</string>
+    <string name="settings_patience_normal_desc">Chờ qua hầu hết những lần ngừng lại suy nghĩ.</string>
+    <string name="settings_patience_relaxed">Thong thả</string>
+    <string name="settings_patience_relaxed_desc">Chờ lâu hơn rồi mới dừng nghe. Phù hợp nếu bạn hay ngừng lại.</string>
+    <string name="settings_end_words">Từ kết thúc</string>
+    <string name="settings_end_words_hint">Phân tách bằng dấu phẩy.</string>
+    <!-- Settings → Support -->
+    <string name="settings_support">Ủng hộ</string>
+    <string name="settings_support_dev">Ủng hộ phát triển</string>
+    <string name="settings_support_dev_desc">Quyên góp qua GitHub Sponsors. Tự nguyện và không được khấu trừ thuế.</string>
+    <string name="settings_more_marmalade">Thêm từ Marmalade</string>
+    <string name="settings_more_marmalade_desc">Các ứng dụng Marmalade khác trên GitHub.</string>
+    <string name="settings_report_bug">Báo lỗi</string>
+    <string name="settings_report_bug_desc">Có gì đó bị hỏng hoặc nghe nhầm? Mở một issue trên GitHub với thông tin chi tiết đã điền sẵn.</string>
+    <string name="settings_about">Giới thiệu</string>
+    <string name="settings_about_row">Giới thiệu về Marmalade STT</string>
+    <string name="settings_about_row_desc">Phiên bản %1$s · giấy phép, quyền riêng tư</string>
+
+    <!-- About -->
+    <string name="about_title">Giới thiệu</string>
+    <string name="about_version">Phiên bản %1$s</string>
+    <string name="about_tagline">Chuyển giọng nói thành văn bản một cách riêng tư, ngay trên điện thoại.</string>
+    <string name="about_privacy">Chính sách quyền riêng tư</string>
+    <string name="about_privacy_desc">Những gì ở lại trên điện thoại (mọi điều bạn nói) và những gì ứng dụng tải xuống. Không theo dõi, không tài khoản.</string>
+    <string name="about_privacy_english_note">Chính sách này bằng tiếng Anh. Tóm tắt: giọng nói được nhận dạng trên điện thoại của bạn, không bao giờ bằng dịch vụ giọng nói trên đám mây hay trực tuyến. Âm thanh không bao giờ được lưu hay tải lên. Không có phân tích, theo dõi hay tài khoản. Internet chỉ được dùng để tải mô hình giọng nói xuống.</string>
+    <string name="about_privacy_load_failed">Không tải được chính sách quyền riêng tư. Chính sách này cũng có trong kho mã nguồn, ở tệp PRIVACY.md.</string>
+    <string name="about_licenses">Giấy phép nguồn mở</string>
+    <string name="about_licenses_desc">Giấy phép của ứng dụng và các thành phần đi kèm.</string>
+
+    <!-- Open-source licenses -->
+    <string name="licenses_licensing">Giấy phép</string>
+    <string name="licenses_view_full">Xem toàn bộ giấy phép</string>
+    <string name="license_text_title">Giấy phép</string>
+    <string name="license_text_not_bundled">Văn bản giấy phép không đi kèm ứng dụng. Hãy xem đường liên kết ở màn hình trước.</string>
+    <string name="license_text_load_failed">Không tải được văn bản giấy phép. Hãy xem đường liên kết gốc ở màn hình trước.</string>
+
+    <!-- Voice keyboard -->
+    <string name="ime_name">Nhập bằng giọng nói Marmalade</string>
+    <string name="ime_subtype_label">Nhập bằng giọng nói</string>
+    <string name="ime_status_loading">Đang tải mô hình…</string>
+    <string name="ime_status_listening">Đang nghe</string>
+    <string name="ime_status_hearing">Đang nghe bạn nói…</string>
+    <string name="ime_status_finishing">Đang hoàn tất…</string>
+    <string name="ime_status_paused">Đã tạm dừng. Nhấn vào micrô để tiếp tục.</string>
+    <string name="ime_speak_now">Hãy nói</string>
+    <string name="ime_cancel">Quay lại bàn phím</string>
+    <string name="ime_done">Xong</string>
+    <string name="ime_pause">Tạm dừng nghe</string>
+    <string name="ime_resume">Tiếp tục nghe</string>
+    <string name="ime_no_model">Hãy tải một mô hình giọng nói xuống trong Marmalade STT để nhập bằng giọng nói.</string>
+    <string name="ime_open_app">Mở Marmalade STT</string>
+    <string name="ime_mic_needed">Nhập bằng giọng nói cần dùng micrô. Micrô chỉ nghe khi bảng này đang mở.</string>
+    <string name="ime_mic_allow">Cho phép dùng micrô</string>
+    <string name="ime_mic_blocked">Quyền truy cập micrô đang tắt đối với Marmalade STT. Hãy bật trong phần Quyền, rồi quay lại ứng dụng của bạn.</string>
+
+    <!-- Speech input dialog and RecognitionService -->
+    <string name="recognizer_speak_now">Hãy nói</string>
+    <string name="recognizer_cancel">Hủy</string>
+    <string name="recognizer_done">Xong</string>
+    <string name="recognizer_try_again">Thử lại</string>
+    <string name="recognizer_no_model">Hãy tải một mô hình giọng nói xuống trong Marmalade STT để nhập bằng giọng nói.</string>
+    <string name="recognizer_open_app">Mở Marmalade STT</string>
+    <string name="recognizer_mic_blocked">Nhập bằng giọng nói cần dùng micrô. Hãy bật trong phần Quyền của mục cài đặt ứng dụng.</string>
+    <string name="recognizer_open_settings">Mở cài đặt</string>
+    <string name="recognizer_mic_stop">Dừng nghe</string>
+
+    <!-- Press and hold the mic to lock listening -->
+    <string name="lock_status">Đã khóa: nhấn để dừng</string>
+    <string name="lock_state">Đã khóa</string>
+    <string name="lock_action">Khóa chế độ nghe</string>
+
+    <!-- Text cleanup -->
+    <string name="cleanup_section">Làm sạch văn bản</string>
+    <string name="cleanup_fillers">Xóa từ đệm</string>
+    <string name="cleanup_fillers_desc">Xóa “um”, “uh”, “er”, “hmm” và các từ tương tự. Những từ thật như “umbrella” vẫn được giữ lại.</string>
+    <string name="cleanup_commands">Lệnh thoại</string>
+    <string name="cleanup_commands_desc">Nói “new line”, “new paragraph”, hoặc “scratch that” để xóa câu cuối cùng.</string>
+    <string name="cleanup_punctuation">Từ chỉ dấu câu</string>
+    <string name="cleanup_punctuation_desc">Có thể nói thêm “period”, “comma”, “question mark”… Mặc định tắt vì đó cũng là những từ thông thường.</string>
+    <string name="cleanup_english_only">Chỉ cho tiếng Anh. %1$s</string>
+    <string name="cleanup_itn">Viết số bằng chữ số</string>
+    <string name="cleanup_itn_desc">“Twenty five percent” thành “25%”, “nine thirty pm” thành “9:30 pm”. Số nhỏ như “three boxes” vẫn giữ dạng chữ.</string>
+    <string name="cleanup_capitalize">Viết hoa đầu câu</string>
+    <string name="cleanup_capitalize_desc">Viết hoa chữ cái đầu mỗi câu và mỗi dòng. Không bao giờ chuyển chữ hoa thành chữ thường.</string>
+    <string name="cleanup_dictionary">Từ điển thay thế</string>
+    <string name="cleanup_dictionary_desc_none">Sửa những từ ứng dụng hay nhận dạng sai.</string>
+    <plurals name="cleanup_dictionary_desc">
+        <item quantity="other">%1$d quy tắc · sửa những từ ứng dụng hay nhận dạng sai</item>
+    </plurals>
+    <string name="cleanup_snippets">Đoạn mẫu</string>
+    <string name="cleanup_snippets_desc_none">Nói cụm từ kích hoạt để chèn văn bản đã lưu, như địa chỉ của bạn.</string>
+    <plurals name="cleanup_snippets_desc">
+        <item quantity="other">%1$d đoạn mẫu · nói cụm từ kích hoạt để chèn văn bản đã lưu</item>
+    </plurals>
+
+    <string name="cleanup_save">Lưu</string>
+    <string name="cleanup_cancel">Hủy</string>
+    <string name="cleanup_delete">Xóa</string>
+    <string name="cleanup_edit_action">Chỉnh sửa</string>
+
+    <string name="cleanup_dictionary_help">Mỗi quy tắc đổi một từ hoặc cụm từ mà ứng dụng hay nhận dạng sai thành điều bạn muốn nói.\n\n• Khớp nguyên từ, không phân biệt chữ hoa chữ thường: “teh” khớp với “Teh” nhưng không khớp với “tehran”.\n• Trong tiếng Trung và tiếng Nhật, vốn không có dấu cách giữa các từ, cụm từ cũng khớp khi nằm giữa câu. Trong tiếng Hàn, cụm từ cũng khớp khi có tiểu từ đi kèm: “메일” khớp với “메일을”.\n• Chữ hoa ở vế phải được giữ nguyên như khi viết. Nếu không, chữ hoa chữ thường theo những gì nghe được: “Teh” thành “The”.\n• Để trống vế phải để xóa cụm từ đó.\n• Khi các quy tắc chồng lên nhau, quy tắc khớp dài nhất sẽ được áp dụng.</string>
+    <string name="cleanup_dictionary_empty">Chưa có quy tắc nào. Nhấn vào “Thêm quy tắc” để sửa một từ ứng dụng hay nhận dạng sai.</string>
+    <string name="cleanup_dictionary_add">Thêm quy tắc</string>
+    <string name="cleanup_dictionary_edit">Sửa quy tắc</string>
+    <string name="cleanup_dictionary_from">Từ nghe được</string>
+    <string name="cleanup_dictionary_to">Viết thành</string>
+    <string name="cleanup_dictionary_to_hint">Để trống để xóa cụm từ này.</string>
+    <string name="cleanup_dictionary_from_breaks_export">Không được chứa “->” hoặc bắt đầu bằng “#”.</string>
+    <string name="cleanup_dictionary_replaces">Thay thế quy tắc hiện có của bạn cho “%1$s”.</string>
+    <string name="cleanup_dictionary_deleted">(đã xóa)</string>
+    <string name="cleanup_dictionary_rule_description">%1$s thành %2$s</string>
+    <string name="cleanup_dictionary_rule_deletes_description">%1$s bị xóa</string>
+    <string name="cleanup_import">Nhập</string>
+    <string name="cleanup_export">Sao chép tất cả</string>
+    <string name="cleanup_exported">Đã sao chép quy tắc</string>
+    <string name="cleanup_import_title">Nhập quy tắc</string>
+    <string name="cleanup_import_help">Dán mỗi dòng một quy tắc, theo dạng sai -> đúng. Các dòng bắt đầu bằng # sẽ bị bỏ qua. Quy tắc cho một từ bạn đã có sẽ thay thế quy tắc cũ.</string>
+    <string name="cleanup_import_field">Quy tắc</string>
+    <string name="cleanup_import_none">Chưa tìm thấy quy tắc nào.</string>
+    <plurals name="cleanup_import_found">
+        <item quantity="other">Đã tìm thấy %1$d quy tắc.</item>
+    </plurals>
+    <plurals name="cleanup_import_skipped">
+        <item quantity="other">%1$d dòng không phải là quy tắc và sẽ bị bỏ qua.</item>
+    </plurals>
+
+    <string name="cleanup_snippets_help">Nói một cụm từ kích hoạt và cụm từ đó sẽ được thay bằng văn bản bạn đã lưu, đúng như khi viết, kể cả dấu xuống dòng.\n\n• Cụm từ kích hoạt khớp nguyên từ, không phân biệt chữ hoa chữ thường: “my email” khớp với “My email” nhưng không khớp với “my emailing”.\n• Trong tiếng Trung và tiếng Nhật, vốn không có dấu cách giữa các từ, cụm từ kích hoạt cũng khớp khi nằm giữa câu. Trong tiếng Hàn, cụm từ cũng khớp khi có tiểu từ đi kèm: “메일” khớp với “메일을”.\n• Văn bản đã lưu không bị thay đổi bởi bất kỳ xử lý nào khác: không xóa từ đệm, không thực hiện lệnh, không viết hoa.\n• Khi chỉ nói riêng cụm từ kích hoạt, chỉ văn bản đã lưu được chèn vào.</string>
+    <string name="cleanup_snippets_empty">Chưa có đoạn mẫu nào. Nhấn vào “Thêm đoạn mẫu” để lưu văn bản bạn hay cần.</string>
+    <string name="cleanup_snippets_add">Thêm đoạn mẫu</string>
+    <string name="cleanup_snippets_edit">Sửa đoạn mẫu</string>
+    <string name="cleanup_snippets_trigger">Cụm từ kích hoạt</string>
+    <string name="cleanup_snippets_text">Văn bản cần chèn</string>
+    <string name="cleanup_snippets_replaces">Thay thế đoạn mẫu hiện có của bạn cho “%1$s”.</string>
+
+    <!-- Setup guide (onboarding) -->
+    <string name="onboarding_step_of">Bước %1$d/%2$d</string>
+    <string name="onboarding_close">Đóng hướng dẫn thiết lập</string>
+    <string name="onboarding_back">Quay lại</string>
+    <string name="onboarding_next">Tiếp</string>
+    <string name="onboarding_skip">Bỏ qua</string>
+    <string name="onboarding_get_started">Bắt đầu</string>
+    <string name="onboarding_try_it">Dùng thử</string>
+    <string name="onboarding_settings_failed">Không mở được phần cài đặt của Android. Hãy mở Cài đặt từ màn hình chính.</string>
+    <!-- Toasts over Settings when only a fallback page opened (#79): where to go from there. -->
+    <string name="settings_hint_voice_input">Hãy tìm “Nhập bằng giọng nói” trong Cài đặt, rồi chọn Marmalade STT.</string>
+    <string name="settings_hint_keyboards">Hãy tìm “Bàn phím” trong Cài đặt, rồi bật Nhập bằng giọng nói Marmalade.</string>
+    <string name="settings_hint_app_details">Hãy tìm Marmalade STT trong phần Ứng dụng, rồi bật micrô trong phần Quyền.</string>
+    <string name="onboarding_welcome_title">Chào mừng bạn đến với Marmalade STT</string>
+    <string name="onboarding_welcome_body">Bạn nói, Marmalade STT sẽ gõ ra: trên màn hình Đọc chính tả của ứng dụng, hoặc dưới dạng tính năng nhập bằng giọng nói trong các ứng dụng khác. Chỉ vài bước nhanh là sẵn sàng.</string>
+    <string name="onboarding_privacy_title">Riêng tư ngay từ thiết kế</string>
+    <string name="onboarding_privacy_body">Giọng nói được nhận dạng trên điện thoại của bạn, không bao giờ bằng dịch vụ giọng nói trên đám mây hay trực tuyến, kể cả của Google. Âm thanh không bao giờ được lưu hay tải lên. Không phân tích, không theo dõi, không tài khoản, không khóa API. Internet chỉ được dùng để tải mô hình giọng nói xuống.</string>
+    <string name="onboarding_high_contrast">Chế độ hỗ trợ tiếp cận</string>
+    <string name="onboarding_high_contrast_desc">Màu tương phản cao</string>
+    <string name="onboarding_mic_title">Cho phép dùng micrô</string>
+    <string name="onboarding_mic_body">Marmalade STT cần micrô để nghe bạn nói. Micrô chỉ được dùng khi đang đọc chính tả.</string>
+    <string name="onboarding_mic_granted">Đã bật quyền truy cập micrô</string>
+    <string name="onboarding_mic_denied">Không có micrô, Marmalade STT không thể nghe bạn nói. Bạn có thể cho phép ngay bây giờ, hoặc bỏ qua và cho phép sau.</string>
+    <string name="onboarding_mic_blocked">Quyền truy cập micrô đang tắt đối với ứng dụng này. Hãy bật trong phần Quyền trên trang cài đặt của ứng dụng.</string>
+    <string name="onboarding_mic_allow">Cho phép dùng micrô</string>
+    <string name="onboarding_mic_open_settings">Mở cài đặt ứng dụng</string>
+    <string name="onboarding_model_title">Tải mô hình giọng nói xuống</string>
+    <string name="onboarding_model_body">Giọng nói được nhận dạng bằng một mô hình chạy trên điện thoại của bạn. Mô hình chỉ cần tải xuống một lần; sau đó bạn có thể đọc chính tả khi không có mạng.</string>
+    <string name="onboarding_model_downloading_note">Bạn có thể tiếp tục thiết lập khi mô hình đã sẵn sàng. Quá trình tải xuống vẫn tiếp tục nếu màn hình tắt hoặc bạn rời khỏi ứng dụng.</string>
+    <string name="onboarding_keyboard_title">Bật bàn phím giọng nói</string>
+    <string name="onboarding_keyboard_body">Bàn phím giọng nói Marmalade giúp bạn đọc chính tả vào các ứng dụng khác: phím micrô của bàn phím sẽ mở bàn phím này. Hãy bật “Nhập bằng giọng nói Marmalade” trong phần cài đặt bàn phím của Android, rồi quay lại đây.</string>
+    <string name="onboarding_keyboard_open">Mở cài đặt bàn phím</string>
+    <string name="onboarding_keyboard_on">Bàn phím giọng nói đang bật</string>
+    <string name="onboarding_keyboard_off">Bàn phím giọng nói đang tắt</string>
+    <string name="onboarding_keyboard_warning">Android cảnh báo rằng bất kỳ bàn phím nào bạn bật đều có thể thu thập những gì bạn nhập. Đó là cảnh báo tiêu chuẩn. Marmalade STT chỉ nhập những gì bạn đọc chính tả và không có gì rời khỏi điện thoại của bạn.</string>
+    <string name="onboarding_keyboard_unlock_note">Một số điện thoại sau đó hiện thông báo thứ hai: sau khi khởi động lại, ứng dụng không thể khởi động cho đến khi bạn mở khóa điện thoại. Điều đó cũng không sao. Hãy nhấn OK.</string>
+    <string name="onboarding_futo_checking">Đang hỏi FUTO Keyboard…</string>
+    <string name="onboarding_futo_selected">FUTO Keyboard dùng Marmalade STT để nhập bằng giọng nói</string>
+    <string name="onboarding_futo_not_selected">FUTO Keyboard dùng một bộ nhập giọng nói khác</string>
+    <string name="onboarding_futo_use">Dùng Marmalade STT trong FUTO</string>
+    <string name="onboarding_futo_check_again">Kiểm tra lại</string>
+    <string name="onboarding_futo_manual_title">Tự thiết lập</string>
+    <string name="onboarding_futo_manual_body">Trong FUTO Keyboard, mở Cài đặt → Nhập bằng giọng nói và bật “Tắt nhập bằng giọng nói” (“Sử dụng nhập bằng giọng nói được cung cấp bởi ứng dụng bên ngoài”). Sau đó, nút micrô của FUTO sẽ mở bàn phím giọng nói Marmalade ở bước trước.</string>
+    <string name="onboarding_futo_crash_once">Nếu FUTO Keyboard đóng lại vào lần đầu bạn nhấn micrô của bàn phím, hãy nhấn lại.</string>
+    <string name="onboarding_done_title">Bạn đã sẵn sàng</string>
+    <string name="onboarding_done_body">Hãy thử trên màn hình Đọc chính tả: nhấn vào micrô và nói.</string>
+    <string name="onboarding_done_title_partial">Sẵn sàng khi bạn muốn</string>
+    <string name="onboarding_done_body_partial">Vẫn còn vài bước chưa xong. Bạn có thể hoàn tất bất cứ lúc nào.</string>
+    <string name="onboarding_done_reopen">Bạn có thể mở lại hướng dẫn này trong Cài đặt.</string>
+    <string name="onboarding_summary_mic">Micrô</string>
+    <string name="onboarding_summary_mic_on">Đã cho phép</string>
+    <string name="onboarding_summary_mic_off">Chưa cho phép</string>
+    <string name="onboarding_summary_model">Mô hình giọng nói</string>
+    <string name="onboarding_summary_model_ready">Sẵn sàng</string>
+    <string name="onboarding_summary_model_downloading">Đang tải xuống</string>
+    <string name="onboarding_summary_model_missing">Chưa tải xuống. Hãy tải trong thẻ Công cụ.</string>
+    <string name="onboarding_summary_model_attention">Chưa tải xuống xong. Hãy xem thẻ Công cụ.</string>
+    <string name="onboarding_summary_keyboard">Bàn phím giọng nói</string>
+    <string name="onboarding_summary_keyboard_on">Bật</string>
+    <string name="onboarding_summary_keyboard_off">Tắt</string>
+    <string name="onboarding_summary_futo">FUTO Keyboard</string>
+    <string name="onboarding_summary_futo_on">Dùng Marmalade STT</string>
+    <string name="onboarding_summary_futo_off">Dùng bộ nhập giọng nói khác</string>
+    <string name="onboarding_settings_row">Hướng dẫn thiết lập</string>
+    <string name="onboarding_settings_row_desc">Micrô, công cụ giọng nói, bàn phím và dịch vụ nhận dạng giọng nói</string>
+</resources>

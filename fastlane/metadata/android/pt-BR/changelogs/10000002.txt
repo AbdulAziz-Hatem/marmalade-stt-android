@@ -1,0 +1,6 @@
+Marmalade STT 1.0.0, primeira versão.
+- Ditado por voz privado e offline: teclado de voz para FUTO, HeliBoard, FlorisBoard e outros, pop-up de fala para apps e serviço de reconhecimento de fala do Android.
+- Motores conforme seu celular e idioma, com opções próprias para japonês, chinês, coreano, hindi, árabe e vietnamita.
+- Parada por toque, pausa, palavra de encerramento ou Smart Turn.
+- Limpeza do texto, substituições e trechos.
+- Interface: 21 idiomas. Sem anúncios, contas ou análise de uso.

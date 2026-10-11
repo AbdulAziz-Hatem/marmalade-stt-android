@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="engine_badge_recommended">موصى به لهذا الهاتف</string>
+    <string name="engine_info">حول %1$s</string>
+    <string name="engine_show_more">عرض المزيد</string>
+    <!-- Card size line -->
+    <string name="engine_card_size_download">تنزيل بحجم %1$s</string>
+    <string name="engine_card_size_on_disk">يشغل %1$s على هاتفك</string>
+    <string name="engine_action_download_size">تنزيل · %1$s</string>
+    <string name="engine_dialog_close">إغلاق</string>
+    <string name="engine_progress_percent">%1$d%%</string>
+    <string name="engine_status_failed_short">تعذّر التنزيل</string>
+    <string name="engine_status_corrupt_short">الملفات تالفة</string>
+
+    <string name="engines_other">محرّكات أخرى (%1$d)</string>
+    <string name="engines_other_expanded">تم التوسيع</string>
+    <string name="engines_other_collapsed">تم التصغير</string>
+
+    <!-- Speed -->
+    <string name="engine_speed_tier_fastest">الأسرع على هذا الهاتف</string>
+    <string name="engine_speed_tier_very_fast">سريع جدًا على هذا الهاتف</string>
+    <string name="engine_speed_tier_fast">سريع على هذا الهاتف</string>
+    <string name="engine_speed_tier_moderate">سرعة متوسطة على هذا الهاتف</string>
+    <string name="engine_speed_unmeasured">لم يتم القياس</string>
+    <string name="engine_speed_word_fastest">الأسرع</string>
+    <string name="engine_speed_word_very_fast">سريع جدًا</string>
+    <string name="engine_speed_word_fast">سريع</string>
+    <string name="engine_speed_word_moderate">متوسط</string>
+    <string name="engine_speed_word_slow">بطيء</string>
+
+    <!-- Quality -->
+    <string name="engine_detail_quality">الجودة</string>
+    <string name="engine_quality_best">الأفضل</string>
+    <string name="engine_quality_great">ممتازة</string>
+    <string name="engine_quality_good">جيدة</string>
+    <string name="engine_quality_fair">مقبولة</string>
+    <string name="engine_quality_basic">أساسية</string>
+    <string name="engine_quality_not_rated">غير مقيّمة</string>
+    <string name="engine_quality_in_language">%1$s (%2$s)</string>
+    <string name="engine_quality_tested_in">لغة الاختبار: %1$s</string>
+    <string name="engine_quality_source_english">من اختباراتنا على LibriSpeech وFLEURS وAMI، باللغة الإنجليزية</string>
+    <string name="engine_quality_source_fleurs">من اختباراتنا على FLEURS (لغة الاختبار: %1$s)</string>
+    <string name="engine_quality_source_two_sets">من اختباراتنا على %1$s و%2$s (لغة الاختبار: %3$s)</string>
+    <string name="engine_quality_source_none">لم يُختبر بعد</string>
+
+    <!-- Languages -->
+    <plurals name="engine_languages_count">
+        <item quantity="zero">%d لغة</item>
+        <item quantity="one">%d لغة</item>
+        <item quantity="two">%d لغتان</item>
+        <item quantity="few">%d لغات</item>
+        <item quantity="many">%d لغة</item>
+        <item quantity="other">%d لغة</item>
+    </plurals>
+    <string name="engine_languages_see_all">عرض الكل (%1$d)</string>
+    <string name="engine_languages_open">عرض اللغات</string>
+
+    <!-- Details dialog -->
+    <string name="engine_detail_speed_text">%1$s. %2$s.</string>
+    <string name="engine_detail_chunk">حجم المقطع</string>
+    <string name="engine_chunk_steps">يصل النص كل %1$d ملي ثانية.</string>
+
+    <!-- The engine's one-line summary. Engine and model names stay as they are. -->
+    <string name="engine_desc_parakeet_ultra">نسخة من Parakeet TDT 0.6B v3 درّبتها Moondream تدريبًا إضافيًا: اللغات الـ٢٥ نفسها، وتُكتشف تلقائيًا.</string>
+    <string name="engine_desc_parakeet_110m">نموذج NVIDIA الصغير للإنجليزية: حجمه جزء بسيط من حجم نماذج Parakeet الأخرى، وهو سريع.</string>
+    <string name="engine_desc_parakeet_ja">نموذج NVIDIA لليابانية: الأدق لليابانية، وأسرع بكثير من Whisper. يضع فواصل قليلة.</string>
+    <string name="engine_desc_canary_180m">نموذج NVIDIA الصغير جدًا من نوع مُرمِّز-مفكِّك: الإنجليزية والإسبانية والألمانية والفرنسية. اختر اللغة، فهو لا يستطيع اكتشافها.</string>
+    <string name="engine_desc_nemotron_35">نموذج NVIDIA الفوري للهندية والعربية والفيتنامية: يظهر النص أثناء كلامك.</string>
+    <string name="engine_desc_whisper_turbo">نموذج OpenAI Whisper large-v3-turbo متعدد اللغات. أدق إصدارات Whisper. يظهر النص عندما تتوقف عن الكلام.</string>
+    <string name="engine_desc_granite">نموذج CTC من IBM للإنجليزية: الأدق في اختباراتنا على الإنجليزية. أما الأحرف الكبيرة وعلامات الترقيم فتضيفها أداة التنسيق الخاصة بالتطبيق.</string>
+    <string name="engine_desc_qwen3">نموذج Alibaba الذي يعمل بلا اتصال، مع مفكِّك ترميز صغير قائم على نموذج لغوي: ٣٠ لغة، تُكتشف تلقائيًا. يظهر النص عندما تتوقف عن الكلام.</string>
+    <string name="engine_desc_qwen3_users">نموذج Alibaba للصينية والكورية، مع مفكِّك ترميز صغير قائم على نموذج لغوي: الأدق للصينية. يظهر النص عندما تتوقف عن الكلام.</string>
+</resources>

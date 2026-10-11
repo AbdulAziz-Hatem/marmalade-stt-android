@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Screen-reader-only text and other strings added by the accessibility pass (#68). -->
+<resources>
+    <!-- Shared -->
+    <string name="a11y_download_started">%1$s をダウンロード中</string>
+    <string name="a11y_download_ready">%1$s の準備が完了しました</string>
+    <string name="a11y_download_failed">%1$s のダウンロードに失敗しました</string>
+    <string name="a11y_download_paused">%1$s のダウンロードは一時停止中です</string>
+
+    <!-- Settings, dictionary, snippets, licences, privacy -->
+    <string name="a11y_open_in_browser">ブラウザで開く</string>
+    <string name="a11y_rule_deleted">ルールを削除しました</string>
+    <string name="a11y_snippet_deleted">定型文を削除しました</string>
+    <string name="a11y_end_words_reverted">終了ワードは変更されませんでした。単語を 1 つ以上入力してください</string>
+
+    <!-- Engines, benchmark -->
+    <string name="a11y_engine_action_named">%2$s の%1$s</string>
+    <string name="a11y_engine_download_named">%1$s をダウンロード、%2$s</string>
+    <string name="a11y_benchmark_finished">ベンチマークが完了しました</string>
+
+    <!-- Dictate, voice keyboard, speech sheet -->
+
+    <!-- Onboarding -->
+    <string name="a11y_onboarding_step_pane">%1$s：%2$s</string>
+    <string name="a11y_onboarding_recommended">この端末におすすめ：%1$s</string>
+
+</resources>

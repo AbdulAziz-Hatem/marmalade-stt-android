@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Settings → Developer -->
+    <string name="settings_developer">Geliştirici</string>
+    <string name="settings_developer_engines">Geliştirici motorları</string>
+    <string name="settings_developer_engines_desc">Test ve karşılaştırma için ek konuşma motorlarını gösterir. İndirmeleri büyüktür, günlük kullanım için değildir.</string>
+    <string name="settings_developer_benchmark">A/B karşılaştırması</string>
+    <string name="settings_developer_benchmark_desc">Kurulu motorları tek bir kayıt üzerinde karşılaştırın.</string>
+    <string name="settings_developer_speed">Telefon hızını yeniden ölç</string>
+    <string name="settings_developer_speed_measuring">Ölçülüyor…</string>
+    <string name="settings_developer_speed_measured">Hız puanı %1$s</string>
+    <string name="settings_developer_speed_unmeasured">Henüz ölçülmedi</string>
+    <string name="settings_developer_speed_done">Hız puanı: %1$s</string>
+    <string name="settings_developer_speed_failed">Telefonun hızı ölçülemedi</string>
+    <!-- ONNX Runtime tuning -->
+    <string name="settings_developer_ort_tuning">Çalışma zamanı ayarı</string>
+    <string name="settings_developer_ort_tuning_desc">ONNX Runtime iş parçacığı bekleme döngüsü (spinning) ve çekirdek sabitleme (pinning), ölçüm için. Bir sonraki motor yüklemesinde uygulanır.</string>
+    <string name="settings_developer_ort_tuning_default">Varsayılan (%1$s)</string>
+    <string name="settings_developer_ort_tuning_cpu">CPU</string>
+    <string name="settings_developer_ort_tuning_no_spinning">bekleme döngüsü yok</string>
+    <string name="settings_developer_ort_tuning_pinned">hızlı çekirdeklere sabitli</string>
+
+    <!-- Small labels on engine cards and rows and the engine details dialog -->
+    <string name="engine_badge_in_use">Kullanımda</string>
+    <string name="engine_badge_developer">Geliştirici</string>
+    <string name="engine_badge_developer_long">Geliştirici motoru</string>
+    <string name="engine_badge_may_be_slow_long">Bu telefonda yavaş olabilir</string>
+    <string name="engine_badge_streaming">Akışlı</string>
+    <string name="engine_streaming_steps">Akışlı · %1$d ms\'lik adımlarla</string>
+
+    <!-- Engines card: picking the engine -->
+    <string name="engine_action_use">Kullan</string>
+    <string name="engine_action_use_named">%1$s motorunu kullan</string>
+    <string name="engine_use_failed">Motor değiştirilemedi. Tekrar deneyin.</string>
+
+    <!-- Engine info dialog: language hint -->
+    <string name="engine_language">Bu motorun dili</string>
+    <string name="engine_language_auto">Otomatik algıla</string>
+    <string name="engine_language_cancel">İptal</string>
+    <string name="engine_language_failed">Dil kaydedilemedi. Tekrar deneyin.</string>
+</resources>

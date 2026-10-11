@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Settings → Developer -->
+    <string name="settings_developer">Developer</string>
+    <string name="settings_developer_engines">Mesin developer</string>
+    <string name="settings_developer_engines_desc">Tampilkan mesin ucapan tambahan untuk pengujian dan benchmark. Ukuran download besar, tidak ditujukan untuk penggunaan sehari-hari.</string>
+    <string name="settings_developer_benchmark">Benchmark A/B</string>
+    <string name="settings_developer_benchmark_desc">Bandingkan mesin terinstal pada satu rekaman.</string>
+    <string name="settings_developer_speed">Ukur ulang kecepatan ponsel</string>
+    <string name="settings_developer_speed_measuring">Mengukur…</string>
+    <string name="settings_developer_speed_measured">Skor kecepatan %1$s</string>
+    <string name="settings_developer_speed_unmeasured">Belum diukur</string>
+    <string name="settings_developer_speed_done">Skor kecepatan: %1$s</string>
+    <string name="settings_developer_speed_failed">Tidak dapat mengukur kecepatan ponsel</string>
+    <!-- ONNX Runtime tuning -->
+    <string name="settings_developer_ort_tuning">Penyesuaian runtime</string>
+    <string name="settings_developer_ort_tuning_desc">Thread spinning dan core pinning ONNX Runtime, untuk pengukuran. Berlaku saat mesin berikutnya dimuat.</string>
+    <string name="settings_developer_ort_tuning_default">Default (%1$s)</string>
+    <string name="settings_developer_ort_tuning_cpu">CPU</string>
+    <string name="settings_developer_ort_tuning_no_spinning">tanpa spinning</string>
+    <string name="settings_developer_ort_tuning_pinned">di-pin ke core cepat</string>
+
+    <!-- Small labels on engine cards and rows and the engine details dialog -->
+    <string name="engine_badge_in_use">Digunakan</string>
+    <string name="engine_badge_developer">Developer</string>
+    <string name="engine_badge_developer_long">Mesin developer</string>
+    <string name="engine_badge_may_be_slow_long">Mungkin lambat di ponsel ini</string>
+    <string name="engine_badge_streaming">Streaming</string>
+    <string name="engine_streaming_steps">Streaming · langkah %1$d ms</string>
+
+    <!-- Engines card: picking the engine -->
+    <string name="engine_action_use">Gunakan</string>
+    <string name="engine_action_use_named">Gunakan %1$s</string>
+    <string name="engine_use_failed">Tidak dapat mengganti mesin. Coba lagi.</string>
+
+    <!-- Engine info dialog: language hint -->
+    <string name="engine_language">Bahasa untuk mesin ini</string>
+    <string name="engine_language_auto">Deteksi otomatis</string>
+    <string name="engine_language_cancel">Batal</string>
+    <string name="engine_language_failed">Tidak dapat menyimpan bahasa. Coba lagi.</string>
+</resources>

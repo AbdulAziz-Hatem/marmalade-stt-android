@@ -1,0 +1,32 @@
+<p>Marmalade STT chuyển lời nói của bạn thành văn bản ngay trên điện thoại. Hãy dùng ứng dụng làm tính năng nhập bằng giọng nói cho bàn phím (FUTO Keyboard, HeliBoard, FlorisBoard và các bàn phím khác), và cho những ứng dụng yêu cầu Android nhập bằng giọng nói. Giọng nói của bạn không bao giờ rời khỏi máy.</p>
+
+<ul>
+<li><b>Riêng tư.</b> Giọng nói được nhận dạng trên điện thoại. Âm thanh không bao giờ được lưu hay tải lên</li>
+<li><b>Ngoại tuyến.</b> Sau khi tải một công cụ giọng nói xuống một lần, ứng dụng hoạt động mà không cần kết nối</li>
+<li><b>Văn bản trực tiếp.</b> Hiện lời bạn nói theo thời gian thực ngay khi bạn nói, trên hầu hết các công cụ</li>
+<li><b>Biết khi nào bạn nói xong.</b> Smart Turn, chế độ mặc định của cửa sổ “Hãy nói”, chờ đến khi nghe như bạn đã nói xong, nên việc ngừng lại suy nghĩ hiếm khi làm bạn bị ngắt lời</li>
+<li><b>Đa ngôn ngữ.</b> 100 ngôn ngữ, tự động chọn công cụ tốt nhất cho ngôn ngữ của bạn</li>
+<li><b>Văn bản gọn gàng.</b> Xóa từ đệm, viết số bằng chữ số, quy tắc thay thế của riêng bạn và đoạn mẫu gọi bằng giọng nói</li>
+<li><b>Miễn phí và nguồn mở.</b> Không quảng cáo, không tài khoản, không phân tích</li>
+</ul>
+
+<p><b>RIÊNG TƯ NGAY TỪ THIẾT KẾ</b></p>
+<p>Không phân tích, không theo dõi, không báo cáo sự cố, không tài khoản và không có máy chủ nào của chúng tôi. Internet chỉ được dùng để tải các công cụ giọng nói bạn chọn từ GitHub, và mọi tệp đều được kiểm tra bằng mã băm SHA-256 cố định. Tính năng sao lưu của Android bị tắt, nên không có gì được sao chép lên đám mây.</p>
+
+<p><b>BẠN QUYẾT ĐỊNH KHI NÀO DỪNG</b></p>
+<p>Trong cửa sổ “Hãy nói” và các ứng dụng khác, Marmalade mặc định dùng công nghệ Smart Turn v3 để phát hiện khi bạn đã nói xong. Không cần dùng tay. Bị ngắt lời quá sớm? Hãy chuyển sang dừng khi ngừng nói, hoặc đặt một từ kết thúc. Trên bàn phím, ứng dụng nghe cho đến khi bạn nhấn, hoặc cũng có thể dùng Smart Turn.</p>
+
+<p><b>VĂN BẢN GỌN GÀNG</b></p>
+<p>Tính năng làm sạch tùy chọn sửa chữ hoa; với tiếng Anh, tính năng này còn xóa từ đệm, biến “new line” và “period” thành dấu xuống dòng và dấu chấm thật, và viết số bằng chữ số. Quy tắc thay thế cho những tên mà công cụ nghe sai, và đoạn mẫu cho văn bản bạn hay gõ, hoạt động với mọi ngôn ngữ.</p>
+
+<p><b>HOẠT ĐỘNG VỚI BÀN PHÍM CỦA BẠN</b></p>
+<p>Bật “Nhập bằng giọng nói Marmalade” và phím micrô trên bàn phím sẽ mở một bảng Marmalade nhỏ để gõ ra những gì bạn nói. Ứng dụng hoạt động với FUTO Keyboard, HeliBoard, FlorisBoard, AnySoftKeyboard, Unexpected Keyboard, bàn phím AOSP và các bàn phím khác có phím giọng nói.</p>
+
+<p><b>CÔNG CỤ HỢP VỚI ĐIỆN THOẠI CỦA BẠN</b></p>
+<p>Hướng dẫn thiết lập đề xuất một công cụ giọng nói cho ngôn ngữ của bạn và cho bộ nhớ, tốc độ của điện thoại, đồng thời bạn có thể tải xuống và dùng thử các mô hình khác.</p>
+
+<p><b>NGÔN NGỮ</b></p>
+<p>Các công cụ nhanh hỗ trợ tiếng Anh, Bulgaria, Croatia, Séc, Đan Mạch, Hà Lan, Estonia, Phần Lan, Pháp, Đức, Hy Lạp, Hungary, Ý, Latvia, Litva, Malta, Ba Lan, Bồ Đào Nha, Romania, Nga, Slovakia, Slovenia, Tây Ban Nha, Thụy Điển, Ukraina, Nhật, Hindi, Ả Rập và tiếng Việt. Tiếng Trung và tiếng Hàn dùng Qwen3-ASR, nhẹ hơn Whisper. Các ngôn ngữ khác dùng Whisper Large v3 Turbo, với độ trễ lớn hơn.</p>
+
+<p><b>NGUỒN MỞ</b></p>
+<p>Marmalade STT được cấp phép MIT. Nếu bạn muốn ủng hộ, mục Cài đặt → Ủng hộ có liên kết đến GitHub Sponsors; dù bạn có ủng hộ hay không, ứng dụng vẫn như nhau.</p>

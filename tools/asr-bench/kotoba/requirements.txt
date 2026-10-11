@@ -1,0 +1,15 @@
+# Build-time venv for kotoba/convert.py (#52). Harness only, nothing here reaches the APK.
+# No GPL or LGPL. Transitive: tiktoken MIT, numba/llvmlite BSD-2, tokenizers Apache-2.0,
+# cffi MIT. The CPU torch wheel is enough (the script never uses a GPU).
+#   uv venv -p 3.11 $VENV
+#   VIRTUAL_ENV=$VENV uv pip install --index-url https://download.pytorch.org/whl/cpu torch==2.14.1
+#   VIRTUAL_ENV=$VENV uv pip install -r kotoba/requirements.txt
+torch==2.14.1             # BSD-3-Clause
+openai-whisper==20250625  # MIT (model class + sherpa-onnx's export-onnx.py)
+onnx==1.23.1              # Apache-2.0
+onnxruntime==1.30.0       # MIT (int8 quantization)
+safetensors==0.8.0        # Apache-2.0
+huggingface_hub==1.33.0   # Apache-2.0
+transformers==5.18.0      # Apache-2.0 (--check reference only)
+miniaudio==1.61           # MIT (--check audio loading)
+numpy==2.4.6              # BSD-3-Clause

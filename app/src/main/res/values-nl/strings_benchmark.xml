@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Developer A/B benchmark -->
+    <string name="benchmark_title">Benchmark</string>
+    <string name="benchmark_note">Neem één opname op, daarna transcribeert elke geïnstalleerde engine die om de beurt: laden, transcriberen, vrijgeven. Elke engine krijgt dezelfde Silero VAD-segmenten. Streaming-engines krijgen elk segment in blokken van 100 ms, zo snel als het model ze aanneemt, niet in realtime. De opname blijft in het geheugen en wordt nooit opgeslagen. Cijfers op een emulator zijn alleen bruikbaar om engines met elkaar te vergelijken.</string>
+
+    <string name="benchmark_section_take">Opname</string>
+    <string name="benchmark_record">Opnemen</string>
+    <string name="benchmark_stop">Stoppen</string>
+    <string name="benchmark_play">Afspelen</string>
+    <string name="benchmark_stop_playback">Afspelen stoppen</string>
+    <string name="benchmark_elapsed">%1$s s / %2$d s</string>
+    <string name="benchmark_level">Invoerniveau</string>
+    <string name="benchmark_take_length">Opname: %1$s</string>
+    <string name="benchmark_take_length_soft_agc">Opname: %1$s, door de app op niveau gebracht (deze telefoon heeft geen ingebouwde versterkingsregeling voor de microfoon)</string>
+    <plurals name="benchmark_no_take">
+        <item quantity="one">Nog geen opname. Neem tot %1$d seconde spraak op.</item>
+        <item quantity="other">Nog geen opname. Neem tot %1$d seconden spraak op.</item>
+    </plurals>
+
+    <string name="benchmark_section_reference">Referentietekst (optioneel)</string>
+    <string name="benchmark_reference_label">Wat je zei</string>
+    <string name="benchmark_reference_hint">Typ wat je zei om per engine een woordfoutpercentage (WER) te krijgen.</string>
+
+    <string name="benchmark_section_engines">Engines</string>
+    <string name="benchmark_no_engines">Er zijn geen engines geïnstalleerd. Installeer er een paar op het tabblad Engines (zet Ontwikkelaarsengines aan in Instellingen om de kandidaten te zien).</string>
+    <string name="benchmark_run">Benchmark uitvoeren</string>
+    <string name="benchmark_run_again">Opnieuw uitvoeren</string>
+    <string name="benchmark_running">%1$s uitvoeren (%2$d van %3$d)…</string>
+
+    <string name="benchmark_section_results">Resultaten</string>
+    <string name="benchmark_metric_load">Laden %1$s</string>
+    <string name="benchmark_metric_decode">Decoderen %1$s</string>
+    <string name="benchmark_metric_rtf">RTF %1$s</string>
+    <string name="benchmark_metric_rss">Piek-RSS (steekproef) %1$s</string>
+    <string name="benchmark_metric_wer">WER %1$s</string>
+    <string name="benchmark_empty_transcript">(geen spraak herkend)</string>
+    <string name="benchmark_raw">Onbewerkt: %1$s</string>
+    <string name="benchmark_failed_load">Kan niet laden: %1$s</string>
+    <string name="benchmark_failed_transcribe">Kan niet transcriberen: %1$s</string>
+    <string name="benchmark_failed_release">Getranscribeerd, maar kan niet vrijgeven: %1$s</string>
+    <string name="benchmark_copy_markdown">Kopiëren als Markdown</string>
+    <string name="benchmark_copied">Gekopieerd</string>
+
+    <!-- Snackbar notices -->
+    <string name="benchmark_error_mic">Kan niet opnemen. Gebruikt een andere app de microfoon?</string>
+    <string name="benchmark_error_empty">Er is niets opgenomen. Probeer het opnieuw.</string>
+    <string name="benchmark_error_playback">Kan de opname niet afspelen.</string>
+    <string name="benchmark_error_no_engines">Geen geïnstalleerde engines om uit te voeren.</string>
+    <string name="benchmark_error_run">De benchmark is gestopt door een fout.</string>
+
+    <!-- Mic permission -->
+    <string name="benchmark_mic_title">De benchmark heeft je microfoon nodig</string>
+    <string name="benchmark_mic_body">De benchmark maakt één opname, houdt die alleen in het geheugen en slaat die nooit op en verstuurt die ook nooit.</string>
+</resources>

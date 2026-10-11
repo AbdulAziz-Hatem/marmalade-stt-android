@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Developer A/B benchmark -->
+    <string name="benchmark_title">基准测试</string>
+    <string name="benchmark_note">录一段音，然后每个已安装的引擎依次转写它：加载、转写、卸载。每个引擎拿到的都是相同的 Silero VAD 分段。流式引擎按 100 ms 一块接收每个分段，模型能接收多快就送入多快，而不是按实时速度。录音只保留在内存中，绝不会被保存。模拟器上的数字只适合用来在引擎之间相互比较。</string>
+
+    <string name="benchmark_section_take">录音</string>
+    <string name="benchmark_record">录制</string>
+    <string name="benchmark_stop">停止</string>
+    <string name="benchmark_play">播放</string>
+    <string name="benchmark_stop_playback">停止播放</string>
+    <string name="benchmark_elapsed">%1$s s / %2$d s</string>
+    <string name="benchmark_level">输入音量</string>
+    <string name="benchmark_take_length">录音：%1$s</string>
+    <string name="benchmark_take_length_soft_agc">录音：%1$s，已由应用调平音量（这部手机没有内置的麦克风增益控制）</string>
+    <plurals name="benchmark_no_take">
+        <item quantity="other">还没有录音。最多可录 %1$d 秒语音。</item>
+    </plurals>
+
+    <string name="benchmark_section_reference">参考文本（可选）</string>
+    <string name="benchmark_reference_label">你说的内容</string>
+    <string name="benchmark_reference_hint">输入你说的内容，即可得到每个引擎的词错误率（WER）。</string>
+
+    <string name="benchmark_section_engines">引擎</string>
+    <string name="benchmark_no_engines">尚未安装任何引擎。请在“引擎”标签页安装（在“设置”中开启“开发者引擎”即可看到候选引擎）。</string>
+    <string name="benchmark_run">运行基准测试</string>
+    <string name="benchmark_run_again">再次运行</string>
+    <string name="benchmark_running">正在运行 %1$s（第 %2$d 个，共 %3$d 个）…</string>
+
+    <string name="benchmark_section_results">结果</string>
+    <string name="benchmark_metric_load">加载 %1$s</string>
+    <string name="benchmark_metric_decode">解码 %1$s</string>
+    <string name="benchmark_metric_rtf">RTF %1$s</string>
+    <string name="benchmark_metric_rss">峰值 RSS（采样）%1$s</string>
+    <string name="benchmark_metric_wer">WER %1$s</string>
+    <string name="benchmark_empty_transcript">（未识别到语音）</string>
+    <string name="benchmark_raw">原始：%1$s</string>
+    <string name="benchmark_failed_load">无法加载：%1$s</string>
+    <string name="benchmark_failed_transcribe">无法转写：%1$s</string>
+    <string name="benchmark_failed_release">已转写，但无法卸载：%1$s</string>
+    <string name="benchmark_copy_markdown">复制为 Markdown</string>
+    <string name="benchmark_copied">已复制</string>
+
+    <!-- Snackbar notices -->
+    <string name="benchmark_error_mic">无法录音。是否有其他应用正在使用麦克风？</string>
+    <string name="benchmark_error_empty">没有录到任何内容。请重试。</string>
+    <string name="benchmark_error_playback">无法播放录音。</string>
+    <string name="benchmark_error_no_engines">没有可运行的已安装引擎。</string>
+    <string name="benchmark_error_run">基准测试因出错而停止。</string>
+
+    <!-- Mic permission -->
+    <string name="benchmark_mic_title">基准测试需要使用麦克风</string>
+    <string name="benchmark_mic_body">它只录一段音，仅保留在内存中，绝不会保存或发送。</string>
+</resources>

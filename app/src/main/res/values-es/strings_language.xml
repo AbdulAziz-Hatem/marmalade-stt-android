@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Ajustes → Idioma de reconocimiento -->
+    <string name="settings_recognition_language">Idioma de reconocimiento</string>
+    <string name="settings_recognition_language_auto">Automático (%1$s)</string>
+    <string name="settings_recognition_language_desc">Determina el motor recomendado y el idioma que escucha. Algunos motores detectan el idioma por sí solos.</string>
+
+    <!-- Tarjeta del motor -->
+    <string name="engine_card_language_missing">No transcribe el %1$s</string>
+    <string name="engine_card_language_suggest">No transcribe el %1$s. %2$s sí.</string>
+    <string name="engine_card_language_choose">No puede detectar el idioma. Elige uno en Ajustes → Idioma de reconocimiento: %1$s.</string>
+</resources>

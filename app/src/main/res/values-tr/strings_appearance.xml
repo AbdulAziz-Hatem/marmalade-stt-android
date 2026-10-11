@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Settings → Appearance -->
+    <string name="settings_appearance">Görünüm</string>
+    <string name="settings_mode">Mod</string>
+    <string name="settings_mode_system">Sistem</string>
+    <string name="settings_mode_light">Açık</string>
+    <string name="settings_mode_dark">Koyu</string>
+    <string name="settings_color">Renk</string>
+    <string name="settings_color_system">Duvar kağıdı</string>
+    <string name="settings_color_midnight">Gece yarısı</string>
+    <string name="settings_color_forest">Orman</string>
+    <string name="settings_color_berry">Böğürtlen</string>
+    <string name="settings_color_high_contrast">Yüksek kontrast</string>
+</resources>

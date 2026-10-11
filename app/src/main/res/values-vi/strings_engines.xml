@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Language names arrive as ICU writes them, capitalised ("Tiếng Nhật"), so they sit
+     at the start of a sentence, after a colon or in parentheses, never mid-sentence. -->
+<resources>
+    <string name="engine_badge_recommended">Đề xuất cho điện thoại này</string>
+    <string name="engine_info">Giới thiệu về %1$s</string>
+    <string name="engine_show_more">Xem thêm</string>
+    <!-- Card size line -->
+    <string name="engine_card_size_download">Cần tải %1$s</string>
+    <string name="engine_card_size_on_disk">%1$s trên điện thoại</string>
+    <string name="engine_action_download_size">Tải xuống · %1$s</string>
+    <string name="engine_dialog_close">Đóng</string>
+    <string name="engine_progress_percent">%1$d%%</string>
+    <string name="engine_status_failed_short">Tải xuống thất bại</string>
+    <string name="engine_status_corrupt_short">Tệp bị hỏng</string>
+
+    <!-- Other engines -->
+    <string name="engines_other">Công cụ khác (%1$d)</string>
+    <string name="engines_other_expanded">Đã mở rộng</string>
+    <string name="engines_other_collapsed">Đã thu gọn</string>
+
+    <!-- Speed -->
+    <string name="engine_speed_tier_fastest">Nhanh nhất trên điện thoại này</string>
+    <string name="engine_speed_tier_very_fast">Rất nhanh trên điện thoại này</string>
+    <string name="engine_speed_tier_fast">Nhanh trên điện thoại này</string>
+    <string name="engine_speed_tier_moderate">Tốc độ trung bình trên điện thoại này</string>
+    <string name="engine_speed_unmeasured">Chưa đo</string>
+    <string name="engine_speed_word_fastest">Nhanh nhất</string>
+    <string name="engine_speed_word_very_fast">Rất nhanh</string>
+    <string name="engine_speed_word_fast">Nhanh</string>
+    <string name="engine_speed_word_moderate">Trung bình</string>
+    <string name="engine_speed_word_slow">Chậm</string>
+
+    <!-- Quality -->
+    <string name="engine_detail_quality">Chất lượng</string>
+    <string name="engine_quality_best">Tốt nhất</string>
+    <string name="engine_quality_great">Rất tốt</string>
+    <string name="engine_quality_good">Tốt</string>
+    <string name="engine_quality_fair">Khá</string>
+    <string name="engine_quality_basic">Cơ bản</string>
+    <string name="engine_quality_not_rated">Chưa đánh giá</string>
+    <string name="engine_quality_in_language">%1$s (%2$s)</string>
+    <string name="engine_quality_tested_in">Ngôn ngữ kiểm tra: %1$s</string>
+    <string name="engine_quality_source_english">Từ kết quả kiểm tra của chúng tôi trên LibriSpeech, FLEURS và AMI, bằng tiếng Anh</string>
+    <string name="engine_quality_source_fleurs">Từ kết quả kiểm tra của chúng tôi trên FLEURS (%1$s)</string>
+    <string name="engine_quality_source_two_sets">Từ kết quả kiểm tra của chúng tôi trên %1$s và %2$s (%3$s)</string>
+    <string name="engine_quality_source_none">Chưa kiểm tra</string>
+
+    <!-- Languages -->
+    <plurals name="engine_languages_count">
+        <item quantity="other">%d ngôn ngữ</item>
+    </plurals>
+    <string name="engine_languages_see_all">Xem tất cả %1$d</string>
+    <string name="engine_languages_open">Hiện ngôn ngữ</string>
+
+    <!-- Details dialog -->
+    <string name="engine_detail_speed_text">%1$s. %2$s.</string>
+    <string name="engine_detail_chunk">Kích thước khối</string>
+    <string name="engine_chunk_steps">Văn bản xuất hiện theo từng bước %1$d ms.</string>
+
+    <!-- Engine summaries -->
+    <string name="engine_desc_parakeet_ultra">Parakeet TDT 0.6B v3 do Moondream huấn luyện thêm: vẫn cùng 25 ngôn ngữ, tự động phát hiện.</string>
+    <string name="engine_desc_parakeet_110m">Mô hình tiếng Anh nhỏ của NVIDIA: kích thước chỉ bằng một phần nhỏ so với các Parakeet khác, và nhanh.</string>
+    <string name="engine_desc_parakeet_ja">Mô hình tiếng Nhật của NVIDIA: chính xác nhất cho tiếng Nhật và nhanh hơn Whisper nhiều. Ít dùng dấu phẩy.</string>
+    <string name="engine_desc_canary_180m">Mô hình bộ mã hóa-giải mã siêu nhỏ của NVIDIA: tiếng Anh, tiếng Tây Ban Nha, tiếng Đức và tiếng Pháp. Hãy chọn ngôn ngữ; mô hình không tự phát hiện được.</string>
+    <string name="engine_desc_nemotron_35">Mô hình streaming của NVIDIA cho tiếng Hindi, tiếng Ả Rập và tiếng Việt: văn bản xuất hiện ngay khi bạn nói.</string>
+    <string name="engine_desc_whisper_turbo">OpenAI Whisper large-v3-turbo, đa ngôn ngữ. Whisper chính xác nhất. Văn bản xuất hiện khi bạn ngừng nói.</string>
+    <string name="engine_desc_granite">Mô hình CTC tiếng Anh của IBM: chính xác nhất trong các bài kiểm tra tiếng Anh của chúng tôi. Chữ hoa và dấu câu do bộ định dạng riêng của ứng dụng thêm vào.</string>
+    <string name="engine_desc_qwen3">Mô hình ngoại tuyến của Alibaba với bộ giải mã mô hình ngôn ngữ nhỏ: 30 ngôn ngữ, tự động phát hiện. Văn bản xuất hiện khi bạn ngừng nói.</string>
+    <string name="engine_desc_qwen3_users">Mô hình của Alibaba cho tiếng Trung và tiếng Hàn, với bộ giải mã mô hình ngôn ngữ nhỏ: chính xác nhất cho tiếng Trung. Văn bản xuất hiện khi bạn ngừng nói.</string>
+</resources>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Screen-reader-only text and other strings added by the accessibility pass (#68). -->
+<resources>
+    <!-- Shared -->
+    <string name="a11y_download_started">Stahování modulu %1$s</string>
+    <string name="a11y_download_ready">Modul %1$s je připraven</string>
+    <string name="a11y_download_failed">%1$s: stažení selhalo</string>
+    <string name="a11y_download_paused">%1$s: stahování pozastaveno</string>
+
+    <!-- Settings, dictionary, snippets, licences, privacy -->
+    <string name="a11y_open_in_browser">Otevřít v prohlížeči</string>
+    <string name="a11y_rule_deleted">Pravidlo smazáno</string>
+    <string name="a11y_snippet_deleted">Úryvek smazán</string>
+    <string name="a11y_end_words_reverted">Koncová slova se nezměnila: zadejte alespoň jedno slovo</string>
+
+    <!-- Engines, benchmark -->
+    <string name="a11y_engine_action_named">%1$s, %2$s</string>
+    <string name="a11y_engine_download_named">Stáhnout %1$s, %2$s</string>
+    <string name="a11y_benchmark_finished">Benchmark dokončen</string>
+
+    <!-- Dictate, voice keyboard, speech sheet -->
+
+    <!-- Onboarding -->
+    <string name="a11y_onboarding_step_pane">%1$s: %2$s</string>
+    <string name="a11y_onboarding_recommended">Doporučeno pro tento telefon: %1$s</string>
+
+</resources>

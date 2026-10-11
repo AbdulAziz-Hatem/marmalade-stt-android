@@ -1,0 +1,167 @@
+{
+  "tag": "emu47b-canary-180m-flash-cpu-arena",
+  "started": "20261002-050119",
+  "device": "unknown Android SDK built for x86_64 (Android 15, SDK 35)",
+  "seed": 1790942479511,
+  "order": [
+    "canary-180m-flash@3/cpu-arena"
+  ],
+  "fastCores": [],
+  "cooldownSeconds": 5,
+  "clips": [
+    {
+      "name": "ls10-1",
+      "audioMs": 10970
+    },
+    {
+      "name": "ls20-1",
+      "audioMs": 19610
+    },
+    {
+      "name": "ls28-1",
+      "audioMs": 27180
+    }
+  ],
+  "results": [
+    {
+      "engine": "canary-180m-flash",
+      "displayName": "Canary 180M Flash",
+      "threads": 3,
+      "tuning": "cpu-arena",
+      "pinnedCores": null,
+      "family": "CANARY",
+      "developer": false,
+      "loadMs": 1137,
+      "threadAffinity": {
+        "0-3": 28
+      },
+      "warmupMs": 3250,
+      "decodes": [
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 3259,
+          "rtf": 0.29708295350957153,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting, in case after case, the different phases of the subject, and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 3290,
+          "rtf": 0.2999088422971741,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting, in case after case, the different phases of the subject, and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 3463,
+          "rtf": 0.3156791248860529,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting, in case after case, the different phases of the subject, and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 8290,
+          "rtf": 0.42274349821519636,
+          "wer": 0.02,
+          "text": "nevertheless the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now in oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 7836,
+          "rtf": 0.3995920448750637,
+          "wer": 0.02,
+          "text": "nevertheless the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now in oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 7945,
+          "rtf": 0.40515043345232027,
+          "wer": 0.02,
+          "text": "nevertheless the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now in oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls28-1",
+          "audioMs": 27180,
+          "utterances": 1,
+          "decodeMs": 10680,
+          "rtf": 0.39293598233995586,
+          "wer": 0,
+          "text": "he passes abruptly from persons to ideas and numbers, and from ideas and numbers to persons, from the heavens to man, from astronomy to physiology he confuses, or rather does not distinguish, subject and object, first and final causes, and is dreaming of geometrical figures lost in a flux of sense."
+        },
+        {
+          "clip": "ls28-1",
+          "audioMs": 27180,
+          "utterances": 1,
+          "decodeMs": 10761,
+          "rtf": 0.395916114790287,
+          "wer": 0,
+          "text": "he passes abruptly from persons to ideas and numbers, and from ideas and numbers to persons, from the heavens to man, from astronomy to physiology he confuses, or rather does not distinguish, subject and object, first and final causes, and is dreaming of geometrical figures lost in a flux of sense."
+        },
+        {
+          "clip": "ls28-1",
+          "audioMs": 27180,
+          "utterances": 1,
+          "decodeMs": 10798,
+          "rtf": 0.39727740986019133,
+          "wer": 0,
+          "text": "he passes abruptly from persons to ideas and numbers, and from ideas and numbers to persons, from the heavens to man, from astronomy to physiology he confuses, or rather does not distinguish, subject and object, first and final causes, and is dreaming of geometrical figures lost in a flux of sense."
+        }
+      ],
+      "rtfByLength": {
+        "ls10": 0.30422364023093285,
+        "ls20": 0.4091619921808601,
+        "ls28": 0.3953765023301447,
+        "ls": 0.38274469067405353
+      },
+      "peakRssMb": 951,
+      "baselineRssMb": 176,
+      "envBefore": {
+        "thermal": 0,
+        "batteryPct": 100,
+        "batteryTempC": 25,
+        "plugged": true,
+        "screenOn": true
+      },
+      "envAfter": {
+        "thermal": 0,
+        "batteryPct": 100,
+        "batteryTempC": 25,
+        "plugged": true,
+        "screenOn": true
+      },
+      "maxThermal": 0,
+      "disturbed": null,
+      "arena": true
+    }
+  ],
+  "probeMs": 198,
+  "probeRuns": [
+    195,
+    198,
+    199,
+    200,
+    197
+  ],
+  "probeThreads": 3,
+  "probeEnv": {
+    "thermal": 0,
+    "batteryPct": 100,
+    "batteryTempC": 25,
+    "plugged": true,
+    "screenOn": true
+  },
+  "finished": "20261002-050238",
+  "note": "#47: run with an interim build where tuning \"cpu\" meant ORT arena off for every engine and \"cpu-arena\" on; \"arena\" in each result was added afterwards from that."
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme (Compose replaces this at runtime; XML needed
+         for the Activity window background, which shows before Compose paints).
+         window_background follows light/dark (values-night), and Android 12+
+         paints its launch splash with windowSplashScreenBackground, so neither
+         flashes white on a dark cold start. -->
+    <style name="Theme.MarmaladeStt" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowBackground">@color/window_background</item>
+        <item name="android:windowSplashScreenBackground" tools:targetApi="31">@color/window_background</item>
+    </style>
+
+    <!-- Activities that float over the app that called them (speech input,
+         the voice keyboard's mic prompt). Compose draws the scrim and card. -->
+    <style name="Theme.MarmaladeStt.Translucent" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+</resources>

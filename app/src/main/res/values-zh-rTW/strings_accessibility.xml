@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Screen-reader-only text and other strings added by the accessibility pass (#68). -->
+<resources>
+    <!-- Shared -->
+    <string name="a11y_download_started">正在下載 %1$s</string>
+    <string name="a11y_download_ready">%1$s 已就緒</string>
+    <string name="a11y_download_failed">%1$s：下載失敗</string>
+    <string name="a11y_download_paused">%1$s：下載已暫停</string>
+
+    <!-- Settings, dictionary, snippets, licences, privacy -->
+    <string name="a11y_open_in_browser">在瀏覽器中開啟</string>
+    <string name="a11y_rule_deleted">已刪除規則</string>
+    <string name="a11y_snippet_deleted">已刪除片段</string>
+    <string name="a11y_end_words_reverted">結束詞未變更：請至少輸入一個詞</string>
+
+    <!-- Engines, benchmark -->
+    <string name="a11y_engine_action_named">%2$s：%1$s</string>
+    <string name="a11y_engine_download_named">下載 %1$s，%2$s</string>
+    <string name="a11y_benchmark_finished">基準測試已完成</string>
+
+    <!-- Dictate, voice keyboard, speech sheet -->
+
+    <!-- Onboarding -->
+    <string name="a11y_onboarding_step_pane">%1$s：%2$s</string>
+    <string name="a11y_onboarding_recommended">為這支手機推薦：%1$s</string>
+
+</resources>

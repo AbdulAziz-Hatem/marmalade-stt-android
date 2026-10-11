@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Setup guide: the keyboards' mic keys and Android's speech recognition service -->
+    <string name="onboarding_mic_key_title">الإملاء من لوحة المفاتيح</string>
+    <string name="onboarding_mic_key_body">تحتوي معظم لوحات المفاتيح على مفتاح للميكروفون. إليك كيف تصل كل لوحة مفاتيح لديك إلى Marmalade STT.</string>
+    <string name="onboarding_mic_key_needs_voice_keyboard">فعِّل لوحة المفاتيح الصوتية من Marmalade أولاً (الخطوة السابقة)، فمفاتيح الميكروفون تفتحها.</string>
+    <string name="onboarding_mic_key_other_voice_title">أوقِف لوحات المفاتيح الصوتية الأخرى</string>
+    <string name="onboarding_mic_key_other_voice">مفعّلة أيضًا: %1$s. تفتح معظم مفاتيح الميكروفون أول لوحة مفاتيح صوتية مفعّلة، ويضع Android اللوحات المثبّتة مسبقًا في البداية. أوقِف هذه اللوحات من إعدادات لوحة المفاتيح في Android (في معظم الهواتف: الإعدادات ← النظام ← لوحة المفاتيح ← لوحة المفاتيح على الشاشة).</string>
+    <string name="onboarding_mic_key_current">%1$s (قيد الاستخدام)</string>
+    <string name="onboarding_kb_first">انقر على مفتاح الميكروفون فيها. يفتح المفتاح أول لوحة مفاتيح صوتية مفعّلة، لذا اجعل «الكتابة الصوتية من Marmalade» اللوحة الصوتية الوحيدة المفعّلة. لا يوجد مفتاح ميكروفون؟ ابحث عن مفتاح للإدخال الصوتي في إعداداتها أو شريط أدواتها.</string>
+    <string name="onboarding_kb_first_hidden">انقر على مفتاح الميكروفون فيها، واجعل «الكتابة الصوتية من Marmalade» لوحة المفاتيح الصوتية الوحيدة المفعّلة. لا ترى هذه اللوحة Marmalade إلا بعد أن تكتب بها في هذا التطبيق: إذا كان مفتاح الميكروفون غير ظاهر أو لا يفعل شيئًا، فاكتب بها حرفًا في المربع أدناه. وبعد إعادة تشغيل هاتفك، كرّر ذلك.</string>
+    <string name="onboarding_kb_chooser">انقر على مفتاح الصوت فيها واختر «الكتابة الصوتية من Marmalade». ستتذكّر اللوحة اختيارك.</string>
+    <string name="onboarding_kb_fossify">في إعدادات Fossify Keyboard، اضبط «طريقة الكتابة الصوتية» على «الكتابة الصوتية من Marmalade»، وسيظهر بعدها ميكروفون في شريط أدواتها. لا ترى Fossify تطبيق Marmalade إلا بعد أن تكتب بها في هذا التطبيق: إذا لم يكن Marmalade في القائمة، أو لم يفعل الميكروفون شيئًا، فاكتب أولاً حرفًا في المربع أدناه باستخدام Fossify. وبعد إعادة تشغيل هاتفك، كرّر ذلك.</string>
+    <string name="onboarding_kb_swiftkey">يستخدم ميكروفون SwiftKey ميزة الكتابة الصوتية من Microsoft. عند إيقاف «الكتابة الصوتية متعددة الوسائط» (إعدادات SwiftKey ← الإدخال الغني)، يطلب SwiftKey الإدخال الصوتي من Android بدلاً من ذلك، وقد يفتح ذلك Marmalade STT. لم نتمكّن من اختبار ذلك بعد.</string>
+    <string name="onboarding_kb_own_engine">يستخدم مفتاح الميكروفون فيها دائمًا الكتابة الصوتية الخاصة بها. لاستخدام Marmalade بدلاً منها، انقر على زر لوحة المفاتيح في شريط التنقّل واختر «الكتابة الصوتية من Marmalade».</string>
+    <string name="onboarding_kb_google_only">لا يفتح مفتاح الميكروفون فيها إلا «الكتابة الصوتية من Google». لاستخدام Marmalade بدلاً منها، انقر على زر لوحة المفاتيح في شريط التنقّل واختر «الكتابة الصوتية من Marmalade».</string>
+    <string name="onboarding_kb_no_mic">لا تحتوي على مفتاح ميكروفون. لاستخدام Marmalade، انقر على زر لوحة المفاتيح في شريط التنقّل واختر «الكتابة الصوتية من Marmalade».</string>
+    <string name="onboarding_kb_unknown">جرّب مفتاح الميكروفون فيها في المربع أدناه. لوحات المفاتيح التي ينقلك مفتاح الميكروفون فيها إلى لوحة مفاتيح صوتية تفتح «الكتابة الصوتية من Marmalade»، فاجعلها لوحة المفاتيح الصوتية الوحيدة المفعّلة.</string>
+    <string name="onboarding_kb_futo">FUTO Keyboard</string>
+    <string name="onboarding_try_label">جرّبه هنا</string>
+    <string name="onboarding_try_hint">انقر على المربع، ثم على مفتاح الميكروفون في لوحة المفاتيح.</string>
+
+    <string name="onboarding_speech_title">التعرّف على الكلام للتطبيقات الأخرى</string>
+    <string name="onboarding_speech_body">تحتوي بعض التطبيقات على زر ميكروفون يستخدم خدمة التعرّف على الكلام في Android. اختر Marmalade STT ليكون هذه الخدمة، وستتعرّف هذه التطبيقات على كلامك على هاتفك أيضًا.</string>
+    <string name="onboarding_speech_on">خدمة التعرّف على الكلام في Android هي Marmalade STT</string>
+    <string name="onboarding_speech_off">خدمة التعرّف على الكلام في Android ليست Marmalade STT</string>
+    <string name="onboarding_speech_open">فتح الإعدادات</string>
+    <!-- The step's directions follow the page "Open settings" lands on (#79), with each Android release's own Settings labels. -->
+    <!-- Android 9. The Voice input row is hidden while the assistant is also the voice service (Google). -->
+    <string name="onboarding_speech_path_assist_9">في الإعدادات، افتح التطبيقات والإشعارات ← إعدادات متقدمة ← التطبيقات التلقائية ← المساعد والإدخال الصوتي ← الإدخال الصوتي، واختر Marmalade STT. إذا لم يظهر «الإدخال الصوتي»، فاضبط أولاً «تطبيق المساعد» على «بدون».</string>
+    <!-- Android 10 -->
+    <string name="onboarding_speech_path_assist_10">في الإعدادات، افتح التطبيقات والإشعارات ← إعدادات متقدمة ← التطبيقات التلقائية ← تطبيق المساعد ← الإدخال الصوتي، واختر Marmalade STT. إذا لم يظهر «الإدخال الصوتي»، فاضبط أولاً «التطبيق المساعد» على «غير محدَّد».</string>
+    <!-- Android 11 -->
+    <string name="onboarding_speech_path_assist_11">في الإعدادات، افتح التطبيقات والإشعارات ← إعدادات متقدمة ← التطبيقات التلقائية ← تطبيق المساعد الرقمي ← الإدخال الصوتي، واختر Marmalade STT. إذا لم يظهر «الإدخال الصوتي»، فاضبط أولاً «تطبيق المساعد الرقمي التلقائي» على «غير محدَّد».</string>
+    <!-- Android 12 -->
+    <string name="onboarding_speech_path_assist">في الإعدادات، افتح التطبيقات ← التطبيقات التلقائية ← تطبيق المساعد الرقمي ← الإدخال الصوتي، واختر Marmalade STT.</string>
+    <!-- Android 13. Voice input is under the page's Speech heading. -->
+    <string name="onboarding_speech_path_languages_input">في الإعدادات، افتح النظام ← اللغات والإدخال ← الإدخال الصوتي، واختر Marmalade STT.</string>
+    <!-- Android 14 to 16. Voice input is under the page's Speech heading. -->
+    <string name="onboarding_speech_path_languages">في الإعدادات، افتح النظام ← اللغات ← الإدخال الصوتي، واختر Marmalade STT.</string>
+    <!-- Android 16 with Language & region, and Android 17. Speech is a row of that page. -->
+    <string name="onboarding_speech_path_language_region">في الإعدادات، افتح النظام ← اللغة والمنطقة ← الكلام ← الإدخال الصوتي، واختر Marmalade STT.</string>
+    <!-- No known page opens (other phone makers) -->
+    <string name="onboarding_speech_path_search">ابحث في الإعدادات عن «الإدخال الصوتي»، وافتحه، واختر Marmalade STT.</string>
+    <string name="onboarding_speech_elsewhere">تضع بعض الهواتف هذا الإعداد في مكان آخر: ابحث في الإعدادات عن «الإدخال الصوتي».</string>
+    <string name="onboarding_speech_force_stop">إذا فرضتَ إيقاف Marmalade STT، يعود Android إلى خدمة أخرى. اختر Marmalade مرة أخرى عندها.</string>
+
+    <string name="onboarding_summary_other_voice">لوحات المفاتيح الصوتية الأخرى</string>
+    <string name="onboarding_summary_other_voice_on">لا تزال مفعّلة: %1$s</string>
+    <string name="onboarding_summary_speech">خدمة التعرّف على الكلام</string>
+    <string name="onboarding_summary_speech_on">Marmalade STT</string>
+    <string name="onboarding_summary_speech_off">تطبيق آخر، أو لا شيء</string>
+</resources>

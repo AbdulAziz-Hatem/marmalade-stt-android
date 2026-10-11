@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Developer A/B benchmark -->
+    <string name="benchmark_title">Karşılaştırma testi</string>
+    <string name="benchmark_note">Bir kayıt yapın, ardından kurulu her motor bu kaydı sırayla yazıya döker: yükleme, yazıya dökme, bellekten kaldırma. Tüm motorlar aynı Silero VAD bölümlerini alır. Akışlı motorlara her bölüm, gerçek zamanlı olarak değil, modelin alabildiği hızda 100 ms\'lik parçalar hâlinde verilir. Kayıt yalnızca bellekte tutulur ve hiçbir zaman saklanmaz. Emülatördeki sonuçlar yalnızca motorları birbiriyle karşılaştırmaya yarar.</string>
+
+    <string name="benchmark_section_take">Kayıt</string>
+    <string name="benchmark_record">Kayıt yap</string>
+    <string name="benchmark_stop">Durdur</string>
+    <string name="benchmark_play">Oynat</string>
+    <string name="benchmark_stop_playback">Oynatmayı durdur</string>
+    <string name="benchmark_elapsed">%1$s sn / %2$d sn</string>
+    <string name="benchmark_level">Giriş seviyesi</string>
+    <string name="benchmark_take_length">Kayıt: %1$s</string>
+    <string name="benchmark_take_length_soft_agc">Kayıt: %1$s, seviyesi uygulama tarafından ayarlandı (bu telefonda yerleşik mikrofon kazanç kontrolü yok)</string>
+    <plurals name="benchmark_no_take">
+        <item quantity="one">Henüz kayıt yok. En fazla %1$d saniyelik konuşma kaydedin.</item>
+        <item quantity="other">Henüz kayıt yok. En fazla %1$d saniyelik konuşma kaydedin.</item>
+    </plurals>
+
+    <string name="benchmark_section_reference">Referans metin (isteğe bağlı)</string>
+    <string name="benchmark_reference_label">Söyledikleriniz</string>
+    <string name="benchmark_reference_hint">Her motorun kelime hata oranını (WER) görmek için söylediklerinizi yazın.</string>
+
+    <string name="benchmark_section_engines">Motorlar</string>
+    <string name="benchmark_no_engines">Kurulu motor yok. Motorlar sekmesinden birkaç motor kurun (adayları görmek için Ayarlar\'da Geliştirici motorları seçeneğini açın).</string>
+    <string name="benchmark_run">Testi çalıştır</string>
+    <string name="benchmark_run_again">Tekrar çalıştır</string>
+    <string name="benchmark_running">%1$s çalıştırılıyor (%2$d / %3$d)…</string>
+
+    <string name="benchmark_section_results">Sonuçlar</string>
+    <!-- Metrics line parts, joined with " · " -->
+    <string name="benchmark_metric_load">Yükleme %1$s</string>
+    <string name="benchmark_metric_decode">Kod çözme %1$s</string>
+    <string name="benchmark_metric_rtf">RTF %1$s</string>
+    <string name="benchmark_metric_rss">En yüksek RSS (örneklenmiş) %1$s</string>
+    <string name="benchmark_metric_wer">WER %1$s</string>
+    <string name="benchmark_empty_transcript">(konuşma tanınmadı)</string>
+    <string name="benchmark_raw">Ham: %1$s</string>
+    <string name="benchmark_failed_load">Yüklenemedi: %1$s</string>
+    <string name="benchmark_failed_transcribe">Yazıya dökülemedi: %1$s</string>
+    <string name="benchmark_failed_release">Yazıya döküldü, ancak bellekten kaldırılamadı: %1$s</string>
+    <string name="benchmark_copy_markdown">Markdown olarak kopyala</string>
+    <string name="benchmark_copied">Kopyalandı</string>
+
+    <!-- Snackbar notices -->
+    <string name="benchmark_error_mic">Kayıt yapılamadı. Mikrofonu başka bir uygulama mı kullanıyor?</string>
+    <string name="benchmark_error_empty">Hiçbir şey kaydedilmedi. Tekrar deneyin.</string>
+    <string name="benchmark_error_playback">Kayıt oynatılamadı.</string>
+    <string name="benchmark_error_no_engines">Çalıştırılacak kurulu motor yok.</string>
+    <string name="benchmark_error_run">Test bir hata nedeniyle durdu.</string>
+
+    <!-- Mic permission -->
+    <string name="benchmark_mic_title">Karşılaştırma testi için mikrofon gerekiyor</string>
+    <string name="benchmark_mic_body">Tek bir kayıt yapar, onu yalnızca bellekte tutar ve asla saklamaz ya da göndermez.</string>
+</resources>

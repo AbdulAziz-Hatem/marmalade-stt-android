@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Setup guide: the keyboards' mic keys and Android's speech recognition service (#61).
+         Other apps' labels are theirs (Fossify, SwiftKey); Android's are AOSP Settings' Simplified Chinese. -->
+    <string name="onboarding_mic_key_title">从键盘听写</string>
+    <string name="onboarding_mic_key_body">大多数键盘都有麦克风键。下面说明你的每个键盘如何使用 Marmalade STT。</string>
+    <string name="onboarding_mic_key_needs_voice_keyboard">请先开启 Marmalade 语音键盘（上一步）：麦克风键打开的就是它。</string>
+    <string name="onboarding_mic_key_other_voice_title">关闭其他语音键盘</string>
+    <!-- %1$s: the other voice keyboards' names, quoted -->
+    <string name="onboarding_mic_key_other_voice">以下语音键盘也已开启：%1$s。大多数麦克风键会打开第一个已开启的语音键盘，而 Android 会把预装的排在前面。请在 Android 的键盘设置中关闭它们（大多数手机上位于“设置 → 系统 → 键盘 → 屏幕键盘”）。</string>
+    <string name="onboarding_mic_key_current">%1$s（使用中）</string>
+    <string name="onboarding_kb_first">点按它的麦克风键。它会打开第一个已开启的语音键盘，所以请只开启“Marmalade 语音输入”这一个语音键盘。没有麦克风键？请在它的设置或工具栏中找找语音输入键。</string>
+    <string name="onboarding_kb_first_hidden">点按它的麦克风键，并且只开启“Marmalade 语音输入”这一个语音键盘。只有在你用这个键盘在本应用中输入过之后，它才能看到 Marmalade：如果麦克风键不见了或没有反应，请用它在下方的输入框中输入一个字母。重启手机后，请再这样做一次。</string>
+    <string name="onboarding_kb_chooser">点按它的语音键并选择“Marmalade 语音输入”。它会记住你的选择。</string>
+    <string name="onboarding_kb_fossify">在 Fossify Keyboard 的设置中，将“语音输入方式”设为“Marmalade 语音输入”，之后它的工具栏会显示麦克风。只有在你用 Fossify 在本应用中输入过之后，它才能看到 Marmalade：如果列表中没有 Marmalade，或麦克风没有反应，请先用 Fossify 在下方的输入框中输入一个字母。重启手机后，请再这样做一次。</string>
+    <string name="onboarding_kb_swiftkey">SwiftKey 的麦克风使用 Microsoft 自己的语音输入。关闭“多模式语音键入”后（“SwiftKey 设置 → 丰富输入”），它会改为向 Android 请求语音输入，这样可能会打开 Marmalade STT。我们还没能测试这一点。</string>
+    <string name="onboarding_kb_own_engine">它的麦克风键始终使用自己的语音输入。要改用 Marmalade，请点按导航栏中的键盘按钮，然后选择“Marmalade 语音输入”。</string>
+    <string name="onboarding_kb_google_only">它的麦克风键只会打开 Google 语音输入。要改用 Marmalade，请点按导航栏中的键盘按钮，然后选择“Marmalade 语音输入”。</string>
+    <string name="onboarding_kb_no_mic">它没有麦克风键。要使用 Marmalade，请点按导航栏中的键盘按钮，然后选择“Marmalade 语音输入”。</string>
+    <string name="onboarding_kb_unknown">请在下方的输入框中试试它的麦克风键。如果键盘的麦克风键会切换到语音键盘，就会打开“Marmalade 语音输入”；请只开启这一个语音键盘。</string>
+    <string name="onboarding_kb_futo">FUTO Keyboard</string>
+    <string name="onboarding_try_label">在这里试试</string>
+    <string name="onboarding_try_hint">点按输入框，然后点按键盘的麦克风键。</string>
+
+    <string name="onboarding_speech_title">供其他应用使用的语音识别</string>
+    <string name="onboarding_speech_body">有些应用的麦克风按钮使用 Android 的语音识别服务。将 Marmalade STT 选为该服务后，这些应用也会在你的手机上识别你的语音。</string>
+    <string name="onboarding_speech_on">Marmalade STT 是 Android 的语音识别服务</string>
+    <string name="onboarding_speech_off">Marmalade STT 不是 Android 的语音识别服务</string>
+    <string name="onboarding_speech_open">打开设置</string>
+    <!-- The step's directions follow the page "Open settings" lands on (#79), with each Android release's own Settings labels. -->
+    <!-- Android 9. The Voice input row is hidden while the assistant is also the voice service (Google). -->
+    <string name="onboarding_speech_path_assist_9">请在设置中打开“应用和通知 → 高级 → 默认应用 → 助手和语音输入 → 语音输入”，然后选择 Marmalade STT。如果没有“语音输入”，请先将“助手应用”设为“无”。</string>
+    <!-- Android 10 -->
+    <string name="onboarding_speech_path_assist_10">请在设置中打开“应用和通知 → 高级 → 默认应用 → 辅助应用 → 语音输入”，然后选择 Marmalade STT。如果没有“语音输入”，请先将“助手应用”设为“无”。</string>
+    <!-- Android 11 -->
+    <string name="onboarding_speech_path_assist_11">请在设置中打开“应用和通知 → 高级 → 默认应用 → 数字助理应用 → 语音输入”，然后选择 Marmalade STT。如果没有“语音输入”，请先将“默认数字助理应用”设为“无”。</string>
+    <!-- Android 12 -->
+    <string name="onboarding_speech_path_assist">请在设置中打开“应用 → 默认应用 → 数字助理应用 → 语音输入”，然后选择 Marmalade STT。</string>
+    <!-- Android 13. Voice input is under the page's Speech heading. -->
+    <string name="onboarding_speech_path_languages_input">请在设置中打开“系统 → 语言和输入法 → 语音输入”，然后选择 Marmalade STT。</string>
+    <!-- Android 14 to 16. Voice input is under the page's Speech heading. -->
+    <string name="onboarding_speech_path_languages">请在设置中打开“系统 → 语言 → 语音输入”，然后选择 Marmalade STT。</string>
+    <!-- Android 16 with Language & region, and Android 17. Speech is a row of that page. -->
+    <string name="onboarding_speech_path_language_region">请在设置中打开“系统 → 语言和区域 → 语音 → 语音输入”，然后选择 Marmalade STT。</string>
+    <!-- No known page opens (other phone makers) -->
+    <string name="onboarding_speech_path_search">请在设置中搜索“语音输入”，打开它，然后选择 Marmalade STT。</string>
+    <string name="onboarding_speech_elsewhere">有些手机把它放在别处：请在设置中搜索“语音输入”。</string>
+    <string name="onboarding_speech_force_stop">如果你强行停止 Marmalade STT，Android 会切换到其他服务。届时请重新选择 Marmalade。</string>
+
+    <string name="onboarding_summary_other_voice">其他语音键盘</string>
+    <!-- %1$s: their names, quoted -->
+    <string name="onboarding_summary_other_voice_on">仍已开启：%1$s</string>
+    <string name="onboarding_summary_speech">语音识别服务</string>
+    <string name="onboarding_summary_speech_on">Marmalade STT</string>
+    <string name="onboarding_summary_speech_off">其他应用或无</string>
+</resources>

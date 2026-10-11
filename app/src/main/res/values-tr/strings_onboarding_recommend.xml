@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="onboarding_recommend_checking">Telefonunuz kontrol ediliyor…</string>
+    <string name="onboarding_recommend_best_fit">%1$s için ilk tercihimiz; bu telefonun belleğine ve hızına da uygun.</string>
+    <string name="onboarding_recommend_lighter">Bu telefonun belleğine ve hızına uyan daha hafif bir motor.</string>
+    <string name="onboarding_recommend_may_be_slow">%1$s için en uygun seçenek, ancak bu telefonda yavaş olabilir.</string>
+    <string name="onboarding_recommend_low_memory">%1$s için en hafif motor. Bu telefonun belleği bu motor için az, bu yüzden yavaş çalışabilir veya Android tarafından kapatılabilir.</string>
+    <string name="onboarding_recommend_uncovered">%1$s için henüz bir motor yok, bu yüzden bu motor %2$s için.</string>
+    <!-- After the reason, for an engine that detects the language itself -->
+    <plurals name="onboarding_recommend_languages">
+        <item quantity="one">%d dil, otomatik algılanır.</item>
+        <item quantity="other">%d dil, otomatik algılanır.</item>
+    </plurals>
+    <string name="onboarding_recommend_other">Daha sonra Motorlar sekmesinden başka bir motor seçebilirsiniz.</string>
+</resources>

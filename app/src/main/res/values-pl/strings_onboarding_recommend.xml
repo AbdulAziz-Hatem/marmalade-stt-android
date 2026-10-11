@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Kreator konfiguracji: polecany silnik. %1$s to język telefonu w mianowniku, więc stoi w nawiasie albo po „język”. -->
+<resources>
+    <string name="onboarding_recommend_checking">Sprawdzam Twój telefon…</string>
+    <string name="onboarding_recommend_best_fit">Nasz pierwszy wybór dla Twojego języka (%1$s). Pasuje do pamięci i szybkości tego telefonu.</string>
+    <string name="onboarding_recommend_lighter">Lżejszy silnik, który pasuje do pamięci i szybkości tego telefonu.</string>
+    <string name="onboarding_recommend_may_be_slow">Najlepszy wybór dla Twojego języka (%1$s), ale na tym telefonie może działać wolno.</string>
+    <string name="onboarding_recommend_low_memory">Najlżejszy silnik dla Twojego języka (%1$s). Ten telefon ma dla niego mało pamięci, więc silnik może działać wolno albo zostać zamknięty przez Androida.</string>
+    <string name="onboarding_recommend_uncovered">Żaden silnik nie obsługuje jeszcze Twojego języka (%1$s), więc ten obsługuje język %2$s.</string>
+    <plurals name="onboarding_recommend_languages">
+        <item quantity="one">%d język, wykrywany automatycznie.</item>
+        <item quantity="few">%d języki, wykrywane automatycznie.</item>
+        <item quantity="many">%d języków, wykrywanych automatycznie.</item>
+        <item quantity="other">%d języka, wykrywanego automatycznie.</item>
+    </plurals>
+    <string name="onboarding_recommend_other">Później możesz wybrać inny silnik na karcie „Silniki”.</string>
+</resources>

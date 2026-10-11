@@ -1,0 +1,15 @@
+# Pinned; licenses: numpy BSD-3, jiwer Apache-2.0 (rapidfuzz MIT),
+# whisper-normalizer MIT (regex Apache-2.0, more-itertools MIT, text2num MIT,
+# indic-numtowords MIT), miniaudio MIT (dr_flac/dr_mp3/dr_wav public domain or
+# MIT-0), pyarrow Apache-2.0, onnxruntime MIT (the Granite family, #26; the app's
+# Android ORT version), opencc-python-reimplemented Apache-2.0 (pure Python with
+# OpenCC's Apache-2.0 tables; Traditional -> Simplified for Chinese CER, #29).
+# sherpa-onnx is built from source by setup.sh.
+numpy==2.3.3
+jiwer==4.0.0
+whisper-normalizer==0.1.15
+miniaudio==1.61
+pyarrow==21.0.0
+scipy==1.16.2
+onnxruntime==1.28.0
+opencc-python-reimplemented==0.1.7

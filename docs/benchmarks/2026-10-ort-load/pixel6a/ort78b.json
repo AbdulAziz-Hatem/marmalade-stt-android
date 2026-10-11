@@ -1,0 +1,654 @@
+{
+  "tag": "ort78b",
+  "started": "20261010-183234",
+  "device": "Google Pixel 6a (Android 14, SDK 34)",
+  "seed": 7878,
+  "order": [
+    "whisper-turbo@4\/cpu\/onnx",
+    "qwen3-asr-0-6b@4\/cpu\/onnx",
+    "parakeet-tdt-110m-en@4\/cpu\/onnx",
+    "parakeet-ultra@4\/cpu\/onnx",
+    "whisper-turbo@4\/cpu\/ort",
+    "qwen3-asr-0-6b@4\/cpu\/ort",
+    "parakeet-ultra@4\/cpu\/ort",
+    "parakeet-tdt-110m-en@4\/cpu\/ort",
+    "nemotron-3-5-streaming-1120ms@4\/cpu\/onnx",
+    "nemotron-3-5-streaming-1120ms@4\/cpu\/ort"
+  ],
+  "fastCores": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "cooldownSeconds": 15,
+  "clips": [
+    {
+      "name": "ls05-1",
+      "audioMs": 4955
+    },
+    {
+      "name": "ls10-1",
+      "audioMs": 10970
+    }
+  ],
+  "results": [
+    {
+      "engine": "whisper-turbo",
+      "displayName": "Whisper Large v3 Turbo",
+      "threads": 4,
+      "tuning": "cpu",
+      "arena": true,
+      "pinnedCores": null,
+      "family": "WHISPER",
+      "developer": false,
+      "format": "onnx",
+      "loadMs": 3956,
+      "threadAffinity": {
+        "0-5": 47
+      },
+      "warmupMs": 8841,
+      "warmup": "ls05-1",
+      "decodes": [
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 8925,
+          "rtf": 1.8012108980827446,
+          "wer": 0.16666666666666666,
+          "text": "Or an eye of gifts and graces, showering fruits and cointed gold?"
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 15283,
+          "rtf": 1.3931631722880584,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject and urging the unconstitutionality of the measure."
+        }
+      ],
+      "rtfByLength": {
+        "ls05": 1.8012108980827446,
+        "ls10": 1.3931631722880584,
+        "ls": 1.5201255886970173
+      },
+      "peakRssMb": 1648,
+      "baselineRssMb": 119,
+      "envBefore": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.7,
+        "plugged": true,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.7,
+        "plugged": true,
+        "screenOn": false
+      },
+      "maxThermal": 1,
+      "disturbed": null
+    },
+    {
+      "engine": "qwen3-asr-0-6b",
+      "displayName": "Qwen3-ASR",
+      "threads": 4,
+      "tuning": "cpu",
+      "arena": true,
+      "pinnedCores": null,
+      "family": "QWEN3_ASR",
+      "developer": false,
+      "format": "onnx",
+      "loadMs": 6764,
+      "threadAffinity": {
+        "0-5": 50
+      },
+      "warmupMs": 3097,
+      "warmup": "ls05-1",
+      "decodes": [
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 3004,
+          "rtf": 0.6062563067608476,
+          "wer": 0.25,
+          "text": "Or an eye of gifts and graces, showering fruits in coyned gold."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 5315,
+          "rtf": 0.4845031905195989,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject and urging the unconstitutionality of the measure."
+        }
+      ],
+      "rtfByLength": {
+        "ls05": 0.6062563067608476,
+        "ls10": 0.4845031905195989,
+        "ls": 0.5223861852433281
+      },
+      "peakRssMb": 1994,
+      "baselineRssMb": 148,
+      "envBefore": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.5,
+        "plugged": true,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.4,
+        "plugged": true,
+        "screenOn": false
+      },
+      "maxThermal": 1,
+      "disturbed": null
+    },
+    {
+      "engine": "parakeet-tdt-110m-en",
+      "displayName": "Parakeet 110M",
+      "threads": 4,
+      "tuning": "cpu",
+      "arena": true,
+      "pinnedCores": null,
+      "family": "NEMO_TRANSDUCER",
+      "developer": false,
+      "format": "onnx",
+      "loadMs": 2130,
+      "threadAffinity": {
+        "0-5": 50
+      },
+      "warmupMs": 290,
+      "warmup": "ls05-1",
+      "decodes": [
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 266,
+          "rtf": 0.053683148335015134,
+          "wer": 0.16666666666666666,
+          "text": "or an eye of gifts and graces, showering fruits in coined gold"
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 476,
+          "rtf": 0.043391066545123064,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject and urging the unconstitutionality of the measure."
+        }
+      ],
+      "rtfByLength": {
+        "ls05": 0.053683148335015134,
+        "ls10": 0.043391066545123064,
+        "ls": 0.04659340659340659
+      },
+      "peakRssMb": 409,
+      "baselineRssMb": 173,
+      "envBefore": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.5,
+        "plugged": true,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.4,
+        "plugged": true,
+        "screenOn": false
+      },
+      "maxThermal": 1,
+      "disturbed": null
+    },
+    {
+      "engine": "parakeet-ultra",
+      "displayName": "Parakeet Ultra",
+      "threads": 4,
+      "tuning": "cpu",
+      "arena": true,
+      "pinnedCores": null,
+      "family": "NEMO_TRANSDUCER",
+      "developer": false,
+      "format": "onnx",
+      "loadMs": 4742,
+      "threadAffinity": {
+        "0-5": 50
+      },
+      "warmupMs": 832,
+      "warmup": "ls05-1",
+      "decodes": [
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 970,
+          "rtf": 0.19576185671039353,
+          "wer": 0.16666666666666666,
+          "text": "or an eye of gifts and graces, showering fruits in coined gold."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 1557,
+          "rtf": 0.14193254329990884,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure."
+        }
+      ],
+      "rtfByLength": {
+        "ls05": 0.19576185671039353,
+        "ls10": 0.14193254329990884,
+        "ls": 0.15868131868131868
+      },
+      "peakRssMb": 1014,
+      "baselineRssMb": 143,
+      "envBefore": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.4,
+        "plugged": true,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.4,
+        "plugged": true,
+        "screenOn": false
+      },
+      "maxThermal": 1,
+      "disturbed": null
+    },
+    {
+      "engine": "whisper-turbo",
+      "displayName": "Whisper Large v3 Turbo",
+      "threads": 4,
+      "tuning": "cpu",
+      "arena": true,
+      "pinnedCores": null,
+      "family": "WHISPER",
+      "developer": false,
+      "format": "ort",
+      "loadMs": 3813,
+      "threadAffinity": {
+        "0-5": 47
+      },
+      "warmupMs": 8861,
+      "warmup": "ls05-1",
+      "decodes": [
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 8966,
+          "rtf": 1.8094853683148335,
+          "wer": 0.16666666666666666,
+          "text": "Or an eye of gifts and graces, showering fruits and cointed gold?"
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 15485,
+          "rtf": 1.411577028258888,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject and urging the unconstitutionality of the measure."
+        }
+      ],
+      "rtfByLength": {
+        "ls05": 1.8094853683148335,
+        "ls10": 1.411577028258888,
+        "ls": 1.5353846153846153
+      },
+      "peakRssMb": 1855,
+      "baselineRssMb": 149,
+      "envBefore": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.4,
+        "plugged": true,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.4,
+        "plugged": true,
+        "screenOn": false
+      },
+      "maxThermal": 1,
+      "disturbed": null
+    },
+    {
+      "engine": "qwen3-asr-0-6b",
+      "displayName": "Qwen3-ASR",
+      "threads": 4,
+      "tuning": "cpu",
+      "arena": true,
+      "pinnedCores": null,
+      "family": "QWEN3_ASR",
+      "developer": false,
+      "format": "ort",
+      "loadMs": 5444,
+      "threadAffinity": {
+        "0-5": 50
+      },
+      "warmupMs": 3071,
+      "warmup": "ls05-1",
+      "decodes": [
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 2973,
+          "rtf": 0.6,
+          "wer": 0.25,
+          "text": "Or an eye of gifts and graces, showering fruits in coyned gold."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 5892,
+          "rtf": 0.5371011850501367,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject and urging the unconstitutionality of the measure."
+        }
+      ],
+      "rtfByLength": {
+        "ls05": 0.6,
+        "ls10": 0.5371011850501367,
+        "ls": 0.5566718995290424
+      },
+      "peakRssMb": 1987,
+      "baselineRssMb": 138,
+      "envBefore": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.2,
+        "plugged": true,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.3,
+        "plugged": true,
+        "screenOn": false
+      },
+      "maxThermal": 1,
+      "disturbed": null
+    },
+    {
+      "engine": "parakeet-ultra",
+      "displayName": "Parakeet Ultra",
+      "threads": 4,
+      "tuning": "cpu",
+      "arena": true,
+      "pinnedCores": null,
+      "family": "NEMO_TRANSDUCER",
+      "developer": false,
+      "format": "ort",
+      "loadMs": 4307,
+      "threadAffinity": {
+        "0-5": 50
+      },
+      "warmupMs": 835,
+      "warmup": "ls05-1",
+      "decodes": [
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 938,
+          "rtf": 0.1893037336024218,
+          "wer": 0.16666666666666666,
+          "text": "or an eye of gifts and graces, showering fruits in coined gold."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 1581,
+          "rtf": 0.14412032816773018,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure."
+        }
+      ],
+      "rtfByLength": {
+        "ls05": 0.1893037336024218,
+        "ls10": 0.14412032816773018,
+        "ls": 0.15817896389324962
+      },
+      "peakRssMb": 1415,
+      "baselineRssMb": 158,
+      "envBefore": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.2,
+        "plugged": true,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.2,
+        "plugged": true,
+        "screenOn": false
+      },
+      "maxThermal": 1,
+      "disturbed": null
+    },
+    {
+      "engine": "parakeet-tdt-110m-en",
+      "displayName": "Parakeet 110M",
+      "threads": 4,
+      "tuning": "cpu",
+      "arena": true,
+      "pinnedCores": null,
+      "family": "NEMO_TRANSDUCER",
+      "developer": false,
+      "format": "ort",
+      "loadMs": 1349,
+      "threadAffinity": {
+        "0-5": 50
+      },
+      "warmupMs": 304,
+      "warmup": "ls05-1",
+      "decodes": [
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 269,
+          "rtf": 0.054288597376387485,
+          "wer": 0.16666666666666666,
+          "text": "or an eye of gifts and graces, showering fruits in coined gold"
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 466,
+          "rtf": 0.04247948951686417,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject and urging the unconstitutionality of the measure."
+        }
+      ],
+      "rtfByLength": {
+        "ls05": 0.054288597376387485,
+        "ls10": 0.04247948951686417,
+        "ls": 0.046153846153846156
+      },
+      "peakRssMb": 407,
+      "baselineRssMb": 135,
+      "envBefore": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.2,
+        "plugged": true,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.2,
+        "plugged": true,
+        "screenOn": false
+      },
+      "maxThermal": 1,
+      "disturbed": null
+    },
+    {
+      "engine": "nemotron-3-5-streaming-1120ms",
+      "displayName": "Nemotron 3.5",
+      "threads": 4,
+      "tuning": "cpu",
+      "arena": true,
+      "pinnedCores": null,
+      "family": "STREAMING_TRANSDUCER",
+      "developer": false,
+      "format": "onnx",
+      "loadMs": 4740,
+      "threadAffinity": {
+        "0-5": 50
+      },
+      "warmupMs": 1852,
+      "warmup": "ls05-1",
+      "decodes": [
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 1722,
+          "rtf": 0.34752774974772954,
+          "wer": 0.08333333333333333,
+          "text": "Or an eye of gifts and graces, showering fruits and coined gold"
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 3357,
+          "rtf": 0.3060164083865087,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts presenting in case after case the different phases of the subject and urging the unconstitutionality of the measure"
+        }
+      ],
+      "rtfByLength": {
+        "ls05": 0.34752774974772954,
+        "ls10": 0.3060164083865087,
+        "ls": 0.31893249607535323
+      },
+      "peakRssMb": 877,
+      "baselineRssMb": 155,
+      "envBefore": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.2,
+        "plugged": true,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.2,
+        "plugged": true,
+        "screenOn": false
+      },
+      "maxThermal": 1,
+      "disturbed": null
+    },
+    {
+      "engine": "nemotron-3-5-streaming-1120ms",
+      "displayName": "Nemotron 3.5",
+      "threads": 4,
+      "tuning": "cpu",
+      "arena": true,
+      "pinnedCores": null,
+      "family": "STREAMING_TRANSDUCER",
+      "developer": false,
+      "format": "ort",
+      "loadMs": 3600,
+      "threadAffinity": {
+        "0-5": 50
+      },
+      "warmupMs": 1578,
+      "warmup": "ls05-1",
+      "decodes": [
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 1554,
+          "rtf": 0.3136226034308779,
+          "wer": 0.08333333333333333,
+          "text": "Or an eye of gifts and graces, showering fruits and coined gold"
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 3662,
+          "rtf": 0.33381950774840474,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts presenting in case after case the different phases of the subject and urging the unconstitutionality of the measure"
+        }
+      ],
+      "rtfByLength": {
+        "ls05": 0.3136226034308779,
+        "ls10": 0.33381950774840474,
+        "ls": 0.3275353218210361
+      },
+      "peakRssMb": 1445,
+      "baselineRssMb": 155,
+      "envBefore": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.1,
+        "plugged": true,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.2,
+        "plugged": true,
+        "screenOn": false
+      },
+      "maxThermal": 1,
+      "disturbed": null
+    }
+  ],
+  "probeMs": 294,
+  "probeRuns": [
+    295,
+    294,
+    294,
+    294,
+    289
+  ],
+  "probeThreads": 4,
+  "probeEnv": {
+    "thermal": 1,
+    "batteryPct": 100,
+    "batteryTempC": 36.7,
+    "plugged": true,
+    "screenOn": false
+  },
+  "finished": "20261010-183735"
+}

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Benchmark A/B dla programistów -->
+    <string name="benchmark_title">Benchmark</string>
+    <string name="benchmark_note">Zrób jedno nagranie, a potem każdy zainstalowany silnik po kolei je transkrybuje: wczytanie, transkrypcja, zwolnienie. Każdy silnik dostaje te same segmenty Silero VAD. Silniki strumieniowe dostają każdy segment w porcjach po 100 ms tak szybko, jak model je przyjmuje, a nie w czasie rzeczywistym. Nagranie zostaje w pamięci i nigdy nie jest zapisywane. Wyniki z emulatora nadają się tylko do porównywania silników między sobą.</string>
+
+    <string name="benchmark_section_take">Nagranie</string>
+    <string name="benchmark_record">Nagraj</string>
+    <string name="benchmark_stop">Zatrzymaj</string>
+    <string name="benchmark_play">Odtwórz</string>
+    <string name="benchmark_stop_playback">Zatrzymaj odtwarzanie</string>
+    <string name="benchmark_elapsed">%1$s s / %2$d s</string>
+    <string name="benchmark_level">Poziom sygnału</string>
+    <string name="benchmark_take_length">Nagranie: %1$s</string>
+    <string name="benchmark_take_length_soft_agc">Nagranie: %1$s, poziom wyrównany przez aplikację (ten telefon nie ma wbudowanej regulacji wzmocnienia mikrofonu)</string>
+    <plurals name="benchmark_no_take">
+        <item quantity="one">Nie ma jeszcze nagrania. Nagraj do %1$d sekundy mowy.</item>
+        <item quantity="few">Nie ma jeszcze nagrania. Nagraj do %1$d sekund mowy.</item>
+        <item quantity="many">Nie ma jeszcze nagrania. Nagraj do %1$d sekund mowy.</item>
+        <item quantity="other">Nie ma jeszcze nagrania. Nagraj do %1$d sekundy mowy.</item>
+    </plurals>
+
+    <string name="benchmark_section_reference">Tekst wzorcowy (opcjonalnie)</string>
+    <string name="benchmark_reference_label">Twoja wypowiedź</string>
+    <string name="benchmark_reference_hint">Wpisz swoją wypowiedź, aby uzyskać współczynnik błędów słów (WER) dla każdego silnika.</string>
+
+    <string name="benchmark_section_engines">Silniki</string>
+    <string name="benchmark_no_engines">Nie zainstalowano żadnych silników. Zainstaluj je na karcie „Silniki” (włącz „Silniki dla programistów” w Ustawieniach, aby zobaczyć kandydatów).</string>
+    <string name="benchmark_run">Uruchom benchmark</string>
+    <string name="benchmark_run_again">Uruchom ponownie</string>
+    <string name="benchmark_running">Działa %1$s (%2$d z %3$d)…</string>
+
+    <string name="benchmark_section_results">Wyniki</string>
+    <string name="benchmark_metric_load">Wczytanie %1$s</string>
+    <string name="benchmark_metric_decode">Dekodowanie %1$s</string>
+    <string name="benchmark_metric_rtf">RTF %1$s</string>
+    <string name="benchmark_metric_rss">Szczytowe RSS (próbkowane) %1$s</string>
+    <string name="benchmark_metric_wer">WER %1$s</string>
+    <string name="benchmark_empty_transcript">(nie rozpoznano mowy)</string>
+    <string name="benchmark_raw">Surowy tekst: %1$s</string>
+    <string name="benchmark_failed_load">Nie udało się wczytać: %1$s</string>
+    <string name="benchmark_failed_transcribe">Nie udało się transkrybować: %1$s</string>
+    <string name="benchmark_failed_release">Transkrybowano, ale nie udało się zwolnić: %1$s</string>
+    <string name="benchmark_copy_markdown">Kopiuj jako Markdown</string>
+    <string name="benchmark_copied">Skopiowano</string>
+
+    <!-- Powiadomienia -->
+    <string name="benchmark_error_mic">Nie udało się nagrać. Czy inna aplikacja używa mikrofonu?</string>
+    <string name="benchmark_error_empty">Nic nie zostało nagrane. Spróbuj ponownie.</string>
+    <string name="benchmark_error_playback">Nie udało się odtworzyć nagrania.</string>
+    <string name="benchmark_error_no_engines">Brak zainstalowanych silników do uruchomienia.</string>
+    <string name="benchmark_error_run">Benchmark został przerwany z powodu błędu.</string>
+
+    <!-- Dostęp do mikrofonu -->
+    <string name="benchmark_mic_title">Benchmark wymaga mikrofonu</string>
+    <string name="benchmark_mic_body">Rejestruje jedno nagranie, trzyma je tylko w pamięci i nigdy go nie zapisuje ani nie wysyła.</string>
+</resources>

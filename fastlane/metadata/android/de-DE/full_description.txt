@@ -1,0 +1,32 @@
+<p>Marmalade STT wandelt deine Sprache direkt auf deinem Smartphone in Text um. Nutze es als Spracheingabe deiner Tastatur (FUTO Keyboard, HeliBoard, FlorisBoard und andere) und in Apps, die Android nach einer Spracheingabe fragen. Deine Stimme verlässt nie das Gerät.</p>
+
+<ul>
+<li><b>Privat.</b> Die Sprache wird auf dem Smartphone erkannt. Audio wird nie gespeichert oder hochgeladen</li>
+<li><b>Offline.</b> Nach dem einmaligen Download einer Sprach-Engine funktioniert es ohne Verbindung</li>
+<li><b>Live-Text.</b> Zeigt deine Worte in Echtzeit, während du sprichst, bei den meisten Engines</li>
+<li><b>Merkt, wann du fertig bist.</b> Smart Turn, der Standard im „Jetzt sprechen“-Fenster, wartet, bis du fertig klingst, sodass dich eine Denkpause selten unterbricht</li>
+<li><b>Mehrsprachig.</b> 100 Sprachen, und die beste Engine für deine wird automatisch gewählt</li>
+<li><b>Saubere Ausgabe.</b> Füllwörter entfernt, Zahlen als Ziffern, deine eigenen Ersetzungen und gesprochene Textbausteine</li>
+<li><b>Frei und quelloffen.</b> Keine Werbung, keine Konten, keine Nutzungsanalyse</li>
+</ul>
+
+<p><b>VON GRUND AUF PRIVAT</b></p>
+<p>Keine Nutzungsanalyse, kein Tracking, keine Absturzberichte, keine Konten und kein Server von uns. Das Internet wird nur genutzt, um die Sprach-Engines herunterzuladen, die du auswählst, von GitHub, und jede Datei wird mit einem fest hinterlegten SHA-256-Hash geprüft. Die Android-Sicherung ist ausgeschaltet, also wird nichts in die Cloud kopiert.</p>
+
+<p><b>DU ENTSCHEIDEST, WANN ES STOPPT</b></p>
+<p>Im „Jetzt sprechen“-Fenster und in anderen Apps erkennt Marmalade standardmäßig mit der Technik Smart Turn v3, wann du fertig gesprochen hast. Ganz freihändig. Unterbricht es dich zu früh? Wechsle zum Stopp nach einer Pause oder lege stattdessen ein Endwort fest. Auf der Tastatur hört es zu, bis du tippst, oder es nutzt ebenfalls Smart Turn.</p>
+
+<p><b>SAUBERER TEXT</b></p>
+<p>Die optionale Bereinigung korrigiert die Großschreibung und entfernt bei Englisch außerdem Füllwörter, macht aus „new line“ und „period“ einen echten Zeilenumbruch und Punkt und schreibt Zahlen als Ziffern. Ersetzungen für Namen, die die Engine falsch erkennt, und Textbausteine für Text, den du oft tippst, funktionieren in jeder Sprache.</p>
+
+<p><b>FUNKTIONIERT MIT DEINER TASTATUR</b></p>
+<p>Schalte „Marmalade-Spracheingabe“ ein, und die Mikrofontaste deiner Tastatur öffnet eine kleine Marmalade-Sprachtastatur, die eingibt, was du sagst. Das klappt mit FUTO Keyboard, HeliBoard, FlorisBoard, AnySoftKeyboard, Unexpected Keyboard, der AOSP-Tastatur und anderen mit Spracheingabe-Taste.</p>
+
+<p><b>EINE ENGINE, DIE ZU DEINEM SMARTPHONE PASST</b></p>
+<p>Der Einrichtungsassistent empfiehlt eine Sprach-Engine für deine Sprache und für Arbeitsspeicher und Geschwindigkeit deines Smartphones, mit der Möglichkeit, andere Modelle herunterzuladen und auszuprobieren.</p>
+
+<p><b>SPRACHEN</b></p>
+<p>Schnelle Engines gibt es für Englisch, Bulgarisch, Kroatisch, Tschechisch, Dänisch, Niederländisch, Estnisch, Finnisch, Französisch, Deutsch, Griechisch, Ungarisch, Italienisch, Lettisch, Litauisch, Maltesisch, Polnisch, Portugiesisch, Rumänisch, Russisch, Slowakisch, Slowenisch, Spanisch, Schwedisch, Ukrainisch, Japanisch, Hindi, Arabisch und Vietnamesisch. Chinesisch und Koreanisch bekommen Qwen3-ASR, das leichter als Whisper ist. Andere Sprachen laufen über Whisper Large v3 Turbo, mit mehr Verzögerung.</p>
+
+<p><b>OPEN SOURCE</b></p>
+<p>Marmalade STT steht unter der MIT-Lizenz. Wenn du es unterstützen möchtest, führt Einstellungen → Unterstützung zu GitHub Sponsors; die App ist so oder so dieselbe.</p>

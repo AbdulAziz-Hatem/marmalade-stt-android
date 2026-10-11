@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Screen-reader-only text and other strings added by the accessibility pass (#68). -->
+<resources>
+    <!-- Shared -->
+    <string name="a11y_download_started">Đang tải xuống %1$s</string>
+    <string name="a11y_download_ready">%1$s đã sẵn sàng</string>
+    <string name="a11y_download_failed">Không tải xuống được %1$s</string>
+    <string name="a11y_download_paused">Đã tạm dừng tải xuống %1$s</string>
+
+    <!-- Settings, dictionary, snippets, licences, privacy -->
+    <string name="a11y_open_in_browser">Mở trong trình duyệt</string>
+    <string name="a11y_rule_deleted">Đã xóa quy tắc</string>
+    <string name="a11y_snippet_deleted">Đã xóa đoạn mẫu</string>
+    <string name="a11y_end_words_reverted">Từ kết thúc không thay đổi: hãy nhập ít nhất một từ</string>
+
+    <!-- Engines, benchmark -->
+    <string name="a11y_engine_action_named">%1$s, %2$s</string>
+    <string name="a11y_engine_download_named">Tải xuống %1$s, %2$s</string>
+    <string name="a11y_benchmark_finished">Đã hoàn tất đo điểm chuẩn</string>
+
+    <!-- Dictate, voice keyboard, speech sheet -->
+
+    <!-- Onboarding -->
+    <string name="a11y_onboarding_step_pane">%1$s: %2$s</string>
+    <string name="a11y_onboarding_recommended">Đề xuất cho điện thoại này: %1$s</string>
+
+</resources>

@@ -1,0 +1,30 @@
+From: Marmalade STT <noreply@localhost>
+Subject: [PATCH] Whisper: no per-second cap on decoded tokens (#37)
+
+Not upstream; ours. sherpa-onnx's greedy Whisper decoder stops after
+"at most 6 tokens per second" of audio. Byte-level BPE needs more than
+that for many scripts, so Whisper turbo cut sentences short: 98 of 100
+FLEURS Hindi clips (WER 69 -> 31 without the cap), 73 of 200 Japanese clips
+(CER 11.0 -> 8.1), 30 of 100 Arabic ones (WER 14.4 -> 10.3). English
+was unchanged. The only limit left is OpenAI Whisper's own sample_len,
+n_text_ctx / 2 (224 tokens).
+
+The cap is still on sherpa-onnx master as of 2026-10-02.
+---
+--- a/sherpa-onnx/csrc/offline-whisper-greedy-search-decoder.cc
++++ b/sherpa-onnx/csrc/offline-whisper-greedy-search-decoder.cc
+@@ -193,9 +193,11 @@
+     }
+   }
+ 
+-  // assume at most 6 tokens per second
+-  int32_t num_possible_tokens = num_feature_frames / 100.0 * 6;
+-  num_possible_tokens = std::min<int32_t>(num_possible_tokens, n_text_ctx / 2);
++  // Marmalade STT (#37): no per-second cap, only OpenAI Whisper's own
++  // sample_len (n_text_ctx / 2). The old "at most 6 tokens per second"
++  // truncated scripts that take many byte-level BPE tokens per word
++  // (98 of 100 FLEURS Hindi clips lost their end).
++  int32_t num_possible_tokens = n_text_ctx / 2;
+ 
+   for (int32_t i = 0; i < num_possible_tokens; ++i) {
+     if (max_token_id == eot) {

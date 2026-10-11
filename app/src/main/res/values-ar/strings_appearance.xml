@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Settings → Appearance -->
+    <string name="settings_appearance">المظهر</string>
+    <string name="settings_mode">الوضع</string>
+    <string name="settings_mode_system">النظام</string>
+    <string name="settings_mode_light">فاتح</string>
+    <string name="settings_mode_dark">داكن</string>
+    <string name="settings_color">اللون</string>
+    <string name="settings_color_system">الخلفية</string>
+    <string name="settings_color_midnight">منتصف الليل</string>
+    <string name="settings_color_forest">الغابة</string>
+    <string name="settings_color_berry">التوت</string>
+    <string name="settings_color_high_contrast">التباين العالي</string>
+</resources>

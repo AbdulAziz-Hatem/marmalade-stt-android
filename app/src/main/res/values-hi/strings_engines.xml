@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="engine_badge_recommended">इस फ़ोन के लिए सुझाया गया</string>
+    <string name="engine_info">%1$s के बारे में</string>
+    <string name="engine_show_more">और दिखाएँ</string>
+    <!-- Card size line -->
+    <string name="engine_card_size_download">%1$s डाउनलोड</string>
+    <string name="engine_card_size_on_disk">आपके फ़ोन पर %1$s</string>
+    <string name="engine_action_download_size">डाउनलोड · %1$s</string>
+    <string name="engine_dialog_close">बंद करें</string>
+    <string name="engine_progress_percent">%1$d%%</string>
+    <string name="engine_status_failed_short">डाउनलोड नहीं हो सका</string>
+    <string name="engine_status_corrupt_short">फ़ाइलें खराब हैं</string>
+
+    <!-- Other engines -->
+    <string name="engines_other">दूसरे इंजन (%1$d)</string>
+    <string name="engines_other_expanded">बड़ा किया गया</string>
+    <string name="engines_other_collapsed">छोटा किया गया</string>
+
+    <!-- Speed -->
+    <string name="engine_speed_tier_fastest">इस फ़ोन पर सबसे तेज़</string>
+    <string name="engine_speed_tier_very_fast">इस फ़ोन पर बहुत तेज़</string>
+    <string name="engine_speed_tier_fast">इस फ़ोन पर तेज़</string>
+    <string name="engine_speed_tier_moderate">इस फ़ोन पर मध्यम गति</string>
+    <string name="engine_speed_unmeasured">मापा नहीं गया</string>
+    <string name="engine_speed_word_fastest">सबसे तेज़</string>
+    <string name="engine_speed_word_very_fast">बहुत तेज़</string>
+    <string name="engine_speed_word_fast">तेज़</string>
+    <string name="engine_speed_word_moderate">मध्यम</string>
+    <string name="engine_speed_word_slow">धीमा</string>
+
+    <!-- Quality -->
+    <string name="engine_detail_quality">गुणवत्ता</string>
+    <string name="engine_quality_best">सबसे अच्छी</string>
+    <string name="engine_quality_great">बहुत अच्छी</string>
+    <string name="engine_quality_good">अच्छी</string>
+    <string name="engine_quality_fair">ठीक-ठाक</string>
+    <string name="engine_quality_basic">सामान्य</string>
+    <string name="engine_quality_not_rated">रेटिंग नहीं</string>
+    <string name="engine_quality_in_language">%1$s (%2$s)</string>
+    <string name="engine_quality_tested_in">%1$s में टेस्ट किया गया</string>
+    <string name="engine_quality_source_english">LibriSpeech, FLEURS और AMI पर अंग्रेज़ी में हमारे टेस्ट से</string>
+    <string name="engine_quality_source_fleurs">FLEURS पर %1$s में हमारे टेस्ट से</string>
+    <string name="engine_quality_source_two_sets">%1$s और %2$s पर %3$s में हमारे टेस्ट से</string>
+    <string name="engine_quality_source_none">अभी टेस्ट नहीं हुआ</string>
+
+    <!-- Languages -->
+    <plurals name="engine_languages_count">
+        <item quantity="one">%d भाषा</item>
+        <item quantity="other">%d भाषाएँ</item>
+    </plurals>
+    <string name="engine_languages_see_all">सभी %1$d देखें</string>
+    <string name="engine_languages_open">भाषाएँ दिखाएँ</string>
+
+    <!-- Details dialog -->
+    <string name="engine_detail_speed_text">%1$s। %2$s।</string>
+    <string name="engine_detail_chunk">चंक साइज़</string>
+    <string name="engine_chunk_steps">टेक्स्ट हर %1$d ms पर आता है।</string>
+
+    <!-- Engine one-line summaries (SttEngineCatalog) -->
+    <string name="engine_desc_parakeet_ultra">Moondream का पोस्ट-ट्रेन किया गया Parakeet TDT 0.6B v3: वही 25 भाषाएँ, अपने आप पहचानी जाती हैं।</string>
+    <string name="engine_desc_parakeet_110m">NVIDIA का छोटा अंग्रेज़ी मॉडल: बाकी Parakeet मॉडलों के मुकाबले बहुत छोटा, और तेज़।</string>
+    <string name="engine_desc_parakeet_ja">NVIDIA का जापानी मॉडल: जापानी के लिए सबसे सटीक, और Whisper से कहीं ज़्यादा तेज़। यह कॉमा कम लगाता है।</string>
+    <string name="engine_desc_canary_180m">NVIDIA का बहुत छोटा एन्कोडर-डिकोडर मॉडल: अंग्रेज़ी, स्पेनिश, जर्मन और फ़्रेंच। भाषा आपको चुननी होगी; यह उसे खुद नहीं पहचान सकता।</string>
+    <string name="engine_desc_nemotron_35">हिन्दी, अरबी और वियतनामी के लिए NVIDIA का स्ट्रीमिंग मॉडल: आपके बोलते-बोलते टेक्स्ट दिखता है।</string>
+    <string name="engine_desc_whisper_turbo">OpenAI Whisper large-v3-turbo, कई भाषाओं वाला। सबसे सटीक Whisper। आपके रुकने पर टेक्स्ट दिखता है।</string>
+    <string name="engine_desc_granite">IBM का अंग्रेज़ी CTC मॉडल: अंग्रेज़ी के हमारे टेस्ट में सबसे सटीक। कैपिटल अक्षर और विराम चिह्न ऐप का अपना फ़ॉर्मैटर लगाता है।</string>
+    <string name="engine_desc_qwen3">Alibaba का ऑफ़लाइन मॉडल, जिसमें एक छोटा लैंग्वेज-मॉडल डिकोडर है: 30 भाषाएँ, अपने आप पहचानी जाती हैं। आपके रुकने पर टेक्स्ट दिखता है।</string>
+    <string name="engine_desc_qwen3_users">चीनी और कोरियाई के लिए Alibaba का मॉडल, जिसमें एक छोटा लैंग्वेज-मॉडल डिकोडर है: चीनी के लिए सबसे सटीक। आपके रुकने पर टेक्स्ट दिखता है।</string>
+</resources>

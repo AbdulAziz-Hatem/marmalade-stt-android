@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Screen-reader-only text and other strings added by the accessibility pass (#68). -->
+<resources>
+    <!-- Shared -->
+    <string name="a11y_download_started">جارٍ تنزيل %1$s</string>
+    <string name="a11y_download_ready">أصبح %1$s جاهزًا</string>
+    <string name="a11y_download_failed">تعذّر تنزيل %1$s</string>
+    <string name="a11y_download_paused">تنزيل %1$s متوقف مؤقتًا</string>
+
+    <!-- Settings, dictionary, snippets, licences, privacy -->
+    <string name="a11y_open_in_browser">فتح في المتصفح</string>
+    <string name="a11y_rule_deleted">تم حذف القاعدة</string>
+    <string name="a11y_snippet_deleted">تم حذف المقتطف</string>
+    <string name="a11y_end_words_reverted">لم يتم تغيير كلمات الإنهاء: اكتب كلمة واحدة على الأقل</string>
+
+    <!-- Engines, benchmark -->
+    <string name="a11y_engine_action_named">%1$s، %2$s</string>
+    <string name="a11y_engine_download_named">تنزيل %1$s بحجم %2$s</string>
+    <string name="a11y_benchmark_finished">اكتمل قياس الأداء</string>
+
+    <!-- Dictate, voice keyboard, speech sheet -->
+
+    <!-- Onboarding -->
+    <string name="a11y_onboarding_step_pane">%1$s: %2$s</string>
+    <string name="a11y_onboarding_recommended">موصى به لهذا الهاتف: %1$s</string>
+
+</resources>

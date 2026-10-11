@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Майстер налаштування: клавіші мікрофона на клавіатурах і служба розпізнавання мовлення Android -->
+    <string name="onboarding_mic_key_title">Диктування з клавіатури</string>
+    <string name="onboarding_mic_key_body">На більшості клавіатур є клавіша мікрофона. Ось як кожна з ваших клавіатур відкриває Marmalade STT.</string>
+    <string name="onboarding_mic_key_needs_voice_keyboard">Спершу ввімкніть голосову клавіатуру Marmalade (попередній крок): її відкривають клавіші мікрофона.</string>
+    <string name="onboarding_mic_key_other_voice_title">Вимкніть інші голосові клавіатури</string>
+    <string name="onboarding_mic_key_other_voice">Також увімкнено: %1$s. Більшість клавіш мікрофона відкривають першу ввімкнену голосову клавіатуру, а попередньо встановлені Android ставить першими. Вимкніть їх у налаштуваннях клавіатури Android (на більшості телефонів: Налаштування → Система → Клавіатура → Екранна клавіатура).</string>
+    <string name="onboarding_mic_key_current">%1$s (використовується)</string>
+    <string name="onboarding_kb_first">Натисніть клавішу мікрофона. Вона відкриває першу ввімкнену голосову клавіатуру, тож залиште ввімкненим лише «Голосовий ввід Marmalade». Немає клавіші мікрофона? Пошукайте клавішу голосового вводу в налаштуваннях клавіатури або на її панелі інструментів.</string>
+    <string name="onboarding_kb_first_hidden">Натисніть клавішу мікрофона й залиште «Голосовий ввід Marmalade» єдиною ввімкненою голосовою клавіатурою. Ця клавіатура бачить Marmalade лише після того, як ви надрукуєте нею щось у цьому додатку: якщо клавіші мікрофона немає або вона не працює, введіть цією клавіатурою літеру в поле нижче. Після перезапуску телефона зробіть це знову.</string>
+    <string name="onboarding_kb_chooser">Натисніть клавішу голосового вводу й виберіть «Голосовий ввід Marmalade». Клавіатура запам’ятає вибір.</string>
+    <string name="onboarding_kb_fossify">У налаштуваннях Fossify Keyboard виберіть для параметра «Метод голосового набору» значення «Голосовий ввід Marmalade»; після цього на панелі інструментів з’явиться мікрофон. Fossify бачить Marmalade лише після того, як ви надрукуєте ним щось у цьому додатку: якщо Marmalade немає в списку або мікрофон не працює, спершу введіть за допомогою Fossify літеру в поле нижче. Після перезапуску телефона зробіть це знову.</string>
+    <string name="onboarding_kb_swiftkey">Мікрофон SwiftKey використовує власний голосовий ввід Microsoft. Якщо вимкнути «Мультимодальний голосовий ввід» (налаштування SwiftKey → Rich Input), SwiftKey запитуватиме голосовий ввід в Android, і тоді може відкриватися Marmalade STT. Ми ще не змогли це перевірити.</string>
+    <string name="onboarding_kb_own_engine">Клавіша мікрофона цієї клавіатури завжди використовує її власний голосовий ввід. Щоб натомість користуватися Marmalade, натисніть кнопку клавіатури на панелі навігації й виберіть «Голосовий ввід Marmalade».</string>
+    <string name="onboarding_kb_google_only">Клавіша мікрофона цієї клавіатури відкриває лише «Голосовий ввід Google». Щоб натомість користуватися Marmalade, натисніть кнопку клавіатури на панелі навігації й виберіть «Голосовий ввід Marmalade».</string>
+    <string name="onboarding_kb_no_mic">Ця клавіатура не має клавіші мікрофона. Щоб користуватися Marmalade, натисніть кнопку клавіатури на панелі навігації й виберіть «Голосовий ввід Marmalade».</string>
+    <string name="onboarding_kb_unknown">Спробуйте клавішу мікрофона цієї клавіатури в полі нижче. Клавіатури, у яких клавіша мікрофона перемикає на голосову клавіатуру, відкриють «Голосовий ввід Marmalade»; залиште його єдиною ввімкненою голосовою клавіатурою.</string>
+    <string name="onboarding_kb_futo">FUTO Keyboard</string>
+    <string name="onboarding_try_label">Спробуйте тут</string>
+    <string name="onboarding_try_hint">Натисніть поле, потім клавішу мікрофона на клавіатурі.</string>
+
+    <string name="onboarding_speech_title">Розпізнавання мовлення для інших додатків</string>
+    <string name="onboarding_speech_body">У деяких додатках є кнопка мікрофона, яка використовує службу розпізнавання мовлення Android. Виберіть Marmalade STT як цю службу, і вони теж розпізнаватимуть ваше мовлення на телефоні.</string>
+    <string name="onboarding_speech_on">Marmalade STT вибрано як службу розпізнавання мовлення Android</string>
+    <string name="onboarding_speech_off">Marmalade STT не вибрано як службу розпізнавання мовлення Android</string>
+    <string name="onboarding_speech_open">Відкрити налаштування</string>
+    <!-- The step's directions follow the page "Open settings" lands on (#79), with each Android release's own Settings labels. -->
+    <!-- Android 9. The Voice input row is hidden while the assistant is also the voice service (Google). -->
+    <string name="onboarding_speech_path_assist_9">У налаштуваннях відкрийте Додатки та сповіщення → Додатково → Додатки за умовчанням → Помічник і голосовий ввід → Голосовий ввід і виберіть Marmalade STT. Якщо пункту «Голосовий ввід» немає, спершу виберіть «Немає» в пункті «Додаток-помічник».</string>
+    <!-- Android 10 -->
+    <string name="onboarding_speech_path_assist_10">У налаштуваннях відкрийте Додатки та сповіщення → Додатково → Додатки за умовчанням → Помічник → Голосовий ввід і виберіть Marmalade STT. Якщо пункту «Голосовий ввід» немає, спершу виберіть «Немає» в пункті «Помічник».</string>
+    <!-- Android 11 -->
+    <string name="onboarding_speech_path_assist_11">У налаштуваннях відкрийте Додатки та сповіщення → Додатково → Додатки за умовчанням → Цифровий помічник → Голосовий ввід і виберіть Marmalade STT. Якщо пункту «Голосовий ввід» немає, спершу виберіть «Немає» в пункті «Цифровий помічник за умовчанням».</string>
+    <!-- Android 12 -->
+    <string name="onboarding_speech_path_assist">У налаштуваннях відкрийте Додатки → Додатки за умовчанням → Цифровий помічник → Голосовий ввід і виберіть Marmalade STT.</string>
+    <!-- Android 13. Voice input is under the page's Speech heading. -->
+    <string name="onboarding_speech_path_languages_input">У налаштуваннях відкрийте Система → Мова та введення → Голосовий ввід і виберіть Marmalade STT.</string>
+    <!-- Android 14 to 16. Voice input is under the page's Speech heading. -->
+    <string name="onboarding_speech_path_languages">У налаштуваннях відкрийте Система → Мови → Голосовий ввід і виберіть Marmalade STT.</string>
+    <!-- Android 16 with Language & region, and Android 17. Speech is a row of that page. -->
+    <string name="onboarding_speech_path_language_region">У налаштуваннях відкрийте Система → Мова й регіон → Мовлення → Голосовий ввід і виберіть Marmalade STT.</string>
+    <!-- No known page opens (other phone makers) -->
+    <string name="onboarding_speech_path_search">Знайдіть у налаштуваннях «Голосовий ввід», відкрийте цей пункт і виберіть Marmalade STT.</string>
+    <string name="onboarding_speech_elsewhere">На деяких телефонах цей пункт розташований деінде: знайдіть у налаштуваннях «Голосовий ввід».</string>
+    <string name="onboarding_speech_force_stop">Якщо примусово зупинити Marmalade STT, Android перемкнеться на іншу службу. Тоді знову виберіть Marmalade.</string>
+
+    <string name="onboarding_summary_other_voice">Інші голосові клавіатури</string>
+    <string name="onboarding_summary_other_voice_on">Досі ввімкнено: %1$s</string>
+    <string name="onboarding_summary_speech">Служба розпізнавання мовлення</string>
+    <string name="onboarding_summary_speech_on">Marmalade STT</string>
+    <string name="onboarding_summary_speech_off">Інший додаток або не вибрано</string>
+</resources>

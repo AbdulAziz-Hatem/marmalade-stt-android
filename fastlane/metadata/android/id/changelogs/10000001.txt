@@ -1,0 +1,6 @@
+Marmalade STT 1.0.0, rilis pertama.
+- Ucapan ke teks privat, offline: keyboard suara untuk FUTO, HeliBoard, FlorisBoard, dll., pop-up “Bicaralah sekarang” untuk aplikasi, dan layanan pengenalan ucapan Android.
+- Mesin sesuai ponsel dan bahasa Anda, plus pilihan khusus bahasa Jepang, Tionghoa, Korea, Hindi, Arab, dan Vietnam.
+- Berhenti dengan ketukan, jeda, kata penutup, atau Smart Turn.
+- Pembersihan teks, penggantian, dan cuplikan.
+- Antarmuka dalam 21 bahasa. Tanpa iklan, akun, atau analitik.

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Setup guide: the keyboards' mic keys and Android's speech recognition service (#61).
+         Other apps' labels are theirs (Fossify; SwiftKey kept in English); Android's are AOSP Settings' Hindi. -->
+    <string name="onboarding_mic_key_title">अपने कीबोर्ड से बोलकर लिखें</string>
+    <string name="onboarding_mic_key_body">ज़्यादातर कीबोर्ड में माइक बटन होता है। यहाँ देखें कि आपका हर कीबोर्ड Marmalade STT तक कैसे पहुँचता है।</string>
+    <string name="onboarding_mic_key_needs_voice_keyboard">पहले Marmalade वॉइस कीबोर्ड चालू करें (पिछला चरण): माइक बटन इसी को खोलते हैं।</string>
+    <string name="onboarding_mic_key_other_voice_title">दूसरे वॉइस कीबोर्ड बंद करें</string>
+    <!-- %1$s: the other voice keyboards' names, quoted -->
+    <string name="onboarding_mic_key_other_voice">ये भी चालू हैं: %1$s। ज़्यादातर माइक बटन चालू वॉइस कीबोर्ड में से पहले वाले को खोलते हैं, और Android पहले से इंस्टॉल कीबोर्ड को सबसे आगे रखता है। इन्हें Android की कीबोर्ड सेटिंग में बंद करें (ज़्यादातर फ़ोन पर सेटिंग → सिस्टम → कीबोर्ड → ऑन-स्क्रीन कीबोर्ड)।</string>
+    <string name="onboarding_mic_key_current">%1$s (इस्तेमाल में)</string>
+    <string name="onboarding_kb_first">इसके माइक बटन पर टैप करें। यह चालू वॉइस कीबोर्ड में से पहले वाले को खोलता है, इसलिए सिर्फ़ “Marmalade वॉइस टाइपिंग” को चालू रखें। माइक बटन नहीं है? इसकी सेटिंग या टूलबार में वॉइस इनपुट बटन देखें।</string>
+    <string name="onboarding_kb_first_hidden">इसके माइक बटन पर टैप करें, और चालू वॉइस कीबोर्ड में सिर्फ़ “Marmalade वॉइस टाइपिंग” रखें। यह कीबोर्ड Marmalade को तभी देख पाता है, जब आपने इससे इस ऐप में टाइप किया हो: अगर माइक बटन नहीं दिखता या कुछ नहीं करता, तो इस कीबोर्ड से नीचे वाले बॉक्स में कोई अक्षर टाइप करें। फ़ोन रीस्टार्ट करने के बाद, यह फिर से करें।</string>
+    <string name="onboarding_kb_chooser">इसके वॉइस बटन पर टैप करें और “Marmalade वॉइस टाइपिंग” चुनें। यह आपकी पसंद याद रखता है।</string>
+    <string name="onboarding_kb_fossify">Fossify Keyboard की सेटिंग में “वॉयस टाइपिंग विधि” को “Marmalade वॉइस टाइपिंग” पर सेट करें; इसके बाद इसके टूलबार में माइक दिखेगा। Fossify, Marmalade को तभी देख पाता है, जब आपने Fossify से इस ऐप में टाइप किया हो: अगर Marmalade सूची में नहीं है, या माइक कुछ नहीं करता, तो पहले Fossify से नीचे वाले बॉक्स में कोई अक्षर टाइप करें। फ़ोन रीस्टार्ट करने के बाद, यह फिर से करें।</string>
+    <string name="onboarding_kb_swiftkey">SwiftKey का माइक Microsoft की अपनी वॉइस टाइपिंग इस्तेमाल करता है। “Multi-modal voice typing” बंद होने पर (SwiftKey की सेटिंग → “Rich input”), यह इसके बजाय Android से स्पीच इनपुट माँगता है, जिससे Marmalade STT खुल सकता है। हम अभी तक इसे टेस्ट नहीं कर पाए हैं।</string>
+    <string name="onboarding_kb_own_engine">इसका माइक बटन हमेशा अपनी वॉइस टाइपिंग इस्तेमाल करता है। इसके बजाय Marmalade इस्तेमाल करने के लिए, नेविगेशन बार में कीबोर्ड बटन पर टैप करें और “Marmalade वॉइस टाइपिंग” चुनें।</string>
+    <string name="onboarding_kb_google_only">इसका माइक बटन सिर्फ़ Google वॉइस टाइपिंग खोलता है। इसके बजाय Marmalade इस्तेमाल करने के लिए, नेविगेशन बार में कीबोर्ड बटन पर टैप करें और “Marmalade वॉइस टाइपिंग” चुनें।</string>
+    <string name="onboarding_kb_no_mic">इसमें माइक बटन नहीं है। Marmalade इस्तेमाल करने के लिए, नेविगेशन बार में कीबोर्ड बटन पर टैप करें और “Marmalade वॉइस टाइपिंग” चुनें।</string>
+    <string name="onboarding_kb_unknown">नीचे वाले बॉक्स में इसका माइक बटन आज़माएँ। जिन कीबोर्ड का माइक बटन किसी वॉइस कीबोर्ड पर स्विच करता है, वे “Marmalade वॉइस टाइपिंग” खोलते हैं; चालू वॉइस कीबोर्ड में सिर्फ़ इसे रखें।</string>
+    <string name="onboarding_kb_futo">FUTO Keyboard</string>
+    <string name="onboarding_try_label">यहाँ आज़माएँ</string>
+    <string name="onboarding_try_hint">बॉक्स पर टैप करें, फिर अपने कीबोर्ड के माइक बटन पर।</string>
+
+    <string name="onboarding_speech_title">दूसरे ऐप्स के लिए स्पीच पहचान</string>
+    <string name="onboarding_speech_body">कुछ ऐप्स में ऐसा माइक बटन होता है, जो Android की स्पीच पहचान सेवा इस्तेमाल करता है। Marmalade STT को वह सेवा चुनें, तो उन ऐप्स में भी स्पीच की पहचान आपके फ़ोन पर ही होगी।</string>
+    <string name="onboarding_speech_on">Marmalade STT, Android की स्पीच पहचान सेवा है</string>
+    <string name="onboarding_speech_off">Marmalade STT, Android की स्पीच पहचान सेवा नहीं है</string>
+    <string name="onboarding_speech_open">सेटिंग खोलें</string>
+    <!-- The step's directions follow the page "Open settings" lands on (#79), with each Android release's own Settings labels. -->
+    <!-- Android 9. The Voice input row is hidden while the assistant is also the voice service (Google). -->
+    <string name="onboarding_speech_path_assist_9">सेटिंग में ऐप्लिकेशन और सूचनाएं → बेहतर सेटिंग → डिफ़ॉल्ट ऐप्लिकेशन → सहायक और बोलकर निर्देश देना → बोलकर फ़ोन को निर्देश खोलें, और Marmalade STT चुनें। अगर “बोलकर फ़ोन को निर्देश” नहीं दिखता, तो पहले “सहायक ऐप्लिकेशन” को “कोई नहीं” पर सेट करें।</string>
+    <!-- Android 10 -->
+    <string name="onboarding_speech_path_assist_10">सेटिंग में ऐप्लिकेशन और सूचनाएं → बेहतर सेटिंग → डिफ़ॉल्ट ऐप्लिकेशन → सहायक ऐप → बोलकर फ़ोन को निर्देश खोलें, और Marmalade STT चुनें। अगर “बोलकर फ़ोन को निर्देश” नहीं दिखता, तो पहले “सहायक ऐप्लिकेशन” को “कोई नहीं” पर सेट करें।</string>
+    <!-- Android 11 -->
+    <string name="onboarding_speech_path_assist_11">सेटिंग में ऐप्लिकेशन और सूचनाएं → बेहतर सेटिंग → डिफ़ॉल्ट ऐप्लिकेशन → डिजिटल असिस्टेंट ऐप्लिकेशन → बोलकर फ़ोन को निर्देश खोलें, और Marmalade STT चुनें। अगर “बोलकर फ़ोन को निर्देश” नहीं दिखता, तो पहले “डिफ़ॉल्ट डिजिटल असिस्टेंट ऐप” को “कोई नहीं” पर सेट करें।</string>
+    <!-- Android 12 -->
+    <string name="onboarding_speech_path_assist">सेटिंग में ऐप्लिकेशन → डिफ़ॉल्ट ऐप्लिकेशन → डिजिटल असिस्टेंट ऐप्लिकेशन → बोलकर फ़ोन को निर्देश खोलें, और Marmalade STT चुनें।</string>
+    <!-- Android 13. Voice input is under the page's Speech heading. -->
+    <string name="onboarding_speech_path_languages_input">सेटिंग में सिस्टम → भाषाएं और इनपुट → बोलकर फ़ोन को निर्देश खोलें, और Marmalade STT चुनें।</string>
+    <!-- Android 14 to 16. Voice input is under the page's Speech heading. -->
+    <string name="onboarding_speech_path_languages">सेटिंग में सिस्टम → भाषाएं → फ़ोन को बोलकर निर्देश देने से जुड़ी सेटिंग खोलें, और Marmalade STT चुनें।</string>
+    <!-- Android 16 with Language & region, and Android 17. Speech is a row of that page. -->
+    <string name="onboarding_speech_path_language_region">सेटिंग में सिस्टम → भाषा और देश/इलाका → बोली → फ़ोन को बोलकर निर्देश देने से जुड़ी सेटिंग खोलें, और Marmalade STT चुनें।</string>
+    <!-- No known page opens (other phone makers) -->
+    <string name="onboarding_speech_path_search">सेटिंग में “बोलकर निर्देश” खोजें, उसे खोलें, और Marmalade STT चुनें।</string>
+    <string name="onboarding_speech_elsewhere">कुछ फ़ोन में यह कहीं और होता है: सेटिंग में “बोलकर निर्देश” खोजें।</string>
+    <string name="onboarding_speech_force_stop">अगर आप Marmalade STT को ज़बरदस्ती रोकते हैं, तो Android किसी दूसरी सेवा पर चला जाता है। तब Marmalade को फिर से चुनें।</string>
+
+    <string name="onboarding_summary_other_voice">दूसरे वॉइस कीबोर्ड</string>
+    <!-- %1$s: their names, quoted -->
+    <string name="onboarding_summary_other_voice_on">अब भी चालू: %1$s</string>
+    <string name="onboarding_summary_speech">स्पीच पहचान सेवा</string>
+    <string name="onboarding_summary_speech_on">Marmalade STT</string>
+    <string name="onboarding_summary_speech_off">कोई दूसरा ऐप या कोई नहीं</string>
+</resources>

@@ -1,0 +1,6 @@
+Marmalade STT 1.0.0, pierwsze wydanie.
+- Prywatne dyktowanie offline: klawiatura głosowa dla FUTO, HeliBoard, FlorisBoard i innych, okno „Mów teraz” dla aplikacji i usługa rozpoznawania mowy Androida.
+- Silniki dobrane do telefonu i języka, z osobnymi dla japońskiego, chińskiego, koreańskiego, hindi, arabskiego i wietnamskiego.
+- Zatrzymanie kliknięciem, pauzą, słowem końcowym lub Smart Turn.
+- Porządkowanie tekstu, zamiany i szablony.
+- Interfejs w 21 językach. Bez reklam, kont i analityki.

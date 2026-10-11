@@ -1,0 +1,443 @@
+# Raw dictation outputs of the #14 host benchmark (docs/benchmarks/2026-09-host-wer.md), app pipeline, 0.4 s pre-roll.
+# Source: asr-bench results/<engine>/dictation.jsonl. Columns: engine, id, reference, hypothesis. Synthetic speech (Kitten TTS).
+engine	id	ref	hyp
+distil-small-en	d01	Call Siobhan Nakamura-Okafor tomorrow at 9:30 AM.	Call Shaven Nakamura Akifur tomorrow at 9.30 a.m.
+distil-small-en	d02	Send the invoice to maria.lopez@example.com by Friday.	Send the invoice to Maria dot Lopez at example dot com by Friday.
+distil-small-en	d03	The meeting moved to March 14th, 2027.	The meeting moved to March 14th, 2027.
+distil-small-en	d04	Open the file quarterly_report_v2.pdf and check page 17.	Open the file quarterly underscore report underscore v2.pedf and check page 17.
+distil-small-en	d05	My phone number is 555-0142.	My phone number is 555, Zen 142.
+distil-small-en	d06	The total came to $1,249.99 including tax.	The total came to $8249.99, including tax.
+distil-small-en	d07	Remind me to pick up Dr. Oyelaran at 4:15 PM.	Remind me to pick up Dr. Oileron at 4.15 p.m.
+distil-small-en	d08	Our conversion rate went up 12.5% this quarter.	Our conversion rate went up 12.5% this quarter.
+distil-small-en	d09	Push the branch feature/login-fix to origin.	Push the branch feature slash login dash fix to origin.
+distil-small-en	d10	Tell Krzysztof that the package shipped on June 3rd.	Tell Christoff that the package shipped on June 3rd.
+distil-small-en	d11	The flight leaves from gate B22 at 6:45 in the morning.	The flight leaves from Gate B22 at 645 in the morning.
+distil-small-en	d12	Rename main.kt to SpeechEngine.kt before the review.	Rename main docquetee to speech engine docquetee before the review.
+distil-small-en	d13	Email the draft to jean-luc.moreau@example.fr and cc Anneliese.	Email the draft to Gene Luke.morau at example dot f.f.r.nc. analysts.
+distil-small-en	d14	We need 3 boxes of screws, 25 millimeters long.	We need three boxes of screws, 25 millimeters long.
+distil-small-en	d15	Visit www.marmalade-app.org/help for the setup guide.	Visit W-W-W-W-D- Marmalade-app-app-app-a-org slash help for the setup guide.
+distil-small-en	d16	Grandma Rosalind turns 90 on the 2nd of October.	Grandma Rosalind turns 90 on the second of October.
+distil-small-en	d17	Set a timer for 20 minutes.	Set a timer for 20 minutes.
+distil-small-en	d18	The address is 742 Evergreen Terrace, Springfield.	The address is 742 Evergreen Terrace, Springfield.
+distil-small-en	d19	Version 1.13.8 fixed the crash on Android 15.	Version 1.13.8 Fix the Crash on Android 15.
+distil-small-en	d20	Ask Nguyen Thi Minh Khai whether the lab opens at 8.	Ask Nuyen Thai Min-Kai whether the lab opens at 8.
+distil-small-en	d21	The recipe needs 2 cups of flour and 1/2 teaspoon of salt.	The recipe needs two cups of flour and half a teaspoon of salt.
+distil-small-en	d22	Book a table for 4 at Ristorante Da Vittorio on Saturday.	Look a table for four at Risterante de Vatorio on Saturday.
+distil-small-en	d23	Our team hit 1 million downloads in 2026.	Our team hit 1 million downloads in 2026.
+distil-small-en	d24	Move the photos from DCIM/Camera to the backup drive.	Move the photos from DCIM slash camera to the backup drive.
+distil-small-en	d25	Pay Aoife €35 for the concert tickets.	
+distil-small-en	d26	The temperature dropped to -4 °C overnight.	the temperature dropped to minus 4 degrees Celsius overnight.
+distil-small-en	d27	Text Bartholomew: running 10 minutes late, sorry!	Text Bartholomew running 10 minutes late, sorry.
+distil-small-en	d28	Check the logs in /var/log/syslog for errors.	Check the logs and slash var slash log slash log slash sis log for errors.
+distil-small-en	d29	Order number 48213 has not arrived yet.	Order number 48213 has not arrived yet.
+distil-small-en	d30	Schedule the dentist for Tuesday, April 7th at 2 PM.	Schedule the dentist for Tuesday April 7th at 2 p.m.
+distil-small-en	d31	Thanks, Chidinma! I'll send the slides tonight.	Thanks Chidinma. I'll send the slides tonight.
+distil-small-en	d32	The API returns HTTP 404 when the token expires.	PI returns HTT 404 when the token expires.
+distil-small-en	d33	Buy milk, eggs, and 2 loaves of sourdough.	by milk, eggs, and two loaves of sourdough.
+distil-small-en	d34	Björn's birthday party starts at 7 PM sharp.	Bourn's birthday party starts at 7 p.m. Sharp.
+distil-small-en	d35	Save it as notes_2026-09-25.txt in Documents.	Save it as Notes underscore 2026-09-25.xt25.xtxT in documents.
+distil-small-en	d36	Our rent increased from $1,800 to $1,950 a month.	are rent increased from $1,800 to $1950 a month.
+distil-small-en	d37	Meet Priyanka and Rahul at the Starbucks on 5th Avenue.	Priyanka and Raul at the Starbucks on 5th Avenue.
+distil-small-en	d38	Run pnpm install, then restart the dev server.	
+distil-small-en	d39	The report is due in 3 weeks, on the 15th.	The report is due in three weeks on the 15th.
+distil-small-en	d40	Forward this to support@example.org with the subject "voice input bug".	Forward this to support at example.org with the subject voice input buck.
+whisper-tiny-en	d01	Call Siobhan Nakamura-Okafor tomorrow at 9:30 AM.	Paul Siobhan, Nakamura, Akifur, tomorrow at 9.30 am.
+whisper-tiny-en	d02	Send the invoice to maria.lopez@example.com by Friday.	send the invoice to Maria. Lopez at example.com by Friday.
+whisper-tiny-en	d03	The meeting moved to March 14th, 2027.	The meeting moved to March 14, 2027.
+whisper-tiny-en	d04	Open the file quarterly_report_v2.pdf and check page 17.	Open the file quarterly underscore report underscore v2.pdf and check page 17.
+whisper-tiny-en	d05	My phone number is 555-0142.	My phone number is 555-ZIN142.
+whisper-tiny-en	d06	The total came to $1,249.99 including tax.	The total came to $249.99, including tax.
+whisper-tiny-en	d07	Remind me to pick up Dr. Oyelaran at 4:15 PM.	remind me to pick up Dr. Euleran at 4.15pm.
+whisper-tiny-en	d08	Our conversion rate went up 12.5% this quarter.	Our conversion rate went up 12.5% this quarter.
+whisper-tiny-en	d09	Push the branch feature/login-fix to origin.	Push the branch feature /loggin-fix to origin.
+whisper-tiny-en	d10	Tell Krzysztof that the package shipped on June 3rd.	Helker stuff that the package shipped on June 3.
+whisper-tiny-en	d11	The flight leaves from gate B22 at 6:45 in the morning.	The flight leaves from Gate B22 at 645 in the morning.
+whisper-tiny-en	d12	Rename main.kt to SpeechEngine.kt before the review.	Rename main.kt to speech engine.kt before the review.
+whisper-tiny-en	d13	Email the draft to jean-luc.moreau@example.fr and cc Anneliese.	email the draft to jean luke.morrow.
+whisper-tiny-en	d14	We need 3 boxes of screws, 25 millimeters long.	We need three boxes of screws, 25 millimeters long.
+whisper-tiny-en	d15	Visit www.marmalade-app.org/help for the setup guide.	Visit www.marmalade-app.org/help for the setup guide.
+whisper-tiny-en	d16	Grandma Rosalind turns 90 on the 2nd of October.	Grandma Rosalind turns 90 on the 2nd of October.
+whisper-tiny-en	d17	Set a timer for 20 minutes.	Set a timer for 20 minutes.
+whisper-tiny-en	d18	The address is 742 Evergreen Terrace, Springfield.	The address is 742 Evergreen Terrace. Springfield.
+whisper-tiny-en	d19	Version 1.13.8 fixed the crash on Android 15.	Version 1.13.8 fixed the crash on Android 15.
+whisper-tiny-en	d20	Ask Nguyen Thi Minh Khai whether the lab opens at 8.	Ask New Enthi Min Kai, whether the lab opens at 8.
+whisper-tiny-en	d21	The recipe needs 2 cups of flour and 1/2 teaspoon of salt.	The recipe needs two cups of flour and half a teaspoon of salt.
+whisper-tiny-en	d22	Book a table for 4 at Ristorante Da Vittorio on Saturday.	a table for four at Risturante, D. Vittorio on Saturday.
+whisper-tiny-en	d23	Our team hit 1 million downloads in 2026.	Our team hit 1 million downloads in 2026.
+whisper-tiny-en	d24	Move the photos from DCIM/Camera to the backup drive.	Move the photos from DCIM/camera to the backup drive.
+whisper-tiny-en	d25	Pay Aoife €35 for the concert tickets.	EFA 35 Euros for the concert tickets.
+whisper-tiny-en	d26	The temperature dropped to -4 °C overnight.	The temperature drop to minus 4 degrees Celsius overnight.
+whisper-tiny-en	d27	Text Bartholomew: running 10 minutes late, sorry!	Text Birtholamu, running 10 minutes late, sorry.
+whisper-tiny-en	d28	Check the logs in /var/log/syslog for errors.	Check the logs in /var/log/sislog for errors.
+whisper-tiny-en	d29	Order number 48213 has not arrived yet.	Order number 482 13 has not arrived yet.
+whisper-tiny-en	d30	Schedule the dentist for Tuesday, April 7th at 2 PM.	Schedule the dentist for Tuesday, April 7 at 2pm.
+whisper-tiny-en	d31	Thanks, Chidinma! I'll send the slides tonight.	Thanks, shouldn'tma. I'll send the slides tonight.
+whisper-tiny-en	d32	The API returns HTTP 404 when the token expires.	P.I. returns HTTP 404 when the token expires.
+whisper-tiny-en	d33	Buy milk, eggs, and 2 loaves of sourdough.	by milk, eggs and two loaves of sourdough.
+whisper-tiny-en	d34	Björn's birthday party starts at 7 PM sharp.	Bjorn's birthday party starts at 7pm sharp.
+whisper-tiny-en	d35	Save it as notes_2026-09-25.txt in Documents.	Save it as Notes_2026-09-25.txt in Documents.
+whisper-tiny-en	d36	Our rent increased from $1,800 to $1,950 a month.	Our rent increased from $1,800 to $19,50 a month.
+whisper-tiny-en	d37	Meet Priyanka and Rahul at the Starbucks on 5th Avenue.	Priyanka and Rahul at the Starbucks on 5th Avenue.
+whisper-tiny-en	d38	Run pnpm install, then restart the dev server.	Run PNPM install, then restart the Dev Server.
+whisper-tiny-en	d39	The report is due in 3 weeks, on the 15th.	The report is due in three weeks on the 15th.
+whisper-tiny-en	d40	Forward this to support@example.org with the subject "voice input bug".	forward this to support example dot org with the subject voice input book
+whisper-base-en	d01	Call Siobhan Nakamura-Okafor tomorrow at 9:30 AM.	Paul Chavon, Nakamura Oka for tomorrow at 9.30am.
+whisper-base-en	d02	Send the invoice to maria.lopez@example.com by Friday.	Send the invoice to maria.lopez at example.com by Friday.
+whisper-base-en	d03	The meeting moved to March 14th, 2027.	The meeting moved to March 14, 2027.
+whisper-base-en	d04	Open the file quarterly_report_v2.pdf and check page 17.	Open the file quarterly_report_v2.pdf and check page 17.
+whisper-base-en	d05	My phone number is 555-0142.	My phone number is 555-ZN142.
+whisper-base-en	d06	The total came to $1,249.99 including tax.	The total came to $8,249.99 including tax.
+whisper-base-en	d07	Remind me to pick up Dr. Oyelaran at 4:15 PM.	remind me to pick up Dr. Oilerin at 4.15pm.
+whisper-base-en	d08	Our conversion rate went up 12.5% this quarter.	Our conversion rate went up 12.5% this quarter.
+whisper-base-en	d09	Push the branch feature/login-fix to origin.	Push the branch feature / log in dash fix to origin.
+whisper-base-en	d10	Tell Krzysztof that the package shipped on June 3rd.	Tell Christoph that the package shipped on June 3rd.
+whisper-base-en	d11	The flight leaves from gate B22 at 6:45 in the morning.	The flight leaves from Gate B-22 at 6.45 in the morning.
+whisper-base-en	d12	Rename main.kt to SpeechEngine.kt before the review.	Rename main.kt to speechengine.kt before the review.
+whisper-base-en	d13	Email the draft to jean-luc.moreau@example.fr and cc Anneliese.	email the draft to gene luke.morow at example.frnccanilis.
+whisper-base-en	d14	We need 3 boxes of screws, 25 millimeters long.	We need three boxes of screws, 25 millimeters long. (buzzer buzzing)
+whisper-base-en	d15	Visit www.marmalade-app.org/help for the setup guide.	Visit www.marmalade-app.org/help for the setup guide.
+whisper-base-en	d16	Grandma Rosalind turns 90 on the 2nd of October.	Grandma Rosalind turns 90 on the 2nd of October.
+whisper-base-en	d17	Set a timer for 20 minutes.	Set a timer for 20 minutes.
+whisper-base-en	d18	The address is 742 Evergreen Terrace, Springfield.	The address is 742 Evergreen Terrace, Springfield.
+whisper-base-en	d19	Version 1.13.8 fixed the crash on Android 15.	Version 1.13.8 fix the crash on Android 15.
+whisper-base-en	d20	Ask Nguyen Thi Minh Khai whether the lab opens at 8.	Ask Nuyin Thai Minh Kai whether the lab opens at 8.
+whisper-base-en	d21	The recipe needs 2 cups of flour and 1/2 teaspoon of salt.	The recipe needs two cups of flour and half a teaspoon of salt.
+whisper-base-en	d22	Book a table for 4 at Ristorante Da Vittorio on Saturday.	a table for four at Risturante de Vittorio on Saturday.
+whisper-base-en	d23	Our team hit 1 million downloads in 2026.	Our team hit 1 million downloads in 2026. (buzzer buzzes)
+whisper-base-en	d24	Move the photos from DCIM/Camera to the backup drive.	Move the photos from DCIM/camera to the backup drive.
+whisper-base-en	d25	Pay Aoife €35 for the concert tickets.	IFA 35 Euros for the concert tickets.
+whisper-base-en	d26	The temperature dropped to -4 °C overnight.	The temperature dropped to -4 degrees Celsius overnight.
+whisper-base-en	d27	Text Bartholomew: running 10 minutes late, sorry!	Text birth olemew, running 10 minutes late, sorry.
+whisper-base-en	d28	Check the logs in /var/log/syslog for errors.	Check the logs in /var/log/slash/scyslog for errors.
+whisper-base-en	d29	Order number 48213 has not arrived yet.	Order number 48213 has not arrived yet.
+whisper-base-en	d30	Schedule the dentist for Tuesday, April 7th at 2 PM.	Schedule the dentist for Tuesday, April 7th at 2pm.
+whisper-base-en	d31	Thanks, Chidinma! I'll send the slides tonight.	Thanks, Chitinma. I'll send the slides tonight.
+whisper-base-en	d32	The API returns HTTP 404 when the token expires.	P.I. returns HTTP 404 when the token expires.
+whisper-base-en	d33	Buy milk, eggs, and 2 loaves of sourdough.	milk, eggs and two loaves of sourdough.
+whisper-base-en	d34	Björn's birthday party starts at 7 PM sharp.	Bjorn's birthday party starts at 7pm sharp.
+whisper-base-en	d35	Save it as notes_2026-09-25.txt in Documents.	Save it as notes underscore 2026-09-25.txt in documents.
+whisper-base-en	d36	Our rent increased from $1,800 to $1,950 a month.	Our rent increased from $1,800 to $1,950 a month.
+whisper-base-en	d37	Meet Priyanka and Rahul at the Starbucks on 5th Avenue.	Priyanka and Rahul at the Starbucks on 5th Avenue.
+whisper-base-en	d38	Run pnpm install, then restart the dev server.	Run pnpm install, then restart the dev server.
+whisper-base-en	d39	The report is due in 3 weeks, on the 15th.	The report is due in three weeks on the 15th.
+whisper-base-en	d40	Forward this to support@example.org with the subject "voice input bug".	Forward this to support@example.org with the subject voice input buck.
+whisper-small-en	d01	Call Siobhan Nakamura-Okafor tomorrow at 9:30 AM.	Call Siobhan Nakamura-Akafor tomorrow at 9.30am.
+whisper-small-en	d02	Send the invoice to maria.lopez@example.com by Friday.	Send the invoice to Maria.Lopez@example.com by Friday.
+whisper-small-en	d03	The meeting moved to March 14th, 2027.	The meeting moved to March 14, 2027.
+whisper-small-en	d04	Open the file quarterly_report_v2.pdf and check page 17.	Open the file quarterly_report_v2.pdf and check page 17.
+whisper-small-en	d05	My phone number is 555-0142.	My phone number is 555-ZIN142.
+whisper-small-en	d06	The total came to $1,249.99 including tax.	The total came to $8,249.99, including tax.
+whisper-small-en	d07	Remind me to pick up Dr. Oyelaran at 4:15 PM.	Remind me to pick up Dr. Oilerin at 4.15 p.m.
+whisper-small-en	d08	Our conversion rate went up 12.5% this quarter.	Our conversion rate went up 12.5% this quarter.
+whisper-small-en	d09	Push the branch feature/login-fix to origin.	Push the branch feature /login-fix to origin.
+whisper-small-en	d10	Tell Krzysztof that the package shipped on June 3rd.	Tell Kristoff that the package shipped on June 3rd.
+whisper-small-en	d11	The flight leaves from gate B22 at 6:45 in the morning.	The flight leaves from gate B-22 at 6.45 in the morning.
+whisper-small-en	d12	Rename main.kt to SpeechEngine.kt before the review.	Rename main.kt to speech-engine.kt before the review.
+whisper-small-en	d13	Email the draft to jean-luc.moreau@example.fr and cc Anneliese.	Email the draft to geneluke.morow@example.frnccanalyst.
+whisper-small-en	d14	We need 3 boxes of screws, 25 millimeters long.	We need three boxes of screws, 25 millimeters long.
+whisper-small-en	d15	Visit www.marmalade-app.org/help for the setup guide.	Visit www.marmalade-app.org/help for the setup guide.
+whisper-small-en	d16	Grandma Rosalind turns 90 on the 2nd of October.	Grandma Rosalind turns 90 on the 2nd of October.
+whisper-small-en	d17	Set a timer for 20 minutes.	Set a timer for 20 minutes.
+whisper-small-en	d18	The address is 742 Evergreen Terrace, Springfield.	The address is 742 Evergreen Terrace, Springfield.
+whisper-small-en	d19	Version 1.13.8 fixed the crash on Android 15.	Version 1.13.8 fixed the crash on Android 15.
+whisper-small-en	d20	Ask Nguyen Thi Minh Khai whether the lab opens at 8.	Ask Nguyen Thay Minh Khai whether the lab opens at 8.
+whisper-small-en	d21	The recipe needs 2 cups of flour and 1/2 teaspoon of salt.	The recipe needs 2 cups of flour and half a teaspoon of salt.
+whisper-small-en	d22	Book a table for 4 at Ristorante Da Vittorio on Saturday.	Work a table for four at Ristorante de Vittorio on Saturday.
+whisper-small-en	d23	Our team hit 1 million downloads in 2026.	Our team hit 1 million downloads in 2026.
+whisper-small-en	d24	Move the photos from DCIM/Camera to the backup drive.	Move the photos from DCI-M/camera to the backup drive.
+whisper-small-en	d25	Pay Aoife €35 for the concert tickets.	IFA 35 euros for the concert tickets.
+whisper-small-en	d26	The temperature dropped to -4 °C overnight.	the temperature dropped to minus 4 degrees Celsius overnight.
+whisper-small-en	d27	Text Bartholomew: running 10 minutes late, sorry!	Text Bartholomew, running 10 minutes late. Sorry.
+whisper-small-en	d28	Check the logs in /var/log/syslog for errors.	Check the logs in /var/log/cyslog for errors.
+whisper-small-en	d29	Order number 48213 has not arrived yet.	Order number 48213 has not arrived yet.
+whisper-small-en	d30	Schedule the dentist for Tuesday, April 7th at 2 PM.	Schedule the dentist for Tuesday, April 7 at 2 p.m.
+whisper-small-en	d31	Thanks, Chidinma! I'll send the slides tonight.	Thanks, Chidinma. I'll send the slides tonight.
+whisper-small-en	d32	The API returns HTTP 404 when the token expires.	The PPI returns HTTP 404 when the token expires.
+whisper-small-en	d33	Buy milk, eggs, and 2 loaves of sourdough.	by milk, eggs, and two loaves of sourdough.
+whisper-small-en	d34	Björn's birthday party starts at 7 PM sharp.	Bjorn's birthday party starts at 7 p.m. sharp.
+whisper-small-en	d35	Save it as notes_2026-09-25.txt in Documents.	Save it as notes_2026-09-25.txt in documents.
+whisper-small-en	d36	Our rent increased from $1,800 to $1,950 a month.	Our rent increased from $1,800 to $1,950 a month.
+whisper-small-en	d37	Meet Priyanka and Rahul at the Starbucks on 5th Avenue.	Priyanka and Rahul at the Starbucks on Fifth Avenue.
+whisper-small-en	d38	Run pnpm install, then restart the dev server.	Run pnpm install, then restart the dev server.
+whisper-small-en	d39	The report is due in 3 weeks, on the 15th.	The report is due in three weeks, on the 15th.
+whisper-small-en	d40	Forward this to support@example.org with the subject "voice input bug".	forward this to supported example.org with the subject voice input buck.
+whisper-turbo	d01	Call Siobhan Nakamura-Okafor tomorrow at 9:30 AM.	Paul Shavon Nakamura Okkifer tomorrow at 9:30 a.m.
+whisper-turbo	d02	Send the invoice to maria.lopez@example.com by Friday.	Send the invoice to Maria.Lopez at example.com by Friday.
+whisper-turbo	d03	The meeting moved to March 14th, 2027.	The meeting moved to March 14, 2027.
+whisper-turbo	d04	Open the file quarterly_report_v2.pdf and check page 17.	Open the file quarterly_report_v2.pdf and check page 17.
+whisper-turbo	d05	My phone number is 555-0142.	My phone number is 555-ZIN142.
+whisper-turbo	d06	The total came to $1,249.99 including tax.	The total came to $8249.99, including tax.
+whisper-turbo	d07	Remind me to pick up Dr. Oyelaran at 4:15 PM.	Remind me to pick up Dr. Oyalarin at 4:15 PM.
+whisper-turbo	d08	Our conversion rate went up 12.5% this quarter.	Our conversion rate went up 12.5% this quarter.
+whisper-turbo	d09	Push the branch feature/login-fix to origin.	Push the branch feature slash login dash fix to origin.
+whisper-turbo	d10	Tell Krzysztof that the package shipped on June 3rd.	Tell Christoph that the package shipped on June 3.
+whisper-turbo	d11	The flight leaves from gate B22 at 6:45 in the morning.	The flight leaves from gate B-22 at 6.45 in the morning.
+whisper-turbo	d12	Rename main.kt to SpeechEngine.kt before the review.	Rename main.kt to speech engine.kt before the review.
+whisper-turbo	d13	Email the draft to jean-luc.moreau@example.fr and cc Anneliese.	Email the draft to Jean Luke dot morrow at example dot FR and CC analysts.
+whisper-turbo	d14	We need 3 boxes of screws, 25 millimeters long.	We need three boxes of screws, 25 millimeters long.
+whisper-turbo	d15	Visit www.marmalade-app.org/help for the setup guide.	Visit www.marmalade-app.org for the setup guide.
+whisper-turbo	d16	Grandma Rosalind turns 90 on the 2nd of October.	Grandma Rosalind turns 90 on 2 October.
+whisper-turbo	d17	Set a timer for 20 minutes.	Set a timer for 20 minutes.
+whisper-turbo	d18	The address is 742 Evergreen Terrace, Springfield.	The address is 742 Evergreen Terrace, Springfield.
+whisper-turbo	d19	Version 1.13.8 fixed the crash on Android 15.	Version 1.13.8 fixed the crash on Android 15.
+whisper-turbo	d20	Ask Nguyen Thi Minh Khai whether the lab opens at 8.	Ask Nguyen Thi Minh Kui whether the lab opens at 8.
+whisper-turbo	d21	The recipe needs 2 cups of flour and 1/2 teaspoon of salt.	The recipe needs 2 cups of flour and half a teaspoon of salt.
+whisper-turbo	d22	Book a table for 4 at Ristorante Da Vittorio on Saturday.	a table for four at Ristorante de Vittorio on Saturday.
+whisper-turbo	d23	Our team hit 1 million downloads in 2026.	Our team hit 1 million downloads in 2026.
+whisper-turbo	d24	Move the photos from DCIM/Camera to the backup drive.	Move the photos from DCIM/camera to the backup drive.
+whisper-turbo	d25	Pay Aoife €35 for the concert tickets.	EFA 35 euros for the concert tickets.
+whisper-turbo	d26	The temperature dropped to -4 °C overnight.	The temperature dropped to -4 degrees Celsius overnight.
+whisper-turbo	d27	Text Bartholomew: running 10 minutes late, sorry!	Text Bartholomew, running 10 minutes late, sorry.
+whisper-turbo	d28	Check the logs in /var/log/syslog for errors.	Check the logs in /var/log/syslog for errors.
+whisper-turbo	d29	Order number 48213 has not arrived yet.	Order number 48213 has not arrived yet.
+whisper-turbo	d30	Schedule the dentist for Tuesday, April 7th at 2 PM.	Schedule the dentist for Tuesday, April 7 at 2pm.
+whisper-turbo	d31	Thanks, Chidinma! I'll send the slides tonight.	Thanks Chitinma. I'll send the slides tonight.
+whisper-turbo	d32	The API returns HTTP 404 when the token expires.	API returns HTTP 404 when the token expires.
+whisper-turbo	d33	Buy milk, eggs, and 2 loaves of sourdough.	Buy milk, eggs, and two loaves of sourdough.
+whisper-turbo	d34	Björn's birthday party starts at 7 PM sharp.	Bjorn's birthday party starts at 7 p.m. sharp.
+whisper-turbo	d35	Save it as notes_2026-09-25.txt in Documents.	Save it as notes underscore 2026-09-25.txt in documents.
+whisper-turbo	d36	Our rent increased from $1,800 to $1,950 a month.	Our rent increased from $1800 to $1950 a month.
+whisper-turbo	d37	Meet Priyanka and Rahul at the Starbucks on 5th Avenue.	Priyanka and Rahul at the Starbucks on Fifth Avenue.
+whisper-turbo	d38	Run pnpm install, then restart the dev server.	Run pnpm install, then restart the dev server.
+whisper-turbo	d39	The report is due in 3 weeks, on the 15th.	The report is due in three weeks, on the 15th.
+whisper-turbo	d40	Forward this to support@example.org with the subject "voice input bug".	Forward this to support at example.org with the subject voice input bug.
+parakeet-tdt-0-6b-v3	d01	Call Siobhan Nakamura-Okafor tomorrow at 9:30 AM.	Call Shivon Nechamura Akifer tomorrow at nine thirty AM.
+parakeet-tdt-0-6b-v3	d02	Send the invoice to maria.lopez@example.com by Friday.	Send the invoice to maria.lopez at example.com by Friday.
+parakeet-tdt-0-6b-v3	d03	The meeting moved to March 14th, 2027.	The meeting moved to march fourteenth, twenty twenty seven.
+parakeet-tdt-0-6b-v3	d04	Open the file quarterly_report_v2.pdf and check page 17.	Open the file quarterly underscore report underscore v2.pdf and check page 17.
+parakeet-tdt-0-6b-v3	d05	My phone number is 555-0142.	My phone number is five Zin one four two.
+parakeet-tdt-0-6b-v3	d06	The total came to $1,249.99 including tax.	The total came to$8,249.99, including tax.
+parakeet-tdt-0-6b-v3	d07	Remind me to pick up Dr. Oyelaran at 4:15 PM.	Remind me to pick up Dr. Oilarin at four fifteen p.m.
+parakeet-tdt-0-6b-v3	d08	Our conversion rate went up 12.5% this quarter.	Our conversion rate went up 12.5% this quarter.
+parakeet-tdt-0-6b-v3	d09	Push the branch feature/login-fix to origin.	Push the branch feature slash login dash fix to origin.
+parakeet-tdt-0-6b-v3	d10	Tell Krzysztof that the package shipped on June 3rd.	Tell Christophe that the package shipped on June 3.
+parakeet-tdt-0-6b-v3	d11	The flight leaves from gate B22 at 6:45 in the morning.	The flight leaves from gate B twenty two at six forty five in the morning.
+parakeet-tdt-0-6b-v3	d12	Rename main.kt to SpeechEngine.kt before the review.	Rename main.kt to speechengine.kt before the review.
+parakeet-tdt-0-6b-v3	d13	Email the draft to jean-luc.moreau@example.fr and cc Anneliese.	Email the draft to Jean Luke. Morrow at example dot fr and C analysts.
+parakeet-tdt-0-6b-v3	d14	We need 3 boxes of screws, 25 millimeters long.	We need three boxes of screws, 25 millimeters long.
+parakeet-tdt-0-6b-v3	d15	Visit www.marmalade-app.org/help for the setup guide.	Visit www.marmalade app.org slash help for the setup guide.
+parakeet-tdt-0-6b-v3	d16	Grandma Rosalind turns 90 on the 2nd of October.	Grandma Rosalind turns 90 on the 2nd of October.
+parakeet-tdt-0-6b-v3	d17	Set a timer for 20 minutes.	Set a timer for twenty minutes.
+parakeet-tdt-0-6b-v3	d18	The address is 742 Evergreen Terrace, Springfield.	The address is 742 Evergreen Terrace, Springfield.
+parakeet-tdt-0-6b-v3	d19	Version 1.13.8 fixed the crash on Android 15.	Vers 1.13.8 fixed the crash on Android 15.
+parakeet-tdt-0-6b-v3	d20	Ask Nguyen Thi Minh Khai whether the lab opens at 8.	Ask Nuyan Thai Min Kai whether the lab opens at 8.
+parakeet-tdt-0-6b-v3	d21	The recipe needs 2 cups of flour and 1/2 teaspoon of salt.	The recipe needs two cups of flour and half a teaspoon of salt.
+parakeet-tdt-0-6b-v3	d22	Book a table for 4 at Ristorante Da Vittorio on Saturday.	a table for four at Restaurante de Vittorio on Saturday.
+parakeet-tdt-0-6b-v3	d23	Our team hit 1 million downloads in 2026.	Our team hit one million download in 2026.
+parakeet-tdt-0-6b-v3	d24	Move the photos from DCIM/Camera to the backup drive.	Move the photos from DCIM slash camera to the backup drive.
+parakeet-tdt-0-6b-v3	d25	Pay Aoife €35 for the concert tickets.	Efa thirty five Euros for the concert tickets.
+parakeet-tdt-0-6b-v3	d26	The temperature dropped to -4 °C overnight.	The temperature dropped to minus 4 degre Celsius overnight.
+parakeet-tdt-0-6b-v3	d27	Text Bartholomew: running 10 minutes late, sorry!	Text Bartholomew, running ten minutes late, sorry.
+parakeet-tdt-0-6b-v3	d28	Check the logs in /var/log/syslog for errors.	Check the logs in slash var slash log slash syslog for errors.
+parakeet-tdt-0-6b-v3	d29	Order number 48213 has not arrived yet.	Order number four eight two one three has not arrived yet.
+parakeet-tdt-0-6b-v3	d30	Schedule the dentist for Tuesday, April 7th at 2 PM.	Schedule the dentist for Tuesday, April 7, at 2 p.m.
+parakeet-tdt-0-6b-v3	d31	Thanks, Chidinma! I'll send the slides tonight.	Thanks, Chiddenma. I'll send the slides tonight.
+parakeet-tdt-0-6b-v3	d32	The API returns HTTP 404 when the token expires.	PI returns HTTP 404 when the token expires.
+parakeet-tdt-0-6b-v3	d33	Buy milk, eggs, and 2 loaves of sourdough.	By milk, eggs, and two loaves of sourdough.
+parakeet-tdt-0-6b-v3	d34	Björn's birthday party starts at 7 PM sharp.	Bjorn's birthday party starts at 7 pm sharp.
+parakeet-tdt-0-6b-v3	d35	Save it as notes_2026-09-25.txt in Documents.	Save it as notes underscore 2026-09-25.txt in documents.
+parakeet-tdt-0-6b-v3	d36	Our rent increased from $1,800 to $1,950 a month.	Our rent increased from$1800 to$1950 a month.
+parakeet-tdt-0-6b-v3	d37	Meet Priyanka and Rahul at the Starbucks on 5th Avenue.	Priyenka and Rahul at the Starbucks on Fifth Avenue.
+parakeet-tdt-0-6b-v3	d38	Run pnpm install, then restart the dev server.	Run Pnpm install, then restart the dev server.
+parakeet-tdt-0-6b-v3	d39	The report is due in 3 weeks, on the 15th.	The report is due in three weeks on the fifteenth, F
+parakeet-tdt-0-6b-v3	d40	Forward this to support@example.org with the subject "voice input bug".	Forward this to support at example.org with the subject voice input bug.
+canary-180m-flash	d01	Call Siobhan Nakamura-Okafor tomorrow at 9:30 AM.	Paul Shivan Nakamura Akifer tomorrow at nine thirty AM
+canary-180m-flash	d02	Send the invoice to maria.lopez@example.com by Friday.	Send the invoice to Maria.Lopez at example.com by Friday.
+canary-180m-flash	d03	The meeting moved to March 14th, 2027.	The meeting moved to march fourteenth, twenty twenty seven.
+canary-180m-flash	d04	Open the file quarterly_report_v2.pdf and check page 17.	Open the file quarterly underscore report underscore v two.pdf and check page seventeen.
+canary-180m-flash	d05	My phone number is 555-0142.	My phone number is five five five five zin one four two.
+canary-180m-flash	d06	The total came to $1,249.99 including tax.	The total came to eight thousand two hundred and forty nine dollars ninety nine cents, including tax.
+canary-180m-flash	d07	Remind me to pick up Dr. Oyelaran at 4:15 PM.	Remind me to pick up Doctor Oilarin at four fifteen PM.
+canary-180m-flash	d08	Our conversion rate went up 12.5% this quarter.	Our conversion rate went up twelve point five percent this quarter.
+canary-180m-flash	d09	Push the branch feature/login-fix to origin.	Push the branch feature slash login dash fix to origin.
+canary-180m-flash	d10	Tell Krzysztof that the package shipped on June 3rd.	Tell Christophe that the package shipped on June third.
+canary-180m-flash	d11	The flight leaves from gate B22 at 6:45 in the morning.	The flight leaves from Gate B twenty two at six forty five in the morning.
+canary-180m-flash	d12	Rename main.kt to SpeechEngine.kt before the review.	Rename Main.KT to speechengine.KT before the review.
+canary-180m-flash	d13	Email the draft to jean-luc.moreau@example.fr and cc Anneliese.	Email the draft to GeneLuke.moreau at example.frnccc analysts.
+canary-180m-flash	d14	We need 3 boxes of screws, 25 millimeters long.	We need three boxes of screws, twenty five millimeters long.
+canary-180m-flash	d15	Visit www.marmalade-app.org/help for the setup guide.	Visit WWW dot marmaladeassapp dot org slash help for the setup guide.
+canary-180m-flash	d16	Grandma Rosalind turns 90 on the 2nd of October.	Grandma Rosalind turns ninety on the second of October.
+canary-180m-flash	d17	Set a timer for 20 minutes.	Set a timer for twenty minutes.
+canary-180m-flash	d18	The address is 742 Evergreen Terrace, Springfield.	The address is seven hundred and forty two Evergreen Terrace, Springfield,
+canary-180m-flash	d19	Version 1.13.8 fixed the crash on Android 15.	Version one point three eight fixed the crash on Android fifteen.
+canary-180m-flash	d20	Ask Nguyen Thi Minh Khai whether the lab opens at 8.	Ask New Yearn Thyme and Khay whether the lab opens at eight.
+canary-180m-flash	d21	The recipe needs 2 cups of flour and 1/2 teaspoon of salt.	The recipe needs two cups of flour and half a teaspoon of salt.
+canary-180m-flash	d22	Book a table for 4 at Ristorante Da Vittorio on Saturday.	Table for four at Ristaurante di Vittorio on Saturday.
+canary-180m-flash	d23	Our team hit 1 million downloads in 2026.	Our team hit one million downloads in twenty twenty six.
+canary-180m-flash	d24	Move the photos from DCIM/Camera to the backup drive.	Move the photos from DCIM slash camera to the backup drive.
+canary-180m-flash	d25	Pay Aoife €35 for the concert tickets.	EFA thirty five euros for the concert tickets.
+canary-180m-flash	d26	The temperature dropped to -4 °C overnight.	The temperature dropped to minus four degrees Celsius overnight.
+canary-180m-flash	d27	Text Bartholomew: running 10 minutes late, sorry!	Text Bartholomew, running ten minutes late. Sorry.
+canary-180m-flash	d28	Check the logs in /var/log/syslog for errors.	Check the logs in slash var slash log slash slash sislog for errors.
+canary-180m-flash	d29	Order number 48213 has not arrived yet.	Order number four eight two one three has not arrived yet.
+canary-180m-flash	d30	Schedule the dentist for Tuesday, April 7th at 2 PM.	Schedule the dentist for Tuesday, april seventh at two PM.
+canary-180m-flash	d31	Thanks, Chidinma! I'll send the slides tonight.	Thanks, Chitinma. I'll send the slides tonight.
+canary-180m-flash	d32	The API returns HTTP 404 when the token expires.	PI returns HTTP four hundred and four when the token expires.
+canary-180m-flash	d33	Buy milk, eggs, and 2 loaves of sourdough.	By milk, eggs, and two loaves of sourdough.
+canary-180m-flash	d34	Björn's birthday party starts at 7 PM sharp.	Bjorn's birthday party starts at seven PM sharp.
+canary-180m-flash	d35	Save it as notes_2026-09-25.txt in Documents.	Save it as notes underscore twenty twenty six dash zero nine dash twenty five. txt in documents.
+canary-180m-flash	d36	Our rent increased from $1,800 to $1,950 a month.	Our rent increased from one thousand eight hundred dollars to nineteen fifty dollars a month.
+canary-180m-flash	d37	Meet Priyanka and Rahul at the Starbucks on 5th Avenue.	Priyanka and Rawhol at the Starbucks on Fifth Avenue.
+canary-180m-flash	d38	Run pnpm install, then restart the dev server.	Run PNPM install, then restart the dev server.
+canary-180m-flash	d39	The report is due in 3 weeks, on the 15th.	The report is due in three weeks on the fifteenth.
+canary-180m-flash	d40	Forward this to support@example.org with the subject "voice input bug".	Forward this to supported example.org with the subjectvoice input buck.
+nemotron-3-5-streaming-320ms	d01	Call Siobhan Nakamura-Okafor tomorrow at 9:30 AM.	Shivon Nekamura Akifer tomorrow at nine thirty AM
+nemotron-3-5-streaming-320ms	d02	Send the invoice to maria.lopez@example.com by Friday.	The invoice to Maria Lopez, at example.com by Friday
+nemotron-3-5-streaming-320ms	d03	The meeting moved to March 14th, 2027.	The meeting moved to March fourteen twenty twenty seven
+nemotron-3-5-streaming-320ms	d04	Open the file quarterly_report_v2.pdf and check page 17.	Open the file quarterly underscore report underscore v two pdf and check page seventeen
+nemotron-3-5-streaming-320ms	d05	My phone number is 555-0142.	My phone number is five five Zin one four two
+nemotron-3-5-streaming-320ms	d06	The total came to $1,249.99 including tax.	Total came to eight two hundred forty nine dollars and ninety nine cents, including tax
+nemotron-3-5-streaming-320ms	d07	Remind me to pick up Dr. Oyelaran at 4:15 PM.	Remind me to pick up Dr. Oeleron at four fifteen PM
+nemotron-3-5-streaming-320ms	d08	Our conversion rate went up 12.5% this quarter.	Our conversion rate went up twelve point five percent this quarter
+nemotron-3-5-streaming-320ms	d09	Push the branch feature/login-fix to origin.	Push the branch feature slash login fix to origin
+nemotron-3-5-streaming-320ms	d10	Tell Krzysztof that the package shipped on June 3rd.	Christoph that the package shipped on June third
+nemotron-3-5-streaming-320ms	d11	The flight leaves from gate B22 at 6:45 in the morning.	The flight leaves from Gate B Twenty Two at six forty five in the morning
+nemotron-3-5-streaming-320ms	d12	Rename main.kt to SpeechEngine.kt before the review.	name main KT to speech engine kt before the review
+nemotron-3-5-streaming-320ms	d13	Email the draft to jean-luc.moreau@example.fr and cc Anneliese.	Email the draft to Jeanluke Moro at example fr and CC Analyst
+nemotron-3-5-streaming-320ms	d14	We need 3 boxes of screws, 25 millimeters long.	We need three boxes of screws twenty five millimeters long
+nemotron-3-5-streaming-320ms	d15	Visit www.marmalade-app.org/help for the setup guide.	Visit www dot marmalade app dot org slash help for the setup guide
+nemotron-3-5-streaming-320ms	d16	Grandma Rosalind turns 90 on the 2nd of October.	Grandma Rosalind turns ninety on the second of October
+nemotron-3-5-streaming-320ms	d17	Set a timer for 20 minutes.	A timer for twenty minutes
+nemotron-3-5-streaming-320ms	d18	The address is 742 Evergreen Terrace, Springfield.	The address is seven forty two Evergreen Terrace Springfield
+nemotron-3-5-streaming-320ms	d19	Version 1.13.8 fixed the crash on Android 15.	Version one point thirteen point eight fixed the crash on Android fifteen
+nemotron-3-5-streaming-320ms	d20	Ask Nguyen Thi Minh Khai whether the lab opens at 8.	As Nuvien Thai Min Kai whether the lab opens at eight
+nemotron-3-5-streaming-320ms	d21	The recipe needs 2 cups of flour and 1/2 teaspoon of salt.	The recipe needs two cups of flour and half a teaspoon of salt
+nemotron-3-5-streaming-320ms	d22	Book a table for 4 at Ristorante Da Vittorio on Saturday.	A table for four at Restaurante du Vittorio on Saturday
+nemotron-3-5-streaming-320ms	d23	Our team hit 1 million downloads in 2026.	Our team hit one million downloads in twenty twenty six
+nemotron-3-5-streaming-320ms	d24	Move the photos from DCIM/Camera to the backup drive.	Move the photos from DCIM slash camera to the backup drive
+nemotron-3-5-streaming-320ms	d25	Pay Aoife €35 for the concert tickets.	Efa thirty five euros for the concert tickets
+nemotron-3-5-streaming-320ms	d26	The temperature dropped to -4 °C overnight.	Temperature dropped to minus four degrees C overnight
+nemotron-3-5-streaming-320ms	d27	Text Bartholomew: running 10 minutes late, sorry!	Running ten minutes late
+nemotron-3-5-streaming-320ms	d28	Check the logs in /var/log/syslog for errors.	The logs in slash var syslog for errors
+nemotron-3-5-streaming-320ms	d29	Order number 48213 has not arrived yet.	Order number four eight two one three has not arrived yet
+nemotron-3-5-streaming-320ms	d30	Schedule the dentist for Tuesday, April 7th at 2 PM.	Schedule the dentist for Tuesday, April seven at two PM
+nemotron-3-5-streaming-320ms	d31	Thanks, Chidinma! I'll send the slides tonight.	I'll send the slides tonight
+nemotron-3-5-streaming-320ms	d32	The API returns HTTP 404 when the token expires.	Returns HTTP four oh four when the token expires
+nemotron-3-5-streaming-320ms	d33	Buy milk, eggs, and 2 loaves of sourdough.	Milk, eggs, and two loaves of sourdough
+nemotron-3-5-streaming-320ms	d34	Björn's birthday party starts at 7 PM sharp.	Yorn's birthday party starts at seven PM sharp
+nemotron-3-5-streaming-320ms	d35	Save it as notes_2026-09-25.txt in Documents.	David has not nine twenty five TXT in documents
+nemotron-3-5-streaming-320ms	d36	Our rent increased from $1,800 to $1,950 a month.	Our rent increased from eighteen hundred dollars to nineteen fifty dollars a month
+nemotron-3-5-streaming-320ms	d37	Meet Priyanka and Rahul at the Starbucks on 5th Avenue.	Priyanka and Rahul at the Starbucks on Fifth Avenue
+nemotron-3-5-streaming-320ms	d38	Run pnpm install, then restart the dev server.	PNPM install, then restart the Dev Server
+nemotron-3-5-streaming-320ms	d39	The report is due in 3 weeks, on the 15th.	Report is due in three weeks on fifteenth
+nemotron-3-5-streaming-320ms	d40	Forward this to support@example.org with the subject "voice input bug".	Forward this to support at example.org with the subject voice input bug
+nemotron-3-5-streaming-560ms	d01	Call Siobhan Nakamura-Okafor tomorrow at 9:30 AM.	Shivon Nekamura Akifer tomorrow at nine thirty AM
+nemotron-3-5-streaming-560ms	d02	Send the invoice to maria.lopez@example.com by Friday.	The invoice to MariaLopez at example.com by Friday
+nemotron-3-5-streaming-560ms	d03	The meeting moved to March 14th, 2027.	The meeting moved to March fourteen twenty twenty seven
+nemotron-3-5-streaming-560ms	d04	Open the file quarterly_report_v2.pdf and check page 17.	Open the file quarterly underscore report underscore V two PDF and check page seventeen
+nemotron-3-5-streaming-560ms	d05	My phone number is 555-0142.	My phone number is five five Zour two
+nemotron-3-5-streaming-560ms	d06	The total came to $1,249.99 including tax.	Total came to eight two hundred forty nine dollars and ninety nine cents, including tax
+nemotron-3-5-streaming-560ms	d07	Remind me to pick up Dr. Oyelaran at 4:15 PM.	Remind me to pick up Dr. Oeleron at four fifteen PM
+nemotron-3-5-streaming-560ms	d08	Our conversion rate went up 12.5% this quarter.	Our conversion rate went up twelve point five percent this quarter
+nemotron-3-5-streaming-560ms	d09	Push the branch feature/login-fix to origin.	Push the branch feature login fix to origin
+nemotron-3-5-streaming-560ms	d10	Tell Krzysztof that the package shipped on June 3rd.	Christoph that the package shipped on June third
+nemotron-3-5-streaming-560ms	d11	The flight leaves from gate B22 at 6:45 in the morning.	The flight leaves from Gate B Twenty Two at six forty five in the morning
+nemotron-3-5-streaming-560ms	d12	Rename main.kt to SpeechEngine.kt before the review.	Her name maint to speech engine before the review
+nemotron-3-5-streaming-560ms	d13	Email the draft to jean-luc.moreau@example.fr and cc Anneliese.	Email the draft to Genelukemoro at example FRNC Analyst
+nemotron-3-5-streaming-560ms	d14	We need 3 boxes of screws, 25 millimeters long.	We need three boxes of screws twenty five millimeters long
+nemotron-3-5-streaming-560ms	d15	Visit www.marmalade-app.org/help for the setup guide.	Visit www dot Marmalade app dot org slash help for the setup guide
+nemotron-3-5-streaming-560ms	d16	Grandma Rosalind turns 90 on the 2nd of October.	Grandma Rosalind turns ninety on the second of October
+nemotron-3-5-streaming-560ms	d17	Set a timer for 20 minutes.	A timer for twenty minutes
+nemotron-3-5-streaming-560ms	d18	The address is 742 Evergreen Terrace, Springfield.	The address is seven forty two Evergreen Terrace Springfield
+nemotron-3-5-streaming-560ms	d19	Version 1.13.8 fixed the crash on Android 15.	Version one point thirteen point eight fixed the crash on Android fifteen
+nemotron-3-5-streaming-560ms	d20	Ask Nguyen Thi Minh Khai whether the lab opens at 8.	Ask Nuvien Thai Min Kai whether the lab opens at eight
+nemotron-3-5-streaming-560ms	d21	The recipe needs 2 cups of flour and 1/2 teaspoon of salt.	The recipe needs two cups of flour and half a teaspoon of salt
+nemotron-3-5-streaming-560ms	d22	Book a table for 4 at Ristorante Da Vittorio on Saturday.	A table for four at Ristorante de Vittorio on Saturday
+nemotron-3-5-streaming-560ms	d23	Our team hit 1 million downloads in 2026.	Team hit one million downloads in twenty twenty six
+nemotron-3-5-streaming-560ms	d24	Move the photos from DCIM/Camera to the backup drive.	Move the photos from DCIM slash camera to the backup drive
+nemotron-3-5-streaming-560ms	d25	Pay Aoife €35 for the concert tickets.	EFA thirty five euros for the concert tickets
+nemotron-3-5-streaming-560ms	d26	The temperature dropped to -4 °C overnight.	Temperature dropped to minus four degrees C overnight
+nemotron-3-5-streaming-560ms	d27	Text Bartholomew: running 10 minutes late, sorry!	Pext Bartholomew running ten minutes late
+nemotron-3-5-streaming-560ms	d28	Check the logs in /var/log/syslog for errors.	The logs in slash var slash log slash syslog for errors
+nemotron-3-5-streaming-560ms	d29	Order number 48213 has not arrived yet.	Order number four eight two one three has not arrived yet
+nemotron-3-5-streaming-560ms	d30	Schedule the dentist for Tuesday, April 7th at 2 PM.	Schedule the dentist for Tuesday, April seven at two PM
+nemotron-3-5-streaming-560ms	d31	Thanks, Chidinma! I'll send the slides tonight.	Chidenma I'll send the slides tonight
+nemotron-3-5-streaming-560ms	d32	The API returns HTTP 404 when the token expires.	Returns HTTP four oh four when the token expires
+nemotron-3-5-streaming-560ms	d33	Buy milk, eggs, and 2 loaves of sourdough.	By milk, eggs, and two loaves of sourdough
+nemotron-3-5-streaming-560ms	d34	Björn's birthday party starts at 7 PM sharp.	Yorn's birthday party starts at seven PM sharp
+nemotron-3-5-streaming-560ms	d35	Save it as notes_2026-09-25.txt in Documents.	David as notes underscore twenty twenty six oh nine twenty five TXT in documents
+nemotron-3-5-streaming-560ms	d36	Our rent increased from $1,800 to $1,950 a month.	Our rent increased from eighteen hundred dollars to nineteen fifty dollars a month
+nemotron-3-5-streaming-560ms	d37	Meet Priyanka and Rahul at the Starbucks on 5th Avenue.	Priyanka and Rahul at the Starbucks on Fifth Avenue
+nemotron-3-5-streaming-560ms	d38	Run pnpm install, then restart the dev server.	One PNPM install then restart the Dev Server
+nemotron-3-5-streaming-560ms	d39	The report is due in 3 weeks, on the 15th.	Report is due in three weeks on fifteen
+nemotron-3-5-streaming-560ms	d40	Forward this to support@example.org with the subject "voice input bug".	Forward this to supported example with the subject voice input bug
+nemotron-en-streaming-560ms	d01	Call Siobhan Nakamura-Okafor tomorrow at 9:30 AM.	Siobhan Nakamura Aquifer tomorrow at nine thirty AM
+nemotron-en-streaming-560ms	d02	Send the invoice to maria.lopez@example.com by Friday.	The invoice to Maria Lopez at example dot com by Friday
+nemotron-en-streaming-560ms	d03	The meeting moved to March 14th, 2027.	Meeting moved to March fourteen twenty twenty seven
+nemotron-en-streaming-560ms	d04	Open the file quarterly_report_v2.pdf and check page 17.	Open the file quarterly underscore report underscore V two dot Pdf and check page seventeen
+nemotron-en-streaming-560ms	d05	My phone number is 555-0142.	My phone number is five five five Zin one four two
+nemotron-en-streaming-560ms	d06	The total came to $1,249.99 including tax.	Total came to eighty two hundred forty nine dollars and ninety nine cents, including tax
+nemotron-en-streaming-560ms	d07	Remind me to pick up Dr. Oyelaran at 4:15 PM.	Remind me to pick up Doctor Oilarin at four fifteen PM
+nemotron-en-streaming-560ms	d08	Our conversion rate went up 12.5% this quarter.	Our conversion rate went up twelve point five percent this quarter
+nemotron-en-streaming-560ms	d09	Push the branch feature/login-fix to origin.	Push the branch feature slash login fix to origin
+nemotron-en-streaming-560ms	d10	Tell Krzysztof that the package shipped on June 3rd.	Christoph, that the package shipped on June third
+nemotron-en-streaming-560ms	d11	The flight leaves from gate B22 at 6:45 in the morning.	Flight leaves from Gate B Twenty Two at six forty five in the morning
+nemotron-en-streaming-560ms	d12	Rename main.kt to SpeechEngine.kt before the review.	Rename Main Kt to speech engine before the review
+nemotron-en-streaming-560ms	d13	Email the draft to jean-luc.moreau@example.fr and cc Anneliese.	Email the draft to Jean Luc dot Morrow at example dot fr and Cc analyst
+nemotron-en-streaming-560ms	d14	We need 3 boxes of screws, 25 millimeters long.	We need three boxes of screws, twenty five millimeters long
+nemotron-en-streaming-560ms	d15	Visit www.marmalade-app.org/help for the setup guide.	Visit www dot marmalade app dot org slash help for the setup guide
+nemotron-en-streaming-560ms	d16	Grandma Rosalind turns 90 on the 2nd of October.	Grandma Rosalind turns ninety on the second of October
+nemotron-en-streaming-560ms	d17	Set a timer for 20 minutes.	A timer for twenty minutes
+nemotron-en-streaming-560ms	d18	The address is 742 Evergreen Terrace, Springfield.	The address is seven forty two Evergreen Terrace Springfield
+nemotron-en-streaming-560ms	d19	Version 1.13.8 fixed the crash on Android 15.	Version one point thirteen point eight fixed the crash on Android fifteen
+nemotron-en-streaming-560ms	d20	Ask Nguyen Thi Minh Khai whether the lab opens at 8.	Ask Nguyen Thai Min Kai whether the lab opens at eight
+nemotron-en-streaming-560ms	d21	The recipe needs 2 cups of flour and 1/2 teaspoon of salt.	Recipe needs two cups of flour and half a teaspoon of salt
+nemotron-en-streaming-560ms	d22	Book a table for 4 at Ristorante Da Vittorio on Saturday.	Table for four at Restaurante de Vittorio on Saturday
+nemotron-en-streaming-560ms	d23	Our team hit 1 million downloads in 2026.	Team hit one million downloads in twenty twenty six
+nemotron-en-streaming-560ms	d24	Move the photos from DCIM/Camera to the backup drive.	Move the photos from DCIM camera to the backup drive
+nemotron-en-streaming-560ms	d25	Pay Aoife €35 for the concert tickets.	Ifa thirty five euros for the concert tickets
+nemotron-en-streaming-560ms	d26	The temperature dropped to -4 °C overnight.	Temperature dropped to minus four degrees Celsius overnight
+nemotron-en-streaming-560ms	d27	Text Bartholomew: running 10 minutes late, sorry!	Text Bartholomew running ten minutes late. Sorry
+nemotron-en-streaming-560ms	d28	Check the logs in /var/log/syslog for errors.	The logs in slash var slash log slash syslog for errors
+nemotron-en-streaming-560ms	d29	Order number 48213 has not arrived yet.	Order number four eight two one three has not arrived yet
+nemotron-en-streaming-560ms	d30	Schedule the dentist for Tuesday, April 7th at 2 PM.	Schedule the dentist for Tuesday, April seventh at two pm
+nemotron-en-streaming-560ms	d31	Thanks, Chidinma! I'll send the slides tonight.	Thanks, Chidin Ma I'll send the slides tonight
+nemotron-en-streaming-560ms	d32	The API returns HTTP 404 when the token expires.	Returns HTTP four hundred four when the token expires
+nemotron-en-streaming-560ms	d33	Buy milk, eggs, and 2 loaves of sourdough.	By milk, eggs, and two loaves of sourdough
+nemotron-en-streaming-560ms	d34	Björn's birthday party starts at 7 PM sharp.	Bjorn's birthday party starts at seven PM sharp
+nemotron-en-streaming-560ms	d35	Save it as notes_2026-09-25.txt in Documents.	David as notes underscore twenty twenty six oh nine twenty five txt in documents
+nemotron-en-streaming-560ms	d36	Our rent increased from $1,800 to $1,950 a month.	Our rent increased from eighteen hundred dollars to nineteen fifty dollars a month
+nemotron-en-streaming-560ms	d37	Meet Priyanka and Rahul at the Starbucks on 5th Avenue.	Priyanka and Rahul at the Starbucks on Fifth Avenue
+nemotron-en-streaming-560ms	d38	Run pnpm install, then restart the dev server.	One PNPM install, then restart the dev server
+nemotron-en-streaming-560ms	d39	The report is due in 3 weeks, on the 15th.	Report is due in three weeks on the fifteenth
+nemotron-en-streaming-560ms	d40	Forward this to support@example.org with the subject "voice input bug".	Forward this to supported example dot org with the subject voice input bug
+qwen3-asr-0-6b	d01	Call Siobhan Nakamura-Okafor tomorrow at 9:30 AM.	Call Shyvon, Nekamera, Akifer tomorrow at 9:30 AM.
+qwen3-asr-0-6b	d02	Send the invoice to maria.lopez@example.com by Friday.	Send the invoice to Maria Lopez at example.com by Friday.
+qwen3-asr-0-6b	d03	The meeting moved to March 14th, 2027.	The meeting moved to March 14, 2027.
+qwen3-asr-0-6b	d04	Open the file quarterly_report_v2.pdf and check page 17.	Open the file quarterly underscore report underscore v two dot pdf and check page seventeen.
+qwen3-asr-0-6b	d05	My phone number is 555-0142.	My phone number is five five five zero one four two.
+qwen3-asr-0-6b	d06	The total came to $1,249.99 including tax.	The total came to two hundred forty-nine dollars and ninety-nine cents, including tax.
+qwen3-asr-0-6b	d07	Remind me to pick up Dr. Oyelaran at 4:15 PM.	Remind me to pick up Doctor Oylarin at 4:15 p.m.
+qwen3-asr-0-6b	d08	Our conversion rate went up 12.5% this quarter.	Our conversion rate went up twelve point five percent this quarter.
+qwen3-asr-0-6b	d09	Push the branch feature/login-fix to origin.	Push the branch feature slash login dash fix to origin.
+qwen3-asr-0-6b	d10	Tell Krzysztof that the package shipped on June 3rd.	Tell Christoph that the package shipped on June 3rd.
+qwen3-asr-0-6b	d11	The flight leaves from gate B22 at 6:45 in the morning.	The flight leaves from Gate B22 at 6:45 in the morning.
+qwen3-asr-0-6b	d12	Rename main.kt to SpeechEngine.kt before the review.	Rename main.kt to speechengine.kt before the review.
+qwen3-asr-0-6b	d13	Email the draft to jean-luc.moreau@example.fr and cc Anneliese.	Email the draft to gene.luke@moralexample.fr and CC Analysts.
+qwen3-asr-0-6b	d14	We need 3 boxes of screws, 25 millimeters long.	We need three boxes of screws, twenty-five millimeters long.
+qwen3-asr-0-6b	d15	Visit www.marmalade-app.org/help for the setup guide.	Visit www.marmaladeapp.org/help for the setup guide.
+qwen3-asr-0-6b	d16	Grandma Rosalind turns 90 on the 2nd of October.	Grandma Rosalind turns ninety on the second of October.
+qwen3-asr-0-6b	d17	Set a timer for 20 minutes.	Set a timer for twenty minutes.
+qwen3-asr-0-6b	d18	The address is 742 Evergreen Terrace, Springfield.	The address is seven forty-two Evergreen Terrace, Springfield.
+qwen3-asr-0-6b	d19	Version 1.13.8 fixed the crash on Android 15.	Version one point thirteen point eight fixed the crash on Android fifteen.
+qwen3-asr-0-6b	d20	Ask Nguyen Thi Minh Khai whether the lab opens at 8.	Ask Nguyen Thi Minh Khai whether the lab opens at eight.
+qwen3-asr-0-6b	d21	The recipe needs 2 cups of flour and 1/2 teaspoon of salt.	The recipe needs two cups of flour and half a teaspoon of salt.
+qwen3-asr-0-6b	d22	Book a table for 4 at Ristorante Da Vittorio on Saturday.	Book a table for four at Ristorante de Vittorio on Saturday.
+qwen3-asr-0-6b	d23	Our team hit 1 million downloads in 2026.	Our team hit one million downloads in 2026.
+qwen3-asr-0-6b	d24	Move the photos from DCIM/Camera to the backup drive.	Move the photos from D C I M slash camera to the backup drive.
+qwen3-asr-0-6b	d25	Pay Aoife €35 for the concert tickets.	IFA: 35 euros for the concert tickets.
+qwen3-asr-0-6b	d26	The temperature dropped to -4 °C overnight.	The temperature dropped to minus four degrees Celsius overnight.
+qwen3-asr-0-6b	d27	Text Bartholomew: running 10 minutes late, sorry!	Text Bartholomew running ten minutes late. Sorry.
+qwen3-asr-0-6b	d28	Check the logs in /var/log/syslog for errors.	Check the logs in slash var slash log slash cisllog for errors.
+qwen3-asr-0-6b	d29	Order number 48213 has not arrived yet.	Order number 48213 has not arrived yet.
+qwen3-asr-0-6b	d30	Schedule the dentist for Tuesday, April 7th at 2 PM.	Schedule the dentist for Tuesday, April seventh, at two p.m.
+qwen3-asr-0-6b	d31	Thanks, Chidinma! I'll send the slides tonight.	Thanks, Chidimma. I'll send the slides tonight.
+qwen3-asr-0-6b	d32	The API returns HTTP 404 when the token expires.	API returns HTTP four hundred and four when the token expires.
+qwen3-asr-0-6b	d33	Buy milk, eggs, and 2 loaves of sourdough.	Buy milk, eggs, and two loaves of sourdough.
+qwen3-asr-0-6b	d34	Björn's birthday party starts at 7 PM sharp.	Bjorn's birthday party starts at seven p.m. sharp.
+qwen3-asr-0-6b	d35	Save it as notes_2026-09-25.txt in Documents.	Save it as notes underscore twenty twenty six dash o nine dash twenty five dot t x t in Documents.
+qwen3-asr-0-6b	d36	Our rent increased from $1,800 to $1,950 a month.	Our rent increased from eighteen hundred dollars to nineteen fifty dollars a month.
+qwen3-asr-0-6b	d37	Meet Priyanka and Rahul at the Starbucks on 5th Avenue.	Priyanka and Rahul at the Starbucks on Fifth Avenue.
+qwen3-asr-0-6b	d38	Run pnpm install, then restart the dev server.	Run pnpm install, then restart the dev server.
+qwen3-asr-0-6b	d39	The report is due in 3 weeks, on the 15th.	The report is due in three weeks on the fifteenth.
+qwen3-asr-0-6b	d40	Forward this to support@example.org with the subject "voice input bug".	Forward this to support at example.org with the subject "Voice Input Bug."

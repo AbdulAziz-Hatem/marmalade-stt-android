@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Screen-reader-only text and other strings added by the accessibility pass (#68). -->
+<resources>
+    <!-- Shared -->
+    <string name="a11y_download_started">Mendownload %1$s</string>
+    <string name="a11y_download_ready">%1$s sudah siap</string>
+    <string name="a11y_download_failed">Download %1$s gagal</string>
+    <string name="a11y_download_paused">Download %1$s dijeda</string>
+
+    <!-- Settings, dictionary, snippets, licences, privacy -->
+    <string name="a11y_open_in_browser">Buka di browser</string>
+    <string name="a11y_rule_deleted">Aturan dihapus</string>
+    <string name="a11y_snippet_deleted">Cuplikan dihapus</string>
+    <string name="a11y_end_words_reverted">Kata penutup tidak diubah: ketik minimal satu kata</string>
+
+    <!-- Engines, benchmark -->
+    <string name="a11y_engine_action_named">%1$s, %2$s</string>
+    <string name="a11y_engine_download_named">Download %1$s, %2$s</string>
+    <string name="a11y_benchmark_finished">Benchmark selesai</string>
+
+    <!-- Dictate, voice keyboard, speech sheet -->
+
+    <!-- Onboarding -->
+    <string name="a11y_onboarding_step_pane">%1$s: %2$s</string>
+    <string name="a11y_onboarding_recommended">Direkomendasikan untuk ponsel ini: %1$s</string>
+
+</resources>

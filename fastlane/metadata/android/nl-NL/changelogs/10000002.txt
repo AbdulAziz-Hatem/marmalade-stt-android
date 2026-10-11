@@ -1,0 +1,6 @@
+Marmalade STT 1.0.0, eerste release.
+- Privé offline spraak-naar-tekst: spraaktoetsenbord voor FUTO, HeliBoard, FlorisBoard e.a., “Nu spreken”-venster voor apps en de spraakherkenningsservice van Android.
+- Engines afgestemd op telefoon en taal, met aparte keuzes voor Japans, Chinees, Koreaans, Hindi, Arabisch en Vietnamees.
+- Stoppen met tikken, pauze, eindwoord of Smart Turn.
+- Tekst opschonen, vervangingen en tekstfragmenten.
+- Interface in 21 talen. Geen advertenties, accounts of analyse.

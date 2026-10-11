@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Вкладка «Рушії»: картки, рядки й діалог відомостей -->
+<resources>
+    <string name="engine_badge_recommended">Рекомендовано для цього телефона</string>
+    <string name="engine_info">Про рушій %1$s</string>
+    <string name="engine_show_more">Докладніше</string>
+    <string name="engine_card_size_download">%1$s для завантаження</string>
+    <string name="engine_card_size_on_disk">%1$s на телефоні</string>
+    <string name="engine_action_download_size">Завантажити · %1$s</string>
+    <string name="engine_dialog_close">Закрити</string>
+    <string name="engine_progress_percent">%1$d%%</string>
+    <string name="engine_status_failed_short">Помилка завантаження</string>
+    <string name="engine_status_corrupt_short">Файли пошкоджено</string>
+
+    <string name="engines_other">Інші рушії (%1$d)</string>
+    <string name="engines_other_expanded">Розгорнуто</string>
+    <string name="engines_other_collapsed">Згорнуто</string>
+
+    <!-- ШВИДКІСТЬ -->
+    <string name="engine_speed_tier_fastest">Найшвидший на цьому телефоні</string>
+    <string name="engine_speed_tier_very_fast">Дуже швидкий на цьому телефоні</string>
+    <string name="engine_speed_tier_fast">Швидкий на цьому телефоні</string>
+    <string name="engine_speed_tier_moderate">Середня швидкість на цьому телефоні</string>
+    <string name="engine_speed_unmeasured">Не виміряно</string>
+    <string name="engine_speed_word_fastest">Найшвидший</string>
+    <string name="engine_speed_word_very_fast">Дуже швидкий</string>
+    <string name="engine_speed_word_fast">Швидкий</string>
+    <string name="engine_speed_word_moderate">Середній</string>
+    <string name="engine_speed_word_slow">Повільний</string>
+
+    <!-- ЯКІСТЬ -->
+    <string name="engine_detail_quality">Якість</string>
+    <string name="engine_quality_best">Найкраща</string>
+    <string name="engine_quality_great">Чудова</string>
+    <string name="engine_quality_good">Добра</string>
+    <string name="engine_quality_fair">Прийнятна</string>
+    <string name="engine_quality_basic">Базова</string>
+    <string name="engine_quality_not_rated">Без оцінки</string>
+    <string name="engine_quality_in_language">%1$s (%2$s)</string>
+    <string name="engine_quality_tested_in">Мова тесту: %1$s</string>
+    <string name="engine_quality_source_english">За нашими тестами на LibriSpeech, FLEURS і AMI, англійською</string>
+    <string name="engine_quality_source_fleurs">За нашими тестами на FLEURS, мова: %1$s</string>
+    <string name="engine_quality_source_two_sets">За нашими тестами на %1$s і %2$s, мова: %3$s</string>
+    <string name="engine_quality_source_none">Ще не тестувалося</string>
+
+    <!-- МОВИ -->
+    <plurals name="engine_languages_count">
+        <item quantity="one">%d мова</item>
+        <item quantity="few">%d мови</item>
+        <item quantity="many">%d мов</item>
+        <item quantity="other">%d мови</item>
+    </plurals>
+    <string name="engine_languages_see_all">Усі %1$d</string>
+    <string name="engine_languages_open">Показати мови</string>
+
+    <!-- Діалог відомостей -->
+    <string name="engine_detail_speed_text">%1$s. %2$s.</string>
+    <string name="engine_detail_chunk">Розмір фрагмента</string>
+    <string name="engine_chunk_steps">Текст з’являється кроками по %1$d мс.</string>
+
+    <!-- Короткий опис рушія. Назви рушіїв і моделей не перекладаються. -->
+    <string name="engine_desc_parakeet_ultra">Parakeet TDT 0.6B v3, донавчений Moondream: ті самі 25 мов, мова визначається автоматично.</string>
+    <string name="engine_desc_parakeet_110m">Маленька англійська модель NVIDIA: у рази менша за інші Parakeet і швидка.</string>
+    <string name="engine_desc_parakeet_ja">Японська модель NVIDIA: найточніша для японської й набагато швидша за Whisper. Ставить мало ком.</string>
+    <string name="engine_desc_canary_180m">Крихітна модель NVIDIA типу encoder-decoder: англійська, іспанська, німецька й французька. Виберіть мову — сама вона її не визначає.</string>
+    <string name="engine_desc_nemotron_35">Потокова модель NVIDIA для гінді, арабської та в’єтнамської: текст з’являється просто під час мовлення.</string>
+    <string name="engine_desc_whisper_turbo">OpenAI Whisper large-v3-turbo, багатомовна. Найточніша з Whisper. Текст з’являється, коли ви робите паузу.</string>
+    <string name="engine_desc_granite">Англійська CTC-модель IBM: найточніша в наших тестах англійською. Великі літери й розділові знаки розставляє власний форматувальник додатка.</string>
+    <string name="engine_desc_qwen3">Офлайн-модель Alibaba з невеликим декодером на основі мовної моделі: 30 мов, мова визначається автоматично. Текст з’являється, коли ви робите паузу.</string>
+    <string name="engine_desc_qwen3_users">Модель Alibaba для китайської та корейської з невеликим декодером на основі мовної моделі: найточніша для китайської. Текст з’являється, коли ви робите паузу.</string>
+</resources>

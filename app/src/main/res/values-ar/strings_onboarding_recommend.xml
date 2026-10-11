@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="onboarding_recommend_checking">جارٍ فحص هاتفك…</string>
+    <string name="onboarding_recommend_best_fit">خيارنا الأول إذا كنت تتحدث %1$s، ويناسب ذاكرة هذا الهاتف وسرعته.</string>
+    <string name="onboarding_recommend_lighter">محرّك أخف يناسب ذاكرة هذا الهاتف وسرعته.</string>
+    <string name="onboarding_recommend_may_be_slow">الأنسب إذا كنت تتحدث %1$s، لكنه قد يكون بطيئًا على هذا الهاتف.</string>
+    <string name="onboarding_recommend_low_memory">أخف محرّك إذا كنت تتحدث %1$s. ذاكرة هذا الهاتف محدودة بالنسبة إليه، لذا قد يكون بطيئًا أو قد يغلقه Android.</string>
+    <string name="onboarding_recommend_uncovered">لا يوجد بعد محرّك يتعرّف على %1$s، لذا فهذا المحرّك يتعرّف على %2$s.</string>
+    <!-- After the reason, for an engine that detects the language itself -->
+    <plurals name="onboarding_recommend_languages">
+        <item quantity="zero">%d لغة، تُكتشف تلقائيًا.</item>
+        <item quantity="one">%d لغة، تُكتشف تلقائيًا.</item>
+        <item quantity="two">%d لغتان، تُكتشفان تلقائيًا.</item>
+        <item quantity="few">%d لغات، تُكتشف تلقائيًا.</item>
+        <item quantity="many">%d لغة، تُكتشف تلقائيًا.</item>
+        <item quantity="other">%d لغة، تُكتشف تلقائيًا.</item>
+    </plurals>
+    <string name="onboarding_recommend_other">يمكنك اختيار محرّك آخر من علامة التبويب «المحرّكات» لاحقًا.</string>
+</resources>

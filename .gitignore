@@ -1,0 +1,38 @@
+# Android / Gradle
+*.apk
+*.aab
+*.ap_
+*.dex
+.gradle/
+local.properties
+build/
+captures/
+.externalNativeBuild/
+.cxx/
+.kotlin/
+
+# IDE / OS
+*.iml
+.idea/
+out/
+.DS_Store
+
+# Logs
+*.log
+
+# Secrets
+*.keystore
+*.jks
+keystore.properties
+
+# Downloaded models / scratch — never commit weights, except the three bundled models
+models-scratch/
+*.onnx
+!app/src/main/assets/vad/silero_vad.onnx
+!app/src/main/assets/granite/formatter.int8.onnx
+!app/src/main/assets/turn/smart-turn-v3.2-cpu.onnx
+
+# Python
+__pycache__/
+*.pyc
+

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Réglages → Apparence -->
+    <string name="settings_appearance">Apparence</string>
+    <string name="settings_mode">Mode</string>
+    <string name="settings_mode_system">Système</string>
+    <string name="settings_mode_light">Clair</string>
+    <string name="settings_mode_dark">Sombre</string>
+    <string name="settings_color">Couleur</string>
+    <string name="settings_color_system">Fond d\'écran</string>
+    <string name="settings_color_midnight">Minuit</string>
+    <string name="settings_color_forest">Forêt</string>
+    <string name="settings_color_berry">Fruits rouges</string>
+    <string name="settings_color_high_contrast">Contraste élevé</string>
+</resources>

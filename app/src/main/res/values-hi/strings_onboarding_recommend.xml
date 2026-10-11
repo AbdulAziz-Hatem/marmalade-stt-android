@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Setup guide: recommended engine -->
+    <string name="onboarding_recommend_checking">आपका फ़ोन जाँचा जा रहा है…</string>
+    <string name="onboarding_recommend_best_fit">%1$s के लिए हमारी पहली पसंद, और यह इस फ़ोन की मेमोरी और गति के हिसाब से ठीक है।</string>
+    <string name="onboarding_recommend_lighter">एक हल्का इंजन, जो इस फ़ोन की मेमोरी और गति के लिए सही है।</string>
+    <string name="onboarding_recommend_may_be_slow">%1$s के लिए सबसे सही, पर इस फ़ोन पर यह धीमा हो सकता है।</string>
+    <string name="onboarding_recommend_low_memory">%1$s के लिए सबसे हल्का इंजन। इस फ़ोन में इसके लिए कम मेमोरी है, इसलिए यह धीमा हो सकता है या Android इसे बंद कर सकता है।</string>
+    <string name="onboarding_recommend_uncovered">अभी कोई इंजन %1$s को टेक्स्ट में नहीं बदलता, इसलिए यह इंजन %2$s के लिए है।</string>
+    <plurals name="onboarding_recommend_languages">
+        <item quantity="one">%d भाषा, अपने आप पहचानी जाती है।</item>
+        <item quantity="other">%d भाषाएँ, अपने आप पहचानी जाती हैं।</item>
+    </plurals>
+    <string name="onboarding_recommend_other">आप बाद में इंजन टैब पर कोई दूसरा इंजन चुन सकते हैं।</string>
+</resources>

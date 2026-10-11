@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Einstellungen → Entwickler -->
+    <string name="settings_developer">Entwickler</string>
+    <string name="settings_developer_engines">Entwickler-Engines</string>
+    <string name="settings_developer_engines_desc">Zusätzliche Spracherkennungs-Engines zum Testen und Benchmarken anzeigen. Große Downloads, nicht für den Alltag gedacht.</string>
+    <string name="settings_developer_benchmark">A/B-Benchmark</string>
+    <string name="settings_developer_benchmark_desc">Installierte Engines anhand einer Aufnahme vergleichen.</string>
+    <string name="settings_developer_speed">Smartphone-Tempo neu messen</string>
+    <string name="settings_developer_speed_measuring">Wird gemessen…</string>
+    <string name="settings_developer_speed_measured">Tempowert %1$s</string>
+    <string name="settings_developer_speed_unmeasured">Noch nicht gemessen</string>
+    <string name="settings_developer_speed_done">Tempowert: %1$s</string>
+    <string name="settings_developer_speed_failed">Das Tempo des Smartphones konnte nicht gemessen werden</string>
+    <!-- ONNX-Runtime-Tuning -->
+    <string name="settings_developer_ort_tuning">Laufzeit-Tuning</string>
+    <string name="settings_developer_ort_tuning_desc">Thread-Spinning und Kern-Pinning von ONNX Runtime, für Messungen. Gilt ab dem nächsten Laden einer Engine.</string>
+    <string name="settings_developer_ort_tuning_default">Standard (%1$s)</string>
+    <string name="settings_developer_ort_tuning_cpu">CPU</string>
+    <string name="settings_developer_ort_tuning_no_spinning">kein Spinning</string>
+    <string name="settings_developer_ort_tuning_pinned">an schnelle Kerne gebunden</string>
+
+    <!-- Kleine Labels (Pills) auf Engine-Karten, Zeilen und im Detaildialog -->
+    <string name="engine_badge_in_use">Aktiv</string>
+    <string name="engine_badge_developer">Entwickler</string>
+    <string name="engine_badge_developer_long">Entwickler-Engine</string>
+    <string name="engine_badge_may_be_slow_long">Eventuell langsam auf diesem Smartphone</string>
+    <string name="engine_badge_streaming">Streaming</string>
+    <string name="engine_streaming_steps">Streaming · %1$d-ms-Schritte</string>
+
+    <!-- Engine-Karte: Engine auswählen -->
+    <string name="engine_action_use">Nutzen</string>
+    <string name="engine_action_use_named">%1$s nutzen</string>
+    <string name="engine_use_failed">Die Engine konnte nicht gewechselt werden. Versuche es noch einmal.</string>
+
+    <!-- Detaildialog: Sprache -->
+    <string name="engine_language">Sprache für diese Engine</string>
+    <string name="engine_language_auto">Automatisch erkennen</string>
+    <string name="engine_language_cancel">Abbrechen</string>
+    <string name="engine_language_failed">Die Sprache konnte nicht gespeichert werden. Versuche es noch einmal.</string>
+</resources>

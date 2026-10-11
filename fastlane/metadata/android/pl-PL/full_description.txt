@@ -1,0 +1,32 @@
+<p>Marmalade STT zamienia Twoją mowę na tekst na Twoim telefonie. Używaj go jako wprowadzania głosowego swojej klawiatury (FUTO Keyboard, HeliBoard, FlorisBoard i innych) oraz aplikacji, które proszą Androida o rozpoznawanie mowy. Twój głos nigdy nie opuszcza urządzenia.</p>
+
+<ul>
+<li><b>Prywatnie.</b> Mowa jest rozpoznawana na telefonie. Dźwięk nigdy nie jest zapisywany ani wysyłany</li>
+<li><b>Offline.</b> Po jednorazowym pobraniu silnika mowy działa bez połączenia</li>
+<li><b>Tekst na żywo.</b> Pokazuje Twoje słowa w czasie rzeczywistym, gdy mówisz, w większości silników</li>
+<li><b>Wie, kiedy kończysz.</b> Smart Turn, domyślny w oknie „Mów teraz”, czeka, aż po głosie będzie słychać koniec wypowiedzi, więc pauza do namysłu rzadko Ci przerywa</li>
+<li><b>Wielojęzyczność.</b> 100 języków, a najlepszy silnik dla Twojego jest wybierany automatycznie</li>
+<li><b>Czysty tekst.</b> Bez wypełniaczy, liczby cyframi, Twoje własne zamiany i głosowe szablony</li>
+<li><b>Wolne i otwarte oprogramowanie.</b> Bez reklam, bez kont, bez analityki</li>
+</ul>
+
+<p><b>PRYWATNOŚĆ OD PODSTAW</b></p>
+<p>Bez analityki, bez śledzenia, bez raportów o awariach, bez kont i bez naszego serwera. Internet służy tylko do pobierania wybranych przez Ciebie silników mowy z GitHuba, a każdy plik jest sprawdzany według przypiętego skrótu SHA-256. Kopia zapasowa Androida jest wyłączona, więc nic nie trafia do chmury.</p>
+
+<p><b>TY DECYDUJESZ, KIEDY KONIEC</b></p>
+<p>W oknie „Mów teraz” i w innych aplikacjach Marmalade domyślnie używa technologii Smart Turn v3, aby wykryć, kiedy skończysz mówić. Bez użycia rąk. Przerywa Ci za wcześnie? Przełącz na zatrzymanie po pauzie albo ustaw słowo końcowe. Na klawiaturze słucha, dopóki nie klikniesz, albo też może używać Smart Turn.</p>
+
+<p><b>CZYSTY TEKST</b></p>
+<p>Opcjonalne porządkowanie poprawia wielkie litery, a po angielsku dodatkowo usuwa wypełniacze, zamienia „new line” i „period” na prawdziwy podział wiersza i kropkę oraz zapisuje liczby cyframi. Zamiany dla nazw, które silnik myli, i szablony dla tekstu, który często wpisujesz, działają w każdym języku.</p>
+
+<p><b>DZIAŁA Z TWOJĄ KLAWIATURĄ</b></p>
+<p>Włącz „Pisanie głosowe Marmalade”, a klawisz mikrofonu Twojej klawiatury otworzy mały panel Marmalade, który wpisuje to, co mówisz. Działa z FUTO Keyboard, HeliBoard, FlorisBoard, AnySoftKeyboard, Unexpected Keyboard, klawiaturą AOSP i innymi klawiaturami z klawiszem głosowym.</p>
+
+<p><b>SILNIK DOPASOWANY DO TELEFONU</b></p>
+<p>Kreator konfiguracji poleca silnik mowy dla Twojego języka oraz pamięci i szybkości Twojego telefonu, a inne modele możesz pobrać i wypróbować.</p>
+
+<p><b>JĘZYKI</b></p>
+<p>Szybkie silniki obsługują angielski, bułgarski, chorwacki, czeski, duński, niderlandzki, estoński, fiński, francuski, niemiecki, grecki, węgierski, włoski, łotewski, litewski, maltański, polski, portugalski, rumuński, rosyjski, słowacki, słoweński, hiszpański, szwedzki, ukraiński, japoński, hindi, arabski i wietnamski. Chiński i koreański dostają Qwen3-ASR, lżejszy niż Whisper. Pozostałe języki działają przez Whisper Large v3 Turbo, z większym opóźnieniem.</p>
+
+<p><b>OPEN SOURCE</b></p>
+<p>Marmalade STT jest dostępny na licencji MIT. Jeśli chcesz go wesprzeć, Ustawienia → Wsparcie prowadzą do GitHub Sponsors; aplikacja jest taka sama niezależnie od tego.</p>

@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- List separator, quoted name, UI locale -->
+    <string name="list_separator">,\u0020</string>
+    <string name="quoted_name">„%1$s“</string>
+    <string name="ui_locale">cs</string>
+
+    <!-- Bottom navigation -->
+    <string name="nav_dictate">Diktování</string>
+    <string name="nav_engines">Moduly</string>
+    <string name="nav_settings">Nastavení</string>
+
+    <!-- Dictate -->
+    <string name="dictate_start">Spustit diktování</string>
+    <string name="dictate_stop">Zastavit diktování</string>
+    <string name="dictate_state_idle">Neposlouchá</string>
+    <string name="dictate_state_loading">Načítání</string>
+    <string name="dictate_state_listening">Poslouchá</string>
+    <string name="dictate_state_finishing">Dokončování</string>
+    <string name="dictate_status_loading">Načítání modelu…</string>
+    <string name="dictate_status_listening">Poslouchám</string>
+    <string name="dictate_status_hearing">Slyším vás…</string>
+    <string name="dictate_status_finishing">Dokončuji…</string>
+    <string name="dictate_status_catching_up">Doháním…</string>
+    <string name="dictate_empty">Tady se objeví vaše slova. Vše, co řeknete, zůstane ve vašem telefonu.</string>
+    <string name="dictate_copy">Kopírovat</string>
+    <string name="dictate_copied">Zkopírováno</string>
+    <string name="dictate_clear">Vymazat</string>
+    <string name="dictate_no_speech">Nic nebylo zachyceno</string>
+    <string name="dictate_error_mic">Mikrofon nelze použít</string>
+    <string name="dictate_error_model">Řečový model se nepodařilo načíst</string>
+    <string name="dictate_error_recognition">Při přepisu se něco pokazilo</string>
+    <string name="dictate_too_slow">Tento modul je na tento telefon příliš pomalý. Menší modul z karty Moduly bude stíhat.</string>
+    <string name="dictate_error_busy">Diktování už běží jinde. Zkuste to za chvíli znovu.</string>
+    <string name="dictate_no_model_title">Chcete-li diktovat, stáhněte si řečový model</string>
+    <string name="dictate_no_model_body">Model běží ve vašem telefonu. Stáhnete ho jednou a pak diktování funguje offline.</string>
+    <string name="dictate_no_model_action">Vybrat model</string>
+    <string name="dictate_mic_title">Aplikace potřebuje mikrofon</string>
+    <string name="dictate_mic_body">Poslouchá jen během diktování. Co řeknete, se ve vašem telefonu změní v text a nikdy se neukládá ani nikam neodesílá.</string>
+    <string name="dictate_mic_body_blocked">Přístup k mikrofonu je pro tuto aplikaci vypnutý. Můžete ho zapnout v nastavení aplikace v sekci Oprávnění.</string>
+    <string name="dictate_mic_allow">Povolit mikrofon</string>
+    <string name="dictate_mic_open_settings">Otevřít nastavení</string>
+    <string name="dictate_mic_settings_failed">Nastavení se nepodařilo otevřít. Otevřete Nastavení Androidu, pak Aplikace a pak Marmalade STT.</string>
+
+    <!-- Engines list -->
+    <string name="engines_title">Moduly</string>
+
+    <!-- Engine install state -->
+    <string name="engine_status_not_installed">Zatím nestaženo</string>
+    <string name="engine_status_downloading">Stahování · %1$s</string>
+    <string name="engine_status_paused">Pozastaveno · %1$s</string>
+    <string name="engine_status_ready">Připraveno</string>
+    <string name="engine_status_corrupt">Soubory modelu jsou poškozené: %1$s</string>
+    <string name="engine_progress_bytes">%1$s z %2$s</string>
+    <string name="engine_progress_description">Průběh stahování</string>
+    <string name="engine_failure_not_available">Tento model teď nelze stáhnout. Zkuste to později.</string>
+    <string name="engine_failure_no_space">Pro tento model není dost volného místa. Uvolněte místo a zkuste to znovu.</string>
+    <string name="engine_failure_network">Stahování bylo přerušeno. Zkontrolujte připojení a zkuste to znovu. Bude pokračovat tam, kde skončilo.</string>
+    <string name="engine_failure_generic">Model se nepodařilo nainstalovat. Zkuste to znovu.</string>
+    <!-- After "Soubory modelu jsou poškozené: "; %1$s is a file name -->
+    <string name="engine_corrupt_outdated">Nainstalované soubory neodpovídají této verzi aplikace.</string>
+    <string name="engine_corrupt_missing">Soubor %1$s chybí.</string>
+    <string name="engine_corrupt_wrong_size">Soubor %1$s má nesprávnou velikost.</string>
+    <string name="engine_corrupt_damaged">Soubor %1$s je poškozený.</string>
+    <string name="engine_failure_checksum">Stažený soubor neodpovídal tomu, co jsme očekávali, a proto byl smazán. Zkuste ho stáhnout znovu.</string>
+
+    <!-- Engine actions -->
+    <string name="engine_action_download">Stáhnout</string>
+    <string name="engine_action_resume">Pokračovat</string>
+    <string name="engine_action_retry">Zkusit znovu</string>
+    <string name="engine_action_download_again">Stáhnout znovu</string>
+    <string name="engine_action_cancel">Zrušit</string>
+    <string name="engine_action_remove_download">Odstranit stahování</string>
+    <string name="engine_action_check_files">Zkontrolovat soubory</string>
+    <string name="engine_action_checking">Kontrola souborů…</string>
+    <string name="engine_action_remove">Odstranit</string>
+    <string name="engine_dialog_cancel">Zrušit</string>
+    <string name="engine_download_confirm_title">Stáhnout %1$s?</string>
+    <string name="engine_download_confirm_body">Tímto jednorázově stáhnete z internetu %1$s. Poté modul funguje offline a nic z toho, co řeknete, neopustí váš telefon.</string>
+    <string name="engine_remove_confirm_title">Odstranit %1$s?</string>
+    <string name="engine_remove_confirm_body">Tímto z telefonu smažete soubory modelu (%1$s). Kdykoli je můžete stáhnout znovu.</string>
+    <string name="engine_remove_download_failed">Stahování se nepodařilo odstranit. Zkuste to znovu.</string>
+    <string name="engine_remove_failed">Soubory modelu se nepodařilo odstranit. Zkuste to znovu.</string>
+    <string name="engine_check_ok">Všechny soubory jsou v pořádku</string>
+    <string name="engine_check_damaged">Některé soubory modelu jsou poškozené. Opravíte to tím, že je stáhnete znovu.</string>
+    <string name="engine_check_failed">Soubory se nepodařilo zkontrolovat. Zkuste to znovu.</string>
+    <string name="download_channel_name">Stahování řečových modelů</string>
+
+    <!-- Engine info dialog -->
+    <string name="engine_detail_languages">Jazyky</string>
+    <string name="engine_detail_size_on_disk">Velikost v úložišti</string>
+    <string name="engine_detail_download_size">Velikost stahování</string>
+    <string name="engine_detail_license">Licence</string>
+    <string name="engine_detail_source">Zdroj</string>
+    <string name="engine_detail_speed">Rychlost</string>
+    <string name="engine_speed_cost">%1$s× doba dekódování modulu Parakeet Ultra (odhad)</string>
+    <string name="engine_speed_reference">Parakeet Ultra slouží jako měřítko rychlosti</string>
+    <string name="engine_speed_phone_unmeasured">Tento telefon zatím nebyl změřen</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Nastavení</string>
+    <string name="settings_back">Zpět</string>
+    <string name="settings_save_failed">Nastavení se nepodařilo uložit. Zkuste to znovu.</string>
+    <string name="settings_speech">Řeč</string>
+    <string name="settings_speech_keep_loaded">Udržovat modul připravený</string>
+    <string name="settings_speech_keep_loaded_desc">Poslech začne rychleji. Vyplatí se zapnout, pokud hlasové zadávání používáte často, například kvůli přístupnosti. Když je aplikace otevřená, zabírá podle modulu asi 0,6 až 3 GB paměti.</string>
+    <!-- Settings → End of speech -->
+    <string name="settings_end">Konec promluvy</string>
+    <string name="settings_end_keyboard">Hlasová klávesnice</string>
+    <string name="settings_end_apps">Ostatní aplikace a okno „Mluvte“</string>
+    <string name="settings_end_tap">Zastavit klepnutím</string>
+    <string name="settings_end_tap_desc">Mikrofon zůstane zapnutý, dokud na něj neklepnete. Slova se napíšou, až poslech zastavíte.</string>
+    <string name="settings_end_smart_turn">Automaticky zastavit pomocí Smart Turn</string>
+    <string name="settings_end_smart_turn_desc">Přestane poslouchat, jakmile to zní, že končíte, takže vás pauza na přemýšlení nepřeruší.</string>
+    <string name="settings_end_pause">Automaticky zastavit po pauze</string>
+    <string name="settings_end_pause_desc">Přestane poslouchat, když se odmlčíte. Jak dlouho, nastavíte v položce Délka pauzy.</string>
+    <string name="settings_end_word">Vyslovit koncové slovo</string>
+    <string name="settings_end_word_desc">Přestane poslouchat, když samostatně vyslovíte koncové slovo, například „over“. Toto slovo se nenapíše.</string>
+    <string name="settings_end_lock_hint">Tip: v režimu automatického zastavení podržte mikrofon a bude poslouchat, dokud na něj neklepnete.</string>
+    <string name="settings_dialog_cancel">Zrušit</string>
+    <string name="settings_speech_pause">Délka pauzy</string>
+    <string name="settings_speech_pause_desc">Jak dlouhá pauza ukončí větu na kartě Diktování a zastaví poslech v režimu Automaticky zastavit po pauze. S delší pauzou máte čas na přemýšlení.</string>
+    <string name="settings_speech_pause_value">%1$.1f s</string>
+    <string name="settings_speech_pause_state">%1$.1f sekundy</string>
+    <string name="settings_patience">Trpělivost Smart Turn</string>
+    <string name="settings_patience_desc">%1$s. Jak dlouho čeká, než usoudí, že končíte.</string>
+    <string name="settings_patience_quick">Rychlá</string>
+    <string name="settings_patience_quick_desc">Přestane poslouchat dřív, ale častěji vás přeruší.</string>
+    <string name="settings_patience_normal">Normální</string>
+    <string name="settings_patience_normal_desc">Přečká většinu pauz na přemýšlení.</string>
+    <string name="settings_patience_relaxed">Klidná</string>
+    <string name="settings_patience_relaxed_desc">Před zastavením poslechu čeká déle. Hodí se, pokud často děláte pauzy.</string>
+    <string name="settings_end_words">Koncová slova</string>
+    <string name="settings_end_words_hint">Oddělte je čárkami.</string>
+    <!-- Settings → Support -->
+    <string name="settings_support">Podpora</string>
+    <string name="settings_support_dev">Podpořit vývoj</string>
+    <string name="settings_support_dev_desc">Darujte přes GitHub Sponsors. Dobrovolné a nelze odečíst z daní.</string>
+    <string name="settings_more_marmalade">Další od Marmalade</string>
+    <string name="settings_more_marmalade_desc">Další aplikace Marmalade na GitHubu.</string>
+    <string name="settings_report_bug">Nahlásit chybu</string>
+    <string name="settings_report_bug_desc">Něco nefunguje nebo bylo špatně rozpoznáno? Otevře na GitHubu hlášení s předvyplněnými podrobnostmi.</string>
+    <string name="settings_about">O aplikaci</string>
+    <string name="settings_about_row">O aplikaci Marmalade STT</string>
+    <string name="settings_about_row_desc">Verze %1$s · licence, ochrana soukromí</string>
+
+    <!-- About -->
+    <string name="about_title">O aplikaci</string>
+    <string name="about_version">Verze %1$s</string>
+    <string name="about_tagline">Soukromý převod řeči na text, který běží ve vašem telefonu.</string>
+    <string name="about_privacy">Zásady ochrany soukromí</string>
+    <string name="about_privacy_desc">Co zůstává ve vašem telefonu (vše, co řeknete) a co aplikace stahuje. Žádné sledování, žádné účty.</string>
+    <string name="about_privacy_english_note">Tyto zásady jsou v angličtině. Shrnutí: řeč se rozpoznává ve vašem telefonu, nikdy cloudovou ani online službou pro rozpoznávání řeči. Zvuk se nikdy neukládá ani nikam neodesílá. Žádná analytika, sledování ani účty. Internet se používá jen ke stažení řečových modelů.</string>
+    <string name="about_privacy_load_failed">Zásady ochrany soukromí se nepodařilo načíst. Najdete je také v repozitáři jako PRIVACY.md.</string>
+    <string name="about_licenses">Licence open source</string>
+    <string name="about_licenses_desc">Licence aplikace a komponent, které obsahuje.</string>
+
+    <!-- Open-source licenses -->
+    <string name="licenses_licensing">Licencování</string>
+    <string name="licenses_view_full">Zobrazit celou licenci</string>
+    <string name="license_text_title">Licence</string>
+    <string name="license_text_not_bundled">Text licence není součástí aplikace. Použijte odkaz na předchozí obrazovce.</string>
+    <string name="license_text_load_failed">Text licence se nepodařilo načíst. Použijte odkaz na zdroj na předchozí obrazovce.</string>
+
+    <!-- Voice keyboard -->
+    <string name="ime_name">Hlasové zadávání Marmalade</string>
+    <string name="ime_subtype_label">Hlasové zadávání</string>
+    <string name="ime_status_loading">Načítání modelu…</string>
+    <string name="ime_status_listening">Poslouchám</string>
+    <string name="ime_status_hearing">Slyším vás…</string>
+    <string name="ime_status_finishing">Dokončuji…</string>
+    <string name="ime_status_paused">Pozastaveno. Pokračujte klepnutím na mikrofon.</string>
+    <string name="ime_speak_now">Mluvte</string>
+    <string name="ime_cancel">Zpět na klávesnici</string>
+    <string name="ime_done">Hotovo</string>
+    <string name="ime_pause">Pozastavit poslech</string>
+    <string name="ime_resume">Pokračovat v poslechu</string>
+    <string name="ime_no_model">Chcete-li používat hlasové zadávání, stáhněte si v aplikaci Marmalade STT řečový model.</string>
+    <string name="ime_open_app">Otevřít Marmalade STT</string>
+    <string name="ime_mic_needed">Hlasové zadávání potřebuje mikrofon. Poslouchá jen tehdy, když je tento panel otevřený.</string>
+    <string name="ime_mic_allow">Povolit mikrofon</string>
+    <string name="ime_mic_blocked">Přístup k mikrofonu je pro Marmalade STT vypnutý. Zapněte ho v sekci Oprávnění a pak se vraťte do své aplikace.</string>
+
+    <!-- Speech input dialog and RecognitionService -->
+    <string name="recognizer_speak_now">Mluvte</string>
+    <string name="recognizer_cancel">Zrušit</string>
+    <string name="recognizer_done">Hotovo</string>
+    <string name="recognizer_try_again">Zkusit znovu</string>
+    <string name="recognizer_no_model">Chcete-li používat rozpoznávání řeči, stáhněte si v aplikaci Marmalade STT řečový model.</string>
+    <string name="recognizer_open_app">Otevřít Marmalade STT</string>
+    <string name="recognizer_mic_blocked">Rozpoznávání řeči potřebuje mikrofon. Zapněte ho v nastavení aplikace v sekci Oprávnění.</string>
+    <string name="recognizer_open_settings">Otevřít nastavení</string>
+    <string name="recognizer_mic_stop">Zastavit poslech</string>
+
+    <!-- Press and hold the mic to lock listening -->
+    <string name="lock_status">Zamknuto: klepnutím zastavíte</string>
+    <string name="lock_state">Zamknuto</string>
+    <string name="lock_action">Zamknout poslech</string>
+
+    <!-- Text cleanup -->
+    <string name="cleanup_section">Úprava textu</string>
+    <string name="cleanup_fillers">Odstranit výplňková slova</string>
+    <string name="cleanup_fillers_desc">Odstraňuje „um“, „uh“, „er“, „hmm“ a podobně. Skutečná slova jako „umbrella“ zůstanou.</string>
+    <string name="cleanup_commands">Hlasové příkazy</string>
+    <string name="cleanup_commands_desc">Řekněte „new line“ nebo „new paragraph“, případně „scratch that“, pokud chcete smazat poslední větu.</string>
+    <string name="cleanup_punctuation">Interpunkce slovy</string>
+    <string name="cleanup_punctuation_desc">Vyslovte také „period“, „comma“, „question mark“… Ve výchozím stavu vypnuto: jsou to i běžná slova.</string>
+    <string name="cleanup_english_only">Jen angličtina. %1$s</string>
+    <string name="cleanup_itn">Psát čísla číslicemi</string>
+    <string name="cleanup_itn_desc">Z „Twenty five percent“ se stane „25%“, z „nine thirty pm“ se stane „9:30 pm“. Malá čísla jako „three boxes“ zůstanou slovy.</string>
+    <string name="cleanup_capitalize">Velká písmena na začátku vět</string>
+    <string name="cleanup_capitalize_desc">Velké písmeno na začátku každé věty a řádku. Nic se nikdy nepřevádí na malá písmena.</string>
+    <string name="cleanup_dictionary">Slovník náhrad</string>
+    <string name="cleanup_dictionary_desc_none">Opravte slova, která aplikace opakovaně rozpoznává špatně.</string>
+    <plurals name="cleanup_dictionary_desc">
+        <item quantity="one">%1$d pravidlo · opravte slova, která aplikace opakovaně rozpoznává špatně</item>
+        <item quantity="few">%1$d pravidla · opravte slova, která aplikace opakovaně rozpoznává špatně</item>
+        <item quantity="many">%1$d pravidla · opravte slova, která aplikace opakovaně rozpoznává špatně</item>
+        <item quantity="other">%1$d pravidel · opravte slova, která aplikace opakovaně rozpoznává špatně</item>
+    </plurals>
+    <string name="cleanup_snippets">Úryvky</string>
+    <string name="cleanup_snippets_desc_none">Vyslovte spouštěcí frázi a vloží se uložený text, například vaše adresa.</string>
+    <plurals name="cleanup_snippets_desc">
+        <item quantity="one">%1$d úryvek · vyslovte spouštěcí frázi a vloží se uložený text</item>
+        <item quantity="few">%1$d úryvky · vyslovte spouštěcí frázi a vloží se uložený text</item>
+        <item quantity="many">%1$d úryvku · vyslovte spouštěcí frázi a vloží se uložený text</item>
+        <item quantity="other">%1$d úryvků · vyslovte spouštěcí frázi a vloží se uložený text</item>
+    </plurals>
+
+    <string name="cleanup_save">Uložit</string>
+    <string name="cleanup_cancel">Zrušit</string>
+    <string name="cleanup_delete">Smazat</string>
+    <string name="cleanup_edit_action">Upravit</string>
+
+    <!-- "teh" is the README's deliberate misspelling example (the rule holds in any language). -->
+    <string name="cleanup_dictionary_help" tools:ignore="Typos">Každé pravidlo změní slovo nebo frázi, kterou aplikace opakovaně rozpoznává špatně, na to, co máte na mysli.\n\n• Hledají se celá slova bez ohledu na velikost písmen: „teh“ odpovídá „Teh“, ale ne „tehran“.\n• V čínštině a japonštině, které mezi slovy nemají mezery, se fráze najde i uvnitř věty. V korejštině se najde i s připojenou částicí: „메일“ odpovídá „메일을“.\n• Velké písmeno na pravé straně se zachová tak, jak je napsané. Jinak se velikost písmen řídí tím, co zaznělo: „Teh“ se změní na „The“.\n• Když pravou stranu necháte prázdnou, fráze se smaže.\n• Když se pravidla překrývají, vyhraje nejdelší shoda.</string>
+    <string name="cleanup_dictionary_empty">Zatím žádná pravidla. Klepnutím na „Přidat pravidlo“ opravíte slovo, které aplikace opakovaně rozpoznává špatně.</string>
+    <string name="cleanup_dictionary_add">Přidat pravidlo</string>
+    <string name="cleanup_dictionary_edit">Upravit pravidlo</string>
+    <string name="cleanup_dictionary_from">Co zazní</string>
+    <string name="cleanup_dictionary_to">Napsat místo toho</string>
+    <string name="cleanup_dictionary_to_hint">Nechte prázdné, pokud chcete frázi smazat.</string>
+    <string name="cleanup_dictionary_from_breaks_export">Nesmí obsahovat „->“ ani začínat znakem „#“.</string>
+    <string name="cleanup_dictionary_replaces">Nahradí vaše pravidlo pro „%1$s“.</string>
+    <string name="cleanup_dictionary_deleted">(smazáno)</string>
+    <string name="cleanup_dictionary_rule_description">%1$s se změní na %2$s</string>
+    <string name="cleanup_dictionary_rule_deletes_description">%1$s se smaže</string>
+    <string name="cleanup_import">Importovat</string>
+    <string name="cleanup_export">Kopírovat vše</string>
+    <string name="cleanup_exported">Pravidla zkopírována</string>
+    <string name="cleanup_import_title">Importovat pravidla</string>
+    <string name="cleanup_import_help">Vložte jedno pravidlo na řádek ve tvaru špatně -> správně. Řádky začínající znakem # se ignorují. Pravidlo pro slovo, které už máte, nahradí to stávající.</string>
+    <string name="cleanup_import_field">Pravidla</string>
+    <string name="cleanup_import_none">Zatím nebyla nalezena žádná pravidla.</string>
+    <plurals name="cleanup_import_found">
+        <item quantity="one">Nalezeno %1$d pravidlo.</item>
+        <item quantity="few">Nalezena %1$d pravidla.</item>
+        <item quantity="many">Nalezeno %1$d pravidla.</item>
+        <item quantity="other">Nalezeno %1$d pravidel.</item>
+    </plurals>
+    <plurals name="cleanup_import_skipped">
+        <item quantity="one">Přeskočí se %1$d řádek, který není pravidlo.</item>
+        <item quantity="few">Přeskočí se %1$d řádky, které nejsou pravidla.</item>
+        <item quantity="many">Přeskočí se %1$d řádku, které nejsou pravidla.</item>
+        <item quantity="other">Přeskočí se %1$d řádků, které nejsou pravidla.</item>
+    </plurals>
+
+    <string name="cleanup_snippets_help">Vyslovte spouštěcí frázi a nahradí ji váš uložený text, přesně tak, jak je napsaný, včetně zalomení řádků.\n\n• Spouštěcí fráze se hledají jako celá slova bez ohledu na velikost písmen: „můj e-mail“ odpovídá „Můj e-mail“, ale ne „můj e-mailový“.\n• V čínštině a japonštině, které mezi slovy nemají mezery, se spouštěcí fráze najde i uvnitř věty. V korejštině se najde i s připojenou částicí: „메일“ odpovídá „메일을“.\n• Uložený text nic jiného nemění: žádné odstraňování výplňkových slov, příkazy ani velká písmena.\n• Když spouštěcí frázi vyslovíte samotnou, vloží se jen uložený text.</string>
+    <string name="cleanup_snippets_empty">Zatím žádné úryvky. Klepnutím na „Přidat úryvek“ uložíte text, který často potřebujete.</string>
+    <string name="cleanup_snippets_add">Přidat úryvek</string>
+    <string name="cleanup_snippets_edit">Upravit úryvek</string>
+    <string name="cleanup_snippets_trigger">Spouštěcí fráze</string>
+    <string name="cleanup_snippets_text">Text k vložení</string>
+    <string name="cleanup_snippets_replaces">Nahradí váš úryvek pro „%1$s“.</string>
+
+    <!-- Setup guide -->
+    <string name="onboarding_step_of">Krok %1$d z %2$d</string>
+    <string name="onboarding_close">Zavřít průvodce nastavením</string>
+    <string name="onboarding_back">Zpět</string>
+    <string name="onboarding_next">Další</string>
+    <string name="onboarding_skip">Přeskočit</string>
+    <string name="onboarding_get_started">Začít</string>
+    <string name="onboarding_try_it">Vyzkoušet</string>
+    <string name="onboarding_settings_failed">Nastavení Androidu se nepodařilo otevřít. Otevřete je raději z plochy.</string>
+    <!-- Toasts over Settings when only a fallback page opened (#79): where to go from there. -->
+    <string name="settings_hint_voice_input">V Nastavení vyhledejte „Hlasové zadávání“ a pak vyberte Marmalade STT.</string>
+    <string name="settings_hint_keyboards">V Nastavení vyhledejte „Klávesnice“ a pak zapněte Hlasové zadávání Marmalade.</string>
+    <string name="settings_hint_app_details">Najděte Marmalade STT v sekci Aplikace a pak v sekci Oprávnění zapněte mikrofon.</string>
+    <string name="onboarding_welcome_title">Vítá vás Marmalade STT</string>
+    <string name="onboarding_welcome_body">Mluvte a Marmalade STT to napíše: na vlastní obrazovce Diktování nebo jako hlasové zadávání v jiných aplikacích. Stačí pár rychlých kroků a vše bude připraveno.</string>
+    <string name="onboarding_privacy_title">Soukromí už od návrhu</string>
+    <string name="onboarding_privacy_body">Řeč se rozpoznává ve vašem telefonu, nikdy cloudovou ani online službou pro rozpoznávání řeči, včetně té od Googlu. Zvuk se nikdy neukládá ani nikam neodesílá. Žádná analytika, žádné sledování, žádné účty, žádné klíče API. Internet se používá jen ke stažení řečových modelů.</string>
+    <string name="onboarding_high_contrast">Režim přístupnosti</string>
+    <string name="onboarding_high_contrast_desc">Barvy s vysokým kontrastem</string>
+    <string name="onboarding_mic_title">Povolte mikrofon</string>
+    <string name="onboarding_mic_body">Aplikace Marmalade STT potřebuje mikrofon, aby vás slyšela. Používá ho jen tehdy, když je zapnuté diktování.</string>
+    <string name="onboarding_mic_granted">Přístup k mikrofonu je zapnutý</string>
+    <string name="onboarding_mic_denied">Bez mikrofonu vás Marmalade STT neuslyší. Můžete ho povolit teď, nebo tento krok přeskočit a povolit ho později.</string>
+    <string name="onboarding_mic_blocked">Přístup k mikrofonu je pro tuto aplikaci vypnutý. Zapněte ho v sekci Oprávnění na stránce nastavení aplikace.</string>
+    <string name="onboarding_mic_allow">Povolit mikrofon</string>
+    <string name="onboarding_mic_open_settings">Otevřít nastavení aplikace</string>
+    <string name="onboarding_model_title">Stáhněte si řečový model</string>
+    <string name="onboarding_model_body">Řeč rozpoznává model, který běží ve vašem telefonu. Stáhne se jednou, potom diktování funguje offline.</string>
+    <string name="onboarding_model_downloading_note">Nastavení bude pokračovat, jakmile bude model připraven. Stahování pokračuje, i když se obrazovka vypne nebo aplikaci opustíte.</string>
+    <string name="onboarding_keyboard_title">Zapněte hlasovou klávesnici</string>
+    <string name="onboarding_keyboard_body">Hlasovou klávesnicí Marmalade diktujete do jiných aplikací: otevírají ji tlačítka mikrofonu na klávesnicích. V nastavení klávesnic Androidu zapněte „Hlasové zadávání Marmalade“ a pak se sem vraťte.</string>
+    <string name="onboarding_keyboard_open">Otevřít nastavení klávesnice</string>
+    <string name="onboarding_keyboard_on">Hlasová klávesnice je zapnutá</string>
+    <string name="onboarding_keyboard_off">Hlasová klávesnice je vypnutá</string>
+    <string name="onboarding_keyboard_warning">Android upozorňuje, že každá klávesnice, kterou zapnete, může shromažďovat to, co píšete. Toto upozornění je standardní. Marmalade STT píše jen to, co nadiktujete, a nic neopustí váš telefon.</string>
+    <string name="onboarding_keyboard_unlock_note">Některé telefony pak zobrazí druhou zprávu: po restartu se aplikace nespustí, dokud telefon neodemknete. I to je v pořádku. Klepněte na OK.</string>
+    <string name="onboarding_futo_checking">Ptám se FUTO Keyboard…</string>
+    <string name="onboarding_futo_selected">FUTO Keyboard používá pro hlasové zadávání Marmalade STT</string>
+    <string name="onboarding_futo_not_selected">FUTO Keyboard používá jiné hlasové zadávání</string>
+    <string name="onboarding_futo_use">Použít Marmalade STT ve FUTO</string>
+    <string name="onboarding_futo_check_again">Zkontrolovat znovu</string>
+    <string name="onboarding_futo_manual_title">Nastavte to ručně</string>
+    <string name="onboarding_futo_manual_body">Ve FUTO Keyboard otevřete Nastavení → Hlasové zadávání a zapněte „Vypnout zabudované hlasové zadávání“ („Použít hlasové zadávání poskytnuté externí aplikací“). Tlačítko mikrofonu ve FUTO pak otevře hlasovou klávesnici Marmalade z předchozího kroku.</string>
+    <string name="onboarding_futo_crash_once">Pokud se FUTO Keyboard při prvním klepnutí na mikrofon zavře, klepněte na něj znovu.</string>
+    <string name="onboarding_done_title">Vše je připraveno</string>
+    <string name="onboarding_done_body">Vyzkoušejte to na obrazovce Diktování: klepněte na mikrofon a mluvte.</string>
+    <string name="onboarding_done_title_partial">Připraveno, až budete chtít</string>
+    <string name="onboarding_done_body_partial">Některé kroky ještě zbývají. Dokončit je můžete kdykoli.</string>
+    <string name="onboarding_done_reopen">Tohoto průvodce můžete znovu otevřít v Nastavení.</string>
+    <string name="onboarding_summary_mic">Mikrofon</string>
+    <string name="onboarding_summary_mic_on">Povoleno</string>
+    <string name="onboarding_summary_mic_off">Zatím nepovoleno</string>
+    <string name="onboarding_summary_model">Řečový model</string>
+    <string name="onboarding_summary_model_ready">Připraveno</string>
+    <string name="onboarding_summary_model_downloading">Stahování</string>
+    <string name="onboarding_summary_model_missing">Nestaženo. Stáhněte ho na kartě Moduly.</string>
+    <string name="onboarding_summary_model_attention">Stahování nedokončeno. Podívejte se na kartu Moduly.</string>
+    <string name="onboarding_summary_keyboard">Hlasová klávesnice</string>
+    <string name="onboarding_summary_keyboard_on">Zapnuto</string>
+    <string name="onboarding_summary_keyboard_off">Vypnuto</string>
+    <string name="onboarding_summary_futo">FUTO Keyboard</string>
+    <string name="onboarding_summary_futo_on">Používá Marmalade STT</string>
+    <string name="onboarding_summary_futo_off">Používá jiné hlasové zadávání</string>
+    <string name="onboarding_settings_row">Průvodce nastavením</string>
+    <string name="onboarding_settings_row_desc">Mikrofon, řečový modul, klávesnice a služba rozpoznávání řeči</string>
+</resources>

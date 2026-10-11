@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marmalade STT — Arabic RTL audit (#69)</title>
+<link rel="stylesheet" href="/_assets/lab.css">
+<style>
+main{max-width:1300px}
+table.audit td,table.audit th{vertical-align:top;font-size:14px}
+table.audit td.ok{color:var(--ok,#7fbf7f);white-space:nowrap}
+table.audit td.fix{color:var(--peach);white-space:nowrap}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:640px;margin:8px 0 26px}
+.pair figure,.gal figure{margin:0}
+.pair img,.gal img{width:100%;border-radius:12px;border:1px solid var(--line)}
+figcaption{font-size:13px;color:var(--dimmer)}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px;margin:10px 0 26px}
+h3{margin-top:28px}
+</style>
+</head>
+<body>
+<header><h1>Marmalade STT · <span>Arabic RTL audit</span></h1>
+<span class="sub">Every screen in Arabic on the API 35 emulator, before and after the #69 fixes</span>
+<span class="meta">2026-10-05<br>emulator Pixel 6 profile, default font size, light mode</span></header>
+<main>
+<p class="lede">The app is set to Arabic with Android's per-app language (<code>cmd locale set-app-locales … ar</code>) on an
+English emulator. Compose mirrors layouts on its own (<code>supportsRtl</code> holds), so most screens were already right:
+rows, chevrons, back arrows, switches, sliders, the meters (they fill from the right), dialogs' button order, the
+progress bar of the setup guide. The bugs were in text that isn't the app's own translated words, and in the keyboard
+panel. Long locales (ru, uk, pl, vi, id) are at the bottom.</p>
+
+<h2 class="sec">Audit</h2>
+<table class="audit">
+<tr><th>Area</th><th>What was checked</th><th>Result</th><th>Fix</th></tr>
+<tr><td>Layout mirroring</td><td>Tabs, rows, chevrons (AutoMirrored), back arrow, FAB, dialogs (confirm at the left), switches, sliders, segmented chips</td><td class="ok">correct</td><td>none</td></tr>
+<tr><td>Icons that must not mirror</td><td>Mic, play, warning, lock, the mascot</td><td class="ok">correct</td><td>none</td></tr>
+<tr><td>Meters</td><td>Speed and quality segments, the setup guide's progress bar, the pause slider</td><td class="ok">fill from the right</td><td>none</td></tr>
+<tr><td>Mixed-direction text</td><td>Engine names, "Parakeet TDT 0.6B v3", "Nemotron 3.5." at a sentence end, "MB" sizes, menu paths (← in Arabic)</td><td class="ok">correct</td><td>none</td></tr>
+<tr><td>Quoted English examples</td><td>«9:30 pm» showed as "pm 9:30", «25%» as "%25"</td><td class="fix">fixed</td><td>left-to-right isolate inside the quotes (LRI…PDI) in the Arabic string; TranslationsTest accepts it</td></tr>
+<tr><td>User text</td><td>Text fields (dictionary, snippets, end words, setup guide's try-it box, benchmark), snippet rows: "teh." showed as ".teh", "1 Main St." as "Main St. 1"</td><td class="fix">fixed</td><td>TextDirection.Content (<code>ui/Bidi.kt</code>)</td></tr>
+<tr><td>Dictionary rows</td><td>"teh. → the" ran together with the arrow pointing backwards</td><td class="fix">fixed</td><td>each side isolated (FSI…PDI), ← in RTL</td></tr>
+<tr><td>Transcripts</td><td>Dictate, the keyboard panel's partial, the speak-now sheet and the calling app's prompt</td><td class="fix">fixed (not shot)</td><td>TextDirection.Content; same mechanism as the text fields, which are shot. No audio was fed into the emulator, so there is no transcript screenshot</td></tr>
+<tr><td>Privacy policy</td><td>The English policy was right-aligned, full stops and bullets on the wrong side</td><td class="fix">fixed</td><td>laid out left to right under the translated (RTL) note</td></tr>
+<tr><td>Open-source licences</td><td>English entries right-aligned, ".MIT-licensed"</td><td class="fix">fixed</td><td>entries and licence texts keep their own direction</td></tr>
+<tr><td>Keyboard panel</td><td>With the app in Arabic on an English phone: English text, not mirrored</td><td class="fix">fixed</td><td>the panel takes the app's per-app language (<code>ime/InAppLanguage.kt</code>); was the same for the #51 locales</td></tr>
+<tr><td>Digits</td><td>The formatter writes Arabic-Indic digits (٢٥, ٦٨٢ MB); the language tile wrote "25" and some strings "الـ25"</td><td class="fix">fixed</td><td>tile formats with the locale; literal numbers in Arabic prose are Arabic-Indic (names and versions keep theirs)</td></tr>
+<tr><td>Speak-now sheet</td><td>Layout, buttons, mic</td><td class="ok">correct</td><td>none</td></tr>
+<tr><td>Long locales</td><td>ru, uk, pl, vi, id at default font size: engines, the details dialog, Settings, the setup guide</td><td class="fix">one fix</td><td>the details dialog's quality tile broke "(английский)" inside the word; the language now sits on its own small line ("Tested in English"), as on the cards</td></tr>
+</table>
+
+<h2 class="sec">Before → after</h2>
+<h3>Privacy policy</h3>
+<div class="pair"><figure><img src="i18n-shots/rtl/privacy-before.png"><figcaption>before</figcaption></figure><figure><img src="i18n-shots/rtl/privacy-after.png"><figcaption>after</figcaption></figure></div>
+<h3>Open-source licences</h3>
+<div class="pair"><figure><img src="i18n-shots/rtl/licenses-before.png"><figcaption>before</figcaption></figure><figure><img src="i18n-shots/rtl/licenses-after.png"><figcaption>after</figcaption></figure></div>
+<h3>Replacement dictionary</h3>
+<div class="pair"><figure><img src="i18n-shots/rtl/dictionary-before.png"><figcaption>before: "teh. → the, Marmalade STT."</figcaption></figure><figure><img src="i18n-shots/rtl/dictionary-after.png"><figcaption>after</figcaption></figure></div>
+<h3>Snippets</h3>
+<div class="pair"><figure><img src="i18n-shots/rtl/snippets-before.png"><figcaption>before: "1 Main St., Springfield"</figcaption></figure><figure><img src="i18n-shots/rtl/snippets-after.png"><figcaption>after</figcaption></figure></div>
+<h3>End words field</h3>
+<div class="pair"><figure><img src="i18n-shots/rtl/endword-before.png"><figcaption>before: typing "over, done."</figcaption></figure><figure><img src="i18n-shots/rtl/endword-after.png"><figcaption>after</figcaption></figure></div>
+<h3>Keyboard panel</h3>
+<div class="pair"><figure><img src="i18n-shots/rtl/keyboard-before.png"><figcaption>before: English, not mirrored</figcaption></figure><figure><img src="i18n-shots/rtl/keyboard-after.png"><figcaption>after</figcaption></figure></div>
+<h3>Engine details: digits</h3>
+<div class="pair"><figure><img src="i18n-shots/rtl/engine-info-before.png"><figcaption>before: "25" beside "٢٥ لغة"</figcaption></figure><figure><img src="i18n-shots/rtl/engine-info-after.png"><figcaption>after (another engine: "٣")</figcaption></figure></div>
+<h3>Text cleanup: «9:30 pm»</h3>
+<div class="pair"><figure><img src="i18n-shots/rtl/cleanup-before.png"><figcaption>before: "pm 9:30"</figcaption></figure><figure><img src="i18n-shots/rtl/cleanup-after.png"><figcaption>after</figcaption></figure></div>
+<h3>Russian: the quality tile</h3>
+<div class="pair"><figure><img src="i18n-shots/rtl/ru-tile-before.png"><figcaption>before: "(английски / й)"</figcaption></figure><figure><img src="i18n-shots/rtl/ru-tile-after.png"><figcaption>after</figcaption></figure></div>
+
+<h2 class="sec">Already right in Arabic</h2>
+<div class="gal">
+<figure><img src="i18n-shots/rtl/ok-dictate.png" loading="lazy"><figcaption>Dictate</figcaption></figure>
+<figure><img src="i18n-shots/rtl/ok-engines.png" loading="lazy"><figcaption>Engines</figcaption></figure>
+<figure><img src="i18n-shots/rtl/ok-dialog.png" loading="lazy"><figcaption>Download dialog</figcaption></figure>
+<figure><img src="i18n-shots/rtl/ok-languages.png" loading="lazy"><figcaption>Languages dialog</figcaption></figure>
+<figure><img src="i18n-shots/rtl/ok-settings.png" loading="lazy"><figcaption>Settings</figcaption></figure>
+<figure><img src="i18n-shots/rtl/ok-settings-2.png" loading="lazy"><figcaption>Settings: end of speech</figcaption></figure>
+<figure><img src="i18n-shots/rtl/ok-end-of-speech.png" loading="lazy"><figcaption>End of speech choices</figcaption></figure>
+<figure><img src="i18n-shots/rtl/ok-onboarding-3.png" loading="lazy"><figcaption>Setup guide: engine</figcaption></figure>
+<figure><img src="i18n-shots/rtl/ok-onboarding-6.png" loading="lazy"><figcaption>Setup guide: speech service</figcaption></figure>
+<figure><img src="i18n-shots/rtl/ok-speak-now.png" loading="lazy"><figcaption>Speak-now sheet</figcaption></figure>
+</div>
+
+<h2 class="sec">Long locales (after)</h2>
+<p class="lede">Default font size. Nothing clipped or overlapping; pills wrap to two lines in ru/uk/id, as they do in de.</p>
+<div class="gal">
+<figure><img src="i18n-shots/long/ru-engines-1.png" loading="lazy"><figcaption>ru · Engines</figcaption></figure>
+<figure><img src="i18n-shots/long/ru-settings-2.png" loading="lazy"><figcaption>ru · Settings</figcaption></figure>
+<figure><img src="i18n-shots/long/ru-onb-5.png" loading="lazy"><figcaption>ru · keyboards</figcaption></figure>
+<figure><img src="i18n-shots/long/uk-engines-1.png" loading="lazy"><figcaption>uk · Engines</figcaption></figure>
+<figure><img src="i18n-shots/long/uk-settings-2.png" loading="lazy"><figcaption>uk · Settings</figcaption></figure>
+<figure><img src="i18n-shots/long/uk-onb-5.png" loading="lazy"><figcaption>uk · keyboards</figcaption></figure>
+<figure><img src="i18n-shots/long/pl-engines-1.png" loading="lazy"><figcaption>pl · Engines</figcaption></figure>
+<figure><img src="i18n-shots/long/pl-settings-2.png" loading="lazy"><figcaption>pl · Settings</figcaption></figure>
+<figure><img src="i18n-shots/long/pl-onb-5.png" loading="lazy"><figcaption>pl · keyboards</figcaption></figure>
+<figure><img src="i18n-shots/long/vi-engines-1.png" loading="lazy"><figcaption>vi · Engines</figcaption></figure>
+<figure><img src="i18n-shots/long/vi-settings-2.png" loading="lazy"><figcaption>vi · Settings</figcaption></figure>
+<figure><img src="i18n-shots/long/vi-onb-5.png" loading="lazy"><figcaption>vi · keyboards</figcaption></figure>
+<figure><img src="i18n-shots/long/id-engines-1.png" loading="lazy"><figcaption>id · Engines</figcaption></figure>
+<figure><img src="i18n-shots/long/id-settings-2.png" loading="lazy"><figcaption>id · Settings</figcaption></figure>
+<figure><img src="i18n-shots/long/id-onb-5.png" loading="lazy"><figcaption>id · keyboards</figcaption></figure>
+</div>
+<p class="lede">Not covered: TalkBack in Arabic, 200 % font size in the new locales (sibling #68's area), a real Arabic phone
+(the system-wide RTL setting rather than the per-app language), and a native speaker's read of any of the 12 languages.</p>
+</main>
+</body>
+</html>

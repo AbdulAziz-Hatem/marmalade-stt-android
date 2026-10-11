@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="engine_badge_recommended">Direkomendasikan untuk ponsel ini</string>
+    <string name="engine_info">Tentang %1$s</string>
+    <string name="engine_show_more">Tampilkan lainnya</string>
+    <!-- Card size line -->
+    <string name="engine_card_size_download">Ukuran download %1$s</string>
+    <string name="engine_card_size_on_disk">%1$s di ponsel Anda</string>
+    <string name="engine_action_download_size">Download · %1$s</string>
+    <string name="engine_dialog_close">Tutup</string>
+    <string name="engine_progress_percent">%1$d%%</string>
+    <string name="engine_status_failed_short">Download gagal</string>
+    <string name="engine_status_corrupt_short">File rusak</string>
+
+    <string name="engines_other">Mesin lainnya (%1$d)</string>
+    <string name="engines_other_expanded">Diperluas</string>
+    <string name="engines_other_collapsed">Diciutkan</string>
+
+    <!-- Speed -->
+    <string name="engine_speed_tier_fastest">Tercepat di ponsel ini</string>
+    <string name="engine_speed_tier_very_fast">Sangat cepat di ponsel ini</string>
+    <string name="engine_speed_tier_fast">Cepat di ponsel ini</string>
+    <string name="engine_speed_tier_moderate">Kecepatan sedang di ponsel ini</string>
+    <string name="engine_speed_unmeasured">Belum diukur</string>
+    <string name="engine_speed_word_fastest">Tercepat</string>
+    <string name="engine_speed_word_very_fast">Sangat cepat</string>
+    <string name="engine_speed_word_fast">Cepat</string>
+    <string name="engine_speed_word_moderate">Sedang</string>
+    <string name="engine_speed_word_slow">Lambat</string>
+
+    <!-- Quality -->
+    <string name="engine_detail_quality">Kualitas</string>
+    <string name="engine_quality_best">Terbaik</string>
+    <string name="engine_quality_great">Sangat baik</string>
+    <string name="engine_quality_good">Baik</string>
+    <string name="engine_quality_fair">Cukup</string>
+    <string name="engine_quality_basic">Dasar</string>
+    <string name="engine_quality_not_rated">Belum dinilai</string>
+    <string name="engine_quality_in_language">%1$s (bahasa %2$s)</string>
+    <string name="engine_quality_tested_in">Diuji dalam bahasa %1$s</string>
+    <string name="engine_quality_source_english">Dari pengujian kami pada LibriSpeech, FLEURS, dan AMI, dalam bahasa Inggris</string>
+    <string name="engine_quality_source_fleurs">Dari pengujian kami pada FLEURS, dalam bahasa %1$s</string>
+    <string name="engine_quality_source_two_sets">Dari pengujian kami pada %1$s dan %2$s, dalam bahasa %3$s</string>
+    <string name="engine_quality_source_none">Belum diuji</string>
+
+    <!-- Languages -->
+    <plurals name="engine_languages_count">
+        <item quantity="other">%d bahasa</item>
+    </plurals>
+    <string name="engine_languages_see_all">Lihat semua %1$d</string>
+    <string name="engine_languages_open">Tampilkan bahasa</string>
+
+    <!-- Details dialog -->
+    <string name="engine_detail_speed_text">%1$s. %2$s.</string>
+    <string name="engine_detail_chunk">Ukuran potongan</string>
+    <string name="engine_chunk_steps">Teks muncul setiap %1$d ms.</string>
+
+    <!-- The engine's one-line summary. Engine and model names stay as they are. -->
+    <string name="engine_desc_parakeet_ultra">Parakeet TDT 0.6B v3 yang dilatih lanjut oleh Moondream: 25 bahasa yang sama, terdeteksi otomatis.</string>
+    <string name="engine_desc_parakeet_110m">Model bahasa Inggris kecil dari NVIDIA: ukurannya hanya sebagian kecil dari Parakeet lainnya, dan cepat.</string>
+    <string name="engine_desc_parakeet_ja">Model bahasa Jepang dari NVIDIA: paling akurat untuk bahasa Jepang, dan jauh lebih cepat daripada Whisper. Jarang menulis koma.</string>
+    <string name="engine_desc_canary_180m">Model encoder-decoder mungil dari NVIDIA: bahasa Inggris, Spanyol, Jerman, dan Prancis. Pilih bahasanya; model ini tidak dapat mendeteksinya.</string>
+    <string name="engine_desc_nemotron_35">Model streaming dari NVIDIA untuk bahasa Hindi, Arab, dan Vietnam: teks muncul saat Anda berbicara.</string>
+    <string name="engine_desc_whisper_turbo">OpenAI Whisper large-v3-turbo, multibahasa. Whisper yang paling akurat. Teks muncul saat Anda berhenti sejenak.</string>
+    <string name="engine_desc_granite">Model CTC bahasa Inggris dari IBM: paling akurat dalam pengujian bahasa Inggris kami. Huruf kapital dan tanda baca ditambahkan oleh pemformat milik aplikasi.</string>
+    <string name="engine_desc_qwen3">Model offline dari Alibaba dengan decoder model bahasa kecil: 30 bahasa, terdeteksi otomatis. Teks muncul saat Anda berhenti sejenak.</string>
+    <string name="engine_desc_qwen3_users">Model dari Alibaba untuk bahasa Tionghoa dan Korea, dengan decoder model bahasa kecil: paling akurat untuk bahasa Tionghoa. Teks muncul saat Anda berhenti sejenak.</string>
+</resources>

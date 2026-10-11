@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- The window behind Compose, shown on a cold start before the first
+         frame: the theme's background (Orange 50), so launch doesn't flash.
+         values-night has the dark twin. Keep both in step with
+         ui/theme/Color.kt. -->
+    <color name="window_background">#FFFFF7ED</color>
+</resources>

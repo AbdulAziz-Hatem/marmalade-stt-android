@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="list_separator">,\u0020</string>
+    <string name="quoted_name">“%1$s”</string>
+    <string name="ui_locale">hi</string>
+
+    <!-- Bottom navigation -->
+    <string name="nav_dictate">बोलकर लिखें</string>
+    <string name="nav_engines">इंजन</string>
+    <string name="nav_settings">सेटिंग</string>
+
+    <!-- Dictate -->
+    <string name="dictate_start">बोलकर लिखना शुरू करें</string>
+    <string name="dictate_stop">बोलकर लिखना बंद करें</string>
+    <string name="dictate_state_idle">सुन नहीं रहा</string>
+    <string name="dictate_state_loading">लोड हो रहा है</string>
+    <string name="dictate_state_listening">सुन रहा है</string>
+    <string name="dictate_state_finishing">पूरा हो रहा है</string>
+    <string name="dictate_status_loading">मॉडल लोड हो रहा है…</string>
+    <string name="dictate_status_listening">सुन रहा है</string>
+    <string name="dictate_status_hearing">आपको सुन रहा है…</string>
+    <string name="dictate_status_finishing">पूरा हो रहा है…</string>
+    <string name="dictate_status_catching_up">बाकी हिस्सा लिखा जा रहा है…</string>
+    <string name="dictate_empty">आपके शब्द यहाँ दिखेंगे। आप जो भी बोलते हैं, वह आपके फ़ोन पर ही रहता है।</string>
+    <string name="dictate_copy">कॉपी करें</string>
+    <string name="dictate_copied">कॉपी हो गया</string>
+    <string name="dictate_clear">साफ़ करें</string>
+    <string name="dictate_no_speech">कुछ सुनाई नहीं दिया</string>
+    <string name="dictate_error_mic">माइक्रोफ़ोन इस्तेमाल नहीं हो सका</string>
+    <string name="dictate_error_model">स्पीच मॉडल लोड नहीं हो सका</string>
+    <string name="dictate_error_recognition">टेक्स्ट में बदलते समय कुछ गड़बड़ हो गई</string>
+    <string name="dictate_too_slow">यह इंजन इस फ़ोन के लिए बहुत धीमा है। इंजन टैब पर कोई छोटा इंजन आपके साथ-साथ चल पाएगा।</string>
+    <string name="dictate_error_busy">बोलकर लिखना पहले से कहीं और चल रहा है। थोड़ी देर में फिर से कोशिश करें।</string>
+    <string name="dictate_no_model_title">बोलकर लिखने के लिए कोई स्पीच मॉडल डाउनलोड करें</string>
+    <string name="dictate_no_model_body">मॉडल आपके फ़ोन पर चलता है। इसे एक बार डाउनलोड करें, फिर बोलकर लिखना ऑफ़लाइन काम करता है।</string>
+    <string name="dictate_no_model_action">मॉडल चुनें</string>
+    <string name="dictate_mic_title">ऐप को आपके माइक्रोफ़ोन की ज़रूरत है</string>
+    <string name="dictate_mic_body">यह सिर्फ़ तभी सुनता है जब आप बोलकर लिखते हैं। आप जो बोलते हैं, वह आपके फ़ोन पर ही टेक्स्ट बनता है और कभी सेव नहीं होता, न कहीं भेजा जाता है।</string>
+    <string name="dictate_mic_body_blocked">इस ऐप के लिए माइक्रोफ़ोन का ऐक्सेस बंद है। आप इसे ऐप की सेटिंग में अनुमतियां के अंदर चालू कर सकते हैं।</string>
+    <string name="dictate_mic_allow">माइक्रोफ़ोन की अनुमति दें</string>
+    <string name="dictate_mic_open_settings">सेटिंग खोलें</string>
+    <string name="dictate_mic_settings_failed">सेटिंग नहीं खुल सकी। Android की सेटिंग खोलें, फिर ऐप्लिकेशन, फिर Marmalade STT।</string>
+
+    <!-- Engines list -->
+    <string name="engines_title">इंजन</string>
+
+    <!-- Engine install state -->
+    <string name="engine_status_not_installed">अभी डाउनलोड नहीं हुआ</string>
+    <string name="engine_status_downloading">डाउनलोड हो रहा है · %1$s</string>
+    <string name="engine_status_paused">रुका हुआ · %1$s</string>
+    <string name="engine_status_ready">तैयार</string>
+    <string name="engine_status_corrupt">मॉडल फ़ाइलें खराब हैं: %1$s</string>
+    <string name="engine_progress_bytes">%2$s में से %1$s</string>
+    <string name="engine_progress_description">डाउनलोड की प्रगति</string>
+    <string name="engine_failure_not_available">यह मॉडल अभी डाउनलोड के लिए उपलब्ध नहीं है। बाद में फिर से कोशिश करें।</string>
+    <string name="engine_failure_no_space">इस मॉडल के लिए पर्याप्त खाली स्टोरेज नहीं है। कुछ जगह खाली करें और फिर से कोशिश करें।</string>
+    <string name="engine_failure_network">डाउनलोड बीच में रुक गया। अपना कनेक्शन जाँचें और फिर से कोशिश करें। यह वहीं से शुरू होगा जहाँ रुका था।</string>
+    <string name="engine_failure_generic">मॉडल इंस्टॉल नहीं हो सका। फिर से कोशिश करें।</string>
+    <string name="engine_corrupt_outdated">इंस्टॉल की गई फ़ाइलें ऐप के इस वर्शन से मेल नहीं खातीं।</string>
+    <string name="engine_corrupt_missing">%1$s मौजूद नहीं है।</string>
+    <string name="engine_corrupt_wrong_size">%1$s का साइज़ गलत है।</string>
+    <string name="engine_corrupt_damaged">%1$s खराब है।</string>
+    <string name="engine_failure_checksum">डाउनलोड की गई एक फ़ाइल उम्मीद के मुताबिक नहीं थी, इसलिए उसे मिटा दिया गया। उसे नए सिरे से डाउनलोड करने के लिए फिर से कोशिश करें।</string>
+
+    <!-- Engine actions -->
+    <string name="engine_action_download">डाउनलोड करें</string>
+    <string name="engine_action_resume">फिर से शुरू करें</string>
+    <string name="engine_action_retry">फिर से कोशिश करें</string>
+    <string name="engine_action_download_again">दोबारा डाउनलोड करें</string>
+    <string name="engine_action_cancel">रद्द करें</string>
+    <string name="engine_action_remove_download">डाउनलोड हटाएँ</string>
+    <string name="engine_action_check_files">फ़ाइलें जाँचें</string>
+    <string name="engine_action_checking">फ़ाइलें जाँची जा रही हैं…</string>
+    <string name="engine_action_remove">हटाएँ</string>
+    <string name="engine_dialog_cancel">रद्द करें</string>
+    <string name="engine_download_confirm_title">%1$s डाउनलोड करें?</string>
+    <string name="engine_download_confirm_body">इससे इंटरनेट से %1$s एक बार डाउनलोड होगा। उसके बाद इंजन ऑफ़लाइन काम करता है, और आप जो भी बोलते हैं, वह आपके फ़ोन से बाहर नहीं जाता।</string>
+    <string name="engine_remove_confirm_title">%1$s हटाएँ?</string>
+    <string name="engine_remove_confirm_body">इससे मॉडल फ़ाइलें (%1$s) आपके फ़ोन से मिट जाएँगी। आप इन्हें कभी भी दोबारा डाउनलोड कर सकते हैं।</string>
+    <string name="engine_remove_download_failed">डाउनलोड हटाया नहीं जा सका। फिर से कोशिश करें।</string>
+    <string name="engine_remove_failed">मॉडल फ़ाइलें हटाई नहीं जा सकीं। फिर से कोशिश करें।</string>
+    <string name="engine_check_ok">सभी फ़ाइलें ठीक हैं</string>
+    <string name="engine_check_damaged">कुछ मॉडल फ़ाइलें खराब हैं। इसे ठीक करने के लिए उन्हें दोबारा डाउनलोड करें।</string>
+    <string name="engine_check_failed">फ़ाइलें जाँची नहीं जा सकीं। फिर से कोशिश करें।</string>
+    <string name="download_channel_name">स्पीच मॉडल डाउनलोड</string>
+
+    <!-- Engine info dialog -->
+    <string name="engine_detail_languages">भाषाएँ</string>
+    <string name="engine_detail_size_on_disk">फ़ोन पर साइज़</string>
+    <string name="engine_detail_download_size">डाउनलोड साइज़</string>
+    <string name="engine_detail_license">लाइसेंस</string>
+    <string name="engine_detail_source">स्रोत</string>
+    <string name="engine_detail_speed">गति</string>
+    <string name="engine_speed_cost">Parakeet Ultra के मुकाबले %1$s× डिकोडिंग समय (अनुमानित)</string>
+    <string name="engine_speed_reference">Parakeet Ultra गति का पैमाना है</string>
+    <string name="engine_speed_phone_unmeasured">इस फ़ोन की गति अभी मापी नहीं गई है</string>
+
+    <!-- Settings -->
+    <string name="settings_title">सेटिंग</string>
+    <string name="settings_back">वापस</string>
+    <string name="settings_save_failed">सेटिंग सेव नहीं हो सकी। फिर से कोशिश करें।</string>
+    <string name="settings_speech">स्पीच</string>
+    <string name="settings_speech_keep_loaded">इंजन तैयार रखें</string>
+    <string name="settings_speech_keep_loaded_desc">सुनना जल्दी शुरू होता है। अगर आप वॉइस इनपुट अक्सर इस्तेमाल करते हैं, जैसे सुलभता के लिए, तो इसे चालू करना फ़ायदेमंद है। ऐप खुला रहने तक, इंजन के हिसाब से, लगभग 0.6 से 3 GB मेमोरी इस्तेमाल होती है।</string>
+    <!-- Settings → End of speech -->
+    <string name="settings_end">बोलने का अंत</string>
+    <string name="settings_end_keyboard">वॉइस कीबोर्ड</string>
+    <string name="settings_end_apps">दूसरे ऐप्स और “अभी बोलें” पॉपअप</string>
+    <string name="settings_end_tap">रोकने के लिए टैप करें</string>
+    <string name="settings_end_tap_desc">माइक तब तक चालू रहता है, जब तक आप उस पर टैप न करें। रोकने पर आपके शब्द टाइप होते हैं।</string>
+    <string name="settings_end_smart_turn">Smart Turn से अपने आप रुकें</string>
+    <string name="settings_end_smart_turn_desc">जब लगे कि आपकी बात पूरी हो गई, तब रुकता है, ताकि सोचने के लिए रुकने पर आपकी बात न कटे।</string>
+    <string name="settings_end_pause">ठहराव के बाद अपने आप रुकें</string>
+    <string name="settings_end_pause_desc">आपके ठहरने पर रुकता है। कितनी देर, यह “ठहराव की लंबाई” में सेट करें।</string>
+    <string name="settings_end_word">अंत-शब्द बोलें</string>
+    <string name="settings_end_word_desc">जब आप सिर्फ़ अंत-शब्द अकेले बोलते हैं, जैसे “over”, तब रुकता है। यह शब्द टाइप नहीं होता।</string>
+    <string name="settings_end_lock_hint">टिप: अपने आप रुकने वाले मोड में माइक को दबाकर रखें, तो वह तब तक सुनता रहेगा जब तक आप उस पर टैप न करें।</string>
+    <string name="settings_dialog_cancel">रद्द करें</string>
+    <string name="settings_speech_pause">ठहराव की लंबाई</string>
+    <string name="settings_speech_pause_desc">कितना लंबा ठहराव “बोलकर लिखें” टैब पर वाक्य खत्म करता है, और “ठहराव के बाद अपने आप रुकें” में सुनना बंद करता है। ज़्यादा लंबा रखने पर आप सोचने के लिए रुक सकते हैं।</string>
+    <string name="settings_speech_pause_value">%1$.1f सेकंड</string>
+    <string name="settings_speech_pause_state">%1$.1f सेकंड</string>
+    <string name="settings_patience">Smart Turn का धैर्य</string>
+    <string name="settings_patience_desc">%1$s। आपकी बात पूरी होने का फ़ैसला करने से पहले यह कितना इंतज़ार करता है।</string>
+    <string name="settings_patience_quick">जल्दी</string>
+    <string name="settings_patience_quick_desc">जल्दी सुनना बंद करता है, पर आपकी बात ज़्यादा बार काटता है।</string>
+    <string name="settings_patience_normal">सामान्य</string>
+    <string name="settings_patience_normal_desc">सोचने के ज़्यादातर ठहरावों में इंतज़ार करता रहता है।</string>
+    <string name="settings_patience_relaxed">आराम से</string>
+    <string name="settings_patience_relaxed_desc">सुनना बंद करने से पहले ज़्यादा देर इंतज़ार करता है। अगर आप बीच-बीच में बहुत रुकते हैं, तो यह अच्छा है।</string>
+    <string name="settings_end_words">अंत-शब्द</string>
+    <string name="settings_end_words_hint">उन्हें कॉमा से अलग करें।</string>
+    <!-- Settings → Support -->
+    <string name="settings_support">सहयोग</string>
+    <string name="settings_support_dev">विकास में सहयोग करें</string>
+    <string name="settings_support_dev_desc">GitHub Sponsors के ज़रिए दान करें। यह स्वैच्छिक है और कर-कटौती योग्य नहीं है।</string>
+    <string name="settings_more_marmalade">Marmalade के और ऐप</string>
+    <string name="settings_more_marmalade_desc">GitHub पर Marmalade के दूसरे ऐप्स।</string>
+    <string name="settings_report_bug">गड़बड़ी की शिकायत करें</string>
+    <string name="settings_report_bug_desc">कुछ काम नहीं कर रहा या गलत सुना गया? पूरी जानकारी के साथ GitHub पर एक issue खोलता है।</string>
+    <string name="settings_about">ऐप के बारे में</string>
+    <string name="settings_about_row">Marmalade STT के बारे में</string>
+    <string name="settings_about_row_desc">वर्शन %1$s · लाइसेंस, गोपनीयता</string>
+
+    <!-- About -->
+    <string name="about_title">ऐप के बारे में</string>
+    <string name="about_version">वर्शन %1$s</string>
+    <string name="about_tagline">निजी स्पीच-टू-टेक्स्ट, जो आपके फ़ोन पर चलता है।</string>
+    <string name="about_privacy">गोपनीयता नीति</string>
+    <string name="about_privacy_desc">आपके फ़ोन पर क्या रहता है (आप जो भी बोलते हैं) और ऐप क्या डाउनलोड करता है। कोई ट्रैकिंग नहीं, कोई खाता नहीं।</string>
+    <string name="about_privacy_english_note">यह नीति अंग्रेज़ी में है। सारांश: स्पीच की पहचान आपके फ़ोन पर ही होती है, कभी किसी क्लाउड या ऑनलाइन स्पीच सेवा से नहीं। ऑडियो कभी सेव या अपलोड नहीं होता। कोई एनालिटिक्स, ट्रैकिंग या खाता नहीं। इंटरनेट का इस्तेमाल सिर्फ़ स्पीच मॉडल डाउनलोड करने के लिए होता है।</string>
+    <string name="about_privacy_load_failed">गोपनीयता नीति लोड नहीं हो सकी। यह रिपॉज़िटरी में PRIVACY.md के रूप में भी है।</string>
+    <string name="about_licenses">ओपन-सोर्स लाइसेंस</string>
+    <string name="about_licenses_desc">ऐप और इसके साथ आने वाले कॉम्पोनेंट के लाइसेंस।</string>
+
+    <!-- Open-source licenses -->
+    <string name="licenses_licensing">लाइसेंसिंग</string>
+    <string name="licenses_view_full">पूरा लाइसेंस देखें</string>
+    <string name="license_text_title">लाइसेंस</string>
+    <string name="license_text_not_bundled">लाइसेंस का टेक्स्ट ऐप के साथ नहीं आता। पिछली स्क्रीन पर दिया गया लिंक देखें।</string>
+    <string name="license_text_load_failed">लाइसेंस का टेक्स्ट लोड नहीं हो सका। पिछली स्क्रीन पर दिया गया मूल लिंक देखें।</string>
+
+    <!-- Voice keyboard -->
+    <string name="ime_name">Marmalade वॉइस टाइपिंग</string>
+    <string name="ime_subtype_label">वॉइस टाइपिंग</string>
+    <string name="ime_status_loading">मॉडल लोड हो रहा है…</string>
+    <string name="ime_status_listening">सुन रहा है</string>
+    <string name="ime_status_hearing">आपको सुन रहा है…</string>
+    <string name="ime_status_finishing">पूरा हो रहा है…</string>
+    <string name="ime_status_paused">रुका हुआ है। जारी रखने के लिए माइक पर टैप करें।</string>
+    <string name="ime_speak_now">अभी बोलें</string>
+    <string name="ime_cancel">कीबोर्ड पर वापस</string>
+    <string name="ime_done">हो गया</string>
+    <string name="ime_pause">सुनना रोकें</string>
+    <string name="ime_resume">सुनना जारी रखें</string>
+    <string name="ime_no_model">वॉइस टाइपिंग इस्तेमाल करने के लिए Marmalade STT में कोई स्पीच मॉडल डाउनलोड करें।</string>
+    <string name="ime_open_app">Marmalade STT खोलें</string>
+    <string name="ime_mic_needed">वॉइस टाइपिंग को माइक्रोफ़ोन की ज़रूरत है। यह सिर्फ़ तभी सुनता है जब यह पैनल खुला हो।</string>
+    <string name="ime_mic_allow">माइक्रोफ़ोन की अनुमति दें</string>
+    <string name="ime_mic_blocked">Marmalade STT के लिए माइक्रोफ़ोन का ऐक्सेस बंद है। इसे अनुमतियां में चालू करें, फिर अपने ऐप पर वापस जाएँ।</string>
+
+    <!-- Speech input dialog and RecognitionService -->
+    <string name="recognizer_speak_now">अभी बोलें</string>
+    <string name="recognizer_cancel">रद्द करें</string>
+    <string name="recognizer_done">हो गया</string>
+    <string name="recognizer_try_again">फिर से कोशिश करें</string>
+    <string name="recognizer_no_model">स्पीच इनपुट इस्तेमाल करने के लिए Marmalade STT में कोई स्पीच मॉडल डाउनलोड करें।</string>
+    <string name="recognizer_open_app">Marmalade STT खोलें</string>
+    <string name="recognizer_mic_blocked">स्पीच इनपुट को माइक्रोफ़ोन की ज़रूरत है। इसे ऐप की सेटिंग में अनुमतियां के अंदर चालू करें।</string>
+    <string name="recognizer_open_settings">सेटिंग खोलें</string>
+    <string name="recognizer_mic_stop">सुनना बंद करें</string>
+
+    <!-- Press and hold the mic to lock listening -->
+    <string name="lock_status">लॉक है: रोकने के लिए टैप करें</string>
+    <string name="lock_state">लॉक है</string>
+    <string name="lock_action">सुनना लॉक करें</string>
+
+    <!-- Text cleanup -->
+    <string name="cleanup_section">टेक्स्ट की सफ़ाई</string>
+    <string name="cleanup_fillers">फ़िलर शब्द हटाएँ</string>
+    <string name="cleanup_fillers_desc">“um”, “uh”, “er”, “hmm” और ऐसे ही शब्द हटाता है। “umbrella” जैसे असली शब्द बने रहते हैं।</string>
+    <string name="cleanup_commands">वॉइस कमांड</string>
+    <string name="cleanup_commands_desc">“new line” या “new paragraph” बोलें, या आखिरी वाक्य हटाने के लिए “scratch that” बोलें।</string>
+    <string name="cleanup_punctuation">विराम चिह्न वाले शब्द</string>
+    <string name="cleanup_punctuation_desc">“period”, “comma”, “question mark”… भी बोलें। डिफ़ॉल्ट रूप से बंद: ये आम शब्द भी हैं।</string>
+    <string name="cleanup_english_only">सिर्फ़ अंग्रेज़ी। %1$s</string>
+    <string name="cleanup_itn">संख्याएँ अंकों में लिखें</string>
+    <string name="cleanup_itn_desc">“Twenty five percent” को “25%” और “nine thirty pm” को “9:30 pm” लिखा जाता है। “three boxes” जैसी छोटी संख्याएँ शब्दों में ही रहती हैं।</string>
+    <string name="cleanup_capitalize">वाक्य कैपिटल अक्षर से शुरू करें</string>
+    <string name="cleanup_capitalize_desc">हर वाक्य और लाइन की शुरुआत में कैपिटल अक्षर। कुछ भी कभी छोटे अक्षरों में नहीं बदला जाता।</string>
+    <string name="cleanup_dictionary">शब्द बदलने का शब्दकोश</string>
+    <string name="cleanup_dictionary_desc_none">वे शब्द ठीक करें, जिन्हें ऐप बार-बार गलत लिखता है।</string>
+    <plurals name="cleanup_dictionary_desc">
+        <item quantity="one">%1$d नियम · वे शब्द ठीक करें, जिन्हें ऐप बार-बार गलत लिखता है</item>
+        <item quantity="other">%1$d नियम · वे शब्द ठीक करें, जिन्हें ऐप बार-बार गलत लिखता है</item>
+    </plurals>
+    <string name="cleanup_snippets">स्निपेट</string>
+    <string name="cleanup_snippets_desc_none">सेव किया गया टेक्स्ट, जैसे आपका पता, डालने के लिए कोई ट्रिगर वाक्यांश बोलें।</string>
+    <plurals name="cleanup_snippets_desc">
+        <item quantity="one">%1$d स्निपेट · सेव किया गया टेक्स्ट डालने के लिए ट्रिगर वाक्यांश बोलें</item>
+        <item quantity="other">%1$d स्निपेट · सेव किया गया टेक्स्ट डालने के लिए ट्रिगर वाक्यांश बोलें</item>
+    </plurals>
+
+    <string name="cleanup_save">सेव करें</string>
+    <string name="cleanup_cancel">रद्द करें</string>
+    <string name="cleanup_delete">मिटाएँ</string>
+    <string name="cleanup_edit_action">बदलाव करें</string>
+
+    <string name="cleanup_dictionary_help">हर नियम उस शब्द या वाक्यांश को, जिसे ऐप बार-बार गलत लिखता है, आपके मतलब वाले शब्द में बदल देता है।\n\n• पूरे शब्दों से मेल खाता है, अक्षर छोटे हों या बड़े: “teh”, “Teh” से मेल खाता है, पर “tehran” से नहीं।\n• चीनी और जापानी में शब्दों के बीच स्पेस नहीं होते, इसलिए उनमें वाक्यांश वाक्य के बीच में भी मेल खाता है। कोरियाई में जुड़े हुए पार्टिकल के साथ भी मेल खाता है: “메일”, “메일을” से मेल खाता है।\n• दाईं ओर लिखा कैपिटल अक्षर वैसा ही रहता है। बाकी मामलों में अक्षर उसी तरह छोटे-बड़े होते हैं जैसे सुने गए: “Teh”, “The” बन जाता है।\n• वाक्यांश मिटाने के लिए दाईं ओर खाली छोड़ें।\n• जब नियम आपस में टकराएँ, तो सबसे लंबा मेल जीतता है।</string>
+    <string name="cleanup_dictionary_empty">अभी कोई नियम नहीं है। जिस शब्द को ऐप बार-बार गलत लिखता है, उसे ठीक करने के लिए “नियम जोड़ें” पर टैप करें।</string>
+    <string name="cleanup_dictionary_add">नियम जोड़ें</string>
+    <string name="cleanup_dictionary_edit">नियम में बदलाव करें</string>
+    <string name="cleanup_dictionary_from">क्या सुना गया</string>
+    <string name="cleanup_dictionary_to">इसके बजाय लिखें</string>
+    <string name="cleanup_dictionary_to_hint">वाक्यांश मिटाने के लिए खाली छोड़ें।</string>
+    <string name="cleanup_dictionary_from_breaks_export">इसमें “->” नहीं हो सकता, और यह “#” से शुरू नहीं हो सकता।</string>
+    <string name="cleanup_dictionary_replaces">“%1$s” के लिए आपका नियम इससे बदल जाएगा।</string>
+    <string name="cleanup_dictionary_deleted">(मिटाया गया)</string>
+    <string name="cleanup_dictionary_rule_description">%1$s, %2$s बन जाता है</string>
+    <string name="cleanup_dictionary_rule_deletes_description">%1$s मिटा दिया जाता है</string>
+    <string name="cleanup_import">इंपोर्ट करें</string>
+    <string name="cleanup_export">सब कॉपी करें</string>
+    <string name="cleanup_exported">नियम कॉपी हो गए</string>
+    <string name="cleanup_import_title">नियम इंपोर्ट करें</string>
+    <string name="cleanup_import_help">हर लाइन में एक नियम पेस्ट करें, इस तरह: गलत -> सही। # से शुरू होने वाली लाइनें छोड़ दी जाती हैं। जिस शब्द का नियम पहले से है, उसका नया नियम पुराने की जगह ले लेता है।</string>
+    <string name="cleanup_import_field">नियम</string>
+    <string name="cleanup_import_none">अभी कोई नियम नहीं मिला।</string>
+    <plurals name="cleanup_import_found">
+        <item quantity="one">%1$d नियम मिला।</item>
+        <item quantity="other">%1$d नियम मिले।</item>
+    </plurals>
+    <plurals name="cleanup_import_skipped">
+        <item quantity="one">%1$d लाइन नियम नहीं है और छोड़ दी जाएगी।</item>
+        <item quantity="other">%1$d लाइनें नियम नहीं हैं और छोड़ दी जाएँगी।</item>
+    </plurals>
+
+    <string name="cleanup_snippets_help">कोई ट्रिगर वाक्यांश बोलें, और उसकी जगह आपका सेव किया गया टेक्स्ट आ जाता है, ठीक वैसा ही जैसा लिखा है, लाइन ब्रेक समेत।\n\n• ट्रिगर पूरे शब्दों से मेल खाते हैं, अक्षर छोटे हों या बड़े: “my email”, “My email” से मेल खाता है, पर “my emailing” से नहीं।\n• चीनी और जापानी में शब्दों के बीच स्पेस नहीं होते, इसलिए उनमें ट्रिगर वाक्य के बीच में भी मेल खाता है। कोरियाई में जुड़े हुए पार्टिकल के साथ भी मेल खाता है: “메일”, “메일을” से मेल खाता है।\n• सेव किए गए टेक्स्ट में और कुछ नहीं बदलता: न फ़िलर शब्द हटते हैं, न कमांड चलते हैं, न कैपिटल अक्षर लगते हैं।\n• अगर ट्रिगर अकेला बोला जाए, तो सिर्फ़ सेव किया गया टेक्स्ट डाला जाता है।</string>
+    <string name="cleanup_snippets_empty">अभी कोई स्निपेट नहीं है। जो टेक्स्ट आपको अक्सर चाहिए, उसे सेव करने के लिए “स्निपेट जोड़ें” पर टैप करें।</string>
+    <string name="cleanup_snippets_add">स्निपेट जोड़ें</string>
+    <string name="cleanup_snippets_edit">स्निपेट में बदलाव करें</string>
+    <string name="cleanup_snippets_trigger">ट्रिगर वाक्यांश</string>
+    <string name="cleanup_snippets_text">डाला जाने वाला टेक्स्ट</string>
+    <string name="cleanup_snippets_replaces">“%1$s” के लिए आपका स्निपेट इससे बदल जाएगा।</string>
+
+    <!-- Setup guide (onboarding) -->
+    <string name="onboarding_step_of">%2$d में से चरण %1$d</string>
+    <string name="onboarding_close">सेटअप गाइड बंद करें</string>
+    <string name="onboarding_back">वापस</string>
+    <string name="onboarding_next">आगे</string>
+    <string name="onboarding_skip">छोड़ें</string>
+    <string name="onboarding_get_started">शुरू करें</string>
+    <string name="onboarding_try_it">आज़माएँ</string>
+    <string name="onboarding_settings_failed">Android की सेटिंग नहीं खुल सकी। इसके बजाय होम स्क्रीन से सेटिंग खोलें।</string>
+    <!-- Toasts over Settings when only a fallback page opened (#79): where to go from there. -->
+    <string name="settings_hint_voice_input">सेटिंग में “बोलकर निर्देश” खोजें, फिर Marmalade STT चुनें।</string>
+    <string name="settings_hint_keyboards">सेटिंग में “कीबोर्ड” खोजें, फिर Marmalade वॉइस टाइपिंग चालू करें।</string>
+    <string name="settings_hint_app_details">“ऐप्लिकेशन” में Marmalade STT ढूंढें, फिर “अनुमतियां” में माइक्रोफ़ोन चालू करें।</string>
+    <string name="onboarding_welcome_title">Marmalade STT में आपका स्वागत है</string>
+    <string name="onboarding_welcome_body">बोलें, और Marmalade STT उसे टाइप कर देता है: अपनी “बोलकर लिखें” स्क्रीन पर, या दूसरे ऐप्स में वॉइस इनपुट के रूप में। कुछ आसान चरणों में यह तैयार हो जाएगा।</string>
+    <string name="onboarding_privacy_title">शुरू से ही निजी</string>
+    <string name="onboarding_privacy_body">स्पीच की पहचान आपके फ़ोन पर ही होती है, कभी किसी क्लाउड या ऑनलाइन स्पीच सेवा से नहीं, Google की सेवा से भी नहीं। ऑडियो कभी सेव या अपलोड नहीं होता। कोई एनालिटिक्स नहीं, कोई ट्रैकिंग नहीं, कोई खाता नहीं, कोई API कुंजी नहीं। इंटरनेट का इस्तेमाल सिर्फ़ स्पीच मॉडल डाउनलोड करने के लिए होता है।</string>
+    <string name="onboarding_high_contrast">सुलभता मोड</string>
+    <string name="onboarding_high_contrast_desc">ज़्यादा कंट्रास्ट वाले रंग</string>
+    <string name="onboarding_mic_title">माइक्रोफ़ोन की अनुमति दें</string>
+    <string name="onboarding_mic_body">आपको सुनने के लिए Marmalade STT को माइक्रोफ़ोन की ज़रूरत है। इसका इस्तेमाल सिर्फ़ तभी होता है, जब बोलकर लिखना चालू हो।</string>
+    <string name="onboarding_mic_granted">माइक्रोफ़ोन का ऐक्सेस चालू है</string>
+    <string name="onboarding_mic_denied">माइक्रोफ़ोन के बिना Marmalade STT आपको नहीं सुन सकता। आप अभी अनुमति दे सकते हैं, या इसे छोड़कर बाद में दे सकते हैं।</string>
+    <string name="onboarding_mic_blocked">इस ऐप के लिए माइक्रोफ़ोन का ऐक्सेस बंद है। इसे ऐप के सेटिंग पेज पर अनुमतियां में चालू करें।</string>
+    <string name="onboarding_mic_allow">माइक्रोफ़ोन की अनुमति दें</string>
+    <string name="onboarding_mic_open_settings">ऐप की सेटिंग खोलें</string>
+    <string name="onboarding_model_title">स्पीच मॉडल डाउनलोड करें</string>
+    <string name="onboarding_model_body">स्पीच की पहचान एक मॉडल करता है, जो आपके फ़ोन पर चलता है। यह एक बार डाउनलोड होता है; उसके बाद बोलकर लिखना ऑफ़लाइन काम करता है।</string>
+    <string name="onboarding_model_downloading_note">मॉडल तैयार होते ही सेटअप आगे बढ़ेगा। स्क्रीन बंद होने या ऐप से बाहर जाने पर भी डाउनलोड चलता रहता है।</string>
+    <string name="onboarding_keyboard_title">वॉइस कीबोर्ड चालू करें</string>
+    <string name="onboarding_keyboard_body">Marmalade वॉइस कीबोर्ड से आप दूसरे ऐप्स में बोलकर लिखते हैं: कीबोर्ड के माइक बटन इसी को खोलते हैं। Android की कीबोर्ड सेटिंग में “Marmalade वॉइस टाइपिंग” चालू करें, फिर यहाँ वापस आएँ।</string>
+    <string name="onboarding_keyboard_open">कीबोर्ड सेटिंग खोलें</string>
+    <string name="onboarding_keyboard_on">वॉइस कीबोर्ड चालू है</string>
+    <string name="onboarding_keyboard_off">वॉइस कीबोर्ड बंद है</string>
+    <string name="onboarding_keyboard_warning">Android चेतावनी देता है कि आप जो भी कीबोर्ड चालू करते हैं, वह आपका टाइप किया हुआ टेक्स्ट इकट्ठा कर सकता है। यह चेतावनी सामान्य है। Marmalade STT सिर्फ़ वही टाइप करता है जो आप बोलकर लिखते हैं, और कुछ भी आपके फ़ोन से बाहर नहीं जाता।</string>
+    <string name="onboarding_keyboard_unlock_note">कुछ फ़ोन इसके बाद एक और मैसेज दिखाते हैं: रीबूट के बाद, जब तक आप फ़ोन अनलॉक न करें, ऐप शुरू नहीं हो सकता। यह भी ठीक है। “ठीक है” पर टैप करें।</string>
+    <string name="onboarding_futo_checking">FUTO Keyboard से पूछा जा रहा है…</string>
+    <string name="onboarding_futo_selected">FUTO Keyboard वॉइस इनपुट के लिए Marmalade STT इस्तेमाल करता है</string>
+    <string name="onboarding_futo_not_selected">FUTO Keyboard कोई दूसरा वॉइस इनपुट इस्तेमाल करता है</string>
+    <string name="onboarding_futo_use">FUTO में Marmalade STT इस्तेमाल करें</string>
+    <string name="onboarding_futo_check_again">फिर से जाँचें</string>
+    <string name="onboarding_futo_manual_title">इसे खुद सेट करें</string>
+    <string name="onboarding_futo_manual_body">FUTO Keyboard में सेटिंग → वॉयस इनपुट खोलें और “निर्मित वॉयस इनपुट निष्क्रिय करें” (“बाहरी ऐप द्वारा प्रदान किए गए वॉयस इनपुट का उपयोग करें”) चालू करें। इसके बाद FUTO का माइक्रोफ़ोन बटन पिछले चरण वाला Marmalade वॉइस कीबोर्ड खोलेगा।</string>
+    <string name="onboarding_futo_crash_once">अगर पहली बार माइक्रोफ़ोन पर टैप करते ही FUTO Keyboard बंद हो जाए, तो उस पर फिर से टैप करें।</string>
+    <string name="onboarding_done_title">सब तैयार है</string>
+    <string name="onboarding_done_body">इसे “बोलकर लिखें” स्क्रीन पर आज़माएँ: माइक्रोफ़ोन पर टैप करें और बोलें।</string>
+    <string name="onboarding_done_title_partial">आप जब चाहें, तैयार है</string>
+    <string name="onboarding_done_body_partial">कुछ चरण अभी बाकी हैं। आप इन्हें कभी भी पूरा कर सकते हैं।</string>
+    <string name="onboarding_done_reopen">आप यह गाइड सेटिंग से कभी भी दोबारा खोल सकते हैं।</string>
+    <string name="onboarding_summary_mic">माइक्रोफ़ोन</string>
+    <string name="onboarding_summary_mic_on">अनुमति है</string>
+    <string name="onboarding_summary_mic_off">अभी अनुमति नहीं है</string>
+    <string name="onboarding_summary_model">स्पीच मॉडल</string>
+    <string name="onboarding_summary_model_ready">तैयार</string>
+    <string name="onboarding_summary_model_downloading">डाउनलोड हो रहा है</string>
+    <string name="onboarding_summary_model_missing">डाउनलोड नहीं हुआ। इसे इंजन टैब से लें।</string>
+    <string name="onboarding_summary_model_attention">डाउनलोड पूरा नहीं हुआ। इंजन टैब देखें।</string>
+    <string name="onboarding_summary_keyboard">वॉइस कीबोर्ड</string>
+    <string name="onboarding_summary_keyboard_on">चालू</string>
+    <string name="onboarding_summary_keyboard_off">बंद</string>
+    <string name="onboarding_summary_futo">FUTO Keyboard</string>
+    <string name="onboarding_summary_futo_on">Marmalade STT इस्तेमाल करता है</string>
+    <string name="onboarding_summary_futo_off">दूसरा वॉइस इनपुट इस्तेमाल करता है</string>
+    <string name="onboarding_settings_row">सेटअप गाइड</string>
+    <string name="onboarding_settings_row_desc">माइक्रोफ़ोन, स्पीच इंजन, कीबोर्ड और स्पीच पहचान सेवा</string>
+</resources>

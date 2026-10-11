@@ -1,0 +1,18 @@
+# The Granite export venv ($WORK/venv-granite-export), build time only; nothing
+# here is in the app or the harness venv. Pinned; licenses: torch BSD-3,
+# torchaudio BSD-2 (transformers' Granite feature extractor, the parity
+# reference), transformers Apache-2.0 (+ tokenizers Apache-2.0, safetensors
+# Apache-2.0), onnx Apache-2.0, onnxruntime MIT, numpy BSD-3, scipy BSD-3,
+# miniaudio MIT. No GPL or LGPL.
+#
+#   uv venv -p 3.12 $WORK/venv-granite-export
+#   VIRTUAL_ENV=$WORK/venv-granite-export uv pip install --index-strategy unsafe-best-match \
+#     --extra-index-url https://download.pytorch.org/whl/cpu -r tools/asr-bench/granite/requirements.txt
+torch==2.11.0+cpu
+torchaudio==2.11.0+cpu
+transformers==5.17.0
+onnx==1.22.0
+onnxruntime==1.28.0
+numpy==2.3.3
+scipy==1.16.2
+miniaudio==1.61

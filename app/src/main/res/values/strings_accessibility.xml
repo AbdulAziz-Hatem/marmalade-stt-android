@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Screen-reader-only text and other strings added by the accessibility pass (#68). -->
+<resources>
+    <!-- Shared -->
+    <!-- Spoken by TalkBack when a model download starts; %1$s is the engine name, e.g. "Parakeet 110M" -->
+    <string name="a11y_download_started">Downloading %1$s</string>
+    <!-- Spoken by TalkBack when a model download finishes; %1$s is the engine name -->
+    <string name="a11y_download_ready">%1$s is ready</string>
+    <!-- Spoken by TalkBack when a model download fails; %1$s is the engine name -->
+    <string name="a11y_download_failed">%1$s: download failed</string>
+    <!-- Spoken by TalkBack when a model download pauses (the user tapped Cancel, or Android stopped it; Resume continues it); %1$s is the engine name. Same pattern as a11y_download_failed -->
+    <string name="a11y_download_paused">%1$s: download paused</string>
+
+    <!-- Settings, dictionary, snippets, licences, privacy -->
+    <!-- TalkBack's action for rows that open a web page (Support rows, licence source/links). A click label: TalkBack says "Double-tap to open in browser" (see "Click labels" in docs/i18n/TRANSLATING.md) -->
+    <string name="a11y_open_in_browser">Open in browser</string>
+    <!-- Spoken by TalkBack after a replacement-dictionary rule is deleted from its edit dialog -->
+    <string name="a11y_rule_deleted">Rule deleted</string>
+    <!-- Spoken by TalkBack after a snippet is deleted from its edit dialog -->
+    <string name="a11y_snippet_deleted">Snippet deleted</string>
+    <!-- Settings → End of speech → End words: spoken when the field is left with no usable word and the saved words come back -->
+    <string name="a11y_end_words_reverted">End words not changed: type at least one word</string>
+
+    <!-- Engines, benchmark -->
+    <!-- Engines tab: TalkBack/Voice Access label of an engine's button; %1$s is the button's word ("Cancel", "Retry", "Remove download"), %2$s the engine name, e.g. "Retry, Parakeet 110M" (the comma is a pause: "Remove download Parakeet 110M" ran together) -->
+    <string name="a11y_engine_action_named">%1$s, %2$s</string>
+    <!-- Engines tab: TalkBack label of a card's "Download · 640 MB" button; %1$s is the engine name, %2$s the download size, e.g. "640 MB". A comma, not the button's "·", which TalkBack may read out -->
+    <string name="a11y_engine_download_named">Download %1$s, %2$s</string>
+    <!-- Developer benchmark: spoken by TalkBack when a run through every engine ends -->
+    <string name="a11y_benchmark_finished">Benchmark finished</string>
+
+    <!-- Dictate, voice keyboard, speech sheet -->
+
+    <!-- Onboarding -->
+    <!-- Setup guide: pane title TalkBack speaks on each page change; %1$s is the position ("Step 2 of 6", onboarding_step_of), %2$s the page title, e.g. "Allow the microphone" -->
+    <string name="a11y_onboarding_step_pane">%1$s: %2$s</string>
+    <!-- Setup guide, model step: spoken when "Checking your phone…" finishes; %1$s is the recommended engine's name, e.g. "Parakeet 110M" -->
+    <string name="a11y_onboarding_recommended">Recommended for this phone: %1$s</string>
+
+</resources>

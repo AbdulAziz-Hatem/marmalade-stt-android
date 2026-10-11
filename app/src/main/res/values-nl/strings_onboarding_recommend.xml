@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Setup guide: the recommended engine. -->
+<resources>
+    <string name="onboarding_recommend_checking">Je telefoon wordt gecontroleerd…</string>
+    <string name="onboarding_recommend_best_fit">Onze eerste keus voor %1$s, en hij past bij het geheugen en de snelheid van deze telefoon.</string>
+    <string name="onboarding_recommend_lighter">Een lichtere engine die past bij het geheugen en de snelheid van deze telefoon.</string>
+    <string name="onboarding_recommend_may_be_slow">De beste keus voor %1$s, maar hij kan traag zijn op deze telefoon.</string>
+    <string name="onboarding_recommend_low_memory">De zuinigste engine voor %1$s. Deze telefoon heeft er weinig geheugen voor, dus hij kan traag zijn of door Android worden afgesloten.</string>
+    <string name="onboarding_recommend_uncovered">Nog geen enkele engine transcribeert %1$s, dus deze is voor %2$s.</string>
+    <plurals name="onboarding_recommend_languages">
+        <item quantity="one">%d taal, automatisch herkend.</item>
+        <item quantity="other">%d talen, automatisch herkend.</item>
+    </plurals>
+    <string name="onboarding_recommend_other">Je kunt later een andere engine kiezen op het tabblad Engines.</string>
+</resources>

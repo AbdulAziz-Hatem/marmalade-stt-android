@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Screen-reader-only text and other strings added by the accessibility pass (#68). -->
+<resources>
+    <!-- Shared -->
+    <string name="a11y_download_started">%1$s डाउनलोड हो रहा है</string>
+    <string name="a11y_download_ready">%1$s तैयार है</string>
+    <string name="a11y_download_failed">%1$s: डाउनलोड नहीं हो सका</string>
+    <string name="a11y_download_paused">%1$s: डाउनलोड रुका हुआ है</string>
+
+    <!-- Settings, dictionary, snippets, licences, privacy -->
+    <string name="a11y_open_in_browser">ब्राउज़र में खोलें</string>
+    <string name="a11y_rule_deleted">नियम मिटा दिया गया</string>
+    <string name="a11y_snippet_deleted">स्निपेट मिटा दिया गया</string>
+    <string name="a11y_end_words_reverted">अंत-शब्द नहीं बदले गए: कम से कम एक शब्द लिखें</string>
+
+    <!-- Engines, benchmark -->
+    <string name="a11y_engine_action_named">%2$s %1$s</string>
+    <string name="a11y_engine_download_named">%1$s डाउनलोड करें, %2$s</string>
+    <string name="a11y_benchmark_finished">बेंचमार्क पूरा हुआ</string>
+
+    <!-- Dictate, voice keyboard, speech sheet -->
+
+    <!-- Onboarding -->
+    <string name="a11y_onboarding_step_pane">%1$s: %2$s</string>
+    <string name="a11y_onboarding_recommended">इस फ़ोन के लिए सुझाया गया: %1$s</string>
+
+</resources>

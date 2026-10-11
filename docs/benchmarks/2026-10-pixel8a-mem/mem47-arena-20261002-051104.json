@@ -1,0 +1,953 @@
+{
+  "tag": "mem47-arena",
+  "started": "20261002-051104",
+  "device": "Google Pixel 8a (Android 17, SDK 37)",
+  "seed": 1790943064560,
+  "order": [
+    "granite-speech-5-470m@4\/cpu",
+    "granite-speech-5-470m@4\/cpu-arena",
+    "parakeet-ultra@4\/cpu-arena",
+    "parakeet-tdt-110m-en@4\/cpu",
+    "parakeet-tdt-110m-en@4\/cpu-arena",
+    "parakeet-ultra@4\/cpu"
+  ],
+  "fastCores": [
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "cooldownSeconds": 30,
+  "clips": [
+    {
+      "name": "ls10-1",
+      "audioMs": 10970
+    },
+    {
+      "name": "ls20-1",
+      "audioMs": 19610
+    },
+    {
+      "name": "ls28-1",
+      "audioMs": 27180
+    },
+    {
+      "name": "ls28-2",
+      "audioMs": 27120
+    }
+  ],
+  "results": [
+    {
+      "engine": "granite-speech-5-470m",
+      "displayName": "Granite Speech 5.0 470M (English)",
+      "threads": 4,
+      "tuning": "cpu",
+      "arena": false,
+      "pinnedCores": null,
+      "family": "GRANITE_CTC",
+      "developer": true,
+      "loadMs": 3792,
+      "threadAffinity": {
+        "0-7": 34
+      },
+      "warmupMs": 1077,
+      "decodes": [
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 629,
+          "rtf": 0.05733819507748405,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts presenting in case after case the different phases of the subject and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 595,
+          "rtf": 0.05423883318140383,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts presenting in case after case the different phases of the subject and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 607,
+          "rtf": 0.05533272561531449,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts presenting in case after case the different phases of the subject and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 1047,
+          "rtf": 0.053391126976032634,
+          "wer": 0,
+          "text": "Nevertheless, the mustard seed among the smallest of all seeds has attained the proportions of a tree and the birds of the air are nesting in its branches. The acorn is now an oak offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 934,
+          "rtf": 0.04762876083630801,
+          "wer": 0,
+          "text": "Nevertheless, the mustard seed among the smallest of all seeds has attained the proportions of a tree and the birds of the air are nesting in its branches. The acorn is now an oak offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 903,
+          "rtf": 0.04604793472718001,
+          "wer": 0,
+          "text": "Nevertheless, the mustard seed among the smallest of all seeds has attained the proportions of a tree and the birds of the air are nesting in its branches. The acorn is now an oak offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls28-1",
+          "audioMs": 27180,
+          "utterances": 1,
+          "decodeMs": 1476,
+          "rtf": 0.054304635761589407,
+          "wer": 0.0392156862745098,
+          "text": "He passes abruptly from persons to ideas and numbers and from ideas and numbers to persons from the heavens to men from astronomy to physiology, he confuses or rather does not distinguish subject and object, 1st and final causes and is dreaming of geometrical figures lost in a flux of sense."
+        },
+        {
+          "clip": "ls28-1",
+          "audioMs": 27180,
+          "utterances": 1,
+          "decodeMs": 1241,
+          "rtf": 0.045658572479764535,
+          "wer": 0.0392156862745098,
+          "text": "He passes abruptly from persons to ideas and numbers and from ideas and numbers to persons from the heavens to men from astronomy to physiology, he confuses or rather does not distinguish subject and object, 1st and final causes and is dreaming of geometrical figures lost in a flux of sense."
+        },
+        {
+          "clip": "ls28-1",
+          "audioMs": 27180,
+          "utterances": 1,
+          "decodeMs": 1264,
+          "rtf": 0.04650478292862399,
+          "wer": 0.0392156862745098,
+          "text": "He passes abruptly from persons to ideas and numbers and from ideas and numbers to persons from the heavens to men from astronomy to physiology, he confuses or rather does not distinguish subject and object, 1st and final causes and is dreaming of geometrical figures lost in a flux of sense."
+        },
+        {
+          "clip": "ls28-2",
+          "audioMs": 27120,
+          "utterances": 1,
+          "decodeMs": 1503,
+          "rtf": 0.055420353982300885,
+          "wer": 0.05555555555555555,
+          "text": "In a moment, he communicated his thoughts to his companions and in the next moment they resolved to turn back and carry her off to please rudolpho for the rich who are open handed, always find parricides ready to encourage their bad propensities and thus to conceive. This wicked design to communicate it approve. It resolve on ravishing ly acadia and to carry that design into effect was the work of a moment."
+        },
+        {
+          "clip": "ls28-2",
+          "audioMs": 27120,
+          "utterances": 1,
+          "decodeMs": 1255,
+          "rtf": 0.04627581120943953,
+          "wer": 0.05555555555555555,
+          "text": "In a moment, he communicated his thoughts to his companions and in the next moment they resolved to turn back and carry her off to please rudolpho for the rich who are open handed, always find parricides ready to encourage their bad propensities and thus to conceive. This wicked design to communicate it approve. It resolve on ravishing ly acadia and to carry that design into effect was the work of a moment."
+        },
+        {
+          "clip": "ls28-2",
+          "audioMs": 27120,
+          "utterances": 1,
+          "decodeMs": 1259,
+          "rtf": 0.046423303834808256,
+          "wer": 0.05555555555555555,
+          "text": "In a moment, he communicated his thoughts to his companions and in the next moment they resolved to turn back and carry her off to please rudolpho for the rich who are open handed, always find parricides ready to encourage their bad propensities and thus to conceive. This wicked design to communicate it approve. It resolve on ravishing ly acadia and to carry that design into effect was the work of a moment."
+        }
+      ],
+      "rtfByLength": {
+        "ls10": 0.05563658462473412,
+        "ls20": 0.04902260751317355,
+        "ls28": 0.04909760589318601,
+        "ls": 0.04992538485705309
+      },
+      "peakRssMb": 1088,
+      "baselineRssMb": 212,
+      "envBefore": {
+        "thermal": 0,
+        "batteryPct": 82,
+        "batteryTempC": 24.7,
+        "plugged": true,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 0,
+        "batteryPct": 82,
+        "batteryTempC": 24.7,
+        "plugged": true,
+        "screenOn": false
+      },
+      "maxThermal": 0,
+      "disturbed": null
+    },
+    {
+      "engine": "granite-speech-5-470m",
+      "displayName": "Granite Speech 5.0 470M (English)",
+      "threads": 4,
+      "tuning": "cpu-arena",
+      "arena": true,
+      "pinnedCores": null,
+      "family": "GRANITE_CTC",
+      "developer": true,
+      "loadMs": 3858,
+      "threadAffinity": {
+        "0-7": 31
+      },
+      "warmupMs": 756,
+      "decodes": [
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 599,
+          "rtf": 0.054603463992707386,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts presenting in case after case the different phases of the subject and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 602,
+          "rtf": 0.05487693710118505,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts presenting in case after case the different phases of the subject and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 601,
+          "rtf": 0.05478577939835916,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts presenting in case after case the different phases of the subject and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 910,
+          "rtf": 0.046404895461499236,
+          "wer": 0,
+          "text": "Nevertheless, the mustard seed among the smallest of all seeds has attained the proportions of a tree and the birds of the air are nesting in its branches. The acorn is now an oak offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 919,
+          "rtf": 0.046863844977052524,
+          "wer": 0,
+          "text": "Nevertheless, the mustard seed among the smallest of all seeds has attained the proportions of a tree and the birds of the air are nesting in its branches. The acorn is now an oak offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 912,
+          "rtf": 0.0465068842427333,
+          "wer": 0,
+          "text": "Nevertheless, the mustard seed among the smallest of all seeds has attained the proportions of a tree and the birds of the air are nesting in its branches. The acorn is now an oak offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls28-1",
+          "audioMs": 27180,
+          "utterances": 1,
+          "decodeMs": 1229,
+          "rtf": 0.045217071376011775,
+          "wer": 0.0392156862745098,
+          "text": "He passes abruptly from persons to ideas and numbers and from ideas and numbers to persons from the heavens to men from astronomy to physiology, he confuses or rather does not distinguish subject and object, 1st and final causes and is dreaming of geometrical figures lost in a flux of sense."
+        },
+        {
+          "clip": "ls28-1",
+          "audioMs": 27180,
+          "utterances": 1,
+          "decodeMs": 1235,
+          "rtf": 0.04543782192788815,
+          "wer": 0.0392156862745098,
+          "text": "He passes abruptly from persons to ideas and numbers and from ideas and numbers to persons from the heavens to men from astronomy to physiology, he confuses or rather does not distinguish subject and object, 1st and final causes and is dreaming of geometrical figures lost in a flux of sense."
+        },
+        {
+          "clip": "ls28-1",
+          "audioMs": 27180,
+          "utterances": 1,
+          "decodeMs": 1225,
+          "rtf": 0.04506990434142752,
+          "wer": 0.0392156862745098,
+          "text": "He passes abruptly from persons to ideas and numbers and from ideas and numbers to persons from the heavens to men from astronomy to physiology, he confuses or rather does not distinguish subject and object, 1st and final causes and is dreaming of geometrical figures lost in a flux of sense."
+        },
+        {
+          "clip": "ls28-2",
+          "audioMs": 27120,
+          "utterances": 1,
+          "decodeMs": 1222,
+          "rtf": 0.045058997050147494,
+          "wer": 0.05555555555555555,
+          "text": "In a moment, he communicated his thoughts to his companions and in the next moment they resolved to turn back and carry her off to please rudolpho for the rich who are open handed, always find parricides ready to encourage their bad propensities and thus to conceive. This wicked design to communicate it approve. It resolve on ravishing ly acadia and to carry that design into effect was the work of a moment."
+        },
+        {
+          "clip": "ls28-2",
+          "audioMs": 27120,
+          "utterances": 1,
+          "decodeMs": 1248,
+          "rtf": 0.04601769911504425,
+          "wer": 0.05555555555555555,
+          "text": "In a moment, he communicated his thoughts to his companions and in the next moment they resolved to turn back and carry her off to please rudolpho for the rich who are open handed, always find parricides ready to encourage their bad propensities and thus to conceive. This wicked design to communicate it approve. It resolve on ravishing ly acadia and to carry that design into effect was the work of a moment."
+        },
+        {
+          "clip": "ls28-2",
+          "audioMs": 27120,
+          "utterances": 1,
+          "decodeMs": 1248,
+          "rtf": 0.04601769911504425,
+          "wer": 0.05555555555555555,
+          "text": "In a moment, he communicated his thoughts to his companions and in the next moment they resolved to turn back and carry her off to please rudolpho for the rich who are open handed, always find parricides ready to encourage their bad propensities and thus to conceive. This wicked design to communicate it approve. It resolve on ravishing ly acadia and to carry that design into effect was the work of a moment."
+        }
+      ],
+      "rtfByLength": {
+        "ls10": 0.0547553934974172,
+        "ls20": 0.04659187489376169,
+        "ls28": 0.04546961325966851,
+        "ls": 0.046928997800816837
+      },
+      "peakRssMb": 1181,
+      "baselineRssMb": 213,
+      "envBefore": {
+        "thermal": 0,
+        "batteryPct": 83,
+        "batteryTempC": 24.9,
+        "plugged": true,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 0,
+        "batteryPct": 83,
+        "batteryTempC": 25.2,
+        "plugged": true,
+        "screenOn": false
+      },
+      "maxThermal": 0,
+      "disturbed": null
+    },
+    {
+      "engine": "parakeet-ultra",
+      "displayName": "Parakeet Ultra",
+      "threads": 4,
+      "tuning": "cpu-arena",
+      "arena": true,
+      "pinnedCores": null,
+      "family": "NEMO_TRANSDUCER",
+      "developer": false,
+      "loadMs": 4406,
+      "threadAffinity": {
+        "0-7": 34
+      },
+      "warmupMs": 1012,
+      "decodes": [
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 792,
+          "rtf": 0.07219690063810393,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 787,
+          "rtf": 0.07174111212397448,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 771,
+          "rtf": 0.07028258887876025,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 1342,
+          "rtf": 0.06843447220805711,
+          "wer": 0,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 1435,
+          "rtf": 0.0731769505354411,
+          "wer": 0,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 1332,
+          "rtf": 0.06792452830188679,
+          "wer": 0,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls28-1",
+          "audioMs": 27180,
+          "utterances": 1,
+          "decodeMs": 1830,
+          "rtf": 0.0673289183222958,
+          "wer": 0.0196078431372549,
+          "text": "he passes abruptly from persons to ideas and numbers, and from ideas and numbers to persons, from the heavens to men, from astronomy to physiology. He confuses, or rather does not distinguish subject and object, first and final causes, and is dreaming of geometrical figures lost in a flux of sense."
+        },
+        {
+          "clip": "ls28-1",
+          "audioMs": 27180,
+          "utterances": 1,
+          "decodeMs": 2058,
+          "rtf": 0.07571743929359824,
+          "wer": 0.0196078431372549,
+          "text": "he passes abruptly from persons to ideas and numbers, and from ideas and numbers to persons, from the heavens to men, from astronomy to physiology. He confuses, or rather does not distinguish subject and object, first and final causes, and is dreaming of geometrical figures lost in a flux of sense."
+        },
+        {
+          "clip": "ls28-1",
+          "audioMs": 27180,
+          "utterances": 1,
+          "decodeMs": 1832,
+          "rtf": 0.06740250183958793,
+          "wer": 0.0196078431372549,
+          "text": "he passes abruptly from persons to ideas and numbers, and from ideas and numbers to persons, from the heavens to men, from astronomy to physiology. He confuses, or rather does not distinguish subject and object, first and final causes, and is dreaming of geometrical figures lost in a flux of sense."
+        },
+        {
+          "clip": "ls28-2",
+          "audioMs": 27120,
+          "utterances": 1,
+          "decodeMs": 1876,
+          "rtf": 0.0691740412979351,
+          "wer": 0.013888888888888888,
+          "text": "In a moment he communicated his thoughts to his companions, and in the next moment they resolved to turn back and carry her off to please Rudolfo. For the rich, who are open handed always find parasites ready to encourage their bad propensities, and thus to conceive this wicked design, to communicate it, approve it, resolve on ravishing Leocadia, and to carry that design into effect was the work of a moment."
+        },
+        {
+          "clip": "ls28-2",
+          "audioMs": 27120,
+          "utterances": 1,
+          "decodeMs": 1884,
+          "rtf": 0.06946902654867257,
+          "wer": 0.013888888888888888,
+          "text": "In a moment he communicated his thoughts to his companions, and in the next moment they resolved to turn back and carry her off to please Rudolfo. For the rich, who are open handed always find parasites ready to encourage their bad propensities, and thus to conceive this wicked design, to communicate it, approve it, resolve on ravishing Leocadia, and to carry that design into effect was the work of a moment."
+        },
+        {
+          "clip": "ls28-2",
+          "audioMs": 27120,
+          "utterances": 1,
+          "decodeMs": 1869,
+          "rtf": 0.06891592920353982,
+          "wer": 0.013888888888888888,
+          "text": "In a moment he communicated his thoughts to his companions, and in the next moment they resolved to turn back and carry her off to please Rudolfo. For the rich, who are open handed always find parasites ready to encourage their bad propensities, and thus to conceive this wicked design, to communicate it, approve it, resolve on ravishing Leocadia, and to carry that design into effect was the work of a moment."
+        }
+      ],
+      "rtfByLength": {
+        "ls10": 0.07140686721361289,
+        "ls20": 0.06984531701512833,
+        "ls28": 0.06966850828729282,
+        "ls": 0.0699340245051838
+      },
+      "peakRssMb": 1703,
+      "baselineRssMb": 181,
+      "envBefore": {
+        "thermal": 0,
+        "batteryPct": 83,
+        "batteryTempC": 25.2,
+        "plugged": true,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 0,
+        "batteryPct": 83,
+        "batteryTempC": 25.7,
+        "plugged": true,
+        "screenOn": false
+      },
+      "maxThermal": 0,
+      "disturbed": null
+    },
+    {
+      "engine": "parakeet-tdt-110m-en",
+      "displayName": "Parakeet TDT_CTC 110M (English)",
+      "threads": 4,
+      "tuning": "cpu",
+      "arena": false,
+      "pinnedCores": null,
+      "family": "NEMO_TRANSDUCER",
+      "developer": false,
+      "loadMs": 1798,
+      "threadAffinity": {
+        "0-7": 34
+      },
+      "warmupMs": 543,
+      "decodes": [
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 321,
+          "rtf": 0.0292616226071103,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 310,
+          "rtf": 0.028258887876025523,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 328,
+          "rtf": 0.02989972652689152,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 735,
+          "rtf": 0.03748087710351861,
+          "wer": 0,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction, to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 519,
+          "rtf": 0.026466088730239673,
+          "wer": 0,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction, to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 537,
+          "rtf": 0.027383987761346252,
+          "wer": 0,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction, to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls28-1",
+          "audioMs": 27180,
+          "utterances": 1,
+          "decodeMs": 1243,
+          "rtf": 0.045732155997056656,
+          "wer": 0,
+          "text": "He passes abruptly from persons to ideas and numbers, and from ideas and numbers to persons, from the heavens to man, from astronomy to physiology, he confuses, or rather does not distinguish subject and object, first and final causes, and is dreaming of geometrical figures lost in a flux of sense."
+        },
+        {
+          "clip": "ls28-1",
+          "audioMs": 27180,
+          "utterances": 1,
+          "decodeMs": 800,
+          "rtf": 0.029433406916850625,
+          "wer": 0,
+          "text": "He passes abruptly from persons to ideas and numbers, and from ideas and numbers to persons, from the heavens to man, from astronomy to physiology, he confuses, or rather does not distinguish subject and object, first and final causes, and is dreaming of geometrical figures lost in a flux of sense."
+        },
+        {
+          "clip": "ls28-1",
+          "audioMs": 27180,
+          "utterances": 1,
+          "decodeMs": 812,
+          "rtf": 0.029874908020603386,
+          "wer": 0,
+          "text": "He passes abruptly from persons to ideas and numbers, and from ideas and numbers to persons, from the heavens to man, from astronomy to physiology, he confuses, or rather does not distinguish subject and object, first and final causes, and is dreaming of geometrical figures lost in a flux of sense."
+        },
+        {
+          "clip": "ls28-2",
+          "audioMs": 27120,
+          "utterances": 1,
+          "decodeMs": 1244,
+          "rtf": 0.04587020648967552,
+          "wer": 0.027777777777777776,
+          "text": "In a moment he communicated his thoughts to his companions, and in the next moment they resolved to turn back and carry her off to please Rudolf for the rich, who are open handed, always find parasites ready to encourage their bad propensities and thus to conceive this wicked design, to communicate it, approve it, resolve on ravishing Locadia, and to carry that design into effect was the work of a moment."
+        },
+        {
+          "clip": "ls28-2",
+          "audioMs": 27120,
+          "utterances": 1,
+          "decodeMs": 801,
+          "rtf": 0.029535398230088494,
+          "wer": 0.027777777777777776,
+          "text": "In a moment he communicated his thoughts to his companions, and in the next moment they resolved to turn back and carry her off to please Rudolf for the rich, who are open handed, always find parasites ready to encourage their bad propensities and thus to conceive this wicked design, to communicate it, approve it, resolve on ravishing Locadia, and to carry that design into effect was the work of a moment."
+        },
+        {
+          "clip": "ls28-2",
+          "audioMs": 27120,
+          "utterances": 1,
+          "decodeMs": 798,
+          "rtf": 0.029424778761061948,
+          "wer": 0.027777777777777776,
+          "text": "In a moment he communicated his thoughts to his companions, and in the next moment they resolved to turn back and carry her off to please Rudolf for the rich, who are open handed, always find parasites ready to encourage their bad propensities and thus to conceive this wicked design, to communicate it, approve it, resolve on ravishing Locadia, and to carry that design into effect was the work of a moment."
+        }
+      ],
+      "rtfByLength": {
+        "ls10": 0.02914007900334245,
+        "ls20": 0.030443651198368178,
+        "ls28": 0.034978514426028236,
+        "ls": 0.033176248821866164
+      },
+      "peakRssMb": 559,
+      "baselineRssMb": 178,
+      "envBefore": {
+        "thermal": 0,
+        "batteryPct": 83,
+        "batteryTempC": 25.7,
+        "plugged": true,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 0,
+        "batteryPct": 83,
+        "batteryTempC": 25.7,
+        "plugged": true,
+        "screenOn": false
+      },
+      "maxThermal": 0,
+      "disturbed": null
+    },
+    {
+      "engine": "parakeet-tdt-110m-en",
+      "displayName": "Parakeet TDT_CTC 110M (English)",
+      "threads": 4,
+      "tuning": "cpu-arena",
+      "arena": true,
+      "pinnedCores": null,
+      "family": "NEMO_TRANSDUCER",
+      "developer": false,
+      "loadMs": 1681,
+      "threadAffinity": {
+        "0-7": 34
+      },
+      "warmupMs": 510,
+      "decodes": [
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 336,
+          "rtf": 0.03062898814949863,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 310,
+          "rtf": 0.028258887876025523,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 322,
+          "rtf": 0.02935278030993619,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 546,
+          "rtf": 0.02784293727689954,
+          "wer": 0,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction, to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 533,
+          "rtf": 0.027180010198878123,
+          "wer": 0,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction, to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 513,
+          "rtf": 0.02616012238653748,
+          "wer": 0,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction, to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls28-1",
+          "audioMs": 27180,
+          "utterances": 1,
+          "decodeMs": 742,
+          "rtf": 0.027299484915378956,
+          "wer": 0,
+          "text": "He passes abruptly from persons to ideas and numbers, and from ideas and numbers to persons, from the heavens to man, from astronomy to physiology, he confuses, or rather does not distinguish subject and object, first and final causes, and is dreaming of geometrical figures lost in a flux of sense."
+        },
+        {
+          "clip": "ls28-1",
+          "audioMs": 27180,
+          "utterances": 1,
+          "decodeMs": 774,
+          "rtf": 0.02847682119205298,
+          "wer": 0,
+          "text": "He passes abruptly from persons to ideas and numbers, and from ideas and numbers to persons, from the heavens to man, from astronomy to physiology, he confuses, or rather does not distinguish subject and object, first and final causes, and is dreaming of geometrical figures lost in a flux of sense."
+        },
+        {
+          "clip": "ls28-1",
+          "audioMs": 27180,
+          "utterances": 1,
+          "decodeMs": 749,
+          "rtf": 0.0275570272259014,
+          "wer": 0,
+          "text": "He passes abruptly from persons to ideas and numbers, and from ideas and numbers to persons, from the heavens to man, from astronomy to physiology, he confuses, or rather does not distinguish subject and object, first and final causes, and is dreaming of geometrical figures lost in a flux of sense."
+        },
+        {
+          "clip": "ls28-2",
+          "audioMs": 27120,
+          "utterances": 1,
+          "decodeMs": 752,
+          "rtf": 0.027728613569321534,
+          "wer": 0.027777777777777776,
+          "text": "In a moment he communicated his thoughts to his companions, and in the next moment they resolved to turn back and carry her off to please Rudolf for the rich, who are open handed, always find parasites ready to encourage their bad propensities and thus to conceive this wicked design, to communicate it, approve it, resolve on ravishing Locadia, and to carry that design into effect was the work of a moment."
+        },
+        {
+          "clip": "ls28-2",
+          "audioMs": 27120,
+          "utterances": 1,
+          "decodeMs": 742,
+          "rtf": 0.027359882005899706,
+          "wer": 0.027777777777777776,
+          "text": "In a moment he communicated his thoughts to his companions, and in the next moment they resolved to turn back and carry her off to please Rudolf for the rich, who are open handed, always find parasites ready to encourage their bad propensities and thus to conceive this wicked design, to communicate it, approve it, resolve on ravishing Locadia, and to carry that design into effect was the work of a moment."
+        },
+        {
+          "clip": "ls28-2",
+          "audioMs": 27120,
+          "utterances": 1,
+          "decodeMs": 752,
+          "rtf": 0.027728613569321534,
+          "wer": 0.027777777777777776,
+          "text": "In a moment he communicated his thoughts to his companions, and in the next moment they resolved to turn back and carry her off to please Rudolf for the rich, who are open handed, always find parasites ready to encourage their bad propensities and thus to conceive this wicked design, to communicate it, approve it, resolve on ravishing Locadia, and to carry that design into effect was the work of a moment."
+        }
+      ],
+      "rtfByLength": {
+        "ls10": 0.029413552111820115,
+        "ls20": 0.027061023287438382,
+        "ls28": 0.02769183548189073,
+        "ls": 0.02776861451460886
+      },
+      "peakRssMb": 817,
+      "baselineRssMb": 167,
+      "envBefore": {
+        "thermal": 0,
+        "batteryPct": 83,
+        "batteryTempC": 26,
+        "plugged": true,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 0,
+        "batteryPct": 83,
+        "batteryTempC": 26,
+        "plugged": true,
+        "screenOn": false
+      },
+      "maxThermal": 0,
+      "disturbed": null
+    },
+    {
+      "engine": "parakeet-ultra",
+      "displayName": "Parakeet Ultra",
+      "threads": 4,
+      "tuning": "cpu",
+      "arena": false,
+      "pinnedCores": null,
+      "family": "NEMO_TRANSDUCER",
+      "developer": false,
+      "loadMs": 3847,
+      "threadAffinity": {
+        "0-7": 34
+      },
+      "warmupMs": 1108,
+      "decodes": [
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 787,
+          "rtf": 0.07174111212397448,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 803,
+          "rtf": 0.07319963536918869,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 814,
+          "rtf": 0.07420237010027347,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 1691,
+          "rtf": 0.08623151453340133,
+          "wer": 0,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 1400,
+          "rtf": 0.07139214686384497,
+          "wer": 0,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 1365,
+          "rtf": 0.06960734319224886,
+          "wer": 0,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls28-1",
+          "audioMs": 27180,
+          "utterances": 1,
+          "decodeMs": 2701,
+          "rtf": 0.09937454010301693,
+          "wer": 0.0196078431372549,
+          "text": "he passes abruptly from persons to ideas and numbers, and from ideas and numbers to persons, from the heavens to men, from astronomy to physiology. He confuses, or rather does not distinguish subject and object, first and final causes, and is dreaming of geometrical figures lost in a flux of sense."
+        },
+        {
+          "clip": "ls28-1",
+          "audioMs": 27180,
+          "utterances": 1,
+          "decodeMs": 2001,
+          "rtf": 0.07362030905077263,
+          "wer": 0.0196078431372549,
+          "text": "he passes abruptly from persons to ideas and numbers, and from ideas and numbers to persons, from the heavens to men, from astronomy to physiology. He confuses, or rather does not distinguish subject and object, first and final causes, and is dreaming of geometrical figures lost in a flux of sense."
+        },
+        {
+          "clip": "ls28-1",
+          "audioMs": 27180,
+          "utterances": 1,
+          "decodeMs": 2018,
+          "rtf": 0.0742457689477557,
+          "wer": 0.0196078431372549,
+          "text": "he passes abruptly from persons to ideas and numbers, and from ideas and numbers to persons, from the heavens to men, from astronomy to physiology. He confuses, or rather does not distinguish subject and object, first and final causes, and is dreaming of geometrical figures lost in a flux of sense."
+        },
+        {
+          "clip": "ls28-2",
+          "audioMs": 27120,
+          "utterances": 1,
+          "decodeMs": 2726,
+          "rtf": 0.10051622418879055,
+          "wer": 0.013888888888888888,
+          "text": "In a moment he communicated his thoughts to his companions, and in the next moment they resolved to turn back and carry her off to please Rudolfo. For the rich, who are open handed always find parasites ready to encourage their bad propensities, and thus to conceive this wicked design, to communicate it, approve it, resolve on ravishing Leocadia, and to carry that design into effect was the work of a moment."
+        },
+        {
+          "clip": "ls28-2",
+          "audioMs": 27120,
+          "utterances": 1,
+          "decodeMs": 2051,
+          "rtf": 0.0756268436578171,
+          "wer": 0.013888888888888888,
+          "text": "In a moment he communicated his thoughts to his companions, and in the next moment they resolved to turn back and carry her off to please Rudolfo. For the rich, who are open handed always find parasites ready to encourage their bad propensities, and thus to conceive this wicked design, to communicate it, approve it, resolve on ravishing Leocadia, and to carry that design into effect was the work of a moment."
+        },
+        {
+          "clip": "ls28-2",
+          "audioMs": 27120,
+          "utterances": 1,
+          "decodeMs": 2036,
+          "rtf": 0.07507374631268436,
+          "wer": 0.013888888888888888,
+          "text": "In a moment he communicated his thoughts to his companions, and in the next moment they resolved to turn back and carry her off to please Rudolfo. For the rich, who are open handed always find parasites ready to encourage their bad propensities, and thus to conceive this wicked design, to communicate it, approve it, resolve on ravishing Leocadia, and to carry that design into effect was the work of a moment."
+        }
+      ],
+      "rtfByLength": {
+        "ls10": 0.07304770586447888,
+        "ls20": 0.07574366819649839,
+        "ls28": 0.08307550644567219,
+        "ls": 0.0800856110587496
+      },
+      "peakRssMb": 1149,
+      "baselineRssMb": 168,
+      "envBefore": {
+        "thermal": 0,
+        "batteryPct": 83,
+        "batteryTempC": 26,
+        "plugged": true,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 0,
+        "batteryPct": 83,
+        "batteryTempC": 26.9,
+        "plugged": true,
+        "screenOn": false
+      },
+      "maxThermal": 0,
+      "disturbed": null
+    }
+  ],
+  "probeMs": 242,
+  "probeRuns": [
+    242,
+    241,
+    242,
+    245,
+    243
+  ],
+  "probeThreads": 4,
+  "probeEnv": {
+    "thermal": 0,
+    "batteryPct": 82,
+    "batteryTempC": 24.7,
+    "plugged": true,
+    "screenOn": false
+  },
+  "finished": "20261002-051553"
+}

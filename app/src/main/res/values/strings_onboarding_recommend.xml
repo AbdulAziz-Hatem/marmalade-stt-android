@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The setup guide's recommended engine (#27; the design lab's C1): the
+     model step's card, while the phone is checked and once an engine is
+     chosen for it. -->
+<resources>
+    <string name="onboarding_recommend_checking">Checking your phone…</string>
+    <!-- %1$s: the phone's language, e.g. "English". The engine is the first
+         pick for the language and within the phone's memory and speed. -->
+    <string name="onboarding_recommend_best_fit">Our first choice for %1$s, and it fits this phone\'s memory and speed.</string>
+    <string name="onboarding_recommend_lighter">A lighter engine that suits this phone\'s memory and speed.</string>
+    <!-- %1$s: the phone's language. -->
+    <string name="onboarding_recommend_may_be_slow">The best fit for %1$s, but it may be slow on this phone.</string>
+    <!-- %1$s: the phone's language. -->
+    <string name="onboarding_recommend_low_memory">The leanest engine for %1$s. This phone has little memory for it, so it may be slow or be closed by Android.</string>
+    <!-- %1$s: the phone's language, which no engine covers; %2$s: the language the engine is for ("English"). -->
+    <string name="onboarding_recommend_uncovered">No engine transcribes %1$s yet, so this one is for %2$s.</string>
+    <!-- After the reason, for an engine that detects the language itself -->
+    <plurals name="onboarding_recommend_languages">
+        <item quantity="one">%d language, detected automatically.</item>
+        <item quantity="other">%d languages, detected automatically.</item>
+    </plurals>
+    <string name="onboarding_recommend_other">You can pick another engine on the Engines tab later.</string>
+</resources>

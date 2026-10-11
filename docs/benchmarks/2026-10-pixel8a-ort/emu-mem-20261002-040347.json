@@ -1,0 +1,221 @@
+{
+  "tag": "emumem05",
+  "started": "20261002-040347",
+  "device": "unknown Android SDK built for x86_64 (Android 15, SDK 35)",
+  "seed": 1790939027262,
+  "order": [
+    "parakeet-ultra@4\/cpu",
+    "canary-180m-flash@4\/cpu"
+  ],
+  "fastCores": [],
+  "cooldownSeconds": 5,
+  "clips": [
+    {
+      "name": "ls05-1",
+      "audioMs": 4955
+    }
+  ],
+  "results": [
+    {
+      "engine": "parakeet-ultra",
+      "displayName": "Parakeet Ultra",
+      "threads": 4,
+      "tuning": "cpu",
+      "pinnedCores": null,
+      "family": "NEMO_TRANSDUCER",
+      "developer": false,
+      "loadMs": 2149,
+      "threadAffinity": {
+        "0-3": 32
+      },
+      "warmupMs": 1022,
+      "decodes": [
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 863,
+          "rtf": 0.17416750756811303,
+          "wer": 0.16666666666666666,
+          "text": "or an eye of gifts and graces, showering fruits in coined gold."
+        }
+      ],
+      "rtfByLength": {
+        "ls05": 0.17416750756811303,
+        "ls": 0.17416750756811303
+      },
+      "sessions": {
+        "loadMs": 2133,
+        "cold": {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "firstPartialMs": 468,
+          "endToFinalMs": 2042,
+          "partials": 5,
+          "finals": 1,
+          "wer": 0.16666666666666666,
+          "text": "or an eye of gifts and graces, showering fruits in coined gold.",
+          "error": null
+        },
+        "runs": [
+          {
+            "clip": "ls05-1",
+            "audioMs": 4955,
+            "firstPartialMs": 598,
+            "endToFinalMs": 2047,
+            "partials": 5,
+            "finals": 1,
+            "wer": 0.16666666666666666,
+            "text": "or an eye of gifts and graces, showering fruits in coined gold.",
+            "error": null
+          }
+        ],
+        "byLength": {
+          "ls05": {
+            "firstPartialMs": 598,
+            "endToFinalMs": 2047
+          }
+        },
+        "warmUpMs": 2301,
+        "coldWarmed": {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "firstPartialMs": 542,
+          "endToFinalMs": 2123,
+          "partials": 5,
+          "finals": 1,
+          "wer": 0.16666666666666666,
+          "text": "or an eye of gifts and graces, showering fruits in coined gold.",
+          "error": null
+        }
+      },
+      "peakRssMb": 951,
+      "baselineRssMb": 160,
+      "envBefore": {
+        "thermal": 0,
+        "batteryPct": 100,
+        "batteryTempC": 25,
+        "plugged": true,
+        "screenOn": true
+      },
+      "envAfter": {
+        "thermal": 0,
+        "batteryPct": 100,
+        "batteryTempC": 25,
+        "plugged": true,
+        "screenOn": true
+      },
+      "maxThermal": 0,
+      "disturbed": null
+    },
+    {
+      "engine": "canary-180m-flash",
+      "displayName": "Canary 180M Flash",
+      "threads": 4,
+      "tuning": "cpu",
+      "pinnedCores": null,
+      "family": "CANARY",
+      "developer": false,
+      "loadMs": 1312,
+      "threadAffinity": {
+        "0-3": 28
+      },
+      "warmupMs": 943,
+      "decodes": [
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 845,
+          "rtf": 0.1705348133198789,
+          "wer": 0.08333333333333333,
+          "text": "or an eye of gifts and graces, showering fruits and coined gold."
+        }
+      ],
+      "rtfByLength": {
+        "ls05": 0.1705348133198789,
+        "ls": 0.1705348133198789
+      },
+      "sessions": {
+        "loadMs": 1241,
+        "cold": {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "firstPartialMs": 429,
+          "endToFinalMs": 2917,
+          "partials": 6,
+          "finals": 1,
+          "wer": 0.08333333333333333,
+          "text": "or an eye of gifts and graces, showering fruits and coined gold,",
+          "error": null
+        },
+        "runs": [
+          {
+            "clip": "ls05-1",
+            "audioMs": 4955,
+            "firstPartialMs": 533,
+            "endToFinalMs": 2076,
+            "partials": 5,
+            "finals": 1,
+            "wer": 0.08333333333333333,
+            "text": "or an eye of gifts and graces, showering fruits and coined gold,",
+            "error": null
+          }
+        ],
+        "byLength": {
+          "ls05": {
+            "firstPartialMs": 533,
+            "endToFinalMs": 2076
+          }
+        },
+        "warmUpMs": 1380,
+        "coldWarmed": {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "firstPartialMs": 428,
+          "endToFinalMs": 2652,
+          "partials": 6,
+          "finals": 1,
+          "wer": 0.08333333333333333,
+          "text": "or an eye of gifts and graces, showering fruits and coined gold,",
+          "error": null
+        }
+      },
+      "peakRssMb": 527,
+      "baselineRssMb": 188,
+      "envBefore": {
+        "thermal": 0,
+        "batteryPct": 100,
+        "batteryTempC": 25,
+        "plugged": true,
+        "screenOn": true
+      },
+      "envAfter": {
+        "thermal": 0,
+        "batteryPct": 100,
+        "batteryTempC": 25,
+        "plugged": true,
+        "screenOn": true
+      },
+      "maxThermal": 0,
+      "disturbed": null
+    }
+  ],
+  "probeMs": 195,
+  "probeRuns": [
+    200,
+    201,
+    195,
+    195,
+    193
+  ],
+  "probeThreads": 3,
+  "probeEnv": {
+    "thermal": 0,
+    "batteryPct": 100,
+    "batteryTempC": 25,
+    "plugged": true,
+    "screenOn": true
+  },
+  "finished": "20261002-040503"
+}

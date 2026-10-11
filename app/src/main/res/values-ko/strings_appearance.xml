@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Settings → Appearance -->
+    <string name="settings_appearance">모양</string>
+    <string name="settings_mode">모드</string>
+    <string name="settings_mode_system">시스템</string>
+    <string name="settings_mode_light">밝게</string>
+    <string name="settings_mode_dark">어둡게</string>
+    <string name="settings_color">색상</string>
+    <string name="settings_color_system">배경화면</string>
+    <string name="settings_color_midnight">한밤</string>
+    <string name="settings_color_forest">숲</string>
+    <string name="settings_color_berry">베리</string>
+    <string name="settings_color_high_contrast">고대비</string>
+</resources>

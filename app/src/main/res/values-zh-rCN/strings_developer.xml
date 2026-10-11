@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Settings → Developer -->
+    <string name="settings_developer">开发者</string>
+    <string name="settings_developer_engines">开发者引擎</string>
+    <string name="settings_developer_engines_desc">显示更多用于测试和基准测试的语音引擎。下载体积大，不适合日常使用。</string>
+    <string name="settings_developer_benchmark">A/B 基准测试</string>
+    <string name="settings_developer_benchmark_desc">用同一段录音比较已安装的引擎。</string>
+    <string name="settings_developer_speed">重新测量手机速度</string>
+    <string name="settings_developer_speed_measuring">正在测量…</string>
+    <string name="settings_developer_speed_measured">速度得分 %1$s</string>
+    <string name="settings_developer_speed_unmeasured">尚未测量</string>
+    <string name="settings_developer_speed_done">速度得分：%1$s</string>
+    <string name="settings_developer_speed_failed">无法测量手机速度</string>
+    <!-- ONNX Runtime tuning -->
+    <string name="settings_developer_ort_tuning">运行时调优</string>
+    <string name="settings_developer_ort_tuning_desc">ONNX Runtime 的线程自旋和核心绑定，用于测量。下次加载引擎时生效。</string>
+    <string name="settings_developer_ort_tuning_default">默认（%1$s）</string>
+    <string name="settings_developer_ort_tuning_cpu">CPU</string>
+    <string name="settings_developer_ort_tuning_no_spinning">不自旋</string>
+    <string name="settings_developer_ort_tuning_pinned">绑定到高性能核心</string>
+
+    <!-- Small labels on engine cards, rows and the details dialog -->
+    <string name="engine_badge_in_use">使用中</string>
+    <string name="engine_badge_developer">开发者</string>
+    <string name="engine_badge_developer_long">开发者引擎</string>
+    <string name="engine_badge_may_be_slow_long">在这部手机上可能较慢</string>
+    <string name="engine_badge_streaming">流式</string>
+    <string name="engine_streaming_steps">流式 · 每步 %1$d ms</string>
+
+    <!-- Engines card: picking the engine -->
+    <string name="engine_action_use">使用</string>
+    <string name="engine_action_use_named">使用 %1$s</string>
+    <string name="engine_use_failed">无法切换引擎。请重试。</string>
+
+    <!-- Engine info dialog: language hint -->
+    <string name="engine_language">此引擎的语言</string>
+    <string name="engine_language_auto">自动检测</string>
+    <string name="engine_language_cancel">取消</string>
+    <string name="engine_language_failed">无法保存语言。请重试。</string>
+</resources>

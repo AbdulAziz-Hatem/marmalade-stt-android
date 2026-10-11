@@ -1,0 +1,1 @@
+Private, offline speech-to-text for your keyboard. Your voice stays on device.

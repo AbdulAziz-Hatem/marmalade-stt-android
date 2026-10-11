@@ -1,0 +1,140 @@
+{
+  "tag": "emu47-parakeet-tdt-110m-en-cpu-to20",
+  "started": "20261002-045241",
+  "device": "unknown Android SDK built for x86_64 (Android 15, SDK 35)",
+  "seed": 1790941961188,
+  "order": [
+    "parakeet-tdt-110m-en@3/cpu"
+  ],
+  "fastCores": [],
+  "cooldownSeconds": 5,
+  "clips": [
+    {
+      "name": "ls05-1",
+      "audioMs": 4955
+    },
+    {
+      "name": "ls10-1",
+      "audioMs": 10970
+    },
+    {
+      "name": "ls20-1",
+      "audioMs": 19610
+    }
+  ],
+  "results": [
+    {
+      "engine": "parakeet-tdt-110m-en",
+      "displayName": "Parakeet TDT_CTC 110M (English)",
+      "threads": 3,
+      "tuning": "cpu",
+      "pinnedCores": null,
+      "family": "NEMO_TRANSDUCER",
+      "developer": false,
+      "loadMs": 1232,
+      "threadAffinity": {
+        "0-3": 30
+      },
+      "warmupMs": 309,
+      "decodes": [
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 241,
+          "rtf": 0.04863773965691221,
+          "wer": 0.16666666666666666,
+          "text": "or an eye of gifts and graces, showering fruits in coined gold"
+        },
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 261,
+          "rtf": 0.05267406659939455,
+          "wer": 0.16666666666666666,
+          "text": "or an eye of gifts and graces, showering fruits in coined gold"
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 578,
+          "rtf": 0.05268915223336372,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 490,
+          "rtf": 0.044667274384685506,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 1117,
+          "rtf": 0.05696073431922489,
+          "wer": 0,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction, to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 915,
+          "rtf": 0.046659867414584395,
+          "wer": 0,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction, to every earnest pilgrim journeying its way for truth."
+        }
+      ],
+      "rtfByLength": {
+        "ls05": 0.05065590312815338,
+        "ls10": 0.04867821330902461,
+        "ls20": 0.05181030086690464,
+        "ls": 0.05068242577740256
+      },
+      "peakRssMb": 463,
+      "baselineRssMb": 174,
+      "envBefore": {
+        "thermal": 0,
+        "batteryPct": 100,
+        "batteryTempC": 25,
+        "plugged": true,
+        "screenOn": true
+      },
+      "envAfter": {
+        "thermal": 0,
+        "batteryPct": 100,
+        "batteryTempC": 25,
+        "plugged": true,
+        "screenOn": true
+      },
+      "maxThermal": 0,
+      "disturbed": null,
+      "arena": false
+    }
+  ],
+  "probeMs": 199,
+  "probeRuns": [
+    199,
+    200,
+    198,
+    200,
+    199
+  ],
+  "probeThreads": 3,
+  "probeEnv": {
+    "thermal": 0,
+    "batteryPct": 100,
+    "batteryTempC": 25,
+    "plugged": true,
+    "screenOn": true
+  },
+  "finished": "20261002-045252",
+  "note": "#47: run with an interim build where tuning \"cpu\" meant ORT arena off for every engine and \"cpu-arena\" on; \"arena\" in each result was added afterwards from that."
+}

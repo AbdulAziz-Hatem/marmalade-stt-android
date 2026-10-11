@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Setup guide: the recommended engine. Language names arrive in the nominative (angličtina),
+     so they sit in parentheses after "váš jazyk" / "jiný jazyk". -->
+<resources>
+    <string name="onboarding_recommend_checking">Kontroluji váš telefon…</string>
+    <string name="onboarding_recommend_best_fit">Naše první volba pro váš jazyk (%1$s), která sedí k paměti a rychlosti tohoto telefonu.</string>
+    <string name="onboarding_recommend_lighter">Lehčí modul, který sedí k paměti a rychlosti tohoto telefonu.</string>
+    <string name="onboarding_recommend_may_be_slow">Nejlepší volba pro váš jazyk (%1$s), na tomto telefonu ale může běžet pomalu.</string>
+    <string name="onboarding_recommend_low_memory">Nejúspornější modul pro váš jazyk (%1$s). Tento telefon pro něj má málo paměti, takže může běžet pomalu nebo ho Android ukončí.</string>
+    <string name="onboarding_recommend_uncovered">Váš jazyk (%1$s) zatím žádný modul nepřepisuje, proto je tento pro jiný jazyk (%2$s).</string>
+    <plurals name="onboarding_recommend_languages">
+        <item quantity="one">%d jazyk, rozpoznává se automaticky.</item>
+        <item quantity="few">%d jazyky, rozpoznávají se automaticky.</item>
+        <item quantity="many">%d jazyka, rozpoznávají se automaticky.</item>
+        <item quantity="other">%d jazyků, rozpoznávají se automaticky.</item>
+    </plurals>
+    <string name="onboarding_recommend_other">Jiný modul si můžete později vybrat na kartě Moduly.</string>
+</resources>

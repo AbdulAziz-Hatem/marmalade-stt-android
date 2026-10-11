@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- A/B-бенчмарк для разработчиков -->
+    <string name="benchmark_title">Бенчмарк</string>
+    <string name="benchmark_note">Запишите один дубль, затем каждый установленный движок по очереди распознаёт его: загрузка, распознавание, выгрузка. Все движки получают одни и те же сегменты Silero VAD. Потоковым движкам каждый сегмент подаётся кусками по 100 мс так быстро, как модель их принимает, а не в реальном времени. Дубль хранится в памяти и никогда не сохраняется. Результаты на эмуляторе годятся только для сравнения движков между собой.</string>
+
+    <string name="benchmark_section_take">Дубль</string>
+    <string name="benchmark_record">Записать</string>
+    <string name="benchmark_stop">Стоп</string>
+    <string name="benchmark_play">Воспроизвести</string>
+    <string name="benchmark_stop_playback">Остановить воспроизведение</string>
+    <string name="benchmark_elapsed">%1$s с / %2$d с</string>
+    <string name="benchmark_level">Уровень входного сигнала</string>
+    <string name="benchmark_take_length">Дубль: %1$s</string>
+    <string name="benchmark_take_length_soft_agc">Дубль: %1$s, громкость выровнена приложением (на этом телефоне нет встроенной регулировки усиления микрофона)</string>
+    <plurals name="benchmark_no_take">
+        <item quantity="one">Дубля пока нет. Запишите до %1$d секунды речи.</item>
+        <item quantity="few">Дубля пока нет. Запишите до %1$d секунд речи.</item>
+        <item quantity="many">Дубля пока нет. Запишите до %1$d секунд речи.</item>
+        <item quantity="other">Дубля пока нет. Запишите до %1$d секунды речи.</item>
+    </plurals>
+
+    <string name="benchmark_section_reference">Эталонный текст (необязательно)</string>
+    <string name="benchmark_reference_label">Что вы сказали</string>
+    <string name="benchmark_reference_hint">Введите то, что вы сказали, чтобы получить долю ошибок в словах (WER) для каждого движка.</string>
+
+    <string name="benchmark_section_engines">Движки</string>
+    <string name="benchmark_no_engines">Движки не установлены. Установите их на вкладке «Движки» (чтобы увидеть кандидатов, включите в настройках «Движки для разработчиков»).</string>
+    <string name="benchmark_run">Запустить бенчмарк</string>
+    <string name="benchmark_run_again">Запустить снова</string>
+    <string name="benchmark_running">Работает %1$s (%2$d из %3$d)…</string>
+
+    <string name="benchmark_section_results">Результаты</string>
+    <string name="benchmark_metric_load">Загрузка %1$s</string>
+    <string name="benchmark_metric_decode">Декодирование %1$s</string>
+    <string name="benchmark_metric_rtf">RTF %1$s</string>
+    <string name="benchmark_metric_rss">Пиковый RSS (выборочно) %1$s</string>
+    <string name="benchmark_metric_wer">WER %1$s</string>
+    <string name="benchmark_empty_transcript">(речь не распознана)</string>
+    <string name="benchmark_raw">Без обработки: %1$s</string>
+    <string name="benchmark_failed_load">Не удалось загрузить: %1$s</string>
+    <string name="benchmark_failed_transcribe">Не удалось распознать: %1$s</string>
+    <string name="benchmark_failed_release">Распознано, но не удалось выгрузить: %1$s</string>
+    <string name="benchmark_copy_markdown">Копировать как Markdown</string>
+    <string name="benchmark_copied">Скопировано</string>
+
+    <!-- Уведомления -->
+    <string name="benchmark_error_mic">Не удалось начать запись. Может быть, микрофон занят другим приложением?</string>
+    <string name="benchmark_error_empty">Ничего не записалось. Повторите попытку.</string>
+    <string name="benchmark_error_playback">Не удалось воспроизвести дубль.</string>
+    <string name="benchmark_error_no_engines">Нет установленных движков для запуска.</string>
+    <string name="benchmark_error_run">Бенчмарк остановлен из-за ошибки.</string>
+
+    <!-- Доступ к микрофону -->
+    <string name="benchmark_mic_title">Для бенчмарка нужен микрофон</string>
+    <string name="benchmark_mic_body">Он записывает один дубль, хранит его только в памяти и никогда не сохраняет и не отправляет.</string>
+</resources>

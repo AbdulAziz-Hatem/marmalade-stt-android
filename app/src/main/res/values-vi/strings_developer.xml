@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Settings → Developer -->
+    <string name="settings_developer">Nhà phát triển</string>
+    <string name="settings_developer_engines">Công cụ cho nhà phát triển</string>
+    <string name="settings_developer_engines_desc">Hiện thêm các công cụ nhận dạng giọng nói để thử nghiệm và đo điểm chuẩn. Dung lượng tải xuống lớn, không dành cho sử dụng hằng ngày.</string>
+    <string name="settings_developer_benchmark">Đo điểm chuẩn A/B</string>
+    <string name="settings_developer_benchmark_desc">So sánh các công cụ đã cài đặt trên cùng một bản ghi.</string>
+    <string name="settings_developer_speed">Đo lại tốc độ điện thoại</string>
+    <string name="settings_developer_speed_measuring">Đang đo…</string>
+    <string name="settings_developer_speed_measured">Điểm tốc độ %1$s</string>
+    <string name="settings_developer_speed_unmeasured">Chưa đo</string>
+    <string name="settings_developer_speed_done">Điểm tốc độ: %1$s</string>
+    <string name="settings_developer_speed_failed">Không đo được tốc độ của điện thoại</string>
+    <!-- ONNX Runtime tuning -->
+    <string name="settings_developer_ort_tuning">Tinh chỉnh thời gian chạy</string>
+    <string name="settings_developer_ort_tuning_desc">Spinning luồng và ghim lõi của ONNX Runtime, dùng để đo. Áp dụng cho lần tải công cụ tiếp theo.</string>
+    <string name="settings_developer_ort_tuning_default">Mặc định (%1$s)</string>
+    <string name="settings_developer_ort_tuning_cpu">CPU</string>
+    <string name="settings_developer_ort_tuning_no_spinning">không spinning</string>
+    <string name="settings_developer_ort_tuning_pinned">ghim vào lõi nhanh</string>
+
+    <!-- Small labels on engine cards, rows and the details dialog -->
+    <string name="engine_badge_in_use">Đang dùng</string>
+    <string name="engine_badge_developer">Nhà phát triển</string>
+    <string name="engine_badge_developer_long">Công cụ cho nhà phát triển</string>
+    <string name="engine_badge_may_be_slow_long">Có thể chậm trên điện thoại này</string>
+    <string name="engine_badge_streaming">Streaming</string>
+    <string name="engine_streaming_steps">Streaming · bước %1$d ms</string>
+
+    <!-- Engines card: picking the engine -->
+    <string name="engine_action_use">Dùng</string>
+    <string name="engine_action_use_named">Dùng %1$s</string>
+    <string name="engine_use_failed">Không chuyển được công cụ. Hãy thử lại.</string>
+
+    <!-- Engine info dialog: language hint -->
+    <string name="engine_language">Ngôn ngữ cho công cụ này</string>
+    <string name="engine_language_auto">Tự động phát hiện</string>
+    <string name="engine_language_cancel">Hủy</string>
+    <string name="engine_language_failed">Không lưu được ngôn ngữ. Hãy thử lại.</string>
+</resources>

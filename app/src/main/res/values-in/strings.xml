@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="list_separator">,\u0020</string>
+    <string name="quoted_name">“%1$s”</string>
+    <string name="ui_locale">id</string>
+
+    <!-- Bottom navigation -->
+    <string name="nav_dictate">Dikte</string>
+    <string name="nav_engines">Mesin</string>
+    <string name="nav_settings">Setelan</string>
+
+    <!-- Dictate -->
+    <string name="dictate_start">Mulai dikte</string>
+    <string name="dictate_stop">Hentikan dikte</string>
+    <string name="dictate_state_idle">Tidak mendengarkan</string>
+    <string name="dictate_state_loading">Memuat</string>
+    <string name="dictate_state_listening">Mendengarkan</string>
+    <string name="dictate_state_finishing">Menyelesaikan</string>
+    <string name="dictate_status_loading">Memuat model…</string>
+    <string name="dictate_status_listening">Mendengarkan</string>
+    <string name="dictate_status_hearing">Mendengar Anda…</string>
+    <string name="dictate_status_finishing">Menyelesaikan…</string>
+    <string name="dictate_status_catching_up">Mengejar ketertinggalan…</string>
+    <string name="dictate_empty">Kata-kata Anda muncul di sini. Semua yang Anda ucapkan tetap berada di ponsel Anda.</string>
+    <string name="dictate_copy">Salin</string>
+    <string name="dictate_copied">Disalin</string>
+    <string name="dictate_clear">Hapus</string>
+    <string name="dictate_no_speech">Tidak ada yang terdengar</string>
+    <string name="dictate_error_mic">Tidak dapat menggunakan mikrofon</string>
+    <string name="dictate_error_model">Model ucapan tidak dapat dimuat</string>
+    <string name="dictate_error_recognition">Terjadi masalah saat mentranskripsikan</string>
+    <string name="dictate_too_slow">Mesin ini terlalu lambat untuk ponsel ini. Mesin yang lebih kecil di tab Mesin akan dapat mengikuti.</string>
+    <string name="dictate_error_busy">Dikte sedang berjalan di tempat lain. Coba lagi sebentar lagi.</string>
+    <string name="dictate_no_model_title">Download model ucapan untuk mulai mendikte</string>
+    <string name="dictate_no_model_body">Model berjalan di ponsel Anda. Cukup download sekali, lalu dikte berfungsi secara offline.</string>
+    <string name="dictate_no_model_action">Pilih model</string>
+    <string name="dictate_mic_title">Aplikasi memerlukan mikrofon Anda</string>
+    <string name="dictate_mic_body">Aplikasi hanya mendengarkan saat Anda mendikte. Ucapan Anda menjadi teks di ponsel Anda dan tidak pernah disimpan atau dikirim ke mana pun.</string>
+    <string name="dictate_mic_body_blocked">Akses mikrofon dinonaktifkan untuk aplikasi ini. Anda dapat mengaktifkannya di setelan aplikasi, di bagian Izin.</string>
+    <string name="dictate_mic_allow">Izinkan mikrofon</string>
+    <string name="dictate_mic_open_settings">Buka setelan</string>
+    <string name="dictate_mic_settings_failed">Tidak dapat membuka setelan. Buka Setelan Android, lalu Aplikasi, lalu Marmalade STT.</string>
+
+    <!-- Engines list -->
+    <string name="engines_title">Mesin</string>
+
+    <!-- Engine install state -->
+    <string name="engine_status_not_installed">Belum didownload</string>
+    <string name="engine_status_downloading">Mendownload · %1$s</string>
+    <string name="engine_status_paused">Dijeda · %1$s</string>
+    <string name="engine_status_ready">Siap</string>
+    <string name="engine_status_corrupt">File model rusak: %1$s</string>
+    <string name="engine_progress_bytes">%1$s dari %2$s</string>
+    <string name="engine_progress_description">Progres download</string>
+    <string name="engine_failure_not_available">Model ini tidak tersedia untuk didownload saat ini. Coba lagi nanti.</string>
+    <string name="engine_failure_no_space">Ruang penyimpanan tidak cukup untuk model ini. Kosongkan sebagian ruang, lalu coba lagi.</string>
+    <string name="engine_failure_network">Download terputus. Periksa koneksi Anda, lalu coba lagi. Download akan dilanjutkan dari titik terakhir.</string>
+    <string name="engine_failure_generic">Model tidak dapat diinstal. Coba lagi.</string>
+    <string name="engine_corrupt_outdated">File yang terinstal tidak cocok dengan versi aplikasi ini.</string>
+    <string name="engine_corrupt_missing">%1$s tidak ada.</string>
+    <string name="engine_corrupt_wrong_size">Ukuran %1$s salah.</string>
+    <string name="engine_corrupt_damaged">%1$s rusak.</string>
+    <string name="engine_failure_checksum">File yang didownload tidak sesuai dengan yang diharapkan, sehingga dihapus. Coba lagi untuk mendownloadnya ulang.</string>
+
+    <!-- Engine actions -->
+    <string name="engine_action_download">Download</string>
+    <string name="engine_action_resume">Lanjutkan</string>
+    <string name="engine_action_retry">Coba lagi</string>
+    <string name="engine_action_download_again">Download lagi</string>
+    <string name="engine_action_cancel">Batal</string>
+    <string name="engine_action_remove_download">Hapus download</string>
+    <string name="engine_action_check_files">Periksa file</string>
+    <string name="engine_action_checking">Memeriksa file…</string>
+    <string name="engine_action_remove">Hapus</string>
+    <string name="engine_dialog_cancel">Batal</string>
+    <string name="engine_download_confirm_title">Download %1$s?</string>
+    <string name="engine_download_confirm_body">Tindakan ini mendownload %1$s dari internet, satu kali. Setelah itu, mesin berfungsi secara offline, dan tidak ada ucapan Anda yang keluar dari ponsel.</string>
+    <string name="engine_remove_confirm_title">Hapus %1$s?</string>
+    <string name="engine_remove_confirm_body">Tindakan ini menghapus file model (%1$s) dari ponsel Anda. Anda dapat mendownloadnya lagi kapan saja.</string>
+    <string name="engine_remove_download_failed">Tidak dapat menghapus download. Coba lagi.</string>
+    <string name="engine_remove_failed">Tidak dapat menghapus file model. Coba lagi.</string>
+    <string name="engine_check_ok">Semua file utuh</string>
+    <string name="engine_check_damaged">Beberapa file model rusak. Download lagi untuk memperbaikinya.</string>
+    <string name="engine_check_failed">Tidak dapat memeriksa file. Coba lagi.</string>
+    <string name="download_channel_name">Download model ucapan</string>
+
+    <!-- Engine info dialog -->
+    <string name="engine_detail_languages">Bahasa</string>
+    <string name="engine_detail_size_on_disk">Ukuran di ponsel</string>
+    <string name="engine_detail_download_size">Ukuran download</string>
+    <string name="engine_detail_license">Lisensi</string>
+    <string name="engine_detail_source">Sumber</string>
+    <string name="engine_detail_speed">Kecepatan</string>
+    <string name="engine_speed_cost">%1$s× waktu decoding Parakeet Ultra (perkiraan)</string>
+    <string name="engine_speed_reference">Parakeet Ultra adalah acuan kecepatan</string>
+    <string name="engine_speed_phone_unmeasured">Kecepatan ponsel ini belum diukur</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Setelan</string>
+    <string name="settings_back">Kembali</string>
+    <string name="settings_save_failed">Tidak dapat menyimpan setelan. Coba lagi.</string>
+    <string name="settings_speech">Ucapan</string>
+    <string name="settings_speech_keep_loaded">Biarkan mesin tetap siap</string>
+    <string name="settings_speech_keep_loaded_desc">Mulai mendengarkan lebih cepat. Layak diaktifkan jika Anda sering menggunakan input suara, misalnya untuk aksesibilitas. Menggunakan sekitar 0,6 hingga 3 GB memori selama aplikasi terbuka, tergantung mesinnya.</string>
+    <!-- Settings → End of speech -->
+    <string name="settings_end">Akhir ucapan</string>
+    <string name="settings_end_keyboard">Keyboard suara</string>
+    <string name="settings_end_apps">Aplikasi lain dan pop-up “Bicaralah sekarang”</string>
+    <string name="settings_end_tap">Ketuk untuk berhenti</string>
+    <string name="settings_end_tap_desc">Mikrofon tetap aktif sampai Anda mengetuknya. Kata-kata Anda diketik saat Anda berhenti.</string>
+    <string name="settings_end_smart_turn">Berhenti otomatis dengan Smart Turn</string>
+    <string name="settings_end_smart_turn_desc">Berhenti saat Anda terdengar sudah selesai, jadi jeda untuk berpikir tidak memotong ucapan Anda.</string>
+    <string name="settings_end_pause">Berhenti otomatis setelah jeda</string>
+    <string name="settings_end_pause_desc">Berhenti saat Anda diam sejenak. Atur durasinya di Durasi jeda.</string>
+    <string name="settings_end_word">Ucapkan kata penutup</string>
+    <string name="settings_end_word_desc">Berhenti saat Anda mengucapkan kata penutup secara tersendiri, seperti “over”. Kata itu tidak diketik.</string>
+    <string name="settings_end_lock_hint">Tips: dalam mode berhenti otomatis, sentuh lama mikrofon agar terus mendengarkan sampai Anda mengetuknya.</string>
+    <string name="settings_dialog_cancel">Batal</string>
+    <string name="settings_speech_pause">Durasi jeda</string>
+    <string name="settings_speech_pause_desc">Panjang jeda yang mengakhiri kalimat di tab Dikte dan menghentikan proses mendengarkan pada Berhenti otomatis setelah jeda. Jeda yang lebih panjang memberi Anda waktu untuk berpikir.</string>
+    <string name="settings_speech_pause_value">%1$.1f dtk</string>
+    <string name="settings_speech_pause_state">%1$.1f detik</string>
+    <string name="settings_patience">Kesabaran Smart Turn</string>
+    <string name="settings_patience_desc">%1$s. Seberapa lama Smart Turn menunggu sebelum memutuskan Anda sudah selesai.</string>
+    <string name="settings_patience_quick">Cepat</string>
+    <string name="settings_patience_quick_desc">Berhenti mendengarkan lebih cepat, tetapi lebih sering memotong ucapan Anda.</string>
+    <string name="settings_patience_normal">Normal</string>
+    <string name="settings_patience_normal_desc">Menunggu melewati sebagian besar jeda untuk berpikir.</string>
+    <string name="settings_patience_relaxed">Santai</string>
+    <string name="settings_patience_relaxed_desc">Menunggu lebih lama sebelum berhenti mendengarkan. Cocok jika Anda sering berhenti sejenak.</string>
+    <string name="settings_end_words">Kata penutup</string>
+    <string name="settings_end_words_hint">Pisahkan dengan koma.</string>
+    <!-- Settings → Support -->
+    <string name="settings_support">Dukungan</string>
+    <string name="settings_support_dev">Dukung pengembangan</string>
+    <string name="settings_support_dev_desc">Berdonasi melalui GitHub Sponsors. Sukarela dan tidak dapat dikurangkan dari pajak.</string>
+    <string name="settings_more_marmalade">Marmalade lainnya</string>
+    <string name="settings_more_marmalade_desc">Aplikasi Marmalade lain di GitHub.</string>
+    <string name="settings_report_bug">Laporkan bug</string>
+    <string name="settings_report_bug_desc">Ada yang rusak atau salah dengar? Membuka issue GitHub dengan detail yang sudah terisi.</string>
+    <string name="settings_about">Tentang</string>
+    <string name="settings_about_row">Tentang Marmalade STT</string>
+    <string name="settings_about_row_desc">Versi %1$s · lisensi, privasi</string>
+
+    <!-- About -->
+    <string name="about_title">Tentang</string>
+    <string name="about_version">Versi %1$s</string>
+    <string name="about_tagline">Ucapan ke teks yang privat, berjalan di ponsel Anda.</string>
+    <string name="about_privacy">Kebijakan privasi</string>
+    <string name="about_privacy_desc">Apa yang tetap berada di ponsel Anda (semua yang Anda ucapkan) dan apa yang didownload aplikasi. Tanpa pelacakan, tanpa akun.</string>
+    <string name="about_privacy_english_note">Kebijakan ini dalam bahasa Inggris. Ringkasan: ucapan dikenali di ponsel Anda, tidak pernah oleh layanan ucapan cloud atau online. Audio tidak pernah disimpan atau diupload. Tanpa analitik, pelacakan, atau akun. Internet hanya digunakan untuk mendownload model ucapan.</string>
+    <string name="about_privacy_load_failed">Tidak dapat memuat kebijakan privasi. Kebijakan ini juga ada di repositori sebagai PRIVACY.md.</string>
+    <string name="about_licenses">Lisensi open source</string>
+    <string name="about_licenses_desc">Lisensi untuk aplikasi dan komponen yang disertakan di dalamnya.</string>
+
+    <!-- Open-source licenses -->
+    <string name="licenses_licensing">Lisensi</string>
+    <string name="licenses_view_full">Lihat lisensi lengkap</string>
+    <string name="license_text_title">Lisensi</string>
+    <string name="license_text_not_bundled">Teks lisensi tidak disertakan. Lihat link di layar sebelumnya.</string>
+    <string name="license_text_load_failed">Tidak dapat memuat teks lisensi. Lihat link sumber di layar sebelumnya.</string>
+
+    <!-- Voice keyboard -->
+    <string name="ime_name">Pengetikan suara Marmalade</string>
+    <string name="ime_subtype_label">Pengetikan suara</string>
+    <string name="ime_status_loading">Memuat model…</string>
+    <string name="ime_status_listening">Mendengarkan</string>
+    <string name="ime_status_hearing">Mendengar Anda…</string>
+    <string name="ime_status_finishing">Menyelesaikan…</string>
+    <string name="ime_status_paused">Dijeda. Ketuk mikrofon untuk melanjutkan.</string>
+    <string name="ime_speak_now">Bicaralah sekarang</string>
+    <string name="ime_cancel">Kembali ke keyboard</string>
+    <string name="ime_done">Selesai</string>
+    <string name="ime_pause">Jeda mendengarkan</string>
+    <string name="ime_resume">Lanjutkan mendengarkan</string>
+    <string name="ime_no_model">Download model ucapan di Marmalade STT untuk menggunakan pengetikan suara.</string>
+    <string name="ime_open_app">Buka Marmalade STT</string>
+    <string name="ime_mic_needed">Pengetikan suara memerlukan mikrofon. Mikrofon hanya mendengarkan saat panel ini terbuka.</string>
+    <string name="ime_mic_allow">Izinkan mikrofon</string>
+    <string name="ime_mic_blocked">Akses mikrofon nonaktif untuk Marmalade STT. Aktifkan di bagian Izin, lalu kembali ke aplikasi Anda.</string>
+
+    <!-- Speech input dialog and RecognitionService -->
+    <string name="recognizer_speak_now">Bicaralah sekarang</string>
+    <string name="recognizer_cancel">Batal</string>
+    <string name="recognizer_done">Selesai</string>
+    <string name="recognizer_try_again">Coba lagi</string>
+    <string name="recognizer_no_model">Download model ucapan di Marmalade STT untuk menggunakan input suara.</string>
+    <string name="recognizer_open_app">Buka Marmalade STT</string>
+    <string name="recognizer_mic_blocked">Input suara memerlukan mikrofon. Aktifkan di setelan aplikasi, di bagian Izin.</string>
+    <string name="recognizer_open_settings">Buka setelan</string>
+    <string name="recognizer_mic_stop">Berhenti mendengarkan</string>
+
+    <!-- Press and hold the mic to lock listening -->
+    <string name="lock_status">Terkunci: ketuk untuk berhenti</string>
+    <string name="lock_state">Terkunci</string>
+    <string name="lock_action">Kunci mode mendengarkan</string>
+
+    <!-- Text cleanup -->
+    <string name="cleanup_section">Pembersihan teks</string>
+    <string name="cleanup_fillers">Hapus kata pengisi</string>
+    <string name="cleanup_fillers_desc">Menghapus “um”, “uh”, “er”, “hmm”, dan sejenisnya. Kata sungguhan seperti “umbrella” tetap dipertahankan.</string>
+    <string name="cleanup_commands">Perintah suara</string>
+    <string name="cleanup_commands_desc">Ucapkan “new line”, “new paragraph”, atau “scratch that” untuk menghapus kalimat terakhir.</string>
+    <string name="cleanup_punctuation">Kata tanda baca</string>
+    <string name="cleanup_punctuation_desc">Ucapkan juga “period”, “comma”, “question mark”… Nonaktif secara default karena kata-kata ini juga kata biasa.</string>
+    <string name="cleanup_english_only">Hanya bahasa Inggris. %1$s</string>
+    <string name="cleanup_itn">Tulis angka sebagai digit</string>
+    <string name="cleanup_itn_desc">“Twenty five percent” menjadi “25%”, “nine thirty pm” menjadi “9:30 pm”. Angka kecil seperti “three boxes” tetap berupa kata.</string>
+    <string name="cleanup_capitalize">Huruf kapital di awal kalimat</string>
+    <string name="cleanup_capitalize_desc">Huruf kapital di awal setiap kalimat dan baris. Tidak ada huruf yang diubah menjadi huruf kecil.</string>
+    <string name="cleanup_dictionary">Kamus penggantian</string>
+    <string name="cleanup_dictionary_desc_none">Perbaiki kata yang terus-menerus salah dikenali aplikasi.</string>
+    <plurals name="cleanup_dictionary_desc">
+        <item quantity="other">%1$d aturan · perbaiki kata yang terus-menerus salah dikenali aplikasi</item>
+    </plurals>
+    <string name="cleanup_snippets">Cuplikan</string>
+    <string name="cleanup_snippets_desc_none">Ucapkan frasa pemicu untuk menyisipkan teks tersimpan, seperti alamat Anda.</string>
+    <plurals name="cleanup_snippets_desc">
+        <item quantity="other">%1$d cuplikan · ucapkan frasa pemicu untuk menyisipkan teks tersimpan</item>
+    </plurals>
+
+    <string name="cleanup_save">Simpan</string>
+    <string name="cleanup_cancel">Batal</string>
+    <string name="cleanup_delete">Hapus</string>
+    <string name="cleanup_edit_action">Edit</string>
+
+    <string name="cleanup_dictionary_help">Setiap aturan mengubah kata atau frasa yang terus-menerus salah dikenali aplikasi menjadi yang Anda maksud.\n\n• Mencocokkan kata utuh tanpa memedulikan huruf besar/kecil: “teh” cocok dengan “Teh”, tetapi tidak dengan “tehran”.\n• Dalam bahasa Tionghoa dan Jepang, yang tidak memiliki spasi di antara kata, frasa juga cocok di tengah kalimat. Dalam bahasa Korea, frasa juga cocok jika diikuti partikel: “메일” cocok dengan “메일을”.\n• Huruf kapital di sisi kanan dipertahankan sesuai tulisannya. Jika tidak, huruf besar/kecil mengikuti yang terdengar: “Teh” menjadi “The”.\n• Kosongkan sisi kanan untuk menghapus frasa.\n• Jika aturan tumpang tindih, kecocokan terpanjang yang dipakai.</string>
+    <string name="cleanup_dictionary_empty">Belum ada aturan. Ketuk “Tambah aturan” untuk memperbaiki kata yang terus-menerus salah dikenali aplikasi.</string>
+    <string name="cleanup_dictionary_add">Tambah aturan</string>
+    <string name="cleanup_dictionary_edit">Edit aturan</string>
+    <string name="cleanup_dictionary_from">Yang terdengar</string>
+    <string name="cleanup_dictionary_to">Tulis sebagai gantinya</string>
+    <string name="cleanup_dictionary_to_hint">Kosongkan untuk menghapus frasa.</string>
+    <string name="cleanup_dictionary_from_breaks_export">Tidak boleh berisi “->” atau diawali “#”.</string>
+    <string name="cleanup_dictionary_replaces">Menggantikan aturan Anda untuk “%1$s”.</string>
+    <string name="cleanup_dictionary_deleted">(dihapus)</string>
+    <string name="cleanup_dictionary_rule_description">%1$s menjadi %2$s</string>
+    <string name="cleanup_dictionary_rule_deletes_description">%1$s dihapus</string>
+    <string name="cleanup_import">Impor</string>
+    <string name="cleanup_export">Salin semua</string>
+    <string name="cleanup_exported">Aturan disalin</string>
+    <string name="cleanup_import_title">Impor aturan</string>
+    <string name="cleanup_import_help">Tempel satu aturan per baris, dengan format salah -> benar. Baris yang diawali # diabaikan. Aturan untuk kata yang sudah Anda miliki akan menggantikan aturan lama.</string>
+    <string name="cleanup_import_field">Aturan</string>
+    <string name="cleanup_import_none">Belum ada aturan yang ditemukan.</string>
+    <plurals name="cleanup_import_found">
+        <item quantity="other">%1$d aturan ditemukan.</item>
+    </plurals>
+    <plurals name="cleanup_import_skipped">
+        <item quantity="other">%1$d baris bukan aturan dan akan dilewati.</item>
+    </plurals>
+
+    <string name="cleanup_snippets_help">Ucapkan frasa pemicu, dan frasa itu diganti dengan teks tersimpan Anda, persis seperti yang ditulis, termasuk baris barunya.\n\n• Pemicu mencocokkan kata utuh tanpa memedulikan huruf besar/kecil: “alamat rumah” cocok dengan “Alamat rumah”, tetapi tidak dengan “alamat rumahnya”.\n• Dalam bahasa Tionghoa dan Jepang, yang tidak memiliki spasi di antara kata, pemicu juga cocok di tengah kalimat. Dalam bahasa Korea, pemicu juga cocok jika diikuti partikel: “메일” cocok dengan “메일을”.\n• Tidak ada hal lain yang mengubah teks tersimpan: tanpa penghapusan kata pengisi, perintah, atau huruf kapital.\n• Jika pemicu diucapkan tersendiri, hanya teks tersimpan yang disisipkan.</string>
+    <string name="cleanup_snippets_empty">Belum ada cuplikan. Ketuk “Tambah cuplikan” untuk menyimpan teks yang sering Anda perlukan.</string>
+    <string name="cleanup_snippets_add">Tambah cuplikan</string>
+    <string name="cleanup_snippets_edit">Edit cuplikan</string>
+    <string name="cleanup_snippets_trigger">Frasa pemicu</string>
+    <string name="cleanup_snippets_text">Teks yang disisipkan</string>
+    <string name="cleanup_snippets_replaces">Menggantikan cuplikan Anda untuk “%1$s”.</string>
+
+    <!-- Setup guide (onboarding) -->
+    <string name="onboarding_step_of">Langkah %1$d dari %2$d</string>
+    <string name="onboarding_close">Tutup panduan penyiapan</string>
+    <string name="onboarding_back">Kembali</string>
+    <string name="onboarding_next">Berikutnya</string>
+    <string name="onboarding_skip">Lewati</string>
+    <string name="onboarding_get_started">Mulai</string>
+    <string name="onboarding_try_it">Coba</string>
+    <string name="onboarding_settings_failed">Tidak dapat membuka setelan Android. Buka setelan dari layar utama.</string>
+    <!-- Toasts over Settings when only a fallback page opened (#79): where to go from there. -->
+    <string name="settings_hint_voice_input">Cari “Input suara” di Setelan, lalu pilih Marmalade STT.</string>
+    <string name="settings_hint_keyboards">Cari “Keyboard” di Setelan, lalu aktifkan Pengetikan suara Marmalade.</string>
+    <string name="settings_hint_app_details">Temukan Marmalade STT di Aplikasi, lalu aktifkan mikrofon di bagian Izin.</string>
+    <string name="onboarding_welcome_title">Selamat datang di Marmalade STT</string>
+    <string name="onboarding_welcome_body">Bicaralah, dan Marmalade STT akan mengetiknya: di layar Dikte miliknya sendiri, atau sebagai input suara di aplikasi lain. Beberapa langkah singkat akan menyiapkannya.</string>
+    <string name="onboarding_privacy_title">Dirancang untuk privasi</string>
+    <string name="onboarding_privacy_body">Ucapan dikenali di ponsel Anda, tidak pernah oleh layanan ucapan cloud atau online, termasuk milik Google. Audio tidak pernah disimpan atau diupload. Tanpa analitik, tanpa pelacakan, tanpa akun, tanpa kunci API. Internet hanya digunakan untuk mendownload model ucapan.</string>
+    <string name="onboarding_high_contrast">Mode aksesibilitas</string>
+    <string name="onboarding_high_contrast_desc">Warna kontras tinggi</string>
+    <string name="onboarding_mic_title">Izinkan mikrofon</string>
+    <string name="onboarding_mic_body">Marmalade STT memerlukan mikrofon untuk mendengar Anda. Mikrofon hanya digunakan saat dikte aktif.</string>
+    <string name="onboarding_mic_granted">Akses mikrofon aktif</string>
+    <string name="onboarding_mic_denied">Tanpa mikrofon, Marmalade STT tidak dapat mendengar Anda. Anda dapat mengizinkannya sekarang, atau melewati langkah ini dan mengizinkannya nanti.</string>
+    <string name="onboarding_mic_blocked">Akses mikrofon dinonaktifkan untuk aplikasi ini. Aktifkan di bagian Izin pada halaman setelan aplikasi.</string>
+    <string name="onboarding_mic_allow">Izinkan mikrofon</string>
+    <string name="onboarding_mic_open_settings">Buka setelan aplikasi</string>
+    <string name="onboarding_model_title">Download model ucapan</string>
+    <string name="onboarding_model_body">Ucapan dikenali oleh model yang berjalan di ponsel Anda. Model didownload sekali; setelah itu, dikte berfungsi secara offline.</string>
+    <string name="onboarding_model_downloading_note">Penyiapan berlanjut setelah model siap. Download tetap berjalan meskipun layar mati atau Anda keluar dari aplikasi.</string>
+    <string name="onboarding_keyboard_title">Aktifkan keyboard suara</string>
+    <string name="onboarding_keyboard_body">Keyboard suara Marmalade adalah cara Anda mendikte di aplikasi lain: tombol mikrofon di keyboard akan membukanya. Aktifkan “Pengetikan suara Marmalade” di setelan keyboard Android, lalu kembali ke sini.</string>
+    <string name="onboarding_keyboard_open">Buka setelan keyboard</string>
+    <string name="onboarding_keyboard_on">Keyboard suara aktif</string>
+    <string name="onboarding_keyboard_off">Keyboard suara nonaktif</string>
+    <string name="onboarding_keyboard_warning">Android memperingatkan bahwa keyboard apa pun yang Anda aktifkan dapat mengumpulkan apa yang Anda ketik. Peringatan itu standar. Marmalade STT hanya mengetik apa yang Anda diktekan, dan tidak ada yang keluar dari ponsel Anda.</string>
+    <string name="onboarding_keyboard_unlock_note">Beberapa ponsel kemudian menampilkan pesan kedua: setelah ponsel dimulai ulang, aplikasi tidak dapat berjalan sampai Anda membuka kunci ponsel. Itu juga tidak masalah. Ketuk Oke.</string>
+    <string name="onboarding_futo_checking">Bertanya kepada FUTO Keyboard…</string>
+    <string name="onboarding_futo_selected">FUTO Keyboard menggunakan Marmalade STT untuk input suara</string>
+    <string name="onboarding_futo_not_selected">FUTO Keyboard menggunakan input suara lain</string>
+    <string name="onboarding_futo_use">Gunakan Marmalade STT di FUTO</string>
+    <string name="onboarding_futo_check_again">Periksa lagi</string>
+    <string name="onboarding_futo_manual_title">Atur sendiri</string>
+    <string name="onboarding_futo_manual_body">Di FUTO Keyboard, buka setelan → Voice Input dan aktifkan “Disable built-in voice input” (“Use voice input provided by external app”). Tombol mikrofon FUTO kemudian akan membuka keyboard suara Marmalade dari langkah sebelumnya.</string>
+    <string name="onboarding_futo_crash_once">Jika FUTO Keyboard tertutup saat pertama kali Anda mengetuk mikrofonnya, ketuk lagi.</string>
+    <string name="onboarding_done_title">Semua sudah siap</string>
+    <string name="onboarding_done_body">Coba di layar Dikte: ketuk mikrofon dan mulailah berbicara.</string>
+    <string name="onboarding_done_title_partial">Siap kapan pun Anda mau</string>
+    <string name="onboarding_done_body_partial">Beberapa langkah masih belum selesai. Anda dapat menyelesaikannya kapan saja.</string>
+    <string name="onboarding_done_reopen">Anda dapat membuka panduan ini lagi dari Setelan.</string>
+    <string name="onboarding_summary_mic">Mikrofon</string>
+    <string name="onboarding_summary_mic_on">Diizinkan</string>
+    <string name="onboarding_summary_mic_off">Belum diizinkan</string>
+    <string name="onboarding_summary_model">Model ucapan</string>
+    <string name="onboarding_summary_model_ready">Siap</string>
+    <string name="onboarding_summary_model_downloading">Mendownload</string>
+    <string name="onboarding_summary_model_missing">Belum didownload. Dapatkan dari tab Mesin.</string>
+    <string name="onboarding_summary_model_attention">Download belum selesai. Lihat tab Mesin.</string>
+    <string name="onboarding_summary_keyboard">Keyboard suara</string>
+    <string name="onboarding_summary_keyboard_on">Aktif</string>
+    <string name="onboarding_summary_keyboard_off">Nonaktif</string>
+    <string name="onboarding_summary_futo">FUTO Keyboard</string>
+    <string name="onboarding_summary_futo_on">Menggunakan Marmalade STT</string>
+    <string name="onboarding_summary_futo_off">Menggunakan input suara lain</string>
+    <string name="onboarding_settings_row">Panduan penyiapan</string>
+    <string name="onboarding_settings_row_desc">Mikrofon, mesin ucapan, keyboard, dan layanan ucapan</string>
+</resources>

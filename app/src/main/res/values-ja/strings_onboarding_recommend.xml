@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- セットアップガイドのおすすめエンジン -->
+    <string name="onboarding_recommend_checking">お使いの端末を確認しています…</string>
+    <string name="onboarding_recommend_best_fit">%1$sにいちばんおすすめのエンジンで、この端末のメモリと速度にも合っています。</string>
+    <string name="onboarding_recommend_lighter">この端末のメモリと速度に合った、軽めのエンジンです。</string>
+    <string name="onboarding_recommend_may_be_slow">%1$sに最適なエンジンですが、この端末では遅くなる可能性があります。</string>
+    <string name="onboarding_recommend_low_memory">%1$s向けで最も軽いエンジンです。この端末ではメモリに余裕がないため、遅くなったり Android に終了されたりする可能性があります。</string>
+    <string name="onboarding_recommend_uncovered">%1$sに対応するエンジンはまだないため、%2$s向けのエンジンを選びました。</string>
+    <plurals name="onboarding_recommend_languages">
+        <item quantity="other">%d 言語に対応し、言語は自動で検出します。</item>
+    </plurals>
+    <string name="onboarding_recommend_other">ほかのエンジンは、あとから「エンジン」タブで選べます。</string>
+</resources>

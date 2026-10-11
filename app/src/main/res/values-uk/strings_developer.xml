@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Рушії для розробників: перемикач, вимірювання швидкості, налаштування середовища виконання, значки, вибір рушія й мови. -->
+<resources>
+    <!-- Налаштування → Для розробників -->
+    <string name="settings_developer">Для розробників</string>
+    <string name="settings_developer_engines">Рушії для розробників</string>
+    <string name="settings_developer_engines_desc">Показувати додаткові рушії розпізнавання для тестів і бенчмарків. Великі завантаження, не для щоденного використання.</string>
+    <string name="settings_developer_benchmark">A/B-бенчмарк</string>
+    <string name="settings_developer_benchmark_desc">Порівняти встановлені рушії на одному записі.</string>
+    <string name="settings_developer_speed">Знову виміряти швидкість телефона</string>
+    <string name="settings_developer_speed_measuring">Вимірювання…</string>
+    <string name="settings_developer_speed_measured">Оцінка швидкості: %1$s</string>
+    <string name="settings_developer_speed_unmeasured">Ще не виміряно</string>
+    <string name="settings_developer_speed_done">Оцінка швидкості: %1$s</string>
+    <string name="settings_developer_speed_failed">Не вдалося виміряти швидкість телефона</string>
+    <!-- Налаштування ONNX Runtime -->
+    <string name="settings_developer_ort_tuning">Налаштування середовища виконання</string>
+    <string name="settings_developer_ort_tuning_desc">Spinning потоків і прив’язка до ядер в ONNX Runtime, для вимірювань. Діє з наступного запуску рушія.</string>
+    <string name="settings_developer_ort_tuning_default">За замовчуванням (%1$s)</string>
+    <string name="settings_developer_ort_tuning_cpu">CPU</string>
+    <string name="settings_developer_ort_tuning_no_spinning">без spinning</string>
+    <string name="settings_developer_ort_tuning_pinned">на швидких ядрах</string>
+
+    <!-- Значки на картках і в діалозі відомостей -->
+    <string name="engine_badge_in_use">Використовується</string>
+    <string name="engine_badge_developer">Для розробників</string>
+    <string name="engine_badge_developer_long">Рушій для розробників</string>
+    <string name="engine_badge_may_be_slow_long">Може працювати повільно на цьому телефоні</string>
+    <string name="engine_badge_streaming">Потоковий</string>
+    <string name="engine_streaming_steps">Потоковий · крок %1$d мс</string>
+
+    <!-- Вибір рушія -->
+    <string name="engine_action_use">Вибрати</string>
+    <string name="engine_action_use_named">Вибрати %1$s</string>
+    <string name="engine_use_failed">Не вдалося змінити рушій. Повторіть спробу.</string>
+
+    <!-- Мова рушія -->
+    <string name="engine_language">Мова для цього рушія</string>
+    <string name="engine_language_auto">Автовизначення</string>
+    <string name="engine_language_cancel">Скасувати</string>
+    <string name="engine_language_failed">Не вдалося зберегти мову. Повторіть спробу.</string>
+</resources>

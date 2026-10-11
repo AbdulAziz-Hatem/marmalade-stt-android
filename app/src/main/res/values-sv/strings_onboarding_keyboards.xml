@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Setup guide: the keyboards' mic keys and Android's speech recognition service.
+         Android's labels as in AOSP Swedish; Fossify's and SwiftKey's from their Swedish texts. -->
+    <string name="onboarding_mic_key_title">Diktera från tangentbordet</string>
+    <string name="onboarding_mic_key_body">De flesta tangentbord har en mikrofontangent. Så här når vart och ett av dina tangentbord Marmalade STT.</string>
+    <string name="onboarding_mic_key_needs_voice_keyboard">Aktivera Marmalades rösttangentbord först (föregående steg): mikrofontangenterna öppnar det.</string>
+    <string name="onboarding_mic_key_other_voice_title">Stäng av andra rösttangentbord</string>
+    <string name="onboarding_mic_key_other_voice">Också aktiverade: %1$s. De flesta mikrofontangenter öppnar det första rösttangentbordet som är på, och Android lägger förinstallerade först. Stäng av dem i Androids tangentbordsinställningar (på de flesta telefoner Inställningar → System → Tangentbord → Skärmtangentbord).</string>
+    <string name="onboarding_mic_key_current">%1$s (används)</string>
+    <string name="onboarding_kb_first">Tryck på tangentbordets mikrofontangent. Den öppnar det första rösttangentbordet som är på, så låt Marmalade-röstinmatning vara det enda. Ingen mikrofontangent? Leta efter en röstinmatningstangent i tangentbordets inställningar eller verktygsfält.</string>
+    <string name="onboarding_kb_first_hidden">Tryck på tangentbordets mikrofontangent och låt Marmalade-röstinmatning vara det enda rösttangentbordet som är på. Det här tangentbordet ser Marmalade först när du har skrivit i den här appen med det: om mikrofontangenten saknas eller inte gör något, skriv en bokstav i rutan nedan med det. Gör det igen när du har startat om telefonen.</string>
+    <string name="onboarding_kb_chooser">Tryck på tangentbordets rösttangent och välj Marmalade-röstinmatning. Valet sparas.</string>
+    <string name="onboarding_kb_fossify">I Fossify Keyboards inställningar ställer du in ”Röstinmatningsmetod” på Marmalade-röstinmatning; verktygsfältet visar sedan en mikrofon. Fossify ser Marmalade först när du har skrivit i den här appen med det: om Marmalade inte finns i listan, eller mikrofonen inte gör något, skriv först en bokstav i rutan nedan med Fossify. Gör det igen när du har startat om telefonen.</string>
+    <string name="onboarding_kb_swiftkey">SwiftKeys mikrofon använder Microsofts egen röstinmatning. Med ”Multimodal röstinmatning” avstängd (SwiftKeys inställningar → Rich Input) ber den i stället Android om taligenkänning, vilket kan öppna Marmalade STT. Vi har inte kunnat testa det än.</string>
+    <string name="onboarding_kb_own_engine">Tangentbordets mikrofontangent använder alltid tangentbordets egen röstinmatning. Om du vill använda Marmalade i stället trycker du på tangentbordsknappen i navigeringsfältet och väljer Marmalade-röstinmatning.</string>
+    <string name="onboarding_kb_google_only">Tangentbordets mikrofontangent öppnar bara Googles röstinmatning. Om du vill använda Marmalade i stället trycker du på tangentbordsknappen i navigeringsfältet och väljer Marmalade-röstinmatning.</string>
+    <string name="onboarding_kb_no_mic">Tangentbordet har ingen mikrofontangent. Om du vill använda Marmalade trycker du på tangentbordsknappen i navigeringsfältet och väljer Marmalade-röstinmatning.</string>
+    <string name="onboarding_kb_unknown">Testa tangentbordets mikrofontangent i rutan nedan. Tangentbord vars mikrofontangent byter till ett rösttangentbord öppnar Marmalade-röstinmatning; låt det vara det enda rösttangentbordet som är på.</string>
+    <string name="onboarding_kb_futo">FUTO Keyboard</string>
+    <string name="onboarding_try_label">Testa här</string>
+    <string name="onboarding_try_hint">Tryck i rutan och sedan på tangentbordets mikrofontangent.</string>
+
+    <string name="onboarding_speech_title">Taligenkänning för andra appar</string>
+    <string name="onboarding_speech_body">Vissa appar har en mikrofonknapp som använder Androids taligenkänningstjänst. Välj Marmalade STT som den tjänsten, så känner de också igen ditt tal på telefonen.</string>
+    <string name="onboarding_speech_on">Marmalade STT är Androids taligenkänningstjänst</string>
+    <string name="onboarding_speech_off">Marmalade STT är inte Androids taligenkänningstjänst</string>
+    <string name="onboarding_speech_open">Öppna inställningarna</string>
+    <!-- The step's directions follow the page "Open settings" lands on (#79), with each Android release's own Settings labels. -->
+    <!-- Android 9. The Voice input row is hidden while the assistant is also the voice service (Google). -->
+    <string name="onboarding_speech_path_assist_9">Öppna Appar och aviseringar → Avancerat → Standardappar → Assistent och röstinmatning → Röstinmatning i Inställningar och välj Marmalade STT. Om Röstinmatning inte visas ställer du först in Assistentapp på Ingen.</string>
+    <!-- Android 10 -->
+    <string name="onboarding_speech_path_assist_10">Öppna Appar och aviseringar → Avancerat → Standardappar → Assistentapp → Röstinmatning i Inställningar och välj Marmalade STT. Om Röstinmatning inte visas ställer du först in Assistentapp på Ingen.</string>
+    <!-- Android 11 -->
+    <string name="onboarding_speech_path_assist_11">Öppna Appar och aviseringar → Avancerat → Standardappar → Digital assistentapp → Röstinmatning i Inställningar och välj Marmalade STT. Om Röstinmatning inte visas ställer du först in ”Digital assistentapp, standard” på Ingen.</string>
+    <!-- Android 12 -->
+    <string name="onboarding_speech_path_assist">Öppna Appar → Standardappar → Digital assistentapp → Röstinmatning i Inställningar och välj Marmalade STT.</string>
+    <!-- Android 13. Voice input is under the page's Speech heading. -->
+    <string name="onboarding_speech_path_languages_input">Öppna System → Språk och inmatning → Röstinmatning i Inställningar och välj Marmalade STT.</string>
+    <!-- Android 14 to 16. Voice input is under the page's Speech heading. -->
+    <string name="onboarding_speech_path_languages">Öppna System → Språk → Röstinmatning i Inställningar och välj Marmalade STT.</string>
+    <!-- Android 16 with Language & region, and Android 17. Speech is a row of that page. -->
+    <string name="onboarding_speech_path_language_region">Öppna System → Språk och region → Tal → Röstinmatning i Inställningar och välj Marmalade STT.</string>
+    <!-- No known page opens (other phone makers) -->
+    <string name="onboarding_speech_path_search">Sök efter ”Röstinmatning” i Inställningar, öppna det och välj Marmalade STT.</string>
+    <string name="onboarding_speech_elsewhere">Vissa telefoner har det någon annanstans: sök efter ”Röstinmatning” i Inställningar.</string>
+    <string name="onboarding_speech_force_stop">Om du tvingar Marmalade STT att avsluta byter Android tillbaka till en annan tjänst. Välj Marmalade igen då.</string>
+
+    <string name="onboarding_summary_other_voice">Andra rösttangentbord</string>
+    <string name="onboarding_summary_other_voice_on">Fortfarande på: %1$s</string>
+    <string name="onboarding_summary_speech">Taligenkänningstjänst</string>
+    <string name="onboarding_summary_speech_on">Marmalade STT</string>
+    <string name="onboarding_summary_speech_off">En annan app eller ingen</string>
+</resources>

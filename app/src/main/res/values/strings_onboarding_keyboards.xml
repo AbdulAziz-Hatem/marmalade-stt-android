@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Setup guide: the keyboards' mic keys and Android's speech recognition service (#61).
+         Other apps' labels (Voice typing method, Rich input, Multi-modal voice typing) are
+         theirs; Android's (Settings → System → Languages → Speech → Voice input…) a Pixel's. -->
+    <string name="onboarding_mic_key_title">Dictate from your keyboard</string>
+    <string name="onboarding_mic_key_body">Most keyboards have a mic key. Here is how each of your keyboards gets to Marmalade STT.</string>
+    <string name="onboarding_mic_key_needs_voice_keyboard">Turn on the Marmalade voice keyboard first (the previous step): mic keys open it.</string>
+    <string name="onboarding_mic_key_other_voice_title">Turn off other voice keyboards</string>
+    <!-- %1$s: the other voice keyboards' names, quoted, e.g. “Google voice typing”. -->
+    <string name="onboarding_mic_key_other_voice">Also on: %1$s. Most mic keys open the first voice keyboard that\'s on, and Android puts preinstalled ones first. Turn these off in Android\'s keyboard settings (on most phones Settings → System → Keyboard → On-screen keyboard).</string>
+    <!-- A keyboard card's title when it is the keyboard in use; %1$s is its name. -->
+    <string name="onboarding_mic_key_current">%1$s (in use)</string>
+    <string name="onboarding_kb_first">Tap its mic key. It opens the first voice keyboard that\'s on, so keep Marmalade voice typing the only one. No mic key? Look for a voice input key in its settings or toolbar.</string>
+    <string name="onboarding_kb_first_hidden">Tap its mic key, and keep Marmalade voice typing the only voice keyboard that\'s on. This keyboard can see Marmalade only after you\'ve typed in this app with it: if the mic key is missing or does nothing, type a letter in the box below with it. After restarting your phone, do that again.</string>
+    <string name="onboarding_kb_chooser">Tap its voice key and pick Marmalade voice typing. It remembers your choice.</string>
+    <string name="onboarding_kb_fossify">In Fossify Keyboard\'s settings, set “Voice typing method” to Marmalade voice typing; its toolbar then shows a mic. Fossify can see Marmalade only after you\'ve typed in this app with it: if Marmalade isn\'t in the list, or the mic does nothing, type a letter in the box below with Fossify first. After restarting your phone, do that again.</string>
+    <string name="onboarding_kb_swiftkey">SwiftKey\'s mic uses Microsoft\'s own voice typing. With “Multi-modal voice typing” turned off (SwiftKey settings → Rich input), it asks Android for speech input instead, which can open Marmalade STT. We haven\'t been able to test this yet.</string>
+    <string name="onboarding_kb_own_engine">Its mic key always uses its own voice typing. To use Marmalade instead, tap the keyboard button in the navigation bar and pick Marmalade voice typing.</string>
+    <string name="onboarding_kb_google_only">Its mic key only opens Google voice typing. To use Marmalade instead, tap the keyboard button in the navigation bar and pick Marmalade voice typing.</string>
+    <string name="onboarding_kb_no_mic">It has no mic key. To use Marmalade, tap the keyboard button in the navigation bar and pick Marmalade voice typing.</string>
+    <string name="onboarding_kb_unknown">Try its mic key in the box below. Keyboards whose mic key switches to a voice keyboard open Marmalade voice typing; keep it the only voice keyboard that\'s on.</string>
+    <string name="onboarding_kb_futo">FUTO Keyboard</string>
+    <string name="onboarding_try_label">Try it here</string>
+    <string name="onboarding_try_hint">Tap the box, then your keyboard\'s mic key.</string>
+
+    <string name="onboarding_speech_title">Speech recognition for other apps</string>
+    <string name="onboarding_speech_body">Some apps have a mic button that uses Android\'s speech recognition service. Pick Marmalade STT as that service, and they recognize your speech on your phone too.</string>
+    <string name="onboarding_speech_on">Marmalade STT is Android\'s speech recognition service</string>
+    <string name="onboarding_speech_off">Marmalade STT isn\'t Android\'s speech recognition service</string>
+    <string name="onboarding_speech_open">Open settings</string>
+    <!-- The step's directions follow the page "Open settings" lands on (#79), with each Android release's own Settings labels. -->
+    <!-- Android 9. The Voice input row is hidden while the assistant is also the voice service (Google). -->
+    <string name="onboarding_speech_path_assist_9">In Settings, open Apps &amp; notifications → Advanced → Default apps → Assist &amp; voice input → Voice input, and pick Marmalade STT. If Voice input isn\'t listed, set Assist app to None first.</string>
+    <!-- Android 10 -->
+    <string name="onboarding_speech_path_assist_10">In Settings, open Apps &amp; notifications → Advanced → Default apps → Assist app → Voice input, and pick Marmalade STT. If Voice input isn\'t listed, set Assist app to None first.</string>
+    <!-- Android 11 -->
+    <string name="onboarding_speech_path_assist_11">In Settings, open Apps &amp; notifications → Advanced → Default apps → Digital assistant app → Voice input, and pick Marmalade STT. If Voice input isn\'t listed, set Default digital assistant app to None first.</string>
+    <!-- Android 12 -->
+    <string name="onboarding_speech_path_assist">In Settings, open Apps → Default apps → Digital assistant app → Voice input, and pick Marmalade STT.</string>
+    <!-- Android 13. Voice input is under the page's Speech heading. -->
+    <string name="onboarding_speech_path_languages_input">In Settings, open System → Languages &amp; input → Voice input, and pick Marmalade STT.</string>
+    <!-- Android 14 to 16. Voice input is under the page's Speech heading. -->
+    <string name="onboarding_speech_path_languages">In Settings, open System → Languages → Voice input, and pick Marmalade STT.</string>
+    <!-- Android 16 with Language & region, and Android 17. Speech is a row of that page. -->
+    <string name="onboarding_speech_path_language_region">In Settings, open System → Language &amp; region → Speech → Voice input, and pick Marmalade STT.</string>
+    <!-- No known page opens (other phone makers) -->
+    <string name="onboarding_speech_path_search">Search Settings for “Voice input”, open it, and pick Marmalade STT.</string>
+    <string name="onboarding_speech_elsewhere">Some phones keep it elsewhere: search Settings for “Voice input”.</string>
+    <string name="onboarding_speech_force_stop">If you force-stop Marmalade STT, Android switches back to another service. Pick Marmalade again then.</string>
+
+    <string name="onboarding_summary_other_voice">Other voice keyboards</string>
+    <!-- %1$s: their names, quoted -->
+    <string name="onboarding_summary_other_voice_on">Still on: %1$s</string>
+    <string name="onboarding_summary_speech">Speech recognition service</string>
+    <string name="onboarding_summary_speech_on">Marmalade STT</string>
+    <string name="onboarding_summary_speech_off">Another app, or none</string>
+</resources>

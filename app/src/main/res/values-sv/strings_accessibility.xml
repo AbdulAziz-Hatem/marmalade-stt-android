@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Screen-reader-only text and other strings added by the accessibility pass (#68). -->
+<resources>
+    <!-- Shared -->
+    <string name="a11y_download_started">Laddar ned %1$s</string>
+    <string name="a11y_download_ready">%1$s är klar</string>
+    <string name="a11y_download_failed">%1$s: nedladdningen misslyckades</string>
+    <string name="a11y_download_paused">%1$s: nedladdningen är pausad</string>
+
+    <!-- Settings, dictionary, snippets, licences, privacy -->
+    <string name="a11y_open_in_browser">Öppna i webbläsaren</string>
+    <string name="a11y_rule_deleted">Regeln raderades</string>
+    <string name="a11y_snippet_deleted">Textsnutten raderades</string>
+    <string name="a11y_end_words_reverted">Slutorden ändrades inte: skriv minst ett ord</string>
+
+    <!-- Engines, benchmark -->
+    <string name="a11y_engine_action_named">%1$s, %2$s</string>
+    <string name="a11y_engine_download_named">Ladda ned %1$s, %2$s</string>
+    <string name="a11y_benchmark_finished">Benchmarken är klar</string>
+
+    <!-- Dictate, voice keyboard, speech sheet -->
+
+    <!-- Onboarding -->
+    <string name="a11y_onboarding_step_pane">%1$s: %2$s</string>
+    <string name="a11y_onboarding_recommended">Rekommenderas för den här telefonen: %1$s</string>
+
+</resources>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Banco de pruebas A/B para desarrolladores -->
+    <string name="benchmark_title">Banco de pruebas</string>
+    <string name="benchmark_note">Graba una toma y luego cada motor instalado la transcribe por turnos: cargar, transcribir, liberar. Todos los motores reciben los mismos segmentos de Silero VAD. A los motores de streaming se les pasa cada segmento en bloques de 100 ms tan rápido como el modelo los acepta, no en tiempo real. La toma se queda en memoria y nunca se guarda. Las cifras de un emulador solo sirven para comparar los motores entre sí.</string>
+
+    <string name="benchmark_section_take">Toma</string>
+    <string name="benchmark_record">Grabar</string>
+    <string name="benchmark_stop">Detener</string>
+    <string name="benchmark_play">Reproducir</string>
+    <string name="benchmark_stop_playback">Detener reproducción</string>
+    <string name="benchmark_elapsed">%1$s s / %2$d s</string>
+    <string name="benchmark_level">Nivel de entrada</string>
+    <string name="benchmark_take_length">Toma: %1$s</string>
+    <string name="benchmark_take_length_soft_agc">Toma: %1$s, nivelada por la app (este teléfono no tiene control integrado de ganancia del micrófono)</string>
+    <plurals name="benchmark_no_take">
+        <item quantity="one">Aún no hay toma. Graba hasta %1$d segundo de voz.</item>
+        <item quantity="many">Aún no hay toma. Graba hasta %1$d de segundos de voz.</item>
+        <item quantity="other">Aún no hay toma. Graba hasta %1$d segundos de voz.</item>
+    </plurals>
+
+    <string name="benchmark_section_reference">Texto de referencia (opcional)</string>
+    <string name="benchmark_reference_label">Lo que dijiste</string>
+    <string name="benchmark_reference_hint">Escribe lo que dijiste para obtener la tasa de error de palabras (WER) de cada motor.</string>
+
+    <string name="benchmark_section_engines">Motores</string>
+    <string name="benchmark_no_engines">No hay motores instalados. Instala alguno en la pestaña Motores (activa Motores para desarrolladores en Ajustes para ver los candidatos).</string>
+    <string name="benchmark_run">Ejecutar banco de pruebas</string>
+    <string name="benchmark_run_again">Ejecutar de nuevo</string>
+    <string name="benchmark_running">Ejecutando %1$s (%2$d de %3$d)…</string>
+
+    <string name="benchmark_section_results">Resultados</string>
+    <string name="benchmark_metric_load">Carga %1$s</string>
+    <string name="benchmark_metric_decode">Decodificación %1$s</string>
+    <string name="benchmark_metric_rtf">RTF %1$s</string>
+    <string name="benchmark_metric_rss">RSS máximo (muestreado) %1$s</string>
+    <string name="benchmark_metric_wer">WER %1$s</string>
+    <string name="benchmark_empty_transcript">(no se reconoció voz)</string>
+    <string name="benchmark_raw">Sin procesar: %1$s</string>
+    <string name="benchmark_failed_load">No se pudo cargar: %1$s</string>
+    <string name="benchmark_failed_transcribe">No se pudo transcribir: %1$s</string>
+    <string name="benchmark_failed_release">Transcrito, pero no se pudo liberar: %1$s</string>
+    <string name="benchmark_copy_markdown">Copiar como Markdown</string>
+    <string name="benchmark_copied">Copiado</string>
+
+    <!-- Avisos -->
+    <string name="benchmark_error_mic">No se pudo grabar. ¿Hay otra app usando el micrófono?</string>
+    <string name="benchmark_error_empty">No se grabó nada. Inténtalo de nuevo.</string>
+    <string name="benchmark_error_playback">No se pudo reproducir la toma.</string>
+    <string name="benchmark_error_no_engines">No hay motores instalados que ejecutar.</string>
+    <string name="benchmark_error_run">El banco de pruebas se detuvo por un error.</string>
+
+    <!-- Permiso del micrófono -->
+    <string name="benchmark_mic_title">El banco de pruebas necesita tu micrófono</string>
+    <string name="benchmark_mic_body">Graba una toma, la mantiene solo en memoria y nunca la guarda ni la envía.</string>
+</resources>

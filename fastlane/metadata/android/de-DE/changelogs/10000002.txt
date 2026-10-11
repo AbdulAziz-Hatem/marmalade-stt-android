@@ -1,0 +1,6 @@
+Marmalade STT 1.0.0, erste Version.
+- Private Offline-Spracheingabe: Sprachtastatur für FUTO, HeliBoard, FlorisBoard u. a., „Jetzt sprechen“-Fenster für Apps und Spracherkennungsdienst von Android.
+- Engines je nach Smartphone und Sprache, mit eigenen für Japanisch, Chinesisch, Koreanisch, Hindi, Arabisch und Vietnamesisch.
+- Stopp per Tippen, Pause, Endwort oder Smart Turn.
+- Textbereinigung, Ersetzungen und Textbausteine.
+- Oberfläche in 21 Sprachen. Keine Werbung, Konten oder Nutzungsanalyse.

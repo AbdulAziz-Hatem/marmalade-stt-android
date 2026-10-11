@@ -1,0 +1,560 @@
+From: Marmalade STT <noreply@localhost>
+Subject: [PATCH] Cancel terminates the encoder run (#54)
+
+Not upstream; ours, on top of 0003. 0003 stops a cancelled decode at its
+next decoder step, but the encoder run before the first step couldn't be
+stopped: a cancel during it waited 1.8 s on the host for 29.5 s of audio
+(several seconds on a phone). OfflineStream now keeps the ONNX Runtime
+RunOptions of the run in progress (CancellableRun, registered while it
+lives) and Cancel() calls RunOptions::SetTerminate on them, so the run stops
+between two graph nodes and throws. The encoder runs of Whisper and Canary
+and Qwen3-ASR's conv frontend, encoder and prefill take these options; the
+recognizers catch the exception of a cancelled stream and return no result.
+Registering options on an already cancelled stream terminates them at once.
+---
+--- a/sherpa-onnx/csrc/offline-canary-model.cc
++++ b/sherpa-onnx/csrc/offline-canary-model.cc
+@@ -66,12 +66,15 @@ class OfflineCanaryModel::Impl {
+   }
+ 
+   std::vector<Ort::Value> ForwardEncoder(Ort::Value features,
+-                                         Ort::Value features_length) {
++                                         Ort::Value features_length,
++                                         const Ort::RunOptions *run_options) {
+     std::array<Ort::Value, 2> encoder_inputs = {std::move(features),
+                                                 std::move(features_length)};
+ 
++    Ort::RunOptions no_run_options{nullptr};
+     auto encoder_out = encoder_sess_->Run(
+-        {}, encoder_input_names_ptr_.data(), encoder_inputs.data(),
++        run_options ? *run_options : no_run_options,
++        encoder_input_names_ptr_.data(), encoder_inputs.data(),
+         encoder_inputs.size(), encoder_output_names_ptr_.data(),
+         encoder_output_names_ptr_.size());
+ 
+@@ -244,8 +247,10 @@ OfflineCanaryModel::OfflineCanaryModel(Manager *mgr,
+ OfflineCanaryModel::~OfflineCanaryModel() = default;
+ 
+ std::vector<Ort::Value> OfflineCanaryModel::ForwardEncoder(
+-    Ort::Value features, Ort::Value features_length) const {
+-  return impl_->ForwardEncoder(std::move(features), std::move(features_length));
++    Ort::Value features, Ort::Value features_length,
++    const Ort::RunOptions *run_options) const {
++  return impl_->ForwardEncoder(std::move(features), std::move(features_length),
++                               run_options);
+ }
+ 
+ std::pair<Ort::Value, std::vector<Ort::Value>>
+--- a/sherpa-onnx/csrc/offline-canary-model.h
++++ b/sherpa-onnx/csrc/offline-canary-model.h
+@@ -41,8 +41,11 @@ class OfflineCanaryModel {
+    *                        Its dtype is int64_t
+    *  - enc_mask: A 2-D tensor of shape (N, T') with dtype bool
+    */
+-  std::vector<Ort::Value> ForwardEncoder(Ort::Value features,
+-                                         Ort::Value features_length) const;
++  // Marmalade STT (#54): run_options (may be null) lets a cancel terminate
++  // the run (CancellableRun).
++  std::vector<Ort::Value> ForwardEncoder(
++      Ort::Value features, Ort::Value features_length,
++      const Ort::RunOptions *run_options = nullptr) const;
+ 
+   /** Run the decoder model.
+    *
+--- a/sherpa-onnx/csrc/offline-qwen3-asr-model.cc
++++ b/sherpa-onnx/csrc/offline-qwen3-asr-model.cc
+@@ -344,13 +344,16 @@ class OfflineQwen3ASRModel::Impl {
+   }
+ 
+  public:
+-  Ort::Value ForwardConvFrontend(Ort::Value input_features) {
++  Ort::Value ForwardConvFrontend(Ort::Value input_features,
++                                 const Ort::RunOptions *run_options) {
++    Ort::RunOptions no_run_options{nullptr};
++    const Ort::RunOptions &ro = run_options ? *run_options : no_run_options;
+     if (use_cuda_iobinding_) {
+       Ort::IoBinding binding(*conv_sess_);
+       binding.BindInput(conv_input_names_ptr_[0], input_features);
+       binding.BindOutput(conv_output_names_ptr_[0], *cuda_mem_info_);
+       binding.SynchronizeInputs();
+-      conv_sess_->Run(Ort::RunOptions{nullptr}, binding);
++      conv_sess_->Run(ro, binding);
+       binding.SynchronizeOutputs();
+       auto outs = binding.GetOutputValues();
+       if (outs.empty()) {
+@@ -362,7 +365,7 @@ class OfflineQwen3ASRModel::Impl {
+ 
+     std::array<Ort::Value, 1> inputs = {std::move(input_features)};
+     auto outputs = conv_sess_->Run(
+-        {}, conv_input_names_ptr_.data(), inputs.data(), 1,
++        ro, conv_input_names_ptr_.data(), inputs.data(), 1,
+         conv_output_names_ptr_.data(), conv_output_names_ptr_.size());
+     if (outputs.empty()) {
+       SHERPA_ONNX_LOGE("ForwardConvFrontend: empty outputs");
+@@ -372,7 +375,10 @@ class OfflineQwen3ASRModel::Impl {
+   }
+ 
+   Ort::Value ForwardEncoder(Ort::Value conv_output,
+-                            Ort::Value feature_attention_mask) {
++                            Ort::Value feature_attention_mask,
++                            const Ort::RunOptions *run_options) {
++    Ort::RunOptions no_run_options{nullptr};
++    const Ort::RunOptions &ro = run_options ? *run_options : no_run_options;
+     auto mask_info = feature_attention_mask.GetTensorTypeAndShapeInfo();
+     auto mask_type =
+         static_cast<ONNXTensorElementDataType>(mask_info.GetElementType());
+@@ -390,7 +396,7 @@ class OfflineQwen3ASRModel::Impl {
+       binding.BindInput(encoder_input_names_ptr_[1], feature_attention_mask);
+       binding.BindOutput(encoder_output_names_ptr_[0], cpu_mem_info_);
+       binding.SynchronizeInputs();
+-      encoder_sess_->Run(Ort::RunOptions{nullptr}, binding);
++      encoder_sess_->Run(ro, binding);
+       binding.SynchronizeOutputs();
+       auto outs = binding.GetOutputValues();
+       if (outs.empty()) {
+@@ -403,7 +409,7 @@ class OfflineQwen3ASRModel::Impl {
+     std::array<Ort::Value, 2> inputs = {std::move(conv_output),
+                                         std::move(feature_attention_mask)};
+     auto outputs = encoder_sess_->Run(
+-        {}, encoder_input_names_ptr_.data(), inputs.data(), inputs.size(),
++        ro, encoder_input_names_ptr_.data(), inputs.data(), inputs.size(),
+         encoder_output_names_ptr_.data(), encoder_output_names_ptr_.size());
+     if (outputs.empty()) {
+       SHERPA_ONNX_LOGE("ForwardEncoder: empty outputs");
+@@ -415,7 +421,10 @@ class OfflineQwen3ASRModel::Impl {
+   std::pair<Ort::Value, std::vector<std::pair<Ort::Value, Ort::Value>>>
+   ForwardLLM(Ort::Value input_ids, Ort::Value audio_features,
+              Ort::Value attention_mask, const Ort::Value &cache_position,
+-             const std::vector<std::pair<Ort::Value, Ort::Value>> &cache_kv) {
++             const std::vector<std::pair<Ort::Value, Ort::Value>> &cache_kv,
++             const Ort::RunOptions *run_options) {
++    Ort::RunOptions no_run_options{nullptr};
++    const Ort::RunOptions &ro = run_options ? *run_options : no_run_options;
+     if (static_cast<int32_t>(cache_kv.size()) != num_layers_) {
+       SHERPA_ONNX_LOGE("ForwardLLM: cache_kv size (%zu) != num_layers (%d)",
+                        cache_kv.size(), num_layers_);
+@@ -473,12 +482,12 @@ class OfflineQwen3ASRModel::Impl {
+         binding.BindOutput(decoder_output_names_ptr_[i], cpu_mem_info_);
+       }
+       binding.SynchronizeInputs();
+-      decoder_sess_->Run(Ort::RunOptions{nullptr}, binding);
++      decoder_sess_->Run(ro, binding);
+       binding.SynchronizeOutputs();
+       outputs = binding.GetOutputValues();
+     } else {
+       outputs = decoder_sess_->Run(
+-          {}, input_names_ptr.data(), inputs.data(), inputs.size(),
++          ro, input_names_ptr.data(), inputs.data(), inputs.size(),
+           decoder_output_names_ptr_.data(), decoder_output_names_ptr_.size());
+     }
+ 
+@@ -807,23 +816,26 @@ OfflineQwen3ASRModel::OfflineQwen3ASRModel(Manager *mgr,
+ OfflineQwen3ASRModel::~OfflineQwen3ASRModel() = default;
+ 
+ Ort::Value OfflineQwen3ASRModel::ForwardConvFrontend(
+-    Ort::Value input_features) {
+-  return impl_->ForwardConvFrontend(std::move(input_features));
++    Ort::Value input_features, const Ort::RunOptions *run_options) {
++  return impl_->ForwardConvFrontend(std::move(input_features), run_options);
+ }
+ 
+ Ort::Value OfflineQwen3ASRModel::ForwardEncoder(
+-    Ort::Value conv_output, Ort::Value feature_attention_mask) {
++    Ort::Value conv_output, Ort::Value feature_attention_mask,
++    const Ort::RunOptions *run_options) {
+   return impl_->ForwardEncoder(std::move(conv_output),
+-                               std::move(feature_attention_mask));
++                               std::move(feature_attention_mask), run_options);
+ }
+ 
+ std::pair<Ort::Value, std::vector<std::pair<Ort::Value, Ort::Value>>>
+ OfflineQwen3ASRModel::ForwardLLM(
+     Ort::Value input_ids, Ort::Value audio_features, Ort::Value attention_mask,
+     const Ort::Value &cache_position,
+-    const std::vector<std::pair<Ort::Value, Ort::Value>> &cache_kv) {
++    const std::vector<std::pair<Ort::Value, Ort::Value>> &cache_kv,
++    const Ort::RunOptions *run_options) {
+   return impl_->ForwardLLM(std::move(input_ids), std::move(audio_features),
+-                           std::move(attention_mask), cache_position, cache_kv);
++                           std::move(attention_mask), cache_position, cache_kv,
++                           run_options);
+ }
+ 
+ std::vector<std::pair<Ort::Value, Ort::Value>>
+--- a/sherpa-onnx/csrc/offline-qwen3-asr-model.h
++++ b/sherpa-onnx/csrc/offline-qwen3-asr-model.h
+@@ -29,7 +29,9 @@ class OfflineQwen3ASRModel {
+    * @param input_features  A tensor of shape (N, T, C). Mel features.
+    * @return Return conv output of shape (N, T', C')
+    */
+-  Ort::Value ForwardConvFrontend(Ort::Value input_features);
++  Ort::Value ForwardConvFrontend(
++      Ort::Value input_features,
++      const Ort::RunOptions *run_options = nullptr);
+ 
+   /** Run the encoder model.
+    *
+@@ -39,7 +41,8 @@ class OfflineQwen3ASRModel {
+    * @return Return audio features of shape (N, T', hidden_size)
+    */
+   Ort::Value ForwardEncoder(Ort::Value conv_output,
+-                            Ort::Value feature_attention_mask);
++                            Ort::Value feature_attention_mask,
++                            const Ort::RunOptions *run_options = nullptr);
+ 
+   /** Run the LLM model (KV cache mode).
+    *
+@@ -54,11 +57,16 @@ class OfflineQwen3ASRModel {
+    * @return Return tuple (logits, kv_outputs...). Logits shape (N, T,
+    * vocab_size), float32. kv_outputs is a vector of (key_delta, value_delta)
+    * pairs for each layer.
++   *
++   * Marmalade STT (#54): run_options here, in ForwardConvFrontend() and in
++   * ForwardEncoder() (may be null) let a cancel terminate the run
++   * (CancellableRun).
+    */
+   std::pair<Ort::Value, std::vector<std::pair<Ort::Value, Ort::Value>>>
+   ForwardLLM(Ort::Value input_ids, Ort::Value audio_features,
+              Ort::Value attention_mask, const Ort::Value &cache_position,
+-             const std::vector<std::pair<Ort::Value, Ort::Value>> &cache_kv);
++             const std::vector<std::pair<Ort::Value, Ort::Value>> &cache_kv,
++             const Ort::RunOptions *run_options = nullptr);
+ 
+   /** Create fixed-size KV cache buffer.
+    *
+--- a/sherpa-onnx/csrc/offline-recognizer-canary-impl.h
++++ b/sherpa-onnx/csrc/offline-recognizer-canary-impl.h
+@@ -116,7 +116,18 @@ class OfflineRecognizerCanaryImpl : public OfflineRecognizerImpl {
+   void DecodeStream(OfflineStream *s) const {
+     auto meta = model_->GetModelMetadata();
+     std::vector<float> frames = s->GetFrames();
+-    auto enc_out = RunEncoder(frames);
++    // Marmalade STT (#54): a cancel terminates the encoder run, which throws;
++    // nobody reads a cancelled stream's result.
++    std::vector<Ort::Value> enc_out;
++    try {
++      CancellableRun run(s);
++      enc_out = RunEncoder(frames, run.Get());
++    } catch (const Ort::Exception &) {
++      if (s->IsCancelled()) {
++        return;
++      }
++      throw;
++    }
+     Ort::Value enc_states = std::move(enc_out[0]);
+     Ort::Value enc_mask = std::move(enc_out[2]);
+     // enc_out[1] is discarded
+@@ -216,7 +227,8 @@ class OfflineRecognizerCanaryImpl : public OfflineRecognizerImpl {
+     return max_token_id;
+   }
+ 
+-  std::vector<Ort::Value> RunEncoder(std::vector<float> &frames) const {
++  std::vector<Ort::Value> RunEncoder(
++      std::vector<float> &frames, const Ort::RunOptions *run_options) const {
+     auto memory_info =
+         Ort::MemoryInfo::CreateCpu(OrtDeviceAllocator, OrtMemTypeDefault);
+ 
+@@ -234,7 +246,8 @@ class OfflineRecognizerCanaryImpl : public OfflineRecognizerImpl {
+     Ort::Value x_length =
+         Ort::Value::CreateTensor(memory_info, &x_length_scalar, 1,
+                                  x_length_shape.data(), x_length_shape.size());
+-    return model_->ForwardEncoder(std::move(x), std::move(x_length));
++    return model_->ForwardEncoder(std::move(x), std::move(x_length),
++                                  run_options);
+   }
+ 
+   std::pair<Ort::Value, std::vector<Ort::Value>> RunDecoder(
+--- a/sherpa-onnx/csrc/offline-recognizer-qwen3-asr-impl.cc
++++ b/sherpa-onnx/csrc/offline-recognizer-qwen3-asr-impl.cc
+@@ -763,8 +763,8 @@ int64_t OfflineRecognizerQwen3ASRImpl::SampleTokenWithTemperatureAndTopP(
+ }
+ 
+ OfflineRecognitionResult OfflineRecognizerQwen3ASRImpl::GenerateText(
+-    Ort::Value audio_features, int32_t audio_token_len,
+-    OfflineStream *stream) const {
++    Ort::Value audio_features, int32_t audio_token_len, OfflineStream *stream,
++    const Ort::RunOptions *run_options) const {
+   OfflineRecognitionResult result;
+   auto memory_info =
+       Ort::MemoryInfo::CreateCpu(OrtDeviceAllocator, OrtMemTypeDefault);
+@@ -953,9 +953,11 @@ OfflineRecognitionResult OfflineRecognizerQwen3ASRImpl::GenerateText(
+       BuildCachePosition(model_->Allocator(), context_len);
+   Ort::Value audio_features_view = View(&trimmed_audio_features);
+ 
++  // Marmalade STT (#54): the prefill, the longest decoder run, can be
++  // terminated; later steps check IsCancelled() before running.
+   auto tmp = model_->ForwardLLM(
+       std::move(input_ids_tensor), std::move(audio_features_view),
+-      std::move(attention_mask), cache_position, cache_kv);
++      std::move(attention_mask), cache_position, cache_kv, run_options);
+   Ort::Value logits = std::move(tmp.first);
+   auto kv_outputs = std::move(tmp.second);
+ 
+@@ -1199,7 +1201,26 @@ void OfflineRecognizerQwen3ASRImpl::Decode(OfflineStream *stream) const {
+       memory_info, f.data(), static_cast<size_t>(feat_frames) * F,
+       conv_input_shape.data(), conv_input_shape.size());
+ 
+-  Ort::Value conv_output = model_->ForwardConvFrontend(std::move(conv_input));
++  // Marmalade STT (#54): a cancel terminates the conv frontend, encoder and
++  // prefill runs, which throw; nobody reads a cancelled stream's result.
++  try {
++    DecodeCancellable(stream, std::move(conv_input), feat_frames);
++  } catch (const Ort::Exception &) {
++    if (stream->IsCancelled()) {
++      return;
++    }
++    throw;
++  }
++}
++
++void OfflineRecognizerQwen3ASRImpl::DecodeCancellable(
++    OfflineStream *stream, Ort::Value conv_input, int32_t feat_frames) const {
++  auto memory_info =
++      Ort::MemoryInfo::CreateCpu(OrtDeviceAllocator, OrtMemTypeDefault);
++  CancellableRun run(stream);
++
++  Ort::Value conv_output =
++      model_->ForwardConvFrontend(std::move(conv_input), run.Get());
+ 
+   auto conv_shape = conv_output.GetTensorTypeAndShapeInfo().GetShape();
+   if (conv_shape.size() < 3 || conv_shape[1] <= 0) {
+@@ -1223,8 +1244,9 @@ void OfflineRecognizerQwen3ASRImpl::Decode(OfflineStream *stream) const {
+       memory_info, mask_buf.get(), static_cast<size_t>(conv_num_frames),
+       tok_mask_shape.data(), tok_mask_shape.size());
+ 
+-  Ort::Value audio_features = model_->ForwardEncoder(
+-      std::move(conv_output), std::move(feature_attention_mask));
++  Ort::Value audio_features =
++      model_->ForwardEncoder(std::move(conv_output),
++                             std::move(feature_attention_mask), run.Get());
+ 
+   if (config_.model_config.debug) {
+     SHERPA_ONNX_LOGE(
+@@ -1233,8 +1255,8 @@ void OfflineRecognizerQwen3ASRImpl::Decode(OfflineStream *stream) const {
+         feat_frames, conv_num_frames, expected_audio_token_len, valid_frames);
+   }
+ 
+-  OfflineRecognitionResult r =
+-      GenerateText(std::move(audio_features), valid_frames, stream);
++  OfflineRecognitionResult r = GenerateText(std::move(audio_features),
++                                            valid_frames, stream, run.Get());
+ 
+   r.text = ApplyHomophoneReplacer(std::move(r.text));
+ 
+--- a/sherpa-onnx/csrc/offline-recognizer-qwen3-asr-impl.h
++++ b/sherpa-onnx/csrc/offline-recognizer-qwen3-asr-impl.h
+@@ -61,12 +61,18 @@ class OfflineRecognizerQwen3ASRImpl : public OfflineRecognizerImpl {
+                                             float temperature, float top_p,
+                                             int64_t avoid_id = -1) const;
+ 
+-  OfflineRecognitionResult GenerateText(Ort::Value audio_features,
+-                                        int32_t audio_token_len,
+-                                        OfflineStream *stream) const;
++  OfflineRecognitionResult GenerateText(
++      Ort::Value audio_features, int32_t audio_token_len,
++      OfflineStream *stream,
++      const Ort::RunOptions *run_options = nullptr) const;
+ 
+   void Decode(OfflineStream *stream) const;
+ 
++  // Marmalade STT (#54): Decode() from the conv frontend on, with run
++  // options a cancel of `stream` terminates (CancellableRun).
++  void DecodeCancellable(OfflineStream *stream, Ort::Value conv_input,
++                         int32_t feat_frames) const;
++
+   OfflineRecognizerConfig config_;
+   std::unique_ptr<OfflineQwen3ASRModel> model_;
+   std::unique_ptr<QwenAsrTokenizer> tokenizer_;
+--- a/sherpa-onnx/csrc/offline-recognizer-whisper-impl.h
++++ b/sherpa-onnx/csrc/offline-recognizer-whisper-impl.h
+@@ -135,7 +135,9 @@ class OfflineRecognizerWhisperImpl : public OfflineRecognizerImpl {
+     mel = Transpose12(model_->Allocator(), &mel);
+ 
+     try {
+-      auto cross_kv = model_->ForwardEncoder(std::move(mel));
++      // Marmalade STT (#54): a cancel terminates the encoder run.
++      CancellableRun run(s);
++      auto cross_kv = model_->ForwardEncoder(std::move(mel), run.Get());
+ 
+       auto results =
+           decoder_->Decode(std::move(cross_kv.first),
+@@ -145,6 +147,10 @@ class OfflineRecognizerWhisperImpl : public OfflineRecognizerImpl {
+       auto r = Convert(results[0], symbol_table_);
+       s->SetResult(r);
+     } catch (const Ort::Exception &ex) {
++      // Marmalade STT (#54): a terminated run; nobody reads the result.
++      if (s->IsCancelled()) {
++        return;
++      }
+       SHERPA_ONNX_LOGE(
+           "\n\nCaught exception:\n\n%s\n\nReturn an empty result. Number of "
+           "input frames: %d, Current tail "
+--- a/sherpa-onnx/csrc/offline-stream.cc
++++ b/sherpa-onnx/csrc/offline-stream.cc
+@@ -11,6 +11,7 @@
+ #include <iomanip>
+ #include <limits>
+ #include <memory>
++#include <mutex>  // NOLINT
+ #include <string>
+ #include <unordered_map>
+ #include <utility>
+@@ -270,9 +271,28 @@ class OfflineStream::Impl {
+ 
+   const ContextGraphPtr &GetContextGraph() const { return context_graph_; }
+ 
+-  void Cancel() { cancelled_ = true; }
++  void Cancel() {
++    std::lock_guard<std::mutex> lock(run_mutex_);
++    cancelled_ = true;
++    if (active_run_) {
++      active_run_->SetTerminate();
++    }
++  }
+   bool IsCancelled() const { return cancelled_; }
+ 
++  void SetActiveRun(Ort::RunOptions *run_options) {
++    std::lock_guard<std::mutex> lock(run_mutex_);
++    active_run_ = run_options;
++    if (cancelled_) {
++      active_run_->SetTerminate();
++    }
++  }
++
++  void ClearActiveRun() {
++    std::lock_guard<std::mutex> lock(run_mutex_);
++    active_run_ = nullptr;
++  }
++
+   void SetOption(const std::string &key, const std::string &value) {
+     options_[key] = value;
+   }
+@@ -371,6 +391,11 @@ class OfflineStream::Impl {
+   std::unordered_map<std::string, std::string> options_;
+ 
+   std::atomic<bool> cancelled_{false};
++
++  // Marmalade STT (#54): the run Cancel() terminates; guarded by run_mutex_
++  // so it can't be cleared (and its RunOptions destroyed) mid-terminate.
++  std::mutex run_mutex_;
++  Ort::RunOptions *active_run_ = nullptr;
+ };
+ 
+ OfflineStream::OfflineStream(const FeatureExtractorConfig &config /*= {}*/,
+@@ -440,6 +465,12 @@ void OfflineStream::Cancel() { impl_->Cancel(); }
+ 
+ bool OfflineStream::IsCancelled() const { return impl_->IsCancelled(); }
+ 
++void OfflineStream::SetActiveRun(Ort::RunOptions *run_options) {
++  impl_->SetActiveRun(run_options);
++}
++
++void OfflineStream::ClearActiveRun() { impl_->ClearActiveRun(); }
++
+ std::string OfflineRecognitionResult::AsJsonString() const {
+   std::ostringstream os;
+   os << "{";
+--- a/sherpa-onnx/csrc/offline-stream.h
++++ b/sherpa-onnx/csrc/offline-stream.h
+@@ -10,6 +10,7 @@
+ #include <string>
+ #include <vector>
+ 
++#include "onnxruntime_cxx_api.h"  // NOLINT
+ #include "sherpa-onnx/csrc/context-graph.h"
+ #include "sherpa-onnx/csrc/features.h"
+ #include "sherpa-onnx/csrc/parse-options.h"
+@@ -142,11 +143,37 @@ class OfflineStream {
+   void Cancel();
+   bool IsCancelled() const;
+ 
++  // Marmalade STT (#54): while `run_options` is registered, Cancel() also
++  // terminates the ONNX Runtime run using it (RunOptions::SetTerminate), so
++  // an encoder run stops between two of its nodes. Registering a cancelled
++  // stream's run options terminates them at once. Thread-safe. Use
++  // CancellableRun rather than these.
++  void SetActiveRun(Ort::RunOptions *run_options);
++  void ClearActiveRun();
++
+  private:
+   class Impl;
+   std::unique_ptr<Impl> impl_;
+ };
+ 
++// Marmalade STT (#54): run options that a Cancel() of the stream terminates
++// for as long as this object lives. A terminated run throws Ort::Exception.
++class CancellableRun {
++ public:
++  explicit CancellableRun(OfflineStream *s) : s_(s) {
++    s_->SetActiveRun(&run_options_);
++  }
++  ~CancellableRun() { s_->ClearActiveRun(); }
++  CancellableRun(const CancellableRun &) = delete;
++  CancellableRun &operator=(const CancellableRun &) = delete;
++
++  const Ort::RunOptions *Get() const { return &run_options_; }
++
++ private:
++  OfflineStream *s_;
++  Ort::RunOptions run_options_;
++};
++
+ }  // namespace sherpa_onnx
+ 
+ #endif  // SHERPA_ONNX_CSRC_OFFLINE_STREAM_H_
+--- a/sherpa-onnx/csrc/offline-whisper-model.cc
++++ b/sherpa-onnx/csrc/offline-whisper-model.cc
+@@ -123,8 +123,11 @@ class OfflineWhisperModel::Impl {
+     InitCudaIOBinding();
+   }
+ 
+-  std::pair<Ort::Value, Ort::Value> ForwardEncoder(Ort::Value features) {
++  std::pair<Ort::Value, Ort::Value> ForwardEncoder(
++      Ort::Value features, const Ort::RunOptions *run_options) {
+     std::vector<Ort::Value> encoder_out;
++    Ort::RunOptions no_run_options{nullptr};
++    const Ort::RunOptions &ro = run_options ? *run_options : no_run_options;
+ 
+     if (use_cuda_iobinding_) {
+       // Encoder outputs are n_layer_cross_k and n_layer_cross_v, which are used
+@@ -137,12 +140,12 @@ class OfflineWhisperModel::Impl {
+       binding.BindOutput(encoder_output_names_ptr_[1], *cuda_mem_info_);
+ 
+       binding.SynchronizeInputs();
+-      encoder_sess_->Run(Ort::RunOptions{nullptr}, binding);
++      encoder_sess_->Run(ro, binding);
+       binding.SynchronizeOutputs();
+       encoder_out = binding.GetOutputValues();
+     } else {
+       encoder_out = encoder_sess_->Run(
+-          {}, encoder_input_names_ptr_.data(), &features, 1,
++          ro, encoder_input_names_ptr_.data(), &features, 1,
+           encoder_output_names_ptr_.data(), encoder_output_names_ptr_.size());
+     }
+ 
+@@ -517,8 +520,8 @@ OfflineWhisperModel::OfflineWhisperModel(
+ OfflineWhisperModel::~OfflineWhisperModel() = default;
+ 
+ std::pair<Ort::Value, Ort::Value> OfflineWhisperModel::ForwardEncoder(
+-    Ort::Value features) const {
+-  return impl_->ForwardEncoder(std::move(features));
++    Ort::Value features, const Ort::RunOptions *run_options) const {
++  return impl_->ForwardEncoder(std::move(features), run_options);
+ }
+ 
+ std::tuple<Ort::Value, Ort::Value, Ort::Value, Ort::Value, Ort::Value,
+--- a/sherpa-onnx/csrc/offline-whisper-model.h
++++ b/sherpa-onnx/csrc/offline-whisper-model.h
+@@ -44,7 +44,11 @@ class OfflineWhisperModel {
+    *  - n_layer_cross_v: A 4-D tensor of shape
+    *                     (n_text_layer, N, n_audio_ctx, n_text_state)
+    */
+-  std::pair<Ort::Value, Ort::Value> ForwardEncoder(Ort::Value features) const;
++  // Marmalade STT (#54): run_options (may be null) lets a cancel terminate
++  // the run (CancellableRun).
++  std::pair<Ort::Value, Ort::Value> ForwardEncoder(
++      Ort::Value features,
++      const Ort::RunOptions *run_options = nullptr) const;
+ 
+   /** Run the decoder model.
+    *

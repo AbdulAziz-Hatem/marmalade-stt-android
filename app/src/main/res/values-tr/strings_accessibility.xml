@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Screen-reader-only text and other strings added by the accessibility pass (#68). -->
+<resources>
+    <!-- Shared -->
+    <string name="a11y_download_started">%1$s indiriliyor</string>
+    <string name="a11y_download_ready">%1$s hazır</string>
+    <string name="a11y_download_failed">%1$s: indirme başarısız</string>
+    <string name="a11y_download_paused">%1$s: indirme duraklatıldı</string>
+
+    <!-- Settings, dictionary, snippets, licences, privacy -->
+    <string name="a11y_open_in_browser">Tarayıcıda aç</string>
+    <string name="a11y_rule_deleted">Kural silindi</string>
+    <string name="a11y_snippet_deleted">Hazır metin silindi</string>
+    <string name="a11y_end_words_reverted">Bitiş kelimeleri değiştirilmedi: en az bir kelime yazın</string>
+
+    <!-- Engines, benchmark -->
+    <string name="a11y_engine_action_named">%1$s, %2$s</string>
+    <string name="a11y_engine_download_named">İndir: %1$s, %2$s</string>
+    <string name="a11y_benchmark_finished">Karşılaştırma testi tamamlandı</string>
+
+    <!-- Dictate, voice keyboard, speech sheet -->
+
+    <!-- Onboarding -->
+    <string name="a11y_onboarding_step_pane">%1$s: %2$s</string>
+    <string name="a11y_onboarding_recommended">Bu telefon için önerilen: %1$s</string>
+
+</resources>

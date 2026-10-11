@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="list_separator">、</string>
+    <string name="quoted_name">「%1$s」</string>
+    <string name="ui_locale">ja</string>
+    <!-- 下部ナビゲーション -->
+    <string name="nav_dictate">音声入力</string>
+    <string name="nav_engines">エンジン</string>
+    <string name="nav_settings">設定</string>
+
+    <!-- 音声入力 -->
+    <string name="dictate_start">音声入力を開始</string>
+    <string name="dictate_stop">音声入力を停止</string>
+    <string name="dictate_state_idle">停止中</string>
+    <string name="dictate_state_loading">読み込み中</string>
+    <string name="dictate_state_listening">聞き取り中</string>
+    <string name="dictate_state_finishing">仕上げ中</string>
+    <string name="dictate_status_loading">モデルを読み込み中…</string>
+    <string name="dictate_status_listening">聞き取り中</string>
+    <string name="dictate_status_hearing">聞こえています…</string>
+    <string name="dictate_status_finishing">仕上げ中…</string>
+    <string name="dictate_status_catching_up">遅れを取り戻しています…</string>
+    <string name="dictate_empty">ここに文字が表示されます。話した内容はすべて端末内にとどまります。</string>
+    <string name="dictate_copy">コピー</string>
+    <string name="dictate_copied">コピーしました</string>
+    <string name="dictate_clear">クリア</string>
+    <string name="dictate_no_speech">何も聞き取れませんでした</string>
+    <string name="dictate_error_mic">マイクを使用できませんでした</string>
+    <string name="dictate_error_model">音声認識モデルを読み込めませんでした</string>
+    <string name="dictate_error_recognition">文字起こし中に問題が発生しました</string>
+    <string name="dictate_too_slow">このエンジンはこの端末には重すぎます。「エンジン」タブにある小さめのエンジンなら処理が追いつきます。</string>
+    <string name="dictate_error_busy">音声入力はすでに別の場所で動作しています。しばらくしてからもう一度お試しください。</string>
+    <string name="dictate_no_model_title">音声入力を始めるには、音声認識モデルをダウンロードしてください</string>
+    <string name="dictate_no_model_body">モデルは端末内で動作します。一度ダウンロードすれば、音声入力はオフラインで使えます。</string>
+    <string name="dictate_no_model_action">モデルを選ぶ</string>
+    <string name="dictate_mic_title">マイクへのアクセスが必要です</string>
+    <string name="dictate_mic_body">マイクを使うのは音声入力中だけです。話した内容は端末内で文字になり、保存や送信は一切されません。</string>
+    <string name="dictate_mic_body_blocked">このアプリのマイクへのアクセスがオフになっています。アプリの設定の「権限」でオンにできます。</string>
+    <string name="dictate_mic_allow">マイクを許可</string>
+    <string name="dictate_mic_open_settings">設定を開く</string>
+    <string name="dictate_mic_settings_failed">設定を開けませんでした。Android の「設定」→「アプリ」→「Marmalade STT」の順に開いてください。</string>
+
+    <!-- エンジン一覧 -->
+    <string name="engines_title">エンジン</string>
+
+    <!-- エンジンのインストール状態 -->
+    <string name="engine_status_not_installed">未ダウンロード</string>
+    <string name="engine_status_downloading">ダウンロード中 · %1$s</string>
+    <string name="engine_status_paused">一時停止中 · %1$s</string>
+    <string name="engine_status_ready">準備完了</string>
+    <string name="engine_status_corrupt">モデルファイルが破損しています：%1$s</string>
+    <string name="engine_progress_bytes">%1$s / %2$s</string>
+    <string name="engine_progress_description">ダウンロードの進行状況</string>
+    <string name="engine_failure_not_available">このモデルは現在ダウンロードできません。しばらくしてからもう一度お試しください。</string>
+    <string name="engine_failure_no_space">このモデルに必要な空き容量がありません。空き容量を増やしてから、もう一度お試しください。</string>
+    <string name="engine_failure_network">ダウンロードが中断されました。接続を確認して、もう一度お試しください。中断したところから再開します。</string>
+    <string name="engine_failure_generic">モデルをインストールできませんでした。もう一度お試しください。</string>
+    <string name="engine_corrupt_outdated">インストール済みのファイルがこのバージョンのアプリと一致しません。</string>
+    <string name="engine_corrupt_missing">%1$s がありません。</string>
+    <string name="engine_corrupt_wrong_size">%1$s のサイズが正しくありません。</string>
+    <string name="engine_corrupt_damaged">%1$s が破損しています。</string>
+    <string name="engine_failure_checksum">ダウンロードしたファイルが想定と一致しなかったため、削除しました。もう一度お試しいただくと、新たにダウンロードします。</string>
+
+    <!-- エンジンの操作 -->
+    <string name="engine_action_download">ダウンロード</string>
+    <string name="engine_action_resume">再開</string>
+    <string name="engine_action_retry">再試行</string>
+    <string name="engine_action_download_again">再ダウンロード</string>
+    <string name="engine_action_cancel">キャンセル</string>
+    <string name="engine_action_remove_download">ダウンロードを削除</string>
+    <string name="engine_action_check_files">ファイルを確認</string>
+    <string name="engine_action_checking">ファイルを確認中…</string>
+    <string name="engine_action_remove">削除</string>
+    <string name="engine_dialog_cancel">キャンセル</string>
+    <string name="engine_download_confirm_title">%1$s をダウンロードしますか？</string>
+    <string name="engine_download_confirm_body">インターネットから %1$s を一度だけダウンロードします。その後はエンジンがオフラインで動作し、話した内容が端末の外に出ることはありません。</string>
+    <string name="engine_remove_confirm_title">%1$s を削除しますか？</string>
+    <string name="engine_remove_confirm_body">モデルファイル（%1$s）を端末から削除します。いつでも再ダウンロードできます。</string>
+    <string name="engine_remove_download_failed">ダウンロードを削除できませんでした。もう一度お試しください。</string>
+    <string name="engine_remove_failed">モデルファイルを削除できませんでした。もう一度お試しください。</string>
+    <string name="engine_check_ok">すべてのファイルに問題はありません</string>
+    <string name="engine_check_damaged">一部のモデルファイルが破損しています。再ダウンロードすると修復できます。</string>
+    <string name="engine_check_failed">ファイルを確認できませんでした。もう一度お試しください。</string>
+    <string name="download_channel_name">音声認識モデルのダウンロード</string>
+
+    <!-- エンジン情報ダイアログ -->
+    <string name="engine_detail_languages">言語</string>
+    <string name="engine_detail_size_on_disk">保存サイズ</string>
+    <string name="engine_detail_download_size">ダウンロードサイズ</string>
+    <string name="engine_detail_license">ライセンス</string>
+    <string name="engine_detail_source">配布元</string>
+    <string name="engine_detail_speed">速度</string>
+    <string name="engine_speed_cost">デコード時間は Parakeet Ultra の %1$s 倍（推定）</string>
+    <string name="engine_speed_reference">Parakeet Ultra が速度の基準です</string>
+    <string name="engine_speed_phone_unmeasured">この端末はまだ計測されていません</string>
+
+    <!-- 設定 -->
+    <string name="settings_title">設定</string>
+    <string name="settings_back">戻る</string>
+    <string name="settings_save_failed">設定を保存できませんでした。もう一度お試しください。</string>
+    <string name="settings_speech">音声</string>
+    <string name="settings_speech_keep_loaded">エンジンを保持する</string>
+    <string name="settings_speech_keep_loaded_desc">聞き取りをすばやく開始できます。アクセシビリティのためなど、音声入力をよく使う場合はオンにすることをおすすめします。アプリを開いている間、エンジンに応じて約 0.6〜3 GB のメモリを使用します。</string>
+    <!-- 設定 → 話し終わりの判定 -->
+    <string name="settings_end">話し終わりの判定</string>
+    <string name="settings_end_keyboard">音声キーボード</string>
+    <string name="settings_end_apps">他のアプリと音声入力ポップアップ</string>
+    <string name="settings_end_tap">タップで停止</string>
+    <string name="settings_end_tap_desc">タップするまでマイクはオンのままです。停止すると文字が入力されます。</string>
+    <string name="settings_end_smart_turn">Smart Turn で自動停止</string>
+    <string name="settings_end_smart_turn_desc">話し終えたように聞こえたら停止します。考えるために間を置いても、途中で切れません。</string>
+    <string name="settings_end_pause">無音で自動停止</string>
+    <string name="settings_end_pause_desc">話すのをやめると停止します。長さは「無音の長さ」で設定します。</string>
+    <string name="settings_end_word">終了ワードを言う</string>
+    <string name="settings_end_word_desc">「over」などの終了ワードを単独で言うと停止します。終了ワードは入力されません。</string>
+    <string name="settings_end_lock_hint">ヒント：自動停止モードでマイクを長押しすると、タップするまで聞き取りを続けます。</string>
+    <string name="settings_dialog_cancel">キャンセル</string>
+    <string name="settings_speech_pause">無音の長さ</string>
+    <string name="settings_speech_pause_desc">「音声入力」タブで文の区切りとみなす無音の長さです。「無音で自動停止」では、聞き取りを止めるまでの長さになります。長くすると、考えるために間を置けます。</string>
+    <string name="settings_speech_pause_value">%1$.1f 秒</string>
+    <string name="settings_speech_pause_state">%1$.1f 秒</string>
+    <string name="settings_patience">Smart Turn の待ち時間</string>
+    <string name="settings_patience_desc">%1$s。話し終えたと判断するまでの待ち時間です。</string>
+    <string name="settings_patience_quick">短め</string>
+    <string name="settings_patience_quick_desc">聞き取りを早めに停止しますが、話の途中で切れやすくなります。</string>
+    <string name="settings_patience_normal">標準</string>
+    <string name="settings_patience_normal_desc">考えるための間なら、たいてい待ちます。</string>
+    <string name="settings_patience_relaxed">長め</string>
+    <string name="settings_patience_relaxed_desc">聞き取りを停止するまで長めに待ちます。間を置くことが多い方に向いています。</string>
+    <string name="settings_end_words">終了ワード</string>
+    <string name="settings_end_words_hint">カンマ（,）で区切ってください。</string>
+    <!-- 設定 → 支援 -->
+    <string name="settings_support">支援</string>
+    <string name="settings_support_dev">開発を支援する</string>
+    <string name="settings_support_dev_desc">GitHub Sponsors から寄付できます。任意であり、税控除の対象ではありません。</string>
+    <string name="settings_more_marmalade">Marmalade の他のアプリ</string>
+    <string name="settings_more_marmalade_desc">GitHub にある Marmalade の他のアプリです。</string>
+    <string name="settings_report_bug">バグを報告</string>
+    <string name="settings_report_bug_desc">不具合や聞き間違いがありましたか？詳細を入力済みの GitHub Issue を開きます。</string>
+    <string name="settings_about">このアプリについて</string>
+    <string name="settings_about_row">Marmalade STT について</string>
+    <string name="settings_about_row_desc">バージョン %1$s · ライセンス、プライバシー</string>
+
+    <!-- このアプリについて -->
+    <string name="about_title">このアプリについて</string>
+    <string name="about_version">バージョン %1$s</string>
+    <string name="about_tagline">端末内で動作する、プライベートな文字起こし。</string>
+    <string name="about_privacy">プライバシーポリシー</string>
+    <string name="about_privacy_desc">端末内にとどまるもの（話した内容すべて）と、アプリがダウンロードするもの。トラッキングやアカウントはありません。</string>
+    <string name="about_privacy_english_note">このポリシーは英語で書かれています。概要：話した言葉は端末内で認識され、クラウドやオンラインの音声サービスで認識されることはありません。音声データが保存・アップロードされることはありません。分析、トラッキング、アカウントはありません。インターネットは音声認識モデルのダウンロードにのみ使用します。</string>
+    <string name="about_privacy_load_failed">プライバシーポリシーを読み込めませんでした。リポジトリの PRIVACY.md にもあります。</string>
+    <string name="about_licenses">オープンソースライセンス</string>
+    <string name="about_licenses_desc">アプリ本体と同梱コンポーネントのライセンスです。</string>
+
+    <!-- オープンソースライセンス -->
+    <string name="licenses_licensing">ライセンス</string>
+    <string name="licenses_view_full">ライセンス全文を表示</string>
+    <string name="license_text_title">ライセンス</string>
+    <string name="license_text_not_bundled">ライセンス本文は同梱されていません。前の画面のリンクをご覧ください。</string>
+    <string name="license_text_load_failed">ライセンス本文を読み込めませんでした。前の画面の配布元リンクをご覧ください。</string>
+
+    <!-- 音声キーボード -->
+    <string name="ime_name">Marmalade 音声入力</string>
+    <string name="ime_subtype_label">音声入力</string>
+    <string name="ime_status_loading">モデルを読み込み中…</string>
+    <string name="ime_status_listening">聞き取り中</string>
+    <string name="ime_status_hearing">聞こえています…</string>
+    <string name="ime_status_finishing">仕上げ中…</string>
+    <string name="ime_status_paused">一時停止中。マイクをタップすると再開します。</string>
+    <string name="ime_speak_now">お話しください</string>
+    <string name="ime_cancel">キーボードに戻る</string>
+    <string name="ime_done">完了</string>
+    <string name="ime_pause">聞き取りを一時停止</string>
+    <string name="ime_resume">聞き取りを再開</string>
+    <string name="ime_no_model">音声入力を使うには、Marmalade STT で音声認識モデルをダウンロードしてください。</string>
+    <string name="ime_open_app">Marmalade STT を開く</string>
+    <string name="ime_mic_needed">音声入力にはマイクが必要です。マイクを使うのは、このパネルを開いている間だけです。</string>
+    <string name="ime_mic_allow">マイクを許可</string>
+    <string name="ime_mic_blocked">Marmalade STT のマイクへのアクセスがオフになっています。「権限」でオンにしてから、元のアプリに戻ってください。</string>
+
+    <!-- 音声入力ダイアログ / RecognitionService -->
+    <string name="recognizer_speak_now">お話しください</string>
+    <string name="recognizer_cancel">キャンセル</string>
+    <string name="recognizer_done">完了</string>
+    <string name="recognizer_try_again">もう一度試す</string>
+    <string name="recognizer_no_model">音声入力を使うには、Marmalade STT で音声認識モデルをダウンロードしてください。</string>
+    <string name="recognizer_open_app">Marmalade STT を開く</string>
+    <string name="recognizer_mic_blocked">音声入力にはマイクが必要です。アプリの設定の「権限」でオンにしてください。</string>
+    <string name="recognizer_open_settings">設定を開く</string>
+    <string name="recognizer_mic_stop">聞き取りを停止</string>
+
+    <!-- マイクの長押しロック -->
+    <string name="lock_status">ロック中：タップで停止</string>
+    <string name="lock_state">ロック中</string>
+    <string name="lock_action">聞き取りをロック</string>
+
+    <!-- テキストの整形 -->
+    <string name="cleanup_section">テキストの整形</string>
+    <string name="cleanup_fillers">つなぎ言葉を削除</string>
+    <string name="cleanup_fillers_desc">「um」「uh」「er」「hmm」などを削除します。「umbrella」のような普通の単語は残ります。</string>
+    <string name="cleanup_commands">音声コマンド</string>
+    <string name="cleanup_commands_desc">「new line」で改行、「new paragraph」で段落替え、「scratch that」で直前の文を削除します。</string>
+    <string name="cleanup_punctuation">句読点を言葉で入力</string>
+    <string name="cleanup_punctuation_desc">「period」「comma」「question mark」などと言って、句読点も入力できます。普通の単語でもあるため、初期設定ではオフです。</string>
+    <string name="cleanup_english_only">英語のみ。%1$s</string>
+    <string name="cleanup_itn">数を数字で書く</string>
+    <string name="cleanup_itn_desc">「Twenty five percent」は「25%」に、「nine thirty pm」は「9:30 pm」になります。「three boxes」のような小さな数は単語のままです。</string>
+    <string name="cleanup_capitalize">文頭を大文字にする</string>
+    <string name="cleanup_capitalize_desc">各文と各行の先頭を大文字にします。小文字にすることはありません。</string>
+    <string name="cleanup_dictionary">置換辞書</string>
+    <string name="cleanup_dictionary_desc_none">アプリがよく間違える単語を修正します。</string>
+    <plurals name="cleanup_dictionary_desc">
+        <item quantity="other">ルール %1$d 件 · アプリがよく間違える単語を修正</item>
+    </plurals>
+    <string name="cleanup_snippets">定型文</string>
+    <string name="cleanup_snippets_desc_none">呼び出しフレーズを言って、住所などの保存したテキストを入力します。</string>
+    <plurals name="cleanup_snippets_desc">
+        <item quantity="other">定型文 %1$d 件 · 呼び出しフレーズで保存したテキストを入力</item>
+    </plurals>
+
+    <string name="cleanup_save">保存</string>
+    <string name="cleanup_cancel">キャンセル</string>
+    <string name="cleanup_delete">削除</string>
+    <string name="cleanup_edit_action">編集</string>
+
+    <!-- 「teh」は意図的な誤字の例 -->
+    <string name="cleanup_dictionary_help">各ルールは、アプリがよく間違える単語やフレーズを、意図した言葉に置き換えます。\n\n• 単語単位で一致し、大文字・小文字は区別しません：「teh」は「Teh」に一致しますが、「tehran」には一致しません。\n• 中国語と日本語は単語の間にスペースがないため、フレーズは文の途中でも一致します。韓国語では、助詞が付いていても一致します：「메일」は「메일을」に一致します。\n• 右側の大文字は、書いたとおりに残ります。それ以外は、聞き取った大文字・小文字に合わせます：「Teh」は「The」になります。\n• 右側を空にすると、そのフレーズを削除します。\n• ルールが重なる場合は、最も長く一致したものが優先されます。</string>
+    <string name="cleanup_dictionary_empty">ルールはまだありません。「ルールを追加」をタップして、アプリがよく間違える単語を修正しましょう。</string>
+    <string name="cleanup_dictionary_add">ルールを追加</string>
+    <string name="cleanup_dictionary_edit">ルールを編集</string>
+    <string name="cleanup_dictionary_from">聞き取られる言葉</string>
+    <string name="cleanup_dictionary_to">置き換え後の言葉</string>
+    <string name="cleanup_dictionary_to_hint">空にすると、そのフレーズを削除します。</string>
+    <string name="cleanup_dictionary_from_breaks_export">「->」を含めたり、「#」で始めたりすることはできません。</string>
+    <string name="cleanup_dictionary_replaces">「%1$s」の既存のルールを置き換えます。</string>
+    <string name="cleanup_dictionary_deleted">（削除）</string>
+    <string name="cleanup_dictionary_rule_description">%1$s は %2$s になります</string>
+    <string name="cleanup_dictionary_rule_deletes_description">%1$s は削除されます</string>
+    <string name="cleanup_import">インポート</string>
+    <string name="cleanup_export">すべてコピー</string>
+    <string name="cleanup_exported">ルールをコピーしました</string>
+    <string name="cleanup_import_title">ルールをインポート</string>
+    <string name="cleanup_import_help">1 行に 1 つ、「間違い -> 正しい表記」の形式でルールを貼り付けてください。# で始まる行は無視されます。すでにある単語のルールは置き換えられます。</string>
+    <string name="cleanup_import_field">ルール</string>
+    <string name="cleanup_import_none">まだルールが見つかっていません。</string>
+    <plurals name="cleanup_import_found">
+        <item quantity="other">ルールが %1$d 件見つかりました。</item>
+    </plurals>
+    <plurals name="cleanup_import_skipped">
+        <item quantity="other">%1$d 行はルールではないため、スキップされます。</item>
+    </plurals>
+
+    <string name="cleanup_snippets_help">呼び出しフレーズを言うと、保存したテキストに置き換わります。改行も含め、書いたとおりに入力されます。\n\n• 呼び出しフレーズは単語単位で一致し、大文字・小文字は区別しません：「my email」は「My email」に一致しますが、「my emailing」には一致しません。\n• 中国語と日本語は単語の間にスペースがないため、呼び出しフレーズは文の途中でも一致します。韓国語では、助詞が付いていても一致します：「메일」は「메일을」に一致します。\n• 保存したテキストはほかの処理で変わりません。つなぎ言葉の削除、音声コマンド、大文字化は適用されません。\n• 呼び出しフレーズだけを言った場合は、保存したテキストだけが入力されます。</string>
+    <string name="cleanup_snippets_empty">定型文はまだありません。「定型文を追加」をタップして、よく使うテキストを保存しましょう。</string>
+    <string name="cleanup_snippets_add">定型文を追加</string>
+    <string name="cleanup_snippets_edit">定型文を編集</string>
+    <string name="cleanup_snippets_trigger">呼び出しフレーズ</string>
+    <string name="cleanup_snippets_text">入力するテキスト</string>
+    <string name="cleanup_snippets_replaces">「%1$s」の既存の定型文を置き換えます。</string>
+
+    <!-- セットアップガイド -->
+    <string name="onboarding_step_of">ステップ %1$d / %2$d</string>
+    <string name="onboarding_close">セットアップガイドを閉じる</string>
+    <string name="onboarding_back">戻る</string>
+    <string name="onboarding_next">次へ</string>
+    <string name="onboarding_skip">スキップ</string>
+    <string name="onboarding_get_started">はじめる</string>
+    <string name="onboarding_try_it">試してみる</string>
+    <string name="onboarding_settings_failed">Android の設定を開けませんでした。ホーム画面から開いてください。</string>
+    <!-- Toasts over Settings when only a fallback page opened (#79): where to go from there. -->
+    <string name="settings_hint_voice_input">「設定」で「音声入力」を検索し、Marmalade STT を選んでください。</string>
+    <string name="settings_hint_keyboards">「設定」で「キーボード」を検索し、「Marmalade 音声入力」をオンにしてください。</string>
+    <string name="settings_hint_app_details">「アプリ」で Marmalade STT を探し、「権限」でマイクをオンにしてください。</string>
+    <string name="onboarding_welcome_title">Marmalade STT へようこそ</string>
+    <string name="onboarding_welcome_body">話した言葉を Marmalade STT が文字にします。専用の「音声入力」画面でも、他のアプリでの音声入力でも使えます。いくつかの簡単な手順で準備しましょう。</string>
+    <string name="onboarding_privacy_title">プライバシーを守る設計</string>
+    <string name="onboarding_privacy_body">話した言葉は端末内で認識され、Google を含め、クラウドやオンラインの音声サービスで認識されることはありません。音声データが保存・アップロードされることはありません。分析、トラッキング、アカウント、API キーは一切ありません。インターネットは音声認識モデルのダウンロードにのみ使用します。</string>
+    <string name="onboarding_high_contrast">ユーザー補助モード</string>
+    <string name="onboarding_high_contrast_desc">高コントラストの配色</string>
+    <string name="onboarding_mic_title">マイクを許可する</string>
+    <string name="onboarding_mic_body">Marmalade STT が声を聞き取るにはマイクが必要です。マイクを使うのは音声入力中だけです。</string>
+    <string name="onboarding_mic_granted">マイクへのアクセスはオンです</string>
+    <string name="onboarding_mic_denied">マイクがないと、Marmalade STT は声を聞き取れません。今すぐ許可するか、スキップしてあとで許可できます。</string>
+    <string name="onboarding_mic_blocked">このアプリのマイクへのアクセスがオフになっています。アプリの設定ページの「権限」でオンにしてください。</string>
+    <string name="onboarding_mic_allow">マイクを許可</string>
+    <string name="onboarding_mic_open_settings">アプリの設定を開く</string>
+    <string name="onboarding_model_title">音声認識モデルをダウンロード</string>
+    <string name="onboarding_model_body">音声は、端末内で動作するモデルで認識されます。ダウンロードは一度だけで、その後はオフラインで音声入力できます。</string>
+    <string name="onboarding_model_downloading_note">モデルの準備ができたら、セットアップを続けられます。画面が消えたりアプリを離れたりしても、ダウンロードは続きます。</string>
+    <string name="onboarding_keyboard_title">音声キーボードをオンにする</string>
+    <string name="onboarding_keyboard_body">Marmalade 音声キーボードを使うと、他のアプリに音声入力できます。キーボードのマイクキーで開くのはこのキーボードです。Android のキーボード設定で「Marmalade 音声入力」をオンにしてから、ここに戻ってください。</string>
+    <string name="onboarding_keyboard_open">キーボード設定を開く</string>
+    <string name="onboarding_keyboard_on">音声キーボードはオンです</string>
+    <string name="onboarding_keyboard_off">音声キーボードはオフです</string>
+    <string name="onboarding_keyboard_warning">Android は、オンにしたキーボードが入力内容を収集する可能性があると警告します。これは標準の警告です。Marmalade STT が入力するのは音声入力した内容だけで、端末の外には何も送信しません。</string>
+    <string name="onboarding_keyboard_unlock_note">端末によっては、続けて 2 つ目のメッセージが表示されます。再起動後は、端末のロックを解除するまでアプリを起動できないという内容です。これも問題ありません。「OK」をタップしてください。</string>
+    <string name="onboarding_futo_checking">FUTO Keyboard に確認しています…</string>
+    <string name="onboarding_futo_selected">FUTO Keyboard は Marmalade STT で音声入力します</string>
+    <string name="onboarding_futo_not_selected">FUTO Keyboard は別の音声入力を使っています</string>
+    <string name="onboarding_futo_use">FUTO で Marmalade STT を使う</string>
+    <string name="onboarding_futo_check_again">もう一度確認</string>
+    <string name="onboarding_futo_manual_title">手動で設定する</string>
+    <string name="onboarding_futo_manual_body">FUTO Keyboard で「設定」→「音声入力」を開き、「内蔵の音声入力を無効にする」（「外部アプリが提供する音声入力を使用する」）をオンにします。これで FUTO のマイクボタンから、前の手順の Marmalade 音声キーボードが開きます。</string>
+    <string name="onboarding_futo_crash_once">FUTO Keyboard のマイクを初めてタップしたときにキーボードが閉じた場合は、もう一度タップしてください。</string>
+    <string name="onboarding_done_title">準備が整いました</string>
+    <string name="onboarding_done_body">「音声入力」画面で試してみましょう。マイクをタップして話してください。</string>
+    <string name="onboarding_done_title_partial">準備ができたらいつでもどうぞ</string>
+    <string name="onboarding_done_body_partial">まだ終わっていない手順があります。いつでも完了できます。</string>
+    <string name="onboarding_done_reopen">このガイドは「設定」からいつでも開けます。</string>
+    <string name="onboarding_summary_mic">マイク</string>
+    <string name="onboarding_summary_mic_on">許可済み</string>
+    <string name="onboarding_summary_mic_off">未許可</string>
+    <string name="onboarding_summary_model">音声認識モデル</string>
+    <string name="onboarding_summary_model_ready">準備完了</string>
+    <string name="onboarding_summary_model_downloading">ダウンロード中</string>
+    <string name="onboarding_summary_model_missing">未ダウンロード。「エンジン」タブから入手できます。</string>
+    <string name="onboarding_summary_model_attention">ダウンロードが完了していません。「エンジン」タブをご覧ください。</string>
+    <string name="onboarding_summary_keyboard">音声キーボード</string>
+    <string name="onboarding_summary_keyboard_on">オン</string>
+    <string name="onboarding_summary_keyboard_off">オフ</string>
+    <string name="onboarding_summary_futo">FUTO Keyboard</string>
+    <string name="onboarding_summary_futo_on">Marmalade STT を使用中</string>
+    <string name="onboarding_summary_futo_off">別の音声入力を使用中</string>
+    <string name="onboarding_settings_row">セットアップガイド</string>
+    <string name="onboarding_settings_row_desc">マイク、音声認識エンジン、キーボード、音声認識サービス</string>
+</resources>

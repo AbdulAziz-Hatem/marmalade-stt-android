@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Einrichtungsassistent: empfohlene Engine -->
+    <string name="onboarding_recommend_checking">Dein Smartphone wird geprüft…</string>
+    <string name="onboarding_recommend_best_fit">Unsere erste Wahl für %1$s, passend zu Arbeitsspeicher und Tempo dieses Smartphones.</string>
+    <string name="onboarding_recommend_lighter">Eine leichtere Engine, passend zu Arbeitsspeicher und Tempo dieses Smartphones.</string>
+    <string name="onboarding_recommend_may_be_slow">Die beste Wahl für %1$s, kann auf diesem Smartphone aber langsam sein.</string>
+    <string name="onboarding_recommend_low_memory">Die schlankeste Engine für %1$s. Dieses Smartphone hat wenig Arbeitsspeicher dafür, daher kann sie langsam sein oder von Android beendet werden.</string>
+    <string name="onboarding_recommend_uncovered">Noch keine Engine transkribiert %1$s, daher ist diese für %2$s.</string>
+    <plurals name="onboarding_recommend_languages">
+        <item quantity="one">%d Sprache, automatisch erkannt.</item>
+        <item quantity="other">%d Sprachen, automatisch erkannt.</item>
+    </plurals>
+    <string name="onboarding_recommend_other">Du kannst später im Tab „Engines“ eine andere Engine wählen.</string>
+</resources>

@@ -1,0 +1,145 @@
+From: Marmalade STT <noreply@localhost>
+Subject: [PATCH] Create the multi-graph engines' sessions in parallel (#78)
+
+Not upstream; ours, on top of 0001-0005. Whisper's, Canary's and
+Qwen3-ASR's path constructors created their ONNX Runtime sessions one after
+another, then Qwen3-ASR's recognizer built its BPE tokenizer after all of
+them. Now the decoder's session is created on a second thread (std::async)
+while the calling thread creates the other(s), and Qwen3-ASR's tokenizer is
+built on another thread alongside the model. The Init* calls that read
+names and metadata run after the sessions exist, in the original order.
+An error on a worker thread is rethrown by future::get(). The Env and
+SessionOptions are shared read-only (each session copies its options).
+The AssetManager constructors are unchanged.
+---
+--- a/sherpa-onnx/csrc/offline-canary-model.cc
++++ b/sherpa-onnx/csrc/offline-canary-model.cc
+@@ -6,6 +6,7 @@
+ 
+ #include <algorithm>
+ #include <cmath>
++#include <future>
+ #include <memory>
+ #include <string>
+ #include <tuple>
+@@ -39,12 +40,17 @@ class OfflineCanaryModel::Impl {
+         env_(ORT_LOGGING_LEVEL_ERROR),
+         sess_opts_(GetSessionOptions(config)),
+         allocator_{} {
++    // Marmalade STT (#78): the decoder's session is created on a second
++    // thread while this one creates the encoder's. get() rethrows its error.
++    auto decoder_sess = std::async(std::launch::async, [this, &config] {
++      return std::make_unique<Ort::Session>(
++          env_, SHERPA_ONNX_TO_ORT_PATH(config.canary.decoder), sess_opts_);
++    });
+     encoder_sess_ = std::make_unique<Ort::Session>(
+         env_, SHERPA_ONNX_TO_ORT_PATH(config.canary.encoder), sess_opts_);
+-    InitEncoder(nullptr, 0);
++    decoder_sess_ = decoder_sess.get();
+ 
+-    decoder_sess_ = std::make_unique<Ort::Session>(
+-        env_, SHERPA_ONNX_TO_ORT_PATH(config.canary.decoder), sess_opts_);
++    InitEncoder(nullptr, 0);
+     InitDecoder(nullptr, 0);
+   }
+ 
+--- a/sherpa-onnx/csrc/offline-qwen3-asr-model.cc
++++ b/sherpa-onnx/csrc/offline-qwen3-asr-model.cc
+@@ -10,6 +10,7 @@
+ #include <cstdint>
+ #include <cstdlib>
+ #include <cstring>
++#include <future>
+ #include <memory>
+ #include <string>
+ #include <utility>
+@@ -132,19 +133,21 @@ class OfflineQwen3ASRModel::Impl {
+         is_cpu_provider_(config.provider == "cpu" || config.provider.empty()) {
+     const auto &c = config_.qwen3_asr;
+ 
++    // Marmalade STT (#78): the (largest) decoder's session is created on a
++    // second thread while this one creates the conv frontend's and the
++    // encoder's. get() rethrows its error.
++    auto decoder_sess = std::async(std::launch::async, [this, &c] {
++      return std::make_unique<Ort::Session>(
++          env_, SHERPA_ONNX_TO_ORT_PATH(c.decoder), sess_opts_decoder_);
++    });
+     conv_sess_ = std::make_unique<Ort::Session>(
+         env_, SHERPA_ONNX_TO_ORT_PATH(c.conv_frontend), sess_opts_conv_);
+-
+-    InitConvFrontend(nullptr, 0);
+-
+     encoder_sess_ = std::make_unique<Ort::Session>(
+         env_, SHERPA_ONNX_TO_ORT_PATH(c.encoder), sess_opts_encoder_);
++    decoder_sess_ = decoder_sess.get();
+ 
++    InitConvFrontend(nullptr, 0);
+     InitEncoder(nullptr, 0);
+-
+-    decoder_sess_ = std::make_unique<Ort::Session>(
+-        env_, SHERPA_ONNX_TO_ORT_PATH(c.decoder), sess_opts_decoder_);
+-
+     InitDecoder(nullptr, 0);
+ 
+     InitIoBindingConfig();
+--- a/sherpa-onnx/csrc/offline-recognizer-qwen3-asr-impl.cc
++++ b/sherpa-onnx/csrc/offline-recognizer-qwen3-asr-impl.cc
+@@ -9,6 +9,7 @@
+ #include <cmath>
+ #include <cstdint>
+ #include <cstring>
++#include <future>
+ #include <limits>
+ #include <memory>
+ #include <numeric>
+@@ -406,10 +407,16 @@ OfflineRecognizerQwen3ASRImpl::OfflineRecognizerQwen3ASRImpl(
+     const OfflineRecognizerConfig &config)
+     : OfflineRecognizerImpl(config),
+       config_(config),
+-      model_(std::make_unique<OfflineQwen3ASRModel>(config.model_config)),
+-      tokenizer_(std::make_unique<QwenAsrTokenizer>(
+-          config.model_config.qwen3_asr.tokenizer)),
+       rng_(config.model_config.qwen3_asr.seed) {
++  // Marmalade STT (#78): the tokenizer (vocab.json, merges.txt) is built on
++  // a second thread while the model creates its sessions. It shares nothing
++  // with the model. get() rethrows its error.
++  auto tokenizer = std::async(std::launch::async, [&config] {
++    return std::make_unique<QwenAsrTokenizer>(
++        config.model_config.qwen3_asr.tokenizer);
++  });
++  model_ = std::make_unique<OfflineQwen3ASRModel>(config.model_config);
++  tokenizer_ = tokenizer.get();
+   InitPromptTemplateIds();
+ }
+ 
+--- a/sherpa-onnx/csrc/offline-whisper-model.cc
++++ b/sherpa-onnx/csrc/offline-whisper-model.cc
+@@ -6,6 +6,7 @@
+ 
+ #include <algorithm>
+ #include <cmath>
++#include <future>
+ #include <memory>
+ #include <string>
+ #include <tuple>
+@@ -49,12 +50,17 @@ class OfflineWhisperModel::Impl {
+         cpu_mem_info_(
+             Ort::MemoryInfo::CreateCpu(OrtDeviceAllocator, OrtMemTypeDefault)),
+         is_cpu_provider_(config.provider == "cpu" || config.provider.empty()) {
++    // Marmalade STT (#78): the decoder's session is created on a second
++    // thread while this one creates the encoder's. get() rethrows its error.
++    auto decoder_sess = std::async(std::launch::async, [this, &config] {
++      return std::make_unique<Ort::Session>(
++          env_, SHERPA_ONNX_TO_ORT_PATH(config.whisper.decoder), sess_opts_);
++    });
+     encoder_sess_ = std::make_unique<Ort::Session>(
+         env_, SHERPA_ONNX_TO_ORT_PATH(config.whisper.encoder), sess_opts_);
+-    InitEncoder(nullptr, 0);
++    decoder_sess_ = decoder_sess.get();
+ 
+-    decoder_sess_ = std::make_unique<Ort::Session>(
+-        env_, SHERPA_ONNX_TO_ORT_PATH(config.whisper.decoder), sess_opts_);
++    InitEncoder(nullptr, 0);
+     InitDecoder(nullptr, 0);
+ 
+     InitCudaIOBinding();

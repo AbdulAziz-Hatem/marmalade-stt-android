@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- A/B-бенчмарк для розробників -->
+    <string name="benchmark_title">Бенчмарк</string>
+    <string name="benchmark_note">Запишіть один дубль, потім кожен установлений рушій по черзі розпізнає його: запуск, розпізнавання, вивантаження. Усі рушії отримують ті самі сегменти Silero VAD. Потоковим рушіям кожен сегмент подається частинами по 100 мс так швидко, як модель їх приймає, а не в реальному часі. Дубль залишається в пам’яті й ніколи не зберігається. Результати на емуляторі придатні лише для порівняння рушіїв між собою.</string>
+
+    <string name="benchmark_section_take">Дубль</string>
+    <string name="benchmark_record">Записати</string>
+    <string name="benchmark_stop">Стоп</string>
+    <string name="benchmark_play">Відтворити</string>
+    <string name="benchmark_stop_playback">Зупинити відтворення</string>
+    <string name="benchmark_elapsed">%1$s с / %2$d с</string>
+    <string name="benchmark_level">Рівень вхідного сигналу</string>
+    <string name="benchmark_take_length">Дубль: %1$s</string>
+    <string name="benchmark_take_length_soft_agc">Дубль: %1$s, гучність вирівняно додатком (цей телефон не має вбудованого регулювання підсилення мікрофона)</string>
+    <plurals name="benchmark_no_take">
+        <item quantity="one">Дубля ще немає. Запишіть до %1$d секунди мовлення.</item>
+        <item quantity="few">Дубля ще немає. Запишіть до %1$d секунд мовлення.</item>
+        <item quantity="many">Дубля ще немає. Запишіть до %1$d секунд мовлення.</item>
+        <item quantity="other">Дубля ще немає. Запишіть до %1$d секунди мовлення.</item>
+    </plurals>
+
+    <string name="benchmark_section_reference">Еталонний текст (необов’язково)</string>
+    <string name="benchmark_reference_label">Що ви сказали</string>
+    <string name="benchmark_reference_hint">Введіть те, що ви сказали, щоб отримати частку помилок у словах (WER) для кожного рушія.</string>
+
+    <string name="benchmark_section_engines">Рушії</string>
+    <string name="benchmark_no_engines">Рушії не встановлено. Установіть їх на вкладці «Рушії» (щоб побачити кандидатів, увімкніть у налаштуваннях «Рушії для розробників»).</string>
+    <string name="benchmark_run">Запустити бенчмарк</string>
+    <string name="benchmark_run_again">Запустити знову</string>
+    <string name="benchmark_running">Працює %1$s (%2$d з %3$d)…</string>
+
+    <string name="benchmark_section_results">Результати</string>
+    <string name="benchmark_metric_load">Запуск %1$s</string>
+    <string name="benchmark_metric_decode">Декодування %1$s</string>
+    <string name="benchmark_metric_rtf">RTF %1$s</string>
+    <string name="benchmark_metric_rss">Піковий RSS (вибірково) %1$s</string>
+    <string name="benchmark_metric_wer">WER %1$s</string>
+    <string name="benchmark_empty_transcript">(мовлення не розпізнано)</string>
+    <string name="benchmark_raw">Без обробки: %1$s</string>
+    <string name="benchmark_failed_load">Не вдалося запустити: %1$s</string>
+    <string name="benchmark_failed_transcribe">Не вдалося розпізнати: %1$s</string>
+    <string name="benchmark_failed_release">Розпізнано, але не вдалося вивантажити: %1$s</string>
+    <string name="benchmark_copy_markdown">Копіювати як Markdown</string>
+    <string name="benchmark_copied">Скопійовано</string>
+
+    <!-- Сповіщення -->
+    <string name="benchmark_error_mic">Не вдалося почати запис. Можливо, мікрофон використовує інший додаток?</string>
+    <string name="benchmark_error_empty">Нічого не записалося. Повторіть спробу.</string>
+    <string name="benchmark_error_playback">Не вдалося відтворити дубль.</string>
+    <string name="benchmark_error_no_engines">Немає встановлених рушіїв для запуску.</string>
+    <string name="benchmark_error_run">Бенчмарк зупинено через помилку.</string>
+
+    <!-- Доступ до мікрофона -->
+    <string name="benchmark_mic_title">Для бенчмарку потрібен мікрофон</string>
+    <string name="benchmark_mic_body">Він записує один дубль, зберігає його лише в пам’яті й ніколи не записує у файл і не надсилає.</string>
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="onboarding_recommend_checking">Comprobando tu teléfono…</string>
+    <string name="onboarding_recommend_best_fit">Nuestra primera opción para el %1$s, y se adapta a la memoria y la velocidad de este teléfono.</string>
+    <string name="onboarding_recommend_lighter">Un motor más ligero que se adapta a la memoria y la velocidad de este teléfono.</string>
+    <string name="onboarding_recommend_may_be_slow">El más adecuado para el %1$s, pero puede ir lento en este teléfono.</string>
+    <string name="onboarding_recommend_low_memory">El motor más ligero para el %1$s. Este teléfono tiene poca memoria para él, así que puede ir lento o Android puede cerrarlo.</string>
+    <string name="onboarding_recommend_uncovered">Ningún motor transcribe el %1$s todavía, así que este es para el %2$s.</string>
+    <plurals name="onboarding_recommend_languages">
+        <item quantity="one">%d idioma, detectado automáticamente.</item>
+        <item quantity="many">%d de idiomas, detectados automáticamente.</item>
+        <item quantity="other">%d idiomas, detectados automáticamente.</item>
+    </plurals>
+    <string name="onboarding_recommend_other">Más adelante puedes elegir otro motor en la pestaña Motores.</string>
+</resources>

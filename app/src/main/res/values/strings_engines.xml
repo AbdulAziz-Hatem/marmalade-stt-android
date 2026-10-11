@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Engines tab (#27, the design lab's A1 cards, A3 rows and B1 dialog):
+     the specs (speed / quality / languages), the card's size line and
+     buttons, "Other engines" and the engine details dialog. -->
+<resources>
+    <string name="engine_badge_recommended">Recommended for this phone</string>
+    <!-- TalkBack for a card's "Show more" and a row's chevron, e.g. "About Parakeet Ultra" -->
+    <string name="engine_info">About %1$s</string>
+    <string name="engine_show_more">Show more</string>
+    <!-- Card size line -->
+    <string name="engine_card_size_download">%1$s download</string>
+    <string name="engine_card_size_on_disk">%1$s on your phone</string>
+    <!-- Card download button, e.g. "Download · 640 MB" -->
+    <string name="engine_action_download_size">Download · %1$s</string>
+    <string name="engine_dialog_close">Close</string>
+    <!-- A download's percent beside its progress bar or in its ring, e.g. "41%" -->
+    <string name="engine_progress_percent">%1$d%%</string>
+    <!-- A row's second line, for a download that stopped; the details dialog says why -->
+    <string name="engine_status_failed_short">Download failed</string>
+    <string name="engine_status_corrupt_short">Files damaged</string>
+
+    <!-- The button above the compact rows, e.g. "Other engines (3)"; TalkBack
+         hears whether they are shown -->
+    <string name="engines_other">Other engines (%1$d)</string>
+    <string name="engines_other_expanded">Expanded</string>
+    <string name="engines_other_collapsed">Collapsed</string>
+
+    <!-- SPEED: the meter's phrase (TalkBack, and the info dialog's first speed line) -->
+    <string name="engine_speed_tier_fastest">Fastest on this phone</string>
+    <string name="engine_speed_tier_very_fast">Very fast on this phone</string>
+    <string name="engine_speed_tier_fast">Fast on this phone</string>
+    <string name="engine_speed_tier_moderate">Moderate speed on this phone</string>
+    <string name="engine_speed_unmeasured">Not measured</string>
+    <!-- SPEED as one word, in the dialog's and the setup guide's tiles -->
+    <string name="engine_speed_word_fastest">Fastest</string>
+    <string name="engine_speed_word_very_fast">Very fast</string>
+    <string name="engine_speed_word_fast">Fast</string>
+    <string name="engine_speed_word_moderate">Moderate</string>
+    <string name="engine_speed_word_slow">Slow</string>
+
+    <!-- QUALITY: a word for 5 to 1 stars from our word (or character) error rate tests:
+         what TalkBack says for the quality meter, and the text in the tiles -->
+    <string name="engine_detail_quality">Quality</string>
+    <string name="engine_quality_best">Best</string>
+    <string name="engine_quality_great">Great</string>
+    <string name="engine_quality_good">Good</string>
+    <string name="engine_quality_fair">Fair</string>
+    <string name="engine_quality_basic">Basic</string>
+    <string name="engine_quality_not_rated">Not rated</string>
+    <!-- Measured in another language than the user's, e.g. "Great (English)" -->
+    <string name="engine_quality_in_language">%1$s (%2$s)</string>
+    <!-- Under the quality meter when it was measured in another language than the user's, e.g. "Tested in English" -->
+    <string name="engine_quality_tested_in">Tested in %1$s</string>
+    <string name="engine_quality_source_english">From our tests on LibriSpeech, FLEURS and AMI, in English</string>
+    <!-- e.g. "From our tests on FLEURS, in German" -->
+    <string name="engine_quality_source_fleurs">From our tests on FLEURS, in %1$s</string>
+    <!-- Two test-set names, then the language, e.g. "From our tests on FLEURS and AISHELL-1, in Chinese" -->
+    <string name="engine_quality_source_two_sets">From our tests on %1$s and %2$s, in %3$s</string>
+    <string name="engine_quality_source_none">Not tested yet</string>
+
+    <!-- LANGUAGES -->
+    <plurals name="engine_languages_count">
+        <item quantity="one">%d language</item>
+        <item quantity="other">%d languages</item>
+    </plurals>
+    <!-- The card's LANGUAGES value for a multilingual engine, e.g. "See all 25" -->
+    <string name="engine_languages_see_all">See all %1$d</string>
+    <!-- TalkBack action label for the "See all 25" value -->
+    <string name="engine_languages_open">Show languages</string>
+
+    <!-- Details dialog. Speed: the tier's phrase and the cost, e.g. "Fast on
+         this phone. 2.9× the decoding time of Parakeet Ultra (estimated)." -->
+    <string name="engine_detail_speed_text">%1$s. %2$s.</string>
+    <!-- Nemotron 3.5 Streaming: how often text arrives -->
+    <string name="engine_detail_chunk">Chunk size</string>
+    <string name="engine_chunk_steps">Text arrives in %1$d ms steps.</string>
+
+    <!-- The engine's one-line summary on its card and in its details dialog
+         (SttEngineCatalog). Engine and model names stay as they are. -->
+    <string name="engine_desc_parakeet_ultra">Moondream\'s post-trained Parakeet TDT 0.6B v3: the same 25 languages, detected automatically.</string>
+    <string name="engine_desc_parakeet_110m">NVIDIA\'s small English model: a fraction of the size of the other Parakeets, and fast.</string>
+    <string name="engine_desc_parakeet_ja">NVIDIA\'s Japanese model: the most accurate for Japanese, and much faster than Whisper. It writes few commas.</string>
+    <string name="engine_desc_canary_180m">NVIDIA\'s tiny encoder-decoder model: English, Spanish, German and French. Pick the language; it can\'t detect it.</string>
+    <string name="engine_desc_nemotron_35">NVIDIA\'s streaming model for Hindi, Arabic and Vietnamese: text appears as you speak.</string>
+    <string name="engine_desc_whisper_turbo">OpenAI Whisper large-v3-turbo, multilingual. The most accurate Whisper. Text appears when you pause.</string>
+    <string name="engine_desc_granite">IBM\'s English CTC model: the most accurate in our English tests. Case and punctuation come from the app\'s own formatter.</string>
+    <string name="engine_desc_qwen3">Alibaba\'s offline model with a small language-model decoder: 30 languages, detected automatically. Text appears when you pause.</string>
+    <string name="engine_desc_qwen3_users">Alibaba\'s model for Chinese and Korean, with a small language-model decoder: the most accurate for Chinese. Text appears when you pause.</string>
+</resources>

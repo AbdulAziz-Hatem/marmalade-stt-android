@@ -1,0 +1,5 @@
+# Build-time venv for turbo/quantize.py (#55). Harness only, nothing here reaches the APK. No GPL or LGPL.
+#   uv venv -p 3.12 $VENV && VIRTUAL_ENV=$VENV uv pip install -r turbo/requirements.txt
+onnx==1.23.1              # Apache-2.0
+onnxruntime==1.28.0       # MIT (the app's ORT version; its quantiser, incl. the vendored Intel Neural Compressor code, Apache-2.0)
+numpy==2.5.3              # BSD-3-Clause

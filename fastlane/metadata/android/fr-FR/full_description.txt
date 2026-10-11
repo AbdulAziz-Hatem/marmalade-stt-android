@@ -1,0 +1,32 @@
+<p>Marmalade STT transforme votre voix en texte sur votre téléphone. Utilisez-le comme saisie vocale de votre clavier (FUTO Keyboard, HeliBoard, FlorisBoard et d'autres) et des applis qui demandent une saisie vocale à Android. Votre voix ne quitte jamais l'appareil.</p>
+
+<ul>
+<li><b>Privé.</b> La parole est reconnue sur le téléphone. L'audio n'est jamais sauvegardé ni envoyé</li>
+<li><b>Hors ligne.</b> Après un téléchargement unique d'un moteur vocal, il fonctionne sans connexion</li>
+<li><b>Texte en direct.</b> Vos mots s'affichent en temps réel pendant que vous parlez, avec la plupart des moteurs</li>
+<li><b>Sait quand vous avez fini.</b> Smart Turn, le mode par défaut de la fenêtre « Parlez maintenant », attend que vous sembliez avoir terminé, si bien qu'une pause pour réfléchir vous coupe rarement la parole</li>
+<li><b>Multilingue.</b> 100 langues, avec le meilleur moteur pour la vôtre choisi automatiquement</li>
+<li><b>Texte propre.</b> Hésitations supprimées, nombres en chiffres, vos propres remplacements et extraits à dicter</li>
+<li><b>Libre et open source.</b> Sans publicité, sans compte, sans mesure d'audience</li>
+</ul>
+
+<p><b>PRIVÉ PAR CONCEPTION</b></p>
+<p>Aucune mesure d'audience, aucun suivi, aucun rapport de plantage, aucun compte et aucun serveur à nous. Internet sert uniquement à télécharger les moteurs vocaux que vous choisissez, depuis GitHub, et chaque fichier est vérifié avec une empreinte SHA-256 fixée à l'avance. La sauvegarde Android est désactivée, donc rien n'est copié dans le cloud.</p>
+
+<p><b>VOUS DÉCIDEZ QUAND ÇA S'ARRÊTE</b></p>
+<p>Dans la fenêtre « Parlez maintenant » et les autres applis, Marmalade utilise par défaut la technologie Smart Turn v3 pour détecter quand vous avez fini de parler. Sans les mains. Il vous coupe trop tôt ? Passez à l'arrêt après une pause, ou définissez plutôt un mot de fin. Sur le clavier, il écoute jusqu'à ce que vous appuyiez, ou peut aussi utiliser Smart Turn.</p>
+
+<p><b>TEXTE PROPRE</b></p>
+<p>Le nettoyage facultatif corrige les majuscules et, en anglais, supprime les hésitations, transforme « new line » et « period » en vrai retour à la ligne et en vrai point, et écrit les nombres en chiffres. Les remplacements pour les noms que le moteur comprend mal et les extraits pour les textes que vous tapez souvent fonctionnent dans toutes les langues.</p>
+
+<p><b>FONCTIONNE AVEC VOTRE CLAVIER</b></p>
+<p>Activez « Saisie vocale Marmalade » et la touche micro de votre clavier ouvre un petit panneau Marmalade qui tape ce que vous dites. Cela fonctionne avec FUTO Keyboard, HeliBoard, FlorisBoard, AnySoftKeyboard, Unexpected Keyboard, le clavier AOSP et d'autres claviers dotés d'une touche vocale.</p>
+
+<p><b>UN MOTEUR ADAPTÉ À VOTRE TÉLÉPHONE</b></p>
+<p>Le guide de configuration recommande un moteur vocal selon votre langue ainsi que la mémoire et la vitesse de votre téléphone, avec la possibilité de télécharger et d'essayer d'autres modèles.</p>
+
+<p><b>LANGUES</b></p>
+<p>Des moteurs rapides couvrent l'anglais, le bulgare, le croate, le tchèque, le danois, le néerlandais, l'estonien, le finnois, le français, l'allemand, le grec, le hongrois, l'italien, le letton, le lituanien, le maltais, le polonais, le portugais, le roumain, le russe, le slovaque, le slovène, l'espagnol, le suédois, l'ukrainien, le japonais, le hindi, l'arabe et le vietnamien. Le chinois et le coréen utilisent Qwen3-ASR, plus léger que Whisper. Les autres langues passent par Whisper Large v3 Turbo, avec plus de délai.</p>
+
+<p><b>OPEN SOURCE</b></p>
+<p>Marmalade STT est sous licence MIT. Si vous souhaitez le soutenir, Réglages → Soutien mène à GitHub Sponsors ; l'appli reste la même dans tous les cas.</p>

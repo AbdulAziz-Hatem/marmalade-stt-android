@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- エンジンタブ -->
+    <string name="engine_badge_recommended">この端末におすすめ</string>
+    <string name="engine_info">%1$s について</string>
+    <string name="engine_show_more">もっと見る</string>
+    <string name="engine_card_size_download">ダウンロード %1$s</string>
+    <string name="engine_card_size_on_disk">保存サイズ %1$s</string>
+    <string name="engine_action_download_size">ダウンロード · %1$s</string>
+    <string name="engine_dialog_close">閉じる</string>
+    <string name="engine_progress_percent">%1$d%%</string>
+    <string name="engine_status_failed_short">ダウンロード失敗</string>
+    <string name="engine_status_corrupt_short">ファイル破損</string>
+
+    <string name="engines_other">その他のエンジン（%1$d）</string>
+    <string name="engines_other_expanded">展開されています</string>
+    <string name="engines_other_collapsed">折りたたまれています</string>
+
+    <!-- 速度 -->
+    <string name="engine_speed_tier_fastest">この端末では最速</string>
+    <string name="engine_speed_tier_very_fast">この端末では非常に高速</string>
+    <string name="engine_speed_tier_fast">この端末では高速</string>
+    <string name="engine_speed_tier_moderate">この端末では中速</string>
+    <string name="engine_speed_unmeasured">未計測</string>
+    <string name="engine_speed_word_fastest">最速</string>
+    <string name="engine_speed_word_very_fast">非常に高速</string>
+    <string name="engine_speed_word_fast">高速</string>
+    <string name="engine_speed_word_moderate">中速</string>
+    <string name="engine_speed_word_slow">低速</string>
+
+    <!-- 品質 -->
+    <string name="engine_detail_quality">品質</string>
+    <string name="engine_quality_best">最高</string>
+    <string name="engine_quality_great">非常に良い</string>
+    <string name="engine_quality_good">良い</string>
+    <string name="engine_quality_fair">まずまず</string>
+    <string name="engine_quality_basic">基本</string>
+    <string name="engine_quality_not_rated">未評価</string>
+    <string name="engine_quality_in_language">%1$s（%2$s）</string>
+    <string name="engine_quality_tested_in">%1$sでのテスト結果</string>
+    <string name="engine_quality_source_english">LibriSpeech、FLEURS、AMI での当方のテスト結果（英語）</string>
+    <string name="engine_quality_source_fleurs">FLEURS での当方のテスト結果（%1$s）</string>
+    <string name="engine_quality_source_two_sets">%1$s、%2$s での当方のテスト結果（%3$s）</string>
+    <string name="engine_quality_source_none">未テスト</string>
+
+    <!-- 言語 -->
+    <plurals name="engine_languages_count">
+        <item quantity="other">%d 言語</item>
+    </plurals>
+    <string name="engine_languages_see_all">全 %1$d 言語</string>
+    <string name="engine_languages_open">言語を表示</string>
+
+    <!-- 詳細ダイアログ -->
+    <string name="engine_detail_speed_text">%1$s。%2$s。</string>
+    <string name="engine_detail_chunk">チャンクサイズ</string>
+    <string name="engine_chunk_steps">テキストは %1$d ms ごとに表示されます。</string>
+
+    <!-- エンジンの説明 -->
+    <string name="engine_desc_parakeet_ultra">Moondream が追加学習した Parakeet TDT 0.6B v3。元のモデルと同じ 25 言語を自動で検出します。</string>
+    <string name="engine_desc_parakeet_110m">NVIDIA の小型英語モデル。ほかの Parakeet の数分の一のサイズで高速です。</string>
+    <string name="engine_desc_parakeet_ja">NVIDIA の日本語モデル。日本語では最も高精度で、Whisper よりずっと高速です。読点は少なめです。</string>
+    <string name="engine_desc_canary_180m">NVIDIA のごく小さなエンコーダー・デコーダーモデル。英語、スペイン語、ドイツ語、フランス語に対応します。言語は自動検出できないため、選んでください。</string>
+    <string name="engine_desc_nemotron_35">NVIDIA のヒンディー語、アラビア語、ベトナム語向けストリーミングモデル。話すそばから文字が表示されます。</string>
+    <string name="engine_desc_whisper_turbo">OpenAI Whisper large-v3-turbo、多言語対応。Whisper の中で最も高精度です。間を置くと文字が表示されます。</string>
+    <string name="engine_desc_granite">IBM の英語 CTC モデル。当方の英語のテストで最も高精度なエンジンです。大文字と句読点はアプリ独自の整形機能が付けます。</string>
+    <string name="engine_desc_qwen3">Alibaba のオフラインモデルで、小さな言語モデルをデコーダーに使っています。30 言語を自動で検出します。間を置くと文字が表示されます。</string>
+    <string name="engine_desc_qwen3_users">Alibaba の中国語・韓国語向けモデルで、小さな言語モデルをデコーダーに使っています。中国語では最も高精度です。間を置くと文字が表示されます。</string>
+</resources>

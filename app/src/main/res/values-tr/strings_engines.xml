@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="engine_badge_recommended">Bu telefon için önerilir</string>
+    <string name="engine_info">%1$s hakkında</string>
+    <string name="engine_show_more">Daha fazla göster</string>
+    <!-- Card size line -->
+    <string name="engine_card_size_download">%1$s indirme</string>
+    <string name="engine_card_size_on_disk">Telefonunuzda %1$s</string>
+    <string name="engine_action_download_size">İndir · %1$s</string>
+    <string name="engine_dialog_close">Kapat</string>
+    <!-- Turkish puts the percent sign first: "%41" -->
+    <string name="engine_progress_percent">%%%1$d</string>
+    <string name="engine_status_failed_short">İndirme başarısız</string>
+    <string name="engine_status_corrupt_short">Dosyalar hasarlı</string>
+
+    <string name="engines_other">Diğer motorlar (%1$d)</string>
+    <string name="engines_other_expanded">Genişletildi</string>
+    <string name="engines_other_collapsed">Daraltıldı</string>
+
+    <!-- Speed -->
+    <string name="engine_speed_tier_fastest">Bu telefonda en hızlı</string>
+    <string name="engine_speed_tier_very_fast">Bu telefonda çok hızlı</string>
+    <string name="engine_speed_tier_fast">Bu telefonda hızlı</string>
+    <string name="engine_speed_tier_moderate">Bu telefonda orta hızda</string>
+    <string name="engine_speed_unmeasured">Ölçülmedi</string>
+    <string name="engine_speed_word_fastest">En hızlı</string>
+    <string name="engine_speed_word_very_fast">Çok hızlı</string>
+    <string name="engine_speed_word_fast">Hızlı</string>
+    <string name="engine_speed_word_moderate">Orta</string>
+    <string name="engine_speed_word_slow">Yavaş</string>
+
+    <!-- Quality -->
+    <string name="engine_detail_quality">Kalite</string>
+    <string name="engine_quality_best">En iyi</string>
+    <string name="engine_quality_great">Çok iyi</string>
+    <string name="engine_quality_good">İyi</string>
+    <string name="engine_quality_fair">Orta</string>
+    <string name="engine_quality_basic">Temel</string>
+    <string name="engine_quality_not_rated">Puanlanmadı</string>
+    <string name="engine_quality_in_language">%1$s (%2$s)</string>
+    <string name="engine_quality_tested_in">Test dili: %1$s</string>
+    <string name="engine_quality_source_english">LibriSpeech, FLEURS ve AMI üzerindeki İngilizce testlerimizden</string>
+    <string name="engine_quality_source_fleurs">FLEURS üzerindeki %1$s testlerimizden</string>
+    <string name="engine_quality_source_two_sets">%1$s ve %2$s üzerindeki %3$s testlerimizden</string>
+    <string name="engine_quality_source_none">Henüz test edilmedi</string>
+
+    <!-- Languages -->
+    <plurals name="engine_languages_count">
+        <item quantity="one">%d dil</item>
+        <item quantity="other">%d dil</item>
+    </plurals>
+    <string name="engine_languages_see_all">Tümünü gör (%1$d)</string>
+    <string name="engine_languages_open">Dilleri göster</string>
+
+    <!-- Details dialog -->
+    <string name="engine_detail_speed_text">%1$s. %2$s.</string>
+    <string name="engine_detail_chunk">Parça boyutu</string>
+    <string name="engine_chunk_steps">Metin %1$d ms\'lik adımlarla gelir.</string>
+
+    <!-- The engine's one-line summary. Engine and model names stay as they are. -->
+    <string name="engine_desc_parakeet_ultra">Moondream\'in ek eğitimden geçirdiği Parakeet TDT 0.6B v3: aynı 25 dil, otomatik algılanır.</string>
+    <string name="engine_desc_parakeet_110m">NVIDIA\'nın küçük İngilizce modeli: diğer Parakeet modellerinin boyutunun yalnızca küçük bir kısmı kadar ve hızlı.</string>
+    <string name="engine_desc_parakeet_ja">NVIDIA\'nın Japonca modeli: Japonca için en doğru model ve Whisper\'dan çok daha hızlı. Az virgül koyar.</string>
+    <string name="engine_desc_canary_180m">NVIDIA\'nın çok küçük kodlayıcı-kod çözücü modeli: İngilizce, İspanyolca, Almanca ve Fransızca. Dili siz seçin; model dili algılayamaz.</string>
+    <string name="engine_desc_nemotron_35">NVIDIA\'nın Hintçe, Arapça ve Vietnamca için akışlı modeli: metin siz konuşurken görünür.</string>
+    <string name="engine_desc_whisper_turbo">OpenAI Whisper large-v3-turbo, çok dilli. En doğru Whisper. Metin siz duraksadığınızda görünür.</string>
+    <string name="engine_desc_granite">IBM\'in İngilizce CTC modeli: İngilizce testlerimizde en doğru model. Büyük harfleri ve noktalamayı uygulamanın kendi biçimlendiricisi ekler.</string>
+    <string name="engine_desc_qwen3">Alibaba\'nın küçük bir dil modeli kod çözücüsüne sahip çevrimdışı modeli: 30 dil, otomatik algılanır. Metin siz duraksadığınızda görünür.</string>
+    <string name="engine_desc_qwen3_users">Alibaba\'nın küçük bir dil modeli kod çözücüsüne sahip Çince ve Korece modeli: Çince için en doğru model. Metin siz duraksadığınızda görünür.</string>
+</resources>

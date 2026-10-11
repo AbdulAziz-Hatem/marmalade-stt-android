@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Setup guide: the keyboards' mic keys and Android's speech recognition service.
+         Android's labels as in AOSP Dutch; FUTO's, Fossify's and SwiftKey's from their Dutch texts. -->
+    <string name="onboarding_mic_key_title">Dicteren vanaf je toetsenbord</string>
+    <string name="onboarding_mic_key_body">De meeste toetsenborden hebben een microfoontoets. Zo komt elk van je toetsenborden bij Marmalade STT.</string>
+    <string name="onboarding_mic_key_needs_voice_keyboard">Zet eerst het spraaktoetsenbord van Marmalade aan (de vorige stap): microfoontoetsen openen dat.</string>
+    <string name="onboarding_mic_key_other_voice_title">Zet andere spraaktoetsenborden uit</string>
+    <string name="onboarding_mic_key_other_voice">Ook aan: %1$s. De meeste microfoontoetsen openen het eerste spraaktoetsenbord dat aan staat, en Android zet vooraf geïnstalleerde vooraan. Zet deze uit in de toetsenbordinstellingen van Android (op de meeste telefoons Instellingen → Systeem → Toetsenbord → Schermtoetsenbord).</string>
+    <string name="onboarding_mic_key_current">%1$s (in gebruik)</string>
+    <string name="onboarding_kb_first">Tik op de microfoontoets van dit toetsenbord. Die opent het eerste spraaktoetsenbord dat aan staat, dus houd Spraakgestuurd typen van Marmalade als enige aan. Geen microfoontoets? Zoek naar een toets voor spraakinvoer in de instellingen of werkbalk van het toetsenbord.</string>
+    <string name="onboarding_kb_first_hidden">Tik op de microfoontoets van dit toetsenbord en houd Spraakgestuurd typen van Marmalade als enige spraaktoetsenbord aan. Dit toetsenbord ziet Marmalade pas als je er in deze app mee hebt getypt: als de microfoontoets ontbreekt of niets doet, typ er dan een letter mee in het vak hieronder. Doe dat opnieuw nadat je je telefoon opnieuw hebt opgestart.</string>
+    <string name="onboarding_kb_chooser">Tik op de spraaktoets van dit toetsenbord en kies Spraakgestuurd typen van Marmalade. Je keuze wordt onthouden.</string>
+    <string name="onboarding_kb_fossify">Stel in de instellingen van Fossify Keyboard “Methode voor spraakgestuurd typen” in op Spraakgestuurd typen van Marmalade; de werkbalk toont dan een microfoon. Fossify ziet Marmalade pas als je er in deze app mee hebt getypt: als Marmalade niet in de lijst staat, of de microfoon niets doet, typ dan eerst met Fossify een letter in het vak hieronder. Doe dat opnieuw nadat je je telefoon opnieuw hebt opgestart.</string>
+    <string name="onboarding_kb_swiftkey">De microfoon van SwiftKey gebruikt de eigen spraakinvoer van Microsoft. Als “Multimodaal typen via stem” uit staat (SwiftKey-instellingen → Uitgebreide invoer), vraagt SwiftKey Android in plaats daarvan om spraakherkenning, wat Marmalade STT kan openen. We hebben dit nog niet kunnen testen.</string>
+    <string name="onboarding_kb_own_engine">De microfoontoets van dit toetsenbord gebruikt altijd de eigen spraakinvoer van het toetsenbord. Wil je in plaats daarvan Marmalade gebruiken, tik dan op de toetsenbordknop in de navigatiebalk en kies Spraakgestuurd typen van Marmalade.</string>
+    <string name="onboarding_kb_google_only">De microfoontoets van dit toetsenbord opent alleen Spraakgestuurd typen van Google. Wil je in plaats daarvan Marmalade gebruiken, tik dan op de toetsenbordknop in de navigatiebalk en kies Spraakgestuurd typen van Marmalade.</string>
+    <string name="onboarding_kb_no_mic">Dit toetsenbord heeft geen microfoontoets. Wil je Marmalade gebruiken, tik dan op de toetsenbordknop in de navigatiebalk en kies Spraakgestuurd typen van Marmalade.</string>
+    <string name="onboarding_kb_unknown">Probeer de microfoontoets van dit toetsenbord in het vak hieronder. Toetsenborden waarvan de microfoontoets naar een spraaktoetsenbord overschakelt, openen Spraakgestuurd typen van Marmalade; houd dat als enige spraaktoetsenbord aan.</string>
+    <string name="onboarding_kb_futo">FUTO Keyboard</string>
+    <string name="onboarding_try_label">Probeer het hier</string>
+    <string name="onboarding_try_hint">Tik op het vak en daarna op de microfoontoets van je toetsenbord.</string>
+
+    <string name="onboarding_speech_title">Spraakherkenning voor andere apps</string>
+    <string name="onboarding_speech_body">Sommige apps hebben een microfoonknop die de spraakherkenningsservice van Android gebruikt. Kies Marmalade STT als die service, dan herkennen ook die apps je spraak op je telefoon.</string>
+    <string name="onboarding_speech_on">Marmalade STT is de spraakherkenningsservice van Android</string>
+    <string name="onboarding_speech_off">Marmalade STT is niet de spraakherkenningsservice van Android</string>
+    <string name="onboarding_speech_open">Instellingen openen</string>
+    <!-- The step's directions follow the page "Open settings" lands on (#79), with each Android release's own Settings labels. -->
+    <!-- Android 9. The Voice input row is hidden while the assistant is also the voice service (Google). -->
+    <string name="onboarding_speech_path_assist_9">Open in Instellingen Apps en meldingen → Geavanceerd → Standaard-apps → Assistentie en spraakinvoer → Spraakinvoer en kies Marmalade STT. Staat Spraakinvoer er niet bij, zet dan eerst App voor assistentie op Geen.</string>
+    <!-- Android 10 -->
+    <string name="onboarding_speech_path_assist_10">Open in Instellingen Apps en meldingen → Geavanceerd → Standaard apps → App voor assistentie → Spraakinvoer en kies Marmalade STT. Staat Spraakinvoer er niet bij, zet dan eerst App voor assistentie op Geen.</string>
+    <!-- Android 11 -->
+    <string name="onboarding_speech_path_assist_11">Open in Instellingen Apps en meldingen → Geavanceerd → Standaard apps → Digitale-assistent-app → Spraakinvoer en kies Marmalade STT. Staat Spraakinvoer er niet bij, zet dan eerst Standaard digitale-assistent-app op Geen.</string>
+    <!-- Android 12 -->
+    <string name="onboarding_speech_path_assist">Open in Instellingen Apps → Standaard apps → Digitale-assistent-app → Spraakinvoer en kies Marmalade STT.</string>
+    <!-- Android 13. Voice input is under the page's Speech heading. -->
+    <string name="onboarding_speech_path_languages_input">Open in Instellingen Systeem → Talen en invoer → Spraakinvoer en kies Marmalade STT.</string>
+    <!-- Android 14 to 16. Voice input is under the page's Speech heading. -->
+    <string name="onboarding_speech_path_languages">Open in Instellingen Systeem → Talen → Spraakinvoer en kies Marmalade STT.</string>
+    <!-- Android 16 with Language & region, and Android 17. Speech is a row of that page. -->
+    <string name="onboarding_speech_path_language_region">Open in Instellingen Systeem → Taal en regio → Spraak → Spraakinvoer en kies Marmalade STT.</string>
+    <!-- No known page opens (other phone makers) -->
+    <string name="onboarding_speech_path_search">Zoek in Instellingen naar “Spraakinvoer”, open het en kies Marmalade STT.</string>
+    <string name="onboarding_speech_elsewhere">Op sommige telefoons staat het ergens anders: zoek in Instellingen naar “Spraakinvoer”.</string>
+    <string name="onboarding_speech_force_stop">Als je Marmalade STT gedwongen stopt, schakelt Android terug naar een andere service. Kies dan opnieuw Marmalade.</string>
+
+    <string name="onboarding_summary_other_voice">Andere spraaktoetsenborden</string>
+    <string name="onboarding_summary_other_voice_on">Nog aan: %1$s</string>
+    <string name="onboarding_summary_speech">Spraakherkenningsservice</string>
+    <string name="onboarding_summary_speech_on">Marmalade STT</string>
+    <string name="onboarding_summary_speech_off">Een andere app of geen</string>
+</resources>

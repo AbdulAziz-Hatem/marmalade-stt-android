@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Developer A/B benchmark -->
+    <string name="benchmark_title">벤치마크</string>
+    <string name="benchmark_note">한 번 녹음하면 설치된 모든 엔진이 차례로 변환합니다: 로드, 변환, 언로드. 모든 엔진은 같은 Silero VAD 구간을 받습니다. 스트리밍 엔진에는 각 구간을 실시간이 아니라 모델이 받아들일 수 있는 최대 속도로 100ms 청크 단위로 입력합니다. 녹음은 메모리에만 있으며 저장되지 않습니다. 에뮬레이터에서 나온 수치는 엔진끼리 비교하는 용도로만 쓸 수 있습니다.</string>
+
+    <string name="benchmark_section_take">녹음</string>
+    <string name="benchmark_record">녹음</string>
+    <string name="benchmark_stop">중지</string>
+    <string name="benchmark_play">재생</string>
+    <string name="benchmark_stop_playback">재생 중지</string>
+    <string name="benchmark_elapsed">%1$s초 / %2$d초</string>
+    <string name="benchmark_level">입력 레벨</string>
+    <string name="benchmark_take_length">녹음: %1$s</string>
+    <string name="benchmark_take_length_soft_agc">녹음: %1$s, 앱에서 음량 보정함(이 휴대전화에는 내장 마이크 게인 제어가 없음)</string>
+    <plurals name="benchmark_no_take">
+        <item quantity="other">아직 녹음이 없습니다. 최대 %1$d초까지 음성을 녹음하세요.</item>
+    </plurals>
+
+    <string name="benchmark_section_reference">참조 텍스트(선택사항)</string>
+    <string name="benchmark_reference_label">말한 내용</string>
+    <string name="benchmark_reference_hint">말한 내용을 입력하면 엔진별 단어 오류율(WER)을 볼 수 있습니다.</string>
+
+    <string name="benchmark_section_engines">엔진</string>
+    <string name="benchmark_no_engines">설치된 엔진이 없습니다. 엔진 탭에서 설치하세요(후보 엔진을 보려면 설정에서 개발자 엔진을 켜세요).</string>
+    <string name="benchmark_run">벤치마크 실행</string>
+    <string name="benchmark_run_again">다시 실행</string>
+    <string name="benchmark_running">%1$s 실행 중(%3$d개 중 %2$d번째)…</string>
+
+    <string name="benchmark_section_results">결과</string>
+    <string name="benchmark_metric_load">로드 %1$s</string>
+    <string name="benchmark_metric_decode">디코딩 %1$s</string>
+    <string name="benchmark_metric_rtf">RTF %1$s</string>
+    <string name="benchmark_metric_rss">최대 RSS(샘플링) %1$s</string>
+    <string name="benchmark_metric_wer">WER %1$s</string>
+    <string name="benchmark_empty_transcript">(인식된 음성 없음)</string>
+    <string name="benchmark_raw">원본: %1$s</string>
+    <string name="benchmark_failed_load">로드 실패: %1$s</string>
+    <string name="benchmark_failed_transcribe">변환 실패: %1$s</string>
+    <string name="benchmark_failed_release">변환했지만 언로드 실패: %1$s</string>
+    <string name="benchmark_copy_markdown">Markdown으로 복사</string>
+    <string name="benchmark_copied">복사됨</string>
+
+    <!-- Snackbar notices -->
+    <string name="benchmark_error_mic">녹음할 수 없습니다. 다른 앱에서 마이크를 사용 중인가요?</string>
+    <string name="benchmark_error_empty">녹음된 내용이 없습니다. 다시 시도하세요.</string>
+    <string name="benchmark_error_playback">녹음을 재생할 수 없습니다.</string>
+    <string name="benchmark_error_no_engines">실행할 설치된 엔진이 없습니다.</string>
+    <string name="benchmark_error_run">오류로 인해 벤치마크가 중지되었습니다.</string>
+
+    <!-- Mic permission -->
+    <string name="benchmark_mic_title">벤치마크에는 마이크가 필요합니다</string>
+    <string name="benchmark_mic_body">한 번만 녹음하며, 녹음은 메모리에만 보관하고 저장하거나 전송하지 않습니다.</string>
+</resources>

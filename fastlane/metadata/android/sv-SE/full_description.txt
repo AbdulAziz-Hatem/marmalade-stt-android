@@ -1,0 +1,32 @@
+<p>Marmalade STT gör om ditt tal till text på telefonen. Använd den som röstinmatning för ditt tangentbord (FUTO Keyboard, HeliBoard, FlorisBoard med flera) och i appar som ber Android om taligenkänning. Din röst lämnar aldrig enheten.</p>
+
+<ul>
+<li><b>Privat.</b> Talet känns igen på telefonen. Ljud varken sparas eller laddas upp</li>
+<li><b>Offline.</b> Efter en engångsnedladdning av en taligenkänningsmotor fungerar den utan anslutning</li>
+<li><b>Text direkt.</b> Visar dina ord i realtid medan du pratar, med de flesta motorer</li>
+<li><b>Vet när du är klar.</b> Smart Turn, standard för fönstret ”Tala nu”, väntar tills det låter som att du är klar, så en tankepaus avbryter dig sällan</li>
+<li><b>Flerspråkig.</b> 100 språk, och den bästa motorn för ditt språk väljs automatiskt</li>
+<li><b>Ren text.</b> Utfyllnadsord borttagna, tal som siffror, dina egna ersättningar och uttalade textsnuttar</li>
+<li><b>Gratis och öppen källkod.</b> Ingen reklam, inga konton, ingen analys</li>
+</ul>
+
+<p><b>PRIVAT FRÅN GRUNDEN</b></p>
+<p>Ingen analys, ingen spårning, inga kraschrapporter, inga konton och ingen egen server. Internet används bara för att ladda ned de taligenkänningsmotorer du väljer, från GitHub, och varje fil kontrolleras mot en fast SHA-256-hash. Androids säkerhetskopiering är avstängd, så inget kopieras till molnet.</p>
+
+<p><b>DU BESTÄMMER NÄR DEN STOPPAR</b></p>
+<p>I fönstret ”Tala nu” och i andra appar använder Marmalade som standard tekniken Smart Turn v3 för att känna av när du har pratat klart. Helt handsfree. Avbryter den dig för tidigt? Byt till stopp efter en paus, eller ställ in ett slutord i stället. På tangentbordet lyssnar den tills du trycker, eller så kan den också använda Smart Turn.</p>
+
+<p><b>REN TEXT</b></p>
+<p>Den valfria textrensningen rättar stora bokstäver, och på engelska tar den även bort utfyllnadsord, gör om ”new line” och ”period” till en riktig radbrytning och punkt och skriver tal med siffror. Ersättningar för namn som motorn uppfattar fel, och textsnuttar för text du ofta skriver, fungerar på alla språk.</p>
+
+<p><b>FUNGERAR MED DITT TANGENTBORD</b></p>
+<p>Aktivera ”Marmalade-röstinmatning” så öppnar tangentbordets mikrofontangent en liten Marmalade-panel som skriver det du säger. Det fungerar med FUTO Keyboard, HeliBoard, FlorisBoard, AnySoftKeyboard, Unexpected Keyboard, AOSP-tangentbordet och andra med en rösttangent.</p>
+
+<p><b>EN MOTOR SOM PASSAR DIN TELEFON</b></p>
+<p>Konfigurationsguiden rekommenderar en taligenkänningsmotor för ditt språk och för telefonens minne och hastighet, med möjlighet att ladda ned och prova andra modeller.</p>
+
+<p><b>SPRÅK</b></p>
+<p>Snabba motorer täcker engelska, bulgariska, kroatiska, tjeckiska, danska, nederländska, estniska, finska, franska, tyska, grekiska, ungerska, italienska, lettiska, litauiska, maltesiska, polska, portugisiska, rumänska, ryska, slovakiska, slovenska, spanska, svenska, ukrainska, japanska, hindi, arabiska och vietnamesiska. Kinesiska och koreanska får Qwen3-ASR, som är lättare än Whisper. Andra språk fungerar via Whisper Large v3 Turbo, med mer fördröjning.</p>
+
+<p><b>ÖPPEN KÄLLKOD</b></p>
+<p>Marmalade STT är MIT-licensierad. Om du vill stödja den länkar Inställningar → Stöd till GitHub Sponsors; appen är densamma oavsett.</p>

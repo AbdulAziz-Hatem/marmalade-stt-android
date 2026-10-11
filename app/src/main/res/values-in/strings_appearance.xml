@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Settings → Appearance -->
+    <string name="settings_appearance">Tampilan</string>
+    <string name="settings_mode">Mode</string>
+    <string name="settings_mode_system">Sistem</string>
+    <string name="settings_mode_light">Terang</string>
+    <string name="settings_mode_dark">Gelap</string>
+    <string name="settings_color">Warna</string>
+    <string name="settings_color_system">Wallpaper</string>
+    <string name="settings_color_midnight">Tengah malam</string>
+    <string name="settings_color_forest">Hutan</string>
+    <string name="settings_color_berry">Beri</string>
+    <string name="settings_color_high_contrast">Kontras tinggi</string>
+</resources>

@@ -1,0 +1,6 @@
+Marmalade STT 1.0.0, první vydání.
+- Soukromý offline přepis řeči: hlasová klávesnice pro FUTO, HeliBoard, FlorisBoard a další, okno „Mluvte“ pro aplikace a služba rozpoznávání řeči Androidu.
+- Moduly vybrané pro váš telefon a jazyk, se zvláštními moduly pro japonštinu, čínštinu, korejštinu, hindštinu, arabštinu a vietnamštinu.
+- Zastavení klepnutím, pauzou, koncovým slovem nebo přes Smart Turn.
+- Úprava textu, náhrady a úryvky.
+- Rozhraní v 21 jazycích. Žádné reklamy, účty ani analytika.

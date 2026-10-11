@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="list_separator">、</string>
+    <string name="quoted_name">「%1$s」</string>
+    <string name="ui_locale">zh-TW</string>
+    <!-- Bottom navigation -->
+    <string name="nav_dictate">聽寫</string>
+    <string name="nav_engines">引擎</string>
+    <string name="nav_settings">設定</string>
+
+    <!-- Dictate -->
+    <string name="dictate_start">開始聽寫</string>
+    <string name="dictate_stop">停止聽寫</string>
+    <string name="dictate_state_idle">未在聆聽</string>
+    <string name="dictate_state_loading">載入中</string>
+    <string name="dictate_state_listening">正在聆聽</string>
+    <string name="dictate_state_finishing">正在收尾</string>
+    <string name="dictate_status_loading">正在載入模型…</string>
+    <string name="dictate_status_listening">正在聆聽</string>
+    <string name="dictate_status_hearing">正在聽你說…</string>
+    <string name="dictate_status_finishing">正在收尾…</string>
+    <string name="dictate_status_catching_up">正在追上進度…</string>
+    <string name="dictate_empty">你說的話會顯示在這裡。你說的一切都只會留在你的手機上。</string>
+    <string name="dictate_copy">複製</string>
+    <string name="dictate_copied">已複製</string>
+    <string name="dictate_clear">清除</string>
+    <string name="dictate_no_speech">沒有聽到任何內容</string>
+    <string name="dictate_error_mic">無法使用麥克風</string>
+    <string name="dictate_error_model">無法載入語音模型</string>
+    <string name="dictate_error_recognition">轉錄時發生錯誤</string>
+    <string name="dictate_too_slow">這個引擎對這支手機來說太慢了。改用「引擎」分頁中較小的引擎就能跟上。</string>
+    <string name="dictate_error_busy">其他地方正在進行聽寫，請稍後再試。</string>
+    <string name="dictate_no_model_title">下載語音模型即可開始聽寫</string>
+    <string name="dictate_no_model_body">模型會在你的手機上執行。只需下載一次，之後就能離線聽寫。</string>
+    <string name="dictate_no_model_action">選擇模型</string>
+    <string name="dictate_mic_title">這個應用程式需要使用麥克風</string>
+    <string name="dictate_mic_body">只有在你聽寫時才會聆聽。你說的話會在手機上轉換成文字，絕不會被儲存或傳送到任何地方。</string>
+    <string name="dictate_mic_body_blocked">這個應用程式的麥克風存取權已關閉。你可以在應用程式設定的「權限」中開啟。</string>
+    <string name="dictate_mic_allow">允許使用麥克風</string>
+    <string name="dictate_mic_open_settings">開啟設定</string>
+    <string name="dictate_mic_settings_failed">無法開啟設定。請前往 Android 的「設定 → 應用程式 → Marmalade STT」。</string>
+
+    <!-- Engines list -->
+    <string name="engines_title">引擎</string>
+
+    <!-- Engine install state -->
+    <string name="engine_status_not_installed">尚未下載</string>
+    <string name="engine_status_downloading">下載中 · %1$s</string>
+    <string name="engine_status_paused">已暫停 · %1$s</string>
+    <string name="engine_status_ready">已就緒</string>
+    <string name="engine_status_corrupt">模型檔案已損毀：%1$s</string>
+    <string name="engine_progress_bytes">%1$s / %2$s</string>
+    <string name="engine_progress_description">下載進度</string>
+    <string name="engine_failure_not_available">目前無法下載這個模型，請稍後再試。</string>
+    <string name="engine_failure_no_space">儲存空間不足，無法下載這個模型。請釋放一些空間後再試一次。</string>
+    <string name="engine_failure_network">下載中斷了。請檢查網路連線後再試一次，下載會從中斷處繼續。</string>
+    <string name="engine_failure_generic">無法安裝模型，請再試一次。</string>
+    <string name="engine_corrupt_outdated">已安裝的檔案與這個版本的應用程式不符。</string>
+    <string name="engine_corrupt_missing">缺少 %1$s。</string>
+    <string name="engine_corrupt_wrong_size">%1$s 的大小不正確。</string>
+    <string name="engine_corrupt_damaged">%1$s 已損毀。</string>
+    <string name="engine_failure_checksum">有個下載的檔案與預期不符，因此已將其刪除。請再試一次，重新下載該檔案。</string>
+
+    <!-- Engine actions -->
+    <string name="engine_action_download">下載</string>
+    <string name="engine_action_resume">繼續</string>
+    <string name="engine_action_retry">重試</string>
+    <string name="engine_action_download_again">重新下載</string>
+    <string name="engine_action_cancel">取消</string>
+    <string name="engine_action_remove_download">刪除下載內容</string>
+    <string name="engine_action_check_files">檢查檔案</string>
+    <string name="engine_action_checking">正在檢查檔案…</string>
+    <string name="engine_action_remove">移除</string>
+    <string name="engine_dialog_cancel">取消</string>
+    <string name="engine_download_confirm_title">要下載 %1$s 嗎？</string>
+    <string name="engine_download_confirm_body">這會從網路下載 %1$s，只需一次。之後引擎就能離線運作，你說的任何內容都不會離開手機。</string>
+    <string name="engine_remove_confirm_title">要移除 %1$s 嗎？</string>
+    <string name="engine_remove_confirm_body">這會從手機中刪除模型檔案（%1$s）。你隨時可以重新下載。</string>
+    <string name="engine_remove_download_failed">無法刪除下載內容，請再試一次。</string>
+    <string name="engine_remove_failed">無法刪除模型檔案，請再試一次。</string>
+    <string name="engine_check_ok">所有檔案都完好無損</string>
+    <string name="engine_check_damaged">部分模型檔案已損毀。請重新下載以修正問題。</string>
+    <string name="engine_check_failed">無法檢查檔案，請再試一次。</string>
+    <string name="download_channel_name">語音模型下載</string>
+
+    <!-- Engine info dialog -->
+    <string name="engine_detail_languages">語言</string>
+    <string name="engine_detail_size_on_disk">佔用空間</string>
+    <string name="engine_detail_download_size">下載大小</string>
+    <string name="engine_detail_license">授權</string>
+    <string name="engine_detail_source">來源</string>
+    <string name="engine_detail_speed">速度</string>
+    <string name="engine_speed_cost">解碼時間為 Parakeet Ultra 的 %1$s 倍（估計值）</string>
+    <string name="engine_speed_reference">以 Parakeet Ultra 作為速度基準</string>
+    <string name="engine_speed_phone_unmeasured">尚未測量這支手機的速度</string>
+
+    <!-- Settings -->
+    <string name="settings_title">設定</string>
+    <string name="settings_back">返回</string>
+    <string name="settings_save_failed">無法儲存設定，請再試一次。</string>
+    <string name="settings_speech">語音</string>
+    <string name="settings_speech_keep_loaded">讓引擎保持就緒</string>
+    <string name="settings_speech_keep_loaded_desc">能更快開始聆聽。如果你經常使用語音輸入（例如基於無障礙需求），建議開啟。應用程式開啟期間會使用約 0.6 到 3 GB 的記憶體，實際用量視引擎而定。</string>
+    <!-- Settings → End of speech -->
+    <string name="settings_end">停止方式</string>
+    <string name="settings_end_keyboard">語音鍵盤</string>
+    <string name="settings_end_apps">其他應用程式和「請說話」視窗</string>
+    <string name="settings_end_tap">輕觸停止</string>
+    <string name="settings_end_tap_desc">麥克風會持續開啟，直到你輕觸它為止。停止後才會輸入你說的話。</string>
+    <string name="settings_end_smart_turn">透過 Smart Turn 自動停止</string>
+    <string name="settings_end_smart_turn_desc">在聽起來你已說完時停止，因此停下來思考時不會被打斷。</string>
+    <string name="settings_end_pause">停頓後自動停止</string>
+    <string name="settings_end_pause_desc">你一停頓就會停止。停頓多久可在「停頓長度」中設定。</string>
+    <string name="settings_end_word">說出結束詞</string>
+    <string name="settings_end_word_desc">單獨說出結束詞（例如「over」）時停止。結束詞不會被輸入。</string>
+    <string name="settings_end_lock_hint">提示：在自動停止模式下，按住麥克風即可持續聆聽，直到你輕觸它為止。</string>
+    <string name="settings_dialog_cancel">取消</string>
+    <string name="settings_speech_pause">停頓長度</string>
+    <string name="settings_speech_pause_desc">在「聽寫」分頁中停頓多久算一句話結束，以及在「停頓後自動停止」模式下停頓多久會停止聆聽。設得越長，越能停下來思考。</string>
+    <string name="settings_speech_pause_value">%1$.1f 秒</string>
+    <string name="settings_speech_pause_state">%1$.1f 秒</string>
+    <string name="settings_patience">Smart Turn 耐心程度</string>
+    <string name="settings_patience_desc">%1$s。判斷你說完之前要等多久。</string>
+    <string name="settings_patience_quick">快速</string>
+    <string name="settings_patience_quick_desc">較早停止聆聽，但比較常打斷你。</string>
+    <string name="settings_patience_normal">一般</string>
+    <string name="settings_patience_normal_desc">大多數思考時的停頓都會等你。</string>
+    <string name="settings_patience_relaxed">寬鬆</string>
+    <string name="settings_patience_relaxed_desc">等較久才停止聆聽。適合經常停頓的人。</string>
+    <string name="settings_end_words">結束詞</string>
+    <string name="settings_end_words_hint">請用逗號分隔。</string>
+    <!-- Settings → Support -->
+    <string name="settings_support">贊助</string>
+    <string name="settings_support_dev">贊助開發</string>
+    <string name="settings_support_dev_desc">透過 GitHub Sponsors 捐款。完全自願，且不可抵稅。</string>
+    <string name="settings_more_marmalade">更多 Marmalade</string>
+    <string name="settings_more_marmalade_desc">GitHub 上的其他 Marmalade 應用程式。</string>
+    <string name="settings_report_bug">回報問題</string>
+    <string name="settings_report_bug_desc">有東西故障或聽錯了嗎？將開啟一個已填妥詳細資訊的 GitHub issue。</string>
+    <string name="settings_about">關於</string>
+    <string name="settings_about_row">關於 Marmalade STT</string>
+    <string name="settings_about_row_desc">版本 %1$s · 授權、隱私權</string>
+
+    <!-- About -->
+    <string name="about_title">關於</string>
+    <string name="about_version">版本 %1$s</string>
+    <string name="about_tagline">在你手機上執行的私密語音轉文字。</string>
+    <string name="about_privacy">隱私權政策</string>
+    <string name="about_privacy_desc">哪些內容會留在你的手機上（你說的一切），以及應用程式會下載什麼。沒有追蹤，也沒有帳戶。</string>
+    <string name="about_privacy_english_note">本政策為英文版。摘要：語音在你的手機上辨識，絕不使用雲端或線上語音服務。音訊絕不會被儲存或上傳。沒有分析、追蹤或帳戶。只有下載語音模型時才會使用網路。</string>
+    <string name="about_privacy_load_failed">無法載入隱私權政策。程式碼存放區中也有一份，檔名為 PRIVACY.md。</string>
+    <string name="about_licenses">開放原始碼授權</string>
+    <string name="about_licenses_desc">本應用程式及其內建元件的授權。</string>
+
+    <!-- Open-source licenses -->
+    <string name="licenses_licensing">授權</string>
+    <string name="licenses_view_full">查看完整授權</string>
+    <string name="license_text_title">授權</string>
+    <string name="license_text_not_bundled">未內建授權全文。請參閱上一個畫面中的連結。</string>
+    <string name="license_text_load_failed">無法載入授權全文。請參閱上一個畫面中的上游連結。</string>
+
+    <!-- Voice keyboard -->
+    <string name="ime_name">Marmalade 語音輸入</string>
+    <string name="ime_subtype_label">語音輸入</string>
+    <string name="ime_status_loading">正在載入模型…</string>
+    <string name="ime_status_listening">正在聆聽</string>
+    <string name="ime_status_hearing">正在聽你說…</string>
+    <string name="ime_status_finishing">正在收尾…</string>
+    <string name="ime_status_paused">已暫停。輕觸麥克風即可繼續。</string>
+    <string name="ime_speak_now">請說話</string>
+    <string name="ime_cancel">返回鍵盤</string>
+    <string name="ime_done">完成</string>
+    <string name="ime_pause">暫停聆聽</string>
+    <string name="ime_resume">繼續聆聽</string>
+    <string name="ime_no_model">請先在 Marmalade STT 中下載語音模型，才能使用語音輸入。</string>
+    <string name="ime_open_app">開啟 Marmalade STT</string>
+    <string name="ime_mic_needed">語音輸入需要使用麥克風。只有在這個面板開啟時才會聆聽。</string>
+    <string name="ime_mic_allow">允許使用麥克風</string>
+    <string name="ime_mic_blocked">Marmalade STT 的麥克風存取權已關閉。請在「權限」中開啟，然後返回你的應用程式。</string>
+
+    <!-- Speech input dialog and RecognitionService -->
+    <string name="recognizer_speak_now">請說話</string>
+    <string name="recognizer_cancel">取消</string>
+    <string name="recognizer_done">完成</string>
+    <string name="recognizer_try_again">再試一次</string>
+    <string name="recognizer_no_model">請先在 Marmalade STT 中下載語音模型，才能使用語音輸入。</string>
+    <string name="recognizer_open_app">開啟 Marmalade STT</string>
+    <string name="recognizer_mic_blocked">語音輸入需要使用麥克風。請在應用程式設定的「權限」中開啟。</string>
+    <string name="recognizer_open_settings">開啟設定</string>
+    <string name="recognizer_mic_stop">停止聆聽</string>
+
+    <!-- Press and hold the mic to lock listening -->
+    <string name="lock_status">已鎖定：輕觸即可停止</string>
+    <string name="lock_state">已鎖定</string>
+    <string name="lock_action">鎖定聆聽</string>
+
+    <!-- Text cleanup -->
+    <string name="cleanup_section">文字整理</string>
+    <string name="cleanup_fillers">移除贅詞</string>
+    <string name="cleanup_fillers_desc">移除「um」「uh」「er」「hmm」等贅詞。像「umbrella」這類真正的單字會保留。</string>
+    <string name="cleanup_commands">語音指令</string>
+    <string name="cleanup_commands_desc">可以說「new line」「new paragraph」，或說「scratch that」刪除上一句。</string>
+    <string name="cleanup_punctuation">標點符號詞</string>
+    <string name="cleanup_punctuation_desc">也可以說「period」「comma」「question mark」等。預設為關閉，因為它們也是一般單字。</string>
+    <string name="cleanup_english_only">僅限英文。%1$s</string>
+    <string name="cleanup_itn">將數字寫成阿拉伯數字</string>
+    <string name="cleanup_itn_desc">「Twenty five percent」會變成「25%」，「nine thirty pm」會變成「9:30 pm」。像「three boxes」這樣較小的數字仍會寫成單字。</string>
+    <string name="cleanup_capitalize">句首大寫</string>
+    <string name="cleanup_capitalize_desc">每個句子和每一行的開頭都使用大寫字母。絕不會把字母改成小寫。</string>
+    <string name="cleanup_dictionary">替換字典</string>
+    <string name="cleanup_dictionary_desc_none">修正應用程式老是聽錯的字詞。</string>
+    <plurals name="cleanup_dictionary_desc">
+        <item quantity="other">%1$d 項規則 · 修正應用程式老是聽錯的字詞</item>
+    </plurals>
+    <string name="cleanup_snippets">文字片段</string>
+    <string name="cleanup_snippets_desc_none">說出觸發片語即可插入已儲存的文字，例如你的地址。</string>
+    <plurals name="cleanup_snippets_desc">
+        <item quantity="other">%1$d 個片段 · 說出觸發片語即可插入已儲存的文字</item>
+    </plurals>
+
+    <string name="cleanup_save">儲存</string>
+    <string name="cleanup_cancel">取消</string>
+    <string name="cleanup_delete">刪除</string>
+    <string name="cleanup_edit_action">編輯</string>
+
+    <string name="cleanup_dictionary_help">每項規則會把應用程式老是聽錯的字詞或片語，改成你原本想說的內容。\n\n• 比對完整單字，不分大小寫：「teh」能比對到「Teh」，但不會比對到「tehran」。\n• 中文和日文的字詞之間沒有空格，因此片語在句子中間也能比對到。在韓文中，後面接了助詞也能比對到：「메일」能比對到「메일을」。\n• 右側寫的大寫字母會原樣保留；否則大小寫會依照聽到的內容：「Teh」會變成「The」。\n• 右側留白即可刪除該片語。\n• 規則重疊時，以最長的比對結果為準。</string>
+    <string name="cleanup_dictionary_empty">還沒有規則。輕觸「新增規則」即可修正應用程式老是聽錯的字詞。</string>
+    <string name="cleanup_dictionary_add">新增規則</string>
+    <string name="cleanup_dictionary_edit">編輯規則</string>
+    <string name="cleanup_dictionary_from">聽到的內容</string>
+    <string name="cleanup_dictionary_to">改寫為</string>
+    <string name="cleanup_dictionary_to_hint">留白即可刪除該片語。</string>
+    <string name="cleanup_dictionary_from_breaks_export">不能包含「->」，也不能以「#」開頭。</string>
+    <string name="cleanup_dictionary_replaces">將取代你為「%1$s」設定的規則。</string>
+    <string name="cleanup_dictionary_deleted">（已刪除）</string>
+    <string name="cleanup_dictionary_rule_description">%1$s 變成 %2$s</string>
+    <string name="cleanup_dictionary_rule_deletes_description">%1$s 會被刪除</string>
+    <string name="cleanup_import">匯入</string>
+    <string name="cleanup_export">全部複製</string>
+    <string name="cleanup_exported">已複製規則</string>
+    <string name="cleanup_import_title">匯入規則</string>
+    <string name="cleanup_import_help">每行貼上一項規則，格式為「錯誤 -> 正確」。以 # 開頭的行會被忽略。如果某個字詞已有規則，新規則會取代它。</string>
+    <string name="cleanup_import_field">規則</string>
+    <string name="cleanup_import_none">尚未找到規則。</string>
+    <plurals name="cleanup_import_found">
+        <item quantity="other">找到 %1$d 項規則。</item>
+    </plurals>
+    <plurals name="cleanup_import_skipped">
+        <item quantity="other">%1$d 行不是規則，將會略過。</item>
+    </plurals>
+
+    <string name="cleanup_snippets_help">說出觸發片語，它就會被替換成你儲存的文字，完全依照原樣，包括換行。\n\n• 觸發片語比對完整單字，不分大小寫：「my email」能比對到「My email」，但不會比對到「my emailing」。\n• 中文和日文的字詞之間沒有空格，因此觸發片語在句子中間也能比對到。在韓文中，後面接了助詞也能比對到：「메일」能比對到「메일을」。\n• 已儲存的文字不會受到其他任何處理：不會移除贅詞、不會執行指令，也不會改變大小寫。\n• 單獨說出觸發片語時，只會插入已儲存的文字。</string>
+    <string name="cleanup_snippets_empty">還沒有文字片段。輕觸「新增片段」即可儲存常用的文字。</string>
+    <string name="cleanup_snippets_add">新增片段</string>
+    <string name="cleanup_snippets_edit">編輯片段</string>
+    <string name="cleanup_snippets_trigger">觸發片語</string>
+    <string name="cleanup_snippets_text">要插入的文字</string>
+    <string name="cleanup_snippets_replaces">將取代你為「%1$s」設定的片段。</string>
+
+    <!-- Setup guide (onboarding) -->
+    <string name="onboarding_step_of">第 %1$d 步，共 %2$d 步</string>
+    <string name="onboarding_close">關閉設定指南</string>
+    <string name="onboarding_back">返回</string>
+    <string name="onboarding_next">下一步</string>
+    <string name="onboarding_skip">略過</string>
+    <string name="onboarding_get_started">開始使用</string>
+    <string name="onboarding_try_it">試試看</string>
+    <string name="onboarding_settings_failed">無法開啟 Android 設定，請改從主畫面開啟。</string>
+    <!-- Toasts over Settings when only a fallback page opened (#79): where to go from there. -->
+    <string name="settings_hint_voice_input">請在「設定」中搜尋「語音輸入」，然後選擇 Marmalade STT。</string>
+    <string name="settings_hint_keyboards">請在「設定」中搜尋「鍵盤」，然後開啟「Marmalade 語音輸入」。</string>
+    <string name="settings_hint_app_details">請在「應用程式」中找到 Marmalade STT，然後在「權限」中開啟麥克風。</string>
+    <string name="onboarding_welcome_title">歡迎使用 Marmalade STT</string>
+    <string name="onboarding_welcome_body">只要說話，Marmalade STT 就會幫你打成文字：可以在它專屬的「聽寫」畫面使用，也可以當作其他應用程式的語音輸入。只需幾個簡單步驟就能準備就緒。</string>
+    <string name="onboarding_privacy_title">從設計就保護隱私</string>
+    <string name="onboarding_privacy_body">語音在你的手機上辨識，絕不使用任何雲端或線上語音服務，包括 Google 的服務。音訊絕不會被儲存或上傳。沒有分析、沒有追蹤、沒有帳戶、沒有 API 金鑰。只有下載語音模型時才會使用網路。</string>
+    <string name="onboarding_high_contrast">無障礙模式</string>
+    <string name="onboarding_high_contrast_desc">高對比色彩</string>
+    <string name="onboarding_mic_title">允許使用麥克風</string>
+    <string name="onboarding_mic_body">Marmalade STT 需要麥克風才能聽到你說話。只有在聽寫開啟時才會使用麥克風。</string>
+    <string name="onboarding_mic_granted">已開啟麥克風存取權</string>
+    <string name="onboarding_mic_denied">沒有麥克風，Marmalade STT 就聽不到你說話。你可以現在允許，或先略過，稍後再允許。</string>
+    <string name="onboarding_mic_blocked">這個應用程式的麥克風存取權已關閉。請在應用程式設定頁面的「權限」中開啟。</string>
+    <string name="onboarding_mic_allow">允許使用麥克風</string>
+    <string name="onboarding_mic_open_settings">開啟應用程式設定</string>
+    <string name="onboarding_model_title">下載語音模型</string>
+    <string name="onboarding_model_body">語音由在你手機上執行的模型辨識。只需下載一次，之後就能離線聽寫。</string>
+    <string name="onboarding_model_downloading_note">模型準備好後即可繼續設定。螢幕關閉或離開應用程式時，下載仍會繼續。</string>
+    <string name="onboarding_keyboard_title">開啟語音鍵盤</string>
+    <string name="onboarding_keyboard_body">透過 Marmalade 語音鍵盤，你就能在其他應用程式中聽寫：鍵盤的麥克風鍵會開啟它。請在 Android 的鍵盤設定中開啟「Marmalade 語音輸入」，然後回到這裡。</string>
+    <string name="onboarding_keyboard_open">開啟鍵盤設定</string>
+    <string name="onboarding_keyboard_on">語音鍵盤已開啟</string>
+    <string name="onboarding_keyboard_off">語音鍵盤已關閉</string>
+    <string name="onboarding_keyboard_warning">Android 會警告你，你開啟的任何鍵盤都可能收集你輸入的內容。這是標準警告。Marmalade STT 只會輸入你聽寫的內容，而且任何內容都不會離開你的手機。</string>
+    <string name="onboarding_keyboard_unlock_note">有些手機接著會顯示第二則訊息：重新啟動後，必須先解鎖手機，這個應用程式才能啟動。這也沒關係，輕觸「確定」即可。</string>
+    <string name="onboarding_futo_checking">正在詢問 FUTO Keyboard…</string>
+    <string name="onboarding_futo_selected">FUTO Keyboard 使用 Marmalade STT 進行語音輸入</string>
+    <string name="onboarding_futo_not_selected">FUTO Keyboard 使用的是其他語音輸入</string>
+    <string name="onboarding_futo_use">在 FUTO 中使用 Marmalade STT</string>
+    <string name="onboarding_futo_check_again">再次檢查</string>
+    <string name="onboarding_futo_manual_title">自行設定</string>
+    <!-- FUTO Keyboard has no Traditional Chinese for these labels, so it shows them in English. -->
+    <string name="onboarding_futo_manual_body">在 FUTO Keyboard 中開啟設定，進入「Voice Input」，然後開啟「Disable built-in voice input」（「Use voice input provided by external app」）。之後 FUTO 的麥克風按鈕就會開啟上一步中的 Marmalade 語音鍵盤。</string>
+    <string name="onboarding_futo_crash_once">如果第一次輕觸 FUTO Keyboard 的麥克風時鍵盤關閉了，請再輕觸一次。</string>
+    <string name="onboarding_done_title">一切就緒</string>
+    <string name="onboarding_done_body">到「聽寫」畫面試試看：輕觸麥克風，然後開始說話。</string>
+    <string name="onboarding_done_title_partial">隨時可以開始</string>
+    <string name="onboarding_done_body_partial">還有一些步驟尚未完成。你隨時可以完成它們。</string>
+    <string name="onboarding_done_reopen">你可以從「設定」再次開啟這份指南。</string>
+    <string name="onboarding_summary_mic">麥克風</string>
+    <string name="onboarding_summary_mic_on">已允許</string>
+    <string name="onboarding_summary_mic_off">尚未允許</string>
+    <string name="onboarding_summary_model">語音模型</string>
+    <string name="onboarding_summary_model_ready">已就緒</string>
+    <string name="onboarding_summary_model_downloading">下載中</string>
+    <string name="onboarding_summary_model_missing">尚未下載。請到「引擎」分頁取得。</string>
+    <string name="onboarding_summary_model_attention">下載未完成。請查看「引擎」分頁。</string>
+    <string name="onboarding_summary_keyboard">語音鍵盤</string>
+    <string name="onboarding_summary_keyboard_on">已開啟</string>
+    <string name="onboarding_summary_keyboard_off">已關閉</string>
+    <string name="onboarding_summary_futo">FUTO Keyboard</string>
+    <string name="onboarding_summary_futo_on">使用 Marmalade STT</string>
+    <string name="onboarding_summary_futo_off">使用其他語音輸入</string>
+    <string name="onboarding_settings_row">設定指南</string>
+    <string name="onboarding_settings_row_desc">麥克風、語音引擎、鍵盤和語音辨識服務</string>
+</resources>

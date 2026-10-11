@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Benchmark A/B para desenvolvedores -->
+    <string name="benchmark_title">Benchmark</string>
+    <string name="benchmark_note">Faça uma gravação, e cada motor instalado a transcreve, um por vez: carregar, transcrever, descarregar. Todos os motores recebem os mesmos segmentos do Silero VAD. Os motores de streaming recebem cada segmento em blocos de 100 ms tão rápido quanto o modelo os aceita, não em tempo real. A gravação fica na memória e nunca é salva. Números de um emulador só servem para comparar os motores entre si.</string>
+
+    <string name="benchmark_section_take">Gravação</string>
+    <string name="benchmark_record">Gravar</string>
+    <string name="benchmark_stop">Parar</string>
+    <string name="benchmark_play">Reproduzir</string>
+    <string name="benchmark_stop_playback">Parar reprodução</string>
+    <string name="benchmark_elapsed">%1$s s / %2$d s</string>
+    <string name="benchmark_level">Nível de entrada</string>
+    <string name="benchmark_take_length">Gravação: %1$s</string>
+    <string name="benchmark_take_length_soft_agc">Gravação: %1$s, nivelada pelo app (este celular não tem controle de ganho do microfone integrado)</string>
+    <plurals name="benchmark_no_take">
+        <item quantity="one">Nenhuma gravação ainda. Grave até %1$d segundo de fala.</item>
+        <item quantity="many">Nenhuma gravação ainda. Grave até %1$d de segundos de fala.</item>
+        <item quantity="other">Nenhuma gravação ainda. Grave até %1$d segundos de fala.</item>
+    </plurals>
+
+    <string name="benchmark_section_reference">Texto de referência (opcional)</string>
+    <string name="benchmark_reference_label">O que você disse</string>
+    <string name="benchmark_reference_hint">Digite o que você disse para obter a taxa de erro de palavras (WER) de cada motor.</string>
+
+    <string name="benchmark_section_engines">Motores</string>
+    <string name="benchmark_no_engines">Nenhum motor instalado. Instale alguns na aba Motores (ative Motores para desenvolvedores em Configurações para ver os candidatos).</string>
+    <string name="benchmark_run">Executar benchmark</string>
+    <string name="benchmark_run_again">Executar de novo</string>
+    <string name="benchmark_running">Executando %1$s (%2$d de %3$d)…</string>
+
+    <string name="benchmark_section_results">Resultados</string>
+    <string name="benchmark_metric_load">Carregamento %1$s</string>
+    <string name="benchmark_metric_decode">Decodificação %1$s</string>
+    <string name="benchmark_metric_rtf">RTF %1$s</string>
+    <string name="benchmark_metric_rss">Pico de RSS (amostrado) %1$s</string>
+    <string name="benchmark_metric_wer">WER %1$s</string>
+    <string name="benchmark_empty_transcript">(nenhuma fala reconhecida)</string>
+    <string name="benchmark_raw">Bruto: %1$s</string>
+    <string name="benchmark_failed_load">Não foi possível carregar: %1$s</string>
+    <string name="benchmark_failed_transcribe">Não foi possível transcrever: %1$s</string>
+    <string name="benchmark_failed_release">Transcrito, mas não foi possível descarregar: %1$s</string>
+    <string name="benchmark_copy_markdown">Copiar como Markdown</string>
+    <string name="benchmark_copied">Copiado</string>
+
+    <!-- Avisos (snackbar) -->
+    <string name="benchmark_error_mic">Não foi possível gravar. Outro app está usando o microfone?</string>
+    <string name="benchmark_error_empty">Nada foi gravado. Tente novamente.</string>
+    <string name="benchmark_error_playback">Não foi possível reproduzir a gravação.</string>
+    <string name="benchmark_error_no_engines">Nenhum motor instalado para executar.</string>
+    <string name="benchmark_error_run">O benchmark parou por causa de um erro.</string>
+
+    <!-- Permissão do microfone -->
+    <string name="benchmark_mic_title">O benchmark precisa do seu microfone</string>
+    <string name="benchmark_mic_body">Ele faz uma gravação, que fica só na memória e nunca é salva nem enviada.</string>
+</resources>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Developer engines (#13): the Settings toggle, re-measuring the phone's
+     speed (#24), runtime tuning (#31), engine badges, picking an engine and its language. -->
+<resources>
+    <!-- Settings → Developer -->
+    <string name="settings_developer">Developer</string>
+    <string name="settings_developer_engines">Developer engines</string>
+    <string name="settings_developer_engines_desc">Show extra speech engines for testing and benchmarking. Large downloads, not meant for everyday use.</string>
+    <string name="settings_developer_benchmark">A/B benchmark</string>
+    <string name="settings_developer_benchmark_desc">Compare installed engines on one recording.</string>
+    <string name="settings_developer_speed">Re-measure phone speed</string>
+    <string name="settings_developer_speed_measuring">Measuring…</string>
+    <string name="settings_developer_speed_measured">Speed score %1$s</string>
+    <string name="settings_developer_speed_unmeasured">Not measured yet</string>
+    <string name="settings_developer_speed_done">Speed score: %1$s</string>
+    <string name="settings_developer_speed_failed">Couldn\'t measure the phone\'s speed</string>
+    <!-- ONNX Runtime tuning (#31). A choice reads as its parts joined by commas,
+         e.g. "CPU, no spinning, pinned to fast cores"; the default is
+         "Default (CPU)". CPU is ONNX Runtime's execution provider -->
+    <string name="settings_developer_ort_tuning">Runtime tuning</string>
+    <string name="settings_developer_ort_tuning_desc">ONNX Runtime thread spinning and core pinning, for measuring. Applies to the next engine load.</string>
+    <string name="settings_developer_ort_tuning_default">Default (%1$s)</string>
+    <string name="settings_developer_ort_tuning_cpu">CPU</string>
+    <string name="settings_developer_ort_tuning_no_spinning">no spinning</string>
+    <string name="settings_developer_ort_tuning_pinned">pinned to fast cores</string>
+
+    <!-- Small labels (pills, tags) on engine cards and rows and the engine
+         details dialog. "In use" is the pill where an installed card's Use
+         button would be; "May be slow on this phone" marks an engine over the
+         phone's speed budget; "Developer engine" is the dialog's wording -->
+    <string name="engine_badge_in_use">In use</string>
+    <string name="engine_badge_developer">Developer</string>
+    <string name="engine_badge_developer_long">Developer engine</string>
+    <string name="engine_badge_may_be_slow_long">May be slow on this phone</string>
+    <string name="engine_badge_streaming">Streaming</string>
+    <!-- A streaming engine with a fixed chunk (Nemotron 3.5), e.g. "Streaming · 1120 ms steps" -->
+    <string name="engine_streaming_steps">Streaming · %1$d ms steps</string>
+
+    <!-- Engines card: picking the engine. The button reads "Use"; TalkBack
+         hears the engine's name too, e.g. "Use Parakeet Ultra" -->
+    <string name="engine_action_use">Use</string>
+    <string name="engine_action_use_named">Use %1$s</string>
+    <string name="engine_use_failed">Couldn\'t switch engines. Try again.</string>
+
+    <!-- Engine info dialog: language hint -->
+    <string name="engine_language">Language for this engine</string>
+    <string name="engine_language_auto">Auto-detect</string>
+    <string name="engine_language_cancel">Cancel</string>
+    <string name="engine_language_failed">Couldn\'t save the language. Try again.</string>
+</resources>

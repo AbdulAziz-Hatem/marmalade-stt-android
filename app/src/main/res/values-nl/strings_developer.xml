@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Developer engines: the Settings toggle, phone speed, runtime tuning, engine badges, picking an engine and its language. -->
+<resources>
+    <!-- Settings → Developer -->
+    <string name="settings_developer">Ontwikkelaar</string>
+    <string name="settings_developer_engines">Ontwikkelaarsengines</string>
+    <string name="settings_developer_engines_desc">Toon extra spraakengines om te testen en te benchmarken. Grote downloads, niet bedoeld voor dagelijks gebruik.</string>
+    <string name="settings_developer_benchmark">A/B-benchmark</string>
+    <string name="settings_developer_benchmark_desc">Vergelijk geïnstalleerde engines op één opname.</string>
+    <string name="settings_developer_speed">Telefoonsnelheid opnieuw meten</string>
+    <string name="settings_developer_speed_measuring">Meten…</string>
+    <string name="settings_developer_speed_measured">Snelheidsscore %1$s</string>
+    <string name="settings_developer_speed_unmeasured">Nog niet gemeten</string>
+    <string name="settings_developer_speed_done">Snelheidsscore: %1$s</string>
+    <string name="settings_developer_speed_failed">Kan de snelheid van de telefoon niet meten</string>
+    <!-- ONNX Runtime tuning -->
+    <string name="settings_developer_ort_tuning">Runtime-afstemming</string>
+    <string name="settings_developer_ort_tuning_desc">Thread-spinning en core-pinning van ONNX Runtime, om te meten. Geldt vanaf de volgende keer dat een engine wordt geladen.</string>
+    <string name="settings_developer_ort_tuning_default">Standaard (%1$s)</string>
+    <string name="settings_developer_ort_tuning_cpu">CPU</string>
+    <string name="settings_developer_ort_tuning_no_spinning">geen spinning</string>
+    <string name="settings_developer_ort_tuning_pinned">vastgezet op snelle cores</string>
+
+    <!-- Small labels on engine cards and rows and the details dialog -->
+    <string name="engine_badge_in_use">In gebruik</string>
+    <string name="engine_badge_developer">Ontwikkelaar</string>
+    <string name="engine_badge_developer_long">Ontwikkelaarsengine</string>
+    <string name="engine_badge_may_be_slow_long">Kan traag zijn op deze telefoon</string>
+    <string name="engine_badge_streaming">Streaming</string>
+    <string name="engine_streaming_steps">Streaming · stappen van %1$d ms</string>
+
+    <!-- Engines card: picking the engine -->
+    <string name="engine_action_use">Gebruiken</string>
+    <string name="engine_action_use_named">%1$s gebruiken</string>
+    <string name="engine_use_failed">Kan niet van engine wisselen. Probeer het opnieuw.</string>
+
+    <!-- Engine info dialog: language hint -->
+    <string name="engine_language">Taal voor deze engine</string>
+    <string name="engine_language_auto">Automatisch detecteren</string>
+    <string name="engine_language_cancel">Annuleren</string>
+    <string name="engine_language_failed">Kan de taal niet opslaan. Probeer het opnieuw.</string>
+</resources>

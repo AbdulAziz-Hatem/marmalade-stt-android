@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Setup guide: the keyboards' mic keys and Android's speech recognition service (#61).
+         Other apps' labels are theirs (Fossify, SwiftKey); Android's are AOSP Settings' Japanese. -->
+    <string name="onboarding_mic_key_title">キーボードから音声入力</string>
+    <string name="onboarding_mic_key_body">ほとんどのキーボードにはマイクキーがあります。お使いのキーボードごとに、Marmalade STT を使う方法を説明します。</string>
+    <string name="onboarding_mic_key_needs_voice_keyboard">先に Marmalade 音声キーボードをオンにしてください（前の手順）。マイクキーで開くのはこのキーボードです。</string>
+    <string name="onboarding_mic_key_other_voice_title">他の音声キーボードをオフにする</string>
+    <!-- %1$s: the other voice keyboards' names, quoted -->
+    <string name="onboarding_mic_key_other_voice">オンになっている他の音声キーボード：%1$s。ほとんどのマイクキーは、オンになっている最初の音声キーボードを開きます。Android はプリインストールのものを先頭に置きます。Android のキーボード設定でこれらをオフにしてください（多くの端末では「設定」→「システム」→「キーボード」→「画面キーボード」）。</string>
+    <string name="onboarding_mic_key_current">%1$s（使用中）</string>
+    <string name="onboarding_kb_first">マイクキーをタップします。オンになっている最初の音声キーボードが開くので、オンにする音声キーボードは「Marmalade 音声入力」だけにしてください。マイクキーがない場合は、キーボードの設定やツールバーで音声入力キーを探してください。</string>
+    <string name="onboarding_kb_first_hidden">マイクキーをタップします。オンにする音声キーボードは「Marmalade 音声入力」だけにしてください。このキーボードは、このアプリで一度入力するまで Marmalade を認識できません。マイクキーが表示されない場合や反応しない場合は、このキーボードで下の入力欄に 1 文字入力してください。端末を再起動した後も、もう一度入力してください。</string>
+    <string name="onboarding_kb_chooser">音声キーをタップして「Marmalade 音声入力」を選びます。選択は記憶されます。</string>
+    <string name="onboarding_kb_fossify">Fossify Keyboard の設定で「音声入力方式」を「Marmalade 音声入力」にすると、ツールバーにマイクが表示されます。Fossify は、このアプリで一度入力するまで Marmalade を認識できません。一覧に Marmalade がない場合やマイクが反応しない場合は、先に Fossify で下の入力欄に 1 文字入力してください。端末を再起動した後も、もう一度入力してください。</string>
+    <string name="onboarding_kb_swiftkey">SwiftKey のマイクは Microsoft 独自の音声入力を使います。「マルチモーダル音声入力」をオフにすると（SwiftKey の「設定」→「リッチ入力」）、代わりに Android に音声入力を求めるため、Marmalade STT が開く場合があります。この方法はまだテストできていません。</string>
+    <string name="onboarding_kb_own_engine">このキーボードのマイクキーは常に独自の音声入力を使います。代わりに Marmalade を使うには、ナビゲーションバーのキーボードボタンをタップして「Marmalade 音声入力」を選びます。</string>
+    <string name="onboarding_kb_google_only">このキーボードのマイクキーは Google 音声入力しか開きません。代わりに Marmalade を使うには、ナビゲーションバーのキーボードボタンをタップして「Marmalade 音声入力」を選びます。</string>
+    <string name="onboarding_kb_no_mic">このキーボードにはマイクキーがありません。Marmalade を使うには、ナビゲーションバーのキーボードボタンをタップして「Marmalade 音声入力」を選びます。</string>
+    <string name="onboarding_kb_unknown">下の入力欄でマイクキーを試してください。マイクキーで音声キーボードに切り替わるキーボードなら、「Marmalade 音声入力」が開きます。オンにする音声キーボードはこれだけにしてください。</string>
+    <string name="onboarding_kb_futo">FUTO Keyboard</string>
+    <string name="onboarding_try_label">ここで試す</string>
+    <string name="onboarding_try_hint">入力欄をタップしてから、キーボードのマイクキーをタップしてください。</string>
+
+    <string name="onboarding_speech_title">他のアプリの音声認識</string>
+    <string name="onboarding_speech_body">一部のアプリには、Android の音声認識サービスを使うマイクボタンがあります。そのサービスに Marmalade STT を選ぶと、そうしたアプリでも音声が端末内で認識されます。</string>
+    <string name="onboarding_speech_on">Marmalade STT は Android の音声認識サービスです</string>
+    <string name="onboarding_speech_off">Marmalade STT は Android の音声認識サービスではありません</string>
+    <string name="onboarding_speech_open">設定を開く</string>
+    <!-- The step's directions follow the page "Open settings" lands on (#79), with each Android release's own Settings labels. -->
+    <!-- Android 9. The Voice input row is hidden while the assistant is also the voice service (Google). -->
+    <string name="onboarding_speech_path_assist_9">「設定」で「アプリと通知」→「詳細設定」→「デフォルト アプリ」→「アシストと音声入力」→「音声入力」を開き、Marmalade STT を選んでください。「音声入力」が表示されない場合は、先に「アシストアプリ」を「なし」に設定してください。</string>
+    <!-- Android 10 -->
+    <string name="onboarding_speech_path_assist_10">「設定」で「アプリと通知」→「詳細設定」→「デフォルト アプリ」→「アシストアプリ」→「音声入力」を開き、Marmalade STT を選んでください。「音声入力」が表示されない場合は、先に「アシストアプリ」を「なし」に設定してください。</string>
+    <!-- Android 11 -->
+    <string name="onboarding_speech_path_assist_11">「設定」で「アプリと通知」→「詳細設定」→「デフォルトのアプリ」→「デジタル アシスタント アプリ」→「音声入力」を開き、Marmalade STT を選んでください。「音声入力」が表示されない場合は、先に「デフォルトのデジタル アシスタント アプリ」を「なし」に設定してください。</string>
+    <!-- Android 12 -->
+    <string name="onboarding_speech_path_assist">「設定」で「アプリ」→「デフォルトのアプリ」→「デジタル アシスタント アプリ」→「音声入力」を開き、Marmalade STT を選んでください。</string>
+    <!-- Android 13. Voice input is under the page's Speech heading. -->
+    <string name="onboarding_speech_path_languages_input">「設定」で「システム」→「言語と入力」→「音声入力」を開き、Marmalade STT を選んでください。</string>
+    <!-- Android 14 to 16. Voice input is under the page's Speech heading. -->
+    <string name="onboarding_speech_path_languages">「設定」で「システム」→「言語」→「音声入力」を開き、Marmalade STT を選んでください。</string>
+    <!-- Android 16 with Language & region, and Android 17. Speech is a row of that page. -->
+    <string name="onboarding_speech_path_language_region">「設定」で「システム」→「言語と地域」→「音声」→「音声入力」を開き、Marmalade STT を選んでください。</string>
+    <!-- No known page opens (other phone makers) -->
+    <string name="onboarding_speech_path_search">「設定」で「音声入力」を検索して開き、Marmalade STT を選んでください。</string>
+    <string name="onboarding_speech_elsewhere">別の場所にある端末もあります。「設定」で「音声入力」を検索してください。</string>
+    <string name="onboarding_speech_force_stop">Marmalade STT を強制停止すると、Android は別のサービスに切り替えます。その場合は、もう一度 Marmalade を選んでください。</string>
+
+    <string name="onboarding_summary_other_voice">他の音声キーボード</string>
+    <!-- %1$s: their names, quoted -->
+    <string name="onboarding_summary_other_voice_on">まだオン：%1$s</string>
+    <string name="onboarding_summary_speech">音声認識サービス</string>
+    <string name="onboarding_summary_speech_on">Marmalade STT</string>
+    <string name="onboarding_summary_speech_off">別のアプリ、またはなし</string>
+</resources>

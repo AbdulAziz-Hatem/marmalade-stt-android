@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Настройки → Оформление -->
+    <string name="settings_appearance">Оформление</string>
+    <string name="settings_mode">Режим</string>
+    <string name="settings_mode_system">Как в системе</string>
+    <string name="settings_mode_light">Светлый</string>
+    <string name="settings_mode_dark">Тёмный</string>
+    <string name="settings_color">Цвет</string>
+    <string name="settings_color_system">Обои</string>
+    <string name="settings_color_midnight">Полночь</string>
+    <string name="settings_color_forest">Лес</string>
+    <string name="settings_color_berry">Ягоды</string>
+    <string name="settings_color_high_contrast">Высокая контрастность</string>
+</resources>

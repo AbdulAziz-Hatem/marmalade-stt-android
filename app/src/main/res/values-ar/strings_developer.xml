@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Settings → Developer -->
+    <string name="settings_developer">للمطوّرين</string>
+    <string name="settings_developer_engines">محرّكات المطوّرين</string>
+    <string name="settings_developer_engines_desc">إظهار محرّكات كلام إضافية للاختبار وقياس الأداء. تنزيلاتها كبيرة، وهي غير مخصّصة للاستخدام اليومي.</string>
+    <string name="settings_developer_benchmark">مقارنة A/B</string>
+    <string name="settings_developer_benchmark_desc">قارِن المحرّكات المثبّتة على تسجيل واحد.</string>
+    <string name="settings_developer_speed">إعادة قياس سرعة الهاتف</string>
+    <string name="settings_developer_speed_measuring">جارٍ القياس…</string>
+    <string name="settings_developer_speed_measured">درجة السرعة %1$s</string>
+    <string name="settings_developer_speed_unmeasured">لم يتم القياس بعد</string>
+    <string name="settings_developer_speed_done">درجة السرعة: %1$s</string>
+    <string name="settings_developer_speed_failed">تعذّر قياس سرعة الهاتف</string>
+    <!-- ONNX Runtime tuning -->
+    <string name="settings_developer_ort_tuning">ضبط بيئة التشغيل</string>
+    <string name="settings_developer_ort_tuning_desc">الانتظار النشط للخيوط وربطها بالأنوية في ONNX Runtime، لأغراض القياس. يُطبَّق عند تحميل المحرّك التالي.</string>
+    <string name="settings_developer_ort_tuning_default">افتراضي (%1$s)</string>
+    <string name="settings_developer_ort_tuning_cpu">CPU</string>
+    <string name="settings_developer_ort_tuning_no_spinning">بلا انتظار نشط</string>
+    <string name="settings_developer_ort_tuning_pinned">مربوط بالأنوية السريعة</string>
+
+    <!-- Small labels on engine cards and rows and the engine details dialog -->
+    <string name="engine_badge_in_use">قيد الاستخدام</string>
+    <string name="engine_badge_developer">للمطوّرين</string>
+    <string name="engine_badge_developer_long">محرّك للمطوّرين</string>
+    <string name="engine_badge_may_be_slow_long">قد يكون بطيئًا على هذا الهاتف</string>
+    <string name="engine_badge_streaming">فوري</string>
+    <string name="engine_streaming_steps">فوري · كل %1$d ملي ثانية</string>
+
+    <!-- Engines card: picking the engine -->
+    <string name="engine_action_use">استخدام</string>
+    <string name="engine_action_use_named">استخدام %1$s</string>
+    <string name="engine_use_failed">تعذّر تبديل المحرّك. حاوِل مرة أخرى.</string>
+
+    <!-- Engine info dialog: language hint -->
+    <string name="engine_language">لغة هذا المحرّك</string>
+    <string name="engine_language_auto">اكتشاف تلقائي</string>
+    <string name="engine_language_cancel">إلغاء</string>
+    <string name="engine_language_failed">تعذّر حفظ اللغة. حاوِل مرة أخرى.</string>
+</resources>

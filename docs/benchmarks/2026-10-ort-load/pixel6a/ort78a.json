@@ -1,0 +1,1468 @@
+{
+  "tag": "ort78a",
+  "started": "20261010-181546",
+  "device": "Google Pixel 6a (Android 14, SDK 34)",
+  "seed": 78,
+  "order": [
+    "qwen3-asr-0-6b@4\/cpu-noprepack\/ort",
+    "qwen3-asr-0-6b@4\/cpu\/onnx",
+    "parakeet-tdt-110m-en@4\/cpu\/onnx",
+    "nemotron-3-5-streaming-1120ms@4\/cpu\/ort",
+    "nemotron-3-5-streaming-1120ms@4\/cpu-noprepack\/onnx",
+    "qwen3-asr-0-6b@4\/cpu-noprepack\/onnx",
+    "nemotron-3-5-streaming-1120ms@4\/cpu-noprepack\/ort",
+    "parakeet-ultra@4\/cpu-noprepack\/ort",
+    "whisper-turbo@4\/cpu\/ort",
+    "qwen3-asr-0-6b@4\/cpu\/ort",
+    "parakeet-ultra@4\/cpu\/onnx",
+    "whisper-turbo@4\/cpu\/onnx",
+    "whisper-turbo@4\/cpu-noprepack\/onnx",
+    "nemotron-3-5-streaming-1120ms@4\/cpu\/onnx",
+    "whisper-turbo@4\/cpu-noprepack\/ort",
+    "parakeet-tdt-110m-en@4\/cpu\/ort",
+    "parakeet-tdt-110m-en@4\/cpu-noprepack\/ort",
+    "parakeet-tdt-110m-en@4\/cpu-noprepack\/onnx",
+    "parakeet-ultra@4\/cpu-noprepack\/onnx",
+    "parakeet-ultra@4\/cpu\/ort"
+  ],
+  "fastCores": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "cooldownSeconds": 15,
+  "clips": [
+    {
+      "name": "ls05-1",
+      "audioMs": 4955
+    },
+    {
+      "name": "ls10-1",
+      "audioMs": 10970
+    },
+    {
+      "name": "ls20-1",
+      "audioMs": 19610
+    }
+  ],
+  "results": [
+    {
+      "engine": "qwen3-asr-0-6b",
+      "displayName": "Qwen3-ASR",
+      "threads": 4,
+      "tuning": "cpu-noprepack",
+      "arena": true,
+      "pinnedCores": null,
+      "family": "QWEN3_ASR",
+      "developer": false,
+      "format": "ort",
+      "loadMs": 4100,
+      "threadAffinity": {
+        "0-5": 51
+      },
+      "warmupMs": 7184,
+      "warmup": "ls05-1",
+      "decodes": [
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 7277,
+          "rtf": 1.4686175580221998,
+          "wer": 0.25,
+          "text": "Or an eye of gifts and graces, showering fruits in coyned gold."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 13097,
+          "rtf": 1.1938924339106654,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 25924,
+          "rtf": 1.321978582355941,
+          "wer": 0.02,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now in oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        }
+      ],
+      "rtfByLength": {
+        "ls05": 1.4686175580221998,
+        "ls10": 1.1938924339106654,
+        "ls20": 1.321978582355941,
+        "ls": 1.302884480090052
+      },
+      "peakRssMb": 2295,
+      "baselineRssMb": 142,
+      "envBefore": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.7,
+        "plugged": true,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.7,
+        "plugged": true,
+        "screenOn": false
+      },
+      "maxThermal": 1,
+      "disturbed": null
+    },
+    {
+      "engine": "qwen3-asr-0-6b",
+      "displayName": "Qwen3-ASR",
+      "threads": 4,
+      "tuning": "cpu",
+      "arena": true,
+      "pinnedCores": null,
+      "family": "QWEN3_ASR",
+      "developer": false,
+      "format": "onnx",
+      "loadMs": 6975,
+      "threadAffinity": {
+        "0-5": 50
+      },
+      "warmupMs": 3042,
+      "warmup": "ls05-1",
+      "decodes": [
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 3043,
+          "rtf": 0.6141271442986882,
+          "wer": 0.25,
+          "text": "Or an eye of gifts and graces, showering fruits in coyned gold."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 5470,
+          "rtf": 0.4986326344576117,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 11551,
+          "rtf": 0.5890362060173381,
+          "wer": 0.02,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now in oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        }
+      ],
+      "rtfByLength": {
+        "ls05": 0.6141271442986882,
+        "ls10": 0.4986326344576117,
+        "ls20": 0.5890362060173381,
+        "ls": 0.5646264246517518
+      },
+      "peakRssMb": 2312,
+      "baselineRssMb": 179,
+      "envBefore": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.7,
+        "plugged": true,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.6,
+        "plugged": true,
+        "screenOn": false
+      },
+      "maxThermal": 1,
+      "disturbed": null
+    },
+    {
+      "engine": "parakeet-tdt-110m-en",
+      "displayName": "Parakeet 110M",
+      "threads": 4,
+      "tuning": "cpu",
+      "arena": true,
+      "pinnedCores": null,
+      "family": "NEMO_TRANSDUCER",
+      "developer": false,
+      "format": "onnx",
+      "loadMs": 2306,
+      "threadAffinity": {
+        "0-5": 50
+      },
+      "warmupMs": 442,
+      "warmup": "ls05-1",
+      "decodes": [
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 292,
+          "rtf": 0.05893037336024218,
+          "wer": 0.16666666666666666,
+          "text": "or an eye of gifts and graces, showering fruits in coined gold"
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 492,
+          "rtf": 0.044849589790337284,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 892,
+          "rtf": 0.045486996430392654,
+          "wer": 0,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction, to every earnest pilgrim journeying its way for truth."
+        }
+      ],
+      "rtfByLength": {
+        "ls05": 0.05893037336024218,
+        "ls10": 0.044849589790337284,
+        "ls20": 0.045486996430392654,
+        "ls": 0.047164767130997605
+      },
+      "peakRssMb": 569,
+      "baselineRssMb": 206,
+      "envBefore": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.6,
+        "plugged": true,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.6,
+        "plugged": true,
+        "screenOn": false
+      },
+      "maxThermal": 1,
+      "disturbed": null
+    },
+    {
+      "engine": "nemotron-3-5-streaming-1120ms",
+      "displayName": "Nemotron 3.5",
+      "threads": 4,
+      "tuning": "cpu",
+      "arena": true,
+      "pinnedCores": null,
+      "family": "STREAMING_TRANSDUCER",
+      "developer": false,
+      "format": "ort",
+      "loadMs": 3507,
+      "threadAffinity": {
+        "0-5": 50
+      },
+      "warmupMs": 1578,
+      "warmup": "ls05-1",
+      "decodes": [
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 1558,
+          "rtf": 0.31442986881937435,
+          "wer": 0.08333333333333333,
+          "text": "Or an eye of gifts and graces, showering fruits and coined gold"
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 3734,
+          "rtf": 0.3403828623518687,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts presenting in case after case the different phases of the subject and urging the unconstitutionality of the measure"
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 5820,
+          "rtf": 0.296787353391127,
+          "wer": 0.02,
+          "text": "Nevertheless, the mustard seed among the smallest of all seeds has attained the proportions of a tree and the birds of the air are nesting in its branches the acorn is now in oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth"
+        }
+      ],
+      "rtfByLength": {
+        "ls05": 0.31442986881937435,
+        "ls10": 0.3403828623518687,
+        "ls20": 0.296787353391127,
+        "ls": 0.3127057830308147
+      },
+      "peakRssMb": 1465,
+      "baselineRssMb": 167,
+      "envBefore": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.6,
+        "plugged": true,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.5,
+        "plugged": true,
+        "screenOn": false
+      },
+      "maxThermal": 1,
+      "disturbed": null
+    },
+    {
+      "engine": "nemotron-3-5-streaming-1120ms",
+      "displayName": "Nemotron 3.5",
+      "threads": 4,
+      "tuning": "cpu-noprepack",
+      "arena": true,
+      "pinnedCores": null,
+      "family": "STREAMING_TRANSDUCER",
+      "developer": false,
+      "format": "onnx",
+      "loadMs": 4504,
+      "threadAffinity": {
+        "0-5": 50
+      },
+      "warmupMs": 3164,
+      "warmup": "ls05-1",
+      "decodes": [
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 3222,
+          "rtf": 0.6502522704339051,
+          "wer": 0.08333333333333333,
+          "text": "Or an eye of gifts and graces, showering fruits and coined gold"
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 6753,
+          "rtf": 0.615587967183227,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts presenting in case after case the different phases of the subject and urging the unconstitutionality of the measure"
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 13427,
+          "rtf": 0.6847016828148904,
+          "wer": 0.02,
+          "text": "Nevertheless, the mustard seed among the smallest of all seeds has attained the proportions of a tree and the birds of the air are nesting in its branches the acorn is now in oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth"
+        }
+      ],
+      "rtfByLength": {
+        "ls05": 0.6502522704339051,
+        "ls10": 0.615587967183227,
+        "ls20": 0.6847016828148904,
+        "ls": 0.6585619811453497
+      },
+      "peakRssMb": 896,
+      "baselineRssMb": 174,
+      "envBefore": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.5,
+        "plugged": true,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.5,
+        "plugged": true,
+        "screenOn": false
+      },
+      "maxThermal": 1,
+      "disturbed": null
+    },
+    {
+      "engine": "qwen3-asr-0-6b",
+      "displayName": "Qwen3-ASR",
+      "threads": 4,
+      "tuning": "cpu-noprepack",
+      "arena": true,
+      "pinnedCores": null,
+      "family": "QWEN3_ASR",
+      "developer": false,
+      "format": "onnx",
+      "loadMs": 5302,
+      "threadAffinity": {
+        "0-5": 50
+      },
+      "warmupMs": 6992,
+      "warmup": "ls05-1",
+      "decodes": [
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 7364,
+          "rtf": 1.486175580221998,
+          "wer": 0.25,
+          "text": "Or an eye of gifts and graces, showering fruits in coyned gold."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 13151,
+          "rtf": 1.1988149498632634,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 25636,
+          "rtf": 1.3072921978582357,
+          "wer": 0.02,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now in oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        }
+      ],
+      "rtfByLength": {
+        "ls05": 1.486175580221998,
+        "ls10": 1.1988149498632634,
+        "ls20": 1.3072921978582357,
+        "ls": 1.29874771352188
+      },
+      "peakRssMb": 2296,
+      "baselineRssMb": 170,
+      "envBefore": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.5,
+        "plugged": true,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.5,
+        "plugged": true,
+        "screenOn": false
+      },
+      "maxThermal": 1,
+      "disturbed": null
+    },
+    {
+      "engine": "nemotron-3-5-streaming-1120ms",
+      "displayName": "Nemotron 3.5",
+      "threads": 4,
+      "tuning": "cpu-noprepack",
+      "arena": true,
+      "pinnedCores": null,
+      "family": "STREAMING_TRANSDUCER",
+      "developer": false,
+      "format": "ort",
+      "loadMs": 2590,
+      "threadAffinity": {
+        "0-5": 50
+      },
+      "warmupMs": 3361,
+      "warmup": "ls05-1",
+      "decodes": [
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 4352,
+          "rtf": 0.8783047426841574,
+          "wer": 0.08333333333333333,
+          "text": "Or an eye of gifts and graces, showering fruits and coined gold"
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 7970,
+          "rtf": 0.7265268915223336,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts presenting in case after case the different phases of the subject and urging the unconstitutionality of the measure"
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 14020,
+          "rtf": 0.7149413564507904,
+          "wer": 0.02,
+          "text": "Nevertheless, the mustard seed among the smallest of all seeds has attained the proportions of a tree and the birds of the air are nesting in its branches the acorn is now in oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth"
+        }
+      ],
+      "rtfByLength": {
+        "ls05": 0.8783047426841574,
+        "ls10": 0.7265268915223336,
+        "ls20": 0.7149413564507904,
+        "ls": 0.7412973125087942
+      },
+      "peakRssMb": 1422,
+      "baselineRssMb": 192,
+      "envBefore": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.5,
+        "plugged": true,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.5,
+        "plugged": true,
+        "screenOn": false
+      },
+      "maxThermal": 1,
+      "disturbed": null
+    },
+    {
+      "engine": "parakeet-ultra",
+      "displayName": "Parakeet Ultra",
+      "threads": 4,
+      "tuning": "cpu-noprepack",
+      "arena": true,
+      "pinnedCores": null,
+      "family": "NEMO_TRANSDUCER",
+      "developer": false,
+      "format": "ort",
+      "loadMs": 3628,
+      "threadAffinity": {
+        "0-5": 50
+      },
+      "warmupMs": 1958,
+      "warmup": "ls05-1",
+      "decodes": [
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 1684,
+          "rtf": 0.3398587285570131,
+          "wer": 0.16666666666666666,
+          "text": "or an eye of gifts and graces, showering fruits in coined gold."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 2157,
+          "rtf": 0.1966271649954421,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 3573,
+          "rtf": 0.18220295767465577,
+          "wer": 0,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        }
+      ],
+      "rtfByLength": {
+        "ls05": 0.3398587285570131,
+        "ls10": 0.1966271649954421,
+        "ls20": 0.18220295767465577,
+        "ls": 0.20863936963557056
+      },
+      "peakRssMb": 1407,
+      "baselineRssMb": 156,
+      "envBefore": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.6,
+        "plugged": true,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.6,
+        "plugged": true,
+        "screenOn": false
+      },
+      "maxThermal": 1,
+      "disturbed": null
+    },
+    {
+      "engine": "whisper-turbo",
+      "displayName": "Whisper Large v3 Turbo",
+      "threads": 4,
+      "tuning": "cpu",
+      "arena": true,
+      "pinnedCores": null,
+      "family": "WHISPER",
+      "developer": false,
+      "format": "ort",
+      "loadMs": 3881,
+      "threadAffinity": {
+        "0-5": 47
+      },
+      "warmupMs": 9465,
+      "warmup": "ls05-1",
+      "decodes": [
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 9337,
+          "rtf": 1.884359233097881,
+          "wer": 0.16666666666666666,
+          "text": "Or an eye of gifts and graces, showering fruits and cointed gold?"
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 15643,
+          "rtf": 1.4259799453053783,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 30828,
+          "rtf": 1.5720550739418664,
+          "wer": 0,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        }
+      ],
+      "rtfByLength": {
+        "ls05": 1.884359233097881,
+        "ls10": 1.4259799453053783,
+        "ls20": 1.5720550739418664,
+        "ls": 1.5705079499085408
+      },
+      "peakRssMb": 2022,
+      "baselineRssMb": 143,
+      "envBefore": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.6,
+        "plugged": true,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.6,
+        "plugged": true,
+        "screenOn": false
+      },
+      "maxThermal": 1,
+      "disturbed": null
+    },
+    {
+      "engine": "qwen3-asr-0-6b",
+      "displayName": "Qwen3-ASR",
+      "threads": 4,
+      "tuning": "cpu",
+      "arena": true,
+      "pinnedCores": null,
+      "family": "QWEN3_ASR",
+      "developer": false,
+      "format": "ort",
+      "loadMs": 5619,
+      "threadAffinity": {
+        "0-5": 50
+      },
+      "warmupMs": 3226,
+      "warmup": "ls05-1",
+      "decodes": [
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 3093,
+          "rtf": 0.6242179616548941,
+          "wer": 0.25,
+          "text": "Or an eye of gifts and graces, showering fruits in coyned gold."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 5765,
+          "rtf": 0.5255241567912489,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 11725,
+          "rtf": 0.5979092299847016,
+          "wer": 0.02,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now in oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        }
+      ],
+      "rtfByLength": {
+        "ls05": 0.6242179616548941,
+        "ls10": 0.5255241567912489,
+        "ls20": 0.5979092299847016,
+        "ls": 0.5792317433516252
+      },
+      "peakRssMb": 2283,
+      "baselineRssMb": 182,
+      "envBefore": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.6,
+        "plugged": true,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.6,
+        "plugged": true,
+        "screenOn": false
+      },
+      "maxThermal": 1,
+      "disturbed": null
+    },
+    {
+      "engine": "parakeet-ultra",
+      "displayName": "Parakeet Ultra",
+      "threads": 4,
+      "tuning": "cpu",
+      "arena": true,
+      "pinnedCores": null,
+      "family": "NEMO_TRANSDUCER",
+      "developer": false,
+      "format": "onnx",
+      "loadMs": 5627,
+      "threadAffinity": {
+        "0-5": 50
+      },
+      "warmupMs": 853,
+      "warmup": "ls05-1",
+      "decodes": [
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 1040,
+          "rtf": 0.20988900100908173,
+          "wer": 0.16666666666666666,
+          "text": "or an eye of gifts and graces, showering fruits in coined gold."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 2165,
+          "rtf": 0.19735642661804922,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 2880,
+          "rtf": 0.14686384497705252,
+          "wer": 0,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        }
+      ],
+      "rtfByLength": {
+        "ls05": 0.20988900100908173,
+        "ls10": 0.19735642661804922,
+        "ls20": 0.14686384497705252,
+        "ls": 0.1712396229069931
+      },
+      "peakRssMb": 1082,
+      "baselineRssMb": 169,
+      "envBefore": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.6,
+        "plugged": true,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.7,
+        "plugged": true,
+        "screenOn": false
+      },
+      "maxThermal": 1,
+      "disturbed": null
+    },
+    {
+      "engine": "whisper-turbo",
+      "displayName": "Whisper Large v3 Turbo",
+      "threads": 4,
+      "tuning": "cpu",
+      "arena": true,
+      "pinnedCores": null,
+      "family": "WHISPER",
+      "developer": false,
+      "format": "onnx",
+      "loadMs": 4174,
+      "threadAffinity": {
+        "0-5": 47
+      },
+      "warmupMs": 8929,
+      "warmup": "ls05-1",
+      "decodes": [
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 10081,
+          "rtf": 2.034510595358224,
+          "wer": 0.16666666666666666,
+          "text": "Or an eye of gifts and graces, showering fruits and cointed gold?"
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 16046,
+          "rtf": 1.4627164995442115,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 31053,
+          "rtf": 1.5835288118306987,
+          "wer": 0,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        }
+      ],
+      "rtfByLength": {
+        "ls05": 2.034510595358224,
+        "ls10": 1.4627164995442115,
+        "ls20": 1.5835288118306987,
+        "ls": 1.6091177712114817
+      },
+      "peakRssMb": 1935,
+      "baselineRssMb": 161,
+      "envBefore": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.7,
+        "plugged": true,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.7,
+        "plugged": true,
+        "screenOn": false
+      },
+      "maxThermal": 1,
+      "disturbed": null
+    },
+    {
+      "engine": "whisper-turbo",
+      "displayName": "Whisper Large v3 Turbo",
+      "threads": 4,
+      "tuning": "cpu-noprepack",
+      "arena": true,
+      "pinnedCores": null,
+      "family": "WHISPER",
+      "developer": false,
+      "format": "onnx",
+      "loadMs": 2301,
+      "threadAffinity": {
+        "0-5": 47
+      },
+      "warmupMs": 10353,
+      "warmup": "ls05-1",
+      "decodes": [
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 10489,
+          "rtf": 2.1168516649848637,
+          "wer": 0.16666666666666666,
+          "text": "Or an eye of gifts and graces, showering fruits and cointed gold?"
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 19060,
+          "rtf": 1.7374658158614402,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 35192,
+          "rtf": 1.7945945945945947,
+          "wer": 0,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        }
+      ],
+      "rtfByLength": {
+        "ls05": 2.1168516649848637,
+        "ls10": 1.7374658158614402,
+        "ls20": 1.7945945945945947,
+        "ls": 1.8218939074152245
+      },
+      "peakRssMb": 1942,
+      "baselineRssMb": 169,
+      "envBefore": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.7,
+        "plugged": true,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.8,
+        "plugged": true,
+        "screenOn": false
+      },
+      "maxThermal": 1,
+      "disturbed": null
+    },
+    {
+      "engine": "nemotron-3-5-streaming-1120ms",
+      "displayName": "Nemotron 3.5",
+      "threads": 4,
+      "tuning": "cpu",
+      "arena": true,
+      "pinnedCores": null,
+      "family": "STREAMING_TRANSDUCER",
+      "developer": false,
+      "format": "onnx",
+      "loadMs": 7007,
+      "threadAffinity": {
+        "0-5": 50
+      },
+      "warmupMs": 1715,
+      "warmup": "ls05-1",
+      "decodes": [
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 1821,
+          "rtf": 0.36750756811301716,
+          "wer": 0.08333333333333333,
+          "text": "Or an eye of gifts and graces, showering fruits and coined gold"
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 3509,
+          "rtf": 0.3198723792160438,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts presenting in case after case the different phases of the subject and urging the unconstitutionality of the measure"
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 10692,
+          "rtf": 0.5452320244773075,
+          "wer": 0.02,
+          "text": "Nevertheless, the mustard seed among the smallest of all seeds has attained the proportions of a tree and the birds of the air are nesting in its branches the acorn is now in oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth"
+        }
+      ],
+      "rtfByLength": {
+        "ls05": 0.36750756811301716,
+        "ls10": 0.3198723792160438,
+        "ls20": 0.5452320244773075,
+        "ls": 0.45087941466160125
+      },
+      "peakRssMb": 885,
+      "baselineRssMb": 180,
+      "envBefore": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.8,
+        "plugged": true,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.8,
+        "plugged": true,
+        "screenOn": false
+      },
+      "maxThermal": 1,
+      "disturbed": null
+    },
+    {
+      "engine": "whisper-turbo",
+      "displayName": "Whisper Large v3 Turbo",
+      "threads": 4,
+      "tuning": "cpu-noprepack",
+      "arena": true,
+      "pinnedCores": null,
+      "family": "WHISPER",
+      "developer": false,
+      "format": "ort",
+      "loadMs": 2929,
+      "threadAffinity": {
+        "0-5": 47
+      },
+      "warmupMs": 10693,
+      "warmup": "ls05-1",
+      "decodes": [
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 10846,
+          "rtf": 2.1889001009081737,
+          "wer": 0.16666666666666666,
+          "text": "Or an eye of gifts and graces, showering fruits and cointed gold?"
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 21247,
+          "rtf": 1.936827711941659,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 37336,
+          "rtf": 1.9039265680775115,
+          "wer": 0,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        }
+      ],
+      "rtfByLength": {
+        "ls05": 2.1889001009081737,
+        "ls10": 1.936827711941659,
+        "ls20": 1.9039265680775115,
+        "ls": 1.9538201772899957
+      },
+      "peakRssMb": 1930,
+      "baselineRssMb": 162,
+      "envBefore": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.8,
+        "plugged": true,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.9,
+        "plugged": true,
+        "screenOn": false
+      },
+      "maxThermal": 1,
+      "disturbed": null
+    },
+    {
+      "engine": "parakeet-tdt-110m-en",
+      "displayName": "Parakeet 110M",
+      "threads": 4,
+      "tuning": "cpu",
+      "arena": true,
+      "pinnedCores": null,
+      "family": "NEMO_TRANSDUCER",
+      "developer": false,
+      "format": "ort",
+      "loadMs": 1603,
+      "threadAffinity": {
+        "0-5": 50
+      },
+      "warmupMs": 333,
+      "warmup": "ls05-1",
+      "decodes": [
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 304,
+          "rtf": 0.06135216952573158,
+          "wer": 0.16666666666666666,
+          "text": "or an eye of gifts and graces, showering fruits in coined gold"
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 492,
+          "rtf": 0.044849589790337284,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 936,
+          "rtf": 0.04773074961754207,
+          "wer": 0,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction, to every earnest pilgrim journeying its way for truth."
+        }
+      ],
+      "rtfByLength": {
+        "ls05": 0.06135216952573158,
+        "ls10": 0.044849589790337284,
+        "ls20": 0.04773074961754207,
+        "ls": 0.048740678204587023
+      },
+      "peakRssMb": 529,
+      "baselineRssMb": 170,
+      "envBefore": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.9,
+        "plugged": true,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 36.9,
+        "plugged": true,
+        "screenOn": false
+      },
+      "maxThermal": 1,
+      "disturbed": null
+    },
+    {
+      "engine": "parakeet-tdt-110m-en",
+      "displayName": "Parakeet 110M",
+      "threads": 4,
+      "tuning": "cpu-noprepack",
+      "arena": true,
+      "pinnedCores": null,
+      "family": "NEMO_TRANSDUCER",
+      "developer": false,
+      "format": "ort",
+      "loadMs": 1147,
+      "threadAffinity": {
+        "0-5": 50
+      },
+      "warmupMs": 410,
+      "warmup": "ls05-1",
+      "decodes": [
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 337,
+          "rtf": 0.06801210898082745,
+          "wer": 0.16666666666666666,
+          "text": "or an eye of gifts and graces, showering fruits in coined gold"
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 622,
+          "rtf": 0.056700091157702824,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 1085,
+          "rtf": 0.05532891381947986,
+          "wer": 0,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction, to every earnest pilgrim journeying its way for truth."
+        }
+      ],
+      "rtfByLength": {
+        "ls05": 0.06801210898082745,
+        "ls10": 0.056700091157702824,
+        "ls20": 0.05532891381947986,
+        "ls": 0.05752075418601379
+      },
+      "peakRssMb": 556,
+      "baselineRssMb": 148,
+      "envBefore": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 37,
+        "plugged": true,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 37,
+        "plugged": true,
+        "screenOn": false
+      },
+      "maxThermal": 1,
+      "disturbed": null
+    },
+    {
+      "engine": "parakeet-tdt-110m-en",
+      "displayName": "Parakeet 110M",
+      "threads": 4,
+      "tuning": "cpu-noprepack",
+      "arena": true,
+      "pinnedCores": null,
+      "family": "NEMO_TRANSDUCER",
+      "developer": false,
+      "format": "onnx",
+      "loadMs": 2084,
+      "threadAffinity": {
+        "0-5": 50
+      },
+      "warmupMs": 375,
+      "warmup": "ls05-1",
+      "decodes": [
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 363,
+          "rtf": 0.07325933400605449,
+          "wer": 0.16666666666666666,
+          "text": "or an eye of gifts and graces, showering fruits in coined gold"
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 614,
+          "rtf": 0.05597082953509572,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 1069,
+          "rtf": 0.054513003569607345,
+          "wer": 0,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction, to every earnest pilgrim journeying its way for truth."
+        }
+      ],
+      "rtfByLength": {
+        "ls05": 0.07325933400605449,
+        "ls10": 0.05597082953509572,
+        "ls20": 0.054513003569607345,
+        "ls": 0.05757703672435627
+      },
+      "peakRssMb": 548,
+      "baselineRssMb": 132,
+      "envBefore": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 37,
+        "plugged": true,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 37,
+        "plugged": true,
+        "screenOn": false
+      },
+      "maxThermal": 1,
+      "disturbed": null
+    },
+    {
+      "engine": "parakeet-ultra",
+      "displayName": "Parakeet Ultra",
+      "threads": 4,
+      "tuning": "cpu-noprepack",
+      "arena": true,
+      "pinnedCores": null,
+      "family": "NEMO_TRANSDUCER",
+      "developer": false,
+      "format": "onnx",
+      "loadMs": 4873,
+      "threadAffinity": {
+        "0-5": 50
+      },
+      "warmupMs": 1965,
+      "warmup": "ls05-1",
+      "decodes": [
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 1114,
+          "rtf": 0.2248234106962664,
+          "wer": 0.16666666666666666,
+          "text": "or an eye of gifts and graces, showering fruits in coined gold."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 2151,
+          "rtf": 0.19608021877848678,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 3547,
+          "rtf": 0.18087710351861294,
+          "wer": 0,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        }
+      ],
+      "rtfByLength": {
+        "ls05": 0.2248234106962664,
+        "ls10": 0.19608021877848678,
+        "ls20": 0.18087710351861294,
+        "ls": 0.1916983255944843
+      },
+      "peakRssMb": 1080,
+      "baselineRssMb": 158,
+      "envBefore": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 37,
+        "plugged": true,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 37,
+        "plugged": true,
+        "screenOn": false
+      },
+      "maxThermal": 1,
+      "disturbed": null
+    },
+    {
+      "engine": "parakeet-ultra",
+      "displayName": "Parakeet Ultra",
+      "threads": 4,
+      "tuning": "cpu",
+      "arena": true,
+      "pinnedCores": null,
+      "family": "NEMO_TRANSDUCER",
+      "developer": false,
+      "format": "ort",
+      "loadMs": 5589,
+      "threadAffinity": {
+        "0-5": 50
+      },
+      "warmupMs": 804,
+      "warmup": "ls05-1",
+      "decodes": [
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 936,
+          "rtf": 0.18890010090817355,
+          "wer": 0.16666666666666666,
+          "text": "or an eye of gifts and graces, showering fruits in coined gold."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 1566,
+          "rtf": 0.14275296262534184,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 2780,
+          "rtf": 0.1417644059153493,
+          "wer": 0,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        }
+      ],
+      "rtfByLength": {
+        "ls05": 0.18890010090817355,
+        "ls10": 0.14275296262534184,
+        "ls20": 0.1417644059153493,
+        "ls": 0.1486421837624877
+      },
+      "peakRssMb": 1428,
+      "baselineRssMb": 158,
+      "envBefore": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 37,
+        "plugged": true,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 1,
+        "batteryPct": 100,
+        "batteryTempC": 37,
+        "plugged": true,
+        "screenOn": false
+      },
+      "maxThermal": 1,
+      "disturbed": null
+    }
+  ],
+  "probeMs": 287,
+  "probeRuns": [
+    285,
+    285,
+    288,
+    287,
+    290
+  ],
+  "probeThreads": 4,
+  "probeEnv": {
+    "thermal": 1,
+    "batteryPct": 100,
+    "batteryTempC": 36.7,
+    "plugged": true,
+    "screenOn": false
+  },
+  "finished": "20261010-183204"
+}

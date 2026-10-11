@@ -1,0 +1,6 @@
+Marmalade STT 1.0.0, ilk sürüm.
+- Gizli, çevrimdışı konuşmadan metne: FUTO, HeliBoard, FlorisBoard ve diğerleri için sesli klavye, uygulamalara “Şimdi konuşun” penceresi ve Android konuşma tanıma hizmeti.
+- Telefonunuza ve dilinize göre motorlar; Japonca, Çince, Korece, Hintçe, Arapça ve Vietnamca için özel seçimler.
+- Dokunma, duraklama, bitiş kelimesi veya Smart Turn ile durdurma.
+- Metin temizleme, değiştirmeler ve hazır metinler.
+- Uygulama arayüzü 21 dilde. Reklam, hesap ve analiz yok.

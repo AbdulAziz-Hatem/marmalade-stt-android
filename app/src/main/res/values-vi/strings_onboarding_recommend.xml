@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Setup guide: recommended engine. %1$s is a capitalised language name ("Tiếng Anh"),
+         so it opens the sentence; %2$s sits in parentheses. -->
+    <string name="onboarding_recommend_checking">Đang kiểm tra điện thoại của bạn…</string>
+    <string name="onboarding_recommend_best_fit">%1$s: lựa chọn hàng đầu của chúng tôi, lại vừa với bộ nhớ và tốc độ của điện thoại này.</string>
+    <string name="onboarding_recommend_lighter">Một công cụ nhẹ hơn, hợp với bộ nhớ và tốc độ của điện thoại này.</string>
+    <string name="onboarding_recommend_may_be_slow">%1$s: công cụ phù hợp nhất, nhưng có thể chậm trên điện thoại này.</string>
+    <string name="onboarding_recommend_low_memory">%1$s: công cụ gọn nhẹ nhất. Điện thoại này có ít bộ nhớ cho công cụ này, nên công cụ có thể chạy chậm hoặc bị Android đóng.</string>
+    <string name="onboarding_recommend_uncovered">%1$s chưa có công cụ nào chép lời được, nên đây là công cụ cho ngôn ngữ khác (%2$s).</string>
+    <plurals name="onboarding_recommend_languages">
+        <item quantity="other">%d ngôn ngữ, tự động phát hiện.</item>
+    </plurals>
+    <string name="onboarding_recommend_other">Bạn có thể chọn công cụ khác trong thẻ Công cụ sau.</string>
+</resources>

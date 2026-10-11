@@ -1,0 +1,211 @@
+From: Marmalade STT <noreply@localhost>
+Subject: [PATCH] Cancellable offline decodes for Whisper and Qwen3-ASR (#49)
+
+Not upstream; ours. Patch 0002 left Whisper's greedy decoder free to run
+up to its own 224-token limit, and a decode can't be interrupted from the
+JNI: a runaway kept the app's engine busy for seconds after the user
+cancelled. OfflineStream::Cancel() sets an atomic flag (thread-safe; the
+JNI exposes it as OfflineStream.cancel). The autoregressive decoders
+(Whisper's greedy search, Qwen3-ASR's generation loop, Canary's) check it
+before every decoder step and stop with the tokens decoded so far; a
+Whisper stream cancelled before its decode starts skips the encoder too. The encoder run itself still can't be
+stopped.
+---
+--- a/sherpa-onnx/csrc/offline-recognizer-canary-impl.h
++++ b/sherpa-onnx/csrc/offline-recognizer-canary-impl.h
+@@ -151,6 +151,12 @@
+         break;
+       }
+ 
++      // Marmalade STT (#49): a cancelled decode stops at the next step (the
++      // pop_back below then drops a real token, which nobody reads).
++      if (s->IsCancelled()) {
++        break;
++      }
++
+       std::tie(logits, decoder_states) =
+           RunDecoder(tokens.back(), i, std::move(decoder_states),
+                      View(&enc_states), View(&enc_mask));
+--- a/sherpa-onnx/csrc/offline-recognizer-qwen3-asr-impl.cc
++++ b/sherpa-onnx/csrc/offline-recognizer-qwen3-asr-impl.cc
+@@ -1030,6 +1030,12 @@
+       break;
+     }
+ 
++    // Marmalade STT (#49): a cancelled decode stops at the next step,
++    // keeping the tokens so far.
++    if (stream->IsCancelled()) {
++      break;
++    }
++
+     if (step + 1 == max_new_tokens) {
+       SHERPA_ONNX_LOGE(
+           "Result is truncated. max_new_tokens %d is too small for "
+--- a/sherpa-onnx/csrc/offline-recognizer-whisper-impl.h
++++ b/sherpa-onnx/csrc/offline-recognizer-whisper-impl.h
+@@ -82,6 +82,11 @@
+ 
+  private:
+   void DecodeStream(OfflineStream *s) const {
++    // Marmalade STT (#49): cancelled before it started: no result.
++    if (s->IsCancelled()) {
++      return;
++    }
++
+     decoder_->SetConfig(config_.model_config.whisper);
+ 
+     int32_t max_num_frames = 3000;
+@@ -132,8 +137,10 @@
+     try {
+       auto cross_kv = model_->ForwardEncoder(std::move(mel));
+ 
+-      auto results = decoder_->Decode(std::move(cross_kv.first),
+-                                      std::move(cross_kv.second), num_frames);
++      auto results =
++          decoder_->Decode(std::move(cross_kv.first),
++                           std::move(cross_kv.second), num_frames,
++                           [s] { return s->IsCancelled(); });
+ 
+       auto r = Convert(results[0], symbol_table_);
+       s->SetResult(r);
+--- a/sherpa-onnx/csrc/offline-stream.cc
++++ b/sherpa-onnx/csrc/offline-stream.cc
+@@ -5,6 +5,7 @@
+ #include "sherpa-onnx/csrc/offline-stream.h"
+ 
+ #include <algorithm>
++#include <atomic>
+ #include <cassert>
+ #include <cmath>
+ #include <iomanip>
+@@ -269,6 +270,9 @@
+ 
+   const ContextGraphPtr &GetContextGraph() const { return context_graph_; }
+ 
++  void Cancel() { cancelled_ = true; }
++  bool IsCancelled() const { return cancelled_; }
++
+   void SetOption(const std::string &key, const std::string &value) {
+     options_[key] = value;
+   }
+@@ -365,6 +369,8 @@
+   std::vector<float> samples_;
+ 
+   std::unordered_map<std::string, std::string> options_;
++
++  std::atomic<bool> cancelled_{false};
+ };
+ 
+ OfflineStream::OfflineStream(const FeatureExtractorConfig &config /*= {}*/,
+@@ -430,6 +436,10 @@
+   return impl_->GetOptionFloat(key, default_value);
+ }
+ 
++void OfflineStream::Cancel() { impl_->Cancel(); }
++
++bool OfflineStream::IsCancelled() const { return impl_->IsCancelled(); }
++
+ std::string OfflineRecognitionResult::AsJsonString() const {
+   std::ostringstream os;
+   os << "{";
+--- a/sherpa-onnx/csrc/offline-stream.h
++++ b/sherpa-onnx/csrc/offline-stream.h
+@@ -137,6 +137,11 @@
+   float GetOptionFloat(const std::string &key,
+                        float default_value = 0.0f) const;
+ 
++  // Marmalade STT (#49): ask a decode of this stream that is running on
++  // another thread to stop at its next decoder step. Thread-safe.
++  void Cancel();
++  bool IsCancelled() const;
++
+  private:
+   class Impl;
+   std::unique_ptr<Impl> impl_;
+--- a/sherpa-onnx/csrc/offline-whisper-decoder.h
++++ b/sherpa-onnx/csrc/offline-whisper-decoder.h
+@@ -5,6 +5,7 @@
+ #ifndef SHERPA_ONNX_CSRC_OFFLINE_WHISPER_DECODER_H_
+ #define SHERPA_ONNX_CSRC_OFFLINE_WHISPER_DECODER_H_
+ 
++#include <functional>
+ #include <string>
+ #include <vector>
+ 
+@@ -24,11 +25,16 @@
+    * @param n_layer_cross_v       A 4-D tensor of shape
+    *                              (n_text_layer, N, n_audio_ctx, n_text_state).
+    *
++   * @param is_cancelled         Marmalade STT (#49): checked before every
++   *                              decoder step; true stops with the tokens
++   *                              decoded so far. May be empty.
++   *
+    * @return Return a vector of size `N` containing the decoded results.
+    */
+   virtual std::vector<OfflineWhisperDecoderResult> Decode(
+       Ort::Value n_layer_cross_k, Ort::Value n_layer_cross_v,
+-      int32_t num_feature_frames) = 0;
++      int32_t num_feature_frames,
++      const std::function<bool()> &is_cancelled = {}) = 0;
+ 
+   virtual void SetConfig(const OfflineWhisperModelConfig &config) = 0;
+ };
+--- a/sherpa-onnx/csrc/offline-whisper-greedy-search-decoder.cc
++++ b/sherpa-onnx/csrc/offline-whisper-greedy-search-decoder.cc
+@@ -21,9 +21,9 @@
+ }
+ 
+ std::vector<OfflineWhisperDecoderResult>
+-OfflineWhisperGreedySearchDecoder::Decode(Ort::Value cross_k,
+-                                          Ort::Value cross_v,
+-                                          int32_t num_feature_frames) {
++OfflineWhisperGreedySearchDecoder::Decode(
++    Ort::Value cross_k, Ort::Value cross_v, int32_t num_feature_frames,
++    const std::function<bool()> &is_cancelled) {
+   auto memory_info =
+       Ort::MemoryInfo::CreateCpu(OrtDeviceAllocator, OrtMemTypeDefault);
+ 
+@@ -204,6 +204,13 @@
+       break;
+     }
+ 
++    // Marmalade STT (#49): a cancelled decode stops here, keeping the
++    // tokens so far. Each step is one decoder run, so the caller waits at
++    // most one step instead of up to 224 of a runaway.
++    if (is_cancelled && is_cancelled()) {
++      break;
++    }
++
+     predicted_tokens.push_back(max_token_id);
+     all_tokens.push_back(max_token_id);
+ 
+--- a/sherpa-onnx/csrc/offline-whisper-greedy-search-decoder.h
++++ b/sherpa-onnx/csrc/offline-whisper-greedy-search-decoder.h
+@@ -19,8 +19,8 @@
+       : config_(config), model_(model) {}
+ 
+   std::vector<OfflineWhisperDecoderResult> Decode(
+-      Ort::Value cross_k, Ort::Value cross_v,
+-      int32_t num_feature_frames) override;
++      Ort::Value cross_k, Ort::Value cross_v, int32_t num_feature_frames,
++      const std::function<bool()> &is_cancelled = {}) override;
+ 
+   void SetConfig(const OfflineWhisperModelConfig &config) override;
+ 
+--- a/sherpa-onnx/jni/offline-stream.cc
++++ b/sherpa-onnx/jni/offline-stream.cc
+@@ -45,6 +45,14 @@
+   return SafeNewStringUTF(env, value);
+ }
+ 
++// Marmalade STT (#49): may be called from any thread while a decode of this
++// stream runs; the caller keeps the stream alive until that decode returns.
++SHERPA_ONNX_EXTERN_C
++JNIEXPORT void JNICALL Java_com_k2fsa_sherpa_onnx_OfflineStream_cancel(
++    JNIEnv * /*env*/, jobject /*obj*/, jlong ptr) {
++  reinterpret_cast<sherpa_onnx::OfflineStream *>(ptr)->Cancel();
++}
++
+ SHERPA_ONNX_EXTERN_C
+ JNIEXPORT jboolean JNICALL Java_com_k2fsa_sherpa_onnx_OfflineStream_hasOption(
+     JNIEnv *env, jobject /*obj*/, jlong ptr, jstring key) {

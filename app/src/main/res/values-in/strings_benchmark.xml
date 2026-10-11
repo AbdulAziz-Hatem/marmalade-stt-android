@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Developer A/B benchmark -->
+    <string name="benchmark_title">Benchmark</string>
+    <string name="benchmark_note">Buat satu rekaman, lalu setiap mesin terinstal mentranskripsikannya secara bergiliran: muat, transkripsikan, keluarkan dari memori. Setiap mesin menerima segmen Silero VAD yang sama. Mesin streaming menerima setiap segmen dalam potongan 100 ms secepat yang dapat diterima model, bukan secara real time. Rekaman hanya berada di memori dan tidak pernah disimpan. Angka di emulator hanya berguna untuk membandingkan mesin satu sama lain.</string>
+
+    <string name="benchmark_section_take">Rekaman</string>
+    <string name="benchmark_record">Rekam</string>
+    <string name="benchmark_stop">Berhenti</string>
+    <string name="benchmark_play">Putar</string>
+    <string name="benchmark_stop_playback">Hentikan pemutaran</string>
+    <string name="benchmark_elapsed">%1$s dtk / %2$d dtk</string>
+    <string name="benchmark_level">Level input</string>
+    <string name="benchmark_take_length">Rekaman: %1$s</string>
+    <string name="benchmark_take_length_soft_agc">Rekaman: %1$s, levelnya disesuaikan oleh aplikasi (ponsel ini tidak memiliki kontrol gain mikrofon bawaan)</string>
+    <plurals name="benchmark_no_take">
+        <item quantity="other">Belum ada rekaman. Rekam ucapan hingga %1$d detik.</item>
+    </plurals>
+
+    <string name="benchmark_section_reference">Teks referensi (opsional)</string>
+    <string name="benchmark_reference_label">Yang Anda ucapkan</string>
+    <string name="benchmark_reference_hint">Ketik apa yang Anda ucapkan untuk mendapatkan tingkat kesalahan kata (WER) per mesin.</string>
+
+    <string name="benchmark_section_engines">Mesin</string>
+    <string name="benchmark_no_engines">Belum ada mesin yang terinstal. Instal beberapa di tab Mesin (aktifkan Mesin developer di Setelan untuk melihat kandidatnya).</string>
+    <string name="benchmark_run">Jalankan benchmark</string>
+    <string name="benchmark_run_again">Jalankan lagi</string>
+    <string name="benchmark_running">Menjalankan %1$s (%2$d dari %3$d)…</string>
+
+    <string name="benchmark_section_results">Hasil</string>
+    <!-- Metrics line parts, joined with " · " -->
+    <string name="benchmark_metric_load">Muat %1$s</string>
+    <string name="benchmark_metric_decode">Decode %1$s</string>
+    <string name="benchmark_metric_rtf">RTF %1$s</string>
+    <string name="benchmark_metric_rss">RSS puncak (sampel) %1$s</string>
+    <string name="benchmark_metric_wer">WER %1$s</string>
+    <string name="benchmark_empty_transcript">(tidak ada ucapan yang dikenali)</string>
+    <string name="benchmark_raw">Mentah: %1$s</string>
+    <string name="benchmark_failed_load">Tidak dapat memuat: %1$s</string>
+    <string name="benchmark_failed_transcribe">Tidak dapat mentranskripsikan: %1$s</string>
+    <string name="benchmark_failed_release">Berhasil ditranskripsikan, tetapi tidak dapat dikeluarkan dari memori: %1$s</string>
+    <string name="benchmark_copy_markdown">Salin sebagai Markdown</string>
+    <string name="benchmark_copied">Disalin</string>
+
+    <!-- Snackbar notices -->
+    <string name="benchmark_error_mic">Tidak dapat merekam. Apakah aplikasi lain sedang menggunakan mikrofon?</string>
+    <string name="benchmark_error_empty">Tidak ada yang terekam. Coba lagi.</string>
+    <string name="benchmark_error_playback">Tidak dapat memutar rekaman.</string>
+    <string name="benchmark_error_no_engines">Tidak ada mesin terinstal untuk dijalankan.</string>
+    <string name="benchmark_error_run">Benchmark berhenti karena terjadi error.</string>
+
+    <!-- Mic permission -->
+    <string name="benchmark_mic_title">Benchmark memerlukan mikrofon Anda</string>
+    <string name="benchmark_mic_body">Benchmark membuat satu rekaman yang hanya berada di memori, dan tidak pernah menyimpan atau mengirimnya.</string>
+</resources>

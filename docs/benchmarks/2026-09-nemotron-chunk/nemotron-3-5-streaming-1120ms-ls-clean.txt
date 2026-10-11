@@ -1,0 +1,7 @@
+# ls-clean, nemotron-3-5-streaming-1120ms, 2 threads, host wall time x1
+
+| length | n | utterance s (median) | end of speech -> Final s: median | p90 | max | first partial s (median) | partials (median) | max lag s: median | max | too slow | first text s (median) |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| 5 s | 12 | 5.1 | 1.1 | 1.2 | 1.2 | 0.00 | 52.5 | 0.0 | 0.1 | 0 | 0.33 |
+| 10 s | 12 | 9.9 | 1.1 | 1.1 | 1.2 | 0.00 | 97 | 0.0 | 0.1 | 0 | 0.33 |
+| 22 s | 12 | 19.9 | 1.1 | 1.2 | 2.0 | 0.00 | 197.5 | 0.0 | 0.1 | 0 | 0.33 |

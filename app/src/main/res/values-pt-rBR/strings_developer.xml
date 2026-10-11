@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Configurações → Desenvolvedor -->
+    <string name="settings_developer">Desenvolvedor</string>
+    <string name="settings_developer_engines">Motores para desenvolvedores</string>
+    <string name="settings_developer_engines_desc">Mostra motores de fala extras para testes e benchmarks. Downloads grandes, não indicados para o uso diário.</string>
+    <string name="settings_developer_benchmark">Benchmark A/B</string>
+    <string name="settings_developer_benchmark_desc">Compare os motores instalados em uma mesma gravação.</string>
+    <string name="settings_developer_speed">Medir de novo a velocidade do celular</string>
+    <string name="settings_developer_speed_measuring">Medindo…</string>
+    <string name="settings_developer_speed_measured">Pontuação de velocidade %1$s</string>
+    <string name="settings_developer_speed_unmeasured">Ainda não medido</string>
+    <string name="settings_developer_speed_done">Pontuação de velocidade: %1$s</string>
+    <string name="settings_developer_speed_failed">Não foi possível medir a velocidade do celular</string>
+    <!-- Ajuste do ONNX Runtime -->
+    <string name="settings_developer_ort_tuning">Ajuste do runtime</string>
+    <string name="settings_developer_ort_tuning_desc">Spinning de threads e fixação de núcleos do ONNX Runtime, para medições. Vale a partir do próximo carregamento do motor.</string>
+    <string name="settings_developer_ort_tuning_default">Padrão (%1$s)</string>
+    <string name="settings_developer_ort_tuning_cpu">CPU</string>
+    <string name="settings_developer_ort_tuning_no_spinning">sem spinning</string>
+    <string name="settings_developer_ort_tuning_pinned">fixado nos núcleos rápidos</string>
+
+    <!-- Selos dos motores -->
+    <string name="engine_badge_in_use">Em uso</string>
+    <string name="engine_badge_developer">Desenvolvedor</string>
+    <string name="engine_badge_developer_long">Motor para desenvolvedores</string>
+    <string name="engine_badge_may_be_slow_long">Pode ficar lento neste celular</string>
+    <string name="engine_badge_streaming">Streaming</string>
+    <string name="engine_streaming_steps">Streaming · passos de %1$d ms</string>
+
+    <!-- Escolher o motor -->
+    <string name="engine_action_use">Usar</string>
+    <string name="engine_action_use_named">Usar o %1$s</string>
+    <string name="engine_use_failed">Não foi possível trocar de motor. Tente novamente.</string>
+
+    <!-- Idioma do motor -->
+    <string name="engine_language">Idioma deste motor</string>
+    <string name="engine_language_auto">Detectar automaticamente</string>
+    <string name="engine_language_cancel">Cancelar</string>
+    <string name="engine_language_failed">Não foi possível salvar o idioma. Tente novamente.</string>
+</resources>

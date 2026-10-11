@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Settings → Developer -->
+    <string name="settings_developer">개발자</string>
+    <string name="settings_developer_engines">개발자 엔진</string>
+    <string name="settings_developer_engines_desc">테스트와 벤치마크용 추가 음성 엔진을 표시합니다. 다운로드 용량이 크며 일상적인 사용을 위한 것이 아닙니다.</string>
+    <string name="settings_developer_benchmark">A/B 벤치마크</string>
+    <string name="settings_developer_benchmark_desc">녹음 하나로 설치된 엔진을 비교합니다.</string>
+    <string name="settings_developer_speed">휴대전화 속도 다시 측정</string>
+    <string name="settings_developer_speed_measuring">측정 중…</string>
+    <string name="settings_developer_speed_measured">속도 점수 %1$s</string>
+    <string name="settings_developer_speed_unmeasured">아직 측정 안 됨</string>
+    <string name="settings_developer_speed_done">속도 점수: %1$s</string>
+    <string name="settings_developer_speed_failed">휴대전화 속도를 측정할 수 없습니다</string>
+    <!-- ONNX Runtime tuning -->
+    <string name="settings_developer_ort_tuning">런타임 튜닝</string>
+    <string name="settings_developer_ort_tuning_desc">측정용 ONNX Runtime 스레드 스피닝 및 코어 고정입니다. 다음에 엔진을 로드할 때 적용됩니다.</string>
+    <string name="settings_developer_ort_tuning_default">기본값(%1$s)</string>
+    <string name="settings_developer_ort_tuning_cpu">CPU</string>
+    <string name="settings_developer_ort_tuning_no_spinning">스피닝 없음</string>
+    <string name="settings_developer_ort_tuning_pinned">고성능 코어에 고정</string>
+
+    <!-- Small labels on engine cards, rows and the details dialog -->
+    <string name="engine_badge_in_use">사용 중</string>
+    <string name="engine_badge_developer">개발자</string>
+    <string name="engine_badge_developer_long">개발자 엔진</string>
+    <string name="engine_badge_may_be_slow_long">이 휴대전화에서 느릴 수 있음</string>
+    <string name="engine_badge_streaming">스트리밍</string>
+    <string name="engine_streaming_steps">스트리밍 · %1$dms 단위</string>
+
+    <!-- Engines card: picking the engine -->
+    <string name="engine_action_use">사용</string>
+    <string name="engine_action_use_named">%1$s 사용</string>
+    <string name="engine_use_failed">엔진을 전환할 수 없습니다. 다시 시도하세요.</string>
+
+    <!-- Engine info dialog: language hint -->
+    <string name="engine_language">이 엔진의 언어</string>
+    <string name="engine_language_auto">자동 감지</string>
+    <string name="engine_language_cancel">취소</string>
+    <string name="engine_language_failed">언어를 저장할 수 없습니다. 다시 시도하세요.</string>
+</resources>

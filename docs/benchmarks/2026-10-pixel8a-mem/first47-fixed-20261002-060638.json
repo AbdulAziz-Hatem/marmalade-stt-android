@@ -1,0 +1,510 @@
+{
+  "tag": "first47-fixed",
+  "started": "20261002-060638",
+  "device": "Google Pixel 8a (Android 17, SDK 37)",
+  "seed": 2,
+  "order": [
+    "nemotron-3-5-streaming-1120ms@4\/cpu",
+    "whisper-turbo@4\/cpu",
+    "nemotron-3-5-streaming-560ms@4\/cpu"
+  ],
+  "fastCores": [
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "cooldownSeconds": 30,
+  "clips": [
+    {
+      "name": "ls20-2",
+      "audioMs": 20150
+    },
+    {
+      "name": "ls10-1",
+      "audioMs": 10970
+    },
+    {
+      "name": "ls20-1",
+      "audioMs": 19610
+    },
+    {
+      "name": "ls05-2",
+      "audioMs": 5485
+    },
+    {
+      "name": "ls05-3",
+      "audioMs": 5340
+    },
+    {
+      "name": "ls20-3",
+      "audioMs": 18145
+    },
+    {
+      "name": "ls10-2",
+      "audioMs": 9730
+    },
+    {
+      "name": "ls05-1",
+      "audioMs": 4955
+    },
+    {
+      "name": "ls28-2",
+      "audioMs": 27120
+    },
+    {
+      "name": "ls28-1",
+      "audioMs": 27180
+    },
+    {
+      "name": "ls10-3",
+      "audioMs": 10850
+    }
+  ],
+  "results": [
+    {
+      "engine": "nemotron-3-5-streaming-1120ms",
+      "displayName": "Nemotron 3.5 Streaming",
+      "threads": 4,
+      "tuning": "cpu",
+      "arena": true,
+      "pinnedCores": null,
+      "family": "STREAMING_TRANSDUCER",
+      "developer": false,
+      "loadMs": 4870,
+      "threadAffinity": {
+        "0-7": 34
+      },
+      "warmupMs": 391,
+      "warmup": "silence",
+      "decodes": [
+        {
+          "clip": "ls20-2",
+          "audioMs": 20150,
+          "utterances": 1,
+          "decodeMs": 3788,
+          "rtf": 0.18799007444168733,
+          "wer": 0.02040816326530612,
+          "text": "When the music by its bursts of melody carried away these illustrious dancers when the simple, untutored pantomime of that period, only the more natural on account of the very indifferent acting of the August actors had reached its culminating point of triumph, the theatre shook with tumultuous applause."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 2354,
+          "rtf": 0.2145852324521422,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts presenting in case after case the different phases of the subject and urging the unconstitutionality of the measure"
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 4102,
+          "rtf": 0.2091789903110658,
+          "wer": 0.02,
+          "text": "Nevertheless, the mustard seed among the smallest of all seeds has attained the proportions of a tree and the birds of the air are nesting in its branches the acorn is now in oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth"
+        },
+        {
+          "clip": "ls05-2",
+          "audioMs": 5485,
+          "utterances": 1,
+          "decodeMs": 1348,
+          "rtf": 0.24576116681859617,
+          "wer": 0,
+          "text": "Their assumed character changed with their changing opportunities or necessities"
+        },
+        {
+          "clip": "ls05-3",
+          "audioMs": 5340,
+          "utterances": 1,
+          "decodeMs": 1493,
+          "rtf": 0.2795880149812734,
+          "wer": 0.05555555555555555,
+          "text": "Westmere and I were back after the first act, and we thought she seemed quite unscertain of herself"
+        },
+        {
+          "clip": "ls20-3",
+          "audioMs": 18145,
+          "utterances": 1,
+          "decodeMs": 4510,
+          "rtf": 0.24855332047395978,
+          "wer": 0,
+          "text": "It would seem that only rather recent events can be placed at all accurately by means of feelings giving their temporal relation to the present, but it is clear that such feelings must play an essential part in the process of dating remembered events"
+        },
+        {
+          "clip": "ls10-2",
+          "audioMs": 9730,
+          "utterances": 1,
+          "decodeMs": 2739,
+          "rtf": 0.2815005138746146,
+          "wer": 0.03571428571428571,
+          "text": "Observe again what care the law took in the pursuit of wisdom searching out the deep things of the world and applying them to the use of men"
+        },
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 1595,
+          "rtf": 0.3218970736629667,
+          "wer": 0.08333333333333333,
+          "text": "Or an eye of gifts and graces, showering fruits and coined gold"
+        },
+        {
+          "clip": "ls28-2",
+          "audioMs": 27120,
+          "utterances": 1,
+          "decodeMs": 7507,
+          "rtf": 0.27680678466076697,
+          "wer": 0.013888888888888888,
+          "text": "In a moment he communicated his thoughts to his companions, and in the next moment they resolved to turn back and carry her off to please Rudolfo for the rich who are open handed always find parasites ready to encourage their bad propensities and thus to conceive this wicked design to communicate it, approve it resolve on ravishing Leocadia, and to carry that design into effect was the work of a moment"
+        },
+        {
+          "clip": "ls28-1",
+          "audioMs": 27180,
+          "utterances": 1,
+          "decodeMs": 6619,
+          "rtf": 0.24352465047829286,
+          "wer": 0,
+          "text": "He passes abruptly from persons to ideas and numbers and from ideas and numbers to persons from the heavens to man, from astronomy to physiology he confuses, or rather does not distinguish subject and object first and final causes and is dreaming of geometrical figures lost in a flux of sense"
+        },
+        {
+          "clip": "ls10-3",
+          "audioMs": 10850,
+          "utterances": 1,
+          "decodeMs": 3113,
+          "rtf": 0.28691244239631336,
+          "wer": 0,
+          "text": "The only duplicate which existed so far as I knew was that which belonged to my servant bannister a man who has looked after my room for ten years and whose honesty is absolutely above suspicion"
+        }
+      ],
+      "rtfByLength": {
+        "ls20": 0.21414385631638028,
+        "ls10": 0.260095087163233,
+        "ls05": 0.2811153358681876,
+        "ls28": 0.2601473296500921,
+        "ls": 0.24551352367818974
+      },
+      "peakRssMb": 941,
+      "baselineRssMb": 169,
+      "envBefore": {
+        "thermal": 0,
+        "batteryPct": 98,
+        "batteryTempC": 34.7,
+        "plugged": true,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 0,
+        "batteryPct": 98,
+        "batteryTempC": 35.1,
+        "plugged": true,
+        "screenOn": false
+      },
+      "maxThermal": 0,
+      "disturbed": null
+    },
+    {
+      "engine": "whisper-turbo",
+      "displayName": "Whisper Large v3 Turbo",
+      "threads": 4,
+      "tuning": "cpu",
+      "arena": true,
+      "pinnedCores": null,
+      "family": "WHISPER",
+      "developer": false,
+      "loadMs": 4894,
+      "threadAffinity": {
+        "0-7": 31
+      },
+      "warmupMs": 2059,
+      "warmup": "silence",
+      "decodes": [
+        {
+          "clip": "ls20-2",
+          "audioMs": 20150,
+          "utterances": 1,
+          "decodeMs": 12772,
+          "rtf": 0.6338461538461538,
+          "wer": 0,
+          "text": "When the music, by its bursts of melody, carried away these illustrious dancers, when the simple, untutored pantomime of that period, only the more natural on account of the very indifferent acting of the august actors, had reached its culminating point of triumph, the theater shook with tumultuous applause."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 8511,
+          "rtf": 0.7758432087511394,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 16935,
+          "rtf": 0.8635900050994391,
+          "wer": 0,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls05-2",
+          "audioMs": 5485,
+          "utterances": 1,
+          "decodeMs": 6183,
+          "rtf": 1.1272561531449408,
+          "wer": 0,
+          "text": "their assumed character changed with their changing opportunities or necessities"
+        },
+        {
+          "clip": "ls05-3",
+          "audioMs": 5340,
+          "utterances": 1,
+          "decodeMs": 5971,
+          "rtf": 1.1181647940074906,
+          "wer": 0,
+          "text": "Westmere and I were back after the first act and we thought she seemed quite uncertain of herself."
+        },
+        {
+          "clip": "ls20-3",
+          "audioMs": 18145,
+          "utterances": 1,
+          "decodeMs": 13847,
+          "rtf": 0.7631303389363461,
+          "wer": 0,
+          "text": "It would seem that only rather recent events can be placed at all accurately by means of feelings giving their temporal relation to the present. But it is clear that such feelings must play an essential part in the process of dating remembered events."
+        },
+        {
+          "clip": "ls10-2",
+          "audioMs": 9730,
+          "utterances": 1,
+          "decodeMs": 9011,
+          "rtf": 0.9261048304213771,
+          "wer": 0.07142857142857142,
+          "text": "observe again what care the lot took in the pursuit of wisdom searching out the deep things of the world and applying them to the use of men"
+        },
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 5164,
+          "rtf": 1.0421796165489405,
+          "wer": 0.16666666666666666,
+          "text": "Or an eye of gifts and graces, showering fruits and cointed gold?"
+        },
+        {
+          "clip": "ls28-2",
+          "audioMs": 27120,
+          "utterances": 1,
+          "decodeMs": 19428,
+          "rtf": 0.7163716814159292,
+          "wer": 0.027777777777777776,
+          "text": "In a moment, he communicated his thoughts to his companions, and in the next moment, they resolved to turn back and carry her off to please Rudolfo. For the rich, who are open-handed, always find parasites ready to encourage their bad propensities. And thus, to conceive this wicked design, to communicate it, approve it, resolve on ravishing Leocadia, and to carry that design into effect was the work of the moment."
+        },
+        {
+          "clip": "ls28-1",
+          "audioMs": 27180,
+          "utterances": 1,
+          "decodeMs": 15462,
+          "rtf": 0.5688741721854305,
+          "wer": 0,
+          "text": "he passes abruptly from persons to ideas and numbers and from ideas and numbers to persons from the heavens to man from astronomy to physiology he confuses or rather does not distinguish subject and object first and final causes and is dreaming of geometrical figures lost in a flux of sense"
+        },
+        {
+          "clip": "ls10-3",
+          "audioMs": 10850,
+          "utterances": 1,
+          "decodeMs": 10021,
+          "rtf": 0.923594470046083,
+          "wer": 0,
+          "text": "the only duplicate which existed so far as i knew was that which belonged to my servant bannister a man who has looked after my room for ten years and whose honesty is absolutely above suspicion"
+        }
+      ],
+      "rtfByLength": {
+        "ls20": 0.7521630256454538,
+        "ls10": 0.8729952456418384,
+        "ls05": 1.0974651457541191,
+        "ls28": 0.6425414364640883,
+        "ls": 0.7729024978844767
+      },
+      "peakRssMb": 2256,
+      "baselineRssMb": 174,
+      "envBefore": {
+        "thermal": 0,
+        "batteryPct": 98,
+        "batteryTempC": 35.1,
+        "plugged": true,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 1,
+        "batteryPct": 99,
+        "batteryTempC": 35.8,
+        "plugged": true,
+        "screenOn": false
+      },
+      "maxThermal": 1,
+      "disturbed": null
+    },
+    {
+      "engine": "nemotron-3-5-streaming-560ms",
+      "displayName": "Nemotron 3.5 Streaming",
+      "threads": 4,
+      "tuning": "cpu",
+      "arena": true,
+      "pinnedCores": null,
+      "family": "STREAMING_TRANSDUCER",
+      "developer": false,
+      "loadMs": 5439,
+      "threadAffinity": {
+        "0-7": 34
+      },
+      "warmupMs": 459,
+      "warmup": "silence",
+      "decodes": [
+        {
+          "clip": "ls20-2",
+          "audioMs": 20150,
+          "utterances": 1,
+          "decodeMs": 5765,
+          "rtf": 0.2861042183622829,
+          "wer": 0.04081632653061224,
+          "text": "When the music by its bursts of melody carried away these illustrious dancers when this simple, untutored pantomime of that period, only the more natural on account of the very indifferent acting of the August actors had reached its culminating point of triumph, the theatre shook with tumultuous applause."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 3916,
+          "rtf": 0.3569735642661805,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject and urging the unconstitutionality of the measure"
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 7161,
+          "rtf": 0.3651708312085671,
+          "wer": 0.02,
+          "text": "Nevertheless, the mustard seed among the smallest of all seeds has attained the proportions of a tree and the birds of the air are nesting in its branches. The acorn is now in oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls05-2",
+          "audioMs": 5485,
+          "utterances": 1,
+          "decodeMs": 1876,
+          "rtf": 0.3420237010027347,
+          "wer": 0,
+          "text": "Their assumed character changed with their changing opportunities or necessities"
+        },
+        {
+          "clip": "ls05-3",
+          "audioMs": 5340,
+          "utterances": 1,
+          "decodeMs": 2084,
+          "rtf": 0.3902621722846442,
+          "wer": 0.1111111111111111,
+          "text": "Westmir and I were back after the first act, and we thought she seemed quite unscertain of herself"
+        },
+        {
+          "clip": "ls20-3",
+          "audioMs": 18145,
+          "utterances": 1,
+          "decodeMs": 6950,
+          "rtf": 0.3830256268944613,
+          "wer": 0,
+          "text": "It would seem that only rather recent events can be placed at all accurately by means of feelings giving their temporal relation to the present, but it is clear that such feelings must play an essential part in the process of dating remembered events"
+        },
+        {
+          "clip": "ls10-2",
+          "audioMs": 9730,
+          "utterances": 1,
+          "decodeMs": 3911,
+          "rtf": 0.40195272353545736,
+          "wer": 0.03571428571428571,
+          "text": "Observe again what care the law took in the pursuit of wisdom, searching out the deep things of the world and applying them to the use of men"
+        },
+        {
+          "clip": "ls05-1",
+          "audioMs": 4955,
+          "utterances": 1,
+          "decodeMs": 2111,
+          "rtf": 0.4260343087790111,
+          "wer": 0.08333333333333333,
+          "text": "Or an eye of gifts and graces, showering fruits and coined gold"
+        },
+        {
+          "clip": "ls28-2",
+          "audioMs": 27120,
+          "utterances": 1,
+          "decodeMs": 10562,
+          "rtf": 0.3894542772861357,
+          "wer": 0.041666666666666664,
+          "text": "In a moment he communicated his thoughts to his companions, and in the next moment they resolved to turn back and carry her off to please Rudolfo for the rich who are open handed always find parasites ready to encourage their bad propensities and thus to conceive this wicked design to communicate it, approve it, resolve unravishing Leocadia, and to carry that design into effect was the work of a moment"
+        },
+        {
+          "clip": "ls28-1",
+          "audioMs": 27180,
+          "utterances": 1,
+          "decodeMs": 10058,
+          "rtf": 0.3700515084621045,
+          "wer": 0,
+          "text": "He passes abruptly from persons to ideas and numbers, and from ideas and numbers to persons from the heavens to man, from astronomy to physiology he confuses, or rather does not distinguish subject and object first and final causes. And is dreaming of geometrical figures lost in a flux of sense"
+        },
+        {
+          "clip": "ls10-3",
+          "audioMs": 10850,
+          "utterances": 1,
+          "decodeMs": 4129,
+          "rtf": 0.38055299539170506,
+          "wer": 0,
+          "text": "The only duplicate which existed so far as I knew was that which belonged to my servant Bannister, a man who has looked after my room for ten years and whose honesty is absolutely above suspicion"
+        }
+      ],
+      "rtfByLength": {
+        "ls20": 0.3432518780761592,
+        "ls10": 0.3789540412044374,
+        "ls05": 0.3847275031685678,
+        "ls28": 0.3797421731123389,
+        "ls": 0.3668348638229855
+      },
+      "peakRssMb": 945,
+      "baselineRssMb": 189,
+      "envBefore": {
+        "thermal": 1,
+        "batteryPct": 99,
+        "batteryTempC": 35.8,
+        "plugged": true,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 1,
+        "batteryPct": 99,
+        "batteryTempC": 36.1,
+        "plugged": true,
+        "screenOn": false
+      },
+      "maxThermal": 1,
+      "disturbed": null
+    }
+  ],
+  "probeMs": 301,
+  "probeRuns": [
+    297,
+    303,
+    301,
+    301,
+    284
+  ],
+  "probeThreads": 4,
+  "probeEnv": {
+    "thermal": 0,
+    "batteryPct": 98,
+    "batteryTempC": 34.7,
+    "plugged": true,
+    "screenOn": false
+  },
+  "finished": "20261002-061158"
+}

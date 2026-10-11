@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  The voice keyboard. One auxiliary subtype in voice mode: keyboards find
+  voice engines by imeSubtypeMode="voice", and isAuxiliary keeps it out of the
+  normal keyboard rotation.
+  overridesImplicitlyEnabledSubtype makes it active as soon as the keyboard is
+  enabled, and it must stay (VoiceSubtypeTest): without it Android enables a
+  voice subtype only when its locale matches one of the phone's languages, so
+  on a phone without English the en_US subtype would be off, and keyboards'
+  mic keys (getShortcutInputMethodsAndSubtypes, enabled-subtype lists) would
+  skip Marmalade (#61, docs/RESEARCH-keyboards-2026-10.md §3.3). The locale is
+  only a label: the engines recognize every language they support.
+-->
+<input-method xmlns:android="http://schemas.android.com/apk/res/android"
+    android:settingsActivity="app.marmalade.stt.MainActivity"
+    android:isDefault="false">
+    <subtype
+        android:imeSubtypeMode="voice"
+        android:imeSubtypeLocale="en_US"
+        android:languageTag="en-US"
+        android:isAuxiliary="true"
+        android:overridesImplicitlyEnabledSubtype="true"
+        android:label="@string/ime_subtype_label" />
+</input-method>

@@ -1,0 +1,7 @@
+# fleurs-zh, nemotron-3-5-streaming-560ms, 2 threads, host wall time x1
+
+| length | n | utterance s (median) | end of speech -> Final s: median | p90 | max | first partial s (median) | partials (median) | max lag s: median | max | too slow | first text s (median) |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| 5 s | 6 | 4.8 | 0.4 | 1.1 | 1.1 | 0.06 | 36 | 0.1 | 0.1 | 0 | 0.27 |
+| 10 s | 12 | 10.7 | 0.8 | 1.1 | 1.2 | 0.06 | 82 | 0.1 | 0.1 | 0 | 0.26 |
+| 22 s | 10 | 19.9 | 1.0 | 1.2 | 1.2 | 0.06 | 155.5 | 0.0 | 0.1 | 0 | 0.26 |

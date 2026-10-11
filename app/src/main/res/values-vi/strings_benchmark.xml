@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Developer A/B benchmark -->
+    <string name="benchmark_title">Đo điểm chuẩn</string>
+    <string name="benchmark_note">Ghi âm một lần, sau đó mọi công cụ đã cài đặt lần lượt chép lời bản ghi đó: tải, chép lời, giải phóng. Mọi công cụ đều nhận cùng các đoạn Silero VAD. Công cụ streaming nhận từng đoạn theo khối 100 ms, nhanh nhất mà mô hình nhận được, không theo thời gian thực. Bản ghi chỉ nằm trong bộ nhớ và không bao giờ được lưu. Số liệu trên trình mô phỏng chỉ dùng được để so sánh các công cụ với nhau.</string>
+
+    <string name="benchmark_section_take">Bản ghi</string>
+    <string name="benchmark_record">Ghi âm</string>
+    <string name="benchmark_stop">Dừng</string>
+    <string name="benchmark_play">Phát</string>
+    <string name="benchmark_stop_playback">Dừng phát</string>
+    <string name="benchmark_elapsed">%1$s giây / %2$d giây</string>
+    <string name="benchmark_level">Mức đầu vào</string>
+    <string name="benchmark_take_length">Bản ghi: %1$s</string>
+    <string name="benchmark_take_length_soft_agc">Bản ghi: %1$s, ứng dụng đã tự cân bằng âm lượng (điện thoại này không có tính năng tự điều chỉnh mức micrô)</string>
+    <plurals name="benchmark_no_take">
+        <item quantity="other">Chưa có bản ghi. Hãy ghi tối đa %1$d giây lời nói.</item>
+    </plurals>
+
+    <string name="benchmark_section_reference">Văn bản tham chiếu (không bắt buộc)</string>
+    <string name="benchmark_reference_label">Những gì bạn đã nói</string>
+    <string name="benchmark_reference_hint">Nhập những gì bạn đã nói để xem tỷ lệ lỗi từ (WER) của từng công cụ.</string>
+
+    <string name="benchmark_section_engines">Công cụ</string>
+    <string name="benchmark_no_engines">Chưa cài đặt công cụ nào. Hãy cài đặt trong thẻ Công cụ (bật Công cụ cho nhà phát triển trong Cài đặt để xem các công cụ thử nghiệm).</string>
+    <string name="benchmark_run">Chạy đo điểm chuẩn</string>
+    <string name="benchmark_run_again">Chạy lại</string>
+    <string name="benchmark_running">Đang chạy %1$s (%2$d/%3$d)…</string>
+
+    <string name="benchmark_section_results">Kết quả</string>
+    <string name="benchmark_metric_load">Tải %1$s</string>
+    <string name="benchmark_metric_decode">Giải mã %1$s</string>
+    <string name="benchmark_metric_rtf">RTF %1$s</string>
+    <string name="benchmark_metric_rss">RSS tối đa (lấy mẫu) %1$s</string>
+    <string name="benchmark_metric_wer">WER %1$s</string>
+    <string name="benchmark_empty_transcript">(không nhận dạng được lời nói)</string>
+    <string name="benchmark_raw">Bản gốc: %1$s</string>
+    <string name="benchmark_failed_load">Không tải được: %1$s</string>
+    <string name="benchmark_failed_transcribe">Không chép lời được: %1$s</string>
+    <string name="benchmark_failed_release">Đã chép lời nhưng không giải phóng được: %1$s</string>
+    <string name="benchmark_copy_markdown">Sao chép dạng Markdown</string>
+    <string name="benchmark_copied">Đã sao chép</string>
+
+    <!-- Snackbar notices -->
+    <string name="benchmark_error_mic">Không ghi âm được. Có ứng dụng khác đang dùng micrô không?</string>
+    <string name="benchmark_error_empty">Không ghi được gì. Hãy thử lại.</string>
+    <string name="benchmark_error_playback">Không phát được bản ghi.</string>
+    <string name="benchmark_error_no_engines">Không có công cụ đã cài đặt nào để chạy.</string>
+    <string name="benchmark_error_run">Quá trình đo điểm chuẩn đã dừng do có lỗi.</string>
+
+    <!-- Mic permission -->
+    <string name="benchmark_mic_title">Đo điểm chuẩn cần dùng micrô</string>
+    <string name="benchmark_mic_body">Tính năng này ghi âm một lần, chỉ giữ bản ghi trong bộ nhớ và không bao giờ lưu hay gửi đi.</string>
+</resources>

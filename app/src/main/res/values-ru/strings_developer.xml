@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Движки для разработчиков: переключатель, замер скорости, настройка среды выполнения, значки, выбор движка и языка. -->
+<resources>
+    <!-- Настройки → Для разработчиков -->
+    <string name="settings_developer">Для разработчиков</string>
+    <string name="settings_developer_engines">Движки для разработчиков</string>
+    <string name="settings_developer_engines_desc">Показывать дополнительные движки распознавания для тестов и бенчмарков. Большие загрузки, не для повседневного использования.</string>
+    <string name="settings_developer_benchmark">A/B-бенчмарк</string>
+    <string name="settings_developer_benchmark_desc">Сравнить установленные движки на одной записи.</string>
+    <string name="settings_developer_speed">Заново измерить скорость телефона</string>
+    <string name="settings_developer_speed_measuring">Измерение…</string>
+    <string name="settings_developer_speed_measured">Оценка скорости: %1$s</string>
+    <string name="settings_developer_speed_unmeasured">Ещё не измерено</string>
+    <string name="settings_developer_speed_done">Оценка скорости: %1$s</string>
+    <string name="settings_developer_speed_failed">Не удалось измерить скорость телефона</string>
+    <!-- Настройка ONNX Runtime -->
+    <string name="settings_developer_ort_tuning">Настройка среды выполнения</string>
+    <string name="settings_developer_ort_tuning_desc">Spinning потоков и привязка к ядрам в ONNX Runtime, для замеров. Действует со следующей загрузки движка.</string>
+    <string name="settings_developer_ort_tuning_default">По умолчанию (%1$s)</string>
+    <string name="settings_developer_ort_tuning_cpu">CPU</string>
+    <string name="settings_developer_ort_tuning_no_spinning">без spinning</string>
+    <string name="settings_developer_ort_tuning_pinned">на быстрых ядрах</string>
+
+    <!-- Значки на карточках и в диалоге сведений -->
+    <string name="engine_badge_in_use">Используется</string>
+    <string name="engine_badge_developer">Для разработчиков</string>
+    <string name="engine_badge_developer_long">Движок для разработчиков</string>
+    <string name="engine_badge_may_be_slow_long">Может работать медленно на этом телефоне</string>
+    <string name="engine_badge_streaming">Потоковый</string>
+    <string name="engine_streaming_steps">Потоковый · шаг %1$d мс</string>
+
+    <!-- Выбор движка -->
+    <string name="engine_action_use">Выбрать</string>
+    <string name="engine_action_use_named">Выбрать %1$s</string>
+    <string name="engine_use_failed">Не удалось сменить движок. Повторите попытку.</string>
+
+    <!-- Язык движка -->
+    <string name="engine_language">Язык для этого движка</string>
+    <string name="engine_language_auto">Автоопределение</string>
+    <string name="engine_language_cancel">Отмена</string>
+    <string name="engine_language_failed">Не удалось сохранить язык. Повторите попытку.</string>
+</resources>

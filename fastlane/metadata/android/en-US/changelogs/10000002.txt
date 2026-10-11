@@ -1,0 +1,6 @@
+Marmalade STT 1.0.0, the first release.
+- Private, offline speech-to-text: a voice keyboard for FUTO, HeliBoard, FlorisBoard and others, a speak-now sheet for apps, and Android's speech recognition service.
+- Engines picked for your phone and language, with dedicated picks for Japanese, Chinese, Korean, Hindi, Arabic and Vietnamese.
+- Stop by tap, pause, end word or Smart Turn.
+- Text cleanup, replacements and snippets.
+- The app itself is in 21 languages. No ads, no accounts, no analytics.

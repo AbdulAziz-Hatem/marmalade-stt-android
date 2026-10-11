@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Settings → Appearance -->
+    <string name="settings_appearance">Vzhled</string>
+    <string name="settings_mode">Režim</string>
+    <string name="settings_mode_system">Systém</string>
+    <string name="settings_mode_light">Světlý</string>
+    <string name="settings_mode_dark">Tmavý</string>
+    <string name="settings_color">Barva</string>
+    <string name="settings_color_system">Tapeta</string>
+    <string name="settings_color_midnight">Půlnoc</string>
+    <string name="settings_color_forest">Les</string>
+    <string name="settings_color_berry">Lesní plody</string>
+    <string name="settings_color_high_contrast">Vysoký kontrast</string>
+</resources>

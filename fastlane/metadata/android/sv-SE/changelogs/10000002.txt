@@ -1,0 +1,6 @@
+Marmalade STT 1.0.0, första versionen.
+- Privat tal-till-text offline: rösttangentbord för FUTO, HeliBoard, FlorisBoard m.fl., ett ”Tala nu”-fönster för appar och Androids taligenkänningstjänst.
+- Motorer valda efter telefon och språk, med särskilda val för japanska, kinesiska, koreanska, hindi, arabiska och vietnamesiska.
+- Stopp med tryck, paus, slutord eller Smart Turn.
+- Textrensning, ersättningar och textsnuttar.
+- Gränssnitt på 21 språk. Ingen reklam, inga konton, ingen analys.

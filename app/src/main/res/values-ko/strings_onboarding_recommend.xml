@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Setup guide: recommended engine. %1$s/%2$s are bare language names: no particle after them. -->
+    <string name="onboarding_recommend_checking">휴대전화 확인 중…</string>
+    <string name="onboarding_recommend_best_fit">%1$s용 최우선 추천 엔진이며, 이 휴대전화의 메모리와 속도에도 맞습니다.</string>
+    <string name="onboarding_recommend_lighter">이 휴대전화의 메모리와 속도에 맞는 더 가벼운 엔진입니다.</string>
+    <string name="onboarding_recommend_may_be_slow">%1$s에 가장 적합한 엔진이지만 이 휴대전화에서는 느릴 수 있습니다.</string>
+    <string name="onboarding_recommend_low_memory">%1$s용으로 가장 가벼운 엔진입니다. 이 휴대전화는 이 엔진을 실행하기에 메모리가 부족해 느려지거나 Android가 종료할 수 있습니다.</string>
+    <string name="onboarding_recommend_uncovered">아직 %1$s 받아쓰기를 지원하는 엔진이 없어 %2$s용 엔진을 골랐습니다.</string>
+    <plurals name="onboarding_recommend_languages">
+        <item quantity="other">%d개 언어, 자동 감지.</item>
+    </plurals>
+    <string name="onboarding_recommend_other">나중에 엔진 탭에서 다른 엔진을 선택할 수 있습니다.</string>
+</resources>

@@ -1,0 +1,914 @@
+{
+  "tag": "threads-a",
+  "started": "20260927-211049",
+  "device": "Google Pixel 8a (Android 16, SDK 36)",
+  "seed": 34,
+  "order": [
+    "parakeet-tdt-0-6b-v3@4",
+    "parakeet-tdt-0-6b-v3@3",
+    "parakeet-tdt-0-6b-v3@2",
+    "parakeet-tdt-0-6b-v3@6",
+    "distil-small-en@5",
+    "distil-small-en@6",
+    "distil-small-en@2",
+    "parakeet-tdt-0-6b-v3@5",
+    "distil-small-en@3",
+    "distil-small-en@4"
+  ],
+  "cooldownSeconds": 30,
+  "clips": [
+    {
+      "name": "ls10-1",
+      "audioMs": 10970
+    },
+    {
+      "name": "ls20-1",
+      "audioMs": 19610
+    }
+  ],
+  "results": [
+    {
+      "engine": "parakeet-tdt-0-6b-v3",
+      "displayName": "Parakeet TDT 0.6B v3",
+      "threads": 4,
+      "family": "NEMO_TRANSDUCER",
+      "developer": false,
+      "loadMs": 3874,
+      "warmupMs": 984,
+      "decodes": [
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 739,
+          "rtf": 0.06736554238833181,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 759,
+          "rtf": 0.0691886964448496,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 763,
+          "rtf": 0.06955332725615314,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 1287,
+          "rtf": 0.06562978072412035,
+          "wer": 0,
+          "text": "Nevertheless the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction, to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 1302,
+          "rtf": 0.06639469658337582,
+          "wer": 0,
+          "text": "Nevertheless the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction, to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 1298,
+          "rtf": 0.0661907190209077,
+          "wer": 0,
+          "text": "Nevertheless the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction, to every earnest pilgrim journeying its way for truth."
+        }
+      ],
+      "rtfByLength": {
+        "ls10": 0.06870252202977818,
+        "ls20": 0.06607173210946796,
+        "ls": 0.06701547852626989
+      },
+      "peakRssMb": 1633,
+      "baselineRssMb": 842,
+      "envBefore": {
+        "thermal": 0,
+        "batteryPct": 20,
+        "batteryTempC": 32.5,
+        "plugged": false,
+        "screenOn": true
+      },
+      "envAfter": {
+        "thermal": 0,
+        "batteryPct": 20,
+        "batteryTempC": 34.3,
+        "plugged": false,
+        "screenOn": true
+      },
+      "maxThermal": 0,
+      "disturbed": null
+    },
+    {
+      "engine": "parakeet-tdt-0-6b-v3",
+      "displayName": "Parakeet TDT 0.6B v3",
+      "threads": 3,
+      "family": "NEMO_TRANSDUCER",
+      "developer": false,
+      "loadMs": 3545,
+      "warmupMs": 1031,
+      "decodes": [
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 870,
+          "rtf": 0.07930720145852324,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 855,
+          "rtf": 0.07793983591613492,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 855,
+          "rtf": 0.07793983591613492,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 1534,
+          "rtf": 0.07822539520652728,
+          "wer": 0,
+          "text": "Nevertheless the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction, to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 1464,
+          "rtf": 0.07465578786333503,
+          "wer": 0,
+          "text": "Nevertheless the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction, to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 1509,
+          "rtf": 0.07695053544110148,
+          "wer": 0,
+          "text": "Nevertheless the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction, to every earnest pilgrim journeying its way for truth."
+        }
+      ],
+      "rtfByLength": {
+        "ls10": 0.07839562443026436,
+        "ls20": 0.07661057283698793,
+        "ls": 0.07725092653150208
+      },
+      "peakRssMb": 1151,
+      "baselineRssMb": 238,
+      "envBefore": {
+        "thermal": 0,
+        "batteryPct": 20,
+        "batteryTempC": 33.5,
+        "plugged": false,
+        "screenOn": true
+      },
+      "envAfter": {
+        "thermal": 0,
+        "batteryPct": 20,
+        "batteryTempC": 34.3,
+        "plugged": false,
+        "screenOn": true
+      },
+      "maxThermal": 0,
+      "disturbed": null
+    },
+    {
+      "engine": "parakeet-tdt-0-6b-v3",
+      "displayName": "Parakeet TDT 0.6B v3",
+      "threads": 2,
+      "family": "NEMO_TRANSDUCER",
+      "developer": false,
+      "loadMs": 3291,
+      "warmupMs": 1135,
+      "decodes": [
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 1002,
+          "rtf": 0.09134001823154056,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 1029,
+          "rtf": 0.09380127620783957,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 1037,
+          "rtf": 0.09453053783044667,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 1850,
+          "rtf": 0.09433962264150944,
+          "wer": 0,
+          "text": "Nevertheless the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction, to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 1830,
+          "rtf": 0.09331973482916879,
+          "wer": 0,
+          "text": "Nevertheless the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction, to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 1866,
+          "rtf": 0.09515553289138194,
+          "wer": 0,
+          "text": "Nevertheless the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction, to every earnest pilgrim journeying its way for truth."
+        }
+      ],
+      "rtfByLength": {
+        "ls10": 0.09322394408994227,
+        "ls20": 0.09427163012068672,
+        "ls": 0.09389579245694353
+      },
+      "peakRssMb": 1148,
+      "baselineRssMb": 233,
+      "envBefore": {
+        "thermal": 0,
+        "batteryPct": 20,
+        "batteryTempC": 34.3,
+        "plugged": false,
+        "screenOn": true
+      },
+      "envAfter": {
+        "thermal": 0,
+        "batteryPct": 19,
+        "batteryTempC": 34.7,
+        "plugged": false,
+        "screenOn": true
+      },
+      "maxThermal": 0,
+      "disturbed": null
+    },
+    {
+      "engine": "parakeet-tdt-0-6b-v3",
+      "displayName": "Parakeet TDT 0.6B v3",
+      "threads": 6,
+      "family": "NEMO_TRANSDUCER",
+      "developer": false,
+      "loadMs": 3348,
+      "warmupMs": 1368,
+      "decodes": [
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 1362,
+          "rtf": 0.12415679124886053,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 1384,
+          "rtf": 0.1261622607110301,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 1216,
+          "rtf": 0.11084776663628076,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 2206,
+          "rtf": 0.11249362570117287,
+          "wer": 0,
+          "text": "Nevertheless the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction, to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 2441,
+          "rtf": 0.12447730749617542,
+          "wer": 0,
+          "text": "Nevertheless the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction, to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 2481,
+          "rtf": 0.12651708312085672,
+          "wer": 0,
+          "text": "Nevertheless the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction, to every earnest pilgrim journeying its way for truth."
+        }
+      ],
+      "rtfByLength": {
+        "ls10": 0.12038893953205712,
+        "ls20": 0.12116267210606833,
+        "ls": 0.12088511009374318
+      },
+      "peakRssMb": 1151,
+      "baselineRssMb": 231,
+      "envBefore": {
+        "thermal": 0,
+        "batteryPct": 19,
+        "batteryTempC": 33.8,
+        "plugged": false,
+        "screenOn": true
+      },
+      "envAfter": {
+        "thermal": 0,
+        "batteryPct": 19,
+        "batteryTempC": 35.8,
+        "plugged": false,
+        "screenOn": true
+      },
+      "maxThermal": 0,
+      "disturbed": null
+    },
+    {
+      "engine": "distil-small-en",
+      "displayName": "Distil-Whisper Small (English)",
+      "threads": 5,
+      "family": "WHISPER",
+      "developer": false,
+      "loadMs": 1069,
+      "warmupMs": 2258,
+      "decodes": [
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 1877,
+          "rtf": 0.17110300820419325,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 3215,
+          "rtf": 0.29307201458523247,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 3180,
+          "rtf": 0.28988149498632637,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 5492,
+          "rtf": 0.28006119326874046,
+          "wer": 0.02,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now in oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 5435,
+          "rtf": 0.2771545130035696,
+          "wer": 0.02,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now in oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 5415,
+          "rtf": 0.27613462519122894,
+          "wer": 0.02,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now in oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        }
+      ],
+      "rtfByLength": {
+        "ls10": 0.25135217259191733,
+        "ls20": 0.27778344382117964,
+        "ls": 0.2683017222585568
+      },
+      "peakRssMb": 1186,
+      "baselineRssMb": 301,
+      "envBefore": {
+        "thermal": 0,
+        "batteryPct": 19,
+        "batteryTempC": 35.8,
+        "plugged": false,
+        "screenOn": true
+      },
+      "envAfter": {
+        "thermal": 0,
+        "batteryPct": 18,
+        "batteryTempC": 37.3,
+        "plugged": false,
+        "screenOn": true
+      },
+      "maxThermal": 0,
+      "disturbed": null
+    },
+    {
+      "engine": "distil-small-en",
+      "displayName": "Distil-Whisper Small (English)",
+      "threads": 6,
+      "family": "WHISPER",
+      "developer": false,
+      "loadMs": 1345,
+      "warmupMs": 3129,
+      "decodes": [
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 2992,
+          "rtf": 0.27274384685505926,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 2956,
+          "rtf": 0.26946216955332725,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 2978,
+          "rtf": 0.2714676390154968,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 5576,
+          "rtf": 0.28434472208057116,
+          "wer": 0.02,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now in oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 5624,
+          "rtf": 0.28679245283018867,
+          "wer": 0.02,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now in oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 6269,
+          "rtf": 0.3196838347781744,
+          "wer": 0.02,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now in oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        }
+      ],
+      "rtfByLength": {
+        "ls10": 0.2712245518079611,
+        "ls20": 0.2969403365629781,
+        "ls": 0.28771528231959886
+      },
+      "peakRssMb": 1185,
+      "baselineRssMb": 272,
+      "envBefore": {
+        "thermal": 0,
+        "batteryPct": 18,
+        "batteryTempC": 35.5,
+        "plugged": false,
+        "screenOn": true
+      },
+      "envAfter": {
+        "thermal": 0,
+        "batteryPct": 18,
+        "batteryTempC": 37.7,
+        "plugged": false,
+        "screenOn": true
+      },
+      "maxThermal": 0,
+      "disturbed": null
+    },
+    {
+      "engine": "distil-small-en",
+      "displayName": "Distil-Whisper Small (English)",
+      "threads": 2,
+      "family": "WHISPER",
+      "developer": false,
+      "loadMs": 1746,
+      "warmupMs": 4206,
+      "decodes": [
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 3664,
+          "rtf": 0.3340018231540565,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 3809,
+          "rtf": 0.34721969006381037,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 4014,
+          "rtf": 0.3659070191431176,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 6554,
+          "rtf": 0.33421723610402854,
+          "wer": 0.02,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now in oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 7145,
+          "rtf": 0.36435492095869454,
+          "wer": 0.02,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now in oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 6477,
+          "rtf": 0.3302906680265171,
+          "wer": 0.02,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now in oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        }
+      ],
+      "rtfByLength": {
+        "ls10": 0.34904284412032816,
+        "ls20": 0.34295427502974674,
+        "ls": 0.34513843470678
+      },
+      "peakRssMb": 1186,
+      "baselineRssMb": 287,
+      "envBefore": {
+        "thermal": 0,
+        "batteryPct": 18,
+        "batteryTempC": 36.6,
+        "plugged": false,
+        "screenOn": true
+      },
+      "envAfter": {
+        "thermal": 0,
+        "batteryPct": 18,
+        "batteryTempC": 36.7,
+        "plugged": false,
+        "screenOn": true
+      },
+      "maxThermal": 0,
+      "disturbed": null
+    },
+    {
+      "engine": "parakeet-tdt-0-6b-v3",
+      "displayName": "Parakeet TDT 0.6B v3",
+      "threads": 5,
+      "family": "NEMO_TRANSDUCER",
+      "developer": false,
+      "loadMs": 3328,
+      "warmupMs": 1458,
+      "decodes": [
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 1280,
+          "rtf": 0.11668185961713765,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 1330,
+          "rtf": 0.12123974475843209,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 1340,
+          "rtf": 0.12215132178669097,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 2239,
+          "rtf": 0.11417644059153494,
+          "wer": 0,
+          "text": "Nevertheless the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction, to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 2490,
+          "rtf": 0.12697603263641,
+          "wer": 0,
+          "text": "Nevertheless the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction, to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 2524,
+          "rtf": 0.1287098419173891,
+          "wer": 0,
+          "text": "Nevertheless the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now an oak, offering protection and the sweets of satisfaction, to every earnest pilgrim journeying its way for truth."
+        }
+      ],
+      "rtfByLength": {
+        "ls10": 0.12002430872075356,
+        "ls20": 0.12328743838177801,
+        "ls": 0.12211685197296708
+      },
+      "peakRssMb": 1218,
+      "baselineRssMb": 287,
+      "envBefore": {
+        "thermal": 0,
+        "batteryPct": 18,
+        "batteryTempC": 36.4,
+        "plugged": false,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 0,
+        "batteryPct": 18,
+        "batteryTempC": 37.6,
+        "plugged": false,
+        "screenOn": false
+      },
+      "maxThermal": 0,
+      "disturbed": null
+    },
+    {
+      "engine": "distil-small-en",
+      "displayName": "Distil-Whisper Small (English)",
+      "threads": 3,
+      "family": "WHISPER",
+      "developer": false,
+      "loadMs": 1310,
+      "warmupMs": 2509,
+      "decodes": [
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 2364,
+          "rtf": 0.2154968094804011,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 2492,
+          "rtf": 0.22716499544211485,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 3361,
+          "rtf": 0.30638103919781223,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 5054,
+          "rtf": 0.25772565017848037,
+          "wer": 0.02,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now in oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 5424,
+          "rtf": 0.27659357470678225,
+          "wer": 0.02,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now in oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 5625,
+          "rtf": 0.28684344722080574,
+          "wer": 0.02,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now in oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        }
+      ],
+      "rtfByLength": {
+        "ls10": 0.2496809480401094,
+        "ls20": 0.27372089070202277,
+        "ls": 0.26509701329845214
+      },
+      "peakRssMb": 1187,
+      "baselineRssMb": 297,
+      "envBefore": {
+        "thermal": 0,
+        "batteryPct": 17,
+        "batteryTempC": 36.8,
+        "plugged": false,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 0,
+        "batteryPct": 17,
+        "batteryTempC": 37.8,
+        "plugged": false,
+        "screenOn": false
+      },
+      "maxThermal": 0,
+      "disturbed": null
+    },
+    {
+      "engine": "distil-small-en",
+      "displayName": "Distil-Whisper Small (English)",
+      "threads": 4,
+      "family": "WHISPER",
+      "developer": false,
+      "loadMs": 1364,
+      "warmupMs": 3021,
+      "decodes": [
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 2693,
+          "rtf": 0.2454876937101185,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 3388,
+          "rtf": 0.3088422971741112,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls10-1",
+          "audioMs": 10970,
+          "utterances": 1,
+          "decodeMs": 3675,
+          "rtf": 0.3350045578851413,
+          "wer": 0,
+          "text": "The people contested these measures one by one in the courts, presenting in case after case the different phases of the subject, and urging the unconstitutionality of the measure."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 5298,
+          "rtf": 0.2701682814890362,
+          "wer": 0.02,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now in oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 6670,
+          "rtf": 0.34013258541560426,
+          "wer": 0.02,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now in oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        },
+        {
+          "clip": "ls20-1",
+          "audioMs": 19610,
+          "utterances": 1,
+          "decodeMs": 5237,
+          "rtf": 0.26705762366139724,
+          "wer": 0.02,
+          "text": "Nevertheless, the mustard seed, among the smallest of all seeds, has attained the proportions of a tree, and the birds of the air are nesting in its branches. The acorn is now in oak, offering protection and the sweets of satisfaction to every earnest pilgrim journeying its way for truth."
+        }
+      ],
+      "rtfByLength": {
+        "ls10": 0.29644484958979034,
+        "ls20": 0.29245283018867924,
+        "ls": 0.29388489208633095
+      },
+      "peakRssMb": 1184,
+      "baselineRssMb": 286,
+      "envBefore": {
+        "thermal": 0,
+        "batteryPct": 17,
+        "batteryTempC": 37.2,
+        "plugged": false,
+        "screenOn": false
+      },
+      "envAfter": {
+        "thermal": 0,
+        "batteryPct": 17,
+        "batteryTempC": 37.9,
+        "plugged": false,
+        "screenOn": false
+      },
+      "maxThermal": 0,
+      "disturbed": null
+    }
+  ],
+  "probeMs": 291,
+  "probeThreads": 4,
+  "finished": "20260927-211920"
+}

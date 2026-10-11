@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Developer A/B benchmark -->
+    <string name="benchmark_title">Benchmark</string>
+    <string name="benchmark_note">Fai una registrazione, poi ogni motore installato la trascrive a turno: caricamento, trascrizione, rilascio. Tutti i motori ricevono gli stessi segmenti di Silero VAD. Ai motori in streaming ogni segmento arriva in blocchi da 100 ms, alla velocità con cui il modello li accetta, non in tempo reale. La registrazione resta in memoria e non viene mai salvata. I numeri su un emulatore servono solo a confrontare i motori tra loro.</string>
+
+    <string name="benchmark_section_take">Registrazione</string>
+    <string name="benchmark_record">Registra</string>
+    <string name="benchmark_stop">Interrompi</string>
+    <string name="benchmark_play">Riproduci</string>
+    <string name="benchmark_stop_playback">Interrompi riproduzione</string>
+    <string name="benchmark_elapsed">%1$s s / %2$d s</string>
+    <string name="benchmark_level">Livello di ingresso</string>
+    <string name="benchmark_take_length">Registrazione: %1$s</string>
+    <string name="benchmark_take_length_soft_agc">Registrazione: %1$s, livellata dall\'app (questo telefono non ha un controllo del guadagno del microfono integrato)</string>
+    <plurals name="benchmark_no_take">
+        <item quantity="one">Ancora nessuna registrazione. Registra fino a %1$d secondo di parlato.</item>
+        <item quantity="many">Ancora nessuna registrazione. Registra fino a %1$d di secondi di parlato.</item>
+        <item quantity="other">Ancora nessuna registrazione. Registra fino a %1$d secondi di parlato.</item>
+    </plurals>
+
+    <string name="benchmark_section_reference">Testo di riferimento (facoltativo)</string>
+    <string name="benchmark_reference_label">Cosa hai detto</string>
+    <string name="benchmark_reference_hint">Scrivi cosa hai detto per ottenere il tasso di errore sulle parole (WER) di ogni motore.</string>
+
+    <string name="benchmark_section_engines">Motori</string>
+    <string name="benchmark_no_engines">Nessun motore installato. Installane qualcuno dalla scheda Motori (attiva Motori per sviluppatori in Impostazioni per vedere i candidati).</string>
+    <string name="benchmark_run">Esegui benchmark</string>
+    <string name="benchmark_run_again">Esegui di nuovo</string>
+    <string name="benchmark_running">Esecuzione di %1$s (%2$d di %3$d)…</string>
+
+    <string name="benchmark_section_results">Risultati</string>
+    <string name="benchmark_metric_load">Caricamento %1$s</string>
+    <string name="benchmark_metric_decode">Decodifica %1$s</string>
+    <string name="benchmark_metric_rtf">RTF %1$s</string>
+    <string name="benchmark_metric_rss">RSS di picco (campionato) %1$s</string>
+    <string name="benchmark_metric_wer">WER %1$s</string>
+    <string name="benchmark_empty_transcript">(nessun parlato riconosciuto)</string>
+    <string name="benchmark_raw">Grezzo: %1$s</string>
+    <string name="benchmark_failed_load">Caricamento non riuscito: %1$s</string>
+    <string name="benchmark_failed_transcribe">Trascrizione non riuscita: %1$s</string>
+    <string name="benchmark_failed_release">Trascritto, ma rilascio non riuscito: %1$s</string>
+    <string name="benchmark_copy_markdown">Copia come Markdown</string>
+    <string name="benchmark_copied">Copiato</string>
+
+    <!-- Snackbar notices -->
+    <string name="benchmark_error_mic">Impossibile registrare. Un\'altra app sta usando il microfono?</string>
+    <string name="benchmark_error_empty">Non è stato registrato nulla. Riprova.</string>
+    <string name="benchmark_error_playback">Impossibile riprodurre la registrazione.</string>
+    <string name="benchmark_error_no_engines">Nessun motore installato da eseguire.</string>
+    <string name="benchmark_error_run">Il benchmark si è interrotto a causa di un errore.</string>
+
+    <!-- Mic permission -->
+    <string name="benchmark_mic_title">Il benchmark ha bisogno del microfono</string>
+    <string name="benchmark_mic_body">Fa una sola registrazione, la tiene solo in memoria e non la salva né la invia mai.</string>
+</resources>

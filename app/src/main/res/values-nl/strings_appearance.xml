@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Settings → Appearance -->
+    <string name="settings_appearance">Weergave</string>
+    <string name="settings_mode">Modus</string>
+    <string name="settings_mode_system">Systeem</string>
+    <string name="settings_mode_light">Licht</string>
+    <string name="settings_mode_dark">Donker</string>
+    <string name="settings_color">Kleur</string>
+    <string name="settings_color_system">Achtergrond</string>
+    <string name="settings_color_midnight">Middernacht</string>
+    <string name="settings_color_forest">Bos</string>
+    <string name="settings_color_berry">Bessen</string>
+    <string name="settings_color_high_contrast">Hoog contrast</string>
+</resources>

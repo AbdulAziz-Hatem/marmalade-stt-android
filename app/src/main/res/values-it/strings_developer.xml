@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Settings → Developer -->
+    <string name="settings_developer">Sviluppatore</string>
+    <string name="settings_developer_engines">Motori per sviluppatori</string>
+    <string name="settings_developer_engines_desc">Mostra altri motori vocali per test e benchmark. Download pesanti, non pensati per l\'uso quotidiano.</string>
+    <string name="settings_developer_benchmark">Benchmark A/B</string>
+    <string name="settings_developer_benchmark_desc">Confronta i motori installati su una sola registrazione.</string>
+    <string name="settings_developer_speed">Rimisura la velocità del telefono</string>
+    <string name="settings_developer_speed_measuring">Misurazione…</string>
+    <string name="settings_developer_speed_measured">Punteggio di velocità %1$s</string>
+    <string name="settings_developer_speed_unmeasured">Non ancora misurato</string>
+    <string name="settings_developer_speed_done">Punteggio di velocità: %1$s</string>
+    <string name="settings_developer_speed_failed">Impossibile misurare la velocità del telefono</string>
+    <!-- ONNX Runtime tuning -->
+    <string name="settings_developer_ort_tuning">Ottimizzazione del runtime</string>
+    <string name="settings_developer_ort_tuning_desc">Spinning dei thread e pinning dei core di ONNX Runtime, per le misurazioni. Vale dal prossimo caricamento di un motore.</string>
+    <string name="settings_developer_ort_tuning_default">Predefinito (%1$s)</string>
+    <string name="settings_developer_ort_tuning_cpu">CPU</string>
+    <string name="settings_developer_ort_tuning_no_spinning">senza spinning</string>
+    <string name="settings_developer_ort_tuning_pinned">vincolato ai core veloci</string>
+
+    <!-- Pills and tags -->
+    <string name="engine_badge_in_use">In uso</string>
+    <string name="engine_badge_developer">Sviluppatore</string>
+    <string name="engine_badge_developer_long">Motore per sviluppatori</string>
+    <string name="engine_badge_may_be_slow_long">Potrebbe essere lento su questo telefono</string>
+    <string name="engine_badge_streaming">Streaming</string>
+    <string name="engine_streaming_steps">Streaming · passi da %1$d ms</string>
+
+    <!-- Picking the engine -->
+    <string name="engine_action_use">Usa</string>
+    <string name="engine_action_use_named">Usa %1$s</string>
+    <string name="engine_use_failed">Impossibile cambiare motore. Riprova.</string>
+
+    <!-- Engine info dialog: language hint -->
+    <string name="engine_language">Lingua per questo motore</string>
+    <string name="engine_language_auto">Rilevamento automatico</string>
+    <string name="engine_language_cancel">Annulla</string>
+    <string name="engine_language_failed">Impossibile salvare la lingua. Riprova.</string>
+</resources>

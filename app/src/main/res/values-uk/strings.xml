@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Роздільник списку й назва в лапках -->
+    <string name="list_separator">,\u0020</string>
+    <string name="quoted_name">«%1$s»</string>
+    <string name="ui_locale">uk</string>
+
+    <!-- Нижня навігація -->
+    <string name="nav_dictate">Диктування</string>
+    <string name="nav_engines">Рушії</string>
+    <string name="nav_settings">Налаштування</string>
+
+    <!-- Диктування -->
+    <string name="dictate_start">Почати диктування</string>
+    <string name="dictate_stop">Зупинити диктування</string>
+    <string name="dictate_state_idle">Не слухає</string>
+    <string name="dictate_state_loading">Підготовка</string>
+    <string name="dictate_state_listening">Слухає</string>
+    <string name="dictate_state_finishing">Завершення</string>
+    <string name="dictate_status_loading">Підготовка моделі…</string>
+    <string name="dictate_status_listening">Слухаю</string>
+    <string name="dictate_status_hearing">Чую вас…</string>
+    <string name="dictate_status_finishing">Завершення…</string>
+    <string name="dictate_status_catching_up">Наздоганяю…</string>
+    <string name="dictate_empty">Тут з’являться ваші слова. Усе, що ви кажете, залишається на вашому телефоні.</string>
+    <string name="dictate_copy">Копіювати</string>
+    <string name="dictate_copied">Скопійовано</string>
+    <string name="dictate_clear">Очистити</string>
+    <string name="dictate_no_speech">Мовлення не розпізнано</string>
+    <string name="dictate_error_mic">Не вдалося використати мікрофон</string>
+    <string name="dictate_error_model">Не вдалося запустити модель мовлення</string>
+    <string name="dictate_error_recognition">Під час розпізнавання щось пішло не так</string>
+    <string name="dictate_too_slow">Цей рушій надто повільний для цього телефона. Менший рушій на вкладці «Рушії» встигатиме.</string>
+    <string name="dictate_error_busy">Диктування вже триває деінде. Повторіть спробу трохи згодом.</string>
+    <string name="dictate_no_model_title">Завантажте модель мовлення, щоб почати диктування</string>
+    <string name="dictate_no_model_body">Модель працює на вашому телефоні. Її треба завантажити один раз, після цього диктування працює без інтернету.</string>
+    <string name="dictate_no_model_action">Вибрати модель</string>
+    <string name="dictate_mic_title">Додатку потрібен мікрофон</string>
+    <string name="dictate_mic_body">Він слухає, лише поки ви диктуєте. Сказане перетворюється на текст на вашому телефоні й ніколи не зберігається та нікуди не надсилається.</string>
+    <string name="dictate_mic_body_blocked">Доступ до мікрофона для цього додатка вимкнено. Увімкнути його можна в налаштуваннях додатка, у розділі «Дозволи».</string>
+    <string name="dictate_mic_allow">Надати доступ до мікрофона</string>
+    <string name="dictate_mic_open_settings">Відкрити налаштування</string>
+    <string name="dictate_mic_settings_failed">Не вдалося відкрити налаштування. Відкрийте налаштування Android, потім «Додатки» і Marmalade STT.</string>
+
+    <!-- Рушії -->
+    <string name="engines_title">Рушії</string>
+
+    <!-- Стан установлення -->
+    <string name="engine_status_not_installed">Ще не завантажено</string>
+    <string name="engine_status_downloading">Завантаження · %1$s</string>
+    <string name="engine_status_paused">Призупинено · %1$s</string>
+    <string name="engine_status_ready">Готово</string>
+    <string name="engine_status_corrupt">Файли моделі пошкоджено: %1$s</string>
+    <string name="engine_progress_bytes">%1$s з %2$s</string>
+    <string name="engine_progress_description">Перебіг завантаження</string>
+    <string name="engine_failure_not_available">Зараз цю модель не можна завантажити. Повторіть спробу пізніше.</string>
+    <string name="engine_failure_no_space">Для цієї моделі замало вільного місця. Звільніть місце й повторіть спробу.</string>
+    <string name="engine_failure_network">Завантаження перервалося. Перевірте з’єднання й повторіть спробу. Воно продовжиться з того самого місця.</string>
+    <string name="engine_failure_generic">Не вдалося встановити модель. Повторіть спробу.</string>
+    <string name="engine_corrupt_outdated">Установлені файли не відповідають цій версії додатка.</string>
+    <string name="engine_corrupt_missing">Файл %1$s відсутній.</string>
+    <string name="engine_corrupt_wrong_size">Файл %1$s має неправильний розмір.</string>
+    <string name="engine_corrupt_damaged">Файл %1$s пошкоджено.</string>
+    <string name="engine_failure_checksum">Завантажений файл не збігся з очікуваним, тому його видалено. Повторіть спробу, щоб завантажити його заново.</string>
+
+    <!-- Дії з рушієм -->
+    <string name="engine_action_download">Завантажити</string>
+    <string name="engine_action_resume">Продовжити</string>
+    <string name="engine_action_retry">Повторити</string>
+    <string name="engine_action_download_again">Завантажити знову</string>
+    <string name="engine_action_cancel">Скасувати</string>
+    <string name="engine_action_remove_download">Видалити завантаження</string>
+    <string name="engine_action_check_files">Перевірити файли</string>
+    <string name="engine_action_checking">Перевірка файлів…</string>
+    <string name="engine_action_remove">Видалити</string>
+    <string name="engine_dialog_cancel">Скасувати</string>
+    <string name="engine_download_confirm_title">Завантажити %1$s?</string>
+    <string name="engine_download_confirm_body">Модель (%1$s) завантажується з інтернету один раз. Після цього рушій працює без інтернету, і ніщо з того, що ви кажете, не залишає телефон.</string>
+    <string name="engine_remove_confirm_title">Видалити %1$s?</string>
+    <string name="engine_remove_confirm_body">Файли моделі (%1$s) буде видалено з телефона. Їх можна будь-коли завантажити знову.</string>
+    <string name="engine_remove_download_failed">Не вдалося видалити завантаження. Повторіть спробу.</string>
+    <string name="engine_remove_failed">Не вдалося видалити файли моделі. Повторіть спробу.</string>
+    <string name="engine_check_ok">Усі файли цілі</string>
+    <string name="engine_check_damaged">Деякі файли моделі пошкоджено. Завантажте їх знову, щоб це виправити.</string>
+    <string name="engine_check_failed">Не вдалося перевірити файли. Повторіть спробу.</string>
+    <string name="download_channel_name">Завантаження моделей мовлення</string>
+
+    <!-- Відомості про рушій -->
+    <string name="engine_detail_languages">Мови</string>
+    <string name="engine_detail_size_on_disk">Розмір на диску</string>
+    <string name="engine_detail_download_size">Розмір завантаження</string>
+    <string name="engine_detail_license">Ліцензія</string>
+    <string name="engine_detail_source">Джерело</string>
+    <string name="engine_detail_speed">Швидкість</string>
+    <string name="engine_speed_cost">%1$s× часу декодування Parakeet Ultra (оцінка)</string>
+    <string name="engine_speed_reference">Parakeet Ultra — еталон швидкості</string>
+    <string name="engine_speed_phone_unmeasured">Швидкість цього телефона ще не виміряно</string>
+
+    <!-- Налаштування -->
+    <string name="settings_title">Налаштування</string>
+    <string name="settings_back">Назад</string>
+    <string name="settings_save_failed">Не вдалося зберегти налаштування. Повторіть спробу.</string>
+    <string name="settings_speech">Мовлення</string>
+    <string name="settings_speech_keep_loaded">Тримати рушій напоготові</string>
+    <string name="settings_speech_keep_loaded_desc">Слухання починається швидше. Варто ввімкнути, якщо ви часто користуєтеся голосовим вводом, наприклад для спеціальних можливостей. Поки додаток відкритий, займає приблизно 0,6–3 ГБ пам’яті залежно від рушія.</string>
+    <!-- Налаштування → Кінець мовлення -->
+    <string name="settings_end">Кінець мовлення</string>
+    <string name="settings_end_keyboard">Голосова клавіатура</string>
+    <string name="settings_end_apps">Інші додатки й вікно «Говоріть»</string>
+    <string name="settings_end_tap">Зупинка натисканням</string>
+    <string name="settings_end_tap_desc">Мікрофон працює, доки ви його не натиснете. Слова друкуються, коли ви зупиняєте запис.</string>
+    <string name="settings_end_smart_turn">Автозупинка зі Smart Turn</string>
+    <string name="settings_end_smart_turn_desc">Зупиняє запис, коли з голосу зрозуміло, що ви закінчили, тож пауза на роздуми вас не перериває.</string>
+    <string name="settings_end_pause">Автозупинка після паузи</string>
+    <string name="settings_end_pause_desc">Зупиняє запис, коли ви робите паузу. Її тривалість задається в пункті «Тривалість паузи».</string>
+    <string name="settings_end_word">Стоп-слово</string>
+    <string name="settings_end_word_desc">Зупиняє запис, коли ви вимовляєте стоп-слово окремо, наприклад «over». Саме слово не друкується.</string>
+    <string name="settings_end_lock_hint">Порада: у режимах автозупинки утримуйте мікрофон, щоб він слухав, доки ви його не натиснете.</string>
+    <string name="settings_dialog_cancel">Скасувати</string>
+    <string name="settings_speech_pause">Тривалість паузи</string>
+    <string name="settings_speech_pause_desc">Пауза якої тривалості завершує речення на вкладці «Диктування» і зупиняє запис у режимі «Автозупинка після паузи». Що довша, то більше часу на роздуми.</string>
+    <string name="settings_speech_pause_value">%1$.1f с</string>
+    <string name="settings_speech_pause_state">%1$.1f секунди</string>
+    <string name="settings_patience">Очікування Smart Turn</string>
+    <string name="settings_patience_desc">%1$s. Скільки чекати, перш ніж вирішити, що ви закінчили.</string>
+    <string name="settings_patience_quick">Коротке</string>
+    <string name="settings_patience_quick_desc">Зупиняє запис раніше, але частіше перериває вас.</string>
+    <string name="settings_patience_normal">Звичайне</string>
+    <string name="settings_patience_normal_desc">Перечікує більшість пауз на роздуми.</string>
+    <string name="settings_patience_relaxed">Довге</string>
+    <string name="settings_patience_relaxed_desc">Чекає довше, перш ніж зупинити запис. Підходить, якщо ви часто робите паузи.</string>
+    <string name="settings_end_words">Стоп-слова</string>
+    <string name="settings_end_words_hint">Розділяйте їх комами.</string>
+    <!-- Налаштування → Підтримка -->
+    <string name="settings_support">Підтримка</string>
+    <string name="settings_support_dev">Підтримати розробку</string>
+    <string name="settings_support_dev_desc">Пожертва через GitHub Sponsors. Добровільно, податкова знижка не передбачена.</string>
+    <string name="settings_more_marmalade">Більше від Marmalade</string>
+    <string name="settings_more_marmalade_desc">Інші додатки Marmalade на GitHub.</string>
+    <string name="settings_report_bug">Повідомити про помилку</string>
+    <string name="settings_report_bug_desc">Щось зламалося або розпізналося неправильно? Відкриває issue на GitHub із уже заповненими відомостями.</string>
+    <string name="settings_about">Про додаток</string>
+    <string name="settings_about_row">Про Marmalade STT</string>
+    <string name="settings_about_row_desc">Версія %1$s · ліцензії, конфіденційність</string>
+
+    <!-- Про додаток -->
+    <string name="about_title">Про додаток</string>
+    <string name="about_version">Версія %1$s</string>
+    <string name="about_tagline">Приватне розпізнавання мовлення, яке працює на вашому телефоні.</string>
+    <string name="about_privacy">Політика конфіденційності</string>
+    <string name="about_privacy_desc">Що залишається на вашому телефоні (усе, що ви кажете) і що завантажує додаток. Без стеження й облікових записів.</string>
+    <string name="about_privacy_english_note">Ця політика англійською мовою. Коротко: мовлення розпізнається на вашому телефоні й ніколи — хмарним чи онлайн-сервісом розпізнавання мовлення. Аудіо ніколи не зберігається й не вивантажується. Жодної аналітики, стеження й облікових записів. Інтернет використовується лише для завантаження моделей мовлення.</string>
+    <string name="about_privacy_load_failed">Не вдалося завантажити політику конфіденційності. Вона також є в репозиторії, у файлі PRIVACY.md.</string>
+    <string name="about_licenses">Ліцензії відкритого ПЗ</string>
+    <string name="about_licenses_desc">Ліцензії додатка й компонентів, які входять до нього.</string>
+
+    <!-- Ліцензії відкритого ПЗ -->
+    <string name="licenses_licensing">Ліцензування</string>
+    <string name="licenses_view_full">Показати повну ліцензію</string>
+    <string name="license_text_title">Ліцензія</string>
+    <string name="license_text_not_bundled">Текст ліцензії не входить до додатка. Див. посилання на попередньому екрані.</string>
+    <string name="license_text_load_failed">Не вдалося завантажити текст ліцензії. Див. посилання на джерело на попередньому екрані.</string>
+
+    <!-- Голосова клавіатура -->
+    <string name="ime_name">Голосовий ввід Marmalade</string>
+    <string name="ime_subtype_label">Голосовий ввід</string>
+    <string name="ime_status_loading">Підготовка моделі…</string>
+    <string name="ime_status_listening">Слухаю</string>
+    <string name="ime_status_hearing">Чую вас…</string>
+    <string name="ime_status_finishing">Завершення…</string>
+    <string name="ime_status_paused">Пауза. Натисніть мікрофон, щоб продовжити.</string>
+    <string name="ime_speak_now">Говоріть</string>
+    <string name="ime_cancel">Назад до клавіатури</string>
+    <string name="ime_done">Готово</string>
+    <string name="ime_pause">Призупинити слухання</string>
+    <string name="ime_resume">Продовжити слухання</string>
+    <string name="ime_no_model">Завантажте модель мовлення в Marmalade STT, щоб користуватися голосовим вводом.</string>
+    <string name="ime_open_app">Відкрити Marmalade STT</string>
+    <string name="ime_mic_needed">Для голосового вводу потрібен мікрофон. Він слухає, лише поки відкрита ця панель.</string>
+    <string name="ime_mic_allow">Надати доступ до мікрофона</string>
+    <string name="ime_mic_blocked">Доступ до мікрофона для Marmalade STT вимкнено. Увімкніть його в розділі «Дозволи», а потім поверніться у свій додаток.</string>
+
+    <!-- Вікно голосового вводу й служба розпізнавання -->
+    <string name="recognizer_speak_now">Говоріть</string>
+    <string name="recognizer_cancel">Скасувати</string>
+    <string name="recognizer_done">Готово</string>
+    <string name="recognizer_try_again">Повторити</string>
+    <string name="recognizer_no_model">Завантажте модель мовлення в Marmalade STT, щоб користуватися голосовим вводом.</string>
+    <string name="recognizer_open_app">Відкрити Marmalade STT</string>
+    <string name="recognizer_mic_blocked">Для голосового вводу потрібен мікрофон. Увімкніть доступ у налаштуваннях додатка, у розділі «Дозволи».</string>
+    <string name="recognizer_open_settings">Відкрити налаштування</string>
+    <string name="recognizer_mic_stop">Зупинити слухання</string>
+
+    <!-- Утримання мікрофона -->
+    <string name="lock_status">Закріплено: натисніть для зупинки</string>
+    <string name="lock_state">Закріплено</string>
+    <string name="lock_action">Закріпити слухання</string>
+
+    <!-- Очищення тексту -->
+    <string name="cleanup_section">Очищення тексту</string>
+    <string name="cleanup_fillers">Вилучати слова-паразити</string>
+    <string name="cleanup_fillers_desc">Вилучає «um», «uh», «er», «hmm» і подібні. Справжні слова, як-от «umbrella», залишаються.</string>
+    <string name="cleanup_commands">Голосові команди</string>
+    <string name="cleanup_commands_desc">Кажіть «new line» і «new paragraph», а «scratch that» видаляє останнє речення.</string>
+    <string name="cleanup_punctuation">Розділові знаки голосом</string>
+    <string name="cleanup_punctuation_desc">Можна казати й «period», «comma», «question mark»… За замовчуванням вимкнено: це ще й звичайні слова.</string>
+    <string name="cleanup_english_only">Лише для англійської. %1$s</string>
+    <string name="cleanup_itn">Числа цифрами</string>
+    <string name="cleanup_itn_desc">«Twenty five percent» стає «25%», «nine thirty pm» — «9:30 pm». Невеликі числа, як у «three boxes», залишаються словами.</string>
+    <string name="cleanup_capitalize">Речення з великої літери</string>
+    <string name="cleanup_capitalize_desc">Велика літера на початку кожного речення й рядка. Великі літери ніколи не замінюються малими.</string>
+    <string name="cleanup_dictionary">Словник замін</string>
+    <string name="cleanup_dictionary_desc_none">Виправлення слів, які додаток постійно плутає.</string>
+    <plurals name="cleanup_dictionary_desc">
+        <item quantity="one">%1$d правило · виправлення слів, які додаток плутає</item>
+        <item quantity="few">%1$d правила · виправлення слів, які додаток плутає</item>
+        <item quantity="many">%1$d правил · виправлення слів, які додаток плутає</item>
+        <item quantity="other">%1$d правила · виправлення слів, які додаток плутає</item>
+    </plurals>
+    <string name="cleanup_snippets">Шаблони</string>
+    <string name="cleanup_snippets_desc_none">Вимовте кодову фразу, щоб вставити збережений текст, наприклад вашу адресу.</string>
+    <plurals name="cleanup_snippets_desc">
+        <item quantity="one">%1$d шаблон · кодова фраза вставляє збережений текст</item>
+        <item quantity="few">%1$d шаблони · кодова фраза вставляє збережений текст</item>
+        <item quantity="many">%1$d шаблонів · кодова фраза вставляє збережений текст</item>
+        <item quantity="other">%1$d шаблону · кодова фраза вставляє збережений текст</item>
+    </plurals>
+
+    <string name="cleanup_save">Зберегти</string>
+    <string name="cleanup_cancel">Скасувати</string>
+    <string name="cleanup_delete">Видалити</string>
+    <string name="cleanup_edit_action">Редагувати</string>
+
+    <!-- «teh» — навмисна помилка з README (англійський приклад). -->
+    <string name="cleanup_dictionary_help" tools:ignore="Typos">Кожне правило замінює слово чи фразу, які додаток постійно плутає, на те, що ви мали на увазі.\n\n• Правило спрацьовує лише на цілі слова, у будь-якому регістрі: «teh» збігається з «Teh», але не з «tehran».\n• У китайській і японській, де між словами немає пробілів, фраза збігається й усередині речення. У корейській вона збігається й із приєднаною часткою: «메일» збігається з «메일을».\n• Велика літера в правій частині зберігається, як написано. В інших випадках регістр іде за почутим: «Teh» стає «The».\n• Залиште праву частину порожньою, щоб видаляти фразу.\n• Якщо правила перетинаються, перемагає найдовший збіг.</string>
+    <string name="cleanup_dictionary_empty">Правил ще немає. Натисніть «Додати правило», щоб виправити слово, яке додаток постійно плутає.</string>
+    <string name="cleanup_dictionary_add">Додати правило</string>
+    <string name="cleanup_dictionary_edit">Редагувати правило</string>
+    <string name="cleanup_dictionary_from">Що чути</string>
+    <string name="cleanup_dictionary_to">Замінити на</string>
+    <string name="cleanup_dictionary_to_hint">Залиште порожнім, щоб видаляти фразу.</string>
+    <string name="cleanup_dictionary_from_breaks_export">Не може містити «->» або починатися з «#».</string>
+    <string name="cleanup_dictionary_replaces">Замінить ваше правило для «%1$s».</string>
+    <string name="cleanup_dictionary_deleted">(видалено)</string>
+    <string name="cleanup_dictionary_rule_description">%1$s замінюється на %2$s</string>
+    <string name="cleanup_dictionary_rule_deletes_description">%1$s видаляється</string>
+    <string name="cleanup_import">Імпорт</string>
+    <string name="cleanup_export">Копіювати все</string>
+    <string name="cleanup_exported">Правила скопійовано</string>
+    <string name="cleanup_import_title">Імпорт правил</string>
+    <string name="cleanup_import_help">Вставте по одному правилу в рядку у форматі неправильно -> правильно. Рядки, що починаються з #, пропускаються. Правило для слова, яке у вас уже є, замінює попереднє.</string>
+    <string name="cleanup_import_field">Правила</string>
+    <string name="cleanup_import_none">Правил ще не знайдено.</string>
+    <plurals name="cleanup_import_found">
+        <item quantity="one">Знайдено %1$d правило.</item>
+        <item quantity="few">Знайдено %1$d правила.</item>
+        <item quantity="many">Знайдено %1$d правил.</item>
+        <item quantity="other">Знайдено %1$d правила.</item>
+    </plurals>
+    <plurals name="cleanup_import_skipped">
+        <item quantity="one">%1$d рядок не є правилом і буде пропущений.</item>
+        <item quantity="few">%1$d рядки не є правилами й будуть пропущені.</item>
+        <item quantity="many">%1$d рядків не є правилами й будуть пропущені.</item>
+        <item quantity="other">%1$d рядка не є правилами й будуть пропущені.</item>
+    </plurals>
+
+    <string name="cleanup_snippets_help">Вимовте кодову фразу, і її буде замінено збереженим текстом точно так, як його написано, разом із розривами рядків.\n\n• Кодові фрази спрацьовують лише на цілі слова, у будь-якому регістрі: «мій номер» збігається з «Мій номер», але не з «мій номерок».\n• У китайській і японській, де між словами немає пробілів, кодова фраза збігається й усередині речення. У корейській вона збігається й із приєднаною часткою: «메일» збігається з «메일을».\n• Більше ніщо не змінює збережений текст: ані вилучення слів-паразитів, ані команди, ані великі літери.\n• Якщо вимовити кодову фразу окремо, вставляється лише збережений текст.</string>
+    <string name="cleanup_snippets_empty">Шаблонів ще немає. Натисніть «Додати шаблон», щоб зберегти текст, який часто потрібен.</string>
+    <string name="cleanup_snippets_add">Додати шаблон</string>
+    <string name="cleanup_snippets_edit">Редагувати шаблон</string>
+    <string name="cleanup_snippets_trigger">Кодова фраза</string>
+    <string name="cleanup_snippets_text">Текст для вставлення</string>
+    <string name="cleanup_snippets_replaces">Замінить ваш шаблон для «%1$s».</string>
+
+    <!-- Майстер налаштування -->
+    <string name="onboarding_step_of">Крок %1$d з %2$d</string>
+    <string name="onboarding_close">Закрити майстер налаштування</string>
+    <string name="onboarding_back">Назад</string>
+    <string name="onboarding_next">Далі</string>
+    <string name="onboarding_skip">Пропустити</string>
+    <string name="onboarding_get_started">Почати</string>
+    <string name="onboarding_try_it">Спробувати</string>
+    <string name="onboarding_settings_failed">Не вдалося відкрити налаштування Android. Відкрийте їх із головного екрана.</string>
+    <!-- Toasts over Settings when only a fallback page opened (#79): where to go from there. -->
+    <string name="settings_hint_voice_input">Знайдіть у налаштуваннях «Голосовий ввід», потім виберіть Marmalade STT.</string>
+    <string name="settings_hint_keyboards">Знайдіть у налаштуваннях «Клавіатура», потім увімкніть «Голосовий ввід Marmalade».</string>
+    <string name="settings_hint_app_details">Знайдіть Marmalade STT у розділі «Додатки», потім увімкніть мікрофон у розділі «Дозволи».</string>
+    <string name="onboarding_welcome_title">Вітаємо в Marmalade STT</string>
+    <string name="onboarding_welcome_body">Говоріть, і Marmalade STT перетворить мовлення на текст: на власному екрані «Диктування» або як голосовий ввід в інших додатках. Кілька швидких кроків — і все готово.</string>
+    <string name="onboarding_privacy_title">Приватність в основі</string>
+    <string name="onboarding_privacy_body">Мовлення розпізнається на вашому телефоні й ніколи — хмарним чи онлайн-сервісом розпізнавання мовлення, зокрема Google. Аудіо ніколи не зберігається й не вивантажується. Жодної аналітики, стеження, облікових записів і ключів API. Інтернет використовується лише для завантаження моделей мовлення.</string>
+    <string name="onboarding_high_contrast">Режим спеціальних можливостей</string>
+    <string name="onboarding_high_contrast_desc">Висококонтрастні кольори</string>
+    <string name="onboarding_mic_title">Надайте доступ до мікрофона</string>
+    <string name="onboarding_mic_body">Marmalade STT потрібен мікрофон, щоб чути вас. Він використовується, лише поки ввімкнено диктування.</string>
+    <string name="onboarding_mic_granted">Доступ до мікрофона надано</string>
+    <string name="onboarding_mic_denied">Без мікрофона Marmalade STT не зможе вас почути. Можна надати доступ зараз або пропустити цей крок і надати його пізніше.</string>
+    <string name="onboarding_mic_blocked">Доступ до мікрофона для цього додатка вимкнено. Увімкніть його в розділі «Дозволи» на сторінці налаштувань додатка.</string>
+    <string name="onboarding_mic_allow">Надати доступ до мікрофона</string>
+    <string name="onboarding_mic_open_settings">Відкрити налаштування додатка</string>
+    <string name="onboarding_model_title">Завантажте модель мовлення</string>
+    <string name="onboarding_model_body">Мовлення розпізнає модель, яка працює на вашому телефоні. Вона завантажується один раз, після цього диктування працює без інтернету.</string>
+    <string name="onboarding_model_downloading_note">Налаштування продовжиться, щойно модель буде готова. Завантаження триватиме, навіть якщо екран згасне або ви вийдете з додатка.</string>
+    <string name="onboarding_keyboard_title">Увімкніть голосову клавіатуру</string>
+    <string name="onboarding_keyboard_body">Голосова клавіатура Marmalade потрібна для диктування в інших додатках: її відкривають клавіші мікрофона на клавіатурах. Увімкніть «Голосовий ввід Marmalade» у налаштуваннях клавіатури Android і поверніться сюди.</string>
+    <string name="onboarding_keyboard_open">Відкрити налаштування клавіатури</string>
+    <string name="onboarding_keyboard_on">Голосову клавіатуру ввімкнено</string>
+    <string name="onboarding_keyboard_off">Голосову клавіатуру вимкнено</string>
+    <string name="onboarding_keyboard_warning">Android попереджає, що будь-яка ввімкнена клавіатура може збирати текст, який ви вводите. Це стандартне попередження. Marmalade STT друкує лише те, що ви диктуєте, і ніщо не залишає ваш телефон.</string>
+    <string name="onboarding_keyboard_unlock_note">На деяких телефонах потім з’являється друге повідомлення: після перезавантаження додаток не запуститься, доки ви не розблокуєте телефон. Це теж нормально. Натисніть «OK».</string>
+    <string name="onboarding_futo_checking">Перевіряємо FUTO Keyboard…</string>
+    <string name="onboarding_futo_selected">FUTO Keyboard використовує Marmalade STT для голосового вводу</string>
+    <string name="onboarding_futo_not_selected">FUTO Keyboard використовує інший голосовий ввід</string>
+    <string name="onboarding_futo_use">Використовувати Marmalade STT у FUTO</string>
+    <string name="onboarding_futo_check_again">Перевірити знову</string>
+    <string name="onboarding_futo_manual_title">Налаштуйте вручну</string>
+    <string name="onboarding_futo_manual_body">У FUTO Keyboard відкрийте Налаштування → Голосовий ввід і ввімкніть «Вимкнути вбудований голосовий ввід» («Використовувати голосовий ввід, наданий зовнішнім додатком»). Після цього кнопка мікрофона FUTO відкриватиме голосову клавіатуру Marmalade з попереднього кроку.</string>
+    <string name="onboarding_futo_crash_once">Якщо FUTO Keyboard закриється, коли ви вперше натиснете мікрофон, натисніть його ще раз.</string>
+    <string name="onboarding_done_title">Усе готово</string>
+    <string name="onboarding_done_body">Спробуйте на екрані «Диктування»: натисніть мікрофон і говоріть.</string>
+    <string name="onboarding_done_title_partial">Можна починати</string>
+    <string name="onboarding_done_body_partial">Деякі кроки ще не виконано. Їх можна завершити будь-коли.</string>
+    <string name="onboarding_done_reopen">Цей майстер можна знову відкрити в налаштуваннях.</string>
+    <string name="onboarding_summary_mic">Мікрофон</string>
+    <string name="onboarding_summary_mic_on">Дозволено</string>
+    <string name="onboarding_summary_mic_off">Ще не дозволено</string>
+    <string name="onboarding_summary_model">Модель мовлення</string>
+    <string name="onboarding_summary_model_ready">Готова</string>
+    <string name="onboarding_summary_model_downloading">Завантажується</string>
+    <string name="onboarding_summary_model_missing">Не завантажено. Завантажте її на вкладці «Рушії».</string>
+    <string name="onboarding_summary_model_attention">Завантаження не завершено. Див. вкладку «Рушії».</string>
+    <string name="onboarding_summary_keyboard">Голосова клавіатура</string>
+    <string name="onboarding_summary_keyboard_on">Увімкнено</string>
+    <string name="onboarding_summary_keyboard_off">Вимкнено</string>
+    <string name="onboarding_summary_futo">FUTO Keyboard</string>
+    <string name="onboarding_summary_futo_on">Використовує Marmalade STT</string>
+    <string name="onboarding_summary_futo_off">Використовує інший голосовий ввід</string>
+    <string name="onboarding_settings_row">Майстер налаштування</string>
+    <string name="onboarding_settings_row_desc">Мікрофон, рушій розпізнавання, клавіатури й служба розпізнавання мовлення</string>
+</resources>

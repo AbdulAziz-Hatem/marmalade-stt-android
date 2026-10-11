@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Engines tab: specs, the card's size line and buttons, other engines and the details dialog. -->
+<resources>
+    <string name="engine_badge_recommended">Aanbevolen voor deze telefoon</string>
+    <string name="engine_info">Over %1$s</string>
+    <string name="engine_show_more">Meer tonen</string>
+    <!-- Card size line -->
+    <string name="engine_card_size_download">%1$s te downloaden</string>
+    <string name="engine_card_size_on_disk">%1$s op je telefoon</string>
+    <string name="engine_action_download_size">Downloaden · %1$s</string>
+    <string name="engine_dialog_close">Sluiten</string>
+    <string name="engine_progress_percent">%1$d%%</string>
+    <string name="engine_status_failed_short">Download mislukt</string>
+    <string name="engine_status_corrupt_short">Bestanden beschadigd</string>
+
+    <!-- Other engines -->
+    <string name="engines_other">Andere engines (%1$d)</string>
+    <string name="engines_other_expanded">Uitgevouwen</string>
+    <string name="engines_other_collapsed">Samengevouwen</string>
+
+    <!-- Speed -->
+    <string name="engine_speed_tier_fastest">Snelst op deze telefoon</string>
+    <string name="engine_speed_tier_very_fast">Zeer snel op deze telefoon</string>
+    <string name="engine_speed_tier_fast">Snel op deze telefoon</string>
+    <string name="engine_speed_tier_moderate">Gemiddelde snelheid op deze telefoon</string>
+    <string name="engine_speed_unmeasured">Niet gemeten</string>
+    <string name="engine_speed_word_fastest">Snelst</string>
+    <string name="engine_speed_word_very_fast">Zeer snel</string>
+    <string name="engine_speed_word_fast">Snel</string>
+    <string name="engine_speed_word_moderate">Gemiddeld</string>
+    <string name="engine_speed_word_slow">Traag</string>
+
+    <!-- Quality -->
+    <string name="engine_detail_quality">Kwaliteit</string>
+    <string name="engine_quality_best">Beste</string>
+    <string name="engine_quality_great">Uitstekend</string>
+    <string name="engine_quality_good">Goed</string>
+    <string name="engine_quality_fair">Redelijk</string>
+    <string name="engine_quality_basic">Basis</string>
+    <string name="engine_quality_not_rated">Niet beoordeeld</string>
+    <string name="engine_quality_in_language">%1$s (%2$s)</string>
+    <!-- "in het Engels": every language name takes "het" as a noun -->
+    <string name="engine_quality_tested_in">Getest in het %1$s</string>
+    <string name="engine_quality_source_english">Uit onze tests op LibriSpeech, FLEURS en AMI, in het Engels</string>
+    <string name="engine_quality_source_fleurs">Uit onze tests op FLEURS, in het %1$s</string>
+    <string name="engine_quality_source_two_sets">Uit onze tests op %1$s en %2$s, in het %3$s</string>
+    <string name="engine_quality_source_none">Nog niet getest</string>
+
+    <!-- Languages -->
+    <plurals name="engine_languages_count">
+        <item quantity="one">%d taal</item>
+        <item quantity="other">%d talen</item>
+    </plurals>
+    <string name="engine_languages_see_all">Alle %1$d tonen</string>
+    <string name="engine_languages_open">Talen tonen</string>
+
+    <!-- Details dialog -->
+    <string name="engine_detail_speed_text">%1$s. %2$s.</string>
+    <string name="engine_detail_chunk">Blokgrootte</string>
+    <string name="engine_chunk_steps">Tekst komt binnen in stappen van %1$d ms.</string>
+
+    <!-- Engine summaries. Engine and model names stay as they are. -->
+    <string name="engine_desc_parakeet_ultra">Parakeet TDT 0.6B v3 met extra training door Moondream: dezelfde 25 talen, automatisch herkend.</string>
+    <string name="engine_desc_parakeet_110m">Het kleine Engelse model van NVIDIA: een fractie van de grootte van de andere Parakeets, en snel.</string>
+    <string name="engine_desc_parakeet_ja">Het Japanse model van NVIDIA: het nauwkeurigst voor Japans en veel sneller dan Whisper. Het zet weinig komma\'s.</string>
+    <string name="engine_desc_canary_180m">Het piepkleine encoder-decodermodel van NVIDIA: Engels, Spaans, Duits en Frans. Kies zelf de taal; het model kan die niet detecteren.</string>
+    <string name="engine_desc_nemotron_35">Het streamingmodel van NVIDIA voor Hindi, Arabisch en Vietnamees: tekst verschijnt terwijl je spreekt.</string>
+    <string name="engine_desc_whisper_turbo">OpenAI Whisper large-v3-turbo, meertalig. De nauwkeurigste Whisper. Tekst verschijnt als je pauzeert.</string>
+    <string name="engine_desc_granite">Het Engelse CTC-model van IBM: het nauwkeurigst in onze tests in het Engels. Hoofdletters en leestekens komen van de eigen opmaakfunctie van de app.</string>
+    <string name="engine_desc_qwen3">Het offline model van Alibaba met een kleine taalmodeldecoder: 30 talen, automatisch herkend. Tekst verschijnt als je pauzeert.</string>
+    <string name="engine_desc_qwen3_users">Het model van Alibaba voor Chinees en Koreaans, met een kleine taalmodeldecoder: het nauwkeurigst voor Chinees. Tekst verschijnt als je pauzeert.</string>
+</resources>

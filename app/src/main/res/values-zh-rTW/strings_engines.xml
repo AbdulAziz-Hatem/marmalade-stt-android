@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="engine_badge_recommended">為這支手機推薦</string>
+    <string name="engine_info">關於 %1$s</string>
+    <string name="engine_show_more">顯示更多</string>
+    <!-- Card size line -->
+    <string name="engine_card_size_download">需下載 %1$s</string>
+    <string name="engine_card_size_on_disk">在手機上佔用 %1$s</string>
+    <string name="engine_action_download_size">下載 · %1$s</string>
+    <string name="engine_dialog_close">關閉</string>
+    <string name="engine_progress_percent">%1$d%%</string>
+    <string name="engine_status_failed_short">下載失敗</string>
+    <string name="engine_status_corrupt_short">檔案已損毀</string>
+
+    <!-- Other engines -->
+    <string name="engines_other">其他引擎（%1$d）</string>
+    <string name="engines_other_expanded">已展開</string>
+    <string name="engines_other_collapsed">已收合</string>
+
+    <!-- Speed -->
+    <string name="engine_speed_tier_fastest">在這支手機上最快</string>
+    <string name="engine_speed_tier_very_fast">在這支手機上非常快</string>
+    <string name="engine_speed_tier_fast">在這支手機上速度快</string>
+    <string name="engine_speed_tier_moderate">在這支手機上速度中等</string>
+    <string name="engine_speed_unmeasured">未測量</string>
+    <string name="engine_speed_word_fastest">最快</string>
+    <string name="engine_speed_word_very_fast">非常快</string>
+    <string name="engine_speed_word_fast">快速</string>
+    <string name="engine_speed_word_moderate">中等</string>
+    <string name="engine_speed_word_slow">較慢</string>
+
+    <!-- Quality -->
+    <string name="engine_detail_quality">品質</string>
+    <string name="engine_quality_best">最佳</string>
+    <string name="engine_quality_great">優秀</string>
+    <string name="engine_quality_good">良好</string>
+    <string name="engine_quality_fair">普通</string>
+    <string name="engine_quality_basic">基本</string>
+    <string name="engine_quality_not_rated">未評分</string>
+    <string name="engine_quality_in_language">%1$s（%2$s）</string>
+    <string name="engine_quality_tested_in">%1$s測試結果</string>
+    <string name="engine_quality_source_english">來自我們在 LibriSpeech、FLEURS 和 AMI 上的英文測試</string>
+    <string name="engine_quality_source_fleurs">來自我們在 FLEURS 上的%1$s測試</string>
+    <string name="engine_quality_source_two_sets">來自我們在 %1$s 和 %2$s 上的%3$s測試</string>
+    <string name="engine_quality_source_none">尚未測試</string>
+
+    <!-- Languages -->
+    <plurals name="engine_languages_count">
+        <item quantity="other">%d 種語言</item>
+    </plurals>
+    <string name="engine_languages_see_all">全部 %1$d 種</string>
+    <string name="engine_languages_open">顯示語言</string>
+
+    <!-- Details dialog -->
+    <string name="engine_detail_speed_text">%1$s。%2$s。</string>
+    <string name="engine_detail_chunk">區塊大小</string>
+    <string name="engine_chunk_steps">文字每 %1$d ms 出現一次。</string>
+
+    <!-- Engine summaries -->
+    <string name="engine_desc_parakeet_ultra">Moondream 後訓練的 Parakeet TDT 0.6B v3：支援同樣的 25 種語言，並自動偵測。</string>
+    <string name="engine_desc_parakeet_110m">NVIDIA 的小型英文模型：大小只有其他 Parakeet 的一小部分，而且速度快。</string>
+    <string name="engine_desc_parakeet_ja">NVIDIA 的日文模型：日文辨識最準確，速度也比 Whisper 快得多。逗號用得比較少。</string>
+    <string name="engine_desc_canary_180m">NVIDIA 的超小型編碼器-解碼器模型：支援英文、西班牙文、德文和法文。需要手動選擇語言，它無法自動偵測。</string>
+    <string name="engine_desc_nemotron_35">NVIDIA 的串流模型，支援印地文、阿拉伯文和越南文：邊說邊出現文字。</string>
+    <string name="engine_desc_whisper_turbo">OpenAI Whisper large-v3-turbo，多語言。最準確的 Whisper。你停頓時才會出現文字。</string>
+    <string name="engine_desc_granite">IBM 的英文 CTC 模型：在我們的英文測試中最準確。大小寫和標點符號由應用程式內建的格式化工具加上。</string>
+    <string name="engine_desc_qwen3">Alibaba 的離線模型，搭配小型語言模型解碼器：支援 30 種語言，並自動偵測。你停頓時才會出現文字。</string>
+    <string name="engine_desc_qwen3_users">Alibaba 的中文和韓文模型，搭配小型語言模型解碼器：中文辨識最準確。你停頓時才會出現文字。</string>
+</resources>

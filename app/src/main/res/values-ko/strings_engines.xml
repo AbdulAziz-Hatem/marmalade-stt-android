@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="engine_badge_recommended">이 휴대전화에 추천</string>
+    <string name="engine_info">%1$s 정보</string>
+    <string name="engine_show_more">더보기</string>
+    <!-- Card size line -->
+    <string name="engine_card_size_download">다운로드 %1$s</string>
+    <string name="engine_card_size_on_disk">휴대전화에 %1$s 저장됨</string>
+    <string name="engine_action_download_size">다운로드 · %1$s</string>
+    <string name="engine_dialog_close">닫기</string>
+    <string name="engine_progress_percent">%1$d%%</string>
+    <string name="engine_status_failed_short">다운로드 실패</string>
+    <string name="engine_status_corrupt_short">파일 손상됨</string>
+
+    <!-- Other engines -->
+    <string name="engines_other">기타 엔진(%1$d)</string>
+    <string name="engines_other_expanded">펼쳐짐</string>
+    <string name="engines_other_collapsed">접힘</string>
+
+    <!-- Speed -->
+    <string name="engine_speed_tier_fastest">이 휴대전화에서 가장 빠름</string>
+    <string name="engine_speed_tier_very_fast">이 휴대전화에서 매우 빠름</string>
+    <string name="engine_speed_tier_fast">이 휴대전화에서 빠름</string>
+    <string name="engine_speed_tier_moderate">이 휴대전화에서 보통 속도</string>
+    <string name="engine_speed_unmeasured">측정 안 됨</string>
+    <string name="engine_speed_word_fastest">가장 빠름</string>
+    <string name="engine_speed_word_very_fast">매우 빠름</string>
+    <string name="engine_speed_word_fast">빠름</string>
+    <string name="engine_speed_word_moderate">보통</string>
+    <string name="engine_speed_word_slow">느림</string>
+
+    <!-- Quality -->
+    <string name="engine_detail_quality">품질</string>
+    <string name="engine_quality_best">최고</string>
+    <string name="engine_quality_great">우수</string>
+    <string name="engine_quality_good">좋음</string>
+    <string name="engine_quality_fair">보통</string>
+    <string name="engine_quality_basic">기본</string>
+    <string name="engine_quality_not_rated">평가 안 됨</string>
+    <string name="engine_quality_in_language">%1$s(%2$s)</string>
+    <string name="engine_quality_tested_in">%1$s 테스트 기준</string>
+    <string name="engine_quality_source_english">LibriSpeech, FLEURS, AMI에서 진행한 자체 영어 테스트 결과</string>
+    <string name="engine_quality_source_fleurs">FLEURS에서 진행한 자체 %1$s 테스트 결과</string>
+    <string name="engine_quality_source_two_sets">%1$s 및 %2$s에서 진행한 자체 %3$s 테스트 결과</string>
+    <string name="engine_quality_source_none">아직 테스트 안 됨</string>
+
+    <!-- Languages -->
+    <plurals name="engine_languages_count">
+        <item quantity="other">%d개 언어</item>
+    </plurals>
+    <string name="engine_languages_see_all">%1$d개 모두 보기</string>
+    <string name="engine_languages_open">언어 보기</string>
+
+    <!-- Details dialog -->
+    <string name="engine_detail_speed_text">%1$s. %2$s.</string>
+    <string name="engine_detail_chunk">청크 크기</string>
+    <string name="engine_chunk_steps">텍스트가 %1$dms 단위로 표시됩니다.</string>
+
+    <!-- Engine summaries -->
+    <string name="engine_desc_parakeet_ultra">Moondream이 추가 학습한 Parakeet TDT 0.6B v3: 같은 25개 언어를 자동으로 감지합니다.</string>
+    <string name="engine_desc_parakeet_110m">NVIDIA의 소형 영어 모델: 다른 Parakeet 모델보다 크기가 훨씬 작고 빠릅니다.</string>
+    <string name="engine_desc_parakeet_ja">NVIDIA의 일본어 모델: 일본어에서 가장 정확하며 Whisper보다 훨씬 빠릅니다. 쉼표는 적게 씁니다.</string>
+    <string name="engine_desc_canary_180m">NVIDIA의 초소형 인코더-디코더 모델: 영어, 스페인어, 독일어, 프랑스어. 언어를 감지하지 못하므로 직접 선택하세요.</string>
+    <string name="engine_desc_nemotron_35">힌디어, 아랍어, 베트남어용 NVIDIA 스트리밍 모델: 말하는 동안 텍스트가 표시됩니다.</string>
+    <string name="engine_desc_whisper_turbo">OpenAI Whisper large-v3-turbo, 다국어. 가장 정확한 Whisper입니다. 말을 멈추면 텍스트가 표시됩니다.</string>
+    <string name="engine_desc_granite">IBM의 영어 CTC 모델: 자체 영어 테스트에서 가장 정확했습니다. 대문자와 문장부호는 앱 자체 포매터가 넣습니다.</string>
+    <string name="engine_desc_qwen3">작은 언어 모델 디코더를 갖춘 Alibaba의 오프라인 모델: 30개 언어를 자동으로 감지합니다. 말을 멈추면 텍스트가 표시됩니다.</string>
+    <string name="engine_desc_qwen3_users">작은 언어 모델 디코더를 갖춘 Alibaba의 중국어·한국어 모델: 중국어에서 가장 정확합니다. 말을 멈추면 텍스트가 표시됩니다.</string>
+</resources>

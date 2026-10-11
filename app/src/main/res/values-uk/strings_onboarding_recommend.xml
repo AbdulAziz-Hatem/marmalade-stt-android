@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Майстер налаштування: рекомендований рушій. %1$s — мова телефона в називному відмінку, тому вона стоїть у дужках або після двокрапки. -->
+<resources>
+    <string name="onboarding_recommend_checking">Перевіряємо ваш телефон…</string>
+    <string name="onboarding_recommend_best_fit">Наш перший вибір для вашої мови (%1$s). Підходить цьому телефону за пам’яттю і швидкістю.</string>
+    <string name="onboarding_recommend_lighter">Легший рушій, який підходить цьому телефону за пам’яттю і швидкістю.</string>
+    <string name="onboarding_recommend_may_be_slow">Найкраще підходить для вашої мови (%1$s), але на цьому телефоні може працювати повільно.</string>
+    <string name="onboarding_recommend_low_memory">Найощадливіший рушій для вашої мови (%1$s). На цьому телефоні йому замало пам’яті: він може працювати повільно, або його може закрити Android.</string>
+    <string name="onboarding_recommend_uncovered">Поки жоден рушій не розпізнає вашу мову (%1$s), тому мова цього рушія: %2$s.</string>
+    <plurals name="onboarding_recommend_languages">
+        <item quantity="one">%d мова, яка визначається автоматично.</item>
+        <item quantity="few">%d мови, які визначаються автоматично.</item>
+        <item quantity="many">%d мов, які визначаються автоматично.</item>
+        <item quantity="other">%d мови, які визначаються автоматично.</item>
+    </plurals>
+    <string name="onboarding_recommend_other">Пізніше можна вибрати інший рушій на вкладці «Рушії».</string>
+</resources>

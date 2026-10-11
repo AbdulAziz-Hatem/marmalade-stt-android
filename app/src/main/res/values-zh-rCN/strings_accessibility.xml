@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Screen-reader-only text and other strings added by the accessibility pass (#68). -->
+<resources>
+    <!-- Shared -->
+    <string name="a11y_download_started">正在下载 %1$s</string>
+    <string name="a11y_download_ready">%1$s 已就绪</string>
+    <string name="a11y_download_failed">%1$s：下载失败</string>
+    <string name="a11y_download_paused">%1$s：下载已暂停</string>
+
+    <!-- Settings, dictionary, snippets, licences, privacy -->
+    <string name="a11y_open_in_browser">在浏览器中打开</string>
+    <string name="a11y_rule_deleted">已删除规则</string>
+    <string name="a11y_snippet_deleted">已删除片段</string>
+    <string name="a11y_end_words_reverted">结束词未更改：请至少输入一个词</string>
+
+    <!-- Engines, benchmark -->
+    <string name="a11y_engine_action_named">%2$s：%1$s</string>
+    <string name="a11y_engine_download_named">下载 %1$s，%2$s</string>
+    <string name="a11y_benchmark_finished">基准测试已完成</string>
+
+    <!-- Dictate, voice keyboard, speech sheet -->
+
+    <!-- Onboarding -->
+    <string name="a11y_onboarding_step_pane">%1$s：%2$s</string>
+    <string name="a11y_onboarding_recommended">为这部手机推荐：%1$s</string>
+
+</resources>

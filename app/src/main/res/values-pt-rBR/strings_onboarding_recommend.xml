@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Motor recomendado no guia de configuração -->
+    <string name="onboarding_recommend_checking">Verificando seu celular…</string>
+    <string name="onboarding_recommend_best_fit">Nossa primeira escolha para %1$s, e é adequada à memória e à velocidade deste celular.</string>
+    <string name="onboarding_recommend_lighter">Um motor mais leve, adequado à memória e à velocidade deste celular.</string>
+    <string name="onboarding_recommend_may_be_slow">A melhor opção para %1$s, mas pode ficar lenta neste celular.</string>
+    <string name="onboarding_recommend_low_memory">O motor mais enxuto para %1$s. Este celular tem pouca memória para ele, então ele pode ficar lento ou ser fechado pelo Android.</string>
+    <string name="onboarding_recommend_uncovered">Nenhum motor transcreve %1$s ainda, então este é para %2$s.</string>
+    <plurals name="onboarding_recommend_languages">
+        <item quantity="one">%d idioma, detectado automaticamente.</item>
+        <item quantity="many">%d de idiomas, detectados automaticamente.</item>
+        <item quantity="other">%d idiomas, detectados automaticamente.</item>
+    </plurals>
+    <string name="onboarding_recommend_other">Você pode escolher outro motor na aba Motores depois.</string>
+</resources>

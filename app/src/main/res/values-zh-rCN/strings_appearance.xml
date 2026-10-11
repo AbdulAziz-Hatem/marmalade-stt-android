@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Settings → Appearance -->
+    <string name="settings_appearance">外观</string>
+    <string name="settings_mode">模式</string>
+    <string name="settings_mode_system">跟随系统</string>
+    <string name="settings_mode_light">浅色</string>
+    <string name="settings_mode_dark">深色</string>
+    <string name="settings_color">配色</string>
+    <string name="settings_color_system">壁纸</string>
+    <string name="settings_color_midnight">午夜</string>
+    <string name="settings_color_forest">森林</string>
+    <string name="settings_color_berry">浆果</string>
+    <string name="settings_color_high_contrast">高对比度</string>
+</resources>

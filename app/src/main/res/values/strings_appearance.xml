@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Settings → Appearance (#35), as in marmalade-tts-android -->
+    <string name="settings_appearance">Appearance</string>
+    <string name="settings_mode">Mode</string>
+    <string name="settings_mode_system">System</string>
+    <string name="settings_mode_light">Light</string>
+    <string name="settings_mode_dark">Dark</string>
+    <string name="settings_color">Color</string>
+    <!-- The colour preset that takes Material You colours from the wallpaper (Android 12+) -->
+    <string name="settings_color_system">Wallpaper</string>
+    <string name="settings_color_marmalade" translatable="false">Marmalade</string>
+    <string name="settings_color_midnight">Midnight</string>
+    <string name="settings_color_forest">Forest</string>
+    <string name="settings_color_berry">Berry</string>
+    <!-- The colour preset with WCAG AA contrast in light and dark mode: darker orange buttons, dark brown small text. A chip label, keep it short. Same words as onboarding_high_contrast's "high-contrast" -->
+    <string name="settings_color_high_contrast">High contrast</string>
+</resources>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 設定 → 開発者向け -->
+    <string name="settings_developer">開発者向け</string>
+    <string name="settings_developer_engines">開発者向けエンジン</string>
+    <string name="settings_developer_engines_desc">テストやベンチマーク用の音声認識エンジンを追加で表示します。ダウンロードサイズが大きく、普段使いには向いていません。</string>
+    <string name="settings_developer_benchmark">A/B ベンチマーク</string>
+    <string name="settings_developer_benchmark_desc">インストール済みのエンジンを 1 つの録音で比較します。</string>
+    <string name="settings_developer_speed">端末の速度を再計測</string>
+    <string name="settings_developer_speed_measuring">計測中…</string>
+    <string name="settings_developer_speed_measured">速度スコア %1$s</string>
+    <string name="settings_developer_speed_unmeasured">未計測</string>
+    <string name="settings_developer_speed_done">速度スコア：%1$s</string>
+    <string name="settings_developer_speed_failed">端末の速度を計測できませんでした</string>
+    <!-- ONNX Runtime の調整 -->
+    <string name="settings_developer_ort_tuning">ランタイムの調整</string>
+    <string name="settings_developer_ort_tuning_desc">計測用に、ONNX Runtime のスレッドのスピンとコアの固定を設定します。次にエンジンを読み込むときから適用されます。</string>
+    <string name="settings_developer_ort_tuning_default">初期設定（%1$s）</string>
+    <string name="settings_developer_ort_tuning_cpu">CPU</string>
+    <string name="settings_developer_ort_tuning_no_spinning">スピンなし</string>
+    <string name="settings_developer_ort_tuning_pinned">高速コアに固定</string>
+
+    <!-- エンジンのバッジ -->
+    <string name="engine_badge_in_use">使用中</string>
+    <string name="engine_badge_developer">開発者向け</string>
+    <string name="engine_badge_developer_long">開発者向けエンジン</string>
+    <string name="engine_badge_may_be_slow_long">この端末では遅い可能性あり</string>
+    <string name="engine_badge_streaming">ストリーミング</string>
+    <string name="engine_streaming_steps">ストリーミング · %1$d ms 間隔</string>
+
+    <!-- エンジンの選択 -->
+    <string name="engine_action_use">使用</string>
+    <string name="engine_action_use_named">%1$s を使用</string>
+    <string name="engine_use_failed">エンジンを切り替えられませんでした。もう一度お試しください。</string>
+
+    <!-- エンジンの言語 -->
+    <string name="engine_language">このエンジンの言語</string>
+    <string name="engine_language_auto">自動検出</string>
+    <string name="engine_language_cancel">キャンセル</string>
+    <string name="engine_language_failed">言語を保存できませんでした。もう一度お試しください。</string>
+</resources>

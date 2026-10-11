@@ -1,0 +1,18 @@
+# The #33 formatting-spike venv ($WORK/venv-format), build time only: nothing
+# here is in the app. Licenses: torch BSD-3, transformers Apache-2.0,
+# tokenizers Apache-2.0, safetensors Apache-2.0, onnx Apache-2.0,
+# onnxruntime MIT, numpy BSD-3, sentencepiece Apache-2.0, jiwer Apache-2.0,
+# whisper-normalizer MIT, regex Apache-2.0 / CNRI-Python. No GPL or LGPL.
+#
+#   uv venv -p 3.12 $WORK/venv-format
+#   VIRTUAL_ENV=$WORK/venv-format uv pip install --index-strategy unsafe-best-match \
+#     --extra-index-url https://download.pytorch.org/whl/cpu -r tools/asr-bench/granite/format-requirements.txt
+torch==2.11.0+cpu
+transformers==5.17.0
+tokenizers==0.23.2
+onnx==1.22.0
+onnxruntime==1.28.0
+numpy==2.3.3
+sentencepiece==0.2.1
+jiwer==4.0.0
+whisper-normalizer==0.1.15

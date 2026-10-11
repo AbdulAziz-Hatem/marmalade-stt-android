@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Setup guide: recommended engine -->
+    <string name="onboarding_recommend_checking">Controllo del tuo telefono…</string>
+    <string name="onboarding_recommend_best_fit">La nostra prima scelta per dettare in %1$s, adatta alla memoria e alla velocità di questo telefono.</string>
+    <string name="onboarding_recommend_lighter">Un motore più leggero, adatto alla memoria e alla velocità di questo telefono.</string>
+    <string name="onboarding_recommend_may_be_slow">Il più adatto per dettare in %1$s, ma potrebbe essere lento su questo telefono.</string>
+    <string name="onboarding_recommend_low_memory">Il motore più leggero per dettare in %1$s. Questo telefono ha poca memoria per farlo funzionare, quindi potrebbe essere lento o venire chiuso da Android.</string>
+    <string name="onboarding_recommend_uncovered">Nessun motore trascrive ancora in %1$s, quindi questo trascrive in %2$s.</string>
+    <plurals name="onboarding_recommend_languages">
+        <item quantity="one">%d lingua, rilevata automaticamente.</item>
+        <item quantity="many">%d di lingue, rilevate automaticamente.</item>
+        <item quantity="other">%d lingue, rilevate automaticamente.</item>
+    </plurals>
+    <string name="onboarding_recommend_other">Potrai scegliere un altro motore più tardi dalla scheda Motori.</string>
+</resources>

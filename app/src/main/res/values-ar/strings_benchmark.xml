@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Developer A/B benchmark -->
+    <string name="benchmark_title">قياس الأداء</string>
+    <string name="benchmark_note">سجّل تسجيلاً واحدًا، ثم يحوّله كل محرّك مثبّت إلى نص بالدور: تحميل، فتحويل، فإلغاء تحميل. تعمل جميع المحرّكات على مقاطع Silero VAD نفسها. تتلقى المحرّكات الفورية كل مقطع على أجزاء مدتها ١٠٠ ملي ثانية بأسرع ما يستطيع النموذج استقبالها، لا في الوقت الفعلي. يبقى التسجيل في الذاكرة ولا يُحفظ أبدًا. الأرقام على المحاكي لا تصلح إلا لمقارنة المحرّكات ببعضها.</string>
+
+    <string name="benchmark_section_take">التسجيل</string>
+    <string name="benchmark_record">تسجيل</string>
+    <string name="benchmark_stop">إيقاف</string>
+    <string name="benchmark_play">تشغيل</string>
+    <string name="benchmark_stop_playback">إيقاف التشغيل</string>
+    <string name="benchmark_elapsed">%1$s ث / %2$d ث</string>
+    <string name="benchmark_level">مستوى الإدخال</string>
+    <string name="benchmark_take_length">التسجيل: %1$s</string>
+    <string name="benchmark_take_length_soft_agc">التسجيل: %1$s، وضبط التطبيق مستواه (لا يحتوي هذا الهاتف على تحكّم مدمج في كسب الميكروفون)</string>
+    <plurals name="benchmark_no_take">
+        <item quantity="zero">لا يوجد تسجيل بعد. سجّل كلامًا لمدة تصل إلى %1$d ثانية.</item>
+        <item quantity="one">لا يوجد تسجيل بعد. سجّل كلامًا لمدة تصل إلى %1$d ثانية.</item>
+        <item quantity="two">لا يوجد تسجيل بعد. سجّل كلامًا لمدة تصل إلى %1$d ثانيتين.</item>
+        <item quantity="few">لا يوجد تسجيل بعد. سجّل كلامًا لمدة تصل إلى %1$d ثوانٍ.</item>
+        <item quantity="many">لا يوجد تسجيل بعد. سجّل كلامًا لمدة تصل إلى %1$d ثانية.</item>
+        <item quantity="other">لا يوجد تسجيل بعد. سجّل كلامًا لمدة تصل إلى %1$d ثانية.</item>
+    </plurals>
+
+    <string name="benchmark_section_reference">النص المرجعي (اختياري)</string>
+    <string name="benchmark_reference_label">ما قلته</string>
+    <string name="benchmark_reference_hint">اكتب ما قلته للحصول على معدّل خطأ الكلمات (WER) لكل محرّك.</string>
+
+    <string name="benchmark_section_engines">المحرّكات</string>
+    <string name="benchmark_no_engines">لا توجد محرّكات مثبّتة. ثبّت بعضها من علامة التبويب «المحرّكات» (فعِّل «محرّكات المطوّرين» في «الإعدادات» لرؤية المحرّكات المرشّحة).</string>
+    <string name="benchmark_run">بدء قياس الأداء</string>
+    <string name="benchmark_run_again">التشغيل مرة أخرى</string>
+    <string name="benchmark_running">جارٍ تشغيل %1$s (%2$d من %3$d)…</string>
+
+    <string name="benchmark_section_results">النتائج</string>
+    <!-- Metrics line parts, joined with " · " -->
+    <string name="benchmark_metric_load">التحميل %1$s</string>
+    <string name="benchmark_metric_decode">فك الترميز %1$s</string>
+    <string name="benchmark_metric_rtf">RTF %1$s</string>
+    <string name="benchmark_metric_rss">أقصى RSS (بأخذ عيّنات) %1$s</string>
+    <string name="benchmark_metric_wer">WER %1$s</string>
+    <string name="benchmark_empty_transcript">(لم يتم التعرّف على أي كلام)</string>
+    <string name="benchmark_raw">النص الخام: %1$s</string>
+    <string name="benchmark_failed_load">تعذّر التحميل: %1$s</string>
+    <string name="benchmark_failed_transcribe">تعذّر التحويل إلى نص: %1$s</string>
+    <string name="benchmark_failed_release">تم التحويل إلى نص، ولكن تعذّر إلغاء التحميل: %1$s</string>
+    <string name="benchmark_copy_markdown">نسخ بتنسيق Markdown</string>
+    <string name="benchmark_copied">تم النسخ</string>
+
+    <!-- Snackbar notices -->
+    <string name="benchmark_error_mic">تعذّر التسجيل. هل يستخدم تطبيق آخر الميكروفون؟</string>
+    <string name="benchmark_error_empty">لم يتم تسجيل أي شيء. حاوِل مرة أخرى.</string>
+    <string name="benchmark_error_playback">تعذّر تشغيل التسجيل.</string>
+    <string name="benchmark_error_no_engines">لا توجد محرّكات مثبّتة لتشغيلها.</string>
+    <string name="benchmark_error_run">توقّف قياس الأداء بسبب خطأ.</string>
+
+    <!-- Mic permission -->
+    <string name="benchmark_mic_title">يحتاج قياس الأداء إلى الميكروفون</string>
+    <string name="benchmark_mic_body">يسجّل تسجيلاً واحدًا، ويُبقيه في الذاكرة فقط، ولا يحفظه أو يرسله أبدًا.</string>
+</resources>

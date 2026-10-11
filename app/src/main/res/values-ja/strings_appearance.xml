@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 設定 → 外観 -->
+    <string name="settings_appearance">外観</string>
+    <string name="settings_mode">モード</string>
+    <string name="settings_mode_system">システム設定に従う</string>
+    <string name="settings_mode_light">ライト</string>
+    <string name="settings_mode_dark">ダーク</string>
+    <string name="settings_color">配色</string>
+    <string name="settings_color_system">壁紙</string>
+    <string name="settings_color_midnight">ミッドナイト</string>
+    <string name="settings_color_forest">フォレスト</string>
+    <string name="settings_color_berry">ベリー</string>
+    <string name="settings_color_high_contrast">高コントラスト</string>
+</resources>

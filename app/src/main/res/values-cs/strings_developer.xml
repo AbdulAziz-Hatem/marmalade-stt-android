@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Developer engines: the Settings toggle, phone speed, runtime tuning, engine badges, picking an engine and its language. -->
+<resources>
+    <!-- Settings → Developer -->
+    <string name="settings_developer">Pro vývojáře</string>
+    <string name="settings_developer_engines">Moduly pro vývojáře</string>
+    <string name="settings_developer_engines_desc">Zobrazí další řečové moduly k testování a benchmarkům. Velká stahování, nejsou určené k běžnému používání.</string>
+    <string name="settings_developer_benchmark">Benchmark A/B</string>
+    <string name="settings_developer_benchmark_desc">Porovnejte nainstalované moduly na jedné nahrávce.</string>
+    <string name="settings_developer_speed">Znovu změřit rychlost telefonu</string>
+    <string name="settings_developer_speed_measuring">Měření…</string>
+    <string name="settings_developer_speed_measured">Skóre rychlosti %1$s</string>
+    <string name="settings_developer_speed_unmeasured">Zatím nezměřeno</string>
+    <string name="settings_developer_speed_done">Skóre rychlosti: %1$s</string>
+    <string name="settings_developer_speed_failed">Rychlost telefonu se nepodařilo změřit</string>
+    <!-- ONNX Runtime tuning -->
+    <string name="settings_developer_ort_tuning">Ladění runtime</string>
+    <string name="settings_developer_ort_tuning_desc">Aktivní čekání vláken (spinning) a připnutí k jádrům v ONNX Runtime, pro měření. Platí od příštího načtení modulu.</string>
+    <string name="settings_developer_ort_tuning_default">Výchozí (%1$s)</string>
+    <string name="settings_developer_ort_tuning_cpu">CPU</string>
+    <string name="settings_developer_ort_tuning_no_spinning">bez spinningu</string>
+    <string name="settings_developer_ort_tuning_pinned">připnuto k rychlým jádrům</string>
+
+    <!-- Small labels on engine cards and rows and the details dialog -->
+    <string name="engine_badge_in_use">Používá se</string>
+    <string name="engine_badge_developer">Pro vývojáře</string>
+    <string name="engine_badge_developer_long">Modul pro vývojáře</string>
+    <string name="engine_badge_may_be_slow_long">Na tomto telefonu může být pomalý</string>
+    <string name="engine_badge_streaming">Streamování</string>
+    <string name="engine_streaming_steps">Streamování · kroky po %1$d ms</string>
+
+    <!-- Engines card: picking the engine -->
+    <string name="engine_action_use">Použít</string>
+    <string name="engine_action_use_named">Použít %1$s</string>
+    <string name="engine_use_failed">Modul se nepodařilo přepnout. Zkuste to znovu.</string>
+
+    <!-- Engine info dialog: language hint -->
+    <string name="engine_language">Jazyk pro tento modul</string>
+    <string name="engine_language_auto">Rozpoznat automaticky</string>
+    <string name="engine_language_cancel">Zrušit</string>
+    <string name="engine_language_failed">Jazyk se nepodařilo uložit. Zkuste to znovu.</string>
+</resources>

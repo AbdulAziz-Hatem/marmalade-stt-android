@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Réglages → Langue de reconnaissance -->
+    <string name="settings_recognition_language">Langue de reconnaissance</string>
+    <string name="settings_recognition_language_auto">Auto (%1$s)</string>
+    <string name="settings_recognition_language_desc">Choisit le moteur recommandé et la langue qu\'il écoute. Certains moteurs détectent la langue eux-mêmes.</string>
+
+    <!-- Fiche moteur -->
+    <string name="engine_card_language_missing">Ne transcrit pas en %1$s</string>
+    <string name="engine_card_language_suggest">Ne transcrit pas en %1$s. %2$s le fait.</string>
+    <string name="engine_card_language_choose">Ne peut pas détecter la langue. Choisissez-en une dans Réglages → Langue de reconnaissance&#160;: %1$s.</string>
+</resources>

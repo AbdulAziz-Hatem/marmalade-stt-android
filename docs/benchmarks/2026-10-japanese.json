@@ -1,0 +1,1666 @@
+{
+ "interleaved_rtf_fleurs_ja_20_clips_2_threads": {
+  "parakeet-ultra": 0.0426,
+  "whisper-turbo": 0.3112,
+  "parakeet-ja-ctc": 0.0393,
+  "funasr-nano": 0.1437,
+  "kotoba-whisper-v2-0": 0.2708,
+  "sense-voice-small": 0.0201,
+  "reazonspeech-k2-v2": 0.0138,
+  "qwen3-asr-0-6b": 0.1685,
+  "qwen3-asr-1-7b": 0.3378,
+  "nemotron-3-5-streaming-1120ms": 0.0877
+ },
+ "whisper-turbo": {
+  "peak_rss_mb": 1943,
+  "cjk": {
+   "fleurs-ja": {
+    "n": 200,
+    "cer": 7.247805936298195,
+    "ci95": 2.5666563887787253,
+    "sub": 341,
+    "del": 92,
+    "ins": 302,
+    "ref_chars": 10141,
+    "empty": 0,
+    "runaway": 1,
+    "head_drop": 0,
+    "tail_drop": 0,
+    "digit_hyps": 64
+   },
+   "fleurs-ja:punct": {
+    "n": 200,
+    "f1": 61.91588785046729,
+    "comma_f1": 56.441717791411044,
+    "end_f1": 69.20980926430518,
+    "marks_per_100_ref": 5.620747460802682,
+    "marks_per_100_hyp": 2.82023469085889,
+    "ends_ref": 200,
+    "ends_hyp": 100,
+    "counts": {
+     "all": [
+      265,
+      21,
+      305
+     ],
+     "comma": [
+      138,
+      19,
+      194
+     ],
+     "end": [
+      127,
+      2,
+      111
+     ]
+    }
+   },
+   "kokoro-speech-ja": {
+    "n": 200,
+    "cer": 18.951448388412892,
+    "ci95": 2.293695525771337,
+    "sub": 570,
+    "del": 202,
+    "ins": 157,
+    "ref_chars": 4902,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 0,
+    "tail_drop": 11,
+    "digit_hyps": 3
+   },
+   "kokoro-speech-ja:punct": {
+    "n": 200,
+    "f1": 18.452380952380953,
+    "comma_f1": 15.476190476190476,
+    "end_f1": 21.428571428571427,
+    "marks_per_100_ref": 5.895552835577315,
+    "marks_per_100_hyp": 0.9587923296613627,
+    "ends_ref": 88,
+    "ends_hyp": 12,
+    "counts": {
+     "all": [
+      31,
+      16,
+      258
+     ],
+     "comma": [
+      13,
+      12,
+      130
+     ],
+     "end": [
+      18,
+      4,
+      128
+     ]
+    }
+   },
+   "homophones-ja": {
+    "n": 152,
+    "cer": 4.732510288065844,
+    "ci95": 1.5638970468754918,
+    "sub": 86,
+    "del": 19,
+    "ins": 10,
+    "ref_chars": 2430,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 0,
+    "tail_drop": 0,
+    "digit_hyps": 9
+   },
+   "homophones-ja:punct": {
+    "n": 152,
+    "f1": 43.66197183098591,
+    "comma_f1": 20.512820512820515,
+    "end_f1": 52.42718446601942,
+    "marks_per_100_ref": 9.135802469135802,
+    "marks_per_100_hyp": 2.551440329218107,
+    "ends_ref": 152,
+    "ends_hyp": 54,
+    "counts": {
+     "all": [
+      62,
+      0,
+      160
+     ],
+     "comma": [
+      8,
+      0,
+      62
+     ],
+     "end": [
+      54,
+      0,
+      98
+     ]
+    }
+   },
+   "rtf": 0.292759508578695,
+   "peak_rss_mb": 1943,
+   "fleurs-ja:nodigit": {
+    "n": 121,
+    "cer": 7.966666666666667,
+    "ci95": 4.0818525561727315,
+    "sub": 190,
+    "del": 54,
+    "ins": 234,
+    "ref_chars": 6000,
+    "empty": 0,
+    "runaway": 1,
+    "head_drop": 0,
+    "tail_drop": 0,
+    "digit_hyps": 0
+   },
+   "kokoro-speech-ja:nodigit": {
+    "n": 183,
+    "cer": 18.58070293261697,
+    "ci95": 2.4218290456126916,
+    "sub": 502,
+    "del": 177,
+    "ins": 151,
+    "ref_chars": 4467,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 0,
+    "tail_drop": 10,
+    "digit_hyps": 0
+   },
+   "homophones-ja:nodigit": {
+    "n": 138,
+    "cer": 3.8703870387038704,
+    "ci95": 1.2415101356622529,
+    "sub": 62,
+    "del": 19,
+    "ins": 5,
+    "ref_chars": 2222,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 0,
+    "tail_drop": 0,
+    "digit_hyps": 0
+   },
+   "homophones-ja:targets": {
+    "n": 156,
+    "correct": 78.2051282051282,
+    "homophone": 17.307692307692307,
+    "kana": 2.5641025641025643,
+    "other": 1.9230769230769231
+   }
+  }
+ },
+ "nemotron-3-5-streaming-1120ms": {
+  "peak_rss_mb": 1054,
+  "cjk": {
+   "fleurs-ja": {
+    "n": 200,
+    "cer": 14.515333793511488,
+    "ci95": 1.5746064476626938,
+    "sub": 1016,
+    "del": 329,
+    "ins": 127,
+    "ref_chars": 10141,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 2,
+    "tail_drop": 1,
+    "digit_hyps": 0
+   },
+   "fleurs-ja:punct": {
+    "n": 200,
+    "f1": 47.16732542819499,
+    "comma_f1": 52.26781857451404,
+    "end_f1": 39.189189189189186,
+    "marks_per_100_ref": 5.620747460802682,
+    "marks_per_100_hyp": 1.8637215264766789,
+    "ends_ref": 200,
+    "ends_hyp": 34,
+    "counts": {
+     "all": [
+      179,
+      10,
+      391
+     ],
+     "comma": [
+      121,
+      10,
+      211
+     ],
+     "end": [
+      58,
+      0,
+      180
+     ]
+    }
+   },
+   "kokoro-speech-ja": {
+    "n": 200,
+    "cer": 24.479804161566708,
+    "ci95": 2.1692451890278406,
+    "sub": 638,
+    "del": 467,
+    "ins": 95,
+    "ref_chars": 4902,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 0,
+    "tail_drop": 15,
+    "digit_hyps": 0
+   },
+   "kokoro-speech-ja:punct": {
+    "n": 200,
+    "f1": 10.493827160493828,
+    "comma_f1": 15.2046783625731,
+    "end_f1": 6.5359477124183005,
+    "marks_per_100_ref": 5.895552835577315,
+    "marks_per_100_hyp": 0.7139942880456956,
+    "ends_ref": 88,
+    "ends_hyp": 0,
+    "counts": {
+     "all": [
+      17,
+      18,
+      272
+     ],
+     "comma": [
+      13,
+      15,
+      130
+     ],
+     "end": [
+      5,
+      2,
+      141
+     ]
+    }
+   },
+   "homophones-ja": {
+    "n": 152,
+    "cer": 10.0,
+    "ci95": 1.2681785993784056,
+    "sub": 177,
+    "del": 65,
+    "ins": 1,
+    "ref_chars": 2430,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 0,
+    "tail_drop": 2,
+    "digit_hyps": 0
+   },
+   "homophones-ja:punct": {
+    "n": 152,
+    "f1": 4.405286343612334,
+    "comma_f1": 13.333333333333334,
+    "end_f1": 0.0,
+    "marks_per_100_ref": 9.135802469135802,
+    "marks_per_100_hyp": 0.205761316872428,
+    "ends_ref": 152,
+    "ends_hyp": 0,
+    "counts": {
+     "all": [
+      5,
+      0,
+      217
+     ],
+     "comma": [
+      5,
+      0,
+      65
+     ],
+     "end": [
+      0,
+      0,
+      152
+     ]
+    }
+   },
+   "rtf": 0.09769971477018947,
+   "peak_rss_mb": 1054,
+   "fleurs-ja:nodigit": {
+    "n": 121,
+    "cer": 11.716666666666667,
+    "ci95": 1.7453181000138844,
+    "sub": 472,
+    "del": 195,
+    "ins": 36,
+    "ref_chars": 6000,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 0,
+    "tail_drop": 0,
+    "digit_hyps": 0
+   },
+   "kokoro-speech-ja:nodigit": {
+    "n": 183,
+    "cer": 24.356391314081037,
+    "ci95": 2.2116166579523586,
+    "sub": 580,
+    "del": 421,
+    "ins": 87,
+    "ref_chars": 4467,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 0,
+    "tail_drop": 15,
+    "digit_hyps": 0
+   },
+   "homophones-ja:nodigit": {
+    "n": 138,
+    "cer": 9.450945094509452,
+    "ci95": 1.3188226492041168,
+    "sub": 151,
+    "del": 59,
+    "ins": 0,
+    "ref_chars": 2222,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 0,
+    "tail_drop": 2,
+    "digit_hyps": 0
+   },
+   "homophones-ja:targets": {
+    "n": 156,
+    "correct": 45.51282051282051,
+    "homophone": 42.94871794871795,
+    "kana": 0.0,
+    "other": 11.538461538461538
+   }
+  }
+ },
+ "qwen3-asr-0-6b": {
+  "peak_rss_mb": 2026,
+  "cjk": {
+   "fleurs-ja": {
+    "n": 200,
+    "cer": 13.381323340893402,
+    "ci95": 1.4969694406637126,
+    "sub": 872,
+    "del": 157,
+    "ins": 328,
+    "ref_chars": 10141,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 2,
+    "tail_drop": 1,
+    "digit_hyps": 41
+   },
+   "fleurs-ja:punct": {
+    "n": 200,
+    "f1": 80.21978021978022,
+    "comma_f1": 70.83333333333333,
+    "end_f1": 90.69767441860465,
+    "marks_per_100_ref": 5.620747460802682,
+    "marks_per_100_hyp": 5.147421358840351,
+    "ends_ref": 200,
+    "ends_hyp": 200,
+    "counts": {
+     "all": [
+      438,
+      84,
+      132
+     ],
+     "comma": [
+      204,
+      40,
+      128
+     ],
+     "end": [
+      234,
+      44,
+      4
+     ]
+    }
+   },
+   "kokoro-speech-ja": {
+    "n": 200,
+    "cer": 23.806609547123625,
+    "ci95": 2.059513563800533,
+    "sub": 752,
+    "del": 232,
+    "ins": 183,
+    "ref_chars": 4902,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 1,
+    "tail_drop": 11,
+    "digit_hyps": 0
+   },
+   "kokoro-speech-ja:punct": {
+    "n": 200,
+    "f1": 57.32283464566929,
+    "comma_f1": 41.44144144144144,
+    "end_f1": 67.79661016949153,
+    "marks_per_100_ref": 5.895552835577315,
+    "marks_per_100_hyp": 7.058343533251734,
+    "ends_ref": 88,
+    "ends_hyp": 199,
+    "counts": {
+     "all": [
+      182,
+      164,
+      107
+     ],
+     "comma": [
+      46,
+      33,
+      97
+     ],
+     "end": [
+      140,
+      127,
+      6
+     ]
+    }
+   },
+   "homophones-ja": {
+    "n": 152,
+    "cer": 5.925925925925926,
+    "ci95": 1.547162879396355,
+    "sub": 111,
+    "del": 23,
+    "ins": 10,
+    "ref_chars": 2430,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 0,
+    "tail_drop": 0,
+    "digit_hyps": 0
+   },
+   "homophones-ja:punct": {
+    "n": 152,
+    "f1": 88.0,
+    "comma_f1": 50.0,
+    "end_f1": 100.0,
+    "marks_per_100_ref": 9.135802469135802,
+    "marks_per_100_hyp": 7.325102880658436,
+    "ends_ref": 152,
+    "ends_hyp": 152,
+    "counts": {
+     "all": [
+      176,
+      2,
+      46
+     ],
+     "comma": [
+      24,
+      2,
+      46
+     ],
+     "end": [
+      152,
+      0,
+      0
+     ]
+    }
+   },
+   "rtf": 0.15550712020426538,
+   "peak_rss_mb": 2026,
+   "fleurs-ja:nodigit": {
+    "n": 121,
+    "cer": 12.3,
+    "ci95": 1.9644361909087396,
+    "sub": 470,
+    "del": 86,
+    "ins": 182,
+    "ref_chars": 6000,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 0,
+    "tail_drop": 0,
+    "digit_hyps": 0
+   },
+   "kokoro-speech-ja:nodigit": {
+    "n": 183,
+    "cer": 23.729572419968658,
+    "ci95": 2.207152902939158,
+    "sub": 683,
+    "del": 205,
+    "ins": 172,
+    "ref_chars": 4467,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 1,
+    "tail_drop": 10,
+    "digit_hyps": 0
+   },
+   "homophones-ja:nodigit": {
+    "n": 138,
+    "cer": 5.7605760576057605,
+    "ci95": 1.6038128611526314,
+    "sub": 98,
+    "del": 22,
+    "ins": 8,
+    "ref_chars": 2222,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 0,
+    "tail_drop": 0,
+    "digit_hyps": 0
+   },
+   "homophones-ja:targets": {
+    "n": 156,
+    "correct": 73.71794871794872,
+    "homophone": 16.666666666666668,
+    "kana": 2.5641025641025643,
+    "other": 7.051282051282051
+   }
+  }
+ },
+ "sense-voice-small": {
+  "peak_rss_mb": 466,
+  "cjk": {
+   "fleurs-ja": {
+    "n": 200,
+    "cer": 8.934030174539,
+    "ci95": 1.218001006146077,
+    "sub": 598,
+    "del": 146,
+    "ins": 162,
+    "ref_chars": 10141,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 0,
+    "tail_drop": 1,
+    "digit_hyps": 35
+   },
+   "fleurs-ja:punct": {
+    "n": 200,
+    "f1": 80.25711662075298,
+    "comma_f1": 73.90599675850892,
+    "end_f1": 88.55932203389831,
+    "marks_per_100_ref": 5.620747460802682,
+    "marks_per_100_hyp": 5.117838477467705,
+    "ends_ref": 200,
+    "ends_hyp": 200,
+    "counts": {
+     "all": [
+      437,
+      82,
+      133
+     ],
+     "comma": [
+      228,
+      57,
+      104
+     ],
+     "end": [
+      209,
+      25,
+      29
+     ]
+    }
+   },
+   "kokoro-speech-ja": {
+    "n": 200,
+    "cer": 20.35903712770298,
+    "ci95": 2.1020805915641803,
+    "sub": 623,
+    "del": 260,
+    "ins": 115,
+    "ref_chars": 4902,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 1,
+    "tail_drop": 10,
+    "digit_hyps": 9
+   },
+   "kokoro-speech-ja:punct": {
+    "n": 200,
+    "f1": 45.075125208681136,
+    "comma_f1": 32.78688524590164,
+    "end_f1": 54.647887323943664,
+    "marks_per_100_ref": 5.895552835577315,
+    "marks_per_100_hyp": 6.323949408404733,
+    "ends_ref": 88,
+    "ends_hyp": 200,
+    "counts": {
+     "all": [
+      135,
+      175,
+      154
+     ],
+     "comma": [
+      40,
+      61,
+      103
+     ],
+     "end": [
+      97,
+      112,
+      49
+     ]
+    }
+   },
+   "homophones-ja": {
+    "n": 152,
+    "cer": 4.650205761316872,
+    "ci95": 1.030084798091896,
+    "sub": 83,
+    "del": 29,
+    "ins": 1,
+    "ref_chars": 2430,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 0,
+    "tail_drop": 0,
+    "digit_hyps": 6
+   },
+   "homophones-ja:punct": {
+    "n": 152,
+    "f1": 90.51094890510949,
+    "comma_f1": 63.55140186915888,
+    "end_f1": 100.0,
+    "marks_per_100_ref": 9.135802469135802,
+    "marks_per_100_hyp": 7.777777777777778,
+    "ends_ref": 152,
+    "ends_hyp": 152,
+    "counts": {
+     "all": [
+      186,
+      3,
+      36
+     ],
+     "comma": [
+      34,
+      3,
+      36
+     ],
+     "end": [
+      152,
+      0,
+      0
+     ]
+    }
+   },
+   "rtf": 0.01679322252189533,
+   "peak_rss_mb": 466,
+   "fleurs-ja:nodigit": {
+    "n": 121,
+    "cer": 7.383333333333334,
+    "ci95": 1.399925733610589,
+    "sub": 285,
+    "del": 78,
+    "ins": 80,
+    "ref_chars": 6000,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 0,
+    "tail_drop": 0,
+    "digit_hyps": 0
+   },
+   "kokoro-speech-ja:nodigit": {
+    "n": 183,
+    "cer": 19.72240877546452,
+    "ci95": 2.199405439666645,
+    "sub": 550,
+    "del": 225,
+    "ins": 106,
+    "ref_chars": 4467,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 1,
+    "tail_drop": 9,
+    "digit_hyps": 0
+   },
+   "homophones-ja:nodigit": {
+    "n": 138,
+    "cer": 4.185418541854186,
+    "ci95": 1.025859863256555,
+    "sub": 65,
+    "del": 27,
+    "ins": 1,
+    "ref_chars": 2222,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 0,
+    "tail_drop": 0,
+    "digit_hyps": 0
+   },
+   "homophones-ja:targets": {
+    "n": 156,
+    "correct": 70.51282051282051,
+    "homophone": 16.666666666666668,
+    "kana": 0.0,
+    "other": 12.820512820512821
+   }
+  }
+ },
+ "parakeet-ja-ctc": {
+  "peak_rss_mb": 1108,
+  "cjk": {
+   "fleurs-ja": {
+    "n": 200,
+    "cer": 5.4038063307366135,
+    "ci95": 0.9329504115834074,
+    "sub": 264,
+    "del": 118,
+    "ins": 166,
+    "ref_chars": 10141,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 11,
+    "tail_drop": 0,
+    "digit_hyps": 64
+   },
+   "fleurs-ja:punct": {
+    "n": 200,
+    "f1": 25.88235294117647,
+    "comma_f1": 18.46965699208443,
+    "end_f1": 35.21594684385382,
+    "marks_per_100_ref": 5.620747460802682,
+    "marks_per_100_hyp": 1.0847056503303423,
+    "ends_ref": 200,
+    "ends_hyp": 53,
+    "counts": {
+     "all": [
+      88,
+      22,
+      482
+     ],
+     "comma": [
+      35,
+      12,
+      297
+     ],
+     "end": [
+      53,
+      10,
+      185
+     ]
+    }
+   },
+   "kokoro-speech-ja": {
+    "n": 200,
+    "cer": 18.07425540595675,
+    "ci95": 1.991108113910832,
+    "sub": 521,
+    "del": 228,
+    "ins": 137,
+    "ref_chars": 4902,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 8,
+    "tail_drop": 10,
+    "digit_hyps": 13
+   },
+   "kokoro-speech-ja:punct": {
+    "n": 200,
+    "f1": 15.384615384615385,
+    "comma_f1": 0.0,
+    "end_f1": 27.053140096618357,
+    "marks_per_100_ref": 5.895552835577315,
+    "marks_per_100_hyp": 1.2647898816809466,
+    "ends_ref": 88,
+    "ends_hyp": 51,
+    "counts": {
+     "all": [
+      27,
+      35,
+      262
+     ],
+     "comma": [
+      0,
+      1,
+      143
+     ],
+     "end": [
+      28,
+      33,
+      118
+     ]
+    }
+   },
+   "homophones-ja": {
+    "n": 152,
+    "cer": 6.502057613168724,
+    "ci95": 1.9371868630712816,
+    "sub": 109,
+    "del": 9,
+    "ins": 40,
+    "ref_chars": 2430,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 1,
+    "tail_drop": 0,
+    "digit_hyps": 14
+   },
+   "homophones-ja:punct": {
+    "n": 152,
+    "f1": 20.967741935483872,
+    "comma_f1": 0.0,
+    "end_f1": 29.213483146067414,
+    "marks_per_100_ref": 9.135802469135802,
+    "marks_per_100_hyp": 1.0699588477366255,
+    "ends_ref": 152,
+    "ends_hyp": 26,
+    "counts": {
+     "all": [
+      26,
+      0,
+      196
+     ],
+     "comma": [
+      0,
+      0,
+      70
+     ],
+     "end": [
+      26,
+      0,
+      126
+     ]
+    }
+   },
+   "rtf": 0.033153042347499315,
+   "peak_rss_mb": 1108,
+   "fleurs-ja:nodigit": {
+    "n": 121,
+    "cer": 4.583333333333333,
+    "ci95": 1.1826276249062704,
+    "sub": 128,
+    "del": 76,
+    "ins": 71,
+    "ref_chars": 6000,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 7,
+    "tail_drop": 0,
+    "digit_hyps": 0
+   },
+   "kokoro-speech-ja:nodigit": {
+    "n": 183,
+    "cer": 17.618088202372956,
+    "ci95": 2.144491882307241,
+    "sub": 457,
+    "del": 200,
+    "ins": 130,
+    "ref_chars": 4467,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 7,
+    "tail_drop": 10,
+    "digit_hyps": 0
+   },
+   "homophones-ja:nodigit": {
+    "n": 138,
+    "cer": 6.075607560756076,
+    "ci95": 2.0292383257806943,
+    "sub": 88,
+    "del": 9,
+    "ins": 38,
+    "ref_chars": 2222,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 1,
+    "tail_drop": 0,
+    "digit_hyps": 0
+   },
+   "homophones-ja:targets": {
+    "n": 156,
+    "correct": 81.41025641025641,
+    "homophone": 5.128205128205129,
+    "kana": 10.256410256410257,
+    "other": 3.2051282051282053
+   }
+  }
+ },
+ "reazonspeech-k2-v2": {
+  "peak_rss_mb": 482,
+  "cjk": {
+   "fleurs-ja": {
+    "n": 200,
+    "cer": 12.454393057883838,
+    "ci95": 2.091839226309073,
+    "sub": 434,
+    "del": 734,
+    "ins": 95,
+    "ref_chars": 10141,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 21,
+    "tail_drop": 2,
+    "digit_hyps": 0
+   },
+   "fleurs-ja:punct": {
+    "n": 200,
+    "f1": 0.6968641114982579,
+    "comma_f1": 0.0,
+    "end_f1": 1.6528925619834711,
+    "marks_per_100_ref": 5.620747460802682,
+    "marks_per_100_hyp": 0.03944384183019426,
+    "ends_ref": 200,
+    "ends_hyp": 0,
+    "counts": {
+     "all": [
+      2,
+      2,
+      568
+     ],
+     "comma": [
+      0,
+      0,
+      332
+     ],
+     "end": [
+      2,
+      2,
+      236
+     ]
+    }
+   },
+   "kokoro-speech-ja": {
+    "n": 200,
+    "cer": 25.642594859241125,
+    "ci95": 2.73368319782981,
+    "sub": 451,
+    "del": 734,
+    "ins": 72,
+    "ref_chars": 4902,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 41,
+    "tail_drop": 22,
+    "digit_hyps": 0
+   },
+   "kokoro-speech-ja:punct": {
+    "n": 200,
+    "f1": 0.0,
+    "comma_f1": 0.0,
+    "end_f1": 0.0,
+    "marks_per_100_ref": 5.895552835577315,
+    "marks_per_100_hyp": 0.0,
+    "ends_ref": 88,
+    "ends_hyp": 0,
+    "counts": {
+     "all": [
+      0,
+      0,
+      289
+     ],
+     "comma": [
+      0,
+      0,
+      143
+     ],
+     "end": [
+      0,
+      0,
+      146
+     ]
+    }
+   },
+   "homophones-ja": {
+    "n": 152,
+    "cer": 12.921810699588477,
+    "ci95": 3.1379346721002186,
+    "sub": 187,
+    "del": 54,
+    "ins": 73,
+    "ref_chars": 2430,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 7,
+    "tail_drop": 0,
+    "digit_hyps": 0
+   },
+   "homophones-ja:punct": {
+    "n": 152,
+    "f1": 0.0,
+    "comma_f1": 0.0,
+    "end_f1": 0.0,
+    "marks_per_100_ref": 9.135802469135802,
+    "marks_per_100_hyp": 0.0,
+    "ends_ref": 152,
+    "ends_hyp": 0,
+    "counts": {
+     "all": [
+      0,
+      0,
+      222
+     ],
+     "comma": [
+      0,
+      0,
+      70
+     ],
+     "end": [
+      0,
+      0,
+      152
+     ]
+    }
+   },
+   "rtf": 0.010691590056772855,
+   "peak_rss_mb": 482,
+   "fleurs-ja:nodigit": {
+    "n": 121,
+    "cer": 9.616666666666667,
+    "ci95": 2.530190749688324,
+    "sub": 136,
+    "del": 407,
+    "ins": 34,
+    "ref_chars": 6000,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 12,
+    "tail_drop": 1,
+    "digit_hyps": 0
+   },
+   "kokoro-speech-ja:nodigit": {
+    "n": 183,
+    "cer": 24.759346317438997,
+    "ci95": 2.7567389401372875,
+    "sub": 417,
+    "del": 619,
+    "ins": 70,
+    "ref_chars": 4467,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 36,
+    "tail_drop": 21,
+    "digit_hyps": 0
+   },
+   "homophones-ja:nodigit": {
+    "n": 138,
+    "cer": 13.231323132313232,
+    "ci95": 3.3525009173588654,
+    "sub": 173,
+    "del": 54,
+    "ins": 67,
+    "ref_chars": 2222,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 7,
+    "tail_drop": 0,
+    "digit_hyps": 0
+   },
+   "homophones-ja:targets": {
+    "n": 156,
+    "correct": 73.07692307692308,
+    "homophone": 6.410256410256411,
+    "kana": 11.538461538461538,
+    "other": 8.974358974358974
+   }
+  }
+ },
+ "funasr-nano": {
+  "peak_rss_mb": 1914,
+  "cjk": {
+   "fleurs-ja": {
+    "n": 200,
+    "cer": 9.150971304605068,
+    "ci95": 1.2961430059497645,
+    "sub": 608,
+    "del": 124,
+    "ins": 196,
+    "ref_chars": 10141,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 2,
+    "tail_drop": 1,
+    "digit_hyps": 5
+   },
+   "fleurs-ja:punct": {
+    "n": 200,
+    "f1": 83.88791593695271,
+    "comma_f1": 75.57603686635944,
+    "end_f1": 94.90835030549898,
+    "marks_per_100_ref": 5.620747460802682,
+    "marks_per_100_hyp": 5.64046938171778,
+    "ends_ref": 200,
+    "ends_hyp": 200,
+    "counts": {
+     "all": [
+      479,
+      93,
+      91
+     ],
+     "comma": [
+      246,
+      73,
+      86
+     ],
+     "end": [
+      233,
+      20,
+      5
+     ]
+    }
+   },
+   "kokoro-speech-ja": {
+    "n": 200,
+    "cer": 19.216646266829866,
+    "ci95": 2.21946488927907,
+    "sub": 585,
+    "del": 236,
+    "ins": 121,
+    "ref_chars": 4902,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 0,
+    "tail_drop": 11,
+    "digit_hyps": 0
+   },
+   "kokoro-speech-ja:punct": {
+    "n": 200,
+    "f1": 55.19287833827893,
+    "comma_f1": 40.90909090909091,
+    "end_f1": 65.85365853658537,
+    "marks_per_100_ref": 5.895552835577315,
+    "marks_per_100_hyp": 7.853937168502652,
+    "ends_ref": 88,
+    "ends_hyp": 198,
+    "counts": {
+     "all": [
+      186,
+      199,
+      103
+     ],
+     "comma": [
+      54,
+      67,
+      89
+     ],
+     "end": [
+      135,
+      129,
+      11
+     ]
+    }
+   },
+   "homophones-ja": {
+    "n": 152,
+    "cer": 3.662551440329218,
+    "ci95": 0.9677861721068786,
+    "sub": 72,
+    "del": 17,
+    "ins": 0,
+    "ref_chars": 2430,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 0,
+    "tail_drop": 0,
+    "digit_hyps": 2
+   },
+   "homophones-ja:punct": {
+    "n": 152,
+    "f1": 92.82296650717703,
+    "comma_f1": 73.6842105263158,
+    "end_f1": 100.0,
+    "marks_per_100_ref": 9.135802469135802,
+    "marks_per_100_hyp": 8.065843621399177,
+    "ends_ref": 152,
+    "ends_hyp": 152,
+    "counts": {
+     "all": [
+      194,
+      2,
+      28
+     ],
+     "comma": [
+      42,
+      2,
+      28
+     ],
+     "end": [
+      152,
+      0,
+      0
+     ]
+    }
+   },
+   "homophones-ja@auto": {
+    "n": 152,
+    "cer": 3.6213991769547325,
+    "ci95": 0.9190195731199182,
+    "sub": 72,
+    "del": 16,
+    "ins": 0,
+    "ref_chars": 2430,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 0,
+    "tail_drop": 0,
+    "digit_hyps": 3
+   },
+   "homophones-ja@auto:punct": {
+    "n": 152,
+    "f1": 93.07875894988067,
+    "comma_f1": 74.78260869565217,
+    "end_f1": 100.0,
+    "marks_per_100_ref": 9.135802469135802,
+    "marks_per_100_hyp": 8.106995884773662,
+    "ends_ref": 152,
+    "ends_hyp": 152,
+    "counts": {
+     "all": [
+      195,
+      2,
+      27
+     ],
+     "comma": [
+      43,
+      2,
+      27
+     ],
+     "end": [
+      152,
+      0,
+      0
+     ]
+    }
+   },
+   "rtf": 0.12244616784430372,
+   "peak_rss_mb": 1914,
+   "fleurs-ja:nodigit": {
+    "n": 121,
+    "cer": 6.133333333333334,
+    "ci95": 1.1171340380176094,
+    "sub": 221,
+    "del": 58,
+    "ins": 89,
+    "ref_chars": 6000,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 1,
+    "tail_drop": 0,
+    "digit_hyps": 0
+   },
+   "kokoro-speech-ja:nodigit": {
+    "n": 183,
+    "cer": 18.89411237967316,
+    "ci95": 2.3534936238284607,
+    "sub": 529,
+    "del": 200,
+    "ins": 115,
+    "ref_chars": 4467,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 0,
+    "tail_drop": 10,
+    "digit_hyps": 0
+   },
+   "homophones-ja:nodigit": {
+    "n": 138,
+    "cer": 3.5103510351035103,
+    "ci95": 0.9684476045242804,
+    "sub": 62,
+    "del": 16,
+    "ins": 0,
+    "ref_chars": 2222,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 0,
+    "tail_drop": 0,
+    "digit_hyps": 0
+   },
+   "homophones-ja:targets": {
+    "n": 156,
+    "correct": 80.12820512820512,
+    "homophone": 13.461538461538462,
+    "kana": 0.0,
+    "other": 6.410256410256411
+   }
+  }
+ },
+ "kotoba-whisper-v2-0": {
+  "peak_rss_mb": 1892,
+  "cjk": {
+   "fleurs-ja": {
+    "n": 200,
+    "cer": 20.402327186667982,
+    "ci95": 13.90121784863122,
+    "sub": 645,
+    "del": 274,
+    "ins": 1150,
+    "ref_chars": 10141,
+    "empty": 0,
+    "runaway": 1,
+    "head_drop": 0,
+    "tail_drop": 5,
+    "digit_hyps": 62
+   },
+   "fleurs-ja:punct": {
+    "n": 200,
+    "f1": 67.9649464459591,
+    "comma_f1": 61.258278145695364,
+    "end_f1": 77.54137115839244,
+    "marks_per_100_ref": 5.620747460802682,
+    "marks_per_100_hyp": 4.506458929099694,
+    "ends_ref": 200,
+    "ends_hyp": 152,
+    "counts": {
+     "all": [
+      349,
+      108,
+      221
+     ],
+     "comma": [
+      185,
+      87,
+      147
+     ],
+     "end": [
+      164,
+      21,
+      74
+     ]
+    }
+   },
+   "kokoro-speech-ja": {
+    "n": 200,
+    "cer": 38.820889432884535,
+    "ci95": 5.158602111199404,
+    "sub": 638,
+    "del": 280,
+    "ins": 985,
+    "ref_chars": 4902,
+    "empty": 2,
+    "runaway": 3,
+    "head_drop": 3,
+    "tail_drop": 14,
+    "digit_hyps": 15
+   },
+   "kokoro-speech-ja:punct": {
+    "n": 200,
+    "f1": 41.94107452339688,
+    "comma_f1": 24.342105263157894,
+    "end_f1": 62.27106227106227,
+    "marks_per_100_ref": 5.895552835577315,
+    "marks_per_100_hyp": 5.875152998776009,
+    "ends_ref": 88,
+    "ends_hyp": 100,
+    "counts": {
+     "all": [
+      121,
+      167,
+      168
+     ],
+     "comma": [
+      37,
+      124,
+      106
+     ],
+     "end": [
+      85,
+      42,
+      61
+     ]
+    }
+   },
+   "homophones-ja": {
+    "n": 152,
+    "cer": 7.325102880658436,
+    "ci95": 2.6895753080023823,
+    "sub": 76,
+    "del": 23,
+    "ins": 79,
+    "ref_chars": 2430,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 0,
+    "tail_drop": 0,
+    "digit_hyps": 10
+   },
+   "homophones-ja:punct": {
+    "n": 152,
+    "f1": 72.67605633802818,
+    "comma_f1": 55.10204081632653,
+    "end_f1": 79.37743190661479,
+    "marks_per_100_ref": 9.135802469135802,
+    "marks_per_100_hyp": 5.473251028806584,
+    "ends_ref": 152,
+    "ends_hyp": 103,
+    "counts": {
+     "all": [
+      129,
+      4,
+      93
+     ],
+     "comma": [
+      27,
+      1,
+      43
+     ],
+     "end": [
+      102,
+      3,
+      50
+     ]
+    }
+   },
+   "rtf": 0.3807770775467649,
+   "peak_rss_mb": 1892,
+   "fleurs-ja:nodigit": {
+    "n": 121,
+    "cer": 24.616666666666667,
+    "ci95": 23.12166973885116,
+    "sub": 353,
+    "del": 83,
+    "ins": 1041,
+    "ref_chars": 6000,
+    "empty": 0,
+    "runaway": 1,
+    "head_drop": 0,
+    "tail_drop": 1,
+    "digit_hyps": 0
+   },
+   "kokoro-speech-ja:nodigit": {
+    "n": 183,
+    "cer": 37.29572419968659,
+    "ci95": 5.168595231800069,
+    "sub": 550,
+    "del": 254,
+    "ins": 862,
+    "ref_chars": 4467,
+    "empty": 2,
+    "runaway": 2,
+    "head_drop": 2,
+    "tail_drop": 13,
+    "digit_hyps": 0
+   },
+   "homophones-ja:nodigit": {
+    "n": 138,
+    "cer": 6.930693069306931,
+    "ci95": 2.839702175934821,
+    "sub": 55,
+    "del": 20,
+    "ins": 79,
+    "ref_chars": 2222,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 0,
+    "tail_drop": 0,
+    "digit_hyps": 0
+   },
+   "homophones-ja:targets": {
+    "n": 156,
+    "correct": 78.2051282051282,
+    "homophone": 19.23076923076923,
+    "kana": 0.0,
+    "other": 2.5641025641025643
+   }
+  }
+ },
+ "qwen3-asr-1-7b": {
+  "peak_rss_mb": 4319,
+  "cjk": {
+   "fleurs-ja": {
+    "n": 200,
+    "cer": 8.914308253623902,
+    "ci95": 1.1636075600967077,
+    "sub": 614,
+    "del": 102,
+    "ins": 188,
+    "ref_chars": 10141,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 0,
+    "tail_drop": 0,
+    "digit_hyps": 36
+   },
+   "fleurs-ja:punct": {
+    "n": 200,
+    "f1": 83.01544050862852,
+    "comma_f1": 75.55555555555556,
+    "end_f1": 91.47286821705427,
+    "marks_per_100_ref": 5.620747460802682,
+    "marks_per_100_hyp": 5.236170002958288,
+    "ends_ref": 200,
+    "ends_hyp": 200,
+    "counts": {
+     "all": [
+      457,
+      74,
+      113
+     ],
+     "comma": [
+      221,
+      32,
+      111
+     ],
+     "end": [
+      236,
+      42,
+      2
+     ]
+    }
+   },
+   "kokoro-speech-ja": {
+    "n": 200,
+    "cer": 22.093023255813954,
+    "ci95": 2.196798601750512,
+    "sub": 742,
+    "del": 171,
+    "ins": 170,
+    "ref_chars": 4902,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 0,
+    "tail_drop": 10,
+    "digit_hyps": 0
+   },
+   "kokoro-speech-ja:punct": {
+    "n": 200,
+    "f1": 57.233704292527825,
+    "comma_f1": 42.20183486238532,
+    "end_f1": 66.66666666666667,
+    "marks_per_100_ref": 5.895552835577315,
+    "marks_per_100_hyp": 6.935944512443901,
+    "ends_ref": 88,
+    "ends_hyp": 200,
+    "counts": {
+     "all": [
+      180,
+      160,
+      109
+     ],
+     "comma": [
+      46,
+      29,
+      97
+     ],
+     "end": [
+      137,
+      128,
+      9
+     ]
+    }
+   },
+   "homophones-ja": {
+    "n": 152,
+    "cer": 4.938271604938271,
+    "ci95": 1.3176929807866788,
+    "sub": 87,
+    "del": 12,
+    "ins": 21,
+    "ref_chars": 2430,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 1,
+    "tail_drop": 0,
+    "digit_hyps": 5
+   },
+   "homophones-ja:punct": {
+    "n": 152,
+    "f1": 89.05472636815921,
+    "comma_f1": 55.10204081632653,
+    "end_f1": 100.0,
+    "marks_per_100_ref": 9.135802469135802,
+    "marks_per_100_hyp": 7.407407407407407,
+    "ends_ref": 152,
+    "ends_hyp": 152,
+    "counts": {
+     "all": [
+      179,
+      1,
+      43
+     ],
+     "comma": [
+      27,
+      1,
+      43
+     ],
+     "end": [
+      152,
+      0,
+      0
+     ]
+    }
+   },
+   "rtf": 0.3904162687839378,
+   "peak_rss_mb": 4319,
+   "fleurs-ja:nodigit": {
+    "n": 121,
+    "cer": 7.6,
+    "ci95": 1.4420803377720108,
+    "sub": 307,
+    "del": 56,
+    "ins": 93,
+    "ref_chars": 6000,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 0,
+    "tail_drop": 0,
+    "digit_hyps": 0
+   },
+   "kokoro-speech-ja:nodigit": {
+    "n": 183,
+    "cer": 22.02820685023506,
+    "ci95": 2.2238180300090713,
+    "sub": 675,
+    "del": 147,
+    "ins": 162,
+    "ref_chars": 4467,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 0,
+    "tail_drop": 9,
+    "digit_hyps": 0
+   },
+   "homophones-ja:nodigit": {
+    "n": 138,
+    "cer": 4.5004500450045,
+    "ci95": 1.4003262824727642,
+    "sub": 70,
+    "del": 11,
+    "ins": 19,
+    "ref_chars": 2222,
+    "empty": 0,
+    "runaway": 0,
+    "head_drop": 1,
+    "tail_drop": 0,
+    "digit_hyps": 0
+   },
+   "homophones-ja:targets": {
+    "n": 156,
+    "correct": 85.8974358974359,
+    "homophone": 9.615384615384615,
+    "kana": 3.2051282051282053,
+    "other": 1.2820512820512822
+   }
+  }
+ }
+}

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Silniki dla programistów: przełącznik, pomiar szybkości, strojenie środowiska uruchomieniowego, plakietki, wybór silnika i języka. -->
+<resources>
+    <!-- Ustawienia → Dla programistów -->
+    <string name="settings_developer">Dla programistów</string>
+    <string name="settings_developer_engines">Silniki dla programistów</string>
+    <string name="settings_developer_engines_desc">Pokazuj dodatkowe silniki mowy do testów i benchmarków. Duże pliki do pobrania, nie do codziennego użytku.</string>
+    <string name="settings_developer_benchmark">Benchmark A/B</string>
+    <string name="settings_developer_benchmark_desc">Porównaj zainstalowane silniki na jednym nagraniu.</string>
+    <string name="settings_developer_speed">Zmierz ponownie szybkość telefonu</string>
+    <string name="settings_developer_speed_measuring">Pomiar…</string>
+    <string name="settings_developer_speed_measured">Wynik szybkości: %1$s</string>
+    <string name="settings_developer_speed_unmeasured">Jeszcze nie zmierzono</string>
+    <string name="settings_developer_speed_done">Wynik szybkości: %1$s</string>
+    <string name="settings_developer_speed_failed">Nie udało się zmierzyć szybkości telefonu</string>
+    <!-- Strojenie ONNX Runtime -->
+    <string name="settings_developer_ort_tuning">Strojenie środowiska uruchomieniowego</string>
+    <string name="settings_developer_ort_tuning_desc">Spinning wątków i przypinanie do rdzeni w ONNX Runtime, do pomiarów. Działa od następnego wczytania silnika.</string>
+    <string name="settings_developer_ort_tuning_default">Domyślnie (%1$s)</string>
+    <string name="settings_developer_ort_tuning_cpu">CPU</string>
+    <string name="settings_developer_ort_tuning_no_spinning">bez spinningu</string>
+    <string name="settings_developer_ort_tuning_pinned">na szybkich rdzeniach</string>
+
+    <!-- Plakietki na kartach i w oknie szczegółów -->
+    <string name="engine_badge_in_use">W użyciu</string>
+    <string name="engine_badge_developer">Dla programistów</string>
+    <string name="engine_badge_developer_long">Silnik dla programistów</string>
+    <string name="engine_badge_may_be_slow_long">Może działać wolno na tym telefonie</string>
+    <string name="engine_badge_streaming">Strumieniowy</string>
+    <string name="engine_streaming_steps">Strumieniowy · krok %1$d ms</string>
+
+    <!-- Wybór silnika -->
+    <string name="engine_action_use">Użyj</string>
+    <string name="engine_action_use_named">Użyj %1$s</string>
+    <string name="engine_use_failed">Nie udało się zmienić silnika. Spróbuj ponownie.</string>
+
+    <!-- Język silnika -->
+    <string name="engine_language">Język dla tego silnika</string>
+    <string name="engine_language_auto">Wykrywaj automatycznie</string>
+    <string name="engine_language_cancel">Anuluj</string>
+    <string name="engine_language_failed">Nie udało się zapisać języka. Spróbuj ponownie.</string>
+</resources>

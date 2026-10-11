@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Setup guide: the keyboards' mic keys and Android's speech recognition service -->
+    <string name="onboarding_mic_key_title">Dikte dari keyboard Anda</string>
+    <string name="onboarding_mic_key_body">Sebagian besar keyboard memiliki tombol mikrofon. Berikut cara setiap keyboard Anda menjangkau Marmalade STT.</string>
+    <string name="onboarding_mic_key_needs_voice_keyboard">Aktifkan keyboard suara Marmalade terlebih dahulu (langkah sebelumnya): tombol mikrofon akan membukanya.</string>
+    <string name="onboarding_mic_key_other_voice_title">Nonaktifkan keyboard suara lain</string>
+    <string name="onboarding_mic_key_other_voice">Juga aktif: %1$s. Sebagian besar tombol mikrofon membuka keyboard suara pertama yang aktif, dan Android menempatkan keyboard bawaan di urutan pertama. Nonaktifkan keyboard tersebut di setelan keyboard Android (di sebagian besar ponsel: Setelan → Sistem → Keyboard → Keyboard virtual).</string>
+    <string name="onboarding_mic_key_current">%1$s (sedang digunakan)</string>
+    <string name="onboarding_kb_first">Ketuk tombol mikrofonnya. Tombol ini membuka keyboard suara pertama yang aktif, jadi pastikan Pengetikan suara Marmalade satu-satunya yang aktif. Tidak ada tombol mikrofon? Cari tombol input suara di setelan atau toolbar keyboard tersebut.</string>
+    <string name="onboarding_kb_first_hidden">Ketuk tombol mikrofonnya, dan pastikan Pengetikan suara Marmalade satu-satunya keyboard suara yang aktif. Keyboard ini baru bisa melihat Marmalade setelah Anda mengetik dengannya di aplikasi ini: jika tombol mikrofon tidak ada atau tidak berfungsi, ketik satu huruf di kotak di bawah dengan keyboard ini. Setelah ponsel dimulai ulang, lakukan lagi.</string>
+    <string name="onboarding_kb_chooser">Ketuk tombol suaranya, lalu pilih Pengetikan suara Marmalade. Pilihan Anda akan diingat.</string>
+    <string name="onboarding_kb_fossify">Di setelan Fossify Keyboard, setel “Metode pengetikan suara” ke Pengetikan suara Marmalade; toolbar-nya kemudian akan menampilkan mikrofon. Fossify baru bisa melihat Marmalade setelah Anda mengetik dengan Fossify di aplikasi ini: jika Marmalade tidak ada di daftar, atau mikrofon tidak berfungsi, ketik satu huruf di kotak di bawah dengan Fossify terlebih dahulu. Setelah ponsel dimulai ulang, lakukan lagi.</string>
+    <string name="onboarding_kb_swiftkey">Mikrofon SwiftKey menggunakan pengetikan suara milik Microsoft. Jika “Pengetikan Suara Multimodal” dinonaktifkan (setelan SwiftKey → Rich Input), SwiftKey akan meminta input suara dari Android, yang dapat membuka Marmalade STT. Kami belum dapat mengujinya.</string>
+    <string name="onboarding_kb_own_engine">Tombol mikrofonnya selalu menggunakan pengetikan suaranya sendiri. Untuk menggunakan Marmalade sebagai gantinya, ketuk tombol keyboard di menu navigasi, lalu pilih Pengetikan suara Marmalade.</string>
+    <string name="onboarding_kb_google_only">Tombol mikrofonnya hanya membuka Pengetikan suara Google. Untuk menggunakan Marmalade sebagai gantinya, ketuk tombol keyboard di menu navigasi, lalu pilih Pengetikan suara Marmalade.</string>
+    <string name="onboarding_kb_no_mic">Keyboard ini tidak memiliki tombol mikrofon. Untuk menggunakan Marmalade, ketuk tombol keyboard di menu navigasi, lalu pilih Pengetikan suara Marmalade.</string>
+    <string name="onboarding_kb_unknown">Coba tombol mikrofonnya di kotak di bawah. Keyboard yang tombol mikrofonnya beralih ke keyboard suara akan membuka Pengetikan suara Marmalade; pastikan itu satu-satunya keyboard suara yang aktif.</string>
+    <string name="onboarding_kb_futo">FUTO Keyboard</string>
+    <string name="onboarding_try_label">Coba di sini</string>
+    <string name="onboarding_try_hint">Ketuk kotak, lalu tombol mikrofon keyboard Anda.</string>
+
+    <string name="onboarding_speech_title">Pengenalan ucapan untuk aplikasi lain</string>
+    <string name="onboarding_speech_body">Beberapa aplikasi memiliki tombol mikrofon yang menggunakan layanan pengenalan ucapan Android. Pilih Marmalade STT sebagai layanan tersebut, dan aplikasi itu juga akan mengenali ucapan Anda di ponsel.</string>
+    <string name="onboarding_speech_on">Marmalade STT adalah layanan pengenalan ucapan Android</string>
+    <string name="onboarding_speech_off">Marmalade STT bukan layanan pengenalan ucapan Android</string>
+    <string name="onboarding_speech_open">Buka setelan</string>
+    <!-- The step's directions follow the page "Open settings" lands on (#79), with each Android release's own Settings labels. -->
+    <!-- Android 9. The Voice input row is hidden while the assistant is also the voice service (Google). -->
+    <string name="onboarding_speech_path_assist_9">Di Setelan, buka Aplikasi &amp; notifikasi → Lanjutan → Aplikasi default → Bantuan &amp; masukan suara → Masukan suara, lalu pilih Marmalade STT. Jika Masukan suara tidak ada, setel Aplikasi bantuan ke Tidak ada terlebih dahulu.</string>
+    <!-- Android 10 -->
+    <string name="onboarding_speech_path_assist_10">Di Setelan, buka Aplikasi &amp; notifikasi → Lanjutan → Aplikasi default → Aplikasi bantuan → Masukan suara, lalu pilih Marmalade STT. Jika Masukan suara tidak ada, setel Aplikasi bantuan ke Tidak Ada terlebih dahulu.</string>
+    <!-- Android 11 -->
+    <string name="onboarding_speech_path_assist_11">Di Setelan, buka Aplikasi &amp; notifikasi → Lanjutan → Aplikasi default → Aplikasi asisten digital → Masukan suara, lalu pilih Marmalade STT. Jika Masukan suara tidak ada, setel Aplikasi asisten digital default ke Tidak Ada terlebih dahulu.</string>
+    <!-- Android 12 -->
+    <string name="onboarding_speech_path_assist">Di Setelan, buka Aplikasi → Aplikasi default → Aplikasi asisten digital → Input suara, lalu pilih Marmalade STT.</string>
+    <!-- Android 13. Voice input is under the page's Speech heading. -->
+    <string name="onboarding_speech_path_languages_input">Di Setelan, buka Sistem → Bahasa &amp; input → Input suara, lalu pilih Marmalade STT.</string>
+    <!-- Android 14 to 16. Voice input is under the page's Speech heading. -->
+    <string name="onboarding_speech_path_languages">Di Setelan, buka Sistem → Bahasa → Input suara, lalu pilih Marmalade STT.</string>
+    <!-- Android 16 with Language & region, and Android 17. Speech is a row of that page. -->
+    <string name="onboarding_speech_path_language_region">Di Setelan, buka Sistem → Bahasa &amp; wilayah → Ucapan → Input suara, lalu pilih Marmalade STT.</string>
+    <!-- No known page opens (other phone makers) -->
+    <string name="onboarding_speech_path_search">Cari “Input suara” di Setelan, buka, lalu pilih Marmalade STT.</string>
+    <string name="onboarding_speech_elsewhere">Beberapa ponsel menempatkannya di tempat lain: cari “Input suara” di Setelan.</string>
+    <string name="onboarding_speech_force_stop">Jika Anda memaksa Marmalade STT berhenti, Android akan beralih kembali ke layanan lain. Pilih Marmalade lagi setelahnya.</string>
+
+    <string name="onboarding_summary_other_voice">Keyboard suara lain</string>
+    <string name="onboarding_summary_other_voice_on">Masih aktif: %1$s</string>
+    <string name="onboarding_summary_speech">Layanan pengenalan ucapan</string>
+    <string name="onboarding_summary_speech_on">Marmalade STT</string>
+    <string name="onboarding_summary_speech_off">Aplikasi lain, atau tidak ada</string>
+</resources>

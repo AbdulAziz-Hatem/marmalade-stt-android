@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Benchmark A/B pour développeurs -->
+    <string name="benchmark_title">Benchmark</string>
+    <string name="benchmark_note">Enregistrez une prise, puis chaque moteur installé la transcrit tour à tour&#160;: chargement, transcription, déchargement. Tous les moteurs reçoivent les mêmes segments Silero VAD. Les moteurs en streaming reçoivent chaque segment par blocs de 100 ms, aussi vite que le modèle les accepte, et non en temps réel. La prise reste en mémoire et n\'est jamais sauvegardée. Sur un émulateur, les chiffres servent uniquement à comparer les moteurs entre eux.</string>
+
+    <string name="benchmark_section_take">Prise</string>
+    <string name="benchmark_record">Enregistrer</string>
+    <string name="benchmark_stop">Arrêter</string>
+    <string name="benchmark_play">Lire</string>
+    <string name="benchmark_stop_playback">Arrêter la lecture</string>
+    <string name="benchmark_elapsed">%1$s s / %2$d s</string>
+    <string name="benchmark_level">Niveau d\'entrée</string>
+    <string name="benchmark_take_length">Prise&#160;: %1$s</string>
+    <string name="benchmark_take_length_soft_agc">Prise&#160;: %1$s, niveau ajusté par l\'application (ce téléphone n\'a pas de contrôle de gain intégré pour le micro)</string>
+    <plurals name="benchmark_no_take">
+        <item quantity="one">Aucune prise pour l\'instant. Enregistrez jusqu\'à %1$d seconde de parole.</item>
+        <item quantity="many">Aucune prise pour l\'instant. Enregistrez jusqu\'à %1$d de secondes de parole.</item>
+        <item quantity="other">Aucune prise pour l\'instant. Enregistrez jusqu\'à %1$d secondes de parole.</item>
+    </plurals>
+
+    <string name="benchmark_section_reference">Texte de référence (facultatif)</string>
+    <string name="benchmark_reference_label">Ce que vous avez dit</string>
+    <string name="benchmark_reference_hint">Saisissez ce que vous avez dit pour obtenir un taux d\'erreur sur les mots (WER) par moteur.</string>
+
+    <string name="benchmark_section_engines">Moteurs</string>
+    <string name="benchmark_no_engines">Aucun moteur n\'est installé. Installez-en dans l\'onglet Moteurs (activez Moteurs pour développeurs dans Réglages pour voir les candidats).</string>
+    <string name="benchmark_run">Lancer le benchmark</string>
+    <string name="benchmark_run_again">Relancer</string>
+    <string name="benchmark_running">Exécution de %1$s (%2$d sur %3$d)…</string>
+
+    <string name="benchmark_section_results">Résultats</string>
+    <string name="benchmark_metric_load">Chargement %1$s</string>
+    <string name="benchmark_metric_decode">Décodage %1$s</string>
+    <string name="benchmark_metric_rtf">RTF %1$s</string>
+    <string name="benchmark_metric_rss">Pic RSS (échantillonné) %1$s</string>
+    <string name="benchmark_metric_wer">WER %1$s</string>
+    <string name="benchmark_empty_transcript">(aucune parole reconnue)</string>
+    <string name="benchmark_raw">Brut&#160;: %1$s</string>
+    <string name="benchmark_failed_load">Échec du chargement&#160;: %1$s</string>
+    <string name="benchmark_failed_transcribe">Échec de la transcription&#160;: %1$s</string>
+    <string name="benchmark_failed_release">Transcrit, mais échec du déchargement&#160;: %1$s</string>
+    <string name="benchmark_copy_markdown">Copier en Markdown</string>
+    <string name="benchmark_copied">Copié</string>
+
+    <!-- Snackbars -->
+    <string name="benchmark_error_mic">Impossible d\'enregistrer. Une autre application utilise-t-elle le micro&#160;?</string>
+    <string name="benchmark_error_empty">Rien n\'a été enregistré. Réessayez.</string>
+    <string name="benchmark_error_playback">Impossible de lire la prise.</string>
+    <string name="benchmark_error_no_engines">Aucun moteur installé à tester.</string>
+    <string name="benchmark_error_run">Le benchmark s\'est arrêté à cause d\'une erreur.</string>
+
+    <!-- Autorisation du micro -->
+    <string name="benchmark_mic_title">Le benchmark a besoin de votre micro</string>
+    <string name="benchmark_mic_body">Il enregistre une prise, la garde uniquement en mémoire et ne la sauvegarde ni ne l\'envoie jamais.</string>
+</resources>

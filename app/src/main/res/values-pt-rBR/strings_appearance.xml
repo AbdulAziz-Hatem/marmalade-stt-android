@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Configurações → Aparência -->
+    <string name="settings_appearance">Aparência</string>
+    <string name="settings_mode">Modo</string>
+    <string name="settings_mode_system">Sistema</string>
+    <string name="settings_mode_light">Claro</string>
+    <string name="settings_mode_dark">Escuro</string>
+    <string name="settings_color">Cor</string>
+    <string name="settings_color_system">Papel de parede</string>
+    <string name="settings_color_midnight">Meia-noite</string>
+    <string name="settings_color_forest">Floresta</string>
+    <string name="settings_color_berry">Amora</string>
+    <string name="settings_color_high_contrast">Alto contraste</string>
+</resources>

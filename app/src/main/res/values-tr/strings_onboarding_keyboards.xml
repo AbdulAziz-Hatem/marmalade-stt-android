@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Setup guide: the keyboards' mic keys and Android's speech recognition service -->
+    <string name="onboarding_mic_key_title">Klavyenizden dikte edin</string>
+    <string name="onboarding_mic_key_body">Çoğu klavyede bir mikrofon tuşu bulunur. Klavyelerinizin her biri Marmalade STT\'ye şöyle ulaşır.</string>
+    <string name="onboarding_mic_key_needs_voice_keyboard">Önce Marmalade sesli klavyesini açın (önceki adım): mikrofon tuşları onu açar.</string>
+    <string name="onboarding_mic_key_other_voice_title">Diğer sesli klavyeleri kapatın</string>
+    <string name="onboarding_mic_key_other_voice">Ayrıca açık: %1$s. Çoğu mikrofon tuşu açık olan ilk sesli klavyeyi açar ve Android önceden yüklü olanları başa koyar. Bunları Android\'in klavye ayarlarından kapatın (çoğu telefonda Ayarlar → Sistem → Klavye → Dokunmatik klavye).</string>
+    <string name="onboarding_mic_key_current">%1$s (kullanımda)</string>
+    <string name="onboarding_kb_first">Mikrofon tuşuna dokunun. Bu tuş açık olan ilk sesli klavyeyi açar, bu yüzden açık tek sesli klavye Marmalade Sesle Yazma olsun. Mikrofon tuşu yok mu? Klavyenin ayarlarında veya araç çubuğunda bir ses girişi tuşu arayın.</string>
+    <string name="onboarding_kb_first_hidden">Mikrofon tuşuna dokunun ve açık tek sesli klavye Marmalade Sesle Yazma olsun. Bu klavye Marmalade\'i ancak siz bu uygulamada onunla yazdıktan sonra görebilir: mikrofon tuşu yoksa veya hiçbir şey yapmıyorsa, aşağıdaki kutuya bu klavyeyle bir harf yazın. Telefonunuzu yeniden başlattıktan sonra bunu tekrarlayın.</string>
+    <string name="onboarding_kb_chooser">Ses tuşuna dokunun ve Marmalade Sesle Yazma\'yı seçin. Klavye seçiminizi hatırlar.</string>
+    <string name="onboarding_kb_fossify">Fossify Keyboard\'un ayarlarında “Sesli yazı yazma” seçeneğini Marmalade Sesle Yazma olarak ayarlayın; ardından araç çubuğunda bir mikrofon görünür. Fossify, Marmalade\'i ancak siz bu uygulamada Fossify ile yazdıktan sonra görebilir: Marmalade listede yoksa veya mikrofon hiçbir şey yapmıyorsa, önce aşağıdaki kutuya Fossify ile bir harf yazın. Telefonunuzu yeniden başlattıktan sonra bunu tekrarlayın.</string>
+    <string name="onboarding_kb_swiftkey">SwiftKey\'in mikrofonu Microsoft\'un kendi sesle yazma özelliğini kullanır. “Multimodal Sesle Yazma” kapalıyken (SwiftKey ayarları → Zengin Giriş) bunun yerine Android\'den ses girişi ister; bu da Marmalade STT\'yi açabilir. Bunu henüz test edemedik.</string>
+    <string name="onboarding_kb_own_engine">Mikrofon tuşu her zaman klavyenin kendi sesle yazma özelliğini kullanır. Bunun yerine Marmalade\'i kullanmak için gezinme çubuğundaki klavye düğmesine dokunun ve Marmalade Sesle Yazma\'yı seçin.</string>
+    <string name="onboarding_kb_google_only">Mikrofon tuşu yalnızca Google Sesle Yazma\'yı açar. Bunun yerine Marmalade\'i kullanmak için gezinme çubuğundaki klavye düğmesine dokunun ve Marmalade Sesle Yazma\'yı seçin.</string>
+    <string name="onboarding_kb_no_mic">Mikrofon tuşu yok. Marmalade\'i kullanmak için gezinme çubuğundaki klavye düğmesine dokunun ve Marmalade Sesle Yazma\'yı seçin.</string>
+    <string name="onboarding_kb_unknown">Mikrofon tuşunu aşağıdaki kutuda deneyin. Mikrofon tuşu bir sesli klavyeye geçen klavyeler Marmalade Sesle Yazma\'yı açar; açık tek sesli klavye o olsun.</string>
+    <string name="onboarding_kb_futo">FUTO Keyboard</string>
+    <string name="onboarding_try_label">Burada deneyin</string>
+    <string name="onboarding_try_hint">Kutuya, ardından klavyenizin mikrofon tuşuna dokunun.</string>
+
+    <string name="onboarding_speech_title">Diğer uygulamalar için konuşma tanıma</string>
+    <string name="onboarding_speech_body">Bazı uygulamalarda Android\'in konuşma tanıma hizmetini kullanan bir mikrofon düğmesi bulunur. Bu hizmet olarak Marmalade STT\'yi seçin; bu uygulamalar da konuşmanızı telefonunuzda tanısın.</string>
+    <string name="onboarding_speech_on">Marmalade STT, Android\'in konuşma tanıma hizmeti</string>
+    <string name="onboarding_speech_off">Marmalade STT, Android\'in konuşma tanıma hizmeti değil</string>
+    <string name="onboarding_speech_open">Ayarları aç</string>
+    <!-- The step's directions follow the page "Open settings" lands on (#79), with each Android release's own Settings labels. -->
+    <!-- Android 9. The Voice input row is hidden while the assistant is also the voice service (Google). -->
+    <string name="onboarding_speech_path_assist_9">Ayarlar\'da Uygulamalar ve bildirimler → Gelişmiş → Varsayılan uygulamalar → Yardım ve ses girişi → Ses girişi bölümünü açın ve Marmalade STT\'yi seçin. “Ses girişi” görünmüyorsa önce “Yardım uygulaması” ayarını “Yok” olarak belirleyin.</string>
+    <!-- Android 10 -->
+    <string name="onboarding_speech_path_assist_10">Ayarlar\'da Uygulama ve bildirimler → Gelişmiş → Varsayılan uygulamalar → Yardım uygulaması → Ses girişi bölümünü açın ve Marmalade STT\'yi seçin. “Ses girişi” görünmüyorsa önce “Asistan uygulaması” ayarını “Yok” olarak belirleyin.</string>
+    <!-- Android 11 -->
+    <string name="onboarding_speech_path_assist_11">Ayarlar\'da Uygulama ve bildirimler → Gelişmiş → Varsayılan uygulamalar → Dijital asistan uygulaması → Ses girişi bölümünü açın ve Marmalade STT\'yi seçin. “Ses girişi” görünmüyorsa önce “Varsayılan dijital asistan uygulaması” ayarını “Yok” olarak belirleyin.</string>
+    <!-- Android 12 -->
+    <string name="onboarding_speech_path_assist">Ayarlar\'da Uygulamalar → Varsayılan uygulamalar → Dijital asistan uygulaması → Ses girişi bölümünü açın ve Marmalade STT\'yi seçin.</string>
+    <!-- Android 13. Voice input is under the page's Speech heading. -->
+    <string name="onboarding_speech_path_languages_input">Ayarlar\'da Sistem → Diller ve giriş → Ses girişi bölümünü açın ve Marmalade STT\'yi seçin.</string>
+    <!-- Android 14 to 16. Voice input is under the page's Speech heading. -->
+    <string name="onboarding_speech_path_languages">Ayarlar\'da Sistem → Diller → Ses girişi bölümünü açın ve Marmalade STT\'yi seçin.</string>
+    <!-- Android 16 with Language & region, and Android 17. Speech is a row of that page. -->
+    <string name="onboarding_speech_path_language_region">Ayarlar\'da Sistem → Dil ve bölge → Konuşma → Ses girişi bölümünü açın ve Marmalade STT\'yi seçin.</string>
+    <!-- No known page opens (other phone makers) -->
+    <string name="onboarding_speech_path_search">Ayarlar\'da “Ses girişi” diye arayın, açın ve Marmalade STT\'yi seçin.</string>
+    <string name="onboarding_speech_elsewhere">Bazı telefonlarda bu ayar başka bir yerdedir: Ayarlar\'da “Ses girişi” diye arayın.</string>
+    <string name="onboarding_speech_force_stop">Marmalade STT\'yi durmaya zorlarsanız Android başka bir hizmete geri döner. Bu durumda Marmalade\'i yeniden seçin.</string>
+
+    <string name="onboarding_summary_other_voice">Diğer sesli klavyeler</string>
+    <string name="onboarding_summary_other_voice_on">Hâlâ açık: %1$s</string>
+    <string name="onboarding_summary_speech">Konuşma tanıma hizmeti</string>
+    <string name="onboarding_summary_speech_on">Marmalade STT</string>
+    <string name="onboarding_summary_speech_off">Başka bir uygulama veya hiçbiri</string>
+</resources>

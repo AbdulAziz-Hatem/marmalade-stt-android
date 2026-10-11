@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Debug builds only: a test caller for the speech entry points (#5). -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    <!-- The speed benchmark keeps the CPU awake with the screen off (#23). -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <application>
+        <!--
+          Exported so `adb shell am start -n app.marmalade.stt.debug/app.marmalade.stt.debug.SpeechTestActivity`
+          can open it. Not in release builds.
+        -->
+        <activity
+            android:name="app.marmalade.stt.debug.SpeechTestActivity"
+            android:exported="true"
+            android:label="STT entry-point test"
+            android:theme="@style/Theme.MarmaladeStt" />
+        <!--
+          Plays test WAVs in the background for device passes (#11). DUMP is
+          held by the adb shell, never by third-party apps, so only
+          `adb shell am start-foreground-service` can start it.
+        -->
+        <service
+            android:name="app.marmalade.stt.debug.TestAudioPlayerService"
+            android:exported="true"
+            android:foregroundServiceType="mediaPlayback"
+            android:permission="android.permission.DUMP" />
+        <!--
+          Headless engine speed benchmark (#23), driven by tools/speed-bench/.
+          DUMP again: only `adb shell am start-foreground-service` can start it.
+        -->
+        <service
+            android:name="app.marmalade.stt.debug.SpeedBenchmarkService"
+            android:exported="true"
+            android:foregroundServiceType="specialUse"
+            android:permission="android.permission.DUMP">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="Debug-only speech engine benchmark started over adb" />
+        </service>
+        <!--
+          Logs and opens the Settings links (#79); usage in
+          SettingsLinkProbeActivity's KDoc.
+        -->
+        <activity
+            android:name="app.marmalade.stt.debug.SettingsLinkProbeActivity"
+            android:exported="true"
+            android:theme="@android:style/Theme.NoDisplay" />
+    </application>
+</manifest>

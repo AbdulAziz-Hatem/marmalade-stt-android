@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Мастер настройки: рекомендуемый движок. %1$s — язык телефона в именительном падеже, поэтому он стоит в скобках. -->
+<resources>
+    <string name="onboarding_recommend_checking">Проверяем ваш телефон…</string>
+    <string name="onboarding_recommend_best_fit">Наш первый выбор для вашего языка (%1$s). Подходит этому телефону по памяти и скорости.</string>
+    <string name="onboarding_recommend_lighter">Более лёгкий движок, который подходит этому телефону по памяти и скорости.</string>
+    <string name="onboarding_recommend_may_be_slow">Лучше всего подходит для вашего языка (%1$s), но на этом телефоне может работать медленно.</string>
+    <string name="onboarding_recommend_low_memory">Самый экономный движок для вашего языка (%1$s). На этом телефоне ему мало памяти: он может работать медленно, или его может закрыть Android.</string>
+    <string name="onboarding_recommend_uncovered">Пока ни один движок не распознаёт %1$s, поэтому этот распознаёт %2$s.</string>
+    <plurals name="onboarding_recommend_languages">
+        <item quantity="one">%d язык, определяемый автоматически.</item>
+        <item quantity="few">%d языка, определяемых автоматически.</item>
+        <item quantity="many">%d языков, определяемых автоматически.</item>
+        <item quantity="other">%d языка, определяемых автоматически.</item>
+    </plurals>
+    <string name="onboarding_recommend_other">Позже можно выбрать другой движок на вкладке «Движки».</string>
+</resources>

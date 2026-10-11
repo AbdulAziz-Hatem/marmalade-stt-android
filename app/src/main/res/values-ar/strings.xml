@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="list_separator">،\u0020</string>
+    <string name="quoted_name">«%1$s»</string>
+    <string name="ui_locale">ar</string>
+
+    <!-- Bottom navigation -->
+    <string name="nav_dictate">الإملاء</string>
+    <string name="nav_engines">المحرّكات</string>
+    <string name="nav_settings">الإعدادات</string>
+
+    <!-- Dictate -->
+    <string name="dictate_start">بدء الإملاء</string>
+    <string name="dictate_stop">إيقاف الإملاء</string>
+    <string name="dictate_state_idle">لا يستمع</string>
+    <string name="dictate_state_loading">جارٍ التحميل</string>
+    <string name="dictate_state_listening">جارٍ الاستماع</string>
+    <string name="dictate_state_finishing">جارٍ الإنهاء</string>
+    <string name="dictate_status_loading">جارٍ تحميل النموذج…</string>
+    <string name="dictate_status_listening">جارٍ الاستماع</string>
+    <string name="dictate_status_hearing">أسمعك…</string>
+    <string name="dictate_status_finishing">جارٍ الإنهاء…</string>
+    <string name="dictate_status_catching_up">جارٍ اللحاق بالكلام…</string>
+    <string name="dictate_empty">ستظهر كلماتك هنا. كل ما تقوله يبقى على هاتفك.</string>
+    <string name="dictate_copy">نسخ</string>
+    <string name="dictate_copied">تم النسخ</string>
+    <string name="dictate_clear">محو</string>
+    <string name="dictate_no_speech">لم يتم التقاط أي كلام</string>
+    <string name="dictate_error_mic">تعذّر استخدام الميكروفون</string>
+    <string name="dictate_error_model">تعذّر تحميل نموذج الكلام</string>
+    <string name="dictate_error_recognition">حدث خطأ أثناء تحويل الكلام إلى نص</string>
+    <string name="dictate_too_slow">هذا المحرّك بطيء جدًا على هذا الهاتف. يمكن لمحرّك أصغر من علامة التبويب «المحرّكات» أن يواكب كلامك.</string>
+    <string name="dictate_error_busy">الإملاء قيد التشغيل في مكان آخر. حاوِل مرة أخرى بعد قليل.</string>
+    <string name="dictate_no_model_title">نزِّل نموذج كلام لبدء الإملاء</string>
+    <string name="dictate_no_model_body">يعمل النموذج على هاتفك. تنزّله مرة واحدة، ثم يعمل الإملاء بلا اتصال بالإنترنت.</string>
+    <string name="dictate_no_model_action">اختيار نموذج</string>
+    <string name="dictate_mic_title">يحتاج التطبيق إلى الميكروفون</string>
+    <string name="dictate_mic_body">لا يستمع إلا أثناء الإملاء. يتحوّل ما تقوله إلى نص على هاتفك، ولا يُحفظ أو يُرسل إلى أي مكان أبدًا.</string>
+    <string name="dictate_mic_body_blocked">تم إيقاف الوصول إلى الميكروفون لهذا التطبيق. يمكنك تفعيله من إعدادات التطبيق، ضمن الأذونات.</string>
+    <string name="dictate_mic_allow">منح إذن الميكروفون</string>
+    <string name="dictate_mic_open_settings">فتح الإعدادات</string>
+    <string name="dictate_mic_settings_failed">تعذّر فتح الإعدادات. افتح إعدادات Android، ثم التطبيقات، ثم Marmalade STT.</string>
+
+    <!-- Engines list -->
+    <string name="engines_title">المحرّكات</string>
+
+    <!-- Engine install state -->
+    <string name="engine_status_not_installed">لم يتم التنزيل بعد</string>
+    <string name="engine_status_downloading">جارٍ التنزيل · %1$s</string>
+    <string name="engine_status_paused">متوقف مؤقتًا · %1$s</string>
+    <string name="engine_status_ready">جاهز</string>
+    <string name="engine_status_corrupt">ملفات النموذج تالفة: %1$s</string>
+    <string name="engine_progress_bytes">%1$s من %2$s</string>
+    <string name="engine_progress_description">تقدّم التنزيل</string>
+    <string name="engine_failure_not_available">هذا النموذج غير متاح للتنزيل حاليًا. حاوِل مرة أخرى لاحقًا.</string>
+    <string name="engine_failure_no_space">لا تتوفّر مساحة تخزين كافية لهذا النموذج. أفرِغ بعض المساحة وحاوِل مرة أخرى.</string>
+    <string name="engine_failure_network">انقطع التنزيل. تحقّق من الاتصال وحاوِل مرة أخرى، وسيُستأنف التنزيل من حيث توقّف.</string>
+    <string name="engine_failure_generic">تعذّر تثبيت النموذج. حاوِل مرة أخرى.</string>
+    <string name="engine_corrupt_outdated">الملفات المثبّتة لا تتوافق مع هذا الإصدار من التطبيق.</string>
+    <string name="engine_corrupt_missing">الملف %1$s مفقود.</string>
+    <string name="engine_corrupt_wrong_size">حجم الملف %1$s غير صحيح.</string>
+    <string name="engine_corrupt_damaged">الملف %1$s تالف.</string>
+    <string name="engine_failure_checksum">لم يتطابق أحد الملفات التي تم تنزيلها مع ما هو متوقّع، لذا تم حذفه. حاوِل مرة أخرى لتنزيله من جديد.</string>
+
+    <!-- Engine actions -->
+    <string name="engine_action_download">تنزيل</string>
+    <string name="engine_action_resume">استئناف</string>
+    <string name="engine_action_retry">إعادة المحاولة</string>
+    <string name="engine_action_download_again">إعادة التنزيل</string>
+    <string name="engine_action_cancel">إلغاء</string>
+    <string name="engine_action_remove_download">إزالة التنزيل</string>
+    <string name="engine_action_check_files">فحص الملفات</string>
+    <string name="engine_action_checking">جارٍ فحص الملفات…</string>
+    <string name="engine_action_remove">إزالة</string>
+    <string name="engine_dialog_cancel">إلغاء</string>
+    <string name="engine_download_confirm_title">هل تريد تنزيل %1$s؟</string>
+    <string name="engine_download_confirm_body">سيتم تنزيل %1$s من الإنترنت مرة واحدة. بعد ذلك يعمل المحرّك بلا اتصال، ولا يغادر هاتفك أي شيء تقوله.</string>
+    <string name="engine_remove_confirm_title">هل تريد إزالة %1$s؟</string>
+    <string name="engine_remove_confirm_body">سيتم حذف ملفات النموذج (%1$s) من هاتفك. يمكنك تنزيلها مرة أخرى في أي وقت.</string>
+    <string name="engine_remove_download_failed">تعذّرت إزالة التنزيل. حاوِل مرة أخرى.</string>
+    <string name="engine_remove_failed">تعذّرت إزالة ملفات النموذج. حاوِل مرة أخرى.</string>
+    <string name="engine_check_ok">جميع الملفات سليمة</string>
+    <string name="engine_check_damaged">بعض ملفات النموذج تالفة. نزِّلها مرة أخرى لإصلاح المشكلة.</string>
+    <string name="engine_check_failed">تعذّر فحص الملفات. حاوِل مرة أخرى.</string>
+    <string name="download_channel_name">تنزيلات نماذج الكلام</string>
+
+    <!-- Engine info dialog -->
+    <string name="engine_detail_languages">اللغات</string>
+    <string name="engine_detail_size_on_disk">الحجم على الهاتف</string>
+    <string name="engine_detail_download_size">حجم التنزيل</string>
+    <string name="engine_detail_license">الترخيص</string>
+    <string name="engine_detail_source">المصدر</string>
+    <string name="engine_detail_speed">السرعة</string>
+    <string name="engine_speed_cost">%1$s× وقت فك الترميز في Parakeet Ultra (تقديري)</string>
+    <string name="engine_speed_reference">مرجع السرعة هو Parakeet Ultra</string>
+    <string name="engine_speed_phone_unmeasured">لم يتم قياس سرعة هذا الهاتف بعد</string>
+
+    <!-- Settings -->
+    <string name="settings_title">الإعدادات</string>
+    <string name="settings_back">رجوع</string>
+    <string name="settings_save_failed">تعذّر حفظ الإعداد. حاوِل مرة أخرى.</string>
+    <string name="settings_speech">الكلام</string>
+    <string name="settings_speech_keep_loaded">إبقاء المحرّك جاهزًا</string>
+    <string name="settings_speech_keep_loaded_desc">يبدأ الاستماع بشكل أسرع. يستحق التفعيل إذا كنت تستخدم الإدخال الصوتي كثيرًا، مثلاً لتسهيل الاستخدام. يستهلك نحو ٠٫٦ إلى ٣ غيغابايت من الذاكرة أثناء فتح التطبيق، حسب المحرّك.</string>
+    <!-- Settings → End of speech -->
+    <string name="settings_end">نهاية الكلام</string>
+    <string name="settings_end_keyboard">لوحة المفاتيح الصوتية</string>
+    <string name="settings_end_apps">التطبيقات الأخرى ونافذة «تحدّث الآن»</string>
+    <string name="settings_end_tap">النقر للإيقاف</string>
+    <string name="settings_end_tap_desc">يبقى الميكروفون مفعّلاً حتى تنقر عليه. تُكتب كلماتك عند الإيقاف.</string>
+    <string name="settings_end_smart_turn">إيقاف تلقائي باستخدام Smart Turn</string>
+    <string name="settings_end_smart_turn_desc">يتوقف عندما يبدو أنك انتهيت، فلا تقطعك وقفة للتفكير.</string>
+    <string name="settings_end_pause">إيقاف تلقائي بعد وقفة</string>
+    <string name="settings_end_pause_desc">يتوقف عندما تتوقف عن الكلام. اضبط المدة من «مدة الوقفة».</string>
+    <string name="settings_end_word">قول كلمة إنهاء</string>
+    <string name="settings_end_word_desc">يتوقف عندما تقول كلمة الإنهاء وحدها، مثل «over». لا تُكتب الكلمة.</string>
+    <string name="settings_end_lock_hint">نصيحة: في أوضاع الإيقاف التلقائي، انقر مع الاستمرار على الميكروفون لمواصلة الاستماع حتى تنقر عليه.</string>
+    <string name="settings_dialog_cancel">إلغاء</string>
+    <string name="settings_speech_pause">مدة الوقفة</string>
+    <string name="settings_speech_pause_desc">طول الوقفة التي تُنهي الجملة في علامة التبويب «الإملاء»، وتوقف الاستماع في «إيقاف تلقائي بعد وقفة». المدة الأطول تتيح لك التوقف للتفكير.</string>
+    <string name="settings_speech_pause_value">%1$.1f ث</string>
+    <string name="settings_speech_pause_state">%1$.1f ثانية</string>
+    <string name="settings_patience">مهلة Smart Turn</string>
+    <string name="settings_patience_desc">%1$s. مدة انتظاره قبل أن يقرّر أنك انتهيت.</string>
+    <string name="settings_patience_quick">سريع</string>
+    <string name="settings_patience_quick_desc">يتوقف عن الاستماع أسرع، لكنه يقاطعك أكثر.</string>
+    <string name="settings_patience_normal">عادي</string>
+    <string name="settings_patience_normal_desc">ينتظر خلال معظم وقفات التفكير.</string>
+    <string name="settings_patience_relaxed">متمهّل</string>
+    <string name="settings_patience_relaxed_desc">ينتظر وقتًا أطول قبل أن يتوقف عن الاستماع. مناسب إذا كنت تتوقف كثيرًا.</string>
+    <string name="settings_end_words">كلمات الإنهاء</string>
+    <string name="settings_end_words_hint">افصل بينها بفواصل.</string>
+    <!-- Settings → Support -->
+    <string name="settings_support">الدعم</string>
+    <string name="settings_support_dev">دعم التطوير</string>
+    <string name="settings_support_dev_desc">تبرّع عبر GitHub Sponsors. التبرّع طوعي وغير قابل للخصم من الضرائب.</string>
+    <string name="settings_more_marmalade">المزيد من Marmalade</string>
+    <string name="settings_more_marmalade_desc">تطبيقات Marmalade الأخرى على GitHub.</string>
+    <string name="settings_report_bug">الإبلاغ عن خطأ</string>
+    <string name="settings_report_bug_desc">هل هناك عطل أو كلام فُهم خطأً؟ يفتح بلاغًا على GitHub مع ملء التفاصيل مسبقًا.</string>
+    <string name="settings_about">حول</string>
+    <string name="settings_about_row">حول Marmalade STT</string>
+    <string name="settings_about_row_desc">الإصدار %1$s · التراخيص، الخصوصية</string>
+
+    <!-- About -->
+    <string name="about_title">حول</string>
+    <string name="about_version">الإصدار %1$s</string>
+    <string name="about_tagline">تحويل خاص للكلام إلى نص يعمل على هاتفك.</string>
+    <string name="about_privacy">سياسة الخصوصية</string>
+    <string name="about_privacy_desc">ما يبقى على هاتفك (كل ما تقوله) وما ينزّله التطبيق. لا تتبُّع ولا حسابات.</string>
+    <string name="about_privacy_english_note">هذه السياسة باللغة الإنجليزية. الملخّص: يتم التعرّف على الكلام على هاتفك، ولا يتم أبدًا عبر أي خدمة كلام سحابية أو على الإنترنت. لا يتم حفظ الصوت أو رفعه أبدًا. لا تحليلات ولا تتبُّع ولا حسابات. يُستخدم الإنترنت فقط لتنزيل نماذج الكلام.</string>
+    <string name="about_privacy_load_failed">تعذّر تحميل سياسة الخصوصية. وهي متوفّرة أيضًا في المستودع باسم PRIVACY.md.</string>
+    <string name="about_licenses">تراخيص البرامج المفتوحة المصدر</string>
+    <string name="about_licenses_desc">تراخيص التطبيق والمكوّنات المضمّنة فيه.</string>
+
+    <!-- Open-source licenses -->
+    <string name="licenses_licensing">الترخيص</string>
+    <string name="licenses_view_full">عرض الترخيص كاملاً</string>
+    <string name="license_text_title">الترخيص</string>
+    <string name="license_text_not_bundled">نص الترخيص غير مضمّن. راجِع الرابط في الشاشة السابقة.</string>
+    <string name="license_text_load_failed">تعذّر تحميل نص الترخيص. راجِع رابط المصدر في الشاشة السابقة.</string>
+
+    <!-- Voice keyboard -->
+    <string name="ime_name">الكتابة الصوتية من Marmalade</string>
+    <string name="ime_subtype_label">الكتابة الصوتية</string>
+    <string name="ime_status_loading">جارٍ تحميل النموذج…</string>
+    <string name="ime_status_listening">جارٍ الاستماع</string>
+    <string name="ime_status_hearing">أسمعك…</string>
+    <string name="ime_status_finishing">جارٍ الإنهاء…</string>
+    <string name="ime_status_paused">متوقف مؤقتًا. انقر على الميكروفون للمتابعة.</string>
+    <string name="ime_speak_now">تحدّث الآن</string>
+    <string name="ime_cancel">العودة إلى لوحة المفاتيح</string>
+    <string name="ime_done">تم</string>
+    <string name="ime_pause">إيقاف الاستماع مؤقتًا</string>
+    <string name="ime_resume">استئناف الاستماع</string>
+    <string name="ime_no_model">نزِّل نموذج كلام في Marmalade STT لاستخدام الكتابة الصوتية.</string>
+    <string name="ime_open_app">فتح Marmalade STT</string>
+    <string name="ime_mic_needed">تحتاج الكتابة الصوتية إلى الميكروفون. لا يتم الاستماع إلا أثناء فتح هذه اللوحة.</string>
+    <string name="ime_mic_allow">منح إذن الميكروفون</string>
+    <string name="ime_mic_blocked">الوصول إلى الميكروفون متوقف لتطبيق Marmalade STT. فعِّله ضمن الأذونات، ثم عُد إلى تطبيقك.</string>
+
+    <!-- Speech input dialog and RecognitionService -->
+    <string name="recognizer_speak_now">تحدّث الآن</string>
+    <string name="recognizer_cancel">إلغاء</string>
+    <string name="recognizer_done">تم</string>
+    <string name="recognizer_try_again">إعادة المحاولة</string>
+    <string name="recognizer_no_model">نزِّل نموذج كلام في Marmalade STT لاستخدام الإدخال الصوتي.</string>
+    <string name="recognizer_open_app">فتح Marmalade STT</string>
+    <string name="recognizer_mic_blocked">يحتاج الإدخال الصوتي إلى الميكروفون. فعِّله من إعدادات التطبيق، ضمن الأذونات.</string>
+    <string name="recognizer_open_settings">فتح الإعدادات</string>
+    <string name="recognizer_mic_stop">إيقاف الاستماع</string>
+
+    <!-- Press and hold the mic to lock listening -->
+    <string name="lock_status">مقفل: انقر للإيقاف</string>
+    <string name="lock_state">مقفل</string>
+    <string name="lock_action">قفل الاستماع</string>
+
+    <!-- Text cleanup -->
+    <string name="cleanup_section">تنظيف النص</string>
+    <string name="cleanup_fillers">إزالة كلمات الحشو</string>
+    <string name="cleanup_fillers_desc">يزيل «um» و«uh» و«er» و«hmm» وما شابهها. أما الكلمات الحقيقية مثل «umbrella» فتبقى.</string>
+    <string name="cleanup_commands">الأوامر الصوتية</string>
+    <string name="cleanup_commands_desc">قل «new line» أو «new paragraph»، أو «scratch that» لحذف الجملة الأخيرة.</string>
+    <string name="cleanup_punctuation">كلمات الترقيم</string>
+    <string name="cleanup_punctuation_desc">قل أيضًا «period» و«comma» و«question mark»… غير مفعّلة افتراضيًا، لأنها كلمات عادية أيضًا.</string>
+    <string name="cleanup_english_only">بالإنجليزية فقط. %1$s</string>
+    <string name="cleanup_itn">كتابة الأعداد أرقامًا</string>
+    <string name="cleanup_itn_desc">تتحوّل «Twenty five percent» إلى «&#x2066;25%&#x2069;»، و«nine thirty pm» إلى «&#x2066;9:30 pm&#x2069;». أما الأعداد الصغيرة مثل «three boxes» فتبقى كلمات.</string>
+    <string name="cleanup_capitalize">بدء الجمل بحرف كبير</string>
+    <string name="cleanup_capitalize_desc">حرف كبير في بداية كل جملة وكل سطر. لا يتحوّل أي حرف إلى حرف صغير أبدًا.</string>
+    <string name="cleanup_dictionary">قاموس الاستبدال</string>
+    <string name="cleanup_dictionary_desc_none">صحّح الكلمات التي يخطئ فيها التطبيق باستمرار.</string>
+    <plurals name="cleanup_dictionary_desc">
+        <item quantity="zero">%1$d قاعدة · صحّح الكلمات التي يخطئ فيها التطبيق باستمرار</item>
+        <item quantity="one">%1$d قاعدة · صحّح الكلمات التي يخطئ فيها التطبيق باستمرار</item>
+        <item quantity="two">%1$d قاعدتان · صحّح الكلمات التي يخطئ فيها التطبيق باستمرار</item>
+        <item quantity="few">%1$d قواعد · صحّح الكلمات التي يخطئ فيها التطبيق باستمرار</item>
+        <item quantity="many">%1$d قاعدة · صحّح الكلمات التي يخطئ فيها التطبيق باستمرار</item>
+        <item quantity="other">%1$d قاعدة · صحّح الكلمات التي يخطئ فيها التطبيق باستمرار</item>
+    </plurals>
+    <string name="cleanup_snippets">المقتطفات</string>
+    <string name="cleanup_snippets_desc_none">قل عبارة تشغيل لإدراج نص محفوظ، مثل عنوانك.</string>
+    <plurals name="cleanup_snippets_desc">
+        <item quantity="zero">%1$d مقتطف · قل عبارة تشغيل لإدراج نص محفوظ</item>
+        <item quantity="one">%1$d مقتطف · قل عبارة تشغيل لإدراج نص محفوظ</item>
+        <item quantity="two">%1$d مقتطفان · قل عبارة تشغيل لإدراج نص محفوظ</item>
+        <item quantity="few">%1$d مقتطفات · قل عبارة تشغيل لإدراج نص محفوظ</item>
+        <item quantity="many">%1$d مقتطفًا · قل عبارة تشغيل لإدراج نص محفوظ</item>
+        <item quantity="other">%1$d مقتطف · قل عبارة تشغيل لإدراج نص محفوظ</item>
+    </plurals>
+
+    <string name="cleanup_save">حفظ</string>
+    <string name="cleanup_cancel">إلغاء</string>
+    <string name="cleanup_delete">حذف</string>
+    <string name="cleanup_edit_action">تعديل</string>
+
+    <string name="cleanup_dictionary_help">تحوّل كل قاعدة كلمة أو عبارة يخطئ فيها التطبيق باستمرار إلى ما قصدته.\n\n• تطابق القاعدة الكلمات الكاملة بغض النظر عن حالة الأحرف: «teh» تطابق «Teh» ولكنها لا تطابق «tehran».\n• في الصينية واليابانية، اللتين لا تفصل المسافات بين كلماتهما، تتطابق العبارة أيضًا داخل الجملة. وفي الكورية تتطابق أيضًا عند إلحاق أداة بها: «메일» تطابق «메일을».\n• يبقى الحرف الكبير في النص البديل كما كُتب. وإلا فتتبع حالة الأحرف ما سُمع: «Teh» تصبح «The».\n• اترك النص البديل فارغًا لحذف العبارة.\n• عند تداخل القواعد، تُطبَّق المطابقة الأطول.</string>
+    <string name="cleanup_dictionary_empty">لا توجد قواعد بعد. انقر على «إضافة قاعدة» لتصحيح كلمة يخطئ فيها التطبيق باستمرار.</string>
+    <string name="cleanup_dictionary_add">إضافة قاعدة</string>
+    <string name="cleanup_dictionary_edit">تعديل القاعدة</string>
+    <string name="cleanup_dictionary_from">ما يُسمع</string>
+    <string name="cleanup_dictionary_to">اكتب بدلاً منه</string>
+    <string name="cleanup_dictionary_to_hint">اتركه فارغًا لحذف العبارة.</string>
+    <string name="cleanup_dictionary_from_breaks_export">لا يمكن أن يحتوي على «->» أو أن يبدأ بالرمز «#».</string>
+    <string name="cleanup_dictionary_replaces">تحلّ محلّ قاعدتك الحالية لعبارة «%1$s».</string>
+    <string name="cleanup_dictionary_deleted">(محذوفة)</string>
+    <string name="cleanup_dictionary_rule_description">تتحوّل %1$s إلى %2$s</string>
+    <string name="cleanup_dictionary_rule_deletes_description">تُحذف %1$s</string>
+    <string name="cleanup_import">استيراد</string>
+    <string name="cleanup_export">نسخ الكل</string>
+    <string name="cleanup_exported">تم نسخ القواعد</string>
+    <string name="cleanup_import_title">استيراد القواعد</string>
+    <string name="cleanup_import_help">الصق قاعدة واحدة في كل سطر، بالشكل: خطأ -> صواب. يتم تجاهل الأسطر التي تبدأ بالرمز #. وإذا كانت لديك قاعدة للكلمة نفسها، تحلّ القاعدة الجديدة محلّها.</string>
+    <string name="cleanup_import_field">القواعد</string>
+    <string name="cleanup_import_none">لم يتم العثور على قواعد بعد.</string>
+    <plurals name="cleanup_import_found">
+        <item quantity="zero">تم العثور على %1$d قاعدة.</item>
+        <item quantity="one">تم العثور على %1$d قاعدة.</item>
+        <item quantity="two">تم العثور على %1$d قاعدتين.</item>
+        <item quantity="few">تم العثور على %1$d قواعد.</item>
+        <item quantity="many">تم العثور على %1$d قاعدة.</item>
+        <item quantity="other">تم العثور على %1$d قاعدة.</item>
+    </plurals>
+    <plurals name="cleanup_import_skipped">
+        <item quantity="zero">%1$d سطر ليست قواعد، وسيتم تخطيها.</item>
+        <item quantity="one">%1$d سطر ليس قاعدة، وسيتم تخطيه.</item>
+        <item quantity="two">%1$d سطران ليسا قاعدتين، وسيتم تخطيهما.</item>
+        <item quantity="few">%1$d أسطر ليست قواعد، وسيتم تخطيها.</item>
+        <item quantity="many">%1$d سطرًا ليست قواعد، وسيتم تخطيها.</item>
+        <item quantity="other">%1$d سطر ليست قواعد، وسيتم تخطيها.</item>
+    </plurals>
+
+    <string name="cleanup_snippets_help">قل عبارة تشغيل وسيحلّ محلّها نصك المحفوظ، تمامًا كما كُتب، بما في ذلك فواصل الأسطر.\n\n• تطابق عبارات التشغيل الكلمات الكاملة بغض النظر عن حالة الأحرف: «my email» تطابق «My email» ولكنها لا تطابق «my emailing».\n• في الصينية واليابانية، اللتين لا تفصل المسافات بين كلماتهما، تتطابق عبارة التشغيل أيضًا داخل الجملة. وفي الكورية تتطابق أيضًا عند إلحاق أداة بها: «메일» تطابق «메일을».\n• لا شيء آخر يغيّر النص المحفوظ: لا إزالة لكلمات الحشو ولا أوامر ولا أحرف كبيرة.\n• إذا قلت عبارة التشغيل وحدها، يُدرَج النص المحفوظ فقط.</string>
+    <string name="cleanup_snippets_empty">لا توجد مقتطفات بعد. انقر على «إضافة مقتطف» لحفظ نص تحتاجه كثيرًا.</string>
+    <string name="cleanup_snippets_add">إضافة مقتطف</string>
+    <string name="cleanup_snippets_edit">تعديل المقتطف</string>
+    <string name="cleanup_snippets_trigger">عبارة التشغيل</string>
+    <string name="cleanup_snippets_text">النص المراد إدراجه</string>
+    <string name="cleanup_snippets_replaces">يحلّ محلّ مقتطفك الحالي لعبارة «%1$s».</string>
+
+    <!-- Setup guide (onboarding) -->
+    <string name="onboarding_step_of">الخطوة %1$d من %2$d</string>
+    <string name="onboarding_close">إغلاق دليل الإعداد</string>
+    <string name="onboarding_back">رجوع</string>
+    <string name="onboarding_next">التالي</string>
+    <string name="onboarding_skip">تخطّي</string>
+    <string name="onboarding_get_started">البدء</string>
+    <string name="onboarding_try_it">تجربة</string>
+    <string name="onboarding_settings_failed">تعذّر فتح إعدادات Android. افتحها من الشاشة الرئيسية بدلاً من ذلك.</string>
+    <!-- Toasts over Settings when only a fallback page opened (#79): where to go from there. -->
+    <string name="settings_hint_voice_input">ابحث في الإعدادات عن «الإدخال الصوتي»، ثم اختر Marmalade STT.</string>
+    <string name="settings_hint_keyboards">ابحث في الإعدادات عن «لوحة المفاتيح»، ثم فعِّل «الكتابة الصوتية من Marmalade».</string>
+    <string name="settings_hint_app_details">اعثر على Marmalade STT ضمن التطبيقات، ثم فعِّل الميكروفون ضمن الأذونات.</string>
+    <string name="onboarding_welcome_title">مرحبًا بك في Marmalade STT</string>
+    <string name="onboarding_welcome_body">تحدّث، وسيكتب Marmalade STT ما تقوله: في شاشة «الإملاء» الخاصة به، أو كإدخال صوتي في التطبيقات الأخرى. بضع خطوات سريعة تجعله جاهزًا.</string>
+    <string name="onboarding_privacy_title">الخصوصية في صميم التصميم</string>
+    <string name="onboarding_privacy_body">يتم التعرّف على الكلام على هاتفك، ولا يتم أبدًا عبر أي خدمة كلام سحابية أو على الإنترنت، بما فيها خدمة Google. لا يتم حفظ الصوت أو رفعه أبدًا. لا تحليلات، ولا تتبُّع، ولا حسابات، ولا مفاتيح API. يُستخدم الإنترنت فقط لتنزيل نماذج الكلام.</string>
+    <string name="onboarding_high_contrast">وضع تسهيل الاستخدام</string>
+    <string name="onboarding_high_contrast_desc">ألوان عالية التباين</string>
+    <string name="onboarding_mic_title">السماح باستخدام الميكروفون</string>
+    <string name="onboarding_mic_body">يحتاج Marmalade STT إلى الميكروفون ليسمعك. ولا يُستخدم الميكروفون إلا أثناء تشغيل الإملاء.</string>
+    <string name="onboarding_mic_granted">الوصول إلى الميكروفون مفعّل</string>
+    <string name="onboarding_mic_denied">بدون الميكروفون، لا يستطيع Marmalade STT سماعك. يمكنك السماح بالوصول الآن، أو التخطّي والسماح لاحقًا.</string>
+    <string name="onboarding_mic_blocked">تم إيقاف الوصول إلى الميكروفون لهذا التطبيق. فعِّله ضمن الأذونات في صفحة إعدادات التطبيق.</string>
+    <string name="onboarding_mic_allow">منح إذن الميكروفون</string>
+    <string name="onboarding_mic_open_settings">فتح إعدادات التطبيق</string>
+    <string name="onboarding_model_title">نزِّل نموذج كلام</string>
+    <string name="onboarding_model_body">يتم التعرّف على الكلام بواسطة نموذج يعمل على هاتفك. يتم تنزيله مرة واحدة، وبعد ذلك يعمل الإملاء بلا اتصال بالإنترنت.</string>
+    <string name="onboarding_model_downloading_note">يتواصل الإعداد بمجرد أن يصبح النموذج جاهزًا. يستمر التنزيل إذا انطفأت الشاشة أو غادرت التطبيق.</string>
+    <string name="onboarding_keyboard_title">فعِّل لوحة المفاتيح الصوتية</string>
+    <string name="onboarding_keyboard_body">لوحة المفاتيح الصوتية من Marmalade هي وسيلتك للإملاء في التطبيقات الأخرى: تفتحها مفاتيح الميكروفون في لوحات المفاتيح. فعِّل «الكتابة الصوتية من Marmalade» في إعدادات لوحة المفاتيح في Android، ثم عُد إلى هنا.</string>
+    <string name="onboarding_keyboard_open">فتح إعدادات لوحة المفاتيح</string>
+    <string name="onboarding_keyboard_on">لوحة المفاتيح الصوتية مفعّلة</string>
+    <string name="onboarding_keyboard_off">لوحة المفاتيح الصوتية غير مفعّلة</string>
+    <string name="onboarding_keyboard_warning">ينبّه Android إلى أن أي لوحة مفاتيح تفعّلها قد تجمع ما تكتبه. هذا تحذير معتاد. لا يكتب Marmalade STT إلا ما تمليه، ولا يغادر هاتفك أي شيء.</string>
+    <string name="onboarding_keyboard_unlock_note">تعرض بعض الهواتف بعد ذلك رسالة ثانية: بعد إعادة التشغيل، لا يمكن للتطبيق أن يبدأ حتى تفتح قفل هاتفك. هذا أيضًا لا بأس به. انقر على «حسنًا».</string>
+    <string name="onboarding_futo_checking">جارٍ سؤال FUTO Keyboard…</string>
+    <string name="onboarding_futo_selected">تستخدم FUTO Keyboard تطبيق Marmalade STT للإدخال الصوتي</string>
+    <string name="onboarding_futo_not_selected">تستخدم FUTO Keyboard إدخالاً صوتيًا آخر</string>
+    <string name="onboarding_futo_use">استخدام Marmalade STT في FUTO</string>
+    <string name="onboarding_futo_check_again">التحقّق مرة أخرى</string>
+    <string name="onboarding_futo_manual_title">الإعداد بنفسك</string>
+    <string name="onboarding_futo_manual_body">في FUTO Keyboard، افتح الإعدادات ← الإدخال الصوتي وفعِّل «تعطيل إدخال الصوت المدمج» («استخدام الإدخال الصوتي الذي يوفره التطبيق الخارجي»). بعد ذلك يفتح زر الميكروفون في FUTO لوحة المفاتيح الصوتية من Marmalade التي فعّلتها في الخطوة السابقة.</string>
+    <string name="onboarding_futo_crash_once">إذا أُغلقت FUTO Keyboard في المرة الأولى التي تنقر فيها على الميكروفون، فانقر عليه مرة أخرى.</string>
+    <string name="onboarding_done_title">كل شيء جاهز</string>
+    <string name="onboarding_done_body">جرّبه في شاشة «الإملاء»: انقر على الميكروفون وتحدّث.</string>
+    <string name="onboarding_done_title_partial">جاهز متى شئت</string>
+    <string name="onboarding_done_body_partial">لا تزال بعض الخطوات غير مكتملة. يمكنك إكمالها في أي وقت.</string>
+    <string name="onboarding_done_reopen">يمكنك فتح هذا الدليل مرة أخرى من «الإعدادات».</string>
+    <string name="onboarding_summary_mic">الميكروفون</string>
+    <string name="onboarding_summary_mic_on">مسموح به</string>
+    <string name="onboarding_summary_mic_off">غير مسموح به بعد</string>
+    <string name="onboarding_summary_model">نموذج الكلام</string>
+    <string name="onboarding_summary_model_ready">جاهز</string>
+    <string name="onboarding_summary_model_downloading">جارٍ التنزيل</string>
+    <string name="onboarding_summary_model_missing">لم يتم التنزيل. نزِّله من علامة التبويب «المحرّكات».</string>
+    <string name="onboarding_summary_model_attention">لم يكتمل التنزيل. راجِع علامة التبويب «المحرّكات».</string>
+    <string name="onboarding_summary_keyboard">لوحة المفاتيح الصوتية</string>
+    <string name="onboarding_summary_keyboard_on">مفعّلة</string>
+    <string name="onboarding_summary_keyboard_off">غير مفعّلة</string>
+    <string name="onboarding_summary_futo">FUTO Keyboard</string>
+    <string name="onboarding_summary_futo_on">تستخدم Marmalade STT</string>
+    <string name="onboarding_summary_futo_off">تستخدم إدخالاً صوتيًا آخر</string>
+    <string name="onboarding_settings_row">دليل الإعداد</string>
+    <string name="onboarding_settings_row_desc">الميكروفون، ومحرّك الكلام، ولوحات المفاتيح، وخدمة التعرّف على الكلام</string>
+</resources>

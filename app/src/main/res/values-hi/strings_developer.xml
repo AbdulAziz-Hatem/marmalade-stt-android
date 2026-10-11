@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Settings → Developer -->
+    <string name="settings_developer">डेवलपर</string>
+    <string name="settings_developer_engines">डेवलपर इंजन</string>
+    <string name="settings_developer_engines_desc">टेस्टिंग और बेंचमार्किंग के लिए अतिरिक्त स्पीच इंजन दिखाएँ। बड़े डाउनलोड, रोज़ के इस्तेमाल के लिए नहीं।</string>
+    <string name="settings_developer_benchmark">A/B बेंचमार्क</string>
+    <string name="settings_developer_benchmark_desc">एक रिकॉर्डिंग पर इंस्टॉल किए गए इंजनों की तुलना करें।</string>
+    <string name="settings_developer_speed">फ़ोन की गति दोबारा मापें</string>
+    <string name="settings_developer_speed_measuring">मापा जा रहा है…</string>
+    <string name="settings_developer_speed_measured">गति स्कोर %1$s</string>
+    <string name="settings_developer_speed_unmeasured">अभी मापा नहीं गया</string>
+    <string name="settings_developer_speed_done">गति स्कोर: %1$s</string>
+    <string name="settings_developer_speed_failed">फ़ोन की गति मापी नहीं जा सकी</string>
+    <!-- ONNX Runtime tuning -->
+    <string name="settings_developer_ort_tuning">रनटाइम ट्यूनिंग</string>
+    <string name="settings_developer_ort_tuning_desc">मापने के लिए ONNX Runtime की थ्रेड स्पिनिंग और कोर पिनिंग। अगली बार इंजन लोड होने पर लागू होती है।</string>
+    <string name="settings_developer_ort_tuning_default">डिफ़ॉल्ट (%1$s)</string>
+    <string name="settings_developer_ort_tuning_cpu">CPU</string>
+    <string name="settings_developer_ort_tuning_no_spinning">स्पिनिंग नहीं</string>
+    <string name="settings_developer_ort_tuning_pinned">तेज़ कोर पर पिन किया गया</string>
+
+    <!-- Pills and tags on engine cards, rows and the details dialog -->
+    <string name="engine_badge_in_use">इस्तेमाल में</string>
+    <string name="engine_badge_developer">डेवलपर</string>
+    <string name="engine_badge_developer_long">डेवलपर इंजन</string>
+    <string name="engine_badge_may_be_slow_long">इस फ़ोन पर धीमा हो सकता है</string>
+    <string name="engine_badge_streaming">स्ट्रीमिंग</string>
+    <string name="engine_streaming_steps">स्ट्रीमिंग · हर %1$d ms</string>
+
+    <!-- Picking the engine -->
+    <string name="engine_action_use">इस्तेमाल करें</string>
+    <string name="engine_action_use_named">%1$s इस्तेमाल करें</string>
+    <string name="engine_use_failed">इंजन बदला नहीं जा सका। फिर से कोशिश करें।</string>
+
+    <!-- Engine info dialog: language hint -->
+    <string name="engine_language">इस इंजन की भाषा</string>
+    <string name="engine_language_auto">अपने आप पहचानें</string>
+    <string name="engine_language_cancel">रद्द करें</string>
+    <string name="engine_language_failed">भाषा सेव नहीं हो सकी। फिर से कोशिश करें।</string>
+</resources>

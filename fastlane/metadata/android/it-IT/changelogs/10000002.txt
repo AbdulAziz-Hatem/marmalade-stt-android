@@ -1,0 +1,6 @@
+Marmalade STT 1.0.0, prima versione.
+- Dettatura privata e offline: tastiera vocale per FUTO, HeliBoard, FlorisBoard e altre, finestra “Parla ora” per le app e servizio di riconoscimento vocale di Android.
+- Motori scelti per telefono e lingua, alcuni dedicati al giapponese, cinese, coreano, hindi, arabo e vietnamita.
+- Stop con tocco, pausa, parola di chiusura o Smart Turn.
+- Pulizia del testo, sostituzioni e frammenti.
+- Interfaccia in 21 lingue. Niente pubblicità, account o statistiche d'uso.

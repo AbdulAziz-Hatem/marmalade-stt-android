@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Developer A/B benchmark (#13): one mic take through every installed engine -->
+    <string name="benchmark_title">Benchmark</string>
+    <string name="benchmark_note">Record one take, then every installed engine transcribes it in turn: load, transcribe, unload. Every engine sees the same Silero VAD segments. Streaming engines are fed each segment in 100 ms chunks as fast as the model takes them, not in real time. The take stays in memory and is never saved. Numbers on an emulator are only good for comparing engines with each other.</string>
+
+    <string name="benchmark_section_take">Take</string>
+    <string name="benchmark_record">Record</string>
+    <string name="benchmark_stop">Stop</string>
+    <string name="benchmark_play">Play</string>
+    <string name="benchmark_stop_playback">Stop playback</string>
+    <!-- %1$s: seconds recorded so far, e.g. "12.3"; %2$d: the limit in seconds -->
+    <string name="benchmark_elapsed">%1$s s / %2$d s</string>
+    <string name="benchmark_level">Input level</string>
+    <!-- %1$s: take length, e.g. "12.3 s" -->
+    <string name="benchmark_take_length">Take: %1$s</string>
+    <!-- %1$s: take length, e.g. "12.3 s". Shown when the app applied its own gain to the take. -->
+    <string name="benchmark_take_length_soft_agc">Take: %1$s, levelled by the app (this phone has no built-in mic gain control)</string>
+    <!-- %1$d: the limit in seconds -->
+    <plurals name="benchmark_no_take">
+        <item quantity="one">No take yet. Record up to %1$d second of speech.</item>
+        <item quantity="other">No take yet. Record up to %1$d seconds of speech.</item>
+    </plurals>
+
+    <string name="benchmark_section_reference">Reference text (optional)</string>
+    <string name="benchmark_reference_label">What you said</string>
+    <string name="benchmark_reference_hint">Type what you said to get a word error rate (WER) per engine.</string>
+
+    <string name="benchmark_section_engines">Engines</string>
+    <string name="benchmark_no_engines">No engines are installed. Install some on the Engines tab (turn on Developer engines in Settings to see the candidates).</string>
+    <string name="benchmark_run">Run benchmark</string>
+    <string name="benchmark_run_again">Run again</string>
+    <!-- %1$s: engine name; %2$d: its position; %3$d: the number of engines -->
+    <string name="benchmark_running">Running %1$s (%2$d of %3$d)…</string>
+
+    <string name="benchmark_section_results">Results</string>
+    <!-- Metrics line parts, joined with " · " -->
+    <string name="benchmark_metric_load">Load %1$s</string>
+    <string name="benchmark_metric_decode">Decode %1$s</string>
+    <string name="benchmark_metric_rtf">RTF %1$s</string>
+    <string name="benchmark_metric_rss">Peak RSS (sampled) %1$s</string>
+    <string name="benchmark_metric_wer">WER %1$s</string>
+    <string name="benchmark_empty_transcript">(no speech recognized)</string>
+    <!-- Under the transcript (which is after the text cleanup, as dictation writes it). %1$s: the engine's own text before the cleanup -->
+    <string name="benchmark_raw">Raw: %1$s</string>
+    <string name="benchmark_failed_load">Couldn\'t load: %1$s</string>
+    <string name="benchmark_failed_transcribe">Couldn\'t transcribe: %1$s</string>
+    <string name="benchmark_failed_release">Transcribed, but couldn\'t unload: %1$s</string>
+    <string name="benchmark_copy_markdown">Copy as Markdown</string>
+    <string name="benchmark_copied">Copied</string>
+
+    <!-- Snackbar notices -->
+    <string name="benchmark_error_mic">Couldn\'t record. Is another app using the microphone?</string>
+    <string name="benchmark_error_empty">Nothing was recorded. Try again.</string>
+    <string name="benchmark_error_playback">Couldn\'t play the take.</string>
+    <string name="benchmark_error_no_engines">No installed engines to run.</string>
+    <string name="benchmark_error_run">The benchmark stopped because of an error.</string>
+
+    <!-- Mic permission (the blocked text and buttons reuse the Dictate strings) -->
+    <string name="benchmark_mic_title">The benchmark needs your microphone</string>
+    <string name="benchmark_mic_body">It records one take, keeps it in memory only and never saves or sends it.</string>
+</resources>

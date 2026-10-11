@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Kreator konfiguracji: klawisze mikrofonu na klawiaturach i usługa rozpoznawania mowy Androida -->
+    <string name="onboarding_mic_key_title">Dyktuj z klawiatury</string>
+    <string name="onboarding_mic_key_body">Większość klawiatur ma klawisz mikrofonu. Oto jak każda z Twoich klawiatur otwiera Marmalade STT.</string>
+    <string name="onboarding_mic_key_needs_voice_keyboard">Najpierw włącz klawiaturę głosową Marmalade (poprzedni krok): to ją otwierają klawisze mikrofonu.</string>
+    <string name="onboarding_mic_key_other_voice_title">Wyłącz inne klawiatury głosowe</string>
+    <string name="onboarding_mic_key_other_voice">Włączone są też: %1$s. Większość klawiszy mikrofonu otwiera pierwszą włączoną klawiaturę głosową, a Android ustawia preinstalowane na początku. Wyłącz je w ustawieniach klawiatury Androida (na większości telefonów: Ustawienia → System → Klawiatura → Klawiatura ekranowa).</string>
+    <string name="onboarding_mic_key_current">%1$s (w użyciu)</string>
+    <string name="onboarding_kb_first">Kliknij klawisz mikrofonu tej klawiatury. Otwiera on pierwszą włączoną klawiaturę głosową, więc zostaw włączone tylko „Pisanie głosowe Marmalade”. Brak klawisza mikrofonu? Poszukaj klawisza wprowadzania głosowego w ustawieniach lub na pasku narzędzi tej klawiatury.</string>
+    <string name="onboarding_kb_first_hidden">Kliknij klawisz mikrofonu tej klawiatury i zostaw „Pisanie głosowe Marmalade” jako jedyną włączoną klawiaturę głosową. Ta klawiatura widzi Marmalade dopiero wtedy, gdy coś nią wpiszesz w tej aplikacji: jeśli klawisza mikrofonu nie ma albo nic nie robi, wpisz nią literę w polu poniżej. Po ponownym uruchomieniu telefonu zrób to jeszcze raz.</string>
+    <string name="onboarding_kb_chooser">Kliknij klawisz głosowy tej klawiatury i wybierz „Pisanie głosowe Marmalade”. Klawiatura zapamięta wybór.</string>
+    <string name="onboarding_kb_fossify">W ustawieniach Fossify Keyboard ustaw „Sposób wpisywania głosowego” na „Pisanie głosowe Marmalade”; na pasku narzędzi pojawi się wtedy mikrofon. Fossify widzi Marmalade dopiero wtedy, gdy coś nim wpiszesz w tej aplikacji: jeśli Marmalade nie ma na liście albo mikrofon nic nie robi, najpierw wpisz literę w polu poniżej za pomocą Fossify. Po ponownym uruchomieniu telefonu zrób to jeszcze raz.</string>
+    <string name="onboarding_kb_swiftkey">Mikrofon SwiftKey używa własnego pisania głosowego Microsoftu. Gdy wyłączysz „Multimodalne wpisywanie głosowe” (ustawienia SwiftKey → Rich Input), SwiftKey poprosi Androida o wprowadzanie głosowe, co może otworzyć Marmalade STT. Nie udało nam się jeszcze tego przetestować.</string>
+    <string name="onboarding_kb_own_engine">Klawisz mikrofonu tej klawiatury zawsze używa jej własnego pisania głosowego. Aby zamiast tego używać Marmalade, kliknij przycisk klawiatury na pasku nawigacji i wybierz „Pisanie głosowe Marmalade”.</string>
+    <string name="onboarding_kb_google_only">Klawisz mikrofonu tej klawiatury otwiera tylko „Pisanie głosowe Google”. Aby zamiast tego używać Marmalade, kliknij przycisk klawiatury na pasku nawigacji i wybierz „Pisanie głosowe Marmalade”.</string>
+    <string name="onboarding_kb_no_mic">Ta klawiatura nie ma klawisza mikrofonu. Aby używać Marmalade, kliknij przycisk klawiatury na pasku nawigacji i wybierz „Pisanie głosowe Marmalade”.</string>
+    <string name="onboarding_kb_unknown">Wypróbuj klawisz mikrofonu tej klawiatury w polu poniżej. Klawiatury, których klawisz mikrofonu przełącza na klawiaturę głosową, otworzą „Pisanie głosowe Marmalade”; zostaw je jako jedyną włączoną klawiaturę głosową.</string>
+    <string name="onboarding_kb_futo">FUTO Keyboard</string>
+    <string name="onboarding_try_label">Wypróbuj tutaj</string>
+    <string name="onboarding_try_hint">Kliknij pole, a potem klawisz mikrofonu na klawiaturze.</string>
+
+    <string name="onboarding_speech_title">Rozpoznawanie mowy dla innych aplikacji</string>
+    <string name="onboarding_speech_body">Niektóre aplikacje mają przycisk mikrofonu, który korzysta z usługi rozpoznawania mowy Androida. Wybierz Marmalade STT jako tę usługę, a one też będą rozpoznawać Twoją mowę na telefonie.</string>
+    <string name="onboarding_speech_on">Marmalade STT jest usługą rozpoznawania mowy Androida</string>
+    <string name="onboarding_speech_off">Marmalade STT nie jest usługą rozpoznawania mowy Androida</string>
+    <string name="onboarding_speech_open">Otwórz ustawienia</string>
+    <!-- The step's directions follow the page "Open settings" lands on (#79), with each Android release's own Settings labels. -->
+    <!-- Android 9. The Voice input row is hidden while the assistant is also the voice service (Google). -->
+    <string name="onboarding_speech_path_assist_9">W Ustawieniach otwórz Aplikacje i powiadomienia → Zaawansowane → Domyślne aplikacje → Asystent i rozpoznawanie mowy → Rozpoznawanie mowy i wybierz Marmalade STT. Jeśli nie ma opcji Rozpoznawanie mowy, najpierw w opcji Aplikacja asystująca wybierz Brak.</string>
+    <!-- Android 10 -->
+    <string name="onboarding_speech_path_assist_10">W Ustawieniach otwórz Aplikacje i powiadomienia → Zaawansowane → Aplikacje domyślne → Aplikacja asystująca → Rozpoznawanie mowy i wybierz Marmalade STT. Jeśli nie ma opcji Rozpoznawanie mowy, najpierw w opcji Aplikacja asystująca wybierz Brak.</string>
+    <!-- Android 11 -->
+    <string name="onboarding_speech_path_assist_11">W Ustawieniach otwórz Aplikacje i powiadomienia → Zaawansowane → Aplikacje domyślne → Asystent cyfrowy → Rozpoznawanie mowy i wybierz Marmalade STT. Jeśli nie ma opcji Rozpoznawanie mowy, najpierw w opcji Domyślny asystent cyfrowy wybierz Brak.</string>
+    <!-- Android 12 -->
+    <string name="onboarding_speech_path_assist">W Ustawieniach otwórz Aplikacje → Aplikacje domyślne → Asystent cyfrowy → Rozpoznawanie mowy i wybierz Marmalade STT.</string>
+    <!-- Android 13. Voice input is under the page's Speech heading. -->
+    <string name="onboarding_speech_path_languages_input">W Ustawieniach otwórz System → Języki i metody wprowadzania → Rozpoznawanie mowy i wybierz Marmalade STT.</string>
+    <!-- Android 14 to 16. Voice input is under the page's Speech heading. -->
+    <string name="onboarding_speech_path_languages">W Ustawieniach otwórz System → Języki → Rozpoznawanie mowy i wybierz Marmalade STT.</string>
+    <!-- Android 16 with Language & region, and Android 17. Speech is a row of that page. -->
+    <string name="onboarding_speech_path_language_region">W Ustawieniach otwórz System → Język i region → Mowa → Rozpoznawanie mowy i wybierz Marmalade STT.</string>
+    <!-- No known page opens (other phone makers) -->
+    <string name="onboarding_speech_path_search">Wyszukaj w Ustawieniach „Rozpoznawanie mowy”, otwórz tę opcję i wybierz Marmalade STT.</string>
+    <string name="onboarding_speech_elsewhere">Na niektórych telefonach ta opcja jest gdzie indziej: wyszukaj w Ustawieniach „Rozpoznawanie mowy”.</string>
+    <string name="onboarding_speech_force_stop">Jeśli wymusisz zatrzymanie Marmalade STT, Android przełączy się na inną usługę. Wtedy wybierz Marmalade ponownie.</string>
+
+    <string name="onboarding_summary_other_voice">Inne klawiatury głosowe</string>
+    <string name="onboarding_summary_other_voice_on">Nadal włączone: %1$s</string>
+    <string name="onboarding_summary_speech">Usługa rozpoznawania mowy</string>
+    <string name="onboarding_summary_speech_on">Marmalade STT</string>
+    <string name="onboarding_summary_speech_off">Inna aplikacja albo brak</string>
+</resources>

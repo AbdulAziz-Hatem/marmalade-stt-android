@@ -1,0 +1,32 @@
+<p>O Marmalade STT transforma sua fala em texto no seu celular. Use-o como entrada de voz do seu teclado (FUTO Keyboard, HeliBoard, FlorisBoard e outros) e de apps que pedem entrada de voz ao Android. Sua voz nunca sai do celular.</p>
+
+<ul>
+<li><b>Privado.</b> A fala é reconhecida no celular. O áudio nunca é salvo nem enviado</li>
+<li><b>Offline.</b> Depois de baixar um motor de fala uma única vez, funciona sem conexão</li>
+<li><b>Texto ao vivo.</b> Mostra suas palavras em tempo real enquanto você fala, na maioria dos motores</li>
+<li><b>Sabe quando você terminou.</b> O Smart Turn, padrão do pop-up de fala, espera até parecer que você terminou, então uma pausa para pensar raramente interrompe você</li>
+<li><b>Multilíngue.</b> 100 idiomas, com o melhor motor para o seu escolhido automaticamente</li>
+<li><b>Texto limpo.</b> Hesitações removidas, números em algarismos, suas próprias substituições e trechos acionados por voz</li>
+<li><b>Livre e de código aberto.</b> Sem anúncios, sem contas, sem análise de uso</li>
+</ul>
+
+<p><b>PRIVADO DESDE A CONCEPÇÃO</b></p>
+<p>Sem análise de uso, sem rastreamento, sem relatórios de falhas, sem contas e sem servidor nosso. A internet é usada apenas para baixar os motores de fala que você escolher, do GitHub, e cada arquivo é conferido com um hash SHA-256 fixado de antemão. O backup do Android fica desativado, então nada é copiado para a nuvem.</p>
+
+<p><b>VOCÊ DECIDE QUANDO PARAR</b></p>
+<p>No pop-up de fala e em outros apps, o Marmalade usa por padrão a tecnologia Smart Turn v3 para detectar quando você terminou de falar. Sem usar as mãos. Ele interrompe você cedo demais? Mude para parar em uma pausa ou defina uma palavra de encerramento. No teclado, ele ouve até você tocar, ou também pode usar o Smart Turn.</p>
+
+<p><b>TEXTO LIMPO</b></p>
+<p>A limpeza opcional corrige maiúsculas e, em inglês, remove hesitações, transforma “new line” e “period” em uma quebra de linha e um ponto de verdade e escreve números em algarismos. Substituições para nomes que o motor erra e trechos para textos que você digita com frequência funcionam em qualquer idioma.</p>
+
+<p><b>FUNCIONA COM SEU TECLADO</b></p>
+<p>Ative “Digitação por voz do Marmalade” e a tecla de microfone do seu teclado abre um pequeno painel do Marmalade que digita o que você fala. Funciona com FUTO Keyboard, HeliBoard, FlorisBoard, AnySoftKeyboard, Unexpected Keyboard, o teclado do AOSP e outros com tecla de voz.</p>
+
+<p><b>UM MOTOR QUE COMBINA COM SEU CELULAR</b></p>
+<p>O guia de configuração recomenda um motor de fala para seu idioma e para a memória e a velocidade do seu celular, com a opção de baixar e testar outros modelos.</p>
+
+<p><b>IDIOMAS</b></p>
+<p>Motores rápidos cobrem inglês, búlgaro, croata, tcheco, dinamarquês, holandês, estoniano, finlandês, francês, alemão, grego, húngaro, italiano, letão, lituano, maltês, polonês, português, romeno, russo, eslovaco, esloveno, espanhol, sueco, ucraniano, japonês, hindi, árabe e vietnamita. Chinês e coreano usam o Qwen3-ASR, mais leve que o Whisper. Os outros idiomas funcionam com o Whisper Large v3 Turbo, com mais atraso.</p>
+
+<p><b>CÓDIGO ABERTO</b></p>
+<p>O Marmalade STT tem licença MIT. Se quiser apoiar o projeto, Configurações → Apoio leva ao GitHub Sponsors; o app é o mesmo de qualquer forma.</p>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Ustawienia → Wygląd -->
+    <string name="settings_appearance">Wygląd</string>
+    <string name="settings_mode">Tryb</string>
+    <string name="settings_mode_system">Systemowy</string>
+    <string name="settings_mode_light">Jasny</string>
+    <string name="settings_mode_dark">Ciemny</string>
+    <string name="settings_color">Kolor</string>
+    <string name="settings_color_system">Tapeta</string>
+    <string name="settings_color_midnight">Północ</string>
+    <string name="settings_color_forest">Las</string>
+    <string name="settings_color_berry">Jagody</string>
+    <string name="settings_color_high_contrast">Duży kontrast</string>
+</resources>

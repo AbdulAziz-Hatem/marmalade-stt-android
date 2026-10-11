@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Developer A/B benchmark -->
+    <string name="benchmark_title">Benchmark</string>
+    <string name="benchmark_note">Spela in en tagning, sedan transkriberar varje installerad motor den i tur och ordning: läs in, transkribera, frigör. Alla motorer får samma Silero VAD-segment. Strömmande motorer matas med varje segment i bitar om 100 ms så snabbt som modellen tar emot dem, inte i realtid. Tagningen stannar i minnet och sparas aldrig. Siffror från en emulator duger bara till att jämföra motorer med varandra.</string>
+
+    <string name="benchmark_section_take">Tagning</string>
+    <string name="benchmark_record">Spela in</string>
+    <string name="benchmark_stop">Stoppa</string>
+    <string name="benchmark_play">Spela upp</string>
+    <string name="benchmark_stop_playback">Stoppa uppspelningen</string>
+    <string name="benchmark_elapsed">%1$s s / %2$d s</string>
+    <string name="benchmark_level">Ingångsnivå</string>
+    <string name="benchmark_take_length">Tagning: %1$s</string>
+    <string name="benchmark_take_length_soft_agc">Tagning: %1$s, nivåjusterad av appen (telefonen har ingen inbyggd förstärkningsreglering för mikrofonen)</string>
+    <plurals name="benchmark_no_take">
+        <item quantity="one">Ingen tagning än. Spela in upp till %1$d sekund tal.</item>
+        <item quantity="other">Ingen tagning än. Spela in upp till %1$d sekunder tal.</item>
+    </plurals>
+
+    <string name="benchmark_section_reference">Referenstext (valfritt)</string>
+    <string name="benchmark_reference_label">Det du sa</string>
+    <string name="benchmark_reference_hint">Skriv det du sa för att få en ordfelfrekvens (WER) per motor.</string>
+
+    <string name="benchmark_section_engines">Motorer</string>
+    <string name="benchmark_no_engines">Inga motorer är installerade. Installera några på fliken Motorer (aktivera Utvecklarmotorer i Inställningar för att se kandidaterna).</string>
+    <string name="benchmark_run">Kör benchmark</string>
+    <string name="benchmark_run_again">Kör igen</string>
+    <string name="benchmark_running">Kör %1$s (%2$d av %3$d)…</string>
+
+    <string name="benchmark_section_results">Resultat</string>
+    <string name="benchmark_metric_load">Inläsning %1$s</string>
+    <string name="benchmark_metric_decode">Avkodning %1$s</string>
+    <string name="benchmark_metric_rtf">RTF %1$s</string>
+    <string name="benchmark_metric_rss">Högsta RSS (stickprov) %1$s</string>
+    <string name="benchmark_metric_wer">WER %1$s</string>
+    <string name="benchmark_empty_transcript">(inget tal kändes igen)</string>
+    <string name="benchmark_raw">Råtext: %1$s</string>
+    <string name="benchmark_failed_load">Kunde inte läsa in: %1$s</string>
+    <string name="benchmark_failed_transcribe">Kunde inte transkribera: %1$s</string>
+    <string name="benchmark_failed_release">Transkriberat, men kunde inte frigöras: %1$s</string>
+    <string name="benchmark_copy_markdown">Kopiera som Markdown</string>
+    <string name="benchmark_copied">Kopierat</string>
+
+    <!-- Snackbar notices -->
+    <string name="benchmark_error_mic">Det gick inte att spela in. Använder en annan app mikrofonen?</string>
+    <string name="benchmark_error_empty">Inget spelades in. Försök igen.</string>
+    <string name="benchmark_error_playback">Det gick inte att spela upp tagningen.</string>
+    <string name="benchmark_error_no_engines">Inga installerade motorer att köra.</string>
+    <string name="benchmark_error_run">Benchmarken stoppades på grund av ett fel.</string>
+
+    <!-- Mic permission -->
+    <string name="benchmark_mic_title">Benchmarken behöver mikrofonen</string>
+    <string name="benchmark_mic_body">Den spelar in en tagning, behåller den bara i minnet och varken sparar eller skickar den.</string>
+</resources>

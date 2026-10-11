@@ -1,0 +1,32 @@
+<p>Marmalade STT převádí vaši řeč na text přímo ve vašem telefonu. Používejte aplikaci jako hlasové zadávání své klávesnice (FUTO Keyboard, HeliBoard, FlorisBoard a další) i v aplikacích, které Android žádají o rozpoznání řeči. Váš hlas nikdy neopustí zařízení.</p>
+
+<ul>
+<li><b>Soukromí.</b> Řeč se rozpoznává v telefonu. Zvuk se nikdy neukládá ani nikam neodesílá</li>
+<li><b>Offline.</b> Po jednorázovém stažení řečového modulu funguje bez připojení</li>
+<li><b>Živý text.</b> U většiny modulů zobrazuje vaše slova v reálném čase, zatímco mluvíte</li>
+<li><b>Pozná, kdy domluvíte.</b> Smart Turn, výchozí volba pro okno „Mluvte“, počká, až to zní, že končíte, takže vás pauza na přemýšlení přeruší jen zřídka</li>
+<li><b>Mnoho jazyků.</b> 100 jazyků a nejlepší modul pro ten váš se vybere automaticky</li>
+<li><b>Čistý výstup.</b> Bez výplňkových slov, čísla číslicemi, vlastní náhrady a vyslovované úryvky</li>
+<li><b>Zdarma a open source.</b> Žádné reklamy, žádné účty, žádná analytika</li>
+</ul>
+
+<p><b>SOUKROMÍ UŽ OD NÁVRHU</b></p>
+<p>Žádná analytika, žádné sledování, žádné hlášení pádů, žádné účty a žádný náš server. Internet se používá jen ke stažení řečových modulů, které si vyberete, z GitHubu, a každý soubor se ověřuje podle pevně zadaného hashe SHA-256. Zálohování Androidu je vypnuté, takže se nic nekopíruje do cloudu.</p>
+
+<p><b>KDY PŘESTAT, ROZHODUJETE VY</b></p>
+<p>V okně „Mluvte“ a v ostatních aplikacích Marmalade ve výchozím stavu pozná pomocí technologie Smart Turn v3, kdy domluvíte. Bez použití rukou. Přerušuje vás příliš brzy? Přepněte na zastavení po pauze, nebo místo toho nastavte koncové slovo. Na klávesnici poslouchá, dokud neklepnete, nebo může také použít Smart Turn.</p>
+
+<p><b>ČISTÝ TEXT</b></p>
+<p>Volitelná úprava textu opravuje velká písmena a v angličtině navíc odstraňuje výplňková slova, mění „new line“ a „period“ na skutečný nový řádek a tečku a píše čísla číslicemi. Náhrady pro jména, která modul rozpoznává špatně, a úryvky pro text, který často píšete, fungují v jakémkoli jazyce.</p>
+
+<p><b>FUNGUJE S VAŠÍ KLÁVESNICÍ</b></p>
+<p>Zapněte „Hlasové zadávání Marmalade“ a tlačítko mikrofonu na vaší klávesnici otevře malý panel Marmalade, který píše, co říkáte. Funguje s FUTO Keyboard, HeliBoard, FlorisBoard, AnySoftKeyboard, Unexpected Keyboard, klávesnicí AOSP a dalšími, které mají tlačítko hlasového zadávání.</p>
+
+<p><b>MODUL, KTERÝ SEDÍ VAŠEMU TELEFONU</b></p>
+<p>Průvodce nastavením doporučí řečový modul pro váš jazyk a pro paměť a rychlost vašeho telefonu, s možností stáhnout a vyzkoušet i další modely.</p>
+
+<p><b>JAZYKY</b></p>
+<p>Rychlé moduly pokrývají angličtinu, bulharštinu, chorvatštinu, češtinu, dánštinu, nizozemštinu, estonštinu, finštinu, francouzštinu, němčinu, řečtinu, maďarštinu, italštinu, lotyštinu, litevštinu, maltštinu, polštinu, portugalštinu, rumunštinu, ruštinu, slovenštinu, slovinštinu, španělštinu, švédštinu, ukrajinštinu, japonštinu, hindštinu, arabštinu a vietnamštinu. Pro čínštinu a korejštinu je tu Qwen3-ASR, který je lehčí než Whisper. Ostatní jazyky fungují přes Whisper Large v3 Turbo, s větším zpožděním.</p>
+
+<p><b>OPEN SOURCE</b></p>
+<p>Marmalade STT je pod licencí MIT. Pokud ji chcete podpořit, v Nastavení → Podpora najdete odkaz na GitHub Sponsors; aplikace je v obou případech stejná.</p>

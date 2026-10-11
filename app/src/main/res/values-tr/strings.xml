@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="list_separator">,\u0020</string>
+    <string name="quoted_name">“%1$s”</string>
+    <string name="ui_locale">tr</string>
+
+    <!-- Bottom navigation -->
+    <string name="nav_dictate">Dikte</string>
+    <string name="nav_engines">Motorlar</string>
+    <string name="nav_settings">Ayarlar</string>
+
+    <!-- Dictate -->
+    <string name="dictate_start">Dikteyi başlat</string>
+    <string name="dictate_stop">Dikteyi durdur</string>
+    <string name="dictate_state_idle">Dinlemiyor</string>
+    <string name="dictate_state_loading">Yükleniyor</string>
+    <string name="dictate_state_listening">Dinleniyor</string>
+    <string name="dictate_state_finishing">Tamamlanıyor</string>
+    <string name="dictate_status_loading">Model yükleniyor…</string>
+    <string name="dictate_status_listening">Dinleniyor</string>
+    <string name="dictate_status_hearing">Sizi duyuyorum…</string>
+    <string name="dictate_status_finishing">Tamamlanıyor…</string>
+    <string name="dictate_status_catching_up">Konuşmaya yetişiyor…</string>
+    <string name="dictate_empty">Sözleriniz burada görünür. Söylediğiniz her şey telefonunuzda kalır.</string>
+    <string name="dictate_copy">Kopyala</string>
+    <string name="dictate_copied">Kopyalandı</string>
+    <string name="dictate_clear">Temizle</string>
+    <string name="dictate_no_speech">Hiçbir şey duyulmadı</string>
+    <string name="dictate_error_mic">Mikrofon kullanılamadı</string>
+    <string name="dictate_error_model">Konuşma modeli yüklenemedi</string>
+    <string name="dictate_error_recognition">Yazıya dökülürken bir sorun oluştu</string>
+    <string name="dictate_too_slow">Bu motor bu telefon için çok yavaş. Motorlar sekmesindeki daha küçük bir motor konuşmanıza yetişir.</string>
+    <string name="dictate_error_busy">Dikte zaten başka bir yerde çalışıyor. Birazdan tekrar deneyin.</string>
+    <string name="dictate_no_model_title">Dikteye başlamak için bir konuşma modeli indirin</string>
+    <string name="dictate_no_model_body">Model telefonunuzda çalışır. Bir kez indirirsiniz, ardından dikte çevrimdışı çalışır.</string>
+    <string name="dictate_no_model_action">Model seç</string>
+    <string name="dictate_mic_title">Uygulamanın mikrofona ihtiyacı var</string>
+    <string name="dictate_mic_body">Yalnızca siz dikte ederken dinler. Söyledikleriniz telefonunuzda metne dönüşür ve asla kaydedilmez ya da herhangi bir yere gönderilmez.</string>
+    <string name="dictate_mic_body_blocked">Bu uygulama için mikrofon erişimi kapalı. Uygulamanın ayarlarında, İzinler bölümünden açabilirsiniz.</string>
+    <string name="dictate_mic_allow">Mikrofona izin ver</string>
+    <string name="dictate_mic_open_settings">Ayarları aç</string>
+    <string name="dictate_mic_settings_failed">Ayarlar açılamadı. Android\'in Ayarlar uygulamasını açın, ardından Uygulamalar\'a, sonra Marmalade STT\'ye gidin.</string>
+
+    <!-- Engines list -->
+    <string name="engines_title">Motorlar</string>
+
+    <!-- Engine install state -->
+    <string name="engine_status_not_installed">Henüz indirilmedi</string>
+    <string name="engine_status_downloading">İndiriliyor · %1$s</string>
+    <string name="engine_status_paused">Duraklatıldı · %1$s</string>
+    <string name="engine_status_ready">Hazır</string>
+    <string name="engine_status_corrupt">Model dosyaları hasarlı: %1$s</string>
+    <string name="engine_progress_bytes">%1$s / %2$s</string>
+    <string name="engine_progress_description">İndirme ilerlemesi</string>
+    <string name="engine_failure_not_available">Bu model şu anda indirilemiyor. Daha sonra tekrar deneyin.</string>
+    <string name="engine_failure_no_space">Bu model için yeterli boş depolama alanı yok. Biraz yer açıp tekrar deneyin.</string>
+    <string name="engine_failure_network">İndirme kesildi. Bağlantınızı kontrol edip tekrar deneyin. İndirme kaldığı yerden devam eder.</string>
+    <string name="engine_failure_generic">Model kurulamadı. Tekrar deneyin.</string>
+    <string name="engine_corrupt_outdated">Kurulu dosyalar uygulamanın bu sürümüyle uyuşmuyor.</string>
+    <string name="engine_corrupt_missing">%1$s eksik.</string>
+    <string name="engine_corrupt_wrong_size">%1$s dosyasının boyutu yanlış.</string>
+    <string name="engine_corrupt_damaged">%1$s hasarlı.</string>
+    <string name="engine_failure_checksum">İndirilen bir dosya beklenenle eşleşmediği için silindi. Yeniden indirmek için tekrar deneyin.</string>
+
+    <!-- Engine actions -->
+    <string name="engine_action_download">İndir</string>
+    <string name="engine_action_resume">Devam ettir</string>
+    <string name="engine_action_retry">Tekrar dene</string>
+    <string name="engine_action_download_again">Yeniden indir</string>
+    <string name="engine_action_cancel">İptal</string>
+    <string name="engine_action_remove_download">İndirmeyi kaldır</string>
+    <string name="engine_action_check_files">Dosyaları kontrol et</string>
+    <string name="engine_action_checking">Dosyalar kontrol ediliyor…</string>
+    <string name="engine_action_remove">Kaldır</string>
+    <string name="engine_dialog_cancel">İptal</string>
+    <string name="engine_download_confirm_title">%1$s indirilsin mi?</string>
+    <string name="engine_download_confirm_body">Bu işlem internetten bir kez %1$s indirir. Ardından motor çevrimdışı çalışır ve söyledikleriniz telefonunuzdan dışarı çıkmaz.</string>
+    <string name="engine_remove_confirm_title">%1$s kaldırılsın mı?</string>
+    <string name="engine_remove_confirm_body">Bu işlem model dosyalarını (%1$s) telefonunuzdan siler. Dilediğiniz zaman yeniden indirebilirsiniz.</string>
+    <string name="engine_remove_download_failed">İndirme kaldırılamadı. Tekrar deneyin.</string>
+    <string name="engine_remove_failed">Model dosyaları kaldırılamadı. Tekrar deneyin.</string>
+    <string name="engine_check_ok">Tüm dosyalar sağlam</string>
+    <string name="engine_check_damaged">Bazı model dosyaları hasarlı. Düzeltmek için yeniden indirin.</string>
+    <string name="engine_check_failed">Dosyalar kontrol edilemedi. Tekrar deneyin.</string>
+    <string name="download_channel_name">Konuşma modeli indirmeleri</string>
+
+    <!-- Engine info dialog -->
+    <string name="engine_detail_languages">Diller</string>
+    <string name="engine_detail_size_on_disk">Telefondaki boyut</string>
+    <string name="engine_detail_download_size">İndirme boyutu</string>
+    <string name="engine_detail_license">Lisans</string>
+    <string name="engine_detail_source">Kaynak</string>
+    <string name="engine_detail_speed">Hız</string>
+    <string name="engine_speed_cost">Parakeet Ultra\'nın kod çözme süresinin %1$s katı (tahmini)</string>
+    <string name="engine_speed_reference">Hız referansı Parakeet Ultra\'dır</string>
+    <string name="engine_speed_phone_unmeasured">Bu telefonun hızı henüz ölçülmedi</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Ayarlar</string>
+    <string name="settings_back">Geri</string>
+    <string name="settings_save_failed">Ayar kaydedilemedi. Tekrar deneyin.</string>
+    <string name="settings_speech">Konuşma</string>
+    <string name="settings_speech_keep_loaded">Motoru hazır tut</string>
+    <string name="settings_speech_keep_loaded_desc">Dinlemeye daha hızlı başlar. Ses girişini sık kullanıyorsanız, örneğin erişilebilirlik için, açmaya değer. Uygulama açıkken motora bağlı olarak yaklaşık 0,6 ila 3 GB bellek kullanır.</string>
+    <!-- Settings → End of speech -->
+    <string name="settings_end">Konuşmanın sonu</string>
+    <string name="settings_end_keyboard">Sesli klavye</string>
+    <string name="settings_end_apps">Diğer uygulamalar ve “Şimdi konuşun” penceresi</string>
+    <string name="settings_end_tap">Durdurmak için dokunun</string>
+    <string name="settings_end_tap_desc">Siz dokunana kadar mikrofon açık kalır. Söyledikleriniz durdurduğunuzda yazılır.</string>
+    <string name="settings_end_smart_turn">Smart Turn ile otomatik durdur</string>
+    <string name="settings_end_smart_turn_desc">Bitirmiş gibi göründüğünüzde durur; böylece düşünmek için verdiğiniz bir ara sözünüzü kesmez.</string>
+    <string name="settings_end_pause">Duraklamadan sonra otomatik durdur</string>
+    <string name="settings_end_pause_desc">Konuşmaya ara verdiğinizde durur. Ne kadar bekleneceğini Duraklama süresi ayarından belirleyin.</string>
+    <string name="settings_end_word">Bitiş kelimesiyle durdur</string>
+    <string name="settings_end_word_desc">Bitiş kelimesini tek başına söylediğinizde durur, örneğin “over”. Kelime yazılmaz.</string>
+    <string name="settings_end_lock_hint">İpucu: Otomatik durdurma modlarında, siz dokunana kadar dinlemeye devam etmesi için mikrofona dokunup basılı tutun.</string>
+    <string name="settings_dialog_cancel">İptal</string>
+    <string name="settings_speech_pause">Duraklama süresi</string>
+    <string name="settings_speech_pause_desc">Dikte sekmesinde bir cümleyi bitiren ve Duraklamadan sonra otomatik durdur modunda dinlemeyi sonlandıran duraklamanın uzunluğu. Daha uzun bir süre, düşünmek için ara vermenize olanak tanır.</string>
+    <string name="settings_speech_pause_value">%1$.1f sn</string>
+    <string name="settings_speech_pause_state">%1$.1f saniye</string>
+    <string name="settings_patience">Smart Turn sabrı</string>
+    <string name="settings_patience_desc">%1$s. Bitirdiğinize karar vermeden önce ne kadar beklediği.</string>
+    <string name="settings_patience_quick">Hızlı</string>
+    <string name="settings_patience_quick_desc">Dinlemeyi daha erken bırakır, ama sözünüzü daha sık keser.</string>
+    <string name="settings_patience_normal">Normal</string>
+    <string name="settings_patience_normal_desc">Düşünmek için verilen araların çoğunda bekler.</string>
+    <string name="settings_patience_relaxed">Rahat</string>
+    <string name="settings_patience_relaxed_desc">Dinlemeyi bırakmadan önce daha uzun bekler. Sık ara veriyorsanız iyi bir seçim.</string>
+    <string name="settings_end_words">Bitiş kelimeleri</string>
+    <string name="settings_end_words_hint">Virgülle ayırın.</string>
+    <!-- Settings → Support -->
+    <string name="settings_support">Destek</string>
+    <string name="settings_support_dev">Geliştirmeyi destekle</string>
+    <string name="settings_support_dev_desc">GitHub Sponsors üzerinden bağış yapın. Gönüllüdür ve vergiden düşülemez.</string>
+    <string name="settings_more_marmalade">Daha fazla Marmalade</string>
+    <string name="settings_more_marmalade_desc">GitHub\'daki diğer Marmalade uygulamaları.</string>
+    <string name="settings_report_bug">Hata bildir</string>
+    <string name="settings_report_bug_desc">Bozuk bir şey mi var, yanlış mı duyuldu? GitHub\'da ayrıntıları önceden doldurulmuş bir sorun kaydı açar.</string>
+    <string name="settings_about">Hakkında</string>
+    <string name="settings_about_row">Marmalade STT hakkında</string>
+    <string name="settings_about_row_desc">Sürüm %1$s · lisanslar, gizlilik</string>
+
+    <!-- About -->
+    <string name="about_title">Hakkında</string>
+    <string name="about_version">Sürüm %1$s</string>
+    <string name="about_tagline">Telefonunuzda çalışan, gizliliğinizi koruyan konuşmadan metne dönüştürme.</string>
+    <string name="about_privacy">Gizlilik politikası</string>
+    <string name="about_privacy_desc">Telefonunuzda nelerin kaldığı (söylediğiniz her şey) ve uygulamanın neleri indirdiği. İzleme yok, hesap yok.</string>
+    <string name="about_privacy_english_note">Bu politika İngilizcedir. Özet: Konuşma telefonunuzda tanınır, asla bir bulut veya çevrimiçi konuşma hizmeti tarafından tanınmaz. Ses asla kaydedilmez veya karşıya yüklenmez. Analiz, izleme veya hesap yok. İnternet yalnızca konuşma modellerini indirmek için kullanılır.</string>
+    <string name="about_privacy_load_failed">Gizlilik politikası yüklenemedi. Politika depoda PRIVACY.md olarak da bulunur.</string>
+    <string name="about_licenses">Açık kaynak lisansları</string>
+    <string name="about_licenses_desc">Uygulamanın ve içerdiği bileşenlerin lisansları.</string>
+
+    <!-- Open-source licenses -->
+    <string name="licenses_licensing">Lisanslama</string>
+    <string name="licenses_view_full">Lisansın tamamını görüntüle</string>
+    <string name="license_text_title">Lisans</string>
+    <string name="license_text_not_bundled">Lisans metni uygulamaya dahil değil. Önceki ekrandaki bağlantıya bakın.</string>
+    <string name="license_text_load_failed">Lisans metni yüklenemedi. Önceki ekrandaki kaynak bağlantısına bakın.</string>
+
+    <!-- Voice keyboard -->
+    <string name="ime_name">Marmalade Sesle Yazma</string>
+    <string name="ime_subtype_label">Sesle yazma</string>
+    <string name="ime_status_loading">Model yükleniyor…</string>
+    <string name="ime_status_listening">Dinleniyor</string>
+    <string name="ime_status_hearing">Sizi duyuyorum…</string>
+    <string name="ime_status_finishing">Tamamlanıyor…</string>
+    <string name="ime_status_paused">Duraklatıldı. Devam etmek için mikrofona dokunun.</string>
+    <string name="ime_speak_now">Şimdi konuşun</string>
+    <string name="ime_cancel">Klavyeye dön</string>
+    <string name="ime_done">Bitti</string>
+    <string name="ime_pause">Dinlemeyi duraklat</string>
+    <string name="ime_resume">Dinlemeye devam et</string>
+    <string name="ime_no_model">Sesle yazmayı kullanmak için Marmalade STT\'de bir konuşma modeli indirin.</string>
+    <string name="ime_open_app">Marmalade STT\'yi aç</string>
+    <string name="ime_mic_needed">Sesle yazma için mikrofon gerekir. Yalnızca bu panel açıkken dinler.</string>
+    <string name="ime_mic_allow">Mikrofona izin ver</string>
+    <string name="ime_mic_blocked">Marmalade STT için mikrofon erişimi kapalı. İzinler bölümünden açın, ardından uygulamanıza dönün.</string>
+
+    <!-- Speech input dialog and RecognitionService -->
+    <string name="recognizer_speak_now">Şimdi konuşun</string>
+    <string name="recognizer_cancel">İptal</string>
+    <string name="recognizer_done">Bitti</string>
+    <string name="recognizer_try_again">Tekrar dene</string>
+    <string name="recognizer_no_model">Ses girişini kullanmak için Marmalade STT\'de bir konuşma modeli indirin.</string>
+    <string name="recognizer_open_app">Marmalade STT\'yi aç</string>
+    <string name="recognizer_mic_blocked">Ses girişi için mikrofon gerekir. Uygulamanın ayarlarında, İzinler bölümünden açın.</string>
+    <string name="recognizer_open_settings">Ayarları aç</string>
+    <string name="recognizer_mic_stop">Dinlemeyi durdur</string>
+
+    <!-- Press and hold the mic to lock listening -->
+    <string name="lock_status">Kilitli: durdurmak için dokunun</string>
+    <string name="lock_state">Kilitli</string>
+    <string name="lock_action">Dinlemeyi kilitle</string>
+
+    <!-- Text cleanup -->
+    <string name="cleanup_section">Metin temizleme</string>
+    <string name="cleanup_fillers">Dolgu kelimelerini kaldır</string>
+    <string name="cleanup_fillers_desc">“um”, “uh”, “er”, “hmm” ve benzerlerini kaldırır. “umbrella” gibi gerçek kelimeler korunur.</string>
+    <string name="cleanup_commands">Sesli komutlar</string>
+    <string name="cleanup_commands_desc">“new line” ya da “new paragraph” deyin; son cümleyi silmek için “scratch that” deyin.</string>
+    <string name="cleanup_punctuation">Noktalama kelimeleri</string>
+    <string name="cleanup_punctuation_desc">“period”, “comma”, “question mark”… da diyebilirsiniz. Varsayılan olarak kapalıdır, çünkü bunlar aynı zamanda sıradan kelimelerdir.</string>
+    <string name="cleanup_english_only">Yalnızca İngilizce. %1$s</string>
+    <string name="cleanup_itn">Sayıları rakamla yaz</string>
+    <string name="cleanup_itn_desc">“Twenty five percent”, “25%” olur; “nine thirty pm”, “9:30 pm” olur. “three boxes” gibi küçük sayılar kelime olarak kalır.</string>
+    <string name="cleanup_capitalize">Cümleleri büyük harfle başlat</string>
+    <string name="cleanup_capitalize_desc">Her cümlenin ve satırın başında büyük harf. Hiçbir harf küçültülmez.</string>
+    <string name="cleanup_dictionary">Değiştirme sözlüğü</string>
+    <string name="cleanup_dictionary_desc_none">Uygulamanın sürekli yanlış anladığı kelimeleri düzeltin.</string>
+    <plurals name="cleanup_dictionary_desc">
+        <item quantity="one">%1$d kural · uygulamanın sürekli yanlış anladığı kelimeleri düzeltin</item>
+        <item quantity="other">%1$d kural · uygulamanın sürekli yanlış anladığı kelimeleri düzeltin</item>
+    </plurals>
+    <string name="cleanup_snippets">Hazır metinler</string>
+    <string name="cleanup_snippets_desc_none">Adresiniz gibi kayıtlı bir metni eklemek için bir tetikleyici ifade söyleyin.</string>
+    <plurals name="cleanup_snippets_desc">
+        <item quantity="one">%1$d hazır metin · kayıtlı metni eklemek için bir tetikleyici ifade söyleyin</item>
+        <item quantity="other">%1$d hazır metin · kayıtlı metni eklemek için bir tetikleyici ifade söyleyin</item>
+    </plurals>
+
+    <string name="cleanup_save">Kaydet</string>
+    <string name="cleanup_cancel">İptal</string>
+    <string name="cleanup_delete">Sil</string>
+    <string name="cleanup_edit_action">Düzenle</string>
+
+    <string name="cleanup_dictionary_help">Her kural, uygulamanın sürekli yanlış anladığı bir kelimeyi veya ifadeyi kastettiğiniz şeye dönüştürür.\n\n• Büyük/küçük harf fark etmeksizin tam kelimelerle eşleşir: “teh”, “Teh” ile eşleşir ama “tehran” ile eşleşmez.\n• Kelimeler arasında boşluk olmayan Çince ve Japoncada bir ifade cümlenin içinde de eşleşir. Korecede ek almış hâliyle de eşleşir: “메일”, “메일을” ile eşleşir.\n• Sağ taraftaki büyük harf yazıldığı gibi korunur. Aksi hâlde büyük/küçük harf duyulana uyar: “Teh”, “The” olur.\n• İfadeyi silmek için sağ tarafı boş bırakın.\n• Kurallar çakıştığında en uzun eşleşme kazanır.</string>
+    <string name="cleanup_dictionary_empty">Henüz kural yok. Uygulamanın sürekli yanlış anladığı bir kelimeyi düzeltmek için “Kural ekle” düğmesine dokunun.</string>
+    <string name="cleanup_dictionary_add">Kural ekle</string>
+    <string name="cleanup_dictionary_edit">Kuralı düzenle</string>
+    <string name="cleanup_dictionary_from">Duyulan</string>
+    <string name="cleanup_dictionary_to">Bunun yerine yaz</string>
+    <string name="cleanup_dictionary_to_hint">İfadeyi silmek için boş bırakın.</string>
+    <string name="cleanup_dictionary_from_breaks_export">“->” içeremez veya “#” ile başlayamaz.</string>
+    <string name="cleanup_dictionary_replaces">“%1$s” için olan kuralınızın yerini alır.</string>
+    <string name="cleanup_dictionary_deleted">(silinir)</string>
+    <string name="cleanup_dictionary_rule_description">%1$s, %2$s olur</string>
+    <string name="cleanup_dictionary_rule_deletes_description">%1$s silinir</string>
+    <string name="cleanup_import">İçe aktar</string>
+    <string name="cleanup_export">Tümünü kopyala</string>
+    <string name="cleanup_exported">Kurallar kopyalandı</string>
+    <string name="cleanup_import_title">Kuralları içe aktar</string>
+    <string name="cleanup_import_help">Her satıra bir kural yapıştırın, yanlış -> doğru biçiminde. # ile başlayan satırlar yok sayılır. Zaten kuralı olan bir kelime için gelen kural eskisinin yerini alır.</string>
+    <string name="cleanup_import_field">Kurallar</string>
+    <string name="cleanup_import_none">Henüz kural bulunamadı.</string>
+    <plurals name="cleanup_import_found">
+        <item quantity="one">%1$d kural bulundu.</item>
+        <item quantity="other">%1$d kural bulundu.</item>
+    </plurals>
+    <plurals name="cleanup_import_skipped">
+        <item quantity="one">%1$d satır kural değil ve atlanacak.</item>
+        <item quantity="other">%1$d satır kural değil ve atlanacak.</item>
+    </plurals>
+
+    <string name="cleanup_snippets_help">Bir tetikleyici ifade söyleyin, yerini kayıtlı metniniz alsın: tam yazıldığı gibi, satır sonları dahil.\n\n• Tetikleyiciler büyük/küçük harf fark etmeksizin tam kelimelerle eşleşir: “ev adresim”, “Ev adresim” ile eşleşir ama “ev adresimde” ile eşleşmez.\n• Kelimeler arasında boşluk olmayan Çince ve Japoncada bir tetikleyici cümlenin içinde de eşleşir. Korecede ek almış hâliyle de eşleşir: “메일”, “메일을” ile eşleşir.\n• Kayıtlı metni başka hiçbir şey değiştirmez: dolgu kelimesi kaldırma, komut veya büyük harf uygulanmaz.\n• Tek başına söylendiğinde yalnızca kayıtlı metin eklenir.</string>
+    <string name="cleanup_snippets_empty">Henüz hazır metin yok. Sık ihtiyaç duyduğunuz bir metni kaydetmek için “Hazır metin ekle” düğmesine dokunun.</string>
+    <string name="cleanup_snippets_add">Hazır metin ekle</string>
+    <string name="cleanup_snippets_edit">Hazır metni düzenle</string>
+    <string name="cleanup_snippets_trigger">Tetikleyici ifade</string>
+    <string name="cleanup_snippets_text">Eklenecek metin</string>
+    <string name="cleanup_snippets_replaces">“%1$s” için olan hazır metninizin yerini alır.</string>
+
+    <!-- Setup guide (onboarding) -->
+    <string name="onboarding_step_of">Adım %1$d / %2$d</string>
+    <string name="onboarding_close">Kurulum rehberini kapat</string>
+    <string name="onboarding_back">Geri</string>
+    <string name="onboarding_next">İleri</string>
+    <string name="onboarding_skip">Atla</string>
+    <string name="onboarding_get_started">Başla</string>
+    <string name="onboarding_try_it">Dene</string>
+    <string name="onboarding_settings_failed">Android ayarları açılamadı. Bunun yerine ana ekranınızdan açın.</string>
+    <!-- Toasts over Settings when only a fallback page opened (#79): where to go from there. -->
+    <string name="settings_hint_voice_input">Ayarlar\'da “Ses girişi” diye arayın, ardından Marmalade STT\'yi seçin.</string>
+    <string name="settings_hint_keyboards">Ayarlar\'da “Klavye” diye arayın, ardından “Marmalade Sesle Yazma” seçeneğini açın.</string>
+    <string name="settings_hint_app_details">Uygulamalar bölümünde Marmalade STT\'yi bulun, ardından İzinler bölümünden mikrofonu açın.</string>
+    <string name="onboarding_welcome_title">Marmalade STT\'ye hoş geldiniz</string>
+    <string name="onboarding_welcome_body">Siz konuşun, Marmalade STT yazsın: kendi Dikte ekranında ya da diğer uygulamalarda ses girişi olarak. Birkaç hızlı adımla hazır hâle gelir.</string>
+    <string name="onboarding_privacy_title">Gizlilik odaklı tasarım</string>
+    <string name="onboarding_privacy_body">Konuşma telefonunuzda tanınır, asla bir bulut veya çevrimiçi konuşma hizmeti tarafından tanınmaz, Google\'ınki de dahil. Ses asla kaydedilmez veya karşıya yüklenmez. Analiz yok, izleme yok, hesap yok, API anahtarı yok. İnternet yalnızca konuşma modellerini indirmek için kullanılır.</string>
+    <string name="onboarding_high_contrast">Erişilebilirlik modu</string>
+    <string name="onboarding_high_contrast_desc">Yüksek kontrastlı renkler</string>
+    <string name="onboarding_mic_title">Mikrofona izin verin</string>
+    <string name="onboarding_mic_body">Marmalade STT\'nin sizi duymak için mikrofona ihtiyacı var. Mikrofon yalnızca dikte açıkken kullanılır.</string>
+    <string name="onboarding_mic_granted">Mikrofon erişimi açık</string>
+    <string name="onboarding_mic_denied">Mikrofon olmadan Marmalade STT sizi duyamaz. Şimdi izin verebilir ya da atlayıp daha sonra izin verebilirsiniz.</string>
+    <string name="onboarding_mic_blocked">Bu uygulama için mikrofon erişimi kapalı. Uygulamanın ayarlar sayfasında, İzinler bölümünden açın.</string>
+    <string name="onboarding_mic_allow">Mikrofona izin ver</string>
+    <string name="onboarding_mic_open_settings">Uygulama ayarlarını aç</string>
+    <string name="onboarding_model_title">Bir konuşma modeli indirin</string>
+    <string name="onboarding_model_body">Konuşma, telefonunuzda çalışan bir model tarafından tanınır. Model bir kez indirilir; ardından dikte çevrimdışı çalışır.</string>
+    <string name="onboarding_model_downloading_note">Model hazır olduğunda kuruluma devam edebilirsiniz. Ekran kapansa veya uygulamadan çıksanız da indirme devam eder.</string>
+    <string name="onboarding_keyboard_title">Sesli klavyeyi açın</string>
+    <string name="onboarding_keyboard_body">Diğer uygulamalarda Marmalade sesli klavyesiyle dikte edersiniz: klavyelerin mikrofon tuşları onu açar. Android\'in klavye ayarlarında “Marmalade Sesle Yazma” seçeneğini açın, sonra buraya dönün.</string>
+    <string name="onboarding_keyboard_open">Klavye ayarlarını aç</string>
+    <string name="onboarding_keyboard_on">Sesli klavye açık</string>
+    <string name="onboarding_keyboard_off">Sesli klavye kapalı</string>
+    <string name="onboarding_keyboard_warning">Android, açtığınız her klavyenin yazdıklarınızı toplayabileceği konusunda uyarır. Bu standart bir uyarıdır. Marmalade STT yalnızca dikte ettiklerinizi yazar ve telefonunuzdan hiçbir şey dışarı çıkmaz.</string>
+    <string name="onboarding_keyboard_unlock_note">Bazı telefonlar ardından ikinci bir mesaj gösterir: yeniden başlatmadan sonra, telefonunuzun kilidini açana kadar uygulama başlayamaz. Bu da sorun değil. Tamam\'a dokunun.</string>
+    <string name="onboarding_futo_checking">FUTO Keyboard\'a soruluyor…</string>
+    <string name="onboarding_futo_selected">FUTO Keyboard, ses girişi için Marmalade STT\'yi kullanıyor</string>
+    <string name="onboarding_futo_not_selected">FUTO Keyboard farklı bir ses girişi kullanıyor</string>
+    <string name="onboarding_futo_use">FUTO\'da Marmalade STT\'yi kullan</string>
+    <string name="onboarding_futo_check_again">Tekrar kontrol et</string>
+    <string name="onboarding_futo_manual_title">Kendiniz ayarlayın</string>
+    <string name="onboarding_futo_manual_body">FUTO Keyboard\'da Ayarlar → Ses Girişi bölümünü açın ve “Yerleşik ses girişini devre dışı bırak” (“Dış uygulama tarafından sağlanan ses girişini kullanın”) seçeneğini açın. Ardından FUTO\'nun mikrofon düğmesi, önceki adımdaki Marmalade sesli klavyesini açar.</string>
+    <string name="onboarding_futo_crash_once">FUTO Keyboard, mikrofonuna ilk dokunduğunuzda kapanırsa tekrar dokunun.</string>
+    <string name="onboarding_done_title">Her şey hazır</string>
+    <string name="onboarding_done_body">Dikte ekranında deneyin: mikrofona dokunun ve konuşun.</string>
+    <string name="onboarding_done_title_partial">Siz hazır olduğunuzda</string>
+    <string name="onboarding_done_body_partial">Bazı adımlar hâlâ tamamlanmadı. Bunları istediğiniz zaman bitirebilirsiniz.</string>
+    <string name="onboarding_done_reopen">Bu rehberi Ayarlar\'dan yeniden açabilirsiniz.</string>
+    <string name="onboarding_summary_mic">Mikrofon</string>
+    <string name="onboarding_summary_mic_on">İzin verildi</string>
+    <string name="onboarding_summary_mic_off">Henüz izin verilmedi</string>
+    <string name="onboarding_summary_model">Konuşma modeli</string>
+    <string name="onboarding_summary_model_ready">Hazır</string>
+    <string name="onboarding_summary_model_downloading">İndiriliyor</string>
+    <string name="onboarding_summary_model_missing">İndirilmedi. Motorlar sekmesinden indirin.</string>
+    <string name="onboarding_summary_model_attention">İndirme tamamlanmadı. Motorlar sekmesine bakın.</string>
+    <string name="onboarding_summary_keyboard">Sesli klavye</string>
+    <string name="onboarding_summary_keyboard_on">Açık</string>
+    <string name="onboarding_summary_keyboard_off">Kapalı</string>
+    <string name="onboarding_summary_futo">FUTO Keyboard</string>
+    <string name="onboarding_summary_futo_on">Marmalade STT\'yi kullanıyor</string>
+    <string name="onboarding_summary_futo_off">Farklı bir ses girişi kullanıyor</string>
+    <string name="onboarding_settings_row">Kurulum rehberi</string>
+    <string name="onboarding_settings_row_desc">Mikrofon, konuşma motoru, klavyeler ve konuşma hizmeti</string>
+</resources>

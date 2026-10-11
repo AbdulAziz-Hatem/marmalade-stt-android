@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Engines tab: specs, the card's size line and buttons, other engines and the details dialog. -->
+<resources>
+    <string name="engine_badge_recommended">Rekommenderas för den här telefonen</string>
+    <string name="engine_info">Om %1$s</string>
+    <string name="engine_show_more">Visa mer</string>
+    <!-- Card size line -->
+    <string name="engine_card_size_download">%1$s att ladda ned</string>
+    <string name="engine_card_size_on_disk">%1$s på telefonen</string>
+    <string name="engine_action_download_size">Ladda ned · %1$s</string>
+    <string name="engine_dialog_close">Stäng</string>
+    <string name="engine_progress_percent">%1$d%%</string>
+    <string name="engine_status_failed_short">Nedladdningen misslyckades</string>
+    <string name="engine_status_corrupt_short">Skadade filer</string>
+
+    <!-- Other engines -->
+    <string name="engines_other">Andra motorer (%1$d)</string>
+    <string name="engines_other_expanded">Utfällt</string>
+    <string name="engines_other_collapsed">Hopfällt</string>
+
+    <!-- Speed -->
+    <string name="engine_speed_tier_fastest">Snabbast på den här telefonen</string>
+    <string name="engine_speed_tier_very_fast">Mycket snabb på den här telefonen</string>
+    <string name="engine_speed_tier_fast">Snabb på den här telefonen</string>
+    <string name="engine_speed_tier_moderate">Måttlig hastighet på den här telefonen</string>
+    <string name="engine_speed_unmeasured">Inte mätt</string>
+    <string name="engine_speed_word_fastest">Snabbast</string>
+    <string name="engine_speed_word_very_fast">Mycket snabb</string>
+    <string name="engine_speed_word_fast">Snabb</string>
+    <string name="engine_speed_word_moderate">Måttlig</string>
+    <string name="engine_speed_word_slow">Långsam</string>
+
+    <!-- Quality -->
+    <string name="engine_detail_quality">Kvalitet</string>
+    <string name="engine_quality_best">Bäst</string>
+    <string name="engine_quality_great">Mycket bra</string>
+    <string name="engine_quality_good">Bra</string>
+    <string name="engine_quality_fair">Hyfsad</string>
+    <string name="engine_quality_basic">Enkel</string>
+    <string name="engine_quality_not_rated">Inte bedömd</string>
+    <string name="engine_quality_in_language">%1$s (%2$s)</string>
+    <string name="engine_quality_tested_in">Testad på %1$s</string>
+    <string name="engine_quality_source_english">Från våra tester på LibriSpeech, FLEURS och AMI, på engelska</string>
+    <string name="engine_quality_source_fleurs">Från våra tester på FLEURS, på %1$s</string>
+    <string name="engine_quality_source_two_sets">Från våra tester på %1$s och %2$s, på %3$s</string>
+    <string name="engine_quality_source_none">Inte testad än</string>
+
+    <!-- Languages -->
+    <plurals name="engine_languages_count">
+        <item quantity="one">%d språk</item>
+        <item quantity="other">%d språk</item>
+    </plurals>
+    <string name="engine_languages_see_all">Visa alla %1$d</string>
+    <string name="engine_languages_open">Visa språk</string>
+
+    <!-- Details dialog -->
+    <string name="engine_detail_speed_text">%1$s. %2$s.</string>
+    <string name="engine_detail_chunk">Blockstorlek</string>
+    <string name="engine_chunk_steps">Texten kommer i steg om %1$d ms.</string>
+
+    <!-- Engine summaries. Engine and model names stay as they are. -->
+    <string name="engine_desc_parakeet_ultra">Moondreams vidaretränade Parakeet TDT 0.6B v3: samma 25 språk, som identifieras automatiskt.</string>
+    <string name="engine_desc_parakeet_110m">NVIDIA:s lilla engelska modell: en bråkdel av storleken på de andra Parakeet-modellerna, och snabb.</string>
+    <string name="engine_desc_parakeet_ja">NVIDIA:s japanska modell: den mest exakta för japanska och mycket snabbare än Whisper. Den skriver få kommatecken.</string>
+    <string name="engine_desc_canary_180m">NVIDIA:s pyttelilla encoder-decoder-modell: engelska, spanska, tyska och franska. Välj språket själv; den kan inte identifiera det.</string>
+    <string name="engine_desc_nemotron_35">NVIDIA:s strömmande modell för hindi, arabiska och vietnamesiska: texten visas medan du pratar.</string>
+    <string name="engine_desc_whisper_turbo">OpenAI Whisper large-v3-turbo, flerspråkig. Den mest exakta Whisper-modellen. Texten visas när du pausar.</string>
+    <string name="engine_desc_granite">IBM:s engelska CTC-modell: den mest exakta i våra tester på engelska. Versaler och skiljetecken kommer från appens egen formaterare.</string>
+    <string name="engine_desc_qwen3">Alibabas offlinemodell med en liten språkmodellsavkodare: 30 språk, som identifieras automatiskt. Texten visas när du pausar.</string>
+    <string name="engine_desc_qwen3_users">Alibabas modell för kinesiska och koreanska, med en liten språkmodellsavkodare: den mest exakta för kinesiska. Texten visas när du pausar.</string>
+</resources>

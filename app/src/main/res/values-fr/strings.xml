@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="list_separator">,\u0020</string>
+    <string name="quoted_name">«&#160;%1$s&#160;»</string>
+    <string name="ui_locale">fr</string>
+    <!-- Barre de navigation -->
+    <string name="nav_dictate">Dicter</string>
+    <string name="nav_engines">Moteurs</string>
+    <string name="nav_settings">Réglages</string>
+
+    <!-- Dicter -->
+    <string name="dictate_start">Lancer la dictée</string>
+    <string name="dictate_stop">Arrêter la dictée</string>
+    <string name="dictate_state_idle">Pas à l\'écoute</string>
+    <string name="dictate_state_loading">Chargement</string>
+    <string name="dictate_state_listening">À l\'écoute</string>
+    <string name="dictate_state_finishing">Finalisation</string>
+    <string name="dictate_status_loading">Chargement du modèle…</string>
+    <string name="dictate_status_listening">À l\'écoute</string>
+    <string name="dictate_status_hearing">Je vous entends…</string>
+    <string name="dictate_status_finishing">Finalisation…</string>
+    <string name="dictate_status_catching_up">Traitement en cours…</string>
+    <string name="dictate_empty">Vos mots s\'affichent ici. Tout ce que vous dites reste sur votre téléphone.</string>
+    <string name="dictate_copy">Copier</string>
+    <string name="dictate_copied">Copié</string>
+    <string name="dictate_clear">Effacer</string>
+    <string name="dictate_no_speech">Rien n\'a été entendu</string>
+    <string name="dictate_error_mic">Impossible d\'utiliser le micro</string>
+    <string name="dictate_error_model">Impossible de charger le modèle vocal</string>
+    <string name="dictate_error_recognition">Un problème est survenu pendant la transcription</string>
+    <string name="dictate_too_slow">Ce moteur est trop lent pour ce téléphone. Un moteur plus léger de l\'onglet Moteurs suivra le rythme.</string>
+    <string name="dictate_error_busy">Une dictée est déjà en cours ailleurs. Réessayez dans un instant.</string>
+    <string name="dictate_no_model_title">Téléchargez un modèle vocal pour commencer à dicter</string>
+    <string name="dictate_no_model_body">Le modèle fonctionne sur votre téléphone. Vous le téléchargez une fois, puis la dictée fonctionne hors ligne.</string>
+    <string name="dictate_no_model_action">Choisir un modèle</string>
+    <string name="dictate_mic_title">L\'application a besoin de votre micro</string>
+    <string name="dictate_mic_body">Elle n\'écoute que pendant que vous dictez. Vos paroles deviennent du texte sur votre téléphone, sans jamais être sauvegardées ni envoyées nulle part.</string>
+    <string name="dictate_mic_body_blocked">L\'accès au micro est désactivé pour cette application. Vous pouvez l\'activer dans les paramètres de l\'application, sous Autorisations.</string>
+    <string name="dictate_mic_allow">Autoriser le micro</string>
+    <string name="dictate_mic_open_settings">Ouvrir les paramètres</string>
+    <string name="dictate_mic_settings_failed">Impossible d\'ouvrir les paramètres. Ouvrez les Paramètres Android, puis Applications, puis Marmalade STT.</string>
+
+    <!-- Liste des moteurs -->
+    <string name="engines_title">Moteurs</string>
+
+    <!-- État d'installation d'un moteur -->
+    <string name="engine_status_not_installed">Pas encore téléchargé</string>
+    <string name="engine_status_downloading">Téléchargement · %1$s</string>
+    <string name="engine_status_paused">En pause · %1$s</string>
+    <string name="engine_status_ready">Prêt</string>
+    <string name="engine_status_corrupt">Fichiers du modèle endommagés&#160;: %1$s</string>
+    <string name="engine_progress_bytes">%1$s sur %2$s</string>
+    <string name="engine_progress_description">Progression du téléchargement</string>
+    <string name="engine_failure_not_available">Ce modèle n\'est pas disponible au téléchargement pour le moment. Réessayez plus tard.</string>
+    <string name="engine_failure_no_space">Espace de stockage insuffisant pour ce modèle. Libérez de l\'espace et réessayez.</string>
+    <string name="engine_failure_network">Le téléchargement a été interrompu. Vérifiez votre connexion et réessayez. Il reprendra là où il s\'est arrêté.</string>
+    <string name="engine_failure_generic">Impossible d\'installer le modèle. Réessayez.</string>
+    <string name="engine_corrupt_outdated">Les fichiers installés ne correspondent pas à cette version de l\'application.</string>
+    <string name="engine_corrupt_missing">%1$s est manquant.</string>
+    <string name="engine_corrupt_wrong_size">%1$s n\'a pas la bonne taille.</string>
+    <string name="engine_corrupt_damaged">%1$s est endommagé.</string>
+    <string name="engine_failure_checksum">Un fichier téléchargé ne correspondait pas à ce qui était attendu&#160;; il a donc été supprimé. Réessayez pour le télécharger à nouveau.</string>
+
+    <!-- Actions sur un moteur -->
+    <string name="engine_action_download">Télécharger</string>
+    <string name="engine_action_resume">Reprendre</string>
+    <string name="engine_action_retry">Réessayer</string>
+    <string name="engine_action_download_again">Retélécharger</string>
+    <string name="engine_action_cancel">Annuler</string>
+    <string name="engine_action_remove_download">Supprimer le téléchargement</string>
+    <string name="engine_action_check_files">Vérifier les fichiers</string>
+    <string name="engine_action_checking">Vérification des fichiers…</string>
+    <string name="engine_action_remove">Supprimer</string>
+    <string name="engine_dialog_cancel">Annuler</string>
+    <string name="engine_download_confirm_title">Télécharger %1$s&#160;?</string>
+    <string name="engine_download_confirm_body">Cela télécharge %1$s depuis Internet, une seule fois. Ensuite, le moteur fonctionne hors ligne et rien de ce que vous dites ne quitte votre téléphone.</string>
+    <string name="engine_remove_confirm_title">Supprimer %1$s&#160;?</string>
+    <string name="engine_remove_confirm_body">Les fichiers du modèle (%1$s) seront supprimés de votre téléphone. Vous pourrez les retélécharger à tout moment.</string>
+    <string name="engine_remove_download_failed">Impossible de supprimer le téléchargement. Réessayez.</string>
+    <string name="engine_remove_failed">Impossible de supprimer les fichiers du modèle. Réessayez.</string>
+    <string name="engine_check_ok">Tous les fichiers sont intacts</string>
+    <string name="engine_check_damaged">Certains fichiers du modèle sont endommagés. Retéléchargez-les pour corriger le problème.</string>
+    <string name="engine_check_failed">Impossible de vérifier les fichiers. Réessayez.</string>
+    <string name="download_channel_name">Téléchargements de modèles vocaux</string>
+
+    <!-- Fenêtre d'informations d'un moteur -->
+    <string name="engine_detail_languages">Langues</string>
+    <string name="engine_detail_size_on_disk">Taille sur le téléphone</string>
+    <string name="engine_detail_download_size">Taille du téléchargement</string>
+    <string name="engine_detail_license">Licence</string>
+    <string name="engine_detail_source">Source</string>
+    <string name="engine_detail_speed">Vitesse</string>
+    <string name="engine_speed_cost">%1$s× le temps de décodage de Parakeet Ultra (estimation)</string>
+    <string name="engine_speed_reference">Parakeet Ultra sert de référence de vitesse</string>
+    <string name="engine_speed_phone_unmeasured">Ce téléphone n\'a pas encore été mesuré</string>
+
+    <!-- Réglages -->
+    <string name="settings_title">Réglages</string>
+    <string name="settings_back">Retour</string>
+    <string name="settings_save_failed">Impossible d\'enregistrer le réglage. Réessayez.</string>
+    <string name="settings_speech">Parole</string>
+    <string name="settings_speech_keep_loaded">Garder le moteur prêt</string>
+    <string name="settings_speech_keep_loaded_desc">L\'écoute démarre plus vite. Utile si vous utilisez souvent la saisie vocale, par exemple pour l\'accessibilité. Utilise environ 0,6 à 3 Go de mémoire tant que l\'application est ouverte, selon le moteur.</string>
+    <!-- Réglages → Fin de la dictée -->
+    <string name="settings_end">Fin de la dictée</string>
+    <string name="settings_end_keyboard">Clavier vocal</string>
+    <string name="settings_end_apps">Autres applications et fenêtre «&#160;Parlez maintenant&#160;»</string>
+    <string name="settings_end_tap">Appuyer pour arrêter</string>
+    <string name="settings_end_tap_desc">Le micro reste allumé jusqu\'à ce que vous appuyiez dessus. Vos mots sont saisis quand vous arrêtez.</string>
+    <string name="settings_end_smart_turn">Arrêt automatique avec Smart Turn</string>
+    <string name="settings_end_smart_turn_desc">S\'arrête quand vous semblez avoir fini, pour qu\'une pause de réflexion ne vous coupe pas.</string>
+    <string name="settings_end_pause">Arrêt automatique après une pause</string>
+    <string name="settings_end_pause_desc">S\'arrête quand vous faites une pause. Réglez sa durée sous Durée de pause.</string>
+    <string name="settings_end_word">Dire un mot de fin</string>
+    <string name="settings_end_word_desc">S\'arrête quand vous dites le mot de fin seul, comme «&#160;over&#160;». Le mot n\'est pas saisi.</string>
+    <string name="settings_end_lock_hint">Astuce&#160;: en mode d\'arrêt automatique, maintenez le micro appuyé pour rester à l\'écoute jusqu\'à ce que vous appuyiez dessus.</string>
+    <string name="settings_dialog_cancel">Annuler</string>
+    <string name="settings_speech_pause">Durée de pause</string>
+    <string name="settings_speech_pause_desc">La durée de pause qui termine une phrase dans l\'onglet Dicter, et qui arrête l\'écoute avec Arrêt automatique après une pause. Plus longue, elle vous laisse le temps de réfléchir.</string>
+    <string name="settings_speech_pause_value">%1$.1f s</string>
+    <string name="settings_speech_pause_state">%1$.1f secondes</string>
+    <string name="settings_patience">Patience de Smart Turn</string>
+    <string name="settings_patience_desc">%1$s. Le temps d\'attente avant de décider que vous avez fini.</string>
+    <string name="settings_patience_quick">Rapide</string>
+    <string name="settings_patience_quick_desc">Arrête l\'écoute plus tôt, mais vous coupe plus souvent.</string>
+    <string name="settings_patience_normal">Normale</string>
+    <string name="settings_patience_normal_desc">Attend pendant la plupart des pauses de réflexion.</string>
+    <string name="settings_patience_relaxed">Détendue</string>
+    <string name="settings_patience_relaxed_desc">Attend plus longtemps avant d\'arrêter l\'écoute. Idéal si vous faites beaucoup de pauses.</string>
+    <string name="settings_end_words">Mots de fin</string>
+    <string name="settings_end_words_hint">Séparez-les par des virgules.</string>
+    <!-- Réglages → Soutien -->
+    <string name="settings_support">Soutien</string>
+    <string name="settings_support_dev">Soutenir le développement</string>
+    <string name="settings_support_dev_desc">Faites un don via GitHub Sponsors. Volontaire et non déductible des impôts.</string>
+    <string name="settings_more_marmalade">Plus de Marmalade</string>
+    <string name="settings_more_marmalade_desc">Les autres applications Marmalade sur GitHub.</string>
+    <string name="settings_report_bug">Signaler un bug</string>
+    <string name="settings_report_bug_desc">Quelque chose est cassé ou mal transcrit&#160;? Ouvre un ticket GitHub prérempli avec les détails.</string>
+    <string name="settings_about">À propos</string>
+    <string name="settings_about_row">À propos de Marmalade STT</string>
+    <string name="settings_about_row_desc">Version %1$s · licences, confidentialité</string>
+
+    <!-- À propos -->
+    <string name="about_title">À propos</string>
+    <string name="about_version">Version %1$s</string>
+    <string name="about_tagline">Une transcription vocale privée, qui fonctionne sur votre téléphone.</string>
+    <string name="about_privacy">Politique de confidentialité</string>
+    <string name="about_privacy_desc">Ce qui reste sur votre téléphone (tout ce que vous dites) et ce que l\'application télécharge. Aucun suivi, aucun compte.</string>
+    <string name="about_privacy_english_note">Cette politique est en anglais. En résumé&#160;: la parole est reconnue sur votre téléphone, jamais par un service de reconnaissance vocale en ligne ou dans le cloud. L\'audio n\'est jamais sauvegardé ni envoyé. Aucune mesure d\'audience, aucun suivi, aucun compte. Internet sert uniquement à télécharger les modèles vocaux.</string>
+    <string name="about_privacy_load_failed">Impossible de charger la politique de confidentialité. Elle est aussi dans le dépôt sous PRIVACY.md.</string>
+    <string name="about_licenses">Licences open source</string>
+    <string name="about_licenses_desc">Licences de l\'application et des composants qu\'elle intègre.</string>
+
+    <!-- Licences open source -->
+    <string name="licenses_licensing">Licence</string>
+    <string name="licenses_view_full">Voir la licence complète</string>
+    <string name="license_text_title">Licence</string>
+    <string name="license_text_not_bundled">Le texte de la licence n\'est pas inclus. Consultez le lien sur l\'écran précédent.</string>
+    <string name="license_text_load_failed">Impossible de charger le texte de la licence. Consultez le lien vers la source sur l\'écran précédent.</string>
+
+    <!-- Clavier vocal -->
+    <string name="ime_name">Saisie vocale Marmalade</string>
+    <string name="ime_subtype_label">Saisie vocale</string>
+    <string name="ime_status_loading">Chargement du modèle…</string>
+    <string name="ime_status_listening">À l\'écoute</string>
+    <string name="ime_status_hearing">Je vous entends…</string>
+    <string name="ime_status_finishing">Finalisation…</string>
+    <string name="ime_status_paused">En pause. Appuyez sur le micro pour continuer.</string>
+    <string name="ime_speak_now">Parlez maintenant</string>
+    <string name="ime_cancel">Retour au clavier</string>
+    <string name="ime_done">Terminé</string>
+    <string name="ime_pause">Mettre l\'écoute en pause</string>
+    <string name="ime_resume">Reprendre l\'écoute</string>
+    <string name="ime_no_model">Téléchargez un modèle vocal dans Marmalade STT pour utiliser la saisie vocale.</string>
+    <string name="ime_open_app">Ouvrir Marmalade STT</string>
+    <string name="ime_mic_needed">La saisie vocale a besoin du micro. Elle n\'écoute que lorsque ce panneau est ouvert.</string>
+    <string name="ime_mic_allow">Autoriser le micro</string>
+    <string name="ime_mic_blocked">L\'accès au micro est désactivé pour Marmalade STT. Activez-le sous Autorisations, puis revenez à votre application.</string>
+
+    <!-- Fenêtre de saisie vocale et service de reconnaissance -->
+    <string name="recognizer_speak_now">Parlez maintenant</string>
+    <string name="recognizer_cancel">Annuler</string>
+    <string name="recognizer_done">Terminé</string>
+    <string name="recognizer_try_again">Réessayer</string>
+    <string name="recognizer_no_model">Téléchargez un modèle vocal dans Marmalade STT pour utiliser la saisie vocale.</string>
+    <string name="recognizer_open_app">Ouvrir Marmalade STT</string>
+    <string name="recognizer_mic_blocked">La saisie vocale a besoin du micro. Activez-le dans les paramètres de l\'application, sous Autorisations.</string>
+    <string name="recognizer_open_settings">Ouvrir les paramètres</string>
+    <string name="recognizer_mic_stop">Arrêter l\'écoute</string>
+
+    <!-- Appui long sur le micro pour verrouiller l'écoute -->
+    <string name="lock_status">Verrouillé&#160;: appuyez pour arrêter</string>
+    <string name="lock_state">Verrouillé</string>
+    <string name="lock_action">Verrouiller l\'écoute</string>
+
+    <!-- Nettoyage du texte -->
+    <string name="cleanup_section">Nettoyage du texte</string>
+    <string name="cleanup_fillers">Supprimer les hésitations</string>
+    <string name="cleanup_fillers_desc">Supprime «&#160;um&#160;», «&#160;uh&#160;», «&#160;er&#160;», «&#160;hmm&#160;» et autres hésitations. Les vrais mots comme «&#160;umbrella&#160;» sont conservés.</string>
+    <string name="cleanup_commands">Commandes vocales</string>
+    <string name="cleanup_commands_desc">Dites «&#160;new line&#160;», «&#160;new paragraph&#160;» ou «&#160;scratch that&#160;» pour effacer la dernière phrase.</string>
+    <string name="cleanup_punctuation">Ponctuation dictée</string>
+    <string name="cleanup_punctuation_desc">Dites aussi «&#160;period&#160;», «&#160;comma&#160;», «&#160;question mark&#160;»… Désactivé par défaut&#160;: ce sont aussi des mots courants.</string>
+    <string name="cleanup_english_only">Anglais uniquement. %1$s</string>
+    <string name="cleanup_itn">Écrire les nombres en chiffres</string>
+    <string name="cleanup_itn_desc">«&#160;Twenty five percent&#160;» devient «&#160;25%&#160;», «&#160;nine thirty pm&#160;» devient «&#160;9:30 pm&#160;». Les petits nombres comme «&#160;three boxes&#160;» restent en lettres.</string>
+    <string name="cleanup_capitalize">Majuscules en début de phrase</string>
+    <string name="cleanup_capitalize_desc">Une majuscule au début de chaque phrase et de chaque ligne. Rien n\'est jamais mis en minuscules.</string>
+    <string name="cleanup_dictionary">Dictionnaire de remplacement</string>
+    <string name="cleanup_dictionary_desc_none">Corrigez les mots que l\'application transcrit toujours mal.</string>
+    <plurals name="cleanup_dictionary_desc">
+        <item quantity="one">%1$d règle · corrigez les mots que l\'application transcrit mal</item>
+        <item quantity="many">%1$d de règles · corrigez les mots que l\'application transcrit mal</item>
+        <item quantity="other">%1$d règles · corrigez les mots que l\'application transcrit mal</item>
+    </plurals>
+    <string name="cleanup_snippets">Extraits</string>
+    <string name="cleanup_snippets_desc_none">Dites une phrase-clé pour insérer un texte enregistré, comme votre adresse.</string>
+    <plurals name="cleanup_snippets_desc">
+        <item quantity="one">%1$d extrait · dites une phrase-clé pour insérer un texte enregistré</item>
+        <item quantity="many">%1$d d\'extraits · dites une phrase-clé pour insérer un texte enregistré</item>
+        <item quantity="other">%1$d extraits · dites une phrase-clé pour insérer un texte enregistré</item>
+    </plurals>
+
+    <string name="cleanup_save">Enregistrer</string>
+    <string name="cleanup_cancel">Annuler</string>
+    <string name="cleanup_delete">Supprimer</string>
+    <string name="cleanup_edit_action">Modifier</string>
+
+    <!-- Exemple adapté : « kel » → « quel » (même règle que « teh » → « the » en anglais) -->
+    <string name="cleanup_dictionary_help">Chaque règle transforme un mot ou une expression que l\'application transcrit mal en ce que vous vouliez dire.\n\n• Correspond aux mots entiers, quelle que soit la casse&#160;: «&#160;kel&#160;» correspond à «&#160;Kel&#160;» mais pas à «&#160;kelvin&#160;».\n• En chinois et en japonais, qui ne séparent pas les mots par des espaces, une expression correspond aussi au milieu d\'une phrase. En coréen, elle correspond aussi avec une particule accolée&#160;: «&#160;메일&#160;» correspond à «&#160;메일을&#160;».\n• Une majuscule dans la partie droite est conservée telle quelle. Sinon, la casse suit ce qui a été entendu&#160;: «&#160;Kel&#160;» devient «&#160;Quel&#160;».\n• Laissez la partie droite vide pour supprimer l\'expression.\n• Quand des règles se chevauchent, la correspondance la plus longue l\'emporte.</string>
+    <string name="cleanup_dictionary_empty">Aucune règle pour l\'instant. Appuyez sur «&#160;Ajouter une règle&#160;» pour corriger un mot que l\'application transcrit toujours mal.</string>
+    <string name="cleanup_dictionary_add">Ajouter une règle</string>
+    <string name="cleanup_dictionary_edit">Modifier la règle</string>
+    <string name="cleanup_dictionary_from">Ce qui est entendu</string>
+    <string name="cleanup_dictionary_to">Écrire à la place</string>
+    <string name="cleanup_dictionary_to_hint">Laissez vide pour supprimer l\'expression.</string>
+    <string name="cleanup_dictionary_from_breaks_export">Ne peut pas contenir «&#160;->&#160;» ni commencer par «&#160;#&#160;».</string>
+    <string name="cleanup_dictionary_replaces">Remplace votre règle pour «&#160;%1$s&#160;».</string>
+    <string name="cleanup_dictionary_deleted">(supprimé)</string>
+    <string name="cleanup_dictionary_rule_description">%1$s devient %2$s</string>
+    <string name="cleanup_dictionary_rule_deletes_description">%1$s est supprimé</string>
+    <string name="cleanup_import">Importer</string>
+    <string name="cleanup_export">Tout copier</string>
+    <string name="cleanup_exported">Règles copiées</string>
+    <string name="cleanup_import_title">Importer des règles</string>
+    <string name="cleanup_import_help">Collez une règle par ligne, sous la forme erroné -> correct. Les lignes commençant par # sont ignorées. Une règle pour un mot déjà présent remplace l\'ancienne.</string>
+    <string name="cleanup_import_field">Règles</string>
+    <string name="cleanup_import_none">Aucune règle trouvée pour l\'instant.</string>
+    <plurals name="cleanup_import_found">
+        <item quantity="one">%1$d règle trouvée.</item>
+        <item quantity="many">%1$d de règles trouvées.</item>
+        <item quantity="other">%1$d règles trouvées.</item>
+    </plurals>
+    <plurals name="cleanup_import_skipped">
+        <item quantity="one">%1$d ligne n\'est pas une règle et sera ignorée.</item>
+        <item quantity="many">%1$d de lignes ne sont pas des règles et seront ignorées.</item>
+        <item quantity="other">%1$d lignes ne sont pas des règles et seront ignorées.</item>
+    </plurals>
+
+    <!-- Exemple adapté : « mon mail » / « mon mailing » -->
+    <string name="cleanup_snippets_help">Dites une phrase-clé et elle est remplacée par votre texte enregistré, tel quel, sauts de ligne compris.\n\n• Les phrases-clés correspondent aux mots entiers, quelle que soit la casse&#160;: «&#160;mon mail&#160;» correspond à «&#160;Mon mail&#160;» mais pas à «&#160;mon mailing&#160;».\n• En chinois et en japonais, qui ne séparent pas les mots par des espaces, une phrase-clé correspond aussi au milieu d\'une phrase. En coréen, elle correspond aussi avec une particule accolée&#160;: «&#160;메일&#160;» correspond à «&#160;메일을&#160;».\n• Rien d\'autre ne modifie le texte enregistré&#160;: ni suppression des hésitations, ni commandes, ni majuscules.\n• Prononcée seule, la phrase-clé insère uniquement le texte enregistré.</string>
+    <string name="cleanup_snippets_empty">Aucun extrait pour l\'instant. Appuyez sur «&#160;Ajouter un extrait&#160;» pour enregistrer un texte dont vous avez souvent besoin.</string>
+    <string name="cleanup_snippets_add">Ajouter un extrait</string>
+    <string name="cleanup_snippets_edit">Modifier l\'extrait</string>
+    <string name="cleanup_snippets_trigger">Phrase-clé</string>
+    <string name="cleanup_snippets_text">Texte à insérer</string>
+    <string name="cleanup_snippets_replaces">Remplace votre extrait pour «&#160;%1$s&#160;».</string>
+
+    <!-- Guide de configuration -->
+    <string name="onboarding_step_of">Étape %1$d sur %2$d</string>
+    <string name="onboarding_close">Fermer le guide de configuration</string>
+    <string name="onboarding_back">Retour</string>
+    <string name="onboarding_next">Suivant</string>
+    <string name="onboarding_skip">Ignorer</string>
+    <string name="onboarding_get_started">Commencer</string>
+    <string name="onboarding_try_it">Essayer</string>
+    <string name="onboarding_settings_failed">Impossible d\'ouvrir les paramètres d\'Android. Ouvrez-les plutôt depuis votre écran d\'accueil.</string>
+    <!-- Toasts over Settings when only a fallback page opened (#79): where to go from there. -->
+    <string name="settings_hint_voice_input">Recherchez «&#160;Saisie vocale&#160;» dans Paramètres, puis choisissez Marmalade STT.</string>
+    <string name="settings_hint_keyboards">Recherchez «&#160;Clavier&#160;» dans Paramètres, puis activez Saisie vocale Marmalade.</string>
+    <string name="settings_hint_app_details">Trouvez Marmalade STT sous Applications, puis activez le micro sous Autorisations.</string>
+    <string name="onboarding_welcome_title">Bienvenue dans Marmalade STT</string>
+    <string name="onboarding_welcome_body">Parlez, et Marmalade STT écrit pour vous&#160;: sur son propre écran Dicter, ou comme saisie vocale dans d\'autres applications. Quelques étapes rapides suffisent pour le préparer.</string>
+    <string name="onboarding_privacy_title">Conçu pour la confidentialité</string>
+    <string name="onboarding_privacy_body">La parole est reconnue sur votre téléphone, jamais par un service de reconnaissance vocale en ligne ou dans le cloud, y compris celui de Google. L\'audio n\'est jamais sauvegardé ni envoyé. Aucune mesure d\'audience, aucun suivi, aucun compte, aucune clé d\'API. Internet sert uniquement à télécharger les modèles vocaux.</string>
+    <string name="onboarding_high_contrast">Mode accessibilité</string>
+    <string name="onboarding_high_contrast_desc">Couleurs à contraste élevé</string>
+    <string name="onboarding_mic_title">Autoriser le micro</string>
+    <string name="onboarding_mic_body">Marmalade STT a besoin du micro pour vous entendre. Il n\'est utilisé que pendant la dictée.</string>
+    <string name="onboarding_mic_granted">L\'accès au micro est activé</string>
+    <string name="onboarding_mic_denied">Sans le micro, Marmalade STT ne peut pas vous entendre. Vous pouvez l\'autoriser maintenant, ou ignorer cette étape et l\'autoriser plus tard.</string>
+    <string name="onboarding_mic_blocked">L\'accès au micro est désactivé pour cette application. Activez-le sous Autorisations, sur la page des paramètres de l\'application.</string>
+    <string name="onboarding_mic_allow">Autoriser le micro</string>
+    <string name="onboarding_mic_open_settings">Ouvrir les paramètres de l\'appli</string>
+    <string name="onboarding_model_title">Télécharger un modèle vocal</string>
+    <string name="onboarding_model_body">La parole est reconnue par un modèle qui fonctionne sur votre téléphone. Il est téléchargé une seule fois&#160;; ensuite, la dictée fonctionne hors ligne.</string>
+    <string name="onboarding_model_downloading_note">La configuration reprend dès que le modèle est prêt. Le téléchargement continue si l\'écran s\'éteint ou si vous quittez l\'application.</string>
+    <string name="onboarding_keyboard_title">Activer le clavier vocal</string>
+    <string name="onboarding_keyboard_body">Le clavier vocal Marmalade vous permet de dicter dans d\'autres applications&#160;: les touches micro des claviers l\'ouvrent. Activez «&#160;Saisie vocale Marmalade&#160;» dans les paramètres du clavier d\'Android, puis revenez ici.</string>
+    <string name="onboarding_keyboard_open">Ouvrir les paramètres du clavier</string>
+    <string name="onboarding_keyboard_on">Le clavier vocal est activé</string>
+    <string name="onboarding_keyboard_off">Le clavier vocal est désactivé</string>
+    <string name="onboarding_keyboard_warning">Android prévient que tout clavier que vous activez peut collecter ce que vous saisissez. Cet avertissement est standard. Marmalade STT ne saisit que ce que vous dictez, et rien ne quitte votre téléphone.</string>
+    <string name="onboarding_keyboard_unlock_note">Certains téléphones affichent ensuite un second message&#160;: après un redémarrage, l\'application ne peut pas démarrer tant que vous n\'avez pas déverrouillé votre téléphone. Ce n\'est pas un problème non plus. Appuyez sur OK.</string>
+    <string name="onboarding_futo_checking">Interrogation de FUTO Keyboard…</string>
+    <string name="onboarding_futo_selected">FUTO Keyboard utilise Marmalade STT pour la saisie vocale</string>
+    <string name="onboarding_futo_not_selected">FUTO Keyboard utilise une autre saisie vocale</string>
+    <string name="onboarding_futo_use">Utiliser Marmalade STT dans FUTO</string>
+    <string name="onboarding_futo_check_again">Vérifier à nouveau</string>
+    <string name="onboarding_futo_manual_title">Configuration manuelle</string>
+    <string name="onboarding_futo_manual_body">Dans FUTO Keyboard, ouvrez Paramètres → Saisie vocale et activez «&#160;Désactiver la saisie vocale intégrée&#160;» («&#160;Utiliser la saisie vocale fournie par une application externe&#160;»). Le bouton micro de FUTO ouvre alors le clavier vocal Marmalade de l\'étape précédente.</string>
+    <string name="onboarding_futo_crash_once">Si FUTO Keyboard se ferme la première fois que vous appuyez sur son micro, appuyez de nouveau.</string>
+    <string name="onboarding_done_title">Tout est prêt</string>
+    <string name="onboarding_done_body">Essayez-le sur l\'écran Dicter&#160;: appuyez sur le micro et parlez.</string>
+    <string name="onboarding_done_title_partial">Prêt quand vous voulez</string>
+    <string name="onboarding_done_body_partial">Certaines étapes restent à faire. Vous pouvez les terminer à tout moment.</string>
+    <string name="onboarding_done_reopen">Vous pouvez rouvrir ce guide depuis l\'onglet Réglages.</string>
+    <string name="onboarding_summary_mic">Micro</string>
+    <string name="onboarding_summary_mic_on">Autorisé</string>
+    <string name="onboarding_summary_mic_off">Pas encore autorisé</string>
+    <string name="onboarding_summary_model">Modèle vocal</string>
+    <string name="onboarding_summary_model_ready">Prêt</string>
+    <string name="onboarding_summary_model_downloading">Téléchargement</string>
+    <string name="onboarding_summary_model_missing">Pas téléchargé. Récupérez-le dans l\'onglet Moteurs.</string>
+    <string name="onboarding_summary_model_attention">Téléchargement inachevé. Consultez l\'onglet Moteurs.</string>
+    <string name="onboarding_summary_keyboard">Clavier vocal</string>
+    <string name="onboarding_summary_keyboard_on">Activé</string>
+    <string name="onboarding_summary_keyboard_off">Désactivé</string>
+    <string name="onboarding_summary_futo">FUTO Keyboard</string>
+    <string name="onboarding_summary_futo_on">Utilise Marmalade STT</string>
+    <string name="onboarding_summary_futo_off">Utilise une autre saisie vocale</string>
+    <string name="onboarding_settings_row">Guide de configuration</string>
+    <string name="onboarding_settings_row_desc">Micro, moteur vocal, claviers et service de reconnaissance vocale</string>
+</resources>

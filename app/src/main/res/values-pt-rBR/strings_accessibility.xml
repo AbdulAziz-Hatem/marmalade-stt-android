@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Screen-reader-only text and other strings added by the accessibility pass (#68). -->
+<resources>
+    <!-- Shared -->
+    <string name="a11y_download_started">Baixando o %1$s</string>
+    <string name="a11y_download_ready">O %1$s está pronto</string>
+    <string name="a11y_download_failed">%1$s: falha no download</string>
+    <string name="a11y_download_paused">%1$s: download pausado</string>
+
+    <!-- Settings, dictionary, snippets, licences, privacy -->
+    <string name="a11y_open_in_browser">Abrir no navegador</string>
+    <string name="a11y_rule_deleted">Regra excluída</string>
+    <string name="a11y_snippet_deleted">Trecho excluído</string>
+    <string name="a11y_end_words_reverted">Palavras de encerramento não alteradas: digite pelo menos uma palavra</string>
+
+    <!-- Engines, benchmark -->
+    <string name="a11y_engine_action_named">%1$s, %2$s</string>
+    <string name="a11y_engine_download_named">Baixar o %1$s, %2$s</string>
+    <string name="a11y_benchmark_finished">Benchmark concluído</string>
+
+    <!-- Dictate, voice keyboard, speech sheet -->
+
+    <!-- Onboarding -->
+    <string name="a11y_onboarding_step_pane">%1$s: %2$s</string>
+    <string name="a11y_onboarding_recommended">Recomendado para este celular: %1$s</string>
+
+</resources>

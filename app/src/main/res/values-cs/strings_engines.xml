@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Engines tab: specs, the card's size line and buttons, other engines and the details dialog. -->
+<resources>
+    <string name="engine_badge_recommended">Doporučeno pro tento telefon</string>
+    <string name="engine_info">O modulu %1$s</string>
+    <string name="engine_show_more">Zobrazit více</string>
+    <!-- Card size line -->
+    <string name="engine_card_size_download">%1$s ke stažení</string>
+    <string name="engine_card_size_on_disk">%1$s v telefonu</string>
+    <string name="engine_action_download_size">Stáhnout · %1$s</string>
+    <string name="engine_dialog_close">Zavřít</string>
+    <string name="engine_progress_percent">%1$d%%</string>
+    <string name="engine_status_failed_short">Stažení selhalo</string>
+    <string name="engine_status_corrupt_short">Poškozené soubory</string>
+
+    <!-- Other engines -->
+    <string name="engines_other">Další moduly (%1$d)</string>
+    <string name="engines_other_expanded">Rozbaleno</string>
+    <string name="engines_other_collapsed">Sbaleno</string>
+
+    <!-- Speed -->
+    <string name="engine_speed_tier_fastest">Nejrychlejší na tomto telefonu</string>
+    <string name="engine_speed_tier_very_fast">Velmi rychlý na tomto telefonu</string>
+    <string name="engine_speed_tier_fast">Rychlý na tomto telefonu</string>
+    <string name="engine_speed_tier_moderate">Střední rychlost na tomto telefonu</string>
+    <string name="engine_speed_unmeasured">Nezměřeno</string>
+    <string name="engine_speed_word_fastest">Nejvyšší</string>
+    <string name="engine_speed_word_very_fast">Velmi vysoká</string>
+    <string name="engine_speed_word_fast">Vysoká</string>
+    <string name="engine_speed_word_moderate">Střední</string>
+    <string name="engine_speed_word_slow">Nízká</string>
+
+    <!-- Speed words above are feminine, under the tile header "Rychlost" -->
+    <!-- Quality (feminine, agrees with "kvalita") -->
+    <string name="engine_detail_quality">Kvalita</string>
+    <string name="engine_quality_best">Nejlepší</string>
+    <string name="engine_quality_great">Výborná</string>
+    <string name="engine_quality_good">Dobrá</string>
+    <string name="engine_quality_fair">Ucházející</string>
+    <string name="engine_quality_basic">Základní</string>
+    <string name="engine_quality_not_rated">Nehodnoceno</string>
+    <string name="engine_quality_in_language">%1$s (%2$s)</string>
+    <!-- The language name is nominative and can't be inflected, so it follows a colon -->
+    <string name="engine_quality_tested_in">Jazyk testu: %1$s</string>
+    <string name="engine_quality_source_english">Z našich testů na LibriSpeech, FLEURS a AMI, v angličtině</string>
+    <string name="engine_quality_source_fleurs">Z našich testů na FLEURS, jazyk: %1$s</string>
+    <string name="engine_quality_source_two_sets">Z našich testů na %1$s a %2$s, jazyk: %3$s</string>
+    <string name="engine_quality_source_none">Zatím netestováno</string>
+
+    <!-- Languages -->
+    <plurals name="engine_languages_count">
+        <item quantity="one">%d jazyk</item>
+        <item quantity="few">%d jazyky</item>
+        <item quantity="many">%d jazyka</item>
+        <item quantity="other">%d jazyků</item>
+    </plurals>
+    <!-- "Všechny (N)" is right for any count; "všech N" would be wrong for 2 to 4 -->
+    <string name="engine_languages_see_all">Všechny (%1$d)</string>
+    <string name="engine_languages_open">Zobrazit jazyky</string>
+
+    <!-- Details dialog -->
+    <string name="engine_detail_speed_text">%1$s. %2$s.</string>
+    <string name="engine_detail_chunk">Velikost bloku</string>
+    <string name="engine_chunk_steps">Text přichází v krocích po %1$d ms.</string>
+
+    <!-- Engine summaries. Engine and model names stay as they are. -->
+    <string name="engine_desc_parakeet_ultra">Parakeet TDT 0.6B v3 dotrénovaný společností Moondream: stejných 25 jazyků, které rozpozná automaticky.</string>
+    <string name="engine_desc_parakeet_110m">Malý anglický model od NVIDIA: zlomek velikosti ostatních modelů Parakeet, a k tomu rychlý.</string>
+    <string name="engine_desc_parakeet_ja">Japonský model od NVIDIA: pro japonštinu nejpřesnější a mnohem rychlejší než Whisper. Píše málo čárek.</string>
+    <string name="engine_desc_canary_180m">Drobný model encoder-decoder od NVIDIA: angličtina, španělština, němčina a francouzština. Jazyk musíte vybrat, sám ho nerozpozná.</string>
+    <string name="engine_desc_nemotron_35">Streamovací model od NVIDIA pro hindštinu, arabštinu a vietnamštinu: text se objevuje, zatímco mluvíte.</string>
+    <string name="engine_desc_whisper_turbo">OpenAI Whisper large-v3-turbo, vícejazyčný. Nejpřesnější Whisper. Text se objeví, když se odmlčíte.</string>
+    <string name="engine_desc_granite">Anglický model CTC od IBM: nejpřesnější v našich testech v angličtině. Velká písmena a interpunkci doplňuje vlastní formátovač aplikace.</string>
+    <string name="engine_desc_qwen3">Offline model od společnosti Alibaba s malým dekodérem založeným na jazykovém modelu: 30 jazyků, které rozpozná automaticky. Text se objeví, když se odmlčíte.</string>
+    <string name="engine_desc_qwen3_users">Model od společnosti Alibaba pro čínštinu a korejštinu, s malým dekodérem založeným na jazykovém modelu: pro čínštinu nejpřesnější. Text se objeví, když se odmlčíte.</string>
+</resources>
