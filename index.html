@@ -1,0 +1,759 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>marmalade stt — private, offline speech-to-text for Android</title>
+<meta name="description" content="Private, offline speech-to-text for your keyboard. Your voice stays on your phone. Free and open source.">
+<meta property="og:title" content="marmalade stt">
+<meta property="og:description" content="Private, offline speech-to-text for your keyboard. Your voice stays on your phone. Free and open source.">
+<meta property="og:image" content="https://maxwhipw.github.io/marmalade-stt-android/assets/icon.png">
+<link rel="icon" type="image/png" href="assets/icon-192.png">
+<link rel="preload" href="assets/fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
+<script>
+  try { if (localStorage.getItem('mstt-theme') === 'dark') document.documentElement.dataset.theme = 'dark'; } catch (e) {}
+  // Preview only: ?hero=a|b|c picks a hero variant. Remove with the unpicked variants.
+  (function () { var m = /[?&]hero=([abc])/.exec(location.search); document.documentElement.dataset.hero = m ? m[1] : 'b'; })();
+  document.documentElement.classList.add('js');
+</script>
+<style>
+  /* Self-hosted brand fonts (SIL OFL 1.1, assets/fonts/OFL.txt), subset to Latin. */
+  @font-face { font-family: "Manrope"; src: url("assets/fonts/manrope.woff2") format("woff2"); font-weight: 200 800; font-display: swap; }
+  @font-face { font-family: "Momo Trust Display"; src: url("assets/fonts/momo-trust-display.woff2") format("woff2"); font-display: swap; }
+
+  /* Light is the default theme; dark is opt-in via the header toggle. */
+  :root {
+    --surface: #FFF7ED;
+    --ink: #1c1917;
+    --ink-dim: rgba(28, 25, 23, 0.68);
+    --wordmark: #F97316;
+    --accent-bg: #F97316;
+    --accent-ink: #FFFFFF;
+    --toast-bg: #FED7AA;
+    --toast-ink: #7C2D12;
+    --peach: #FDBA74;
+    --card-bg: #FFEDD5;
+    --card-ink: #1c1917;
+    --chip-bg: #FFEDD5;
+    --outlined: #422006;
+    --border: rgba(28, 25, 23, 0.12);
+    --glow: rgba(254, 215, 170, 0.85);
+    --tile: linear-gradient(145deg, #FED7AA, #FDBA74);
+    --wave-grad: linear-gradient(180deg, #FDBA74, #D97706);
+    --shadow: 0 8px 24px rgba(124, 45, 18, 0.10), 0 1px 3px rgba(124, 45, 18, 0.06);
+    --shadow-lg: 0 20px 44px rgba(124, 45, 18, 0.16), 0 2px 6px rgba(124, 45, 18, 0.08);
+    --wash-a: rgba(254, 215, 170, 0.55);
+    --wash-b: rgba(255, 237, 213, 0.9);
+    --header-bg: rgba(255, 247, 237, 0.82);
+    --bezel: #1c1917;
+    --mic: #EA580C;          /* the hero's microphone and listening rings */
+    --panel-bg: #FFFBF6;     /* the voice panel, as in the app */
+    --field-bg: #FFFFFF;
+    --bar-off: rgba(124, 45, 18, 0.18);
+  }
+  html[data-theme="dark"] {
+    --surface: #1c1917;
+    --ink: #f5f5f4;
+    --ink-dim: rgba(245, 245, 244, 0.68);
+    --wordmark: #FFEDD5;
+    --accent-bg: #FED7AA;
+    --accent-ink: #7C2D12;
+    --card-bg: #292524;
+    --card-ink: #F5F5F4;
+    --chip-bg: #FEF3C7;
+    --outlined: #FFEDD5;
+    --border: rgba(245, 245, 244, 0.14);
+    --glow: rgba(66, 32, 6, 0.9);
+    --wave-grad: linear-gradient(180deg, #FFEDD5, #FDBA74);
+    --shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 20px 44px rgba(0, 0, 0, 0.5), 0 2px 6px rgba(0, 0, 0, 0.3);
+    --wash-a: rgba(66, 32, 6, 0.45);
+    --wash-b: rgba(41, 37, 36, 0.9);
+    --header-bg: rgba(28, 25, 23, 0.82);
+    --bezel: #0D0D0D;
+    --mic: #FED7AA;
+    --panel-bg: #292524;
+    --field-bg: #1c1917;
+    --bar-off: rgba(254, 215, 170, 0.22);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; overflow-x: clip; }
+  body {
+    margin: 0;
+    background:
+      radial-gradient(120% 46% at 50% -6%, var(--wash-a), transparent 70%),
+      radial-gradient(90% 30% at 85% 100%, var(--wash-b), transparent 70%),
+      var(--surface);
+    color: var(--ink);
+    font-family: "Manrope", system-ui, sans-serif;
+    font-size: 16.5px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+  a { color: inherit; }
+  img { max-width: 100%; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+
+  /* ---------- header ---------- */
+  header.site {
+    position: sticky; top: 0; z-index: 10;
+    background: var(--header-bg);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  header.site .bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 20px; }
+  .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; min-width: 0; }
+  .brand img { width: 38px; height: 38px; border-radius: 12px; box-shadow: var(--shadow); }
+  .wordmark {
+    font-family: "Momo Trust Display", sans-serif;
+    font-weight: 600; font-size: 25px; line-height: 1;
+    color: var(--wordmark); text-transform: lowercase; white-space: nowrap;
+  }
+  .hright { display: flex; align-items: center; gap: 4px; }
+  nav.top { display: flex; gap: 2px; flex-wrap: wrap; }
+  nav.top a { text-decoration: none; font-weight: 500; font-size: 15px; padding: 8px 12px; border-radius: 12px; color: var(--ink-dim); }
+  nav.top a:hover { background: var(--card-bg); color: var(--ink); }
+  @media (max-width: 760px) { nav.top { display: none; } }
+  .mode {
+    width: 44px; height: 44px; border-radius: 12px; border: none; cursor: pointer;
+    background: transparent; color: var(--ink-dim); display: grid; place-items: center;
+  }
+  .mode:hover { background: var(--card-bg); color: var(--ink); }
+  .mode svg { width: 21px; height: 21px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .mode .sun { display: none; }
+  html[data-theme="dark"] .mode .sun { display: block; }
+  html[data-theme="dark"] .mode .moon { display: none; }
+
+  /* ---------- hero ---------- */
+  .hero {
+    display: grid; grid-template-columns: 1.1fr 1fr; gap: 24px; align-items: center;
+    padding: 48px 0 40px;
+  }
+  @media (max-width: 820px) { .hero { grid-template-columns: 1fr; padding: 24px 0 8px; } }
+  .eyebrow {
+    display: inline-block; font-weight: 700; font-size: 13.5px; letter-spacing: 0.02em;
+    color: var(--toast-ink); background: var(--toast-bg);
+    padding: 6px 12px; border-radius: 20px; margin-bottom: 20px;
+  }
+  h1 {
+    font-weight: 800; font-size: clamp(33px, 5.2vw, 54px); line-height: 1.08;
+    letter-spacing: -0.02em; margin: 0 0 20px; text-wrap: balance;
+  }
+  .lede { font-size: 19px; color: var(--ink-dim); margin: 0 0 28px; max-width: 520px; }
+  .cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
+  .cta-row .badge { display: block; line-height: 0; }
+  .cta-row .badge img { height: 72px; width: auto; max-width: none; display: block; margin: -12px; } /* cancels the SVG's own transparent padding */
+  @media (max-width: 420px) { .cta-row { gap: 12px; } .cta-row .badge img { height: 62px; margin: -10px; } .cta-row .btn { padding: 12px 16px; } }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 22px; border-radius: 16px; min-height: 48px;
+    font-weight: 600; font-size: 16px; text-decoration: none; line-height: 1.3;
+    box-shadow: var(--shadow);
+  }
+  .btn, .cta-row .badge img, .phone, .step, .features li, .card, .support-card { transition: transform .25s ease, box-shadow .25s ease; }
+  .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+  .cta-row .badge:hover img { transform: translateY(-2px); }
+  .btn-accent { background: var(--accent-bg); color: var(--accent-ink); }
+  .btn-default { background: var(--toast-bg); color: var(--toast-ink); }
+  .btn-outlined { background: transparent; color: var(--outlined); border: 2px solid var(--outlined); box-shadow: none; }
+  .btn svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .fineprint { font-size: 14.5px; color: var(--ink-dim); margin: 16px 0 0; }
+
+  /* F-Droid: the badge and its credit stay hidden until the listing is live.
+     To turn them on, add class="fdroid-live" to the <html> element. */
+  .fdroid { display: none !important; }
+  html.fdroid-live .fdroid { display: block !important; }
+  html.fdroid-live .fdroid-soon { display: none; }
+  html.fdroid-live .cta-row .btn-accent { background: transparent; color: var(--outlined); border: 2px solid var(--outlined); box-shadow: none; }
+  footer .fdroid { display: none !important; }
+  html.fdroid-live footer .fdroid { display: block !important; }
+
+  /* The live transcript every hero variant shows: words in progress are underlined,
+     as in a text field the keyboard is composing in; the Final commits them. */
+  .live-text { white-space: pre-wrap; }
+  .live-text .composing { text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 4px; text-decoration-color: var(--ink-dim); }
+  .live-text .new { animation: wordin .35s ease both; }
+  @keyframes wordin { from { opacity: 0; filter: blur(3px); } to { opacity: 1; filter: none; } }
+  .live-text .caret { display: inline-block; width: 2px; height: 1.05em; margin-left: 2px; vertical-align: -0.15em; background: var(--mic); animation: caret 1s steps(1) infinite; }
+  @keyframes caret { 50% { opacity: 0; } }
+  .hint { color: var(--ink-dim); font-weight: 500; }
+  .credit { font-size: 12.5px; font-weight: 500; color: var(--ink-dim); }
+  .stage { position: relative; display: none; }
+  html[data-hero="a"] .stage[data-v="a"], html[data-hero="b"] .stage[data-v="b"], html[data-hero="c"] .stage[data-v="c"] { display: grid; }
+  .stage::before { content: ""; position: absolute; inset: 6% 4%; border-radius: 50%; background: radial-gradient(closest-side, var(--glow), transparent 72%); pointer-events: none; }
+  .i-stop { display: none; }
+  .playing .i-mic, .playing .i-play { display: none; } .playing .i-stop { display: block; }
+
+  /* Variant A, "Caption bubble": the icon's jar and microphone; the bubble types what the jar hears. */
+  .stage[data-v="a"] { min-height: 450px; place-items: center; }
+  .stage[data-v="a"] .scene { position: relative; height: 270px; width: auto; margin-top: 170px; overflow: visible;
+    filter: drop-shadow(0 14px 18px rgba(124, 45, 18, 0.18)); animation: bob 10.5s ease-in-out infinite; }
+  @keyframes bob { 0%,100% { transform: translateY(3px); } 50% { transform: translateY(-3px); } }
+  .scene .ring { fill: none; stroke: var(--mic); stroke-width: 1.1; opacity: .18; transform-box: fill-box; transform-origin: center; transition: transform .08s linear, opacity .08s linear; }
+  .scene .r1 { transform: scale(calc(1 + var(--lvl, 0) * .18)); opacity: calc(.18 + var(--lvl, 0) * .5); }
+  .scene .r2 { transform: scale(calc(1 + var(--lvl, 0) * .32)); opacity: calc(.12 + var(--lvl, 0) * .35); }
+  .scene .mic * { fill: var(--mic); stroke: var(--mic); }
+  .scene .mic .o { fill: none; }
+  .bubble {
+    position: absolute; z-index: 2; top: 0; right: 2%; width: min(340px, 92%);
+    background: var(--card-bg); color: var(--card-ink);
+    padding: 14px 16px; border-radius: 18px 18px 18px 6px;
+    font: inherit; font-weight: 600; font-size: 16.5px; line-height: 1.45; text-align: left;
+    border: 0; cursor: pointer; display: flex; flex-direction: column; gap: 10px;
+    box-shadow: var(--shadow-lg); transition: transform .25s ease;
+    animation: pop 0.6s cubic-bezier(.2,.9,.3,1.3) both; animation-delay: .4s;
+  }
+  .bubble:hover { transform: translateY(-2px); }
+  .bubble:focus-visible, .micbtn:focus-visible, .playbtn:focus-visible { outline: 3px solid var(--peach); outline-offset: 3px; }
+  .bubble .live-text { min-height: 2.9em; }
+  .pill { display: inline-flex; align-items: center; gap: 6px; align-self: flex-start; white-space: nowrap; font-size: 13.5px; font-weight: 700;
+    color: var(--toast-ink); background: var(--toast-bg); padding: 4px 10px 4px 6px; border-radius: 20px; }
+  .pill svg { flex: 0 0 16px; width: 16px; height: 16px; fill: currentColor; }
+  .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  @keyframes pop { from { opacity: 0; transform: translateY(8px) scale(.95); } to { opacity: 1; transform: none; } }
+  @media (max-width: 820px) { .stage[data-v="a"] { min-height: 420px; } .stage[data-v="a"] .scene { height: 220px; margin-top: 180px; } .bubble { right: 0; } }
+
+  /* Variant B, "Voice panel": the app's keyboard panel, typing into a message field. */
+  .stage[data-v="b"] { min-height: 450px; place-items: center; padding: 28px 0; }
+  .panel { position: relative; width: min(380px, 100%); background: var(--panel-bg); border-radius: 28px; box-shadow: var(--shadow-lg); padding: 20px 20px 22px; }
+  .panel .peek { position: absolute; top: -50px; right: 26px; width: 44px; height: auto; filter: drop-shadow(0 6px 8px rgba(124, 45, 18, 0.18)); animation: bob 10.5s ease-in-out infinite; }
+  .field { background: var(--field-bg); border: 1px solid var(--border); border-radius: 16px; padding: 12px 14px; min-height: 92px; font-size: 16.5px; line-height: 1.5; }
+  .field .placeholder { color: var(--ink-dim); }
+  .panel .status { text-align: center; font-size: 13.5px; color: var(--ink-dim); margin: 16px 0 4px; min-height: 1.4em; }
+  .panel .partial { text-align: center; font-style: italic; color: var(--ink-dim); min-height: 3em; font-size: 15.5px; line-height: 1.45; margin: 0 6px; }
+  .controls { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; margin-top: 10px; }
+  .controls .x { justify-self: start; width: 44px; height: 44px; display: grid; place-items: center; color: var(--ink); }
+  .controls .ok { justify-self: end; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--toast-bg); color: var(--toast-ink); }
+  .controls svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+  .micbtn { position: relative; width: 76px; height: 76px; border-radius: 50%; border: 0; cursor: pointer; display: grid; place-items: center;
+    background: var(--accent-bg); color: var(--accent-ink); box-shadow: var(--shadow-lg); }
+  .micbtn::before { content: ""; position: absolute; inset: -8px; border-radius: 50%; border: 3px solid var(--mic); opacity: calc(var(--lvl, 0) * .7); transform: scale(calc(1 + var(--lvl, 0) * .22)); transition: transform .08s linear, opacity .08s linear; }
+  .micbtn svg { width: 30px; height: 30px; }
+  .micbtn .i-mic { fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; }
+  .micbtn .i-stop { fill: currentColor; width: 22px; height: 22px; }
+  .stage[data-v="b"] .credit { text-align: center; margin-top: 14px; }
+  .idle-only { display: inline; } .playing .idle-only, .done .idle-only { display: none; }
+
+  /* Variant C, "Waveform": the clip's real loudness as bars that fill as it plays, the words in large type. */
+  .stage[data-v="c"] { min-height: 420px; align-content: center; gap: 22px; padding: 20px 0; }
+  .stage[data-v="c"] > * { position: relative; }
+  .bigtext { font-size: clamp(26px, 3.4vw, 34px); font-weight: 700; letter-spacing: -0.01em; line-height: 1.25; min-height: 3.75em; }
+  .bigtext .hint { font-weight: 600; }
+  .wavebox { display: flex; align-items: center; gap: 14px; background: var(--card-bg); border-radius: 22px; padding: 14px 16px; box-shadow: var(--shadow-lg); }
+  .playbtn { flex: 0 0 52px; width: 52px; height: 52px; border-radius: 50%; border: 0; cursor: pointer; display: grid; place-items: center; background: var(--accent-bg); color: var(--accent-ink); }
+  .playbtn svg { width: 22px; height: 22px; fill: currentColor; }
+  .bars { flex: 1; display: flex; align-items: center; gap: 2px; height: 56px; min-width: 0; }
+  .bars i { flex: 1; min-width: 1px; border-radius: 2px; background: var(--bar-off); transition: background .15s ease; }
+  .bars i.on { background: var(--wave-grad); }
+  .jar-mini { display: flex; align-items: center; gap: 10px; }
+  .jar-mini img { width: 34px; height: auto; }
+
+  /* ---------- sections ---------- */
+  section { padding: 40px 0; }
+  h2 { font-weight: 700; font-size: 28px; letter-spacing: -0.02em; line-height: 1.2; margin: 0 0 8px; }
+  h2::before { content: ""; display: block; width: 44px; height: 6px; border-radius: 3px; background: var(--tile); margin-bottom: 14px; }
+  .sub { color: var(--ink-dim); font-size: 17px; margin: 0 0 28px; max-width: 660px; }
+
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  @media (max-width: 720px) { .steps { grid-template-columns: 1fr; } }
+  .step { background: var(--card-bg); color: var(--card-ink); border-radius: 20px; padding: 20px; display: flex; gap: 14px; box-shadow: var(--shadow); }
+  .step:hover, .features li:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+  .step .n {
+    flex: 0 0 40px; width: 40px; height: 40px; border-radius: 12px;
+    background: var(--tile); color: var(--toast-ink);
+    display: grid; place-items: center;
+  }
+  .step .n svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .step b { display: block; font-weight: 700; margin-bottom: 2px; }
+  .step span { color: var(--ink-dim); font-size: 15.5px; }
+  .kbds { margin-top: 22px; }
+  .kbds .label { font-weight: 700; font-size: 15px; margin: 0 0 10px; }
+
+  .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 14px; padding: 0; margin: 0; list-style: none; }
+  .features li { background: var(--card-bg); color: var(--card-ink); border-radius: 20px; padding: 20px; display: flex; gap: 14px; align-items: flex-start; box-shadow: var(--shadow); }
+  .ico { flex: 0 0 44px; width: 44px; height: 44px; border-radius: 14px; background: var(--tile); color: var(--toast-ink); display: grid; place-items: center; }
+  .ico svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .features b { display: block; font-weight: 700; margin-bottom: 2px; }
+  .features p { margin: 0; color: var(--ink-dim); font-size: 15.5px; }
+
+  /* support */
+  .support-card {
+    display: grid; grid-template-columns: auto 1fr auto; gap: 20px; align-items: center;
+    background: var(--card-bg); color: var(--card-ink); border-radius: 24px; padding: 28px;
+    box-shadow: var(--shadow-lg);
+  }
+  @media (max-width: 720px) { .support-card { grid-template-columns: 1fr; justify-items: start; } }
+  .heart { width: 56px; height: 56px; border-radius: 16px; background: var(--tile); color: var(--toast-ink); display: grid; place-items: center; animation: beat 2.4s ease-in-out infinite; }
+  .heart svg { width: 28px; height: 28px; fill: currentColor; }
+  @keyframes beat { 0%,100% { transform: scale(1); } 12% { transform: scale(1.08); } 24% { transform: scale(1); } 36% { transform: scale(1.06); } 48% { transform: scale(1); } }
+  .support-card h2 { font-size: 22px; margin: 0 0 4px; }
+  .support-card h2::before { display: none; }
+  .support-card p { margin: 0; color: var(--ink-dim); font-size: 15.5px; }
+
+  /* engines */
+  .engines { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 0; margin: 0 0 16px; list-style: none; }
+  @media (max-width: 900px) { .engines { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 620px) { .engines { grid-template-columns: 1fr; } }
+  .engines li { background: var(--card-bg); color: var(--card-ink); border-radius: 20px; padding: 20px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 4px; transition: transform .25s ease, box-shadow .25s ease; }
+  .engines li:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+  .engines b { font-weight: 700; font-size: 18px; }
+  .engines .by { font-size: 13.5px; color: var(--ink-dim); }
+  .engines p { margin: 6px 0 12px; color: var(--ink-dim); font-size: 15.5px; flex: 1; }
+  .links { display: flex; gap: 8px; flex-wrap: wrap; }
+  .links a { text-decoration: none; font-weight: 600; font-size: 14px; color: var(--toast-ink); background: var(--toast-bg); padding: 6px 12px; border-radius: 20px; }
+  .note-line { font-size: 14.5px; color: var(--ink-dim); margin: 0; max-width: 760px; }
+
+  /* screenshots */
+  /* --fl/--fr are the fade widths; JS sets the left one to 0 while scrolled to the
+     start (and the right one to 0 at the end) so a fully visible phone is never dimmed. */
+  .shots { --fl: 0px; --fr: 56px;
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 var(--fl), #000 calc(100% - var(--fr)), transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0, #000 var(--fl), #000 calc(100% - var(--fr)), transparent 100%);
+    display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 12px 4px 20px; margin: 0 -4px; scrollbar-width: thin; }
+  .shot { flex: 0 0 auto; scroll-snap-align: start; width: 206px; margin: 0; }
+  .phone { background: var(--bezel); border-radius: 32px; padding: 8px; box-shadow: var(--shadow-lg); }
+  /* The captures have no system bars, so draw a status bar (with the punch-hole
+     camera) and a gesture strip in each shot's own colours; otherwise the app
+     content sits jammed against the bezel and reads as zoomed in. */
+  .screen { position: relative; border-radius: 24px; overflow: hidden; background: var(--sb); }
+  .screen::before {
+    content: ""; display: block; height: 18px;
+    background: radial-gradient(circle at 50% 10px, #0D0D0D 0 3.5px, transparent 4px), var(--sb);
+  }
+  .screen::after {
+    content: ""; display: block; height: 13px;
+    background: linear-gradient(var(--si), var(--si)) center 5px / 54px 3px no-repeat, var(--nb);
+  }
+  .shot:nth-child(odd) .phone { transform: rotate(-1.4deg); }
+  .shot:nth-child(even) .phone { transform: rotate(1.4deg); }
+  .shot .phone:hover { transform: rotate(0) translateY(-6px); }
+  .phone img { display: block; width: 100%; height: auto; }
+  .shot figcaption { font-size: 14.5px; color: var(--ink-dim); text-align: center; margin-top: 12px; }
+
+  /* languages */
+  .langs { display: grid; grid-template-columns: 1fr 1.1fr; gap: 20px; margin: 0 0 20px; }
+  @media (max-width: 760px) { .langs { grid-template-columns: 1fr; } }
+  .live {
+    background: var(--card-bg); color: var(--card-ink); border-radius: 24px; padding: 24px;
+    box-shadow: var(--shadow-lg); display: flex; flex-direction: column; justify-content: center; min-height: 280px;
+    position: relative; overflow: hidden;
+  }
+  .live .tag { position: absolute; top: 20px; left: 20px; display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 700; color: var(--toast-ink); background: var(--toast-bg); padding: 6px 12px; border-radius: 20px; align-self: flex-start; }
+  .live .tag i { width: 8px; height: 8px; border-radius: 50%; background: var(--toast-ink); animation: blink 1.6s ease-in-out infinite; }
+  @keyframes blink { 0%,100% { opacity: .35; } 50% { opacity: 1; } }
+  .live .hello { font-size: clamp(36px, 4.6vw, 52px); font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; margin: 40px 0 6px; min-height: 1.2em; }
+  .live .which { color: var(--ink-dim); font-size: 15.5px; }
+  .live .engine { display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; font-weight: 700; font-size: 15px; }
+  .live .engine svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .live .swap { animation: swapin .5s ease both; }
+  @keyframes swapin { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  .tiles { display: grid; grid-template-columns: 1fr; gap: 10px; margin: 0; padding: 0; list-style: none; }
+  .tiles li { background: var(--card-bg); color: var(--card-ink); border-radius: 16px; padding: 12px 16px; box-shadow: var(--shadow); display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 2px 12px; transition: transform .25s ease, box-shadow .25s ease; }
+  .tiles li:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+  .tiles b { font-weight: 700; font-size: 16.5px; }
+  .tiles .eng { font-weight: 700; font-size: 13.5px; color: var(--toast-ink); background: var(--toast-bg); padding: 3px 10px; border-radius: 20px; white-space: nowrap; }
+  .tiles .ls { grid-column: 1 / -1; color: var(--ink-dim); font-size: 13.5px; }
+
+  .card { background: var(--card-bg); color: var(--card-ink); border-radius: 20px; padding: 20px 24px; box-shadow: var(--shadow); }
+  .card p { margin: 8px 0; }
+  .card p:first-child { margin-top: 0; } .card p:last-child { margin-bottom: 0; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+  .chips li { background: var(--chip-bg); color: #1c1917; border-radius: 20px; padding: 7px 14px; font-size: 15px; font-weight: 500; box-shadow: var(--shadow); }
+
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  @media (max-width: 720px) { .two { grid-template-columns: 1fr; } }
+
+  footer { margin: 48px 0 32px; padding-top: 24px; border-top: 1px solid var(--border); font-size: 14px; color: var(--ink-dim); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+  footer p { margin: 0; }
+  footer .credits { display: flex; flex-direction: column; gap: 2px; }
+
+  .js .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+  .js .reveal.in { opacity: 1; transform: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bubble, .heart, .live .tag i, .live .swap, .scene, .panel .peek, .live-text .new, .live-text .caret { animation: none; }
+    .js .reveal { opacity: 1; transform: none; transition: none; }
+    .btn, .cta-row .badge img, .phone, .step, .features li, .card, .support-card, .scene .ring, .micbtn::before { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="brand" href="#"><img src="assets/icon-96.webp" width="38" height="38" alt=""><span class="wordmark">marmalade stt</span></a>
+    <div class="hright">
+      <nav class="top">
+        <a href="#how">Where it works</a>
+        <a href="#features">Features</a>
+        <a href="#engines">Engines</a>
+        <a href="#languages">Languages</a>
+        <a href="#screenshots">Screenshots</a>
+        <a href="https://github.com/maxwhipw/marmalade-stt-android">Source</a>
+      </nav>
+      <button class="mode" id="modeToggle" aria-label="Switch between light and dark theme">
+        <svg class="moon" viewBox="0 0 24 24"><path d="M20 13A8 8 0 1 1 11 4a6.5 6.5 0 0 0 9 9Z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.5 4.5 1.4 1.4"/><path d="m18.1 18.1 1.4 1.4"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m4.5 19.5 1.4-1.4"/><path d="m18.1 5.9 1.4-1.4"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<div class="hero">
+  <div>
+    <span class="eyebrow">Open-source speech-to-text for Android</span>
+    <h1>Speak, and your phone types. Your voice never leaves it.</h1>
+    <p class="lede">Private, offline voice typing for your keyboard's mic key and for any app that asks Android for speech input. Your words appear while you're still talking.</p>
+    <div class="cta-row">
+      <a class="badge fdroid" href="https://f-droid.org/packages/app.marmalade.stt/"><img src="assets/get-it-on-fdroid.svg" alt="Get it on F-Droid" loading="lazy"></a>
+      <a class="btn btn-accent" href="https://github.com/maxwhipw/marmalade-stt-android/releases/latest">
+        <svg viewBox="0 0 24 24"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+        Download APK
+      </a>
+    </div>
+    <p class="fineprint">Free, open source, no ads, no accounts. Android 9 or later.<span class="fdroid-soon"> Coming soon to F-Droid.</span></p>
+  </div>
+
+  <!-- Hero variant A: caption bubble over the icon's jar and microphone. -->
+  <div class="stage" data-v="a">
+    <button class="bubble" type="button" data-play aria-label="Play a sample: a synthetic voice says “My voice never leaves my phone, and the words appear as I speak.” and the text appears as it speaks.">
+      <span class="live-text" data-text aria-hidden="true"><span class="hint">Tap, and watch Marmalade type what it hears.</span></span>
+      <span class="row"><span class="pill">
+        <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+        <svg class="i-stop" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h10v10H7z"/></svg>
+        <span>Try me</span>
+      </span><span class="credit">Voice: Kokoro. Text: Parakeet Ultra.</span></span>
+    </button>
+    <!-- The app icon's composition without its tile: the jar, and the microphone
+         drawn inline so it can follow the theme; two rings swell with the voice. -->
+    <svg class="scene" viewBox="16 20 80 68" aria-hidden="true">
+      <image href="assets/jar.svg" x="18" y="22" width="46" height="64"/>
+      <circle class="ring r1" cx="77.51" cy="52.5" r="15"/>
+      <circle class="ring r2" cx="77.51" cy="52.5" r="19.5"/>
+      <g class="mic" transform="translate(77.51,55.25) scale(1.22)">
+        <path d="M-4.4,-9.5 L-4.4,0 A4.4,4.4 0 0 0 4.4,0 L4.4,-9.5 A4.4,4.4 0 0 0 -4.4,-9.5 Z" stroke-width="0"/>
+        <path class="o" d="M-7.7,-1 L-7.7,0 A7.7,7.7 0 0 0 7.7,0 L7.7,-1" stroke-width="2.2" stroke-linecap="round"/>
+        <path class="o" d="M0,7.7 L0,11" stroke-width="2.2" stroke-linecap="round"/>
+        <path class="o" d="M-4.4,11 L4.4,11" stroke-width="2.2" stroke-linecap="round"/>
+      </g>
+    </svg>
+  </div>
+
+  <!-- Hero variant B: the app's voice panel typing into a message field. -->
+  <div class="stage" data-v="b">
+    <div>
+      <div class="panel">
+        <img class="peek" src="assets/jar.svg" width="44" height="61" alt="">
+        <div class="field" aria-hidden="true"><span class="live-text" data-text><span class="placeholder">Message</span></span></div>
+        <div class="status" data-status aria-hidden="true">Tap the mic to try it</div>
+        <div class="partial" data-partial aria-hidden="true"></div>
+        <div class="controls" aria-hidden="false">
+          <span class="x" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></span>
+          <button class="micbtn" type="button" data-play aria-label="Play a sample: a synthetic voice says “My voice never leaves my phone, and the words appear as I speak.” and the text appears as it speaks.">
+            <svg class="i-mic" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0"/><path d="M12 17.5V21"/></svg>
+            <svg class="i-stop" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="2"/></svg>
+          </button>
+          <span class="ok" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span>
+        </div>
+      </div>
+      <p class="credit">Voice: Kokoro. Text: Parakeet Ultra, as the app typed it.</p>
+    </div>
+  </div>
+
+  <!-- Hero variant C: the clip's real loudness as bars; the words in large type. -->
+  <div class="stage" data-v="c">
+    <div class="bigtext" aria-hidden="true"><span class="live-text" data-text><span class="hint">Press play and watch the words arrive.</span></span></div>
+    <div class="wavebox">
+      <button class="playbtn" type="button" data-play aria-label="Play a sample: a synthetic voice says “My voice never leaves my phone, and the words appear as I speak.” and the text appears as it speaks.">
+        <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+        <svg class="i-stop" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h10v10H7z"/></svg>
+      </button>
+      <div class="bars" data-bars aria-hidden="true"></div>
+    </div>
+    <div class="jar-mini"><img src="assets/jar.svg" width="34" height="47" alt=""><span class="credit">Voice: Kokoro. Text: Parakeet Ultra, as the app typed it.</span></div>
+  </div>
+
+  <audio id="sample" preload="none">
+    <source src="assets/audio/hero.webm" type='audio/webm; codecs="opus"'>
+    <source src="assets/audio/hero.mp3" type="audio/mpeg">
+  </audio>
+</div>
+
+<section id="how">
+  <h2>Works where you type</h2>
+  <p class="sub">Marmalade STT plugs into Android's own voice input, so you keep the keyboard and the apps you already use.</p>
+  <div class="steps">
+    <div class="step"><div class="n"><svg viewBox="0 0 24 24"><rect x="2.5" y="6" width="19" height="12" rx="2.5"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M8 14h8"/></svg></div><div><b>Your keyboard's mic key</b><span>Turn on Marmalade voice typing, and the mic key opens a small Marmalade panel that types what you say.</span></div></div>
+    <div class="step"><div class="n"><svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.9A8 8 0 1 1 21 12Z"/></svg></div><div><b>The speak-now popup</b><span>Apps with a "speak now" button get a small Marmalade sheet that returns your words when you finish.</span></div></div>
+    <div class="step"><div class="n"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M11 18h2"/></svg></div><div><b>Android's speech recognizer</b><span>Pick Marmalade STT as the speech recognition service, and apps that use it hear you through Marmalade.</span></div></div>
+  </div>
+  <div class="kbds">
+    <p class="label">Tested with</p>
+    <ul class="chips">
+      <li>FUTO Keyboard</li><li>HeliBoard</li><li>FlorisBoard</li><li>AnySoftKeyboard</li><li>Unexpected Keyboard</li><li>Android's own keyboard</li><li>Fossify Keyboard</li><li>OpenBoard</li><li>Thumb-Key</li>
+    </ul>
+    <p class="note-line" style="margin-top:14px">Gboard's mic key always opens Google's voice typing, but Android's keyboard switcher reaches Marmalade from any keyboard. The setup guide shows how for each keyboard you use, and the <a href="https://github.com/maxwhipw/marmalade-stt-android#works-with-your-keyboard">full table</a> is in the README.</p>
+  </div>
+</section>
+
+<section id="features">
+  <h2>What you get</h2>
+  <p class="sub">Everything happens on your phone. The only download is the speech engine you choose.</p>
+  <ul class="features">
+    <li><div class="ico"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div><div><b>Private</b><p>Speech is recognized on your phone, never by a cloud or online speech service. Audio is never saved or uploaded.</p></div></li>
+    <li><div class="ico"><svg viewBox="0 0 24 24"><path d="M2 8.5a15 15 0 0 1 20 0"/><path d="M5.5 12a10 10 0 0 1 13 0"/><path d="M9 15.5a5 5 0 0 1 6 0"/><path d="M3 3l18 18"/></svg></div><div><b>Offline</b><p>After a one-time download of a speech engine, it works without a connection.</p></div></li>
+    <li><div class="ico"><svg viewBox="0 0 24 24"><path d="M4 7h16"/><path d="M4 12h10"/><path d="M4 17h6"/><path d="M17 14v6"/></svg></div><div><b>Live text</b><p>Your words appear in real time as you speak, on most engines.</p></div></li>
+    <li><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><div><b>Knows when you're done</b><p>Smart Turn, the default for the speak-now popup, waits until you sound finished, so a pause to think rarely cuts you off. Or stop at a pause, or say an end word.</p></div></li>
+    <li><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18"/><path d="M12 3a14 14 0 0 0 0 18"/></svg></div><div><b>100 languages</b><p>The setup guide picks the best engine for your language, and for your phone's memory and speed.</p></div></li>
+    <li><div class="ico"><svg viewBox="0 0 24 24"><path d="m15 5 4 4"/><path d="M13 7 4 16v4h4l9-9"/><path d="M19 15v4M17 17h4"/></svg></div><div><b>Clean text</b><p>Optional cleanup removes filler words, writes numbers as digits and turns "new line" into the real thing, in English. Your own replacements and snippets work in any language.</p></div></li>
+    <li><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v18"/><path d="M12 3a9 9 0 0 1 0 18" fill="currentColor"/></svg></div><div><b>Light, dark, high contrast</b><p>Light or dark, four colors or your wallpaper's (Android 12 and later), and high-contrast colors for easier reading.</p></div></li>
+    <li><div class="ico"><svg viewBox="0 0 24 24"><path d="m8 7-5 5 5 5"/><path d="m16 7 5 5-5 5"/><path d="m14 4-4 16"/></svg></div><div><b>Free and open source</b><p>MIT licensed. No ads, no accounts, no analytics.</p></div></li>
+  </ul>
+</section>
+
+<section id="support">
+  <div class="support-card">
+    <div class="heart"><svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.5-9A5.5 5.5 0 0 1 12 6.2 5.5 5.5 0 0 1 21.5 12c-2 4.4-9.5 9-9.5 9Z"/></svg></div>
+    <div>
+      <h2>Support development</h2>
+      <p>Marmalade STT is free, with no ads and no accounts, and the app is the same whether you sponsor it or not. If it is useful to you, you can sponsor its development. Donations are voluntary and not tax-deductible.</p>
+    </div>
+    <a class="btn btn-default" href="https://github.com/sponsors/maxwhipw">Sponsor on GitHub</a>
+  </div>
+</section>
+
+<section id="engines">
+  <h2>Built on open speech models</h2>
+  <p class="sub">Marmalade runs open models directly on your phone. You download only the engine you choose, once, from GitHub, and every file is checked against a pinned SHA-256 hash.</p>
+  <ul class="engines">
+    <li>
+      <b>Parakeet</b><span class="by">NVIDIA · Moondream · CC BY 4.0</span>
+      <p>The default. Parakeet Ultra, Moondream's post-trained Parakeet TDT 0.6B v3, covers 25 European languages and detects which one you speak. Parakeet 110M is a small, fast English model, and Parakeet Japanese handles Japanese.</p>
+      <span class="links"><a href="https://huggingface.co/moondream/parakeet-ultra">Parakeet Ultra</a><a href="https://huggingface.co/nvidia/parakeet-tdt_ctc-110m">110M</a><a href="https://huggingface.co/nvidia/parakeet-tdt_ctc-0.6b-ja">Japanese</a></span>
+    </li>
+    <li>
+      <b>Canary 180M Flash</b><span class="by">NVIDIA · CC BY 4.0</span>
+      <p>A light engine for English, Spanish, German and French, for phones short of memory or speed.</p>
+      <span class="links"><a href="https://huggingface.co/nvidia/canary-180m-flash">Hugging Face</a></span>
+    </li>
+    <li>
+      <b>Nemotron 3.5</b><span class="by">NVIDIA · OpenMDW-1.1</span>
+      <p>Streams text as you speak in Hindi, Arabic and Vietnamese.</p>
+      <span class="links"><a href="https://huggingface.co/nvidia/nemotron-3.5-asr-streaming-0.6b">Hugging Face</a></span>
+    </li>
+    <li>
+      <b>Qwen3-ASR</b><span class="by">Alibaba Cloud · Apache-2.0</span>
+      <p>Chinese and Korean, and lighter to run than Whisper.</p>
+      <span class="links"><a href="https://github.com/QwenLM/Qwen3-ASR">GitHub</a><a href="https://huggingface.co/Qwen/Qwen3-ASR-0.6B">Hugging Face</a></span>
+    </li>
+    <li>
+      <b>Whisper Large v3 Turbo</b><span class="by">OpenAI · MIT</span>
+      <p>Every other language, 100 in all, detected automatically. It is slower on most phones, so it is recommended only where nothing lighter covers your language.</p>
+      <span class="links"><a href="https://github.com/openai/whisper">GitHub</a><a href="https://huggingface.co/openai/whisper-large-v3-turbo">Hugging Face</a></span>
+    </li>
+    <li>
+      <b>Smart Turn and Silero VAD</b><span class="by">Daily · BSD-2-Clause · Silero Team · MIT</span>
+      <p>Built into the app. Silero VAD hears where speech starts and stops, and Smart Turn v3.2 judges whether you sounded finished.</p>
+      <span class="links"><a href="https://github.com/pipecat-ai/smart-turn">Smart Turn</a><a href="https://github.com/snakers4/silero-vad">Silero VAD</a></span>
+    </li>
+  </ul>
+  <p class="note-line">The engines run on <a href="https://github.com/k2-fsa/sherpa-onnx">sherpa-onnx</a> (Apache-2.0, built from source) and <a href="https://github.com/microsoft/onnxruntime">ONNX Runtime</a> (MIT). Full credits and license texts are in the app and in <a href="https://github.com/maxwhipw/marmalade-stt-android/blob/main/NOTICE.md">NOTICE.md</a>.</p>
+</section>
+
+<section id="languages">
+  <h2>100 languages, the right engine for each</h2>
+  <p class="sub">Pick the language you speak, or leave it on Auto to follow your phone, and the setup guide recommends the engine that suits it.</p>
+  <div class="langs">
+    <div class="live">
+      <span class="tag"><i></i>Engine picked for your language</span>
+      <div>
+        <div class="hello" id="hello" lang="en">Hello</div>
+        <div class="which" id="which">English</div>
+        <div class="engine"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg><span id="eng">Parakeet Ultra</span></div>
+      </div>
+    </div>
+    <ul class="tiles">
+      <li><b>25 European languages</b><span class="eng">Parakeet Ultra</span><span class="ls">English, Bulgarian, Croatian, Czech, Danish, Dutch, Estonian, Finnish, French, German, Greek, Hungarian, Italian, Latvian, Lithuanian, Maltese, Polish, Portuguese, Romanian, Russian, Slovak, Slovenian, Spanish, Swedish, Ukrainian</span></li>
+      <li><b lang="ja">日本語</b><span class="eng">Parakeet Japanese</span><span class="ls">Japanese</span></li>
+      <li><b>Hindi, Arabic, Vietnamese</b><span class="eng">Nemotron 3.5</span></li>
+      <li><b>Chinese, Korean</b><span class="eng">Qwen3-ASR</span></li>
+      <li><b>Every other language</b><span class="eng">Whisper Large v3 Turbo</span><span class="ls">With more delay</span></li>
+    </ul>
+  </div>
+  <div class="card">
+    <p>On phones short of memory or speed, the guide suggests a lighter engine: Parakeet 110M for English, or Canary 180M Flash for Spanish, German and French.</p>
+    <p>The app itself is in 21 languages: English, Arabic, Chinese (Simplified and Traditional), Czech, Dutch, French, German, Hindi, Indonesian, Italian, Japanese, Korean, Polish, Portuguese (Brazil), Russian, Spanish, Swedish, Turkish, Ukrainian and Vietnamese.</p>
+  </div>
+</section>
+
+<section id="screenshots">
+  <h2>Screenshots</h2>
+  <p class="sub">A setup guide, an engine for your phone, and a panel that types what you say.</p>
+  <div class="shots">
+    <figure class="shot"><div class="phone"><div class="screen" style="--sb:#fff7ed;--nb:#fff7ed;--si:rgba(28,25,23,.45)"><img src="assets/screenshots/01-welcome.webp" width="540" height="1125" alt="Welcome screen of the setup guide: private by design" loading="lazy"></div></div><figcaption>Private by design</figcaption></figure>
+    <figure class="shot"><div class="phone"><div class="screen" style="--sb:#4a7228;--nb:#fff7ed;--si:rgba(28,25,23,.45)"><img src="assets/screenshots/02-keyboard-panel.webp" width="540" height="1125" alt="The Marmalade panel typing into a messaging app" loading="lazy"></div></div><figcaption>Typing from the mic key</figcaption></figure>
+    <figure class="shot"><div class="phone"><div class="screen" style="--sb:#fff7ed;--nb:#ffedd5;--si:rgba(28,25,23,.45)"><img src="assets/screenshots/03-engines.webp" width="540" height="1125" alt="Engines tab with the engine recommended for this phone" loading="lazy"></div></div><figcaption>An engine for your phone</figcaption></figure>
+    <figure class="shot"><div class="phone"><div class="screen" style="--sb:#1c1917;--nb:#292524;--si:rgba(245,245,244,.55)"><img src="assets/screenshots/04-engines-dark.webp" width="540" height="1125" alt="Engines tab in dark mode" loading="lazy"></div></div><figcaption>Engines, dark</figcaption></figure>
+    <figure class="shot"><div class="phone"><div class="screen" style="--sb:#fff7ed;--nb:#fff7ed;--si:rgba(28,25,23,.45)"><img src="assets/screenshots/05-setup-keyboards.webp" width="540" height="1125" alt="Setup guide step: dictate from your keyboard" loading="lazy"></div></div><figcaption>Setup for your keyboards</figcaption></figure>
+    <figure class="shot"><div class="phone"><div class="screen" style="--sb:#fff7ed;--nb:#ffedd5;--si:rgba(28,25,23,.45)"><img src="assets/screenshots/06-end-of-speech.webp" width="540" height="1125" alt="End of speech and text cleanup settings" loading="lazy"></div></div><figcaption>When it stops, how it writes</figcaption></figure>
+    <figure class="shot"><div class="phone"><div class="screen" style="--sb:#fff7ed;--nb:#fff7ed;--si:rgba(28,25,23,.45)"><img src="assets/screenshots/07-setup-done.webp" width="540" height="1125" alt="Setup guide finished: microphone, speech model, voice keyboard and speech recognition service ready" loading="lazy"></div></div><figcaption>All set</figcaption></figure>
+    <figure class="shot"><div class="phone"><div class="screen" style="--sb:#fff7ed;--nb:#ffedd5;--si:rgba(28,25,23,.45)"><img src="assets/screenshots/08-dictate-light-stopped.webp" width="540" height="1125" alt="Dictate tab with dictated text" loading="lazy"></div></div><figcaption>The Dictate screen</figcaption></figure>
+  </div>
+</section>
+
+<section id="privacy">
+  <div class="two">
+    <div>
+      <h2>Private by design</h2>
+      <p class="sub">No analytics, no tracking, no crash reporting, no accounts, and no server of ours. Speech is recognized on the phone, and audio is never saved or uploaded. The internet is used only to download the speech engines you choose, from GitHub, and every file is checked against a pinned SHA-256 hash. Android backup is turned off, so nothing is copied to the cloud.</p>
+      <p class="note-line"><a href="https://github.com/maxwhipw/marmalade-stt-android/blob/main/PRIVACY.md">Privacy policy</a></p>
+    </div>
+    <div id="license">
+      <h2>Open source</h2>
+      <p class="sub">Marmalade STT is MIT licensed, and the app you install contains no GPL or LGPL code. Its speech runtime, sherpa-onnx, is built from source with the text-to-speech parts left out. Every component's license is listed in the app under Settings › About › Open-source licenses.</p>
+      <p class="note-line"><a href="https://github.com/maxwhipw/marmalade-stt-android">Source code on GitHub</a> · <a href="https://github.com/maxwhipw/marmalade-stt-android/issues">Issues</a> · <a href="https://github.com/maxwhipw/marmalade-stt-android/blob/main/NOTICE.md">NOTICE.md</a></p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p><a href="https://github.com/maxwhipw/marmalade-stt-android">Source</a> · <a href="https://github.com/maxwhipw/marmalade-stt-android/issues">Issues</a> · <a href="https://github.com/maxwhipw/marmalade-stt-android/releases">Releases</a> · <a href="https://maxwhipw.github.io/marmalade-tts-android/">Marmalade TTS</a></p>
+  <div class="credits">
+    <p>Sample voice made with <a href="https://huggingface.co/hexgrad/Kokoro-82M">Kokoro-82M</a> (Apache-2.0); no recording of a person.</p>
+    <p>Fonts: Manrope and Momo Trust Display, <a href="assets/fonts/OFL.txt">SIL Open Font License 1.1</a>.</p>
+    <p class="fdroid">F-Droid badge © F-Droid, <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>.</p>
+  </div>
+</footer>
+
+</div>
+<script>
+  (function () {
+    var root = document.documentElement;
+    document.getElementById('modeToggle').addEventListener('click', function () {
+      var dark = root.dataset.theme === 'dark';
+      if (dark) { delete root.dataset.theme; } else { root.dataset.theme = 'dark'; }
+      try { localStorage.setItem('mstt-theme', dark ? 'light' : 'dark'); } catch (e) {}
+    });
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // ---- Hero: the sample clip and the text the app showed for it ----
+    // Parakeet Ultra's live partials and Final for assets/audio/hero.*, from the app's
+    // listening loop (tools/asr-bench, Pixel 8a timing), in seconds from the clip's start.
+    var PARTIALS = [
+      [0.862, 'My voice'],
+      [1.480, 'My voice never leaves my'],
+      [2.098, 'My voice never leaves my phone'],
+      [2.719, 'My voice never leaves my phone, and the words'],
+      [3.446, 'My voice never leaves my phone, and the words appear as I'],
+      [4.174, 'My voice never leaves my phone, and the words appear as I speak']
+    ];
+    var FINAL = [5.373, 'My voice never leaves my phone, and the words appear as I speak.'];
+    // The clip's loudness every 50 ms, 0-9 (variant C's bars, the mic rings).
+    var ENV = '067657775447773665666446641565545400000077776777464326666555655405420100';
+
+    var stage = document.querySelector('.stage[data-v="' + root.dataset.hero + '"]');
+    var sample = document.getElementById('sample');
+    var textEl = stage.querySelector('[data-text]');
+    var statusEl = stage.querySelector('[data-status]');
+    var partialEl = stage.querySelector('[data-partial]');
+    var barsEl = stage.querySelector('[data-bars]');
+    var idleHTML = textEl.innerHTML, idleStatus = statusEl && statusEl.textContent;
+    var bars = [];
+    if (barsEl) {
+      for (var i = 0; i < ENV.length; i++) {
+        var b = document.createElement('i');
+        b.style.height = (14 + (+ENV[i]) * 9.5) + '%';
+        barsEl.appendChild(b); bars.push(b);
+      }
+    }
+    var shown = '', t0 = 0, raf = 0, running = false;
+
+    function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+    // Words the previous partial didn't show fade in; words in progress stay underlined.
+    function render(text, final) {
+      var old = shown.split(' '), now = text.split(' '), k = 0;
+      while (k < old.length && k < now.length && old[k] === now[k]) k++;
+      var keep = now.slice(0, k).join(' '), add = now.slice(k).join(' ');
+      var html = esc(keep) + (keep && add ? ' ' : '') + (add && !reduce ? '<span class="new">' + esc(add) + '</span>' : esc(add));
+      textEl.innerHTML = final ? html : '<span class="composing">' + html + '</span><span class="caret"></span>';
+      if (partialEl) partialEl.textContent = final ? '' : text;
+      shown = text;
+    }
+    function setStatus(s) { if (statusEl) statusEl.textContent = s; }
+    function tick() {
+      var t = (performance.now() - t0) / 1000;
+      if (!sample.paused) t = sample.currentTime;  // follow the audio while it plays
+      var cur = '';
+      for (var j = 0; j < PARTIALS.length && PARTIALS[j][0] <= t; j++) cur = PARTIALS[j][1];
+      if (t >= FINAL[0]) { render(FINAL[1], true); setStatus('Done'); finish(); return; }
+      if (cur && cur !== shown) render(cur, false);
+      var e = Math.min(ENV.length - 1, Math.floor(t / 0.05));
+      stage.style.setProperty('--lvl', sample.paused ? 0 : (+ENV[e]) / 9);
+      for (var k = 0; k < bars.length; k++) bars[k].classList.toggle('on', k * 0.05 < t);
+      raf = requestAnimationFrame(tick);
+    }
+    function finish() {
+      running = false; cancelAnimationFrame(raf);
+      stage.classList.remove('playing'); stage.classList.add('done');
+      stage.style.setProperty('--lvl', 0);
+    }
+    function start() {
+      shown = ''; stage.classList.remove('done'); stage.classList.add('playing');
+      textEl.innerHTML = '<span class="caret"></span>'; if (partialEl) partialEl.textContent = '';
+      setStatus('Hearing you…');
+      bars.forEach(function (b) { b.classList.remove('on'); });
+      sample.currentTime = 0;
+      var p = sample.play(); if (p && p.catch) p.catch(function () { stop(); });
+      t0 = performance.now(); running = true; cancelAnimationFrame(raf); raf = requestAnimationFrame(tick);
+    }
+    function stop() {
+      sample.pause(); finish(); stage.classList.remove('done');
+      shown = ''; textEl.innerHTML = idleHTML; if (partialEl) partialEl.textContent = ''; setStatus(idleStatus);
+      bars.forEach(function (b) { b.classList.remove('on'); });
+    }
+    // After the clip ends the clock runs on, so the Final lands when the app sent it.
+    sample.addEventListener('ended', function () { t0 = performance.now() - sample.duration * 1000; });
+    stage.querySelector('[data-play]').addEventListener('click', function () { if (running) stop(); else start(); });
+
+    // ---- Languages: a greeting and the engine the setup guide picks for it ----
+    var greetings = [
+      ['Hello', 'English', 'en', 'Parakeet Ultra'], ['Bonjour', 'French', 'fr', 'Parakeet Ultra'],
+      ['Dzień dobry', 'Polish', 'pl', 'Parakeet Ultra'], ['こんにちは', 'Japanese', 'ja', 'Parakeet Japanese'],
+      ['你好', 'Chinese', 'zh', 'Qwen3-ASR'], ['안녕하세요', 'Korean', 'ko', 'Qwen3-ASR'],
+      ['नमस्ते', 'Hindi', 'hi', 'Nemotron 3.5'], ['مرحبا', 'Arabic', 'ar', 'Nemotron 3.5'],
+      ['Xin chào', 'Vietnamese', 'vi', 'Nemotron 3.5'], ['Merhaba', 'Turkish', 'tr', 'Whisper Large v3 Turbo'],
+      ['Habari', 'Swahili', 'sw', 'Whisper Large v3 Turbo']
+    ];
+    if (!reduce) {
+      var gi = 0, hello = document.getElementById('hello'), which = document.getElementById('which'), eng = document.getElementById('eng');
+      setInterval(function () {
+        gi = (gi + 1) % greetings.length;
+        hello.textContent = greetings[gi][0]; hello.lang = greetings[gi][2]; which.textContent = greetings[gi][1]; eng.textContent = greetings[gi][3];
+        hello.classList.remove('swap'); void hello.offsetWidth; hello.classList.add('swap');
+      }, 2400);
+    }
+
+    var strip = document.querySelector('.shots');
+    function fades() {
+      var max = strip.scrollWidth - strip.clientWidth;
+      strip.style.setProperty('--fl', strip.scrollLeft > 4 ? '56px' : '0px');
+      strip.style.setProperty('--fr', strip.scrollLeft < max - 4 ? '56px' : '0px');
+    }
+    strip.addEventListener('scroll', fades, { passive: true }); window.addEventListener('resize', fades); fades();
+
+    var els = document.querySelectorAll('section > *, .hero > :first-child');
+    els.forEach(function (el) { el.classList.add('reveal'); });
+    if (!('IntersectionObserver' in window)) { els.forEach(function (el) { el.classList.add('in'); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    els.forEach(function (el) { io.observe(el); });
+  })();
+</script>
+</body>
+</html>
