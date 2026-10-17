@@ -1,0 +1,1 @@
+Marmalade STT 1.0.1 corrige la compilation reproductible afin que F-Droid puisse publier la version ARM 32 bits. L'appli n'inclut plus de profil de démarrage précompilé : les premiers lancements après une installation ou une mise à jour peuvent donc être un peu plus lents. Rien d'autre ne change.

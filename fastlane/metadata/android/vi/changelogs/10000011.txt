@@ -1,0 +1,1 @@
+Marmalade STT 1.0.1 sửa bản dựng có thể tái tạo để F-Droid có thể phát hành bản cho ARM 32-bit. Ứng dụng không còn kèm hồ sơ khởi động được biên dịch sẵn, nên vài lần mở đầu tiên sau khi cài đặt hoặc cập nhật có thể chậm hơn một chút. Không có thay đổi nào khác.

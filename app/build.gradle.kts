@@ -96,8 +96,8 @@ android {
         // Written as a plain literal (not the formula as arithmetic):
         // F-Droid's checkupdates parses this line with a regex and only
         // sees the first number of an expression.
-        versionCode = 10000000
-        versionName = "1.0.0"
+        versionCode = 10000010
+        versionName = "1.0.1"
 
         vectorDrawables {
             useSupportLibrary = true
@@ -360,6 +360,18 @@ androidComponents {
         }
     }
 }
+
+// Reproducible builds (#86): AGP's compiled ART baseline profile
+// (assets/dexopt/baseline.prof and .profm) is not deterministic; it changes
+// with the build machine's core count. F-Droid's armv7 build of 1.0.0 failed
+// its byte comparison on exactly those two entries. Disabling the profile
+// tasks drops both files from the fdroid release APKs, as F-Droid's
+// Reproducible Builds docs recommend. The cost: ART compiles the app's hot
+// code from on-device profiling instead, so the first launches after an
+// install or update are a little slower. Play keeps its profile (the AAB
+// isn't byte-compared, and Play uses the profile for cloud profiles).
+tasks.matching { it.name.contains("FdroidRelease") && it.name.contains("ArtProfile") }
+    .configureEach { enabled = false }
 
 dependencies {
     // Core Android

@@ -6,6 +6,19 @@ and this project follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.0.1] - 2026-10-16
+
+### Fixed
+- The release build is reproducible on F-Droid's build server again, so
+  F-Droid can publish the 32-bit ARM (armeabi-v7a) APK. F-Droid's build of
+  1.0.0 for that ABI differed from ours only in the precompiled ART startup
+  profile (`assets/dexopt/baseline.prof` and `baseline.profm`), which the
+  Android build tools don't produce the same way on every machine; it
+  depends on the number of CPU cores, for one. The F-Droid and GitHub APKs no
+  longer include that profile. Android now learns which code to compile ahead
+  of time on the phone itself, so the first few launches after installing or
+  updating can be slightly slower. Nothing else changed.
+
 ## [1.0.0] - 2026-10-10
 
 The first public release. Nothing was published before it, so this lists

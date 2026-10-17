@@ -9,14 +9,16 @@
 #   2. `./gradlew :app:assembleFdroidRelease` on this host from a fresh clone of
 #      the same commit.
 # Before building it runs `fdroid lint` and `fdroid rewritemeta` on the recipe
-# (the real one, GitHub Repo: and all, with the commit filled in) and fails if
-# rewritemeta would change it.
+# (the real one, GitHub Repo: and all, every commit: set to the checkout's HEAD,
+# whatever hash or placeholder the recipe had) and fails if rewritemeta would
+# change it.
 #
-#   tools/release/fdroid-buildserver-check.sh <public-checkout> [--work DIR]
+#   tools/release/fdroid-buildserver-check.sh <public-checkout> [--work DIR] [--lint-only]
 #
 #   <public-checkout>  the "repo" directory publish-public.sh prints (dry run is
 #                      enough); its HEAD is the commit F-Droid will build
 #   --work             scratch directory (default: <public-checkout>/../fdroid-check)
+#   --lint-only        stop after fdroid lint + rewritemeta (no builds)
 #
 # Env: SUBMODULE_SOURCE=<checkout> makes the HOST clone take its third_party
 # submodules from a local checkout (offline). The container always fetches
@@ -40,16 +42,17 @@ NDK=26.3.11579264   # the recipe's ndk: r26d
 die() { echo "fdroid-buildserver-check: $*" >&2; exit 1; }
 log() { echo "[$(date +%H:%M:%S)] $*"; }
 
-pub="" work=""
+pub="" work="" lint_only=0
 while [ $# -gt 0 ]; do
   case $1 in
     --work) work=$2; shift 2 ;;
-    -h|--help) sed -n '2,31p' "$0"; exit 0 ;;
+    --lint-only) lint_only=1; shift ;;
+    -h|--help) sed -n '2,33p' "$0"; exit 0 ;;
     -*) die "unknown option $1" ;;
     *) [ -z "$pub" ] || die "one checkout only"; pub=$1; shift ;;
   esac
 done
-[ -n "$pub" ] || die "usage: $0 <public-checkout> [--work DIR]"
+[ -n "$pub" ] || die "usage: $0 <public-checkout> [--work DIR] [--lint-only]"
 pub=$(cd "$pub" && pwd)
 work=${work:-$(dirname "$pub")/fdroid-check}
 mkdir -p "$work"; work=$(cd "$work" && pwd)
@@ -82,13 +85,14 @@ in_container() {   # in_container <docker args...> -- <script>
 
 # --- 2. lint the real recipe ------------------------------------------------
 meta=fdroiddata/metadata/$APP.yml
-sed "s/COMMIT_FULL_HASH/$commit/" "$recipe_src" > "$meta"
+sed -E "s/^( *commit: ).*/\1$commit/" "$recipe_src" > "$meta"
 cp "$meta" lint-input.yml
 log "fdroid lint + rewritemeta"
 in_container -- "fdroid lint $APP && fdroid rewritemeta $APP" > lint.log 2>&1 \
   || { cat lint.log; die "fdroid lint failed (lint.log)"; }
 diff -u lint-input.yml "$meta" > rewritemeta.diff || { cat rewritemeta.diff; die "rewritemeta changes the recipe"; }
 log "lint clean, rewritemeta: no changes"
+if [ "$lint_only" = 1 ]; then rm -f "$meta" lint-input.yml; exit 0; fi
 
 # --- 3. fdroid build in the container --------------------------------------
 container_apk() { echo "fdroiddata/unsigned/${APP}_$1.apk"; }
