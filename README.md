@@ -15,6 +15,10 @@
 </p>
 
 <p align="center">
+  <a href="https://f-droid.org/packages/app.marmalade.stt/"><img src="https://f-droid.org/badge/get-it-on.png" alt="Get it on F-Droid" height="80"></a>
+</p>
+
+<p align="center">
   <a href="#install">Install</a> ·
   <a href="#features">Features</a> ·
   <a href="#setup">Setup</a> ·
@@ -64,7 +68,9 @@ Marmalade STT needs Android 9 or later.
 - **[GitHub Releases](https://github.com/maxwhipw/marmalade-stt-android/releases)**:
   download the APK for your phone. Most phones need the `arm64-v8a` one;
   older 32-bit phones the `armeabi-v7a` one.
-- **F-Droid**: on its way.
+- **[F-Droid](https://f-droid.org/packages/app.marmalade.stt/)**: install
+  it from the F-Droid app and it updates itself. F-Droid's builds are
+  checked against ours, so they carry the same signature as the GitHub APKs.
 
 Then open the app: the setup guide below walks you through the rest.
 
