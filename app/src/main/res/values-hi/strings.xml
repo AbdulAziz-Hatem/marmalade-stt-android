@@ -189,6 +189,8 @@
     <string name="recognizer_mic_blocked">स्पीच इनपुट को माइक्रोफ़ोन की ज़रूरत है। इसे ऐप की सेटिंग में अनुमतियां के अंदर चालू करें।</string>
     <string name="recognizer_open_settings">सेटिंग खोलें</string>
     <string name="recognizer_mic_stop">सुनना बंद करें</string>
+    <string name="recognizer_language_unavailable">इंस्टॉल किया गया कोई भी स्पीच मॉडल अनुरोध की गई भाषा नहीं समझता: %1$s। Marmalade STT में एक स्पीच मॉडल डाउनलोड करें।</string>
+    <string name="recognizer_language_not_supported">Marmalade STT में अनुरोध की गई भाषा के लिए कोई स्पीच मॉडल नहीं है: %1$s।</string>
 
     <!-- Press and hold the mic to lock listening -->
     <string name="lock_status">लॉक है: रोकने के लिए टैप करें</string>

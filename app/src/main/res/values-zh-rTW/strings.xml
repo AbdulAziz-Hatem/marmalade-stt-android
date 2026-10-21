@@ -188,6 +188,8 @@
     <string name="recognizer_mic_blocked">語音輸入需要使用麥克風。請在應用程式設定的「權限」中開啟。</string>
     <string name="recognizer_open_settings">開啟設定</string>
     <string name="recognizer_mic_stop">停止聆聽</string>
+    <string name="recognizer_language_unavailable">已安裝的語音模型都無法辨識所要求的語言：%1$s。請在 Marmalade STT 中下載一個。</string>
+    <string name="recognizer_language_not_supported">Marmalade STT 沒有適用於所要求語言的語音模型：%1$s。</string>
 
     <!-- Press and hold the mic to lock listening -->
     <string name="lock_status">已鎖定：輕觸即可停止</string>

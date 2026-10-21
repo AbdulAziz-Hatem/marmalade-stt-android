@@ -190,6 +190,8 @@
     <string name="recognizer_mic_blocked">Для голосового вводу потрібен мікрофон. Увімкніть доступ у налаштуваннях додатка, у розділі «Дозволи».</string>
     <string name="recognizer_open_settings">Відкрити налаштування</string>
     <string name="recognizer_mic_stop">Зупинити слухання</string>
+    <string name="recognizer_language_unavailable">Жодна встановлена модель мовлення не розуміє запитану мову: %1$s. Завантажте модель у Marmalade STT.</string>
+    <string name="recognizer_language_not_supported">У Marmalade STT немає моделі мовлення для запитаної мови: %1$s.</string>
 
     <!-- Утримання мікрофона -->
     <string name="lock_status">Закріплено: натисніть для зупинки</string>

@@ -188,6 +188,8 @@
     <string name="recognizer_mic_blocked">La saisie vocale a besoin du micro. Activez-le dans les paramètres de l\'application, sous Autorisations.</string>
     <string name="recognizer_open_settings">Ouvrir les paramètres</string>
     <string name="recognizer_mic_stop">Arrêter l\'écoute</string>
+    <string name="recognizer_language_unavailable">Aucun modèle vocal installé ne comprend la langue demandée&#160;: %1$s. Téléchargez-en un dans Marmalade STT.</string>
+    <string name="recognizer_language_not_supported">Marmalade STT n\'a aucun modèle vocal pour la langue demandée&#160;: %1$s.</string>
 
     <!-- Appui long sur le micro pour verrouiller l'écoute -->
     <string name="lock_status">Verrouillé&#160;: appuyez pour arrêter</string>

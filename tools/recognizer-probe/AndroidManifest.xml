@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  A third-party SpeechRecognizer caller for testing Marmalade STT's
+  RecognitionService from another app (#90). See README.md.
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="app.marmalade.stt.probe"
+    android:versionCode="1"
+    android:versionName="1">
+
+    <uses-sdk android:minSdkVersion="28" android:targetSdkVersion="36" />
+
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <!-- Package visibility: SpeechRecognizer.isRecognitionAvailable and the language-details broadcast. -->
+    <queries>
+        <intent>
+            <action android:name="android.speech.RecognitionService" />
+        </intent>
+        <package android:name="app.marmalade.stt" />
+        <package android:name="app.marmalade.stt.debug" />
+    </queries>
+
+    <application
+        android:label="Recognizer probe"
+        android:debuggable="true">
+        <activity
+            android:name=".ProbeActivity"
+            android:exported="true"
+            android:launchMode="singleTask" />
+    </application>
+</manifest>

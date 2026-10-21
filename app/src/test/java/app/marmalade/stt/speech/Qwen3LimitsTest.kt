@@ -36,11 +36,10 @@ class Qwen3LimitsTest {
 
     @Test
     fun `the KV cache length reaches sherpa's model config`() {
-        for (qwen3 in listOf(SttEngineCatalog.qwen3Asr(forUsers = false), SttEngineCatalog.qwen3Asr(forUsers = true))) {
-            val config = offlineModelConfig(qwen3, { role -> "/models/${qwen3.id}/${role.name}" }, "zh")
-            assertEquals(QWEN3_MAX_TOTAL_LEN, config.qwen3Asr.maxTotalLen)
-            assertEquals("/models/${qwen3.id}/${FileRole.DECODER.name}", config.qwen3Asr.decoder)
-        }
+        val qwen3 = SttEngineCatalog.byId(SttEngineCatalog.QWEN3)!!
+        val config = offlineModelConfig(qwen3, { role -> "/models/${qwen3.id}/${role.name}" }, "zh")
+        assertEquals(QWEN3_MAX_TOTAL_LEN, config.qwen3Asr.maxTotalLen)
+        assertEquals("/models/${qwen3.id}/${FileRole.DECODER.name}", config.qwen3Asr.decoder)
     }
 
     @Test
@@ -51,7 +50,11 @@ class Qwen3LimitsTest {
         )
         assertEquals(mapOf("max_new_tokens" to "350"), offlineStreamOptions(EngineFamily.QWEN3_ASR, "", 20.0))
         // A hint Qwen3 has no name for falls back to auto-detect.
-        assertEquals(mapOf("max_new_tokens" to "488"), offlineStreamOptions(EngineFamily.QWEN3_ASR, "hi", 28.6))
+        assertEquals(mapOf("max_new_tokens" to "488"), offlineStreamOptions(EngineFamily.QWEN3_ASR, "nb", 28.6))
+        assertEquals(
+            mapOf("language" to "Hindi", "max_new_tokens" to "488"),
+            offlineStreamOptions(EngineFamily.QWEN3_ASR, "hi", 28.6),
+        )
         for (family in listOf(EngineFamily.NEMO_TRANSDUCER, EngineFamily.CANARY)) {
             assertEquals(emptyMap<String, String>(), offlineStreamOptions(family, "en", 20.0))
         }

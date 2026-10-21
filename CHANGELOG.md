@@ -6,6 +6,51 @@ and this project follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-10-21
+
+### Fixed
+- Apps that use Android's speech recognizer, such as Duolingo's speaking
+  exercises, failed at once ("could not recognize the input") whenever
+  Marmalade STT was the phone's speech recognition service (#90, GitHub #1).
+  Android refused the microphone because our app was in the background;
+  Marmalade STT now opens it on behalf of the app that asked, as Android
+  12 and later expect.
+- Starting speech recognition again right after cancelling it no longer
+  fails as "busy" while the speech model is still loading.
+- The settings button next to Marmalade STT in Android's voice input and
+  keyboard settings opens the app's Settings tab instead of Dictate.
+
+### Added
+- Apps that ask for a language get it: if your current engine doesn't
+  recognize it, another downloaded engine that does is used for that
+  request; if none does, the app is told the language isn't available
+  (and the speak-now sheet says so). With "Keep engine ready" on, your own
+  engine is loaded again a minute after the last such request.
+- Apps can hand Marmalade STT their own audio to transcribe (Android 13 and
+  later), for example a recording: any common PCM format, kept in memory
+  only. Long sessions can return their text sentence by sentence.
+- No app can keep the microphone or the speech engine busy indefinitely: a
+  request stops after 10 minutes, and an app's own audio after 10 seconds
+  without (almost) any or after an hour; what was heard is still
+  transcribed.
+- Your own use wins: starting the voice keyboard, Dictate or the speak-now
+  sheet while another app is using Marmalade STT's speech recognizer ends
+  that app's request (it is told the recognizer is busy) instead of
+  showing you "busy".
+- More of Android's speech-recognizer options are honoured: the number of
+  results, raw text next to the formatted text, partial results without a
+  trailing full stop, the pause that ends speech and a minimum listening
+  time. Results report their confidence as unknown. Apps can ask which
+  languages are installed.
+
+### Changed
+- Qwen3-ASR can be picked for all 30 of its languages, English included,
+  not just Chinese and Korean (#88). Its card shows a rating for your
+  language where we measured it, and its English one elsewhere. With a
+  recognition language set, Qwen3-ASR is told that language. The setup
+  guide still recommends Qwen3-ASR only for Chinese and Korean, so no
+  recommendation changes.
+
 ## [1.0.1] - 2026-10-16
 
 ### Fixed

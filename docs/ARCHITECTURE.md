@@ -15,7 +15,7 @@ Background research: `docs/RESEARCH-2026-09-22.md`.
 | D1 | applicationId / package root `app.marmalade.stt` | Matches `app.marmalade.tts`. Can change until first public release. |
 | D2 | License **MIT**; the APK must stay free of GPL/LGPL | TTS APK is GPL only because of espeak-ng; STT needs no espeak. |
 | D3 | **sherpa-onnx built from source**, linked against `com.microsoft.onnxruntime:onnxruntime-android` from Maven. **Never use the prebuilt sherpa-onnx AAR.** As built (#2): sherpa-onnx v1.13.8 and its 8 FetchContent dependencies are pinned shallow submodules in `third_party/`. `app/src/main/cpp/CMakeLists.txt` builds fully offline (`FETCHCONTENT_FULLY_DISCONNECTED`) with TTS, diarization, the C API and the binaries all off. ORT 1.28.0 headers and .so files come from the Maven AAR (Gradle `extractOnnxRuntime`). `check<Variant>NativeLicenses` fails the build on any espeak/piper string in a packaged .so. Kotlin API wrappers are vendored in `com.k2fsa.sherpa.onnx`, unmodified except `OfflineStream.cancel` (patch 0003). Since #37, unreleased upstream fixes are patch files in `third_party/patches/sherpa-onnx/` (upstream #3965, Whisper's byte-level BPE character loss; our own removal of the Whisper decoder's 6-tokens-per-second cap; #49, our cancellable offline decodes; and #54, a cancel that also stops the encoder run, and a per-stream Whisper token budget; and #78, Whisper's, Canary's and Qwen3-ASR's ONNX Runtime sessions and Qwen3's tokenizer created on two threads at once), applied by CMake to a copy of the sources in the build tree; the host benchmark's `setup.sh` applies the same files. Since #53, kaldi-native-fbank gets the same treatment (`third_party/patches/kaldi-native-fbank/`: a real FFT for Whisper's log-mel), and sherpa's `FetchContent` builds the patched copy. | The prebuilt AAR statically links espeak-ng (GPL-3.0); verified 2026-09-22 with `strings` on `libsherpa-onnx-jni.so` from 1.12.32. Building from source is also what F-Droid wants. |
-| D4 | Multi-engine from day one: an `SttEngine` interface plus a catalog, as in the TTS app. Stage 1 ships one engine: **Whisper distil-small.en int8** (the proven Marmalade engine). As built in #13: five engine families, the stage-2 candidates as hidden developer engines, and an A/B benchmark (see "Engine families"). #27 made **Parakeet TDT 0.6B v3** the default, with a per-phone recommendation (see "Recommendation"). Since #45 (Max, 2026-10-02) the user engines are **Parakeet Ultra** (the default), Parakeet TDT_CTC 110M (the light one), Parakeet TDT_CTC 0.6B ja (Japanese, since #60: Max accepted ReazonSpeech-trained models, `docs/benchmarks/2026-10-japanese.md`), Canary 180M Flash, Nemotron 3.5 Streaming (since #37, Max's decision "A" on `docs/benchmarks/2026-10-nemotron-decision.md`: only its 1120 ms export, and only for Hindi, Arabic and Vietnamese; see "Nemotron 3.5 chunk size") Whisper Large v3 Turbo (for the languages the others don't cover) and, since Max approved its provenance on 2026-10-02, Qwen3-ASR 0.6B for Chinese and Korean (one switch, `SttEngineCatalog.QWEN3_FOR_USERS`, on; #50); Granite is a developer engine. Every other engine left the app (see "Engines that left the app"). | Max wants multiple engines. Parakeet TDT 0.6b v3 and others come in stage 2. |
+| D4 | Multi-engine from day one: an `SttEngine` interface plus a catalog, as in the TTS app. Stage 1 ships one engine: **Whisper distil-small.en int8** (the proven Marmalade engine). As built in #13: five engine families, the stage-2 candidates as hidden developer engines, and an A/B benchmark (see "Engine families"). #27 made **Parakeet TDT 0.6B v3** the default, with a per-phone recommendation (see "Recommendation"). Since #45 (Max, 2026-10-02) the user engines are **Parakeet Ultra** (the default), Parakeet TDT_CTC 110M (the light one), Parakeet TDT_CTC 0.6B ja (Japanese, since #60: Max accepted ReazonSpeech-trained models, `docs/benchmarks/2026-10-japanese.md`), Canary 180M Flash, Nemotron 3.5 Streaming (since #37, Max's decision "A" on `docs/benchmarks/2026-10-nemotron-decision.md`: only its 1120 ms export, and only for Hindi, Arabic and Vietnamese; see "Nemotron 3.5 chunk size") Whisper Large v3 Turbo (for the languages the others don't cover) and, since Max approved its provenance on 2026-10-02, Qwen3-ASR 0.6B (Chinese and Korean in #50; all 30 of its languages since #88, Max 2026-10-17, still recommended for Chinese and Korean only); Granite is a developer engine. Every other engine left the app (see "Engines that left the app"). | Max wants multiple engines. Parakeet TDT 0.6b v3 and others come in stage 2. |
 | D5 | Models are **downloaded, not bundled**: per-file downloads pinned by revision + sha256. Every engine's files are hosted as release assets on the public `maxwhipw/marmalade-stt-engines` repo: our own conversions (e.g. Parakeet Ultra; Max, 2026-09-28) and, since #75, the third-party exports re-hosted unchanged (no downloads from Hugging Face; Max, 2026-10-08). **Bundled exceptions:** Silero VAD (~0.6 MB, MIT), the Granite formatter (~7.5 MB, #33, Max-approved 2026-09-28), and Smart Turn v3.2 (~8.7 MB, BSD-2; Max-approved 2026-09-28, #44). | Marmalade's bundled model made a ~400 MB APK. VAD is tiny and required for every engine. |
 | D6 | Three Android entry points: **voice IME** (`imeSubtypeMode="voice"`, returns via `switchToPreviousInputMethod()`), **RecognizerIntent activity** (`ACTION_RECOGNIZE_SPEECH`), **RecognitionService**. | Voice IME is what FUTO Keyboard's external voice input uses (0.1.30: Voice Input → "Disable built-in voice input"; verified on the emulator in #11), and what nearly every other keyboard's mic key opens (#61: AOSP, HeliBoard, OpenBoard, FlorisBoard, AnySoftKeyboard, Unexpected, Fossify and Thumb-Key verified on the emulator; `docs/RESEARCH-keyboards-2026-10.md`). AnySoftKeyboard falls back to `ACTION_RECOGNIZE_SPEECH` when no voice IME is on (verified, #61). The other two cover everything else. |
 | D7 | Text post-processing is **rules only** in stage 1: a pure-Kotlin `:textproc` module. | Private, instant, testable. LLM rewrite = stage 2, opt-in. |
@@ -557,21 +557,91 @@ at startup with every other id that left the catalog
   (`ReadyForSpeech`): the mic is open and what the user says is kept, even
   while the model still loads. All three surfaces leave "Loading model…"
   at `Listening`. A missing model is
-  `ERROR_LANGUAGE_UNAVAILABLE` on Android 12+. `onCheckRecognitionSupport`
-  reports the active engine's languages (`recognitionLanguages`): only the
-  hinted one when the engine runs with a language hint, otherwise all it
-  knows with the spoken language first, plus the phone's full tag (e.g.
-  `en-US`) next to its language. A caller's `EXTRA_LANGUAGE` applies to
-  its request only (#43, `SpeechPrefs.forRequestLanguage`): it counts as
-  the chosen recognition language, so it is the engine's hint where the
-  engine takes one (`SpeechEngineManager.listen(language =)`; an engine
-  loads its hint, so a different one rebuilds it for that request) and the
-  cleanup language (`LivePipeline.get(language)`). The stored settings
-  don't change.
+  `ERROR_LANGUAGE_UNAVAILABLE` on Android 12+. A caller's `EXTRA_LANGUAGE`
+  applies to its request only (#43, `SpeechPrefs.forRequestLanguage`): it
+  counts as the chosen recognition language, so it is the engine's hint
+  where the engine takes one (`SpeechEngineManager.listen(language =)`; an
+  engine loads its hint, so a different one rebuilds it for that request)
+  and the cleanup language (`LivePipeline.get(language)`). Since #90 it
+  also picks the engine (`routeLanguage`, "Speech APIs" below). The stored
+  settings don't change.
+  The speak-now sheet shapes its request like the service
+  (`RecognitionRequest`, `routeLanguage`; segmented sessions and
+  `EXTRA_AUDIO_SOURCE` stay service-only); a language no installed engine
+  transcribes is shown on the sheet without listening and returns
+  `RESULT_CLIENT_ERROR` (#90). `LanguageDetailsReceiver` answers
+  `ACTION_GET_LANGUAGE_DETAILS` sent to our package with the installed
+  languages and the user's language. The gear Android shows next to the
+  keyboard and the recognition service opens the Settings tab (the
+  `SettingsActivity` alias of `MainActivity`).
 - `speech/LivePipeline` keeps the `TextPipeline` for the current
   `TextProcSettings`. The three surfaces call `get()` for each Final.
 - Debug builds add `debug/SpeechTestActivity`: a caller for all three entry
   points with a text field.
+
+
+**Speech APIs (#90).** Every public Android speech-input API a third-party
+recognizer can serve, and what we do with it. Requests are parsed once
+(`recognizer/RecognitionRequest`); the service maps a session onto the
+callbacks in `ServiceSession` and runs requests one at a time in
+`ServiceRequests` (both framework-free, unit-tested); the debug
+build logs every call and its extras (tag `RecognitionService`, never in
+release). `tools/recognizer-probe/` is a separate-package test client that
+drives all of it the way other apps do; `check.sh` there runs the
+scenarios on a device and checks the outcomes.
+
+*Root cause of Duolingo's "could not recognize the input" (GitHub #1):*
+Android checks `RECORD_AUDIO` along the attribution chain, the proxy (us)
+included, and our app is in the background whenever another app asks, so
+every request from another app failed at once with
+`ERROR_INSUFFICIENT_PERMISSIONS` (458–1103 ms on the API 35 emulator,
+three runs, by component and as the default service). All earlier tests
+drove the service from our own debug `SpeechTestActivity`, in our own
+foreground process, which hid it. Android 12+ wants the service to create
+an attribution context for the caller in `onStartListening` and open the
+mic with it (`AudioRecord.Builder().setContext`); the framework then skips
+its own check and blames the caller's foreground mic access. Android 9–11
+have no attribution sources; there the framework binds the service from
+the caller directly (not verified on those versions).
+
+| API | Status | What we do / why not |
+|---|---|---|
+| `startListening` from another app | **added (#90)** | the mic is opened for the caller (above) |
+| `readyForSpeech`, `beginningOfSpeech`, `rmsChanged`, `endOfSpeech` | supported | ready at `Listening` (#78); beginning once per request; rms on Google's -2..10 scale |
+| `RESULTS_RECOGNITION` | supported | one hypothesis (two with formatting) |
+| `CONFIDENCE_SCORES` | **added** | -1 per hypothesis, Android's "unavailable": sherpa-onnx's offline results carry no probabilities, and an app reading the array unguarded mustn't crash on a missing one. Also `EXTRA_CONFIDENCE_SCORES` on the sheet |
+| `EXTRA_MAX_RESULTS` | **added** | a cap; we never have more than two hypotheses |
+| `EXTRA_PARTIAL_RESULTS` | supported | `cleanPartial`ed partials, blank ones too (the last turned out to be noise) |
+| `EXTRA_PREFER_OFFLINE` | n/a | always offline |
+| `EXTRA_LANGUAGE` | **added: picks the engine** | the active engine if it transcribes the language, else the best installed one for it (`routeLanguage`: the recommender's near-best and preference order; the stored choice stays), else `ERROR_LANGUAGE_UNAVAILABLE` (an engine could be downloaded) or `ERROR_LANGUAGE_NOT_SUPPORTED` (none could); `ERROR_CLIENT` before Android 12. The sheet shows the same as a message. A language-learning app asks for the language being learned; running the active engine regardless would give it the wrong language's words (not seen in Duolingo's own calls: it couldn't be installed for #90) |
+| `EXTRA_LANGUAGE_PREFERENCE`, `EXTRA_SUPPORTED_LANGUAGES`, `EXTRA_ONLY_RETURN_LANGUAGE_PREFERENCE` | **added** | the `ACTION_GET_LANGUAGE_DETAILS` answer below |
+| `EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS` | **added** | clamped to 0.3–5 s when the request is parsed. A plain request: Pause with that silence instead of the user's end of speech; a segmented one: the session ends after that pause (`OneShotEnd.Pause`, counted from the last Final) |
+| `EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS` | **added** | at most 60 s. Both lengths are read as Long or Int only (typed on Android 13+, so a caller can't have a class of its choosing deserialised in our process); anything else, or a value that can't be read, counts as absent. No end of the session's own (first end, end word, timeout) before it; new speech cancels a held end |
+| The user's own use while another app listens | **pre-empts (Max, 2026-10-21)** | starting the voice keyboard's mic, Dictate or the speak-now sheet while another app's RecognitionService request holds the engine (mic or stream) ends that request at once (`SessionArbiter`): it is cancelled, its mic or stream closes, and the app gets `ERROR_RECOGNIZER_BUSY`; what it had heard is dropped, segments already sent stay sent. BUSY rather than `ERROR_CLIENT`: Android documents BUSY as "RecognitionService busy" and apps already handle it for a second client (retry later), while CLIENT means the app misused the API. Google's recognizer has no such hand-over to copy: on the emulator, when our Dictate took the mic during its session it heard silence and ended at its own timeout (`ERROR_NO_MATCH`). A release deferred behind the pre-empted session (a surface's hold closed meanwhile) is undone (`SttEngine.keep`), so the model isn't unloaded and reloaded under the user. The user's session then starts without a busy error, and on the same engine without reloading its model. Never the reverse: another app's request gets BUSY while the user's own session starts or runs, before it picks an engine (routed to another engine or hint it would otherwise build a second engine beside the user's: two mics, two models) |
+| How long a request may run | **bounded** | no caller holds the mic or the engine (the keyboard and Dictate would get busy) for ever: a request from the mic is stopped after 10 min (`RecognitionRequest.MAX_MIC_LENGTH_MS`; what was heard is still transcribed), whatever its extras asked; a stream by its audio (next row) |
+| `EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS` | not honoured | Smart Turn and Pause decide when speech is complete; Android documents the extra as possibly ignored |
+| `EXTRA_SEGMENTED_SESSION` (33+) | **added** | `onSegmentResults` per utterance, then `onEndOfSegmentedSession` (also with nothing heard); all three kinds. A spoken edit ("delete that") can't take back a segment already sent |
+| `EXTRA_AUDIO_SOURCE` + `_CHANNEL_COUNT`/`_ENCODING`/`_SAMPLING_RATE` (33+) | **added** | `speech/StreamCapture`: 8/16/24/32-bit and float PCM, 1–8 channels, 8–192 kHz, resampled to 16 kHz in memory, never written. Runs to the end of the stream; read as fast as the engine consumes it (not live: no drops, no too-slow evidence). The stream also ends when we have waited 10 s for audio without 1 s of it arriving (a stalled writer, a pipe never closed, one trickling bytes to keep it open; only time waiting on the caller counts, not decoding), after 1 h of audio (`/dev/zero`), or 1 h after its first read whatever it does (decoding included: a 1 h file on an engine slower than real time is cut short, with what was decoded by then). So a live streamer that only writes while someone speaks is ended by 10 s of not writing: it should send its silence too. A read returning no bytes (a non-blocking descriptor) waits 20 ms before the next. What came before is transcribed. The descriptor unparcelled from the intent is ours: taken before anything copies the extras (a copy keeps the incoming parcel's duplicate open until GC; `RecognitionRequest.from` reads with the intent's accessors), and closed when the request ends, however it ends (`ServiceRequests`). Needs no mic permission. Other formats: `ERROR_AUDIO` |
+| `EXTRA_ENABLE_FORMATTING` (33+) | **added** | we always format (`:textproc`); with the extra the lists are [formatted, raw]. Partials repeat the cleaned text as raw (the engine's own partial isn't kept) |
+| `EXTRA_HIDE_PARTIAL_TRAILING_PUNCTUATION` (33+) | **added** | trailing `.,;:!?。、，！？…` cut from partials |
+| `EXTRA_MASK_OFFENSIVE_WORDS` (33+, default true) | not supported | we never change what was said; no word lists |
+| `EXTRA_BIASING_STRINGS` (33+) | deferred | needs sherpa-onnx hotwords (modified beam search, transducers only); none of our engines run that way |
+| `onCheckRecognitionSupport` (33+) | **corrected** | installed = every installed engine's languages that may run (the active engine's first, the spoken language leading, the phone's full tag after its language); supported = what a download would add |
+| `onTriggerModelDownload` + `ModelDownloadListener` (33/34+) | **added (answers only)** | `onSuccess` when an installed engine covers the language, else the language error. We don't download on another app's say-so: hundreds of MB, and downloads are the user's choice (D10). Pending languages aren't reported |
+| `EXTRA_ENABLE_LANGUAGE_DETECTION` / `onLanguageDetection`, `EXTRA_ENABLE_LANGUAGE_SWITCH` (34+) | deferred | sherpa-onnx's detected language (Whisper's `lang`) isn't surfaced by our sessions, and Parakeet has none |
+| `EXTRA_REQUEST_WORD_TIMING`, `EXTRA_REQUEST_WORD_CONFIDENCE`, `RECOGNITION_PARTS`, `RESULTS_ALTERNATIVES` | not supported | no per-word data reaches the session |
+| `onBufferReceived` | not supported | optional; we don't send audio to apps |
+| `ERROR_RECOGNIZER_BUSY` on a quick restart | **fixed** | a start right after `cancel` waits for the cancelled session to let go of the engine (a model load can't be interrupted); reproduced with cancel + start 1.5 s in. Our own busy check is gone: Android already turns a second session away, so a session of ours still running at a start is one it is done with (a dead client's cancel still on its way: seen once, under load), and it is cancelled and waited for. A request cancelled while it waits still ends after the session it waited for, so a third start waits for the real holder too |
+| `ERROR_CLIENT` (start twice), `ERROR_RECOGNIZER_BUSY` (second client), `ERROR_SERVER_DISCONNECTED` (`destroy` then a new recognizer at once), `ERROR_TOO_MANY_REQUESTS` | framework | Android's own session bookkeeping sends these (one session per service); Google's recognizer gets the same on the emulator |
+| `ERROR_CANNOT_CHECK_SUPPORT`, `ERROR_CANNOT_LISTEN_TO_DOWNLOAD_EVENTS` | n/a | we implement both checks |
+| The client dying mid-session | handled | Android 12+ calls our `onCancel`; a callback that fails sends an error first (which frees the framework's session) and aborts the mic |
+| `ACTION_RECOGNIZE_SPEECH` | supported, **aligned** | the sheet; same request parsing and routing; `EXTRA_PROMPT` shown; `EXTRA_RESULTS_PENDINGINTENT` honoured; segmented sessions and audio sources stay service-only |
+| `ACTION_GET_LANGUAGE_DETAILS` | **added** | `LanguageDetailsReceiver`, for broadcasts addressed to our package (unreadable settings answer `RESULT_CANCELED`, never a crash). `getVoiceDetailsIntent()` never finds it: it reads `DETAILS_META_DATA` from the `ACTION_WEB_SEARCH` activity |
+| A routed request and Keep engine ready | handled | a request that `EXTRA_LANGUAGE` routed to another engine (or another language hint) loads it in the active engine's place; where one is kept loaded (Keep engine ready, or a surface's hold) the active engine is loaded again a minute after the last such request (`EngineHolds.routedSessionEnded`): the keyboard finds its engine ready, and a language app asking again soon finds its own still warm. The stored choice never changes. Accepted costs: a routed request arriving while the restore is loading the active engine loads its own beside it for a moment (two models at once, briefly); and an app alternating languages can make us load about two models a minute, only engines the user installed |
+| `SpeechRecognizer.isRecognitionAvailable` | supported | true with us as the service (the probe checks it) |
+| `recognition_service` `settingsActivity` | **fixed** | the gear opens the Settings tab (`SettingsActivity` alias), not Dictate; the voice keyboard's too |
+| `ACTION_VOICE_SEARCH_HANDS_FREE`, `ACTION_WEB_SEARCH` | n/a | search apps' actions; we are not one, and registering would hijack web search |
+| `createOnDeviceSpeechRecognizer` | n/a | binds the OEM's trusted on-device service (`config_defaultOnDeviceSpeechRecognitionService`), never a third-party one. Apps that use it don't reach us whatever the user picks |
 
 **Engine families (D4 as built, #13).** The catalog's `EngineFamily` picks
 the sherpa-onnx config and the session type:
@@ -732,9 +802,10 @@ developer engine (`SttEngineDescriptor.developer`): not offered on the
 Engines tab, and never the active engine, unless Settings → Developer engines
 is on (`SttEngineCatalog.runnable`). The exception: the engine recommended
 for the phone (see "Recommendation"). Turning the setting off falls back to
-the default without forgetting the pick. Since #45 they are Granite Speech
+the default without forgetting the pick. Since #45 they were Granite Speech
 5.0 470M and Qwen3-ASR 0.6B; Qwen3-ASR became a user engine for Chinese
-and Korean in #50 (other languages: still hidden). Each has an ethics
+and Korean in #50 and for all 30 of its languages in #88, so Granite is
+the only one left. Each has an ethics
 review in `docs/model-reviews/` and a NOTICE / licenses-screen entry.
 Every engine's files are release assets of the public
 `maxwhipw/marmalade-stt-engines` repo (D5), one release per engine, pinned by
@@ -895,7 +966,7 @@ and after the meter on the compact rows (which have no labels):
   else 1.
 - Japanese (FLEURS), Chinese (FLEURS + AISHELL-1), Korean (FLEURS +
   Zeroth-Korean): CER, a point stricter: ≤ 4 → 5, ≤ 7 → 4, ≤ 10 → 3,
-  ≤ 15 → 2, else 1. Turbo: ja 3, zh 3, ko 4; Qwen3: zh 4, ko 4;
+  ≤ 15 → 2, else 1. Turbo: ja 3, zh 3, ko 4; Qwen3: ja 2, zh 4, ko 4;
   Parakeet-ja: ja 4. Japanese is #52's FLEURS-ja run (`2026-10-japanese.md`;
   turbo 7.2 there against #37's 8.1 on the same clips, with #43's pipeline).
 - Near-best floor (#80, Max 2026-10-10, `EngineQuality.stars`): an engine
@@ -903,7 +974,7 @@ and after the meter on the compact rows (which have no labels):
   (`nearBest`, the recommender's margin) gets at least 3 stars, so the
   best engines of a hard language don't read Fair. It raises Nemotron 3.5's
   Hindi (14.4, the best) and Vietnamese (15.0) to 3, turbo's Vietnamese
-  (14.1) to 3, and the developer Qwen3-ASR's Vietnamese (16.3) from 1 to 3;
+  (14.1) to 3, and Qwen3-ASR's Vietnamese (16.3) from 1 to 3;
   Nemotron's Arabic was 3 already.
 - The user's language is the one they dictate in (#76,
   `ratingLanguage` in `EngineCardState.kt`): Settings → Recognition
@@ -914,7 +985,7 @@ and after the meter on the compact rows (which have no labels):
   offered for it (`EngineLanguages.of`) and was measured in it, else the
   English one when the engine is offered for English, else the one for its
   main language (the first of `EngineLanguages.of` that was measured:
-  Parakeet-ja Japanese, Nemotron 3.5 Hindi, Qwen3 Chinese), each labelled
+  Parakeet-ja Japanese, Nemotron 3.5 Hindi), each labelled
   "Tested in …"; "Not rated" only for an engine measured in none of its
   languages. Not "Not rated" for those: they were measured, and the card's
   language note already says they don't transcribe the user's language.
@@ -930,7 +1001,7 @@ one engine for the phone (`install/EngineRecommender.kt`, run by
   0.6B ja (Japanese, #60), Canary 180M Flash
   (Spanish, German, French; never English, where 110M is lighter, faster
   and better; #45 fix round), Nemotron 3.5 1120 ms (Hindi, Arabic,
-  Vietnamese, #37), Qwen3-ASR (Chinese and Korean; below), Whisper Large v3 Turbo (Whisper's ~100). The order is cheapest
+  Vietnamese, #37), Qwen3-ASR (Chinese and Korean only, though offered for 30; below), Whisper Large v3 Turbo (Whisper's ~100). The order is cheapest
   first, except Ultra, the main engine, ahead of 110M. A language none
   covers falls back to the English candidates.
 - Of the candidates that fit the phone (peak memory within 40 % of
@@ -942,8 +1013,7 @@ one engine for the phone (`install/EngineRecommender.kt`, run by
   turbo (~10× Ultra's cost, no live text) only for Turkish, Norwegian
   and the unmeasured languages only it covers. Japanese gets Parakeet-ja
   (CER 5.4; turbo's 7.2 is inside the margin but costlier), with turbo
-  only where Parakeet-ja fell behind and turbo fits the budget (and Chinese and
-  Korean if `QWEN3_FOR_USERS` were off). In a language with no
+  only where Parakeet-ja fell behind and turbo fits the budget. In a language with no
   measurement, the first that fits, as before.
 - Each engine counts as the phone runs it (#47, `SpeedBudget.forPhone`):
   without ORT's arena, leaner and slower, where it fits only that way.
@@ -966,24 +1036,35 @@ one engine for the phone (`install/EngineRecommender.kt`, run by
   the preference order would move English to Parakeet 110M (6.9 against
   Ultra's 5.5, inside the 2 points), which Max's "Ultra is the main engine"
   rules out; hence the order.
-- **Qwen3-ASR for Chinese and Korean (#50), behind one switch:**
-  `SttEngineCatalog.QWEN3_FOR_USERS`, on since Max approved its grey
-  provenance on 2026-10-02 (`docs/model-reviews/qwen3-asr-0.6b.md`,
-  re-checked for #50). On, Qwen3 is a user engine offered for zh and ko only
-  (`EngineLanguages.QWEN3_USER`; its card says so) and is recommended for
-  both on every phone that fits it in memory: Chinese because it is the
-  most accurate (CER 5.95 against turbo's 9.45), Korean because it is
-  within the margin (5.7 against 4.65) at about 0.6× turbo's cost. On a
-  Pixel 8a it runs lean (9.71 against turbo's 9.79, both "may be slow").
-  Off, it stays a developer engine for its 30 languages.
+- **Qwen3-ASR: offered for 30 languages, recommended for two (#50,
+  #88).** A user engine since Max approved its grey provenance on
+  2026-10-02 (`docs/model-reviews/qwen3-asr-0.6b.md`), first for Chinese and
+  Korean behind a switch (#50), and since #88 (Max, 2026-10-17: "If someone
+  wants to use it for English no reason not to stop them") for all 30 of its
+  languages (`EngineLanguages.QWEN3`, Qwen's own `SUPPORTED_LANGUAGES`), with
+  a language hint for each. Its cards rate it by the same rules as every
+  engine (measured: en 5, es 3, de 3, fr 1, ja 2, zh 4, ko 4, hi 1, ar 1,
+  tr 1, vi 3; its other 19 languages show its English marker, "Tested in
+  English"). The recommendation is unchanged:
+  `EngineRecommender.QWEN3_RECOMMENDED` keeps it a candidate for Chinese and
+  Korean only. Without that it would lead turbo as the first that fits in
+  every unmeasured language of its list (Thai, Indonesian, …), and take
+  Vietnamese where Nemotron 3.5 fell behind (16.3 is inside turbo's 14.1
+  margin). It is recommended for both on every phone that fits it in
+  memory: Chinese because it is the most accurate (CER 5.95 against turbo's
+  9.45), Korean because it is within the margin (5.7 against 4.65) at about
+  0.6× turbo's cost. On a Pixel 8a it runs lean (9.71 against turbo's 9.79,
+  both "may be slow"). A test pins every other language's recommendation,
+  on every phone class, to the one without Qwen3 in the catalog.
 - The result is stored with the rules version (`SpeechPrefs.recommendedEngineId`,
   `recommendationRules`): that engine is listed and can run even when it is
-  a developer engine (Qwen3-ASR, stored by a version before #37), and it is
+  a developer engine (as Qwen3-ASR was when a version before #37 stored it), and it is
   what runs while nothing is selected (`SttEngineCatalog.effective`), so
   leaving the setup guide mid-download doesn't fall back to an uninstalled
   default.
-- **Rules version (#50).** `EngineRecommender.RULES_VERSION` ("2", "2+qwen3"
-  with the switch on; "2" since #60's Parakeet-ja for Japanese) is stored with every recommendation. At startup a
+- **Rules version (#50).** `EngineRecommender.RULES_VERSION` ("2+qwen3": "2"
+  since #60's Parakeet-ja for Japanese, "+qwen3" for Qwen3-ASR's Chinese and
+  Korean; #88 recommends nothing new, so it stays) is stored with every recommendation. At startup a
   stored recommendation made under another version (or none, before #50) is
   redone (`SpeechPrefs.recommendationOutdated`, in `cleanUpRemovedEngines`),
   with `keepRunningEngine` pinning an installed engine that is running. So
@@ -1060,7 +1141,8 @@ transcribes (about 100 since #45 made Whisper turbo a user engine). Stored as
 - It is the language hint (`SpeechPrefs.languageFor`): a chosen language
   goes to every engine that takes it (Nemotron 3.5 hi/ar/vi, as keys of its
   prompt dictionary; turbo the #13 dozen plus hi/ar/tr/vi/nb since #37,
-  Qwen3 the #13 dozen; Canary
+  Qwen3 its 30 languages since #88, by the English names its prompt
+  takes, `QWEN3_LANGUAGE_NAMES`; Canary
   en/es/de/fr), and an engine that doesn't gets its default, auto-detect
   where it has it. On Auto, engines that detect the language do, and only
   Canary (no auto-detect) gets the system language; when that isn't one of

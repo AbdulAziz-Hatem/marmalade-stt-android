@@ -27,6 +27,7 @@ import app.marmalade.stt.MainActivity
 import app.marmalade.stt.data.AppearanceSettings
 import app.marmalade.stt.data.SpeechSettings
 import app.marmalade.stt.data.TextProcSettings
+import app.marmalade.stt.install.ModelInstaller
 import app.marmalade.stt.speech.EngineHold
 import app.marmalade.stt.speech.ListenSurface
 import app.marmalade.stt.speech.LivePipeline
@@ -42,12 +43,21 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * `ACTION_RECOGNIZE_SPEECH` (ARCHITECTURE.md D6): the "speak now" sheet that
  * mic buttons in other apps open. It listens for one request
  * ([OneShotSession]) and returns the text in `EXTRA_RESULTS`, or through
- * `EXTRA_RESULTS_PENDINGINTENT` when the caller passed one.
+ * `EXTRA_RESULTS_PENDINGINTENT` when the caller passed one
+ * ([recognizerResults]).
+ *
+ * The caller's extras shape the request as they do the RecognitionService's
+ * ([RecognitionRequest], #90): its language picks the engine
+ * ([routeLanguage]; a language no installed engine transcribes is a problem
+ * shown on the sheet, without listening), and it may ask for a pause, a
+ * minimum length, a number of results and formatting. Segmented sessions
+ * and `EXTRA_AUDIO_SOURCE` are the service's only ([RecognitionRequest.forSheet]).
  *
  * Result codes: `RESULT_OK` with text; `RESULT_CANCELED` when the user closes
  * the sheet while it listens; after a problem is shown, the matching
@@ -66,6 +76,9 @@ class RecognizeSpeechActivity : ComponentActivity() {
     @Inject lateinit var speechSettings: SpeechSettings
     @Inject lateinit var textProcSettings: TextProcSettings
     @Inject lateinit var appearanceSettings: AppearanceSettings
+    @Inject lateinit var installer: ModelInstaller
+
+    private val request by lazy { RecognitionRequest.from(intent).forSheet() }
 
     private val pipeline by lazy { LivePipeline(lifecycleScope, textProcSettings) }
     private var sheet by mutableStateOf(SheetState())
@@ -142,19 +155,35 @@ class RecognizeSpeechActivity : ComponentActivity() {
         if (engineHold == null) engineHold = engines.hold(preload = false) // the listen below loads
         sheet = SpeechSheet.started(modelLoaded = engines.engineOrNull()?.isLoaded == true)
         level.floatValue = 0f
-        val language = requestedLanguage(intent.getStringExtra(RecognizerIntent.EXTRA_LANGUAGE))
         session = lifecycleScope.launch {
-            // A caller's language applies to this request only (engine hint and cleanup).
-            val cleanupLanguage = language?.let { speechSettings.current().forRequestLanguage(it).cleanupLanguage() }
-            val request = OneShotSession(
-                listen = { engines.listen(ListenSurface.APPS, language = language, requestedAt = requestedAt).flowOn(Dispatchers.Default) },
+            val prefs = speechSettings.current()
+            val route = withContext(Dispatchers.IO) { routeLanguage(prefs, request.language) { installer.installedModel(it) != null } }
+            if (route is LanguageRoute.Unavailable) {
+                sheet = SpeechSheet.languageUnavailable(route, request.language.orEmpty())
+                return@launch
+            }
+            val engine = (route as? LanguageRoute.Engine)?.engine
+            // A caller's language applies to this request only (engine, hint and cleanup).
+            val cleanupLanguage = request.cleanupLanguage(prefs, engine)
+            val listening = OneShotSession(
+                listen = {
+                    engines.listen(
+                        ListenSurface.APPS,
+                        language = request.language,
+                        requestedAt = requestedAt,
+                        engine = engine,
+                        pauseSeconds = request.enginePauseSeconds(),
+                    ).flowOn(Dispatchers.Default)
+                },
                 stopEngine = engines::stop,
                 pipeline = { if (cleanupLanguage != null) pipeline.get(cleanupLanguage) else pipeline.get() },
+                end = request.end(),
+                minimumLengthMs = request.minimumLengthMs ?: 0,
             )
-            oneShot = request
+            oneShot = listening
             // Pressed and held before this request existed: lock it too.
-            if (sheet.locked) request.lock()
-            val outcome = request.run { event ->
+            if (sheet.locked) listening.lock()
+            val outcome = listening.run { event ->
                 if (event is SttEvent.Level) {
                     level.floatValue = Dictation.levelFraction(event.rmsDb)
                 } else {
@@ -162,7 +191,7 @@ class RecognizeSpeechActivity : ComponentActivity() {
                 }
             }
             level.floatValue = 0f
-            if (outcome is OneShotOutcome.Text) deliver(outcome.text) else sheet = SpeechSheet.ended(outcome)
+            if (outcome is OneShotOutcome.Text) deliver(outcome) else sheet = SpeechSheet.ended(outcome)
         }
     }
 
@@ -180,13 +209,11 @@ class RecognizeSpeechActivity : ComponentActivity() {
         engines.stop()
     }
 
-    private fun deliver(text: String) {
-        val results = arrayListOf(text)
+    private fun deliver(outcome: OneShotOutcome.Text) {
+        val results = request.hypotheses(outcome.text, outcome.raw)
         val pending = pendingResultIntent()
         if (pending != null) {
-            val fillIn = Intent()
-                .putExtras(intent.getBundleExtra(RecognizerIntent.EXTRA_RESULTS_PENDINGINTENT_BUNDLE) ?: Bundle())
-                .putStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS, results)
+            val fillIn = recognizerResults(results, intent.getBundleExtra(RecognizerIntent.EXTRA_RESULTS_PENDINGINTENT_BUNDLE))
             try {
                 pending.send(this, RESULT_OK, fillIn)
             } catch (e: PendingIntent.CanceledException) {
@@ -194,7 +221,7 @@ class RecognizeSpeechActivity : ComponentActivity() {
             }
             setResult(RESULT_OK)
         } else {
-            setResult(RESULT_OK, Intent().putStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS, results))
+            setResult(RESULT_OK, recognizerResults(results))
         }
         closeEngineHold()
         finish()
@@ -236,3 +263,19 @@ class RecognizeSpeechActivity : ComponentActivity() {
         const val TAG = "RecognizeSpeech"
     }
 }
+
+/**
+ * The `ACTION_RECOGNIZE_SPEECH` result, or the fill-in for the caller's
+ * `EXTRA_RESULTS_PENDINGINTENT` with its [extras]
+ * (`EXTRA_RESULTS_PENDINGINTENT_BUNDLE`): [hypotheses] in `EXTRA_RESULTS`,
+ * and an `EXTRA_CONFIDENCE_SCORES` of
+ * [RecognitionRequest.CONFIDENCE_UNAVAILABLE] for each.
+ */
+internal fun recognizerResults(hypotheses: ArrayList<String>, extras: Bundle? = null): Intent =
+    Intent()
+        .apply { if (extras != null) putExtras(extras) }
+        .putStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS, hypotheses)
+        .putExtra(
+            RecognizerIntent.EXTRA_CONFIDENCE_SCORES,
+            FloatArray(hypotheses.size) { RecognitionRequest.CONFIDENCE_UNAVAILABLE },
+        )

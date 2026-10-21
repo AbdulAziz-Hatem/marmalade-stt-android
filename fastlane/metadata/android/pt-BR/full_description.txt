@@ -26,7 +26,7 @@
 <p>O guia de configuração recomenda um motor de fala para seu idioma e para a memória e a velocidade do seu celular, com a opção de baixar e testar outros modelos.</p>
 
 <p><b>IDIOMAS</b></p>
-<p>Motores rápidos cobrem inglês, búlgaro, croata, tcheco, dinamarquês, holandês, estoniano, finlandês, francês, alemão, grego, húngaro, italiano, letão, lituano, maltês, polonês, português, romeno, russo, eslovaco, esloveno, espanhol, sueco, ucraniano, japonês, hindi, árabe e vietnamita. Chinês e coreano usam o Qwen3-ASR, mais leve que o Whisper. Os outros idiomas funcionam com o Whisper Large v3 Turbo, com mais atraso.</p>
+<p>Motores rápidos cobrem inglês, búlgaro, croata, tcheco, dinamarquês, holandês, estoniano, finlandês, francês, alemão, grego, húngaro, italiano, letão, lituano, maltês, polonês, português, romeno, russo, eslovaco, esloveno, espanhol, sueco, ucraniano, japonês, hindi, árabe e vietnamita. Chinês e coreano usam o Qwen3-ASR, mais leve que o Whisper. Ele também pode ser escolhido para seus outros 28 idiomas, incluindo o inglês. Os outros idiomas funcionam com o Whisper Large v3 Turbo, com mais atraso.</p>
 
 <p><b>CÓDIGO ABERTO</b></p>
 <p>O Marmalade STT tem licença MIT. Se quiser apoiar o projeto, Configurações → Apoio leva ao GitHub Sponsors; o app é o mesmo de qualquer forma.</p>

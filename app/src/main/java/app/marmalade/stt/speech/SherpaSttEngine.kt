@@ -209,7 +209,8 @@ class SherpaSttEngine<M : LoadedModel> internal constructor(
         try {
             // Before anything slow (#78): users start talking as soon as they tap the mic.
             val capture = try {
-                openMic(StreamingSession.MIC_HOP_SAMPLES, true)
+                options.audioInput?.invoke(StreamingSession.MIC_HOP_SAMPLES)
+                    ?: openMic(StreamingSession.MIC_HOP_SAMPLES, true)
             } catch (e: MicCaptureException) {
                 Log.w(TAG, "Couldn't open the microphone", e)
                 send(SttEvent.Error(SttErrorKind.MIC, e.message ?: "Couldn't open the microphone"))
@@ -282,6 +283,10 @@ class SherpaSttEngine<M : LoadedModel> internal constructor(
             }
             releaseNow()
         }
+    }
+
+    override fun keep() {
+        synchronized(lock) { if (!dropped) releasePending = false }
     }
 
     override fun drop() {

@@ -37,10 +37,17 @@ enum class SheetProblem {
     MIC_ERROR,
     RECOGNITION_ERROR,
     BUSY,
+
+    /** No installed engine transcribes the caller's language; one the user could download does (#90). */
+    LANGUAGE_UNAVAILABLE,
+
+    /** No engine of ours transcribes the caller's language (#90). */
+    LANGUAGE_NOT_SUPPORTED,
     ;
 
-    /** Try again makes sense (the user can't fix a missing model or permission from the sheet). */
-    val canRetry: Boolean get() = this != NO_MODEL && this != MIC_BLOCKED
+    /** Try again makes sense (the user can't fix a missing model, language or permission from the sheet). */
+    val canRetry: Boolean
+        get() = this != NO_MODEL && this != MIC_BLOCKED && this != LANGUAGE_UNAVAILABLE && this != LANGUAGE_NOT_SUPPORTED
 }
 
 /**
@@ -49,6 +56,8 @@ enum class SheetProblem {
  * @property locked the user pressed and held the mic (#43): the request
  *   doesn't end on its own ([OneShotSession.lock]) until a tap on the mic
  *   or Done.
+ * @property language the caller's `EXTRA_LANGUAGE` that the language
+ *   problems name; null otherwise.
  */
 data class SheetState(
     val phase: SheetPhase = SheetPhase.LOADING,
@@ -56,6 +65,7 @@ data class SheetState(
     val problem: SheetProblem? = null,
     val resultCode: Int = Activity.RESULT_CANCELED,
     val locked: Boolean = false,
+    val language: String? = null,
 ) {
     /** Press-and-hold would lock listening now: a session runs, not yet finishing or locked. */
     val canLock: Boolean
@@ -107,6 +117,22 @@ object SpeechSheet {
         }
         return SheetState(phase = SheetPhase.PROBLEM, problem = problem, resultCode = outcome.recognizerResultCode())
     }
+
+    /**
+     * No installed engine transcribes [language], the caller's (#90,
+     * [LanguageRoute.Unavailable]): the sheet doesn't listen. The result is
+     * `RESULT_CLIENT_ERROR`: `RecognizerIntent` has no language code, and
+     * the request itself (its language) is what can't be served, as with a
+     * missing model; `RESULT_NO_MATCH` would invite the caller to just ask
+     * again, and the server and network codes would point it at a
+     * connection we never use.
+     */
+    fun languageUnavailable(route: LanguageRoute.Unavailable, language: String) = SheetState(
+        phase = SheetPhase.PROBLEM,
+        problem = if (route.downloadable) SheetProblem.LANGUAGE_UNAVAILABLE else SheetProblem.LANGUAGE_NOT_SUPPORTED,
+        resultCode = RecognizerIntent.RESULT_CLIENT_ERROR,
+        language = language,
+    )
 
     /** The user said no to the microphone. */
     fun micDenied() = SheetState(

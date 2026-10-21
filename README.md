@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <img alt="version 1.0.1" src="https://img.shields.io/badge/version-1.0.1-F5A623">
+  <img alt="version 1.1.0" src="https://img.shields.io/badge/version-1.1.0-F5A623">
   &nbsp;<img alt="license MIT" src="https://img.shields.io/badge/license-MIT-3DA639">
   &nbsp;<img alt="Android 9 or later" src="https://img.shields.io/badge/Android-9%2B-3DDC84">
 </p>
@@ -241,7 +241,7 @@ Engines tab:
 | Parakeet Japanese | Japanese | 656 MB | while you speak |
 | Canary 180M Flash | English, Spanish, German, French (it can't detect which) | 207 MB | while you speak |
 | Nemotron 3.5 | Hindi, Arabic, Vietnamese | 682 MB | streamed as you speak |
-| Qwen3-ASR | Chinese, Korean | 987 MB | when you pause |
+| Qwen3-ASR | 30, detected | 987 MB | when you pause |
 | Whisper Large v3 Turbo | 100, detected | 1.0 GB | when you pause |
 
 The recommendation: Parakeet Ultra when it knows your language, Parakeet
@@ -290,7 +290,7 @@ columns.
 | Parakeet 110M | English, on phones short of memory or speed | English 6.9 % WER¹ | 0.4× |
 | Canary 180M Flash | Spanish, German and French, on phones short of memory or speed | English 8.4 % WER¹; Spanish 8.0, German 8.4, French 11.7 % WER² | 1.9× |
 | Parakeet Japanese | Japanese | 5.4 % CER (FLEURS, 200 clips) | 1.0× |
-| Qwen3-ASR | Chinese, Korean | Chinese 9.2 % CER (FLEURS), 2.7 % (AISHELL-1); Korean 6.5 % CER (FLEURS), 4.9 % (Zeroth-Korean) | 5.2× |
+| Qwen3-ASR | Chinese, Korean | Chinese 9.2 % CER (FLEURS), 2.7 % (AISHELL-1); Korean 6.5 % CER (FLEURS), 4.9 % (Zeroth-Korean); English 6.7 % WER¹ | 5.2× |
 | Nemotron 3.5 | Hindi, Arabic, Vietnamese | Hindi 14.4, Arabic 10.6, Vietnamese 15.0 % WER (FLEURS, 100 clips each) | 2.8× |
 | Whisper Large v3 Turbo | Every other language | English 7.0 % WER¹; Spanish 3.1, German 5.8, French 9.4 % WER² | 10× |
 
@@ -320,7 +320,8 @@ Fast engines cover English, Bulgarian, Croatian, Czech, Danish, Dutch,
 Estonian, Finnish, French, German, Greek, Hungarian, Italian, Latvian,
 Lithuanian, Maltese, Polish, Portuguese, Romanian, Russian, Slovak,
 Slovenian, Spanish, Swedish, Ukrainian, Japanese, Hindi, Arabic and
-Vietnamese. Chinese and Korean get Qwen3-ASR, lighter than Whisper. Other
+Vietnamese. Chinese and Korean get Qwen3-ASR, lighter than Whisper. You
+can also pick it for its 28 other languages, English included. Other
 languages work through Whisper Large v3 Turbo, with more delay.
 Settings → **Recognition language** is the language you speak: Auto (the
 phone's language) or one you pick. It decides the recommended engine and is

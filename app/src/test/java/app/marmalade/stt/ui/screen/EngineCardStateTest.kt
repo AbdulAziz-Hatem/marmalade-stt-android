@@ -81,10 +81,7 @@ class EngineCardStateTest {
     private val p110 = SttEngineCatalog.byId("parakeet-tdt-110m-en")!!
     private val pja = SttEngineCatalog.byId(SttEngineCatalog.PARAKEET_JA)!!
     private val granite = SttEngineCatalog.byId("granite-speech-5-470m")!! // a developer engine
-    private val qwen = SttEngineCatalog.byId(SttEngineCatalog.QWEN3)!!
-
-    /** Qwen3-ASR when it is a user engine (#50): over a Pixel 8a's budget, so under Other engines. */
-    private val qwenIfUser = listOfNotNull(qwen.takeIf { !it.developer })
+    private val qwen = SttEngineCatalog.byId(SttEngineCatalog.QWEN3)!! // over a Pixel 8a's budget: Other engines
 
     /** A phone [factor]× a Pixel 8a, from its probe time. */
     private fun phone(factor: Double) = SpeechPrefs(deviceProbeMs = (SpeedBudget.PROBE_REFERENCE_MS / factor).toLong())
@@ -93,7 +90,7 @@ class EngineCardStateTest {
     fun `a Pixel 8a gets five user engines as cards and turbo under Other engines`() {
         // The budget is 3.57 Parakeet Ultras; with the 1.25 band Nemotron 3.5 (2.86) fits, turbo (9.79) doesn't.
         assertEquals(
-            EngineGroups(main = listOf(default, p110, pja, canary, nemotron), other = listOf(turbo) + qwenIfUser),
+            EngineGroups(main = listOf(default, p110, pja, canary, nemotron), other = listOf(turbo) + qwen),
             engineGroups(SpeechPrefs(), emptySet()),
         )
         // The recommended engine leads.
@@ -108,7 +105,7 @@ class EngineCardStateTest {
         // Half a Pixel, 1.79 x 1.25 = 2.23: Nemotron (2.86) is over; Canary (1.92, measured on the
         // Pixel in #47) isn't.
         assertEquals(
-            EngineGroups(main = listOf(default, p110, pja, canary), other = listOf(nemotron, turbo) + qwenIfUser),
+            EngineGroups(main = listOf(default, p110, pja, canary), other = listOf(nemotron, turbo) + qwen),
             engineGroups(phone(0.5), emptySet()),
         )
         // At 0.7 x a Pixel (3.12) Canary and Nemotron fit and get cards.
@@ -118,7 +115,7 @@ class EngineCardStateTest {
     @Test
     fun `an engine that fell behind on this phone moves under Other engines`() {
         val groups = engineGroups(SpeechPrefs(tooSlowEngineIds = setOf(p110.id, nemotron.id)), emptySet())
-        assertEquals(EngineGroups(main = listOf(default, pja, canary), other = listOf(p110, nemotron, turbo) + qwenIfUser), groups)
+        assertEquals(EngineGroups(main = listOf(default, pja, canary), other = listOf(p110, nemotron, turbo) + qwen), groups)
     }
 
     @Test
@@ -126,7 +123,7 @@ class EngineCardStateTest {
         val groups = engineGroups(SpeechPrefs(), setOf(granite.id, default.id))
         assertEquals(listOf(default, p110, pja, canary, nemotron), groups.main)
         // Developer engines after the rest.
-        assertEquals(listOf(turbo) + qwenIfUser + granite, groups.other)
+        assertEquals(listOf(turbo) + qwen + granite, groups.other)
     }
 
     @Test
@@ -152,14 +149,14 @@ class EngineCardStateTest {
         val japanese = recommended("ja")
         assertEquals(pja.id, japanese.recommendedEngineId)
         assertEquals(
-            EngineGroups(main = listOf(pja, default, p110, canary, nemotron), other = listOf(turbo) + qwenIfUser),
+            EngineGroups(main = listOf(pja, default, p110, canary, nemotron), other = listOf(turbo) + qwen),
             engineGroups(japanese, emptySet()),
         )
         assertEquals(pja, japanese.activeEngine)
         // Hindi: Nemotron 3.5 leads, turbo stays under Other engines.
         val hindi = recommended("hi")
         assertEquals(nemotron.id, hindi.recommendedEngineId)
-        assertEquals(EngineGroups(main = listOf(nemotron, default, p110, pja, canary), other = listOf(turbo) + qwenIfUser), engineGroups(hindi, emptySet()))
+        assertEquals(EngineGroups(main = listOf(nemotron, default, p110, pja, canary), other = listOf(turbo) + qwen), engineGroups(hindi, emptySet()))
     }
 
     @Test

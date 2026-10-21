@@ -183,8 +183,9 @@ data class SttEngineDescriptor(
  * Flash (tiny; English, Spanish, German and French), Nemotron 3.5
  * Streaming (text as you speak; Hindi, Arabic and Vietnamese since #37),
  * and Whisper Large v3 Turbo (Whisper's ~100 languages, for those nothing
- * else covers). Granite and Qwen3-ASR are developer engines (#13) for benchmarking; Qwen3-ASR
- * becomes a user engine for Chinese and Korean with [QWEN3_FOR_USERS] (#50).
+ * else covers), and Qwen3-ASR (its 30 languages since #88, Max 2026-10-17;
+ * Chinese and Korean from #50). Granite is a developer engine (#13) for
+ * benchmarking.
  * A new entry needs a model-ethics review (`docs/model-reviews/`) and a
  * license entry in NOTICE.md and [app.marmalade.stt.data.LicenseCatalog].
  *
@@ -203,9 +204,9 @@ data class SttEngineDescriptor(
 object SttEngineCatalog {
 
     /**
-     * Language hints offered for the multilingual engines: auto-detect plus
-     * languages every one of them covers or detects. Short on purpose; it is
-     * a developer setting.
+     * The base of Whisper turbo's language hints: auto-detect plus the major
+     * languages. Short on purpose. Nemotron 3.5 and Qwen3-ASR (#88) list
+     * their own.
      */
     private val MULTILINGUAL_HINTS = listOf(
         LanguageOptions.AUTO, "en", "de", "es", "fr", "it", "pt", "nl", "pl", "ru", "ja", "ko", "zh",
@@ -224,6 +225,9 @@ object SttEngineCatalog {
      * keys, #27; `NEMOTRON_LANGUAGE_KEYS` in SherpaBackends maps each to its locale).
      */
     private val NEMOTRON_35_HINTS = listOf(LanguageOptions.AUTO) + EngineLanguages.NEMOTRON_35.sorted()
+
+    /** Qwen3-ASR takes a hint for each of its 30 languages (#88; `QWEN3_LANGUAGE_NAMES` in SherpaBackends names each). */
+    private val QWEN3_HINTS = listOf(LanguageOptions.AUTO) + EngineLanguages.QWEN3.sorted()
 
     /** Our engines repo (D5): every engine's files are release assets there, ours (#39) and re-hosted ones (#75). */
     private const val ENGINES_REPO = "maxwhipw/marmalade-stt-engines"
@@ -403,56 +407,18 @@ object SttEngineCatalog {
             )
         },
 
-        // ---- Qwen: a user engine for Chinese and Korean (QWEN3_FOR_USERS) ----------------
-        qwen3Asr(QWEN3_FOR_USERS),
-    )
-
-    const val PARAKEET_ULTRA = "parakeet-ultra"
-    const val PARAKEET_JA = "parakeet-ja"
-    const val QWEN3 = "qwen3-asr-0-6b"
-
-    /**
-     * Qwen3-ASR as a user engine for Chinese and Korean (#50), the one
-     * switch. On since Max approved its provenance for users on 2026-10-02
-     * (`docs/model-reviews/qwen3-asr-0.6b.md`: PASS but grey); while off it
-     * is a developer engine for its 30 languages. Turning it on changes the
-     * catalog entry ([qwen3Asr]), the languages it is offered for
-     * ([EngineLanguages.QWEN3_USER]) and so the recommendation
-     * ([EngineRecommender.RULES_VERSION] follows it).
-     */
-    const val QWEN3_FOR_USERS = true
-    /** Nemotron 3.5 Streaming, the 1120 ms export: the id stored settings use, so it stays. */
-    const val NEMOTRON_35_1120MS = "nemotron-3-5-streaming-1120ms"
-
-    /**
-     * The engine that runs when nothing else can: no pick stored, or a pick
-     * the user can no longer see. Parakeet Ultra, the main engine (#45). The
-     * setup guide installs and picks the engine [EngineRecommender] chooses
-     * for the phone's language and hardware, which is often not this one.
-     */
-    val default: SttEngineDescriptor get() = checkNotNull(byId(PARAKEET_ULTRA))
-
-    /**
-     * Qwen3-ASR's entry: a user engine for Chinese and Korean when
-     * [forUsers] ([QWEN3_FOR_USERS]), else a developer engine. Tests build
-     * both.
-     */
-    internal fun qwen3Asr(forUsers: Boolean): SttEngineDescriptor =
+        // ---- Qwen: a user engine for its 30 languages (#88), recommended for Chinese and Korean ----
         githubRelease(ENGINES_REPO, "v8").let { base ->
             SttEngineDescriptor(
                 id = QWEN3,
                 displayName = "Qwen3-ASR",
-                description = if (forUsers) R.string.engine_desc_qwen3_users else R.string.engine_desc_qwen3,
+                description = R.string.engine_desc_qwen3,
                 family = EngineFamily.QWEN3_ASR,
                 languages = listOf("mul"),
                 licenseId = "Apache-2.0",
                 licenseKey = "qwen3-asr-0.6b",
-                developer = !forUsers,
                 livePartials = false,
-                languageOptions = LanguageOptions(
-                    if (forUsers) listOf(LanguageOptions.AUTO, "zh", "ko") else MULTILINGUAL_HINTS,
-                    LanguageOptions.AUTO,
-                ),
+                languageOptions = LanguageOptions(QWEN3_HINTS, LanguageOptions.AUTO),
                 files = listOf(
                     asset(FileRole.CONV_FRONTEND, base, QWEN3, "conv_frontend.onnx", "d22dc4423e0940e49884e903d2ea2f7e5567c14fc1aed97e4e26d6b8f208ef9e", 44_148_281L),
                     asset(FileRole.ENCODER, base, QWEN3, "encoder.int8.onnx", "60748d3e6744a57c9c91e1b17424a6c2990567e8adceb0783940c03ed98fa9d9", 182_491_662L),
@@ -474,7 +440,23 @@ object SttEngineCatalog {
                     asset(FileRole.TOKENIZER_CONFIG, base, QWEN3, "tokenizer_config.json", "4942d005604266809309cabc9f4e9cb89ce855d59b14681fdc0e1cc62ea26c4c", 12_487L),
                 )
             },
-        )
+        ),
+    )
+
+    const val PARAKEET_ULTRA = "parakeet-ultra"
+    const val PARAKEET_JA = "parakeet-ja"
+    const val QWEN3 = "qwen3-asr-0-6b"
+
+    /** Nemotron 3.5 Streaming, the 1120 ms export: the id stored settings use, so it stays. */
+    const val NEMOTRON_35_1120MS = "nemotron-3-5-streaming-1120ms"
+
+    /**
+     * The engine that runs when nothing else can: no pick stored, or a pick
+     * the user can no longer see. Parakeet Ultra, the main engine (#45). The
+     * setup guide installs and picks the engine [EngineRecommender] chooses
+     * for the phone's language and hardware, which is often not this one.
+     */
+    val default: SttEngineDescriptor get() = checkNotNull(byId(PARAKEET_ULTRA))
 
     fun byId(id: String): SttEngineDescriptor? = engines.firstOrNull { it.id == id }
 

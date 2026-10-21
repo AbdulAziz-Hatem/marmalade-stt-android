@@ -26,7 +26,7 @@
 <p>De installatiehulp raadt een spraakengine aan voor je taal en voor het geheugen en de snelheid van je telefoon, met de mogelijkheid om andere modellen te downloaden en uit te proberen.</p>
 
 <p><b>TALEN</b></p>
-<p>Snelle engines dekken Engels, Bulgaars, Kroatisch, Tsjechisch, Deens, Nederlands, Estisch, Fins, Frans, Duits, Grieks, Hongaars, Italiaans, Lets, Litouws, Maltees, Pools, Portugees, Roemeens, Russisch, Slowaaks, Sloveens, Spaans, Zweeds, Oekraïens, Japans, Hindi, Arabisch en Vietnamees. Chinees en Koreaans krijgen Qwen3-ASR, dat lichter is dan Whisper. Andere talen werken via Whisper Large v3 Turbo, met meer vertraging.</p>
+<p>Snelle engines dekken Engels, Bulgaars, Kroatisch, Tsjechisch, Deens, Nederlands, Estisch, Fins, Frans, Duits, Grieks, Hongaars, Italiaans, Lets, Litouws, Maltees, Pools, Portugees, Roemeens, Russisch, Slowaaks, Sloveens, Spaans, Zweeds, Oekraïens, Japans, Hindi, Arabisch en Vietnamees. Chinees en Koreaans krijgen Qwen3-ASR, dat lichter is dan Whisper. Je kunt het ook kiezen voor zijn 28 andere talen, Engels inbegrepen. Andere talen werken via Whisper Large v3 Turbo, met meer vertraging.</p>
 
 <p><b>OPEN SOURCE</b></p>
 <p>Marmalade STT valt onder de MIT-licentie. Wil je het project steunen, dan linkt Instellingen → Ondersteuning naar GitHub Sponsors; de app is hoe dan ook dezelfde.</p>

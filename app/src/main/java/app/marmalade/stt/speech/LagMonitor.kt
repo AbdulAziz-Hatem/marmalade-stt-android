@@ -10,6 +10,8 @@ import kotlin.math.roundToInt
  * speaker. Measured in 100 ms mic hops, with no clock: the mic delivers hops
  * in real time, so hops captured is time, and the consumer reports how many
  * of them it has dealt with (VAD'd and, for a streaming engine, decoded).
+ * A non-live capture (a caller's stream, #90) isn't time: [micSession]
+ * reads it in step with the consumer, so it never registers as lag.
  *
  * - Catching up: behind by more than [BEHIND_SECONDS], until back under
  *   [CAUGHT_UP_SECONDS]. The sessions then skip or batch partials so the

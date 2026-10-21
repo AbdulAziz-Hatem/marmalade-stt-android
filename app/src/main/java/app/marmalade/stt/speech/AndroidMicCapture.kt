@@ -1,11 +1,13 @@
 package app.marmalade.stt.speech
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.media.AudioFormat
 import android.media.AudioRecord
 import android.media.MediaRecorder
 import android.media.audiofx.AutomaticGainControl
 import android.media.audiofx.NoiseSuppressor
+import android.os.Build
 import android.util.Log
 import java.util.concurrent.atomic.AtomicBoolean
 import kotlinx.coroutines.currentCoroutineContext
@@ -27,25 +29,48 @@ private const val TAG = "MicCapture"
  * @param hardwareEffects attach the platform `NoiseSuppressor` and
  *   `AutomaticGainControl` to the record session where the device has them.
  *   On the VOICE_RECOGNITION path they are the only NS/AGC in the chain.
+ * @param attribution an attribution context for another app (Android 12+,
+ *   `Context.createContext` with the caller as next attribution source):
+ *   the RecognitionService records for the app that asked, so Android checks
+ *   and blames that app's mic access, and lets it through while that app is
+ *   in the foreground and ours is not (#90). Null: the mic is ours.
  * @throws MicCaptureException when the mic can't be opened or started.
  */
 // Permission is the caller's job; a missing grant is caught below as SecurityException.
 @SuppressLint("MissingPermission")
-fun openMicCapture(hopSamples: Int, hardwareEffects: Boolean): MicCapture {
+fun openMicCapture(hopSamples: Int, hardwareEffects: Boolean, attribution: Context? = null): MicCapture {
     val minBuf = AudioRecord.getMinBufferSize(
         MIC_SAMPLE_RATE, AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT,
     )
+    val bufferBytes = maxOf(minBuf * 2, hopSamples * 2 * 4)
     val record = try {
-        AudioRecord(
-            MediaRecorder.AudioSource.VOICE_RECOGNITION,
-            MIC_SAMPLE_RATE,
-            AudioFormat.CHANNEL_IN_MONO,
-            AudioFormat.ENCODING_PCM_16BIT,
-            maxOf(minBuf * 2, hopSamples * 2 * 4),
-        )
+        if (attribution != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            AudioRecord.Builder()
+                .setContext(attribution)
+                .setAudioSource(MediaRecorder.AudioSource.VOICE_RECOGNITION)
+                .setAudioFormat(
+                    AudioFormat.Builder()
+                        .setSampleRate(MIC_SAMPLE_RATE)
+                        .setChannelMask(AudioFormat.CHANNEL_IN_MONO)
+                        .setEncoding(AudioFormat.ENCODING_PCM_16BIT)
+                        .build(),
+                )
+                .setBufferSizeInBytes(bufferBytes)
+                .build()
+        } else {
+            AudioRecord(
+                MediaRecorder.AudioSource.VOICE_RECOGNITION,
+                MIC_SAMPLE_RATE,
+                AudioFormat.CHANNEL_IN_MONO,
+                AudioFormat.ENCODING_PCM_16BIT,
+                bufferBytes,
+            )
+        }
     } catch (e: SecurityException) {
         throw MicCaptureException("Microphone permission not granted", e)
     } catch (e: IllegalArgumentException) {
+        throw MicCaptureException("Microphone configuration rejected", e)
+    } catch (e: UnsupportedOperationException) {
         throw MicCaptureException("Microphone configuration rejected", e)
     }
     if (record.state != AudioRecord.STATE_INITIALIZED) {

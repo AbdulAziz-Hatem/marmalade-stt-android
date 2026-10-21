@@ -67,6 +67,7 @@ import app.marmalade.stt.ui.components.micColors
 import app.marmalade.stt.ui.components.rememberAnnouncer
 import app.marmalade.stt.ui.components.rememberMicMeter
 import app.marmalade.stt.ui.contentDirection
+import app.marmalade.stt.ui.screen.languageNameInText
 import app.marmalade.stt.ui.theme.LocalWordmarkColor
 import app.marmalade.stt.ui.theme.Wordmark
 
@@ -144,7 +145,7 @@ fun RecognizeSpeechSheet(
                 )
                 Spacer(Modifier.height(12.dp))
                 if (state.phase == SheetPhase.PROBLEM) {
-                    ProblemBody(state.problem, onCancel, onRetry, onOpenApp, onOpenSettings)
+                    ProblemBody(state, onCancel, onRetry, onOpenApp, onOpenSettings)
                 } else {
                     ListeningBody(state, prompt, level, onCancel, onDone, onLock)
                 }
@@ -207,15 +208,21 @@ private fun ListeningBody(
 
 @Composable
 private fun ProblemBody(
-    problem: SheetProblem?,
+    state: SheetState,
     onCancel: () -> Unit,
     onRetry: () -> Unit,
     onOpenApp: () -> Unit,
     onOpenSettings: () -> Unit,
 ) {
+    val problem = state.problem
     // The message replaces the listening body, so it is a new node, which a
     // live region wouldn't announce: it is spoken once when it appears (#68).
-    val message = stringResource(problem.messageRes())
+    val message = when (problem) {
+        // The caller's language, named in the UI's language (#90).
+        SheetProblem.LANGUAGE_UNAVAILABLE, SheetProblem.LANGUAGE_NOT_SUPPORTED ->
+            stringResource(problem.messageRes(), languageNameInText(state.language.orEmpty()))
+        else -> stringResource(problem.messageRes())
+    }
     val announce = rememberAnnouncer()
     LaunchedEffect(message) { announce(message) }
     Text(
@@ -228,7 +235,7 @@ private fun ProblemBody(
     Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
         MarmaladeTextButton(onClick = onCancel) { Text(stringResource(R.string.recognizer_cancel)) }
         when {
-            problem == SheetProblem.NO_MODEL ->
+            problem == SheetProblem.NO_MODEL || problem == SheetProblem.LANGUAGE_UNAVAILABLE ->
                 AccentButton(onClick = onOpenApp, textRes = R.string.recognizer_open_app)
             problem == SheetProblem.MIC_BLOCKED ->
                 AccentButton(onClick = onOpenSettings, textRes = R.string.recognizer_open_settings)
@@ -347,6 +354,8 @@ private fun SheetProblem?.messageRes(): Int = when (this) {
     SheetProblem.MIC_ERROR -> R.string.dictate_error_mic
     SheetProblem.RECOGNITION_ERROR -> R.string.dictate_error_recognition
     SheetProblem.BUSY -> R.string.dictate_error_busy
+    SheetProblem.LANGUAGE_UNAVAILABLE -> R.string.recognizer_language_unavailable
+    SheetProblem.LANGUAGE_NOT_SUPPORTED -> R.string.recognizer_language_not_supported
 }
 
 /** "Locked: tap to stop" with a lock icon; TalkBack announces it (a polite live region). */

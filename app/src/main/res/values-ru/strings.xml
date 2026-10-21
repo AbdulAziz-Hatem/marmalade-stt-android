@@ -190,6 +190,8 @@
     <string name="recognizer_mic_blocked">Для голосового ввода нужен микрофон. Включите доступ в настройках приложения, в разделе «Разрешения».</string>
     <string name="recognizer_open_settings">Открыть настройки</string>
     <string name="recognizer_mic_stop">Остановить прослушивание</string>
+    <string name="recognizer_language_unavailable">Ни одна установленная речевая модель не понимает запрошенный язык: %1$s. Скачайте модель в Marmalade STT.</string>
+    <string name="recognizer_language_not_supported">В Marmalade STT нет речевой модели для запрошенного языка: %1$s.</string>
 
     <!-- Удержание микрофона -->
     <string name="lock_status">Закреплено: нажмите для остановки</string>

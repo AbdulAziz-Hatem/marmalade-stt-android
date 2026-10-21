@@ -26,7 +26,7 @@
 <p>Hướng dẫn thiết lập đề xuất một công cụ giọng nói cho ngôn ngữ của bạn và cho bộ nhớ, tốc độ của điện thoại, đồng thời bạn có thể tải xuống và dùng thử các mô hình khác.</p>
 
 <p><b>NGÔN NGỮ</b></p>
-<p>Các công cụ nhanh hỗ trợ tiếng Anh, Bulgaria, Croatia, Séc, Đan Mạch, Hà Lan, Estonia, Phần Lan, Pháp, Đức, Hy Lạp, Hungary, Ý, Latvia, Litva, Malta, Ba Lan, Bồ Đào Nha, Romania, Nga, Slovakia, Slovenia, Tây Ban Nha, Thụy Điển, Ukraina, Nhật, Hindi, Ả Rập và tiếng Việt. Tiếng Trung và tiếng Hàn dùng Qwen3-ASR, nhẹ hơn Whisper. Các ngôn ngữ khác dùng Whisper Large v3 Turbo, với độ trễ lớn hơn.</p>
+<p>Các công cụ nhanh hỗ trợ tiếng Anh, Bulgaria, Croatia, Séc, Đan Mạch, Hà Lan, Estonia, Phần Lan, Pháp, Đức, Hy Lạp, Hungary, Ý, Latvia, Litva, Malta, Ba Lan, Bồ Đào Nha, Romania, Nga, Slovakia, Slovenia, Tây Ban Nha, Thụy Điển, Ukraina, Nhật, Hindi, Ả Rập và tiếng Việt. Tiếng Trung và tiếng Hàn dùng Qwen3-ASR, nhẹ hơn Whisper. Bạn cũng có thể chọn nó cho 28 ngôn ngữ còn lại của nó, kể cả tiếng Anh. Các ngôn ngữ khác dùng Whisper Large v3 Turbo, với độ trễ lớn hơn.</p>
 
 <p><b>NGUỒN MỞ</b></p>
 <p>Marmalade STT được cấp phép MIT. Nếu bạn muốn ủng hộ, mục Cài đặt → Ủng hộ có liên kết đến GitHub Sponsors; dù bạn có ủng hộ hay không, ứng dụng vẫn như nhau.</p>

@@ -26,7 +26,7 @@
 <p>Panduan penyiapan merekomendasikan mesin ucapan untuk bahasa Anda serta memori dan kecepatan ponsel Anda, dengan opsi untuk mendownload dan mencoba model lain.</p>
 
 <p><b>BAHASA</b></p>
-<p>Mesin cepat mencakup bahasa Inggris, Bulgaria, Kroasia, Ceko, Denmark, Belanda, Estonia, Finlandia, Prancis, Jerman, Yunani, Hungaria, Italia, Latvia, Lituania, Malta, Polandia, Portugis, Rumania, Rusia, Slovakia, Slovenia, Spanyol, Swedia, Ukraina, Jepang, Hindi, Arab, dan Vietnam. Bahasa Tionghoa dan Korea menggunakan Qwen3-ASR, yang lebih ringan daripada Whisper. Bahasa lain berfungsi melalui Whisper Large v3 Turbo, dengan jeda waktu lebih lama.</p>
+<p>Mesin cepat mencakup bahasa Inggris, Bulgaria, Kroasia, Ceko, Denmark, Belanda, Estonia, Finlandia, Prancis, Jerman, Yunani, Hungaria, Italia, Latvia, Lituania, Malta, Polandia, Portugis, Rumania, Rusia, Slovakia, Slovenia, Spanyol, Swedia, Ukraina, Jepang, Hindi, Arab, dan Vietnam. Bahasa Tionghoa dan Korea menggunakan Qwen3-ASR, yang lebih ringan daripada Whisper. Anda juga bisa memilihnya untuk 28 bahasa lainnya, termasuk bahasa Inggris. Bahasa lain berfungsi melalui Whisper Large v3 Turbo, dengan jeda waktu lebih lama.</p>
 
 <p><b>OPEN SOURCE</b></p>
 <p>Marmalade STT berlisensi MIT. Jika Anda ingin mendukungnya, Setelan → Dukungan menautkan ke GitHub Sponsors; aplikasinya tetap sama apa pun pilihan Anda.</p>

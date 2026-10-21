@@ -36,12 +36,13 @@ class EngineRatingsTest {
         assertFalse(EngineLanguages.supports(engine("parakeet-tdt-110m-en"), "de"))
         assertTrue(EngineLanguages.supports(engine("canary-180m-flash"), "fr-CA"))
         assertFalse(EngineLanguages.supports(engine("canary-180m-flash"), "it"))
-        // Qwen3-ASR: its 30 languages as a developer engine, Chinese and Korean as a user one (#50).
-        assertTrue(EngineLanguages.supports(SttEngineCatalog.qwen3Asr(forUsers = false), "th"))
-        val userQwen3 = SttEngineCatalog.qwen3Asr(forUsers = true)
-        assertEquals(setOf("zh", "ko"), EngineLanguages.of(userQwen3))
-        assertTrue(EngineLanguages.supports(userQwen3, "zh-Hant-TW"))
-        assertFalse(EngineLanguages.supports(userQwen3, "th"))
+        // Qwen3-ASR: its 30 languages (#88), English included; not Norwegian or Hebrew.
+        val qwen3 = engine(SttEngineCatalog.QWEN3)
+        assertEquals(30, EngineLanguages.of(qwen3).size)
+        for (code in listOf("en-US", "zh-Hant-TW", "yue", "ko", "th", "tl-PH", "fa", "mk")) {
+            assertTrue(code, EngineLanguages.supports(qwen3, code))
+        }
+        for (code in listOf("nb", "he", "uk", "sw")) assertFalse(code, EngineLanguages.supports(qwen3, code))
         assertTrue(EngineLanguages.supports(engine("whisper-turbo"), "sw"))
     }
 
@@ -108,18 +109,35 @@ class EngineRatingsTest {
         for (code in listOf("en", "es", "de", "fr", "ja", "zh", "ko", "tr", "nb", "it")) {
             assertEquals(code, QualityRating(3, "hi"), EngineQuality.rating(nemotron, code))
         }
-        // Qwen3-ASR as a developer engine: all it was measured in.
-        val devQwen3 = SttEngineCatalog.qwen3Asr(forUsers = false)
-        assertEquals(QualityRating(5, "en"), EngineQuality.rating(devQwen3, "en"))
-        assertEquals(QualityRating(1, "fr"), EngineQuality.rating(devQwen3, "fr")) // 16.2
-        assertEquals(QualityRating(2, "ja"), EngineQuality.rating(devQwen3, "ja")) // 13.4 (#52)
-        // As a user engine, Chinese and Korean only.
-        val userQwen3 = SttEngineCatalog.qwen3Asr(forUsers = true)
-        assertEquals(QualityRating(4, "zh"), EngineQuality.rating(userQwen3, "zh-TW")) // 9.2 / 2.7
-        assertEquals(QualityRating(4, "ko"), EngineQuality.rating(userQwen3, "ko")) // 6.5 / 4.9
-        for (code in listOf("en", "fr", "ja", "hi")) {
-            assertEquals(code, QualityRating(4, "zh"), EngineQuality.rating(userQwen3, code))
+    }
+
+    /**
+     * Qwen3-ASR offered for all its languages (#88): rated by the same rules
+     * as every engine, in each language it was measured in, else in English.
+     */
+    @Test
+    fun `Qwen3-ASR is rated in each of its measured languages, else in English`() {
+        val qwen3 = engine(SttEngineCatalog.QWEN3)
+        val measured = mapOf(
+            "en" to 5, // 2.0 / 6.5 / 7.6 / 10.6: mean 6.675
+            "es" to 3, // 8.9
+            "de" to 3, // 10.1
+            "fr" to 1, // 16.2
+            "ja" to 2, // CER 13.4 (#52)
+            "zh" to 4, // CER 9.2 / 2.7, the best
+            "ko" to 4, // CER 6.5 / 4.9
+            "hi" to 1, // 27.3
+            "ar" to 1, // 24.6
+            "tr" to 1, // 29.3
+            "vi" to 3, // 16.3: 1 on the scale, near turbo's 14.1 (#80)
+        )
+        for ((code, stars) in measured) assertEquals(code, QualityRating(stars, code), EngineQuality.rating(qwen3, code))
+        // Every other language of its 30 was not measured: its English marker, "Tested in English".
+        for (code in EngineLanguages.of(qwen3) - measured.keys) {
+            assertEquals(code, QualityRating(5, "en"), EngineQuality.rating(qwen3, code))
         }
+        // A language it doesn't transcribe: English too, as for any engine offered for English.
+        assertEquals(QualityRating(5, "en"), EngineQuality.rating(qwen3, "nb"))
     }
 
     @Test

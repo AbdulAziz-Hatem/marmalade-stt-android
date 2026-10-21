@@ -66,6 +66,5 @@
     <string name="engine_desc_nemotron_35">Strumieniowy model NVIDIA dla hindi, arabskiego i wietnamskiego: tekst pojawia się w trakcie mówienia.</string>
     <string name="engine_desc_whisper_turbo">OpenAI Whisper large-v3-turbo, wielojęzyczny. Najdokładniejszy Whisper. Tekst pojawia się, gdy robisz pauzę.</string>
     <string name="engine_desc_granite">Angielski model CTC firmy IBM: najdokładniejszy w naszych testach po angielsku. Wielkie litery i interpunkcję dodaje własny formater aplikacji.</string>
-    <string name="engine_desc_qwen3">Model offline firmy Alibaba z małym dekoderem opartym na modelu językowym: 30 języków, wykrywanych automatycznie. Tekst pojawia się, gdy robisz pauzę.</string>
-    <string name="engine_desc_qwen3_users">Model firmy Alibaba dla chińskiego i koreańskiego, z małym dekoderem opartym na modelu językowym: najdokładniejszy dla chińskiego. Tekst pojawia się, gdy robisz pauzę.</string>
+    <string name="engine_desc_qwen3">Model offline firmy Alibaba z małym dekoderem opartym na modelu językowym: 30 języków, wykrywanych automatycznie, i najdokładniejszy dla chińskiego. Tekst pojawia się, gdy robisz pauzę.</string>
 </resources>

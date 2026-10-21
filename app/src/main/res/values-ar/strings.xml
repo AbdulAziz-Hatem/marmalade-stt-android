@@ -189,6 +189,8 @@
     <string name="recognizer_mic_blocked">يحتاج الإدخال الصوتي إلى الميكروفون. فعِّله من إعدادات التطبيق، ضمن الأذونات.</string>
     <string name="recognizer_open_settings">فتح الإعدادات</string>
     <string name="recognizer_mic_stop">إيقاف الاستماع</string>
+    <string name="recognizer_language_unavailable">لا يفهم أي نموذج كلام مثبَّت اللغة المطلوبة: %1$s. نزِّل نموذجًا لها في Marmalade STT.</string>
+    <string name="recognizer_language_not_supported">لا يتوفر في Marmalade STT نموذج كلام للغة المطلوبة: %1$s.</string>
 
     <!-- Press and hold the mic to lock listening -->
     <string name="lock_status">مقفل: انقر للإيقاف</string>

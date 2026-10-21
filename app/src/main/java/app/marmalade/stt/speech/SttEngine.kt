@@ -51,6 +51,10 @@ enum class EndOfDictation {
  * @property loadTurnDetector loads [turnDetector] later ([withTurnDetector]):
  *   the engine runs it once the mic is open (#78), so Smart Turn's first load
  *   (8.7 MB, `SmartTurnModel`) never keeps the mic waiting.
+ * @property audioInput opens the session's audio instead of the engine's own
+ *   mic (#90), called with the hop size: the RecognitionService's mic opened
+ *   for the calling app, or a caller's stream (`EXTRA_AUDIO_SOURCE`). Null:
+ *   the engine's mic.
  */
 data class SessionOptions(
     val end: EndOfDictation = EndOfDictation.PAUSE,
@@ -59,6 +63,7 @@ data class SessionOptions(
     val turnDetector: TurnDetector? = null,
     val patience: Patience = Patience.NORMAL,
     val loadTurnDetector: (() -> TurnDetector?)? = null,
+    val audioInput: ((hopSamples: Int) -> MicCapture)? = null,
 ) {
     /** These options with [loadTurnDetector]'s detector as [turnDetector]. Blocks while it loads. */
     fun withTurnDetector(): SessionOptions =
@@ -68,9 +73,13 @@ data class SessionOptions(
     val effectiveEnd: EndOfDictation
         get() = if (end == EndOfDictation.SMART_TURN && turnDetector == null) EndOfDictation.PAUSE else end
 
-    /** The slider's pause, clamped to its range. */
+    /**
+     * The slider's pause. Settings keep it in the slider's range; a caller's
+     * `EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS` may ask for up to
+     * [MAX_CALLER_SILENCE_SECONDS] (#90).
+     */
     private val sliderSilenceSeconds: Float
-        get() = minSilenceSeconds.coerceIn(MIN_SILENCE_RANGE_START, MIN_SILENCE_RANGE_END)
+        get() = minSilenceSeconds.coerceIn(MIN_SILENCE_RANGE_START, MAX_CALLER_SILENCE_SECONDS)
 
     /** The VAD's minimum silence: Smart Turn's proposal pause ([Patience.proposeSeconds]), else the slider. */
     val vadMinSilenceSeconds: Float
@@ -89,6 +98,9 @@ data class SessionOptions(
         const val DEFAULT_MIN_SILENCE_SECONDS = 1.2f
         const val MIN_SILENCE_RANGE_START = 0.3f
         const val MIN_SILENCE_RANGE_END = 1.5f
+
+        /** The longest end-of-speech pause another app may ask for (#90). */
+        const val MAX_CALLER_SILENCE_SECONDS = 5f
     }
 }
 
@@ -234,6 +246,14 @@ interface SttEngine {
 
     /** Free the model's memory. A later [load] or [listen] reloads it. */
     fun release()
+
+    /**
+     * The model is wanted again: undo a [release] that a running session
+     * deferred, so it stays loaded when that session ends (a surface held
+     * the engine again, or the user's own session takes over from another
+     * app's, #90). Does nothing after [drop].
+     */
+    fun keep() {}
 
     /**
      * The owner is done with this engine for good (another engine was picked,

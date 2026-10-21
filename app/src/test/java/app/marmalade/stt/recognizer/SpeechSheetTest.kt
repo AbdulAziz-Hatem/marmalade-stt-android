@@ -68,6 +68,22 @@ class SpeechSheetTest {
     }
 
     @Test
+    fun `a language no installed engine transcribes is a problem without retry (#90)`() {
+        val unavailable = SpeechSheet.languageUnavailable(LanguageRoute.Unavailable(downloadable = true), "fr-FR")
+        assertEquals(SheetPhase.PROBLEM, unavailable.phase)
+        assertEquals(SheetProblem.LANGUAGE_UNAVAILABLE, unavailable.problem)
+        assertEquals("fr-FR", unavailable.language)
+        assertEquals(RecognizerIntent.RESULT_CLIENT_ERROR, unavailable.resultCode)
+        assertFalse(unavailable.problem!!.canRetry)
+        assertFalse(unavailable.canLock)
+
+        val unsupported = SpeechSheet.languageUnavailable(LanguageRoute.Unavailable(downloadable = false), "xx")
+        assertEquals(SheetProblem.LANGUAGE_NOT_SUPPORTED, unsupported.problem)
+        assertEquals(RecognizerIntent.RESULT_CLIENT_ERROR, unsupported.resultCode)
+        assertFalse(unsupported.problem!!.canRetry)
+    }
+
+    @Test
     fun `speech recognizer error codes`() {
         assertEquals(SpeechRecognizer.ERROR_SPEECH_TIMEOUT, speechRecognizerError(OneShotOutcome.NoMatch(false), 34))
         assertEquals(SpeechRecognizer.ERROR_NO_MATCH, speechRecognizerError(OneShotOutcome.NoMatch(true), 34))

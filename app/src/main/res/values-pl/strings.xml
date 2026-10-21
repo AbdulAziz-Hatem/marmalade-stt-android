@@ -190,6 +190,8 @@
     <string name="recognizer_mic_blocked">Wprowadzanie głosowe wymaga mikrofonu. Włącz dostęp w ustawieniach aplikacji, w sekcji Uprawnienia.</string>
     <string name="recognizer_open_settings">Otwórz ustawienia</string>
     <string name="recognizer_mic_stop">Zatrzymaj nasłuchiwanie</string>
+    <string name="recognizer_language_unavailable">Żaden zainstalowany model mowy nie rozumie żądanego języka: %1$s. Pobierz model w Marmalade STT.</string>
+    <string name="recognizer_language_not_supported">Marmalade STT nie ma modelu mowy dla żądanego języka: %1$s.</string>
 
     <!-- Przytrzymanie mikrofonu -->
     <string name="lock_status">Przypięte: kliknij, aby zatrzymać</string>

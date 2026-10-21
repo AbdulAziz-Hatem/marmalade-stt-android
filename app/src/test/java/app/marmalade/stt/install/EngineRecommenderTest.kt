@@ -17,12 +17,11 @@ import org.junit.Test
  *
  * Since #37 (Max, 2026-10-02) Nemotron 3.5 (the 1120 ms export) is
  * recommended for Hindi, Arabic and Vietnamese only, Whisper turbo for
- * Chinese, Korean, Turkish and Norwegian, and Parakeet TDT_CTC 0.6B ja
- * Japanese since #60. Since #50 an engine
- * wins only where it is about as accurate as the best that fits
- * ([EngineQuality.nearBest]); Qwen3-ASR takes Chinese and Korean once it is
- * a user engine. Tests that pass [catalog] check both states of
- * [SttEngineCatalog.QWEN3_FOR_USERS], whatever it ships as.
+ * Turkish and Norwegian, and Parakeet TDT_CTC 0.6B ja Japanese since #60.
+ * Since #50 an engine wins only where it is about as accurate as the best
+ * that fits ([EngineQuality.nearBest]); Qwen3-ASR takes Chinese and Korean
+ * where it fits, and nothing else though it is offered for 30 languages
+ * (#88).
  */
 class EngineRecommenderTest {
 
@@ -39,19 +38,13 @@ class EngineRecommenderTest {
     private val gib = 1024L * 1024L * 1024L
     private val pixel8a = 8 * gib // speed factor 1.0 by definition
 
-    /** The catalog with Qwen3-ASR as a user engine ([qwen3ForUsers]) or a developer one. */
-    private fun catalog(qwen3ForUsers: Boolean): (String) -> SttEngineDescriptor? = { id ->
-        if (id == SttEngineCatalog.QWEN3) SttEngineCatalog.qwen3Asr(qwen3ForUsers) else SttEngineCatalog.byId(id)
-    }
-
     private fun pick(
         language: String,
         ram: Long = pixel8a,
         factor: Double = 1.0,
-        qwen3ForUsers: Boolean = false,
         table: Map<String, EngineSpeed> = reference,
     ): EngineRecommender.Recommendation =
-        EngineRecommender.recommend(language, ram, SpeedBudget.budget(factor), table, catalog = catalog(qwen3ForUsers))
+        EngineRecommender.recommend(language, ram, SpeedBudget.budget(factor), table)
 
     private val parakeet = SttEngineCatalog.PARAKEET_ULTRA
     private val nemotron = SttEngineCatalog.NEMOTRON_35_1120MS
@@ -85,7 +78,8 @@ class EngineRecommenderTest {
 
     @Test
     fun `Chinese, Korean, Turkish and Norwegian get turbo, over a Pixel 8a's budget`() {
-        // Turbo (2.2 GB) fits 8 GB, but its 9.79 is over 3.57 x 1.25: the only candidate, marked slow.
+        // Turbo (2.2 GB) fits 8 GB, but its 9.79 is over 3.57 x 1.25: marked slow. The only candidate
+        // for Turkish and Norwegian; for Chinese and Korean the pinned table's Qwen3 (4.1 GB) doesn't fit.
         for (locale in listOf("zh-CN", "zh-TW", "ko-KR", "tr-TR", "nb-NO", "no-NO")) {
             val r = pick(locale)
             assertEquals(locale, turbo to Reason.MAY_BE_SLOW, r.engine.id to r.reason)
@@ -125,44 +119,32 @@ class EngineRecommenderTest {
     }
 
     @Test
-    fun `Qwen3 as a developer engine is never recommended, even where it fits (#37)`() {
-        for (locale in listOf("zh-CN", "ko-KR", "th-TH")) {
-            for (ram in listOf(pixel8a, 12 * gib, 16 * gib)) {
-                for (factor in listOf(0.25, 1.0, 2.0, 4.0)) {
-                    assertEquals("$locale $ram $factor", turbo, pick(locale, ram, factor).engine.id)
-                }
-            }
-        }
-    }
-
-    @Test
-    fun `Qwen3 as a user engine takes Chinese and Korean wherever it fits memory, nothing else (#50)`() {
+    fun `Qwen3 takes Chinese and Korean wherever it fits memory, nothing else (#50, #88)`() {
         for (locale in listOf("zh-CN", "zh-TW", "ko-KR")) {
             // 16 GB at four times a Pixel's speed: both fit; Qwen3 is first of those near the best.
-            assertEquals(locale, qwen3 to Reason.BEST_FIT, pick(locale, 16 * gib, 4.0, qwen3ForUsers = true).let { it.engine.id to it.reason })
+            assertEquals(locale, qwen3 to Reason.BEST_FIT, pick(locale, 16 * gib, 4.0).let { it.engine.id to it.reason })
             // 12 GB at a Pixel's speed: both over budget; Qwen3 (5.96) is cheaper than turbo (9.79).
-            assertEquals(locale, qwen3 to Reason.MAY_BE_SLOW, pick(locale, 12 * gib, qwen3ForUsers = true).let { it.engine.id to it.reason })
+            assertEquals(locale, qwen3 to Reason.MAY_BE_SLOW, pick(locale, 12 * gib).let { it.engine.id to it.reason })
         }
         // A Pixel 8a: the pinned table's Qwen3 (4.1 GB, no lean mode) doesn't fit; turbo does.
-        assertEquals(turbo to Reason.MAY_BE_SLOW, pick("zh-CN", qwen3ForUsers = true).let { it.engine.id to it.reason })
+        assertEquals(turbo to Reason.MAY_BE_SLOW, pick("zh-CN").let { it.engine.id to it.reason })
         // Not for the languages it lost elsewhere or wasn't measured in.
         for (locale in listOf("ja-JP", "th-TH", "id-ID", "en-US", "hi-IN", "tr-TR")) {
             for (ram in listOf(pixel8a, 16 * gib)) {
-                assertTrue("$locale $ram", pick(locale, ram, 4.0, qwen3ForUsers = true).engine.id != qwen3)
+                assertTrue("$locale $ram", pick(locale, ram, 4.0).engine.id != qwen3)
             }
         }
     }
 
     @Test
-    fun `Korean on a fast phone - turbo while Qwen3 is a developer engine, Qwen3 once it is a user engine`() {
+    fun `Korean on a fast phone gets Qwen3, about as good as turbo and before it`() {
         // 4.65 (turbo) is the best; Qwen3's 5.7 is inside 4.65 + 2, and Qwen3 comes before turbo.
-        assertEquals(turbo to Reason.BEST_FIT, pick("ko-KR", 16 * gib, 4.0).let { it.engine.id to it.reason })
-        assertEquals(qwen3 to Reason.BEST_FIT, pick("ko-KR", 16 * gib, 4.0, qwen3ForUsers = true).let { it.engine.id to it.reason })
+        assertEquals(qwen3 to Reason.BEST_FIT, pick("ko-KR", 16 * gib, 4.0).let { it.engine.id to it.reason })
         // Chinese: turbo's 9.45 is outside Qwen3's 5.95 + 2, so turbo never wins there while Qwen3 fits.
         val qwen3Pricier = reference + (qwen3 to EngineSpeed(12.0, 4110))
-        assertEquals(qwen3, pick("zh-CN", 16 * gib, 0.25, qwen3ForUsers = true, table = qwen3Pricier).engine.id)
+        assertEquals(qwen3, pick("zh-CN", 16 * gib, 0.25, table = qwen3Pricier).engine.id)
         // Korean with Qwen3 the pricier: both are near the best, both over budget: the cheaper, turbo.
-        assertEquals(turbo, pick("ko-KR", 16 * gib, 0.25, qwen3ForUsers = true, table = qwen3Pricier).engine.id)
+        assertEquals(turbo, pick("ko-KR", 16 * gib, 0.25, table = qwen3Pricier).engine.id)
     }
 
     @Test
@@ -185,10 +167,11 @@ class EngineRecommenderTest {
 
     @Test
     fun `nearBest keeps the engines within the margin of the best measured, in order`() {
-        val engines = EngineRecommender.preference.mapNotNull(catalog(qwen3ForUsers = true))
+        val engines = EngineRecommender.preference.mapNotNull(SttEngineCatalog::byId)
         fun ids(language: String, of: List<SttEngineDescriptor> = engines) =
             EngineRecommender.nearBest(of.filter { EngineLanguages.supports(it, language) }, language).map { it.id }
-        assertEquals(listOf(parakeet, "parakeet-tdt-110m-en", turbo), ids("en")) // 5.5, 6.9, 7.0 (Canary 8.4 out; Canary isn't excluded here)
+        // 5.5, 6.9, 6.7, 7.0 (Canary 8.4 out). Canary isn't excluded here, nor Qwen3 outside Chinese and Korean (#88).
+        assertEquals(listOf(parakeet, "parakeet-tdt-110m-en", qwen3, turbo), ids("en"))
         assertEquals(listOf(parakeet, turbo), ids("es"))
         assertEquals(listOf(parakeet, turbo), ids("fr")) // 7.9, 9.4
         assertEquals(listOf(nemotron), ids("hi"))
@@ -197,7 +180,7 @@ class EngineRecommenderTest {
         assertEquals(listOf(qwen3, turbo), ids("ko"))
         assertEquals(listOf(parakeetJa, turbo), ids("ja")) // 5.4, 7.2 (inside 5.4 + 2)
         // Nothing measured: all of them, in order.
-        assertEquals(listOf(parakeet, turbo), ids("it"))
+        assertEquals(listOf(parakeet, qwen3, turbo), ids("it"))
     }
 
     @Test
@@ -278,17 +261,42 @@ class EngineRecommenderTest {
             listOf(SttEngineCatalog.PARAKEET_ULTRA, "parakeet-tdt-110m-en", parakeetJa, "canary-180m-flash", nemotron, qwen3, turbo),
             EngineRecommender.preference,
         )
-        // All user engines but Qwen3, which is one only with QWEN3_FOR_USERS.
-        for (id in EngineRecommender.preference - qwen3) assertEquals(id, false, SttEngineCatalog.byId(id)?.developer)
-        assertEquals(!SttEngineCatalog.QWEN3_FOR_USERS, SttEngineCatalog.byId(qwen3)?.developer)
+        // All user engines.
+        for (id in EngineRecommender.preference) assertEquals(id, false, SttEngineCatalog.byId(id)?.developer)
         // Cheapest first after Ultra, by the shipped costs.
         val costs = EngineRecommender.preference.drop(1).map { SpeedBudget.REFERENCE.getValue(it).relativeCost }
         assertEquals(costs.sorted(), costs)
     }
 
+    /**
+     * #88: Qwen3-ASR is offered for all 30 of its languages but still recommended for Chinese and
+     * Korean only ([EngineRecommender.QWEN3_RECOMMENDED]). So every other language gets what it got
+     * when Qwen3 was offered for those two alone: the pick with Qwen3 left out of the catalog. Checked
+     * on every phone class, speed and engine that fell behind here, with both cost tables.
+     */
     @Test
-    fun `the rules version follows the Qwen3 switch`() {
-        assertEquals(if (SttEngineCatalog.QWEN3_FOR_USERS) "2+qwen3" else "2", EngineRecommender.RULES_VERSION)
+    fun `outside Chinese and Korean the recommendation is the one without Qwen3`() {
+        val withoutQwen3: (String) -> SttEngineDescriptor? = { id -> if (id == qwen3) null else SttEngineCatalog.byId(id) }
+        val languages = EngineLanguages.userChoices() - EngineRecommender.QWEN3_RECOMMENDED + listOf("xx", "en-GB", "pt-BR")
+        assertTrue(EngineLanguages.of(SttEngineCatalog.byId(qwen3)!!).all { it in languages || it in EngineRecommender.QWEN3_RECOMMENDED })
+        val rams = listOf(1.8, 2.7, 3.6, 5.5, 7.4, 11.3, 15.0).map { (it * gib).toLong() }
+        val factors = listOf(SpeedBudget.MIN_FACTOR, 0.5, 1.0, 2.0)
+        val slow = listOf(emptySet(), setOf(nemotron), setOf(parakeet), setOf(parakeetJa), setOf("canary-180m-flash"), setOf(nemotron, turbo))
+        for (table in listOf(reference, SpeedBudget.REFERENCE)) for (language in languages) for (ram in rams) {
+            for (factor in factors) for (tooSlow in slow) {
+                fun run(catalog: (String) -> SttEngineDescriptor?) =
+                    EngineRecommender.recommend(language, ram, SpeedBudget.budget(factor), table, tooSlow, catalog)
+                val now = run(SttEngineCatalog::byId)
+                assertEquals("$language $ram $factor $tooSlow", run(withoutQwen3), now)
+                assertFalse(now.engine.id == qwen3)
+            }
+        }
+    }
+
+    /** #88 offers Qwen3 for more languages but recommends nothing new, so phones keep their recommendation. */
+    @Test
+    fun `the rules version is unchanged by #88`() {
+        assertEquals("2+qwen3", EngineRecommender.RULES_VERSION)
     }
 
     @Test
@@ -329,12 +337,11 @@ class EngineRecommenderTest {
             assertEquals(locale, turbo to Reason.MAY_BE_SLOW, shipped(locale).let { it.engine.id to it.reason })
             assertEquals(locale, turbo to Reason.LOW_MEMORY, shipped(locale, ram = threeGb).let { it.engine.id to it.reason })
         }
-        // Chinese and Korean: the same until Qwen3-ASR is a user engine (#50). Then Qwen3, lean on a
-        // Pixel 8a (9.71 against turbo's 9.79) and on a 3 GB phone (1.88 GB, the least memory).
-        val zhKo = if (SttEngineCatalog.QWEN3_FOR_USERS) qwen3 else turbo
+        // Chinese and Korean: Qwen3 (#50), lean on a Pixel 8a (9.71 against turbo's 9.79) and on a
+        // 3 GB phone (1.88 GB, the least memory).
         for (locale in listOf("zh-CN", "ko-KR")) {
-            assertEquals(locale, zhKo to Reason.MAY_BE_SLOW, shipped(locale, ram = (7.4 * gib).toLong()).let { it.engine.id to it.reason })
-            assertEquals(locale, zhKo to Reason.LOW_MEMORY, shipped(locale, ram = threeGb).let { it.engine.id to it.reason })
+            assertEquals(locale, qwen3 to Reason.MAY_BE_SLOW, shipped(locale, ram = (7.4 * gib).toLong()).let { it.engine.id to it.reason })
+            assertEquals(locale, qwen3 to Reason.LOW_MEMORY, shipped(locale, ram = threeGb).let { it.engine.id to it.reason })
         }
         // Swahili: only turbo has it.
         assertEquals(turbo, shipped("sw-KE", ram = 12 * gib).engine.id)
@@ -441,21 +448,21 @@ class EngineRecommenderTest {
     }
 
     @Test
-    fun `real 6, 8 and 12 GB phones get turbo for Thai, and Qwen3 for Chinese only as a user engine`() {
+    fun `real 6, 8 and 12 GB phones get turbo for Thai and Qwen3 for Chinese`() {
         // Phones report less than their nominal RAM: 6 GB about 5.5 GiB, 8 GB (a Pixel 8a) about 7.4.
         fun shipped(ram: Double, locale: String = "th-TH") =
             SpeechPrefs(deviceProbeMs = SpeedBudget.PROBE_REFERENCE_MS).recommendation((ram * gib).toLong(), locale)
                 .let { it.engine.id to it.reason }
         // 8 GB: turbo fits (2.27 GB), over the Pixel's budget.
         assertEquals(turbo to Reason.MAY_BE_SLOW, shipped(7.4))
-        // 6 GB: turbo doesn't fit with the arena (2.25 GB allowed), but it is all there is.
+        // 6 GB: turbo doesn't fit with the arena (2.25 GB allowed). Qwen3 would, lean, but isn't
+        // recommended for Thai (#88): turbo, the least memory of the rest.
         assertEquals(turbo to Reason.LOW_MEMORY, shipped(5.5))
         // 12 GB fit Qwen3, which was recommended here before #37.
         assertEquals(turbo to Reason.MAY_BE_SLOW, shipped(11.3))
-        val zh = if (SttEngineCatalog.QWEN3_FOR_USERS) qwen3 else turbo
-        assertEquals(zh to Reason.MAY_BE_SLOW, shipped(11.3, "zh-CN"))
+        assertEquals(qwen3 to Reason.MAY_BE_SLOW, shipped(11.3, "zh-CN"))
         // 6 GB: turbo doesn't fit; Qwen3 does, lean (#47).
-        assertEquals(zh to if (SttEngineCatalog.QWEN3_FOR_USERS) Reason.MAY_BE_SLOW else Reason.LOW_MEMORY, shipped(5.5, "zh-CN"))
+        assertEquals(qwen3 to Reason.MAY_BE_SLOW, shipped(5.5, "zh-CN"))
         // A user engine does run lean in the recommendation: 4 GB gets Parakeet Ultra.
         assertEquals(parakeet, shipped(3.6, "de-DE").first)
     }

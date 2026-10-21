@@ -214,6 +214,9 @@
     <string name="recognizer_mic_blocked">Speech input needs the microphone. Turn it on in the app\'s settings, under Permissions.</string>
     <string name="recognizer_open_settings">Open settings</string>
     <string name="recognizer_mic_stop">Stop listening</string>
+    <!-- A caller asked for a language (#90); %1$s is its name, e.g. "French" -->
+    <string name="recognizer_language_unavailable">No installed speech model understands the requested language: %1$s. Download one in Marmalade STT.</string>
+    <string name="recognizer_language_not_supported">Marmalade STT has no speech model for the requested language: %1$s.</string>
 
     <!-- Press and hold the mic to lock listening (#43): keyboard panel and speak-now popup -->
     <string name="lock_status">Locked: tap to stop</string>

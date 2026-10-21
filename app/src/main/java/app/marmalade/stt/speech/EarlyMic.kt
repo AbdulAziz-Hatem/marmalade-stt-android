@@ -4,7 +4,8 @@ package app.marmalade.stt.speech
  * Data flow (#78):
  *   SherpaSttEngine.listen opens the mic before it loads the model, then runs
  *   record() (Dispatchers.IO):
- *     mic hops -> queue (in memory only; MAX_QUEUED_HOPS, the oldest dropped)
+ *     mic hops -> queue (in memory only; MAX_QUEUED_HOPS, the oldest dropped;
+ *                 a non-live source instead waits for room, #90)
  *              -> onLevel while no session reads hops yet (the meter moves
  *                 during the load)
  *   the model is loaded: the session collects hops -> the queue first (the
@@ -28,7 +29,10 @@ import kotlinx.coroutines.flow.flow
  *
  * Audio stays in memory: at most [maxQueuedHops] hops (60 s) wait, which a
  * load never comes near; past that the oldest are dropped (counted in the
- * log, numbers only).
+ * log, numbers only). A non-[live][MicCapture.live] source (a caller's
+ * stream, #90) loses nothing instead: [record] stops reading it while the
+ * queue is full, until the session has taken a hop or the capture is stopped
+ * or closed.
  *
  * @param mic the open capture. Owned: [close] closes it.
  * @param onLevel the dBFS of each hop captured before [hops] is collected
@@ -53,11 +57,17 @@ internal class EarlyMic(
     private var handedOver = false // hops is being collected
     private var recording = true // record() hasn't ended
     private var closed = false
+    private var stopped = false // stopRecording(): no more waiting for room
     private var failure: Exception? = null
     private var dropped = 0
 
     /** Nudged whenever a hop is queued or the capture ends. */
     private val wake = Channel<Unit>(Channel.CONFLATED)
+
+    /** Nudged whenever a hop is taken or the capture is stopped: a non-live [record] waits on it. */
+    private val room = Channel<Unit>(Channel.CONFLATED)
+
+    override val live: Boolean get() = mic.live
 
     @Volatile
     override var backlogHops: Int = 0
@@ -73,11 +83,16 @@ internal class EarlyMic(
      */
     suspend fun record() {
         try {
+            val live = mic.live
             mic.hops.collect { hop ->
+                // Backpressure: a stream is read no faster than the session takes it.
+                while (!live && synchronized(lock) { !closed && !stopped && queue.size >= maxQueuedHops }) {
+                    room.receive()
+                }
                 synchronized(lock) {
                     if (!closed) {
                         queue.addLast(hop)
-                        if (queue.size > maxQueuedHops) {
+                        if (live && queue.size > maxQueuedHops) {
                             queue.removeFirst()
                             dropped++
                         }
@@ -116,7 +131,10 @@ internal class EarlyMic(
                 Triple(queue.removeFirstOrNull(), closed || !recording, failure.takeUnless { closed })
             }
             when {
-                hop != null -> emit(hop)
+                hop != null -> {
+                    room.trySend(Unit)
+                    emit(hop)
+                }
                 ended -> {
                     failed?.let { throw it }
                     return@flow
@@ -126,9 +144,15 @@ internal class EarlyMic(
         }
     }
 
-    /** Stop recording: the mic closes, and [hops] ends once what was captured until now has been read. */
+    /**
+     * Stop recording: the mic closes, and [hops] ends once what was captured
+     * until now has been read (a non-live [record] waiting for room keeps
+     * its hop, past the bound).
+     */
     fun stopRecording() {
+        synchronized(lock) { stopped = true }
         mic.close()
+        room.trySend(Unit)
     }
 
     /** Close the mic and drop what is still queued; [hops] ends at once. Idempotent, from any thread. */
@@ -139,5 +163,6 @@ internal class EarlyMic(
         }
         mic.close()
         wake.trySend(Unit)
+        room.trySend(Unit)
     }
 }

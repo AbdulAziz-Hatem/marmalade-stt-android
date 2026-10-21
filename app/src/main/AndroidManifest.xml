@@ -108,6 +108,18 @@
         </activity>
 
         <!--
+          MainActivity opened on the Settings tab: the gear Android shows next
+          to the voice keyboard and the speech recognition service
+          (settingsActivity in xml/voice_input_method.xml and
+          xml/recognition_service.xml, #90). MainActivity knows it by the
+          component name it was started as.
+        -->
+        <activity-alias
+            android:name="app.marmalade.stt.SettingsActivity"
+            android:exported="true"
+            android:targetActivity="app.marmalade.stt.MainActivity" />
+
+        <!--
           Voice keyboard (ARCHITECTURE.md D6). Its only subtype has
           imeSubtypeMode="voice", which is what FUTO Keyboard's "External
           engine" list and other keyboards' mic keys look for (#61: README
@@ -163,8 +175,11 @@
           RecognitionService (D6): apps that use android.speech.SpeechRecognizer,
           once Marmalade STT is chosen as the device's speech recognition
           service (or when an app asks for this component by name).
-          No permission on purpose: any app may bind it, and Android checks
-          the calling app's RECORD_AUDIO before a session starts.
+          No permission on purpose: any app may bind it. The service opens
+          the mic for the calling app (an attribution context, #90), so
+          Android skips its own RECORD_AUDIO check at the start and checks
+          the calling app's grant when the mic opens. A request that hands
+          us its own audio (EXTRA_AUDIO_SOURCE) needs no mic permission.
         -->
         <service
             android:name="app.marmalade.stt.recognizer.MarmaladeRecognitionService"
@@ -179,6 +194,21 @@
                 android:name="android.speech"
                 android:resource="@xml/recognition_service" />
         </service>
+
+        <!--
+          ACTION_GET_LANGUAGE_DETAILS (#90): apps ask a recognizer's package
+          which languages it recognizes, in an ordered broadcast. No
+          permission on purpose: the languages are what the RecognitionService
+          reports to any app anyway.
+        -->
+        <receiver
+            android:name="app.marmalade.stt.recognizer.LanguageDetailsReceiver"
+            android:exported="true"
+            tools:ignore="ExportedReceiver">
+            <intent-filter>
+                <action android:name="android.speech.action.GET_LANGUAGE_DETAILS" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

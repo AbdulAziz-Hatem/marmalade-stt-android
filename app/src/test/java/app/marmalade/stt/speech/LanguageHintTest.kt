@@ -1,8 +1,10 @@
 package app.marmalade.stt.speech
 
 import app.marmalade.stt.install.EngineFamily
+import app.marmalade.stt.install.EngineLanguages
 import app.marmalade.stt.install.LanguageOptions
 import app.marmalade.stt.install.SttEngineCatalog
+import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Test
 
@@ -11,13 +13,15 @@ class LanguageHintTest {
     /** Qwen3-ASR takes names, not codes: a code without a name would silently fall back to auto. */
     @Test
     fun everyQwenLanguageOptionHasAName() {
-        // Both entries Qwen3-ASR can have (#50: a user engine for Chinese and Korean, or a developer one).
-        val qwen3 = listOf(SttEngineCatalog.qwen3Asr(forUsers = true), SttEngineCatalog.qwen3Asr(forUsers = false))
-        for (engine in SttEngineCatalog.engines.filter { it.family == EngineFamily.QWEN3_ASR } + qwen3) {
+        val qwen3 = SttEngineCatalog.engines.filter { it.family == EngineFamily.QWEN3_ASR }
+        assertTrue(qwen3.isNotEmpty())
+        for (engine in qwen3) {
             for (code in engine.languageOptions!!.codes - LanguageOptions.AUTO) {
                 assertTrue("${engine.id}: $code", code in QWEN3_LANGUAGE_NAMES)
             }
         }
+        // One name for each of its 30 languages (#88), and only those.
+        assertEquals(EngineLanguages.QWEN3, QWEN3_LANGUAGE_NAMES.keys)
     }
 
     /**

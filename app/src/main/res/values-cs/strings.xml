@@ -191,6 +191,8 @@
     <string name="recognizer_mic_blocked">Rozpoznávání řeči potřebuje mikrofon. Zapněte ho v nastavení aplikace v sekci Oprávnění.</string>
     <string name="recognizer_open_settings">Otevřít nastavení</string>
     <string name="recognizer_mic_stop">Zastavit poslech</string>
+    <string name="recognizer_language_unavailable">Žádný nainstalovaný řečový model nerozumí požadovanému jazyku: %1$s. Stáhněte si nějaký v aplikaci Marmalade STT.</string>
+    <string name="recognizer_language_not_supported">Marmalade STT nemá žádný řečový model pro požadovaný jazyk: %1$s.</string>
 
     <!-- Press and hold the mic to lock listening -->
     <string name="lock_status">Zamknuto: klepnutím zastavíte</string>

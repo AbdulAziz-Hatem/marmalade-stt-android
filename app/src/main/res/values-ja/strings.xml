@@ -188,6 +188,8 @@
     <string name="recognizer_mic_blocked">音声入力にはマイクが必要です。アプリの設定の「権限」でオンにしてください。</string>
     <string name="recognizer_open_settings">設定を開く</string>
     <string name="recognizer_mic_stop">聞き取りを停止</string>
+    <string name="recognizer_language_unavailable">リクエストされた言語を認識できる音声認識モデルがインストールされていません：%1$s。Marmalade STT でモデルをダウンロードしてください。</string>
+    <string name="recognizer_language_not_supported">Marmalade STT には、リクエストされた言語の音声認識モデルがありません：%1$s。</string>
 
     <!-- マイクの長押しロック -->
     <string name="lock_status">ロック中：タップで停止</string>

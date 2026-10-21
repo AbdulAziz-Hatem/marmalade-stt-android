@@ -71,6 +71,5 @@
     <string name="engine_desc_nemotron_35">Streamovací model od NVIDIA pro hindštinu, arabštinu a vietnamštinu: text se objevuje, zatímco mluvíte.</string>
     <string name="engine_desc_whisper_turbo">OpenAI Whisper large-v3-turbo, vícejazyčný. Nejpřesnější Whisper. Text se objeví, když se odmlčíte.</string>
     <string name="engine_desc_granite">Anglický model CTC od IBM: nejpřesnější v našich testech v angličtině. Velká písmena a interpunkci doplňuje vlastní formátovač aplikace.</string>
-    <string name="engine_desc_qwen3">Offline model od společnosti Alibaba s malým dekodérem založeným na jazykovém modelu: 30 jazyků, které rozpozná automaticky. Text se objeví, když se odmlčíte.</string>
-    <string name="engine_desc_qwen3_users">Model od společnosti Alibaba pro čínštinu a korejštinu, s malým dekodérem založeným na jazykovém modelu: pro čínštinu nejpřesnější. Text se objeví, když se odmlčíte.</string>
+    <string name="engine_desc_qwen3">Offline model od společnosti Alibaba s malým dekodérem založeným na jazykovém modelu: 30 jazyků, které rozpozná automaticky, a pro čínštinu nejpřesnější. Text se objeví, když se odmlčíte.</string>
 </resources>

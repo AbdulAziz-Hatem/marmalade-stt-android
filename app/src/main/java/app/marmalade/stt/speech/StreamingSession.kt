@@ -10,7 +10,8 @@ package app.marmalade.stt.speech
  *     -> SoftAgc (on a copy), only when the platform AGC isn't running
  *     -> SttEvent.Level (dBFS of the hop after gain, sent straight from the
  *        producer so the meter keeps moving while Whisper decodes)
- *     -> Channel.UNLIMITED of MicHop (the hop after gain, and before it)
+ *     -> Channel.UNLIMITED of MicHop (the hop after gain, and before it;
+ *        a caller's stream, not live: NON_LIVE_QUEUED_HOPS, #90)
  *   consumer coroutine (Dispatchers.Default):
  *     -> SampleBuffer (this utterance's audio, plus PREROLL_SAMPLES before it)
  *        and PreGainAudio (the same audio before gain, for nearSilent)
@@ -586,6 +587,15 @@ internal class MicHop(val audio: FloatArray, val preGain: FloatArray, val index:
  * [SttEvent.Error] ([SttErrorKind.MIC] for the mic, [SttErrorKind.RECOGNITION]
  * for anything [consume] throws) as the last event, and always closes the mic.
  *
+ * The queue is unbounded for a live mic, which won't wait. A non-live capture
+ * ([MicCapture.live], a caller's stream, #90) gets [NON_LIVE_QUEUED_HOPS]
+ * instead: the producer then reads it only as fast as [consume] takes hops,
+ * so the captured count stays within a few hops of what was consumed, and
+ * the [LagMonitor] never sees the session as behind (no partials skipped,
+ * no [SttEvent.CatchingUp], above all no [SttEvent.TooSlow], which would
+ * mark the engine too slow for the phone). Its backlog isn't added up front
+ * either: its hops are counted as they pass.
+ *
  * @param isStopRequested polled per hop; true ends capture and closes the queue,
  *   so [consume] can flush and return.
  * @param onStart runs before the mic opens (reset the VAD).
@@ -609,7 +619,7 @@ internal fun micSession(
     var producer: Job? = null
     val failure: SttEvent.Error? = try {
         send(SttEvent.Ready)
-        val hops = Channel<MicHop>(Channel.UNLIMITED)
+        val hops = Channel<MicHop>(if (capture.live) Channel.UNLIMITED else NON_LIVE_QUEUED_HOPS)
         val captured = AtomicInteger()
         producer = launch(Dispatchers.IO) {
             val preprocessor = AudioPreprocessor()
@@ -633,8 +643,8 @@ internal fun micSession(
                 hops.close(e as? MicCaptureException ?: MicCaptureException("Microphone failed", e))
             }
         }
-        // A backlog was captured before the session started, so it counts from the start.
-        consume(hops) { maxOf(captured.get(), capture.backlogHops) }
+        // A live backlog was captured before the session started, so it counts from the start.
+        consume(hops) { if (capture.live) maxOf(captured.get(), capture.backlogHops) else captured.get() }
         null
     } catch (e: CancellationException) {
         throw e // the collector went away: no Error, just clean up
@@ -656,6 +666,13 @@ internal fun micSession(
 }.flowOn(Dispatchers.Default)
 
 private const val SESSION_TAG = "StreamingSession"
+
+/**
+ * [micSession]'s queue for a non-live capture: enough to overlap a read with
+ * a decode, and far below [LagMonitor.BEHIND_SECONDS] (15 hops), so the lag
+ * it allows (this plus the hop in hand) never reads as falling behind.
+ */
+internal const val NON_LIVE_QUEUED_HOPS = 4
 
 /**
  * Log how quiet an utterance was, from its pre-gain level [rmsDb], and

@@ -19,6 +19,11 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalDensity
@@ -51,6 +56,7 @@ import app.marmalade.stt.ui.screen.SnippetsScreen
 //   MainActivity → MarmaladeSttTheme → AppRoot(startDestination)
 //                    │   MainActivity reads OnboardingSettings.done once:
 //                    │   false → Routes.Onboarding, true → Routes.Dictate
+//                    │   (started as the SettingsActivity alias: Settings tab on top, #90)
 //                    │
 //                    └── Scaffold { bottomBar = NavigationBar(NAV_TABS) }
 //                          NavHost(startDestination)
@@ -154,9 +160,12 @@ private val TAB_ROUTES = NAV_TABS.map { it.route }.toSet()
  * @param startDestination [Routes.Onboarding] until the setup guide has been
  *   finished, [Routes.Dictate] after. Must not change for the life of the
  *   NavHost: a new start destination resets the back stack.
+ * @param initialTab a tab to open on top of Dictate when the app starts
+ *   (Settings, from the system settings' gear, #90): once, not again after
+ *   a recreation. Ignored while the setup guide is the start.
  */
 @Composable
-fun AppRoot(startDestination: String) {
+fun AppRoot(startDestination: String, initialTab: String? = null) {
     val navController = rememberNavController()
     val backStackEntry = navController.currentBackStackEntryAsState().value
     // Null before the NavHost's first composition: go by the start
@@ -252,6 +261,16 @@ fun AppRoot(startDestination: String) {
             ) { entry ->
                 val key = entry.arguments?.getString("key") ?: return@composable
                 LicenseTextScreen(componentKey = key, onBack = { navController.popBackStack() })
+            }
+        }
+        // After the NavHost, which sets the graph in this same composition.
+        if (initialTab != null && startDestination == Routes.Dictate) {
+            var initialTabShown by rememberSaveable { mutableStateOf(false) }
+            LaunchedEffect(Unit) {
+                if (!initialTabShown) {
+                    initialTabShown = true
+                    navController.navigateToTab(initialTab)
+                }
             }
         }
     }

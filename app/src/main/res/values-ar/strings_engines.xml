@@ -68,6 +68,5 @@
     <string name="engine_desc_nemotron_35">نموذج NVIDIA الفوري للهندية والعربية والفيتنامية: يظهر النص أثناء كلامك.</string>
     <string name="engine_desc_whisper_turbo">نموذج OpenAI Whisper large-v3-turbo متعدد اللغات. أدق إصدارات Whisper. يظهر النص عندما تتوقف عن الكلام.</string>
     <string name="engine_desc_granite">نموذج CTC من IBM للإنجليزية: الأدق في اختباراتنا على الإنجليزية. أما الأحرف الكبيرة وعلامات الترقيم فتضيفها أداة التنسيق الخاصة بالتطبيق.</string>
-    <string name="engine_desc_qwen3">نموذج Alibaba الذي يعمل بلا اتصال، مع مفكِّك ترميز صغير قائم على نموذج لغوي: ٣٠ لغة، تُكتشف تلقائيًا. يظهر النص عندما تتوقف عن الكلام.</string>
-    <string name="engine_desc_qwen3_users">نموذج Alibaba للصينية والكورية، مع مفكِّك ترميز صغير قائم على نموذج لغوي: الأدق للصينية. يظهر النص عندما تتوقف عن الكلام.</string>
+    <string name="engine_desc_qwen3">نموذج Alibaba الذي يعمل بلا اتصال، مع مفكِّك ترميز صغير قائم على نموذج لغوي: ٣٠ لغة تُكتشف تلقائيًا، وهو الأدق للصينية. يظهر النص عندما تتوقف عن الكلام.</string>
 </resources>

@@ -26,7 +26,7 @@
 <p>Kreator konfiguracji poleca silnik mowy dla Twojego języka oraz pamięci i szybkości Twojego telefonu, a inne modele możesz pobrać i wypróbować.</p>
 
 <p><b>JĘZYKI</b></p>
-<p>Szybkie silniki obsługują angielski, bułgarski, chorwacki, czeski, duński, niderlandzki, estoński, fiński, francuski, niemiecki, grecki, węgierski, włoski, łotewski, litewski, maltański, polski, portugalski, rumuński, rosyjski, słowacki, słoweński, hiszpański, szwedzki, ukraiński, japoński, hindi, arabski i wietnamski. Chiński i koreański dostają Qwen3-ASR, lżejszy niż Whisper. Pozostałe języki działają przez Whisper Large v3 Turbo, z większym opóźnieniem.</p>
+<p>Szybkie silniki obsługują angielski, bułgarski, chorwacki, czeski, duński, niderlandzki, estoński, fiński, francuski, niemiecki, grecki, węgierski, włoski, łotewski, litewski, maltański, polski, portugalski, rumuński, rosyjski, słowacki, słoweński, hiszpański, szwedzki, ukraiński, japoński, hindi, arabski i wietnamski. Chiński i koreański dostają Qwen3-ASR, lżejszy niż Whisper. Można go też wybrać dla pozostałych 28 jego języków, w tym angielskiego. Pozostałe języki działają przez Whisper Large v3 Turbo, z większym opóźnieniem.</p>
 
 <p><b>OPEN SOURCE</b></p>
 <p>Marmalade STT jest dostępny na licencji MIT. Jeśli chcesz go wesprzeć, Ustawienia → Wsparcie prowadzą do GitHub Sponsors; aplikacja jest taka sama niezależnie od tego.</p>

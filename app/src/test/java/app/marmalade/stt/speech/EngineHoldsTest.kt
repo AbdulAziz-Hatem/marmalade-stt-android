@@ -7,7 +7,9 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.TestScope
+import kotlinx.coroutines.test.advanceTimeBy
 import kotlinx.coroutines.test.advanceUntilIdle
+import kotlinx.coroutines.test.runCurrent
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
@@ -30,6 +32,7 @@ class EngineHoldsTest {
         var loads = 0
         var warmUps = 0
         var releases = 0
+        var keeps = 0
 
         override suspend fun load() {
             if (isLoaded) return
@@ -58,6 +61,10 @@ class EngineHoldsTest {
         }
 
         override fun drop() = release()
+
+        override fun keep() {
+            keeps++
+        }
     }
 
     private val engine = CountingEngine()
@@ -208,5 +215,82 @@ class EngineHoldsTest {
         holds.preload()
         assertEquals(1, engine.warmUps)
         assertTrue(engine.isLoaded)
+    }
+
+    // ── after a routed session (#90) ─────────────────────────────────────────
+
+    /** Another app's language ran another engine, which took the active one's place in memory. */
+    private fun routedAway() = engine.release()
+
+    @Test
+    fun `with Keep engine ready on, the active engine is put back a minute after a routed session`() = runTest {
+        keepLoaded = true
+        val holds = holds()
+        holds.session()
+        routedAway()
+        holds.routedSessionEnded()
+        advanceTimeBy(EngineHolds.RESTORE_DELAY_MS - 1)
+        runCurrent()
+        assertFalse(engine.isLoaded)
+        advanceTimeBy(1)
+        runCurrent()
+        assertTrue(engine.isLoaded)
+        assertEquals(1, engine.warmUps)
+    }
+
+    @Test
+    fun `another routed session within the minute pushes the restore back, so the language app stays warm`() = runTest {
+        keepLoaded = true
+        val holds = holds()
+        routedAway()
+        holds.routedSessionEnded()
+        advanceTimeBy(40_000)
+        holds.sessionStarting()
+        holds.routedSessionEnded()
+        advanceTimeBy(40_000)
+        runCurrent()
+        assertEquals(0, engine.warmUps)
+        advanceUntilIdle()
+        assertEquals(1, engine.warmUps)
+    }
+
+    @Test
+    fun `a session starting cancels the restore`() = runTest {
+        keepLoaded = true
+        val holds = holds()
+        holds.routedSessionEnded()
+        holds.sessionStarting()
+        advanceUntilIdle()
+        assertEquals(0, engine.warmUps)
+    }
+
+    @Test
+    fun `nothing is put back where nothing is kept loaded, and a hold puts it back`() = runTest {
+        val holds = holds()
+        holds.routedSessionEnded()
+        advanceUntilIdle()
+        assertEquals(0, engine.loads)
+
+        holds.hold(preload = false)
+        holds.routedSessionEnded()
+        advanceUntilIdle()
+        assertEquals(1, engine.warmUps)
+    }
+
+    @Test
+    fun `a still loaded active engine isn't warmed up again`() = runTest {
+        keepLoaded = true
+        val holds = holds()
+        holds.session()
+        holds.routedSessionEnded()
+        advanceUntilIdle()
+        assertEquals(0, engine.warmUps)
+    }
+
+    @Test
+    fun `opening a hold keeps the built engine, undoing a release deferred behind a session (#90)`() = runTest {
+        val holds = holds()
+        holds.hold(preload = false)
+        assertEquals(1, engine.keeps)
     }
 }

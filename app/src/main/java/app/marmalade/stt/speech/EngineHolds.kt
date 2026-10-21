@@ -4,6 +4,8 @@ import android.util.Log
 import java.util.concurrent.atomic.AtomicBoolean
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 /**
@@ -26,6 +28,13 @@ class EngineHold internal constructor(private val onClose: () -> Unit) : AutoClo
  * hold frees it then (deferred by the engine while a session runs). With
  * Keep engine ready on, nothing here frees anything.
  *
+ * A session that ran another engine or language than the active one (#90:
+ * another app's language routed it) took the active engine's place in
+ * memory. Where one is kept loaded (Keep engine ready, or a hold), the active
+ * engine is put back once no such session has run for [RESTORE_DELAY_MS]
+ * ([routedSessionEnded]): the user's keyboard finds its engine ready again,
+ * and a language app asking again soon finds its own still warm.
+ *
  * Thread-safe: surfaces open and close holds on the main thread, sessions end
  * on a background one. Freeing runs on [scope], never on the caller's thread.
  *
@@ -42,6 +51,7 @@ internal class EngineHolds(
 ) {
     private val lock = Any()
     private var count = 0
+    private var restore: Job? = null
 
     /** True while at least one hold is open. */
     val held: Boolean get() = synchronized(lock) { count > 0 }
@@ -52,6 +62,8 @@ internal class EngineHolds(
      */
     fun hold(preload: Boolean): EngineHold {
         synchronized(lock) { count++ }
+        // A release the last hold's closing deferred behind a running session no longer stands.
+        builtEngine()?.keep()
         if (preload) scope.launch { preload() }
         return EngineHold(::closeOne)
     }
@@ -76,6 +88,40 @@ internal class EngineHolds(
         engine.release()
     }
 
+    /** A session starts: a pending restore would only compete with it for the engine. */
+    fun sessionStarting() {
+        synchronized(lock) {
+            restore?.cancel()
+            restore = null
+        }
+    }
+
+    /**
+     * A session that ran another engine or language than the active one
+     * ended: in [RESTORE_DELAY_MS], unless another session starts first,
+     * load and warm up the active engine again where one is kept loaded.
+     * Building it drops the routed one ([activeEngine]).
+     */
+    fun routedSessionEnded() {
+        synchronized(lock) {
+            restore?.cancel()
+            restore = scope.launch {
+                delay(RESTORE_DELAY_MS)
+                if (!held && !keepLoaded()) return@launch
+                val e = activeEngine() ?: return@launch
+                if (e.isLoaded) return@launch
+                Log.i(TAG, "Putting ${e.descriptor.id} back after another app's language ran another engine")
+                try {
+                    e.warmUp()
+                } catch (ce: CancellationException) {
+                    throw ce
+                } catch (t: Throwable) {
+                    Log.w(TAG, "Restoring the active engine failed", t)
+                }
+            }
+        }
+    }
+
     private fun closeOne() {
         val last = synchronized(lock) { --count == 0 }
         if (!last) return
@@ -88,7 +134,10 @@ internal class EngineHolds(
         }
     }
 
-    private companion object {
-        const val TAG = "EngineHolds"
+    companion object {
+        private const val TAG = "EngineHolds"
+
+        /** How long after a routed session the active engine is put back: a minute. */
+        const val RESTORE_DELAY_MS = 60_000L
     }
 }

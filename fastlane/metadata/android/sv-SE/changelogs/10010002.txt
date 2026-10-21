@@ -1,0 +1,1 @@
+Marmalade STT 1.1.0 rättar appar som använder Androids taligenkänning, till exempel Duolingo: från Android 12 misslyckades de direkt. Appar kan nu be om ett språk, lämna över eget ljud (Android 13 och senare) och använda fler alternativ för taligenkänningen, och din egen diktering går först. Qwen3-ASR kan väljas för alla sina 30 språk.

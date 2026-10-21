@@ -93,12 +93,17 @@ internal val WHISPER_LANGUAGE_CODES = mapOf("nb" to "no")
 
 /**
  * Qwen3-ASR takes its language hint as an English name in the prompt
- * ("language English"), not a code.
+ * ("language English"), not a code: the names of `SUPPORTED_LANGUAGES` in
+ * QwenLM/Qwen3-ASR's `qwen_asr/inference/utils.py`, one per
+ * [app.marmalade.stt.install.EngineLanguages.QWEN3] code (#88).
  */
 internal val QWEN3_LANGUAGE_NAMES = mapOf(
-    "en" to "English", "de" to "German", "es" to "Spanish", "fr" to "French", "it" to "Italian",
-    "pt" to "Portuguese", "nl" to "Dutch", "pl" to "Polish", "ru" to "Russian", "ja" to "Japanese",
-    "ko" to "Korean", "zh" to "Chinese",
+    "zh" to "Chinese", "en" to "English", "yue" to "Cantonese", "ar" to "Arabic", "de" to "German",
+    "fr" to "French", "es" to "Spanish", "pt" to "Portuguese", "id" to "Indonesian", "it" to "Italian",
+    "ko" to "Korean", "ru" to "Russian", "th" to "Thai", "vi" to "Vietnamese", "ja" to "Japanese",
+    "tr" to "Turkish", "hi" to "Hindi", "ms" to "Malay", "nl" to "Dutch", "sv" to "Swedish",
+    "da" to "Danish", "fi" to "Finnish", "pl" to "Polish", "cs" to "Czech", "fil" to "Filipino",
+    "fa" to "Persian", "el" to "Greek", "ro" to "Romanian", "hu" to "Hungarian", "mk" to "Macedonian",
 )
 
 /**
@@ -107,8 +112,8 @@ internal val QWEN3_LANGUAGE_NAMES = mapOf(
  * 30, never below sherpa's own 128. Hindi, the densest language measured,
  * needed up to 15.3 a second (Chinese 4.5, Korean 7.3); sherpa's fixed 128
  * cut 10 of 40 FLEURS Hindi clips and left fast Korean at 28 s 122 tokens.
- * Qwen3 transcribes 30 languages as a developer engine, so the cap covers
- * the densest; runaways are #49's.
+ * Qwen3 transcribes 30 languages, so the cap covers the densest; runaways
+ * are #49's.
  */
 internal fun qwen3MaxNewTokens(seconds: Double): Int = maxOf(QWEN3_SHERPA_MAX_NEW_TOKENS, ceil(16 * seconds).toInt() + 30)
 

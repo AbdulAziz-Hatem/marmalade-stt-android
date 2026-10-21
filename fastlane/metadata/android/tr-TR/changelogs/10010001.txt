@@ -1,0 +1,1 @@
+Marmalade STT 1.1.0, Duolingo gibi Android'in konuşma tanımasını kullanan uygulamaları düzeltir: Android 12 ve sonrasında hemen başarısız oluyorlardı. Uygulamalar artık bir dil isteyebilir, kendi seslerini verebilir (Android 13 ve sonrası) ve daha fazla tanıma seçeneği kullanabilir; sizin dikteniz ise önceliklidir. Qwen3-ASR, desteklediği 30 dilin tümü için seçilebilir.

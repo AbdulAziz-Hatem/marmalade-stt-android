@@ -63,6 +63,5 @@
     <string name="engine_desc_nemotron_35">Model streaming dari NVIDIA untuk bahasa Hindi, Arab, dan Vietnam: teks muncul saat Anda berbicara.</string>
     <string name="engine_desc_whisper_turbo">OpenAI Whisper large-v3-turbo, multibahasa. Whisper yang paling akurat. Teks muncul saat Anda berhenti sejenak.</string>
     <string name="engine_desc_granite">Model CTC bahasa Inggris dari IBM: paling akurat dalam pengujian bahasa Inggris kami. Huruf kapital dan tanda baca ditambahkan oleh pemformat milik aplikasi.</string>
-    <string name="engine_desc_qwen3">Model offline dari Alibaba dengan decoder model bahasa kecil: 30 bahasa, terdeteksi otomatis. Teks muncul saat Anda berhenti sejenak.</string>
-    <string name="engine_desc_qwen3_users">Model dari Alibaba untuk bahasa Tionghoa dan Korea, dengan decoder model bahasa kecil: paling akurat untuk bahasa Tionghoa. Teks muncul saat Anda berhenti sejenak.</string>
+    <string name="engine_desc_qwen3">Model offline dari Alibaba dengan decoder model bahasa kecil: 30 bahasa, terdeteksi otomatis, dan paling akurat untuk bahasa Tionghoa. Teks muncul saat Anda berhenti sejenak.</string>
 </resources>

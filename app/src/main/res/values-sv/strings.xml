@@ -191,6 +191,8 @@
     <string name="recognizer_mic_blocked">Taligenkänning behöver mikrofonen. Aktivera den i appens inställningar under Behörigheter.</string>
     <string name="recognizer_open_settings">Öppna inställningarna</string>
     <string name="recognizer_mic_stop">Sluta lyssna</string>
+    <string name="recognizer_language_unavailable">Ingen installerad talmodell förstår det begärda språket: %1$s. Ladda ned en i Marmalade STT.</string>
+    <string name="recognizer_language_not_supported">Marmalade STT har ingen talmodell för det begärda språket: %1$s.</string>
 
     <!-- Press and hold the mic to lock listening -->
     <string name="lock_status">Låst: tryck för att stoppa</string>

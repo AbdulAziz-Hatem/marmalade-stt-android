@@ -44,6 +44,10 @@ import kotlinx.coroutines.flow.first
  * with the instance state: the restored back stack was built on that same
  * start destination, and finishing the guide later must not swap it (a new
  * start destination resets the NavHost's back stack).
+ *
+ * Started as the `SettingsActivity` alias (the manifest; the gear next to
+ * Marmalade in Android's voice-input and keyboard settings, #90), it opens
+ * on the Settings tab ([AppRoot]'s `initialTab`).
  */
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -55,6 +59,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        val initialTab = if (intent.component?.className == SETTINGS_ALIAS) Routes.Settings else null
         setContent {
             val appearance by appearanceSettings.appearance.collectAsStateWithLifecycle(initialValue = null)
             val darkTheme = (appearance?.mode ?: ThemeMode.SYSTEM).isDark(isSystemInDarkTheme())
@@ -73,7 +78,7 @@ class MainActivity : ComponentActivity() {
             MarmaladeSttTheme(darkTheme = darkTheme, themePreset = appearance?.preset ?: ThemePreset.MARMALADE) {
                 val start = startDestination
                 if (start != null && appearance != null) {
-                    AppRoot(startDestination = start)
+                    AppRoot(startDestination = start, initialTab = initialTab)
                 } else {
                     // The theme's background, the same colour as the XML
                     // window background, so the wait looks like the app opening.
@@ -81,5 +86,10 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+    }
+
+    private companion object {
+        /** The manifest's activity-alias for the system settings' gear. */
+        const val SETTINGS_ALIAS = "app.marmalade.stt.SettingsActivity"
     }
 }

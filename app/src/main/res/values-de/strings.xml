@@ -190,6 +190,8 @@
     <string name="recognizer_mic_blocked">Die Spracheingabe braucht das Mikrofon. Aktiviere es in den App-Einstellungen unter Berechtigungen.</string>
     <string name="recognizer_open_settings">Einstellungen öffnen</string>
     <string name="recognizer_mic_stop">Zuhören beenden</string>
+    <string name="recognizer_language_unavailable">Kein installiertes Sprachmodell versteht die angeforderte Sprache: %1$s. Lade eines in Marmalade STT herunter.</string>
+    <string name="recognizer_language_not_supported">Marmalade STT hat kein Sprachmodell für die angeforderte Sprache: %1$s.</string>
 
     <!-- Mikrofon gedrückt halten, um das Zuhören zu fixieren -->
     <string name="lock_status">Fixiert: zum Stoppen tippen</string>

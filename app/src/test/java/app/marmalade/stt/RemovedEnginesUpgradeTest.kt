@@ -318,9 +318,9 @@ class RemovedEnginesUpgradeTest {
 
         val prefs = settings.current()
         assertEquals("whisper-turbo", prefs.recommendedEngineId)
-        // Pinned, and kept while it is a developer engine (Developer engines off): still running, still listed.
+        // Pinned: still running, still listed. A user engine since #50, so no kept mark is needed.
         assertEquals(SttEngineCatalog.QWEN3, prefs.selectedEngineId)
-        assertEquals(qwen3IsDeveloper, prefs.selectionKept)
+        assertFalse(prefs.selectionKept)
         assertEquals(SttEngineCatalog.QWEN3, prefs.activeEngine.id)
         assertTrue(prefs.visibleEngines.any { it.id == SttEngineCatalog.QWEN3 })
     }
@@ -349,7 +349,7 @@ class RemovedEnginesUpgradeTest {
 
         val prefs = settings.current()
         assertEquals("whisper-turbo", prefs.recommendedEngineId)
-        assertEquals(qwen3IsDeveloper, prefs.selectionKept)
+        assertFalse(prefs.selectionKept)
         assertEquals(SttEngineCatalog.QWEN3, prefs.activeEngine.id)
     }
 
@@ -359,11 +359,10 @@ class RemovedEnginesUpgradeTest {
 
         upgrade(totalMemGb = 12.0)
 
-        // Nothing to keep running: the selection stays as the user left it. As a developer engine it
-        // no longer runs (turbo, the recommendation, does); as a user engine it is simply the choice.
+        // Nothing to keep running: the selection stays as the user left it, a user engine's choice.
         val prefs = settings.current()
         assertFalse(prefs.selectionKept)
-        assertEquals(if (qwen3IsDeveloper) "whisper-turbo" else SttEngineCatalog.QWEN3, prefs.activeEngine.id)
+        assertEquals(SttEngineCatalog.QWEN3, prefs.activeEngine.id)
     }
 
     @Test
@@ -387,9 +386,6 @@ class RemovedEnginesUpgradeTest {
         settings.setRecommendedEngine(SttEngineCatalog.PARAKEET_ULTRA)
         assertFalse(settings.current().recommendationOutdated)
     }
-
-    /** Qwen3-ASR is a developer engine unless [SttEngineCatalog.QWEN3_FOR_USERS] (#50); the tests hold either way. */
-    private val qwen3IsDeveloper = !SttEngineCatalog.QWEN3_FOR_USERS
 
     /** A phone that must not be asked anything. */
     private val noHardware = object : PhoneHardware {

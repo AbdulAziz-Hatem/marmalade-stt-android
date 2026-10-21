@@ -105,10 +105,6 @@ class SttEngineCatalogTest {
             assertEquals("${engine.id} previous tags", 1, previous.size)
             assertTrue("${engine.id} previous tag is no engine's current one", previous.single() !in current)
         }
-        val qwenUser = SttEngineCatalog.qwen3Asr(forUsers = true)
-        val qwenDeveloper = SttEngineCatalog.qwen3Asr(forUsers = false)
-        assertEquals(qwenUser.files, qwenDeveloper.files)
-        assertEquals(qwenUser.previousFiles, qwenDeveloper.previousFiles)
     }
 
     /** The roles each family's loader (SherpaBackends.kt, GraniteTranscriber.kt) looks up; a missing one would fail on device. */
@@ -164,9 +160,9 @@ class SttEngineCatalogTest {
     fun theUserLineup() {
         // Parakeet Ultra is the main engine, Parakeet 110M the small option, Parakeet-ja the Japanese
         // one (#60), Canary the tiny four-language one, Nemotron 3.5 streams Hindi, Arabic and
-        // Vietnamese (#37), and Whisper turbo covers the rest. Qwen3-ASR joins them for Chinese and Korean with QWEN3_FOR_USERS (#50).
+        // Vietnamese (#37), and Whisper turbo covers the rest. Qwen3-ASR joined them for Chinese and Korean (#50),
+        // and for all 30 of its languages in #88.
         assertEquals(SttEngineCatalog.PARAKEET_ULTRA, SttEngineCatalog.default.id)
-        val qwen3 = setOf(SttEngineCatalog.QWEN3)
         val nonDeveloper = setOf(
             SttEngineCatalog.PARAKEET_ULTRA,
             "parakeet-tdt-110m-en",
@@ -174,10 +170,11 @@ class SttEngineCatalogTest {
             "canary-180m-flash",
             SttEngineCatalog.NEMOTRON_35_1120MS,
             "whisper-turbo",
-        ) + if (SttEngineCatalog.QWEN3_FOR_USERS) qwen3 else emptySet()
+            SttEngineCatalog.QWEN3,
+        )
         assertEquals(nonDeveloper, engines.filterNot { it.developer }.map { it.id }.toSet())
         assertEquals(
-            setOf("granite-speech-5-470m") + if (SttEngineCatalog.QWEN3_FOR_USERS) emptySet() else qwen3,
+            setOf("granite-speech-5-470m"),
             engines.filter { it.developer }.map { it.id }.toSet(),
         )
         assertEquals(nonDeveloper, SttEngineCatalog.visibleTo(showDeveloper = false).map { it.id }.toSet())
@@ -187,8 +184,7 @@ class SttEngineCatalogTest {
     /** #67 (Max's v1 review): clean names, no underscores or "(English)", all distinct. */
     @Test
     fun displayNamesAreCleanAndDistinct() {
-        val all = engines + SttEngineCatalog.qwen3Asr(forUsers = false)
-        all.forEach { engine ->
+        engines.forEach { engine ->
             val name = engine.displayName
             assertTrue("$name: no underscore", '_' !in name)
             assertTrue("$name: no parenthetical", '(' !in name && ')' !in name)
@@ -280,7 +276,8 @@ class SttEngineCatalogTest {
     fun languageOptionsDefaultToAutoWhereTheModelDetectsAndEnglishWhereItCannot() {
         for (engine in engines) {
             val options = engine.languageOptions ?: continue
-            assertTrue(engine.id, options.codes.all { it == LanguageOptions.AUTO || it.matches(Regex("[a-z]{2}")) })
+            // ISO 639 codes: two letters, or three where there is no two-letter one (Qwen3's yue and fil, #88).
+            assertTrue(engine.id, options.codes.all { it == LanguageOptions.AUTO || it.matches(Regex("[a-z]{2,3}")) })
         }
         assertEquals("en", SttEngineCatalog.byId("canary-180m-flash")!!.languageOptions!!.default)
         assertEquals(LanguageOptions.AUTO, SttEngineCatalog.byId("whisper-turbo")!!.languageOptions!!.default)

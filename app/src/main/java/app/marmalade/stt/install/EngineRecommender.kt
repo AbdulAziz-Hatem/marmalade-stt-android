@@ -6,7 +6,8 @@ package app.marmalade.stt.install
  * is bundled (D5); the user downloads the one recommended, or picks another.
  *
  * 1. The candidates are [preference] filtered to user engines that are
- *    offered for the language ([EngineLanguages]). A language no engine
+ *    offered for the language ([EngineLanguages]), Qwen3-ASR only for
+ *    [QWEN3_RECOMMENDED] and Canary never for English. A language no engine
  *    covers falls back to the English candidates.
  * 2. Of those that fit the phone, counted as the phone runs them
  *    ([SpeedBudget.forPhone]: without ONNX Runtime's arena, slower and
@@ -34,11 +35,10 @@ package app.marmalade.stt.install
  * 10x the cost); Parakeet TDT_CTC 0.6B ja for Japanese (#60: the most
  * accurate, turbo within the margin at about 10x the cost); Nemotron 3.5 for
  * Hindi (turbo is twice its error), Arabic and Vietnamese (a tie); Whisper
- * turbo for Turkish and Norwegian (nothing else is close), and for Chinese
- * and Korean until Qwen3-ASR is a
- * user engine ([SttEngineCatalog.QWEN3_FOR_USERS]); then Qwen3 for both
- * (Chinese: the most accurate; Korean: 5.7 against turbo's 4.7, inside the
- * margin, at about 0.6x the cost).
+ * turbo for Turkish and Norwegian (nothing else is close); Qwen3-ASR for
+ * Chinese and Korean (Chinese: the most accurate; Korean: 5.7 against
+ * turbo's 4.7, inside the margin, at about 0.6x the cost), and for nothing
+ * else ([QWEN3_RECOMMENDED], #88).
  */
 object EngineRecommender {
 
@@ -52,8 +52,8 @@ object EngineRecommender {
      * (0.95 GB at its peak against Ultra's 1.18 GB without the arena, #47).
      * Never for English, where 110M is lighter, faster and better
      * ([CANARY]). Then Nemotron 3.5 for Hindi, Arabic and Vietnamese (#37),
-     * Qwen3-ASR for Chinese and Korean once it is a user engine (#50), and
-     * turbo last, the costliest. Developer engines and ids not in the
+     * Qwen3-ASR for Chinese and Korean (#50, [QWEN3_RECOMMENDED]), and turbo
+     * last, the costliest. Developer engines and ids not in the
      * catalog are skipped.
      */
     val preference: List<String> = listOf(
@@ -74,10 +74,12 @@ object EngineRecommender {
      * that is running. Change it whenever the rules or the tables they read
      * change what a phone is recommended. 1: #50's accuracy margin (and
      * #37's Nemotron 3.5 for Hindi, Arabic and Vietnamese only, which had
-     * no version). 2: Parakeet TDT_CTC 0.6B ja for Japanese (#60).
-     * [SttEngineCatalog.QWEN3_FOR_USERS] is part of it.
+     * no version). 2: Parakeet TDT_CTC 0.6B ja for Japanese (#60). "+qwen3":
+     * Qwen3-ASR for Chinese and Korean (#50; it was a switch until #88,
+     * which offers Qwen3 for more languages but recommends it nowhere new,
+     * so the version stays).
      */
-    val RULES_VERSION: String = "2" + if (SttEngineCatalog.QWEN3_FOR_USERS) "+qwen3" else ""
+    const val RULES_VERSION: String = "2+qwen3"
 
     /**
      * Largest share of the phone's RAM (`totalMem`, a little under the
@@ -93,6 +95,19 @@ object EngineRecommender {
 
     /** Canary 180M Flash: a candidate for its other three languages, never English. */
     private const val CANARY = "canary-180m-flash"
+
+    /**
+     * The languages Qwen3-ASR is recommended for (#50): Chinese, where it is
+     * the most accurate engine we measured, and Korean, where it is within
+     * [EngineQuality.MARGIN_POINTS] of Whisper turbo at about 0.6x its cost
+     * (`docs/benchmarks/2026-10-nemotron-decision.md`). It is offered for
+     * all 30 of its languages since #88 (Max, 2026-10-17: pickable, not
+     * newly recommended). Elsewhere it is unmeasured, where it would lead
+     * turbo as the first that fits, or measured: Vietnamese (16.3) is inside
+     * the margin of turbo's 14.1, so a phone where Nemotron 3.5 fell behind
+     * would get it instead of turbo.
+     */
+    val QWEN3_RECOMMENDED = setOf("zh", "ko")
 
     /** Why [Recommendation.engine] was chosen. */
     enum class Reason {
@@ -147,7 +162,8 @@ object EngineRecommender {
         val lang = EngineLanguages.normalize(language)
         val known = preference.mapNotNull(catalog).filterNot { it.developer }
         fun candidatesFor(language: String) = known.filter {
-            EngineLanguages.supports(it, language) && !(it.id == CANARY && language == "en")
+            EngineLanguages.supports(it, language) && !(it.id == CANARY && language == "en") &&
+                !(it.id == SttEngineCatalog.QWEN3 && language !in QWEN3_RECOMMENDED)
         }
         val forLanguage = candidatesFor(lang)
         val covered = forLanguage.isNotEmpty()

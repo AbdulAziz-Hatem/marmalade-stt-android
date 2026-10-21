@@ -188,6 +188,8 @@
     <string name="recognizer_mic_blocked">Nhập bằng giọng nói cần dùng micrô. Hãy bật trong phần Quyền của mục cài đặt ứng dụng.</string>
     <string name="recognizer_open_settings">Mở cài đặt</string>
     <string name="recognizer_mic_stop">Dừng nghe</string>
+    <string name="recognizer_language_unavailable">Không có mô hình giọng nói nào đã cài đặt hiểu được ngôn ngữ được yêu cầu: %1$s. Hãy tải một mô hình xuống trong Marmalade STT.</string>
+    <string name="recognizer_language_not_supported">Marmalade STT không có mô hình giọng nói cho ngôn ngữ được yêu cầu: %1$s.</string>
 
     <!-- Press and hold the mic to lock listening -->
     <string name="lock_status">Đã khóa: nhấn để dừng</string>

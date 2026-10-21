@@ -26,7 +26,7 @@
 <p>Der Einrichtungsassistent empfiehlt eine Sprach-Engine für deine Sprache und für Arbeitsspeicher und Geschwindigkeit deines Smartphones, mit der Möglichkeit, andere Modelle herunterzuladen und auszuprobieren.</p>
 
 <p><b>SPRACHEN</b></p>
-<p>Schnelle Engines gibt es für Englisch, Bulgarisch, Kroatisch, Tschechisch, Dänisch, Niederländisch, Estnisch, Finnisch, Französisch, Deutsch, Griechisch, Ungarisch, Italienisch, Lettisch, Litauisch, Maltesisch, Polnisch, Portugiesisch, Rumänisch, Russisch, Slowakisch, Slowenisch, Spanisch, Schwedisch, Ukrainisch, Japanisch, Hindi, Arabisch und Vietnamesisch. Chinesisch und Koreanisch bekommen Qwen3-ASR, das leichter als Whisper ist. Andere Sprachen laufen über Whisper Large v3 Turbo, mit mehr Verzögerung.</p>
+<p>Schnelle Engines gibt es für Englisch, Bulgarisch, Kroatisch, Tschechisch, Dänisch, Niederländisch, Estnisch, Finnisch, Französisch, Deutsch, Griechisch, Ungarisch, Italienisch, Lettisch, Litauisch, Maltesisch, Polnisch, Portugiesisch, Rumänisch, Russisch, Slowakisch, Slowenisch, Spanisch, Schwedisch, Ukrainisch, Japanisch, Hindi, Arabisch und Vietnamesisch. Chinesisch und Koreanisch bekommen Qwen3-ASR, das leichter als Whisper ist. Es lässt sich auch für seine 28 weiteren Sprachen wählen, darunter Englisch. Andere Sprachen laufen über Whisper Large v3 Turbo, mit mehr Verzögerung.</p>
 
 <p><b>OPEN SOURCE</b></p>
 <p>Marmalade STT steht unter der MIT-Lizenz. Wenn du es unterstützen möchtest, führt Einstellungen → Unterstützung zu GitHub Sponsors; die App ist so oder so dieselbe.</p>

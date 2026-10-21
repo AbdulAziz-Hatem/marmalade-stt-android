@@ -12,7 +12,7 @@
   only a label: the engines recognize every language they support.
 -->
 <input-method xmlns:android="http://schemas.android.com/apk/res/android"
-    android:settingsActivity="app.marmalade.stt.MainActivity"
+    android:settingsActivity="app.marmalade.stt.SettingsActivity"
     android:isDefault="false">
     <subtype
         android:imeSubtypeMode="voice"

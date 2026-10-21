@@ -66,6 +66,5 @@
     <string name="engine_desc_nemotron_35">Il modello in streaming di NVIDIA per hindi, arabo e vietnamita: il testo compare mentre parli.</string>
     <string name="engine_desc_whisper_turbo">OpenAI Whisper large-v3-turbo, multilingue. Il Whisper più preciso. Il testo compare quando fai una pausa.</string>
     <string name="engine_desc_granite">Il modello CTC inglese di IBM: il più preciso nei nostri test in inglese. Maiuscole e punteggiatura vengono dal formattatore dell\'app.</string>
-    <string name="engine_desc_qwen3">Il modello offline di Alibaba con un piccolo decoder basato su un modello linguistico: 30 lingue, rilevate automaticamente. Il testo compare quando fai una pausa.</string>
-    <string name="engine_desc_qwen3_users">Il modello di Alibaba per il cinese e il coreano, con un piccolo decoder basato su un modello linguistico: il più preciso per il cinese. Il testo compare quando fai una pausa.</string>
+    <string name="engine_desc_qwen3">Il modello offline di Alibaba con un piccolo decoder basato su un modello linguistico: 30 lingue, rilevate automaticamente, ed è il più preciso per il cinese. Il testo compare quando fai una pausa.</string>
 </resources>

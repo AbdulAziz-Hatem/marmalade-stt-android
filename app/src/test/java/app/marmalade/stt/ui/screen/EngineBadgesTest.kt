@@ -15,7 +15,7 @@ import org.junit.Test
 class EngineBadgesTest {
 
     private val default = SttEngineCatalog.default
-    /** A developer engine, whatever [SttEngineCatalog.QWEN3_FOR_USERS] says. */
+    /** A developer engine. */
     private val granite = SttEngineCatalog.byId("granite-speech-5-470m")!!
     private val turbo = SttEngineCatalog.byId("whisper-turbo")!!
     private val nemotron = SttEngineCatalog.byId(SttEngineCatalog.NEMOTRON_35_1120MS)!!

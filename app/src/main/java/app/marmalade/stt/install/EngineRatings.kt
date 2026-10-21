@@ -30,23 +30,17 @@ object EngineLanguages {
      */
     val NEMOTRON_35 = setOf("hi", "ar", "vi")
 
-    /** Qwen3-ASR's 30 languages (model card; its 22 Chinese dialects count as zh / yue). */
-    private val QWEN3 = setOf(
-        "en", "zh", "yue", "ar", "de", "es", "fr", "it", "ja", "ko", "pt", "ru", "hi", "id", "ms", "nl", "pl", "th",
-        "tr", "vi", "cs", "da", "el", "fa", "fi", "fil", "hu", "mk", "ro", "sv",
-    )
-
     /**
-     * The languages Qwen3-ASR is offered for as a user engine
-     * ([SttEngineCatalog.QWEN3_FOR_USERS], #50): Chinese, where it is the
-     * most accurate engine we measured, and Korean, where it is within
-     * [EngineQuality.MARGIN_POINTS] of Whisper turbo at about 0.6x its cost
-     * (`docs/benchmarks/2026-10-nemotron-decision.md`). Elsewhere it lost
-     * to turbo, Nemotron 3.5 or Parakeet, or wasn't measured. As a
-     * developer engine it keeps all of [QWEN3]. Chinese comes first: it is
-     * the main language [EngineQuality.rating] falls back to.
+     * Qwen3-ASR's 30 languages (`SUPPORTED_LANGUAGES` in QwenLM/Qwen3-ASR's
+     * `qwen_asr/inference/utils.py`, the model card's list; its 22 Chinese
+     * dialects count as zh / yue). A user engine for all of them since #88
+     * (Max, 2026-10-17); the recommendation still picks it for Chinese and
+     * Korean only ([EngineRecommender.QWEN3_RECOMMENDED]).
      */
-    val QWEN3_USER = setOf("zh", "ko")
+    val QWEN3 = setOf(
+        "zh", "en", "yue", "ar", "de", "fr", "es", "pt", "id", "it", "ko", "ru", "th", "vi", "ja", "tr", "hi", "ms",
+        "nl", "sv", "da", "fi", "pl", "cs", "fil", "fa", "el", "ro", "hu", "mk",
+    )
 
     /** Whisper's multilingual vocabulary (large-v3-turbo), normalised. */
     private val WHISPER_MULTILINGUAL = setOf(
@@ -64,7 +58,7 @@ object EngineLanguages {
         "canary-180m-flash" to setOf("en", "es", "de", "fr"),
         SttEngineCatalog.NEMOTRON_35_1120MS to NEMOTRON_35,
         "whisper-turbo" to WHISPER_MULTILINGUAL,
-        SttEngineCatalog.QWEN3 to QWEN3, // as a developer engine; see of()
+        SttEngineCatalog.QWEN3 to QWEN3,
     )
 
     /**
@@ -85,15 +79,9 @@ object EngineLanguages {
         }
     }
 
-    /**
-     * The languages [engine] is offered for: this table (for Qwen3-ASR as a
-     * user engine, [QWEN3_USER]), else its catalog entry's codes (skipping
-     * "mul").
-     */
-    fun of(engine: SttEngineDescriptor): Set<String> {
-        if (engine.id == SttEngineCatalog.QWEN3 && !engine.developer) return QWEN3_USER
-        return BY_ENGINE[engine.id] ?: engine.languages.filter { it != "mul" }.map(::normalize).toSet()
-    }
+    /** The languages [engine] is offered for: this table, else its catalog entry's codes (skipping "mul"). */
+    fun of(engine: SttEngineDescriptor): Set<String> =
+        BY_ENGINE[engine.id] ?: engine.languages.filter { it != "mul" }.map(::normalize).toSet()
 
     fun supports(engine: SttEngineDescriptor, language: String): Boolean = normalize(language) in of(engine)
 
@@ -251,8 +239,8 @@ object EngineQuality {
      * #80): in a hard language the best engines' errors are high in absolute
      * terms, but they are still the best there is. Nemotron 3.5's Hindi
      * (14.4, the best) and Vietnamese (15.0, against turbo's 14.1) read
-     * Good, not Fair; turbo's Vietnamese too, and the developer Qwen3-ASR's
-     * Vietnamese (16.3).
+     * Good, not Fair; turbo's Vietnamese too, and Qwen3-ASR's Vietnamese
+     * (16.3).
      */
     const val NEAR_BEST_MIN_STARS = 3
 
@@ -279,8 +267,8 @@ object EngineQuality {
      * 1. in [language] when the engine is offered for it;
      * 2. else in English when it is offered for English;
      * 3. else in its main language: the first of [EngineLanguages.of] that was
-     *    measured (Japanese for Parakeet Japanese, Hindi for Nemotron 3.5,
-     *    Chinese for Qwen3-ASR). The card says "Tested in Japanese" and,
+     *    measured (Japanese for Parakeet Japanese, Hindi for Nemotron 3.5).
+     *    The card says "Tested in Japanese" and,
      *    from [app.marmalade.stt.ui.screen.languageNote], that it doesn't
      *    transcribe the user's language; "Not rated" would hide a measured
      *    engine as if nobody had tested it.

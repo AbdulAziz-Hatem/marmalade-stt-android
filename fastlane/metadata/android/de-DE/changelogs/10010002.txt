@@ -1,0 +1,1 @@
+Marmalade STT 1.1.0 repariert Apps, die die Spracherkennung von Android nutzen, etwa Duolingo: Ab Android 12 schlugen sie sofort fehl. Apps können jetzt eine Sprache anfordern, eigene Audiodaten übergeben (ab Android 13) und mehr Optionen der Spracherkennung nutzen, und dein eigenes Diktat hat Vorrang. Qwen3-ASR ist für alle 30 seiner Sprachen wählbar.

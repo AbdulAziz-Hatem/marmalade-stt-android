@@ -189,6 +189,8 @@
     <string name="recognizer_mic_blocked">Ses girişi için mikrofon gerekir. Uygulamanın ayarlarında, İzinler bölümünden açın.</string>
     <string name="recognizer_open_settings">Ayarları aç</string>
     <string name="recognizer_mic_stop">Dinlemeyi durdur</string>
+    <string name="recognizer_language_unavailable">Kurulu konuşma modellerinden hiçbiri istenen dili anlamıyor: %1$s. Marmalade STT\'de bir konuşma modeli indirin.</string>
+    <string name="recognizer_language_not_supported">Marmalade STT\'de istenen dil için konuşma modeli yok: %1$s.</string>
 
     <!-- Press and hold the mic to lock listening -->
     <string name="lock_status">Kilitli: durdurmak için dokunun</string>

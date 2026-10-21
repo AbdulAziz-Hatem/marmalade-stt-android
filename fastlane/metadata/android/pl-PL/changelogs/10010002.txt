@@ -1,0 +1,1 @@
+Marmalade STT 1.1.0 naprawia aplikacje, które korzystają z rozpoznawania mowy Androida, np. Duolingo: od Androida 12 od razu kończyły się błędem. Aplikacje mogą teraz poprosić o język, przekazać własne nagranie (od Androida 13) i korzystać z większej liczby opcji rozpoznawania, a Twoje własne dyktowanie ma pierwszeństwo. Qwen3-ASR można wybrać dla wszystkich 30 jego języków.

@@ -64,6 +64,5 @@
     <string name="engine_desc_nemotron_35">NVIDIA 的串流模型，支援印地文、阿拉伯文和越南文：邊說邊出現文字。</string>
     <string name="engine_desc_whisper_turbo">OpenAI Whisper large-v3-turbo，多語言。最準確的 Whisper。你停頓時才會出現文字。</string>
     <string name="engine_desc_granite">IBM 的英文 CTC 模型：在我們的英文測試中最準確。大小寫和標點符號由應用程式內建的格式化工具加上。</string>
-    <string name="engine_desc_qwen3">Alibaba 的離線模型，搭配小型語言模型解碼器：支援 30 種語言，並自動偵測。你停頓時才會出現文字。</string>
-    <string name="engine_desc_qwen3_users">Alibaba 的中文和韓文模型，搭配小型語言模型解碼器：中文辨識最準確。你停頓時才會出現文字。</string>
+    <string name="engine_desc_qwen3">Alibaba 的離線模型，搭配小型語言模型解碼器：支援 30 種語言並自動偵測，中文辨識最準確。你停頓時才會出現文字。</string>
 </resources>

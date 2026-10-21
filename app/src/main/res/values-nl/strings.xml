@@ -191,6 +191,8 @@
     <string name="recognizer_mic_blocked">Spraakherkenning heeft de microfoon nodig. Zet deze aan in de app-instellingen, onder Rechten.</string>
     <string name="recognizer_open_settings">Instellingen openen</string>
     <string name="recognizer_mic_stop">Stoppen met luisteren</string>
+    <string name="recognizer_language_unavailable">Geen enkel geïnstalleerd spraakmodel begrijpt de gevraagde taal: %1$s. Download er een in Marmalade STT.</string>
+    <string name="recognizer_language_not_supported">Marmalade STT heeft geen spraakmodel voor de gevraagde taal: %1$s.</string>
 
     <!-- Press and hold the mic to lock listening -->
     <string name="lock_status">Vergrendeld: tik om te stoppen</string>

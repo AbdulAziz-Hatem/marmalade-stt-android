@@ -16,6 +16,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -179,6 +180,9 @@ class SpeechEngineManager @Inject constructor(
      */
     val tooSlow: SharedFlow<SttEngineDescriptor> = _tooSlow.asSharedFlow()
 
+    /** Lets the user's own sessions take the engine from another app's (#90). */
+    private val arbiter = SessionArbiter()
+
     /** [stop] arrived, maybe before the engine had claimed the session (repeated at [SttEvent.Listening]). */
     @Volatile
     private var stopRequested = false
@@ -198,27 +202,88 @@ class SpeechEngineManager @Inject constructor(
      *   they load.
      * @param requestedAt when the user asked ([SystemClock.elapsedRealtime]):
      *   the start of the timing line logged when the session ends ([ListenTiming]).
+     * @param audioInput the session's audio instead of the engine's mic
+     *   ([SessionOptions.audioInput]).
+     * @param engine another installed engine for this session only (#90: one
+     *   that transcribes the caller's [language] when the active one
+     *   doesn't). Rebuilt like a language change; the stored choice stays,
+     *   and the active engine is loaded again after where one is kept
+     *   ([EngineHolds.routedSessionEnded]).
+     * @param pauseSeconds a caller's end of speech for this session only
+     *   (`EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS`, #90): Pause
+     *   with this silence, whatever the surface's end of speech.
+     * @param preemptible another app's RecognitionService session: the user
+     *   starting one of their own surfaces ends it ([SessionArbiter]: it gets
+     *   [SttErrorKind.BUSY]) instead of being turned away busy. A session
+     *   that isn't (every surface of the user's own) first ends a preemptible
+     *   one holding the engine and waits for it to let go.
      */
     fun listen(
         surface: ListenSurface,
         language: String? = null,
         requestedAt: Long = SystemClock.elapsedRealtime(),
+        audioInput: ((hopSamples: Int) -> MicCapture)? = null,
+        engine: SttEngineDescriptor? = null,
+        pauseSeconds: Float? = null,
+        preemptible: Boolean = false,
     ): Flow<SttEvent> = flow {
+        // The reverse never happens: before anything else (the stop flag, the engine choice), another
+        // app's request gives way to the user's own session.
+        if (preemptible && arbiter.userSessionRunning()) {
+            emit(SttEvent.Error(SttErrorKind.BUSY, SherpaSttEngine.BUSY_MESSAGE))
+            return@flow
+        }
+        if (!preemptible) arbiter.userStarting()
+        try {
+            listenAs(surface, language, requestedAt, audioInput, engine, pauseSeconds, preemptible)
+        } finally {
+            if (!preemptible) arbiter.userEnded()
+        }
+    }
+
+    private suspend fun FlowCollector<SttEvent>.listenAs(
+        surface: ListenSurface,
+        language: String?,
+        requestedAt: Long,
+        audioInput: ((hopSamples: Int) -> MicCapture)?,
+        engine: SttEngineDescriptor?,
+        pauseSeconds: Float?,
+        preemptible: Boolean,
+    ) {
         stopRequested = false
-        val prefs = settings.current().let { if (language != null) it.forRequestLanguage(language) else it }
+        holds.sessionStarting()
+        val stored = settings.current()
+        val prefs = stored
+            .let { if (language != null) it.forRequestLanguage(language) else it }
+            .let { if (engine != null) it.copy(selectedEngineId = engine.id) else it }
+        // Another engine or language hint than the user's: the active engine is put back after (EngineHolds).
+        val routed = prefs.choice() != stored.choice()
         val e = engineFor(prefs.choice())
         if (e == null) {
             emit(SttEvent.Error(SttErrorKind.MODEL, "No speech model is installed."))
-            return@flow
+            return
+        }
+        if (!preemptible) {
+            // The user's own session: another app's gives way, and a release deferred behind it
+            // (a surface's hold closed meanwhile) mustn't unload the model this session is about to use.
+            e.keep()
+            arbiter.makeRoom(preemptible = false)
         }
         sessionEngine = e
         // The process's age tells a cold start (the keyboard's process just launched) from a warm one.
         val processAge = requestedAt - Process.getStartElapsedRealtime()
         val timing = ListenTiming("${surface.name.lowercase()} ${e.descriptor.id} loaded=${e.isLoaded} process=${processAge}ms", requestedAt)
+        val options = prefs.sessionOptions(surface).let {
+            if (pauseSeconds != null) it.copy(end = EndOfDictation.PAUSE, minSilenceSeconds = pauseSeconds) else it
+        }
         // Smart Turn's model loads once the engine has opened the mic (#78): its first load mustn't delay it.
-        val smartTurnDetector = if (prefs.endFor(surface) == EndOfDictation.SMART_TURN) ::smartTurnDetector else null
+        val smartTurnDetector = if (options.end == EndOfDictation.SMART_TURN) ::smartTurnDetector else null
+        // Pre-empted: the user's own session takes this engine (and its loaded model) next.
+        var preempted = false
         emitAll(
-            e.listen(prefs.sessionOptions(surface).copy(loadTurnDetector = smartTurnDetector))
+            arbiter.session(preemptible, e.listen(options.copy(loadTurnDetector = smartTurnDetector, audioInput = audioInput))) {
+                preempted = true
+            }
                 // A stop() that came before the engine claimed the session is
                 // repeated as soon as the engine has (its mic is open). It
                 // closes the mic; what was heard is still transcribed.
@@ -229,8 +294,11 @@ class SpeechEngineManager @Inject constructor(
                 }
                 .onCompletion {
                     timing.log()
-                    if (sessionEngine === e) sessionEngine = null
-                    holds.sessionEnded(e)
+                    if (sessionEngine === e && !preempted) sessionEngine = null
+                    if (!preempted) {
+                        holds.sessionEnded(e)
+                        if (routed) holds.routedSessionEnded()
+                    }
                 },
         )
     }

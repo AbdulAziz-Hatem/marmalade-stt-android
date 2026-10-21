@@ -26,7 +26,7 @@
 <p>Kurulum rehberi dilinize, telefonunuzun belleğine ve hızına uygun bir konuşma motoru önerir; dilerseniz başka modelleri de indirip deneyebilirsiniz.</p>
 
 <p><b>DİLLER</b></p>
-<p>Hızlı motorlar İngilizce, Bulgarca, Hırvatça, Çekçe, Danca, Felemenkçe, Estonca, Fince, Fransızca, Almanca, Yunanca, Macarca, İtalyanca, Letonca, Litvanca, Maltaca, Lehçe, Portekizce, Romence, Rusça, Slovakça, Slovence, İspanyolca, İsveççe, Ukraynaca, Japonca, Hintçe, Arapça ve Vietnamcayı kapsar. Çince ve Korece, Whisper'dan daha hafif olan Qwen3-ASR'yi kullanır. Diğer diller daha fazla gecikmeyle Whisper Large v3 Turbo üzerinden çalışır.</p>
+<p>Hızlı motorlar İngilizce, Bulgarca, Hırvatça, Çekçe, Danca, Felemenkçe, Estonca, Fince, Fransızca, Almanca, Yunanca, Macarca, İtalyanca, Letonca, Litvanca, Maltaca, Lehçe, Portekizce, Romence, Rusça, Slovakça, Slovence, İspanyolca, İsveççe, Ukraynaca, Japonca, Hintçe, Arapça ve Vietnamcayı kapsar. Çince ve Korece, Whisper'dan daha hafif olan Qwen3-ASR'yi kullanır. Qwen3-ASR, İngilizce dahil diğer 28 dili için de seçilebilir. Diğer diller daha fazla gecikmeyle Whisper Large v3 Turbo üzerinden çalışır.</p>
 
 <p><b>AÇIK KAYNAK</b></p>
 <p>Marmalade STT, MIT lisanslıdır. Desteklemek isterseniz Ayarlar → Destek bölümünde GitHub Sponsors bağlantısı bulunur; uygulama her iki durumda da aynıdır.</p>

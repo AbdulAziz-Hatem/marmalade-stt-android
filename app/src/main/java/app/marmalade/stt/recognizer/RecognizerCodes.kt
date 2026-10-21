@@ -5,9 +5,6 @@ import android.app.Activity
 import android.os.Build
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
-import app.marmalade.stt.data.SpeechPrefs
-import app.marmalade.stt.install.EngineLanguages
-import app.marmalade.stt.install.LanguageOptions
 import app.marmalade.stt.speech.SttErrorKind
 import app.marmalade.stt.speech.SttEvent
 
@@ -60,28 +57,16 @@ fun speechRecognizerError(outcome: OneShotOutcome, sdkInt: Int = Build.VERSION.S
 }
 
 /**
- * The languages the RecognitionService reports for `onCheckRecognitionSupport`
- * (#41), as BCP-47 tags: what the active engine transcribes, honouring
- * Settings → Recognition language.
- *
- * - An engine run with a language hint ([SpeechPrefs.languageFor]) writes
- *   only that language, so only it is reported.
- * - Otherwise every language the engine knows, the spoken one
- *   ([SpeechPrefs.spokenLanguage]) first when it is among them.
- * - The phone's full tag ([systemLocale], e.g. "en-US") is added after its
- *   language, so a caller asking for its own locale finds it.
+ * The `SpeechRecognizer.ERROR_*` code for a language no installed engine
+ * transcribes ([LanguageRoute.Unavailable]): "not available yet" when an
+ * engine could be downloaded for it, "not supported" when none could. Both
+ * are Android 12+; before that, the generic client error.
  */
-fun recognitionLanguages(prefs: SpeechPrefs, systemLocale: String): List<String> {
-    val engine = prefs.activeEngine
-    val hint = prefs.languageFor(engine, systemLocale)
-    val codes = if (hint != LanguageOptions.AUTO) {
-        listOf(EngineLanguages.normalize(hint))
-    } else {
-        val spoken = prefs.spokenLanguage(systemLocale)
-        EngineLanguages.of(engine).sorted().sortedByDescending { it == spoken }
-    }
-    val system = EngineLanguages.normalize(systemLocale)
-    return codes.flatMap { if (it == system && systemLocale != it) listOf(it, systemLocale) else listOf(it) }
+@SuppressLint("InlinedApi")
+fun languageError(route: LanguageRoute.Unavailable, sdkInt: Int = Build.VERSION.SDK_INT): Int = when {
+    sdkInt < Build.VERSION_CODES.S -> SpeechRecognizer.ERROR_CLIENT
+    route.downloadable -> SpeechRecognizer.ERROR_LANGUAGE_UNAVAILABLE
+    else -> SpeechRecognizer.ERROR_LANGUAGE_NOT_SUPPORTED
 }
 
 /** A caller's `RecognizerIntent.EXTRA_LANGUAGE` ([extra]), or null when it passed none or a blank one. */

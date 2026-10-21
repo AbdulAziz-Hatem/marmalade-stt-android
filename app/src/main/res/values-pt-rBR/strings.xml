@@ -188,6 +188,8 @@
     <string name="recognizer_mic_blocked">A entrada de voz precisa do microfone. Ative-o nas configurações do app, em Permissões.</string>
     <string name="recognizer_open_settings">Abrir configurações</string>
     <string name="recognizer_mic_stop">Parar de ouvir</string>
+    <string name="recognizer_language_unavailable">Nenhum modelo de fala instalado entende o idioma solicitado: %1$s. Baixe um no Marmalade STT.</string>
+    <string name="recognizer_language_not_supported">O Marmalade STT não tem nenhum modelo de fala para o idioma solicitado: %1$s.</string>
 
     <!-- Manter o microfone pressionado para travar a escuta -->
     <string name="lock_status">Travado: toque para parar</string>

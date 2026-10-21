@@ -1,0 +1,1 @@
+Marmalade STT 1.1.0 corregge le app che usano il riconoscimento vocale di Android, come Duolingo: da Android 12 in poi fallivano subito. Ora le app possono chiedere una lingua, fornire il proprio audio (da Android 13) e usare più opzioni di riconoscimento, e la tua dettatura ha la precedenza. Qwen3-ASR si può scegliere per tutte le sue 30 lingue.

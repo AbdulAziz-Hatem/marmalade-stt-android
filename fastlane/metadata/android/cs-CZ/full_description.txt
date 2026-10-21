@@ -26,7 +26,7 @@
 <p>Průvodce nastavením doporučí řečový modul pro váš jazyk a pro paměť a rychlost vašeho telefonu, s možností stáhnout a vyzkoušet i další modely.</p>
 
 <p><b>JAZYKY</b></p>
-<p>Rychlé moduly pokrývají angličtinu, bulharštinu, chorvatštinu, češtinu, dánštinu, nizozemštinu, estonštinu, finštinu, francouzštinu, němčinu, řečtinu, maďarštinu, italštinu, lotyštinu, litevštinu, maltštinu, polštinu, portugalštinu, rumunštinu, ruštinu, slovenštinu, slovinštinu, španělštinu, švédštinu, ukrajinštinu, japonštinu, hindštinu, arabštinu a vietnamštinu. Pro čínštinu a korejštinu je tu Qwen3-ASR, který je lehčí než Whisper. Ostatní jazyky fungují přes Whisper Large v3 Turbo, s větším zpožděním.</p>
+<p>Rychlé moduly pokrývají angličtinu, bulharštinu, chorvatštinu, češtinu, dánštinu, nizozemštinu, estonštinu, finštinu, francouzštinu, němčinu, řečtinu, maďarštinu, italštinu, lotyštinu, litevštinu, maltštinu, polštinu, portugalštinu, rumunštinu, ruštinu, slovenštinu, slovinštinu, španělštinu, švédštinu, ukrajinštinu, japonštinu, hindštinu, arabštinu a vietnamštinu. Pro čínštinu a korejštinu je tu Qwen3-ASR, který je lehčí než Whisper. Můžete ho zvolit i pro jeho dalších 28 jazyků, včetně angličtiny. Ostatní jazyky fungují přes Whisper Large v3 Turbo, s větším zpožděním.</p>
 
 <p><b>OPEN SOURCE</b></p>
 <p>Marmalade STT je pod licencí MIT. Pokud ji chcete podpořit, v Nastavení → Podpora najdete odkaz na GitHub Sponsors; aplikace je v obou případech stejná.</p>

@@ -26,7 +26,7 @@
 <p>The setup guide recommends a speech engine for your language and for your phone's memory and speed, with the option to download and try out other models.</p>
 
 <p><b>LANGUAGES</b></p>
-<p>Fast engines cover English, Bulgarian, Croatian, Czech, Danish, Dutch, Estonian, Finnish, French, German, Greek, Hungarian, Italian, Latvian, Lithuanian, Maltese, Polish, Portuguese, Romanian, Russian, Slovak, Slovenian, Spanish, Swedish, Ukrainian, Japanese, Hindi, Arabic and Vietnamese. Chinese and Korean get Qwen3-ASR, lighter than Whisper. Other languages work through Whisper Large v3 Turbo, with more delay.</p>
+<p>Fast engines cover English, Bulgarian, Croatian, Czech, Danish, Dutch, Estonian, Finnish, French, German, Greek, Hungarian, Italian, Latvian, Lithuanian, Maltese, Polish, Portuguese, Romanian, Russian, Slovak, Slovenian, Spanish, Swedish, Ukrainian, Japanese, Hindi, Arabic and Vietnamese. Chinese and Korean get Qwen3-ASR, lighter than Whisper. You can also pick it for its 28 other languages, English included. Other languages work through Whisper Large v3 Turbo, with more delay.</p>
 
 <p><b>OPEN SOURCE</b></p>
 <p>Marmalade STT is MIT licensed. If you'd like to support it, Settings → Support links to GitHub Sponsors; the app is the same either way.</p>

@@ -65,6 +65,5 @@
     <string name="engine_desc_nemotron_35">NVIDIA\'nın Hintçe, Arapça ve Vietnamca için akışlı modeli: metin siz konuşurken görünür.</string>
     <string name="engine_desc_whisper_turbo">OpenAI Whisper large-v3-turbo, çok dilli. En doğru Whisper. Metin siz duraksadığınızda görünür.</string>
     <string name="engine_desc_granite">IBM\'in İngilizce CTC modeli: İngilizce testlerimizde en doğru model. Büyük harfleri ve noktalamayı uygulamanın kendi biçimlendiricisi ekler.</string>
-    <string name="engine_desc_qwen3">Alibaba\'nın küçük bir dil modeli kod çözücüsüne sahip çevrimdışı modeli: 30 dil, otomatik algılanır. Metin siz duraksadığınızda görünür.</string>
-    <string name="engine_desc_qwen3_users">Alibaba\'nın küçük bir dil modeli kod çözücüsüne sahip Çince ve Korece modeli: Çince için en doğru model. Metin siz duraksadığınızda görünür.</string>
+    <string name="engine_desc_qwen3">Alibaba\'nın küçük bir dil modeli kod çözücüsüne sahip çevrimdışı modeli: 30 dil, otomatik algılanır; Çince için en doğru model. Metin siz duraksadığınızda görünür.</string>
 </resources>

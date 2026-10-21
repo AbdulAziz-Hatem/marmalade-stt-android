@@ -23,27 +23,36 @@ class EarlyMicTest {
 
     private fun List<FloatArray>.tags() = map { it[0].toInt() }
 
-    /** Plays [script], then whatever the test sends to [live], until closed (as a real mic). */
+    /** Plays [script], then whatever the test sends to [incoming], until closed (as a real mic). */
     private class ScriptMic(
         private val script: List<FloatArray>,
         private val failure: Exception? = null,
         override val hasPlatformAgc: Boolean = true,
+        override val live: Boolean = true,
     ) : MicCapture {
-        val live = Channel<FloatArray>(Channel.UNLIMITED)
+        val incoming = Channel<FloatArray>(Channel.UNLIMITED)
+
+        /** Hops the mic has handed over. */
+        @Volatile
+        var emitted = 0
+            private set
 
         @Volatile
         var closed = false
             private set
 
         override val hops: Flow<FloatArray> = flow {
-            for (h in script) emit(h)
+            for (h in script) {
+                emit(h)
+                emitted++
+            }
             failure?.let { throw it }
-            for (h in live) emit(h)
+            for (h in incoming) emit(h)
         }
 
         override fun close() {
             closed = true
-            live.close()
+            incoming.close()
         }
     }
 
@@ -57,7 +66,7 @@ class EarlyMicTest {
         val got = async { early.hops.toList() }
         runCurrent()
         assertEquals(3, early.backlogHops)
-        mic.live.send(hop(4))
+        mic.incoming.send(hop(4))
         runCurrent()
         early.stopRecording()
 
@@ -89,7 +98,7 @@ class EarlyMicTest {
 
         val got = async { early.hops.toList() }
         runCurrent()
-        mic.live.send(loudHop) // the session meters this one itself
+        mic.incoming.send(loudHop) // the session meters this one itself
         runCurrent()
         early.stopRecording()
 
@@ -137,6 +146,50 @@ class EarlyMicTest {
     }
 
     @Test
+    fun `a non-live source past the cap waits for room and loses nothing`() = runTest(timeout = TEST_TIMEOUT) {
+        val mic = ScriptMic(List(10) { hop(it + 1) }, live = false)
+        val early = EarlyMic(mic, maxQueuedHops = 2)
+        launch { early.record() }
+        runCurrent()
+        // The queue is full: the third hop waits, and the stream isn't read further.
+        assertEquals(2, mic.emitted)
+
+        val got = async { early.hops.toList() }
+        runCurrent()
+        early.stopRecording()
+
+        assertEquals((1..10).toList(), got.await().tags())
+        assertEquals(2, early.backlogHops)
+    }
+
+    @Test
+    fun `a stop or close ends a non-live record waiting for room`() = runTest(timeout = TEST_TIMEOUT) {
+        val stopped = ScriptMic(List(5) { hop(it + 1) }, live = false)
+        val early = EarlyMic(stopped, maxQueuedHops = 2)
+        val recorder = launch { early.record() }
+        runCurrent()
+        early.stopRecording()
+        runCurrent()
+        assertTrue(recorder.isCompleted)
+        // Kept: everything read before the stop (this fake keeps playing its script after it).
+        assertEquals((1..5).toList(), early.hops.toList().tags())
+
+        val closed = EarlyMic(ScriptMic(List(5) { hop(it + 1) }, live = false), maxQueuedHops = 2)
+        val recorder2 = launch { closed.record() }
+        runCurrent()
+        closed.close()
+        runCurrent()
+        assertTrue(recorder2.isCompleted)
+        assertTrue(closed.hops.toList().isEmpty())
+    }
+
+    @Test
+    fun `it reports whether the mic is live`() {
+        assertTrue(EarlyMic(ScriptMic(emptyList())).live)
+        assertFalse(EarlyMic(ScriptMic(emptyList(), live = false)).live)
+    }
+
+    @Test
     fun `a mic failure comes after the hops kept before it`() = runTest(timeout = TEST_TIMEOUT) {
         val early = EarlyMic(ScriptMic(listOf(hop(1)), failure = MicCaptureException("Microphone read failed")))
         launch { early.record() }
@@ -169,7 +222,7 @@ class EarlyMicTest {
                 if (capturedAtFirstHop < 0) capturedAtFirstHop = captured()
                 indexes += h.index
                 when (h.index) {
-                    4 -> mic.live.trySend(quietHop.copyOf()) // a live hop, after the backlog
+                    4 -> mic.incoming.trySend(quietHop.copyOf()) // a live hop, after the backlog
                     5 -> early.stopRecording()
                 }
             }

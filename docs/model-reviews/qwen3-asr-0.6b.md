@@ -7,7 +7,11 @@ No generation, no cloning, no speaker identification.
 
 ## Decision (Max, 2026-10-02)
 
-**Approved as a user-facing engine for Chinese and Korean** ("Yes, zh + ko"), after the grey provenance (≈40 M hours, sources undisclosed) and the unproven distillation allegation against Alibaba were put to him. `SttEngineCatalog.QWEN3_FOR_USERS` is on. It stays a developer engine for its other languages.
+**Approved as a user-facing engine for Chinese and Korean** ("Yes, zh + ko"), after the grey provenance (≈40 M hours, sources undisclosed) and the unproven distillation allegation against Alibaba were put to him. At first it stayed a developer engine for its other languages, behind a switch (`SttEngineCatalog.QWEN3_FOR_USERS`, #50).
+
+## Scope change (Max, 2026-10-17, #88)
+
+**A user engine for all 30 of its languages, English included.** Max: "Yeah fix description, don't limit it. If someone wants to use it for English no reason not to stop them." The provenance findings below are unchanged: the same six files (the `.ort` conversions of #78 are the same graphs), the same grey data. The approval only widens to the languages the model already transcribes. The setup guide still recommends it for Chinese and Korean only (`EngineRecommender.QWEN3_RECOMMENDED`); elsewhere a user has to pick it. The switch and the developer-only variant are gone.
 
 ## Verdict first
 

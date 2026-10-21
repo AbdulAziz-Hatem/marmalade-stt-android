@@ -501,6 +501,27 @@ class SherpaSttEngineTest {
     }
 
     @Test
+    fun `keep undoes a release deferred by a running session, but not a drop (#90)`() = runTest(timeout = TEST_TIMEOUT) {
+        suspend fun sessionWith(between: (SherpaSttEngine<OfflineTranscriber>) -> Unit): SherpaSttEngine<OfflineTranscriber> {
+            val engine = engine()
+            val ready = CompletableDeferred<Unit>()
+            val job = launch { engine.listen(SessionOptions()).collect { if (it == SttEvent.Ready) ready.complete(Unit) } }
+            ready.await()
+            between(engine)
+            engine.stop()
+            job.join()
+            return engine
+        }
+
+        // A surface's hold closed (release deferred), then the model was wanted again.
+        assertTrue(sessionWith { it.release(); it.keep() }.isLoaded)
+        assertEquals(0, transcriber.releaseCalls)
+        // Dropped: done with for good, keep or not.
+        assertFalse(sessionWith { it.drop(); it.keep() }.isLoaded)
+        assertEquals(1, transcriber.releaseCalls)
+    }
+
+    @Test
     fun `the VAD is reused for the same silence and rebuilt when it changes`() = runTest(timeout = TEST_TIMEOUT) {
         val engine = engine(mic = selfStoppingMic)
 
@@ -545,12 +566,13 @@ class SherpaSttEngineTest {
     }
 
     @Test
-    fun `a silence outside the slider range is clamped`() = runTest(timeout = TEST_TIMEOUT) {
+    fun `a silence outside the callers' range is clamped`() = runTest(timeout = TEST_TIMEOUT) {
         val engine = engine(mic = selfStoppingMic)
 
-        engine.listen(SessionOptions(minSilenceSeconds = 5f)).toList()
+        engine.listen(SessionOptions(minSilenceSeconds = 9f)).toList()
+        engine.listen(SessionOptions(minSilenceSeconds = 0.1f)).toList()
 
-        assertEquals(listOf(SessionOptions.MIN_SILENCE_RANGE_END), vadSilences)
+        assertEquals(listOf(SessionOptions.MAX_CALLER_SILENCE_SECONDS, SessionOptions.MIN_SILENCE_RANGE_START), vadSilences)
     }
 
     @Test
