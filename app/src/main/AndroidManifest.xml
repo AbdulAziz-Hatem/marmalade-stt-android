@@ -65,6 +65,25 @@
         <intent>
             <action android:name="android.settings.MANAGE_APPLICATIONS_SETTINGS" />
         </intent>
+        <!--
+          Apps that ask our RecognitionService for speech (#96). Before our
+          code runs, Android's RecognitionService checks the caller's mic
+          permission from our process, and that check fails
+          (ERROR_INSUFFICIENT_PERMISSIONS) when our app can't see the caller:
+          the system binds the service, so the caller never becomes visible
+          to us by binding it. Visible: apps with a launcher icon (every app a
+          person opens to talk to), keyboards (the InputMethod query above,
+          for a mic key that calls SpeechRecognizer) and accessibility
+          services. A query intent matches exported services too
+          (AppsFilterUtils.matchesPackage). Nothing here lists or reads them.
+        -->
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent>
+        <intent>
+            <action android:name="android.accessibilityservice.AccessibilityService" />
+        </intent>
     </queries>
 
     <!--

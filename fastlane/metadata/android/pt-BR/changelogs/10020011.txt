@@ -1,0 +1,1 @@
+O Marmalade STT 1.2.1 corrige os apps que usam o reconhecimento de voz do Android, como o Duolingo. O Android recusava a maioria dos pedidos deles antes que o Marmalade STT pudesse ouvir, porque ele não tinha permissão para ver esses apps. Agora ele vê apps com ícone na tela inicial e serviços de acessibilidade, como já via os teclados. Ele não lista nem lê os seus apps.

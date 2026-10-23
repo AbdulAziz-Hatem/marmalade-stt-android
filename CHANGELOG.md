@@ -6,6 +6,20 @@ and this project follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.2.1] - 2026-10-23
+
+### Fixed
+- Apps that use Android's speech recognizer, such as Duolingo, were still
+  refused most of the time with Marmalade STT as the phone's speech
+  recognition service, before it could listen (#96, GitHub #1). Android
+  checks the asking app's microphone permission from inside Marmalade STT,
+  and that check failed whenever Marmalade STT wasn't allowed to see the
+  app (Android 11+). It can now see apps with a launcher icon and
+  accessibility services, as it already could keyboards (Pixel 6a, Android
+  14: 30 of 30 requests answered, by name and as the default service,
+  where 0 of 10 were before). Marmalade STT doesn't list or read your
+  apps.
+
 ## [1.2.0] - 2026-10-23
 
 ### Changed

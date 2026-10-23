@@ -1,0 +1,1 @@
+Marmalade STT 1.2.1 arregla las apps que usan el reconocimiento de voz de Android, como Duolingo. Android rechazaba la mayoría de sus peticiones antes de que Marmalade STT pudiera escuchar, porque no se le permitía ver esas apps. Ahora puede ver las apps con icono en el launcher y los servicios de accesibilidad, como ya veía los teclados. No enumera ni lee tus apps.

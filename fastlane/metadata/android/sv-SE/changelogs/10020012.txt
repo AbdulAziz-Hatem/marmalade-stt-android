@@ -1,0 +1,1 @@
+Marmalade STT 1.2.1 rättar appar som använder Androids taligenkänning, till exempel Duolingo. Android nekade de flesta av deras förfrågningar innan Marmalade STT kunde lyssna, eftersom det inte fick se de apparna. Nu ser det appar med en ikon i startprogrammet och tillgänglighetstjänster, precis som det redan såg tangentbord. Det varken listar eller läser dina appar.

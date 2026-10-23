@@ -73,10 +73,13 @@ public class ProbeActivity extends Activity {
         log("PROBE scenario=" + scenario + " args=" + describe(args) + " sdk=" + Build.VERSION.SDK_INT);
         switch (scenario) {
             case "listen": {
+                // delayMs: wait this long between creating the recognizer (the bind) and starting it (#96).
                 SpeechRecognizer r = recognizer("A");
-                start(r, "A");
-                afterMs("stopAfterMs", () -> { log("A stopListening"); r.stopListening(); });
-                afterMs("cancelAfterMs", () -> { log("A cancel"); r.cancel(); });
+                main.postDelayed(() -> {
+                    start(r, "A");
+                    afterMs("stopAfterMs", () -> { log("A stopListening"); r.stopListening(); });
+                    afterMs("cancelAfterMs", () -> { log("A cancel"); r.cancel(); });
+                }, args.getInt("delayMs", 0));
                 break;
             }
             case "restart": {
@@ -136,6 +139,18 @@ public class ProbeActivity extends Activity {
                 }, args.getInt("gapMs", 2000));
                 break;
             }
+            case "bind": {
+                // Binds to our service directly, the way no SpeechRecognizer caller does (#96): Android then
+                // lets the service's app see this one (implicit package visibility).
+                Intent i = new Intent("android.speech.RecognitionService").setComponent(component());
+                android.content.ServiceConnection c = new android.content.ServiceConnection() {
+                    @Override public void onServiceConnected(ComponentName n, android.os.IBinder b) { log("bound " + n.flattenToShortString()); }
+                    @Override public void onServiceDisconnected(ComponentName n) { log("unbound " + n.flattenToShortString()); }
+                };
+                log("bindService=" + bindService(i, c, BIND_AUTO_CREATE));
+                main.postDelayed(() -> { unbindService(c); log("DONE"); }, 500);
+                break;
+            }
             case "available":
                 log("isRecognitionAvailable=" + SpeechRecognizer.isRecognitionAvailable(this));
                 if (Build.VERSION.SDK_INT >= 31) {
@@ -178,6 +193,7 @@ public class ProbeActivity extends Activity {
             ? SpeechRecognizer.createSpeechRecognizer(this)
             : SpeechRecognizer.createSpeechRecognizer(this, c);
         r.setRecognitionListener(listener(name));
+        log(name + " created");
         recognizers.add(r);
         return r;
     }

@@ -684,9 +684,37 @@ its own check and blames the caller's foreground mic access. Android 9–11
 have no attribution sources; there the framework binds the service from
 the caller directly (not verified on those versions).
 
+*The caller must be visible to us (#96).* Before `onStartListening`,
+`RecognitionService` preflights the caller's `RECORD_AUDIO`
+(`PermissionChecker.checkPermissionForPreflight`) from our process, and
+Android 11+ package visibility applies to that call: if our app can't see
+the caller, the preflight is hard-denied, the framework logs `#startListening
+received from a caller without permission RECORD_AUDIO` and answers
+`ERROR_INSUFFICIENT_PERMISSIONS`, and our code never runs. system_server
+logs `AppsFilter: interaction: <us> -> <caller> BLOCKED` at that moment.
+Since Android 11 the system binds the service (`RemoteSpeechRecognitionService`),
+so the caller never binds us itself and never gets the implicit visibility a
+direct bind gives. On a Pixel 6a (Android 14) the probe was refused 48 of 49
+times, whatever the delay between bind and start (0–6 s) and whether our
+process was warm or cold; the pass came just after a reinstall (the
+visibility cache settling). Once the probe had bound our service directly it
+passed 5 of 5. Fix: `<queries>` for `MAIN`/`LAUNCHER` apps (30/30 by
+component and 30/30 as the default service; the unfixed release 0/10), for
+keyboards (`android.view.InputMethod`, already queried since #61 for the
+setup guide) and for accessibility services. A query intent also matches a
+package's exported services (`AppsFilterUtils.matchesPackage`, AOSP 14). On
+the 6a, probes with no launcher icon: one declaring an accessibility service
+was refused 5/5 by the 1.2.0 release and answered 5/5 by the fix; one
+declaring an input-method service (not enabled) was answered 5/5 by both;
+one declaring neither was refused 10/10. Within a minute or two of a package
+install an invisible caller sometimes passes (3 of 10) while the visibility
+cache settles. Callers that are none of these stay refused;
+`QUERY_ALL_PACKAGES` would cover them but is a Play-restricted permission.
+A request with `EXTRA_AUDIO_SOURCE` skips the preflight.
+
 | API | Status | What we do / why not |
 |---|---|---|
-| `startListening` from another app | **added (#90)** | the mic is opened for the caller (above) |
+| `startListening` from another app | **added (#90, #96)** | the mic is opened for the caller, and apps with a launcher icon, keyboards and accessibility services are visible to us so Android's preflight passes (above) |
 | `readyForSpeech`, `beginningOfSpeech`, `rmsChanged`, `endOfSpeech` | supported | ready at `Listening` (#78); beginning once per request; rms on Google's -2..10 scale |
 | `RESULTS_RECOGNITION` | supported | one hypothesis (two with formatting) |
 | `CONFIDENCE_SCORES` | **added** | -1 per hypothesis, Android's "unavailable": sherpa-onnx's offline results carry no probabilities, and an app reading the array unguarded mustn't crash on a missing one. Also `EXTRA_CONFIDENCE_SCORES` on the sheet |

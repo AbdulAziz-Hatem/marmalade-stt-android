@@ -1,0 +1,1 @@
+Marmalade STT 1.2.1 naprawia aplikacje, które korzystają z rozpoznawania mowy Androida, np. Duolingo. Android odrzucał większość ich żądań, zanim Marmalade STT zdążył zacząć słuchać, bo nie mógł widzieć tych aplikacji. Teraz widzi aplikacje z ikoną w launcherze i usługi ułatwień dostępu, tak jak wcześniej widział klawiatury. Nie tworzy listy Twoich aplikacji i ich nie odczytuje.

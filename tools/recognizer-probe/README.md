@@ -20,6 +20,11 @@ adb shell am start -S -n app.marmalade.stt.probe/.ProbeActivity --es scenario li
 adb logcat -s RecognizerProbe:I
 ```
 
+The probe has a launcher icon, like any app a person talks to: Android only
+lets our service answer callers our app can see (#96), and our manifest makes
+apps with a launcher icon visible. Right after the probe is (re)installed it
+is briefly visible either way, so wait a little before measuring.
+
 ## Regression check
 
 `check.sh <adb serial> <our package> <speech.wav>` runs the scenarios that
@@ -46,6 +51,7 @@ status 0 when all pass. It needs an engine installed in our app.
 | `--es formatting` | `EXTRA_ENABLE_FORMATTING` (`quality` or `latency`) |
 | `--ez hideTrailingPunct`, `--ez mask` | `EXTRA_HIDE_PARTIAL_TRAILING_PUNCTUATION`, `EXTRA_MASK_OFFENSIVE_WORDS` |
 | `--ez detect`, `--es detectLangs` | `EXTRA_ENABLE_LANGUAGE_DETECTION` and its allowed languages |
+| `--ei delayMs` | `listen`: wait this long between creating the recognizer (the bind) and `startListening` (#96) |
 | `--ei stopAfterMs`, `--ei cancelAfterMs` | `listen`, `audioSource`: call `stopListening` / `cancel` after this long |
 | `--ei gapMs`, `--ei restartMs` | timing for the restart scenarios |
 | `--es wav`, `--ez fast` | `audioSource`: the WAV in the probe's files dir (default `probe.wav`), streamed in real time unless `fast` |
@@ -63,6 +69,7 @@ status 0 when all pass. It needs an engine installed in our app.
 | `recreate` | start, `destroy` the recognizer, start on a new one at once |
 | `twoClients` | two recognizers start together |
 | `die` | start, then the probe kills its own process after `gapMs`; run `listen` next to see the service recovered |
+| `bind` | binds our service directly for half a second. Android then lets our app see the probe for good, which no `SpeechRecognizer` caller gets (#96); reinstall the probe to undo it |
 | `available` | `isRecognitionAvailable`, `isOnDeviceRecognitionAvailable` |
 | `support` | `checkRecognitionSupport` (API 33+) |
 | `download` | `triggerModelDownload` with a listener (API 34+) |

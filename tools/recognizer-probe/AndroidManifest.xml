@@ -27,6 +27,12 @@
         <activity
             android:name=".ProbeActivity"
             android:exported="true"
-            android:launchMode="singleTask" />
+            android:launchMode="singleTask">
+            <!-- A launcher icon, like any app a person talks to: what makes it visible to Marmalade STT (#96). -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 </manifest>

@@ -351,7 +351,12 @@ class SherpaSttEngineTest {
         val decoding = CountDownLatch(1)
         val finish = CountDownLatch(1)
         val warmTranscriber = holdingWarmUp(decoding, finish)
-        val engine = engine(loadTranscriber = { warmTranscriber }, mic = selfStoppingMic)
+        // The session resumes as the warm-up completes `done`, before `warm` itself ends: a self-stopping
+        // session can finish (and rightly free the model) before warm.join() returns. Hold it open past the check.
+        val endSession = CountDownLatch(1)
+        val engine = engine(loadTranscriber = { warmTranscriber }, mic = { e ->
+            FakeMic(afterScript = { endSession.await(5, TimeUnit.SECONDS); e.stop() })
+        })
         val warm = launch(Dispatchers.Default) { engine.warmUp() }
         withContext(Dispatchers.IO) { assertTrue(decoding.await(5, TimeUnit.SECONDS)) }
         val events = Collections.synchronizedList(mutableListOf<SttEvent>())
@@ -362,6 +367,8 @@ class SherpaSttEngineTest {
         finish.countDown()
         warm.join()
         assertEquals("released under a waiting session", 0, warmTranscriber.releaseCalls)
+        assertTrue(engine.isLoaded)
+        endSession.countDown()
         job.join()
         assertEquals(listOf(SttEvent.Listening, SttEvent.Ready, SttEvent.NoSpeech), events.toList())
         assertEquals(1, warmTranscriber.releaseCalls)
