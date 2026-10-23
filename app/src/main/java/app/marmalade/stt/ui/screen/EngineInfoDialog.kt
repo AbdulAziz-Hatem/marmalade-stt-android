@@ -28,6 +28,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -54,6 +55,7 @@ import app.marmalade.stt.install.SttEngineDescriptor
 import app.marmalade.stt.ui.formatBytes
 import app.marmalade.stt.ui.rememberUiLocale
 import app.marmalade.stt.ui.theme.isDark
+import app.marmalade.ui.theme.depth
 import java.util.Locale
 
 // -----------------------------------------------------------------------------
@@ -133,7 +135,9 @@ fun EngineInfoDialog(
     if (languageOptions != null && prefs?.developerEngines == true && choosingLanguage) {
         LanguageDialog(
             title = stringResource(R.string.engine_language),
-            options = languageOptions.codes,
+            options = rememberUiLocale().let { locale ->
+                remember(languageOptions, locale) { sortedLanguageChoices(languageOptions.codes, locale) }
+            },
             selected = prefs.languageFor(engine),
             label = { languageChoiceLabel(it) },
             onSelect = { code ->
@@ -148,7 +152,7 @@ fun EngineInfoDialog(
 /**
  * The dialog's card, outside the Dialog window so it can be previewed: the
  * scrolling spec sheet, then its buttons. Cream with a hairline in light mode
- * (the tiles are the cream-orange), raised stone in dark.
+ * (the tiles are the cream-orange), the stone card in dark (tiles a step above).
  */
 @Composable
 fun EngineDetails(
@@ -232,7 +236,10 @@ private fun EngineDetailsBody(
     Spacer(Modifier.height(12.dp))
     Text(text = stringResource(engine.description), style = MaterialTheme.typography.bodyMedium)
     Spacer(Modifier.height(16.dp))
-    SpecTiles(engine = engine, speedTier = tier, language = language, tileColor = MaterialTheme.colorScheme.surfaceContainer)
+    // Dark: raised above the dialog (#84; surfaceContainer now sits below it). Light: the cream-orange as before.
+    val depth = MaterialTheme.depth
+    val tileColor = if (depth.isDark) depth.raised else MaterialTheme.colorScheme.surfaceContainer
+    SpecTiles(engine = engine, speedTier = tier, language = language, tileColor = tileColor)
     // Installed and not downloaded say themselves through the buttons and the size.
     if (state !is InstallState.Installed && state != InstallState.NotInstalled) {
         Spacer(Modifier.height(12.dp))

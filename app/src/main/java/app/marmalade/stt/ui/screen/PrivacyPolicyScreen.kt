@@ -44,6 +44,7 @@ import androidx.compose.ui.unit.dp
 import app.marmalade.stt.R
 import app.marmalade.stt.ui.components.DetailTopBar
 import app.marmalade.stt.ui.theme.accent
+import app.marmalade.ui.theme.depth
 import java.io.IOException
 
 // -----------------------------------------------------------------------------
@@ -100,10 +101,12 @@ fun PrivacyPolicyScreen(onBack: () -> Unit) {
                     Text(
                         text = englishNote,
                         style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSecondaryContainer,
+                        color = MaterialTheme.colorScheme.onSurface,
+                        // On the card colour, as TTS's quote: secondaryContainer
+                        // is the page's own cream in Marmalade's light mode.
                         modifier = Modifier
                             .padding(bottom = 12.dp)
-                            .background(MaterialTheme.colorScheme.secondaryContainer, RoundedCornerShape(8.dp))
+                            .background(MaterialTheme.depth.card, RoundedCornerShape(8.dp))
                             .padding(12.dp),
                     )
                 }
@@ -169,10 +172,8 @@ private fun MarkdownBlockView(block: MdBlock) {
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier
                 .padding(vertical = 6.dp)
-                .background(
-                    MaterialTheme.colorScheme.surfaceVariant,
-                    RoundedCornerShape(8.dp),
-                )
+                // The card step, as TTS's privacy screen (#84 L).
+                .background(MaterialTheme.depth.card, RoundedCornerShape(8.dp))
                 .padding(12.dp),
         )
     }

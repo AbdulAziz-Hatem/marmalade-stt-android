@@ -11,11 +11,11 @@ import androidx.compose.ui.graphics.Color
 import app.marmalade.stt.ui.theme.accent
 
 /**
- * An outlined button in the brand's colours (marmalade-design): toast ink
- * text in light mode, toast in dark ([MaterialTheme.accent]'s ink, the
- * preset's own in the others). Material's own takes `primary`, which is
- * orange in light mode, and orange is kept for each screen's one accent
- * action. Not `onPrimaryContainer`: that is text for a container, and
+ * An outlined button in [MaterialTheme.accent]'s ink: toast ink in light
+ * mode, the scheme's primary in dark (orange 400 in Marmalade), the
+ * preset's own ink in the others. Material's own takes `primary`, which is
+ * orange 500 in light mode, and that orange is kept for each screen's one
+ * accent action. Not `onPrimaryContainer`: that is text for a container, and
  * Material You schemes don't promise it reads on the page.
  */
 @Composable
@@ -36,9 +36,10 @@ fun MarmaladeOutlinedButton(
 
 /**
  * A text button for dialog actions, Skip/Back and other quiet actions, in
- * [MaterialTheme.accent]'s `text` colour: orange 500 in Marmalade's light
- * mode (the brand, Max 2026-10-06), ink everywhere else, so the High
- * contrast preset and dark mode stay at WCAG AA (#68). Pass the `ink` where
+ * [MaterialTheme.accent]'s `text` colour: the scheme's primary in
+ * Marmalade (orange 500 in light mode, the brand, Max 2026-10-06; orange
+ * 400 in dark, AA), an AA ink in High contrast and the other presets'
+ * light mode (#68, #87). Pass the `ink` where
  * a button keeps the ink in every preset (Copy / Clear, the engine screens).
  * Use this, never a bare `TextButton` (`ButtonContrastSourceTest` checks).
  */

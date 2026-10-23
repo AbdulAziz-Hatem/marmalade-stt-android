@@ -51,6 +51,7 @@ import androidx.compose.ui.unit.dp
 import app.marmalade.stt.R
 import app.marmalade.stt.install.EngineLanguages
 import app.marmalade.stt.install.EngineQuality
+import app.marmalade.stt.install.LanguageOptions
 import app.marmalade.stt.install.QualityRating
 import app.marmalade.stt.install.SpeedTier
 import app.marmalade.stt.install.SttEngineDescriptor
@@ -158,12 +159,22 @@ fun languagesLabel(codes: Set<String>): LanguagesLabel =
 
 /**
  * [codes] ordered by their names in [locale], for Settings → Recognition
- * language. The [Collator] puts "Árabe" before "Vietnamita" and orders
- * kana, Devanagari and Han names, which a case-insensitive code-point
- * compare doesn't (#51).
+ * language and the info dialog's per-engine language ([sortedLanguageChoices]).
+ * The [Collator] puts "Árabe" before "Vietnamita" and orders kana,
+ * Devanagari and Han names, which a case-insensitive code-point compare
+ * doesn't (#51).
  */
 fun sortedLanguageCodes(codes: Collection<String>, locale: Locale): List<String> =
     codes.sortedWith(compareBy(Collator.getInstance(locale)) { languageName(it, locale) })
+
+/**
+ * An engine's language choices ([LanguageOptions.codes]) in picker order:
+ * Auto-detect first, then the languages by name in [locale] (#89).
+ */
+fun sortedLanguageChoices(codes: List<String>, locale: Locale): List<String> {
+    val (auto, languages) = codes.partition { it == LanguageOptions.AUTO }
+    return auto + sortedLanguageCodes(languages, locale)
+}
 
 /** [codes] as names in [locale], in its alphabetical order, for the languages dialog and the info dialog. */
 fun sortedLanguageNames(codes: Collection<String>, locale: Locale): List<String> =
@@ -530,7 +541,7 @@ fun QualityMeter(stars: Int, modifier: Modifier = Modifier) {
 private fun SegmentMeter(fill: Int, segments: Int, modifier: Modifier = Modifier) {
     val on = meterBandColor(meterBand(fill, segments), MaterialTheme.colorScheme.isDark)
     // Unlit segments are outlines, so "3 of 5" reads by shape, not only by colour (#68).
-    val off = MaterialTheme.colorScheme.outline
+    val off = meterUnlitColor(MaterialTheme.colorScheme.isDark)
     val shape = RoundedCornerShape(2.dp)
     Row(modifier = modifier, horizontalArrangement = Arrangement.spacedBy(3.dp)) {
         repeat(segments) { i ->
@@ -571,6 +582,13 @@ internal fun meterBandColor(band: MeterBand, isDark: Boolean): Color = when (ban
     MeterBand.AMBER -> if (isDark) Color(0xFFFBBF24) else Color(0xFFB45309) // amber 400 / 700
     MeterBand.RED -> if (isDark) Color(0xFFEF4444) else Color(0xFFDC2626) // red 500 / 600
 }
+
+/**
+ * An unlit segment's outline: stone 500 light, stone 400 dark, 3:1 on every
+ * card (#68). Not the scheme's outline, whose light stone 400 is 2.3:1 on
+ * cream (the shared design library's, #87).
+ */
+internal fun meterUnlitColor(isDark: Boolean): Color = if (isDark) Color(0xFFA8A29E) else Color(0xFF78716C)
 
 private const val SPEED_SEGMENTS = 5
 private const val QUALITY_SEGMENTS = 5

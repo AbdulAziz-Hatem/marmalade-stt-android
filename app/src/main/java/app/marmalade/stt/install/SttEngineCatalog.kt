@@ -476,46 +476,28 @@ object SttEngineCatalog {
     /**
      * The engines to list: every user (non-developer) engine, plus the
      * developer engines when [showDeveloper] is on (Settings → Developer
-     * engines). Catalog order. [recommendedId] is listed either way: the
-     * engine recommended for this phone
-     * ([app.marmalade.stt.data.SpeechPrefs.recommendedEngineId]), which can be
-     * a developer engine stored by an older version, when Qwen3-ASR was still
-     * recommended for a few languages (#27; no longer since #37). So is
-     * [keptId] ([app.marmalade.stt.data.SpeechPrefs.keptEngineId]): a
-     * developer engine selected while it was the recommendation, which stays
-     * after the recommendation moves on (#50).
+     * engines). Catalog order.
      */
-    fun visibleTo(showDeveloper: Boolean, recommendedId: String? = null, keptId: String? = null): List<SttEngineDescriptor> =
-        engines.filter { runnable(it, showDeveloper, recommendedId, keptId) }
+    fun visibleTo(showDeveloper: Boolean): List<SttEngineDescriptor> =
+        engines.filter { runnable(it, showDeveloper) }
 
     /**
-     * Whether [engine] runs when it is the stored choice: any engine with
-     * Developer engines on; otherwise a non-developer engine, the one
-     * recommended for this phone, or the kept selection ([keptId]).
+     * Whether [engine] runs when it is the stored choice: a user engine, or
+     * any engine with Developer engines on. The recommender picks only user
+     * engines, so no exception is needed for the recommended one (#89).
      */
-    fun runnable(
-        engine: SttEngineDescriptor,
-        showDeveloper: Boolean,
-        recommendedId: String? = null,
-        keptId: String? = null,
-    ): Boolean = showDeveloper || !engine.developer || engine.id == recommendedId || engine.id == keptId
+    fun runnable(engine: SttEngineDescriptor, showDeveloper: Boolean): Boolean = showDeveloper || !engine.developer
 
     /**
      * The engine that actually runs for a stored choice: [selectedId] if it is
      * a known engine that is [runnable], otherwise the engine recommended for
-     * this phone ([recommendedId], runnable either way), otherwise [default].
-     * So turning Developer engines off falls back without forgetting the
-     * choice, and a phone recommended Nemotron doesn't fall back to an
-     * uninstalled Parakeet when the setup guide was left before the download
-     * finished.
+     * this phone ([recommendedId]), otherwise [default]. So turning Developer
+     * engines off falls back without forgetting the choice, and a phone
+     * recommended Nemotron doesn't fall back to an uninstalled Parakeet when
+     * the setup guide was left before the download finished.
      */
-    fun effective(
-        selectedId: String?,
-        showDeveloper: Boolean,
-        recommendedId: String? = null,
-        keptId: String? = null,
-    ): SttEngineDescriptor =
-        selectedId?.let(::byId)?.takeIf { runnable(it, showDeveloper, recommendedId, keptId) }
-            ?: recommendedId?.let(::byId)
+    fun effective(selectedId: String?, showDeveloper: Boolean, recommendedId: String? = null): SttEngineDescriptor =
+        selectedId?.let(::byId)?.takeIf { runnable(it, showDeveloper) }
+            ?: recommendedId?.let(::byId)?.takeIf { runnable(it, showDeveloper) }
             ?: default
 }

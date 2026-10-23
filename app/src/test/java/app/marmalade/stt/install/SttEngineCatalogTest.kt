@@ -214,13 +214,15 @@ class SttEngineCatalogTest {
         assertEquals(nemotron, SttEngineCatalog.effective(nemotron.id, showDeveloper = false))
     }
 
+    /** #89: a developer engine runs only with Developer engines on, even as a stored recommendation. */
     @Test
-    fun theRecommendedEngineIsVisibleAndEffective() {
+    fun aDeveloperEngineNeverRunsWithDeveloperEnginesOff() {
         val granite = SttEngineCatalog.byId("granite-speech-5-470m")!! // a developer engine
         assertEquals(false, granite in SttEngineCatalog.visibleTo(showDeveloper = false))
-        assertEquals(true, granite in SttEngineCatalog.visibleTo(showDeveloper = false, recommendedId = granite.id))
         assertEquals(SttEngineCatalog.default, SttEngineCatalog.effective(granite.id, showDeveloper = false))
-        assertEquals(granite, SttEngineCatalog.effective(granite.id, showDeveloper = false, recommendedId = granite.id))
+        assertEquals(SttEngineCatalog.default, SttEngineCatalog.effective(granite.id, showDeveloper = false, recommendedId = granite.id))
+        assertEquals(SttEngineCatalog.default, SttEngineCatalog.effective(null, showDeveloper = false, recommendedId = granite.id))
+        assertEquals(granite, SttEngineCatalog.effective(null, showDeveloper = true, recommendedId = granite.id))
     }
 
     @Test

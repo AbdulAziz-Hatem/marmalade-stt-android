@@ -1,5 +1,6 @@
 package app.marmalade.stt.ui.screen
 
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -32,6 +33,7 @@ import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -62,6 +64,9 @@ import app.marmalade.stt.ui.MarmaladeIcons
 import app.marmalade.stt.ui.progressFraction
 import app.marmalade.stt.ui.progressPercent
 import app.marmalade.stt.ui.theme.accent
+import app.marmalade.ui.theme.MarmaladeMotion
+import app.marmalade.ui.theme.depth
+import app.marmalade.ui.theme.softShadow
 import java.util.Locale
 
 // -----------------------------------------------------------------------------
@@ -112,16 +117,28 @@ fun EngineRow(
     } else {
         Modifier.selectable(selected = selected, role = Role.RadioButton, onClick = onSelect)
     }
+    // The row's own Surface keeps the radio role and click label a card's
+    // onClick wouldn't. Its frame matches EngineCard's (Max, #87 round 3):
+    // light mode, the outlined row from before the library (the page's
+    // colour, the cream container in use); dark mode, MarmaladeCard's tokens
+    // (the card step, its hairline and shadow) with no wash in use.
+    val depth = MaterialTheme.depth
+    val dark = depth.isDark
     Surface(
         shape = shape,
-        color = if (selected) colors.surfaceContainer else colors.surface,
+        color = when {
+            dark -> depth.card
+            selected -> colors.surfaceContainer
+            else -> colors.surface
+        },
         contentColor = colors.onSurface,
-        border = if (selected) {
-            BorderStroke(2.dp, MaterialTheme.accent.ink)
-        } else {
-            BorderStroke(1.dp, colors.outlineVariant)
+        border = when {
+            selected -> BorderStroke(2.dp, MaterialTheme.accent.ink)
+            dark -> BorderStroke(1.dp, depth.line2)
+            else -> BorderStroke(1.dp, colors.outlineVariant)
         },
         modifier = modifier
+            .then(if (dark) Modifier.softShadow(depth.cardShadow, shape) else Modifier)
             .fillMaxWidth()
             .clip(shape)
             .then(interaction),
@@ -192,13 +209,19 @@ private fun RowLead(
                 colors = RadioButtonDefaults.colors(selectedColor = MaterialTheme.accent.ink),
             )
             is InstallState.Downloading -> {
+                // The ring glides between progress updates (#84).
+                val fraction by animateFloatAsState(
+                    targetValue = progressFraction(state.bytesDone, state.totalBytes),
+                    animationSpec = MarmaladeMotion.slow(),
+                    label = "rowProgress",
+                )
                 CircularProgressIndicator(
-                    progress = { progressFraction(state.bytesDone, state.totalBytes) },
+                    progress = { fraction },
                     // "Download progress, 45 percent", as the card's bar (#68).
                     modifier = Modifier
                         .size(36.dp)
                         .downloadProgressSemantics(state.bytesDone, state.totalBytes),
-                    color = MaterialTheme.accent.ink,
+                    color = if (MaterialTheme.depth.isDark) MaterialTheme.accent.progress else MaterialTheme.accent.ink,
                     strokeWidth = 4.dp,
                     trackColor = colors.outlineVariant,
                     strokeCap = StrokeCap.Round,

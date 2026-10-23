@@ -121,7 +121,7 @@ class DecodeCancelTest {
             createVad = { oneSegmentVad() },
             // The first listen hears an utterance; the second stops as soon as its mic opens.
             openMic = { _, _ -> if (mics.getAndIncrement() == 0) FakeMic(List(4) { loudHop }) else FakeMic(afterScript = { engine.stop() }) },
-            newSession = { model, vad, options, openMic -> StreamingSession(model, vad, options, openMic) },
+            newSession = { model, vad, options, openMic, _ -> StreamingSession(model, vad, options, openMic) },
         )
         val first = launch(Dispatchers.Default) { engine.listen(SessionOptions()).collect {} }
         withContext(Dispatchers.IO) { assertTrue(transcriber.started.await(5, TimeUnit.SECONDS)) }

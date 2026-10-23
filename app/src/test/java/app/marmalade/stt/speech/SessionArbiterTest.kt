@@ -12,6 +12,7 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.withContext
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
@@ -37,7 +38,7 @@ class SessionArbiterTest {
             },
             createVad = { FakeVad(speechFromSample = Int.MAX_VALUE) },
             openMic = { _, _ -> mic(engine) },
-            newSession = { model, vad, options, openMic -> StreamingSession(model, vad, options, openMic) },
+            newSession = { model, vad, options, openMic, _ -> StreamingSession(model, vad, options, openMic) },
         )
         return engine
     }
@@ -191,5 +192,57 @@ class SessionArbiterTest {
         engineA.stop()
         assertFalse(mine.await().any { it is SttEvent.Error })
         assertFalse(arbiter.userSessionRunning())
+    }
+    @Test
+    fun `a pre-empted session drops its speculative decode`() = runTest(timeout = TEST_TIMEOUT) {
+        // Another app's Tap stop session (#91): its early VAD has ended the
+        // utterance, and the speculative decode of it is running when the
+        // user's own session starts.
+        val decoding = CountDownLatch(1)
+        val stopped = CountDownLatch(1)
+        val calls = AtomicInteger()
+        val cancels = AtomicInteger()
+        val transcriber = object : OfflineTranscriber {
+            override fun transcribe(samples: FloatArray, sampleRate: Int, isCancelled: () -> Boolean): String {
+                calls.incrementAndGet()
+                decoding.countDown()
+                check(stopped.await(60, TimeUnit.SECONDS)) { "the decode was never cancelled" }
+                return "speculative"
+            }
+
+            override fun cancel() {
+                cancels.incrementAndGet()
+                stopped.countDown()
+            }
+
+            override fun release() = Unit
+        }
+        var own = false
+        lateinit var engine: SherpaSttEngine<OfflineTranscriber>
+        engine = SherpaSttEngine(
+            descriptor = SttEngineCatalog.default,
+            loadModel = { transcriber },
+            // The main VAD (1.2 s) is still in the utterance; the early one (~0.6 s) has closed it.
+            createVad = { minSilence ->
+                if (minSilence < 1f) FakeVad(speechFromSample = 1, speechUntilSample = 3 * HOP, segmentsAt = listOf(5 * HOP))
+                else FakeVad(speechFromSample = 1, speechUntilSample = 3 * HOP)
+            },
+            openMic = { _, _ -> if (own) FakeMic(afterScript = { engine.stop() }) else FakeMic(List(3) { loudHop }) },
+            newSession = { model, vad, options, openMic, earlyVad ->
+                StreamingSession(model, vad, options, openMic, livePartials = false, earlyVad = earlyVad)
+            },
+        )
+        val (_, app) = appSession(engine, SessionOptions(end = EndOfDictation.TAP_STOP))
+        withContext(Dispatchers.IO) { assertTrue(decoding.await(5, TimeUnit.SECONDS)) }
+
+        own = true
+        val mine = ownSession(engine)
+        val theirs = app.await()
+
+        assertTrue("$mine", mine.none { it is SttEvent.Error })
+        assertEquals(SttEvent.Error(SttErrorKind.BUSY, SessionArbiter.PREEMPTED_MESSAGE), theirs.last())
+        assertTrue("$theirs", theirs.none { it is SttEvent.Final })
+        assertEquals(1, cancels.get())
+        assertEquals(1, calls.get())
     }
 }

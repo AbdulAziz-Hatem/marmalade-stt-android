@@ -461,8 +461,8 @@ object LicenseCatalog {
         ),
 
         // The user engines are Parakeet Ultra, Parakeet 110M, Parakeet 0.6B ja
-        // (#60), Canary, Nemotron 3.5, Whisper turbo (#45) and Qwen3-ASR for
-        // Chinese and Korean (#50); Granite is a developer engine (#13), hidden
+        // (#60), Canary, Nemotron 3.5, Whisper turbo (#45) and Qwen3-ASR (#50;
+        // all 30 of its languages since #88); Granite is a developer engine (#13), hidden
         // unless Settings → Developer engines is on. The same rules for all:
         // pinned, hashed, reviewed. Names are the upstream models' (attribution);
         // a role says "shown as" where the Engines screen's name differs a lot (#67).
@@ -582,7 +582,7 @@ object LicenseCatalog {
         Component(
             key = "qwen3-asr-0.6b",
             name = "Qwen3-ASR 0.6B",
-            role = "Speech recognition engine for Chinese and Korean (int8 ONNX export)",
+            role = "Speech recognition engine for 30 languages, recommended for Chinese and Korean (int8 ONNX export)",
             shipsIn = "Download (Engines screen; from github.com/maxwhipw/marmalade-stt-engines)",
             licenseId = "Apache-2.0",
             copyright = listOf(
@@ -614,6 +614,19 @@ object LicenseCatalog {
                 "Apache-2.0; plus the jsr305 annotations (BSD)). Two of them " +
                 "ship small native libraries: libandroidx.graphics.path.so and " +
                 "libdatastore_shared_counter.so.",
+        ),
+        Component(
+            key = "marmalade-ui-android",
+            name = "Marmalade UI (marmalade-ui-android)",
+            role = "The design library this app shares with Marmalade TTS: colours, surfaces, fonts, motion and cards",
+            shipsIn = "APK (built from source, a git submodule)",
+            licenseId = "MIT",
+            copyright = listOf(
+                "Copyright (c) 2026 marmalade-tts contributors",
+                "Copyright (c) 2026 marmalade-ui-android contributors",
+            ),
+            textAsset = "marmalade-ui-android.txt",
+            note = "Brings the Manrope and Momo Trust Display fonts below.",
         ),
         // Notices below verified against each bundled TTF's name table
         // (nameID 0), per the copyright-licensing skill.

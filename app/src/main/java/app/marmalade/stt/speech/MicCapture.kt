@@ -54,3 +54,14 @@ interface MicCapture : AutoCloseable {
      */
     val backlogHops: Int get() = 0
 }
+
+/**
+ * Replaces the microphone [openMicCapture] opens. Only debug builds set it
+ * (#91: `debug/ClipMic` feeds a test clip in real time, so timing passes are
+ * silent and identical turn to turn); release builds never do. A factory
+ * that returns null leaves the real microphone in place.
+ */
+object MicOverride {
+    @Volatile
+    var factory: ((hopSamples: Int, hardwareEffects: Boolean) -> MicCapture?)? = null
+}

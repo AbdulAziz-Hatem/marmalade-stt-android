@@ -63,5 +63,5 @@
     <string name="engine_desc_nemotron_35">NVIDIA のヒンディー語、アラビア語、ベトナム語向けストリーミングモデル。話すそばから文字が表示されます。</string>
     <string name="engine_desc_whisper_turbo">OpenAI Whisper large-v3-turbo、多言語対応。Whisper の中で最も高精度です。間を置くと文字が表示されます。</string>
     <string name="engine_desc_granite">IBM の英語 CTC モデル。当方の英語のテストで最も高精度なエンジンです。大文字と句読点はアプリ独自の整形機能が付けます。</string>
-    <string name="engine_desc_qwen3">Alibaba のオフラインモデルで、小さな言語モデルをデコーダーに使っています。30 言語を自動で検出し、中国語では最も高精度です。間を置くと文字が表示されます。</string>
+    <string name="engine_desc_qwen3">Alibaba のオフラインモデルで、小さな言語モデルをデコーダーに使っています。30 言語を自動で検出し、中国語と韓国語におすすめです。間を置くと文字が表示されます。</string>
 </resources>

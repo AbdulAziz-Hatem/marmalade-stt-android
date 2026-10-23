@@ -1,5 +1,6 @@
 package app.marmalade.stt.recognizer
 
+import app.marmalade.stt.speech.ListenTiming
 import app.marmalade.stt.speech.ListenTimeouts
 import app.marmalade.stt.speech.SttErrorKind
 import app.marmalade.stt.speech.SttEvent
@@ -191,8 +192,10 @@ class OneShotSession(
                         stopHeld = false
                     }
                     is SttEvent.Final -> {
+                        val startedAt = android.os.SystemClock.elapsedRealtime()
                         val edit = pipeline().process(event.text, before = text, nearSilent = event.nearSilent, silent = event.silent)
                         text = edit.applyTo(text)
+                        ListenTiming.delivered("oneshot", startedAt)
                         val words = event.text.trim()
                         if (words.isNotEmpty() && edit.insert.isNotBlank()) {
                             if (raw.isNotEmpty()) raw.append(' ')

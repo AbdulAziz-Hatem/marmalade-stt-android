@@ -1,7 +1,6 @@
 package app.marmalade.stt.ui.onboarding
 
 import android.content.res.Configuration
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -34,6 +33,7 @@ import app.marmalade.stt.ui.screen.SpecTiles
 import app.marmalade.stt.ui.screen.engineActions
 import app.marmalade.stt.ui.screen.rememberResumeFocus
 import app.marmalade.stt.ui.theme.MarmaladeSttTheme
+import app.marmalade.ui.components.MarmaladeCard
 
 // -----------------------------------------------------------------------------
 // Data flow
@@ -71,10 +71,10 @@ internal fun RecommendedEngineCard(
     val engine = recommendation.engine
     val colors = MaterialTheme.colorScheme
     val resumeFocus = rememberResumeFocus(installState)
-    Surface(
+    // The library's card (#84), as TTS's setup cards: the card step, a
+    // hairline edge and the soft shadow, in both modes.
+    MarmaladeCard(
         shape = MaterialTheme.shapes.large,
-        color = colors.surfaceContainer,
-        border = BorderStroke(1.dp, colors.outlineVariant),
         modifier = modifier.fillMaxWidth(),
     ) {
         Column(modifier = Modifier.padding(16.dp)) {

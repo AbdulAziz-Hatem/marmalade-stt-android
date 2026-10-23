@@ -78,6 +78,40 @@ class TurnGateTest(unittest.TestCase):
         self.assertEqual(asked, [0.3, 0.8, 1.3, 1.8, 2.3, 2.8])
 
 
+EARLY = mode_config("smart-p0.5-e0.95-n1.2-t0.7-c2.5")
+
+
+class EarlyCheckTest(unittest.TestCase):
+    """#91: a check at 0.5 s that ends the turn only when the model is very sure, then Normal's rule."""
+
+    def test_a_sure_model_ends_the_turn_at_the_early_check(self):
+        self.assertEqual(run_gate(EARLY, [0.96]), ("complete", 0.5, [0.5]))
+
+    def test_an_unsure_early_check_falls_back_to_normal(self):
+        # 0.9 would end a plain t0.7 turn; early it doesn't. The 1.2 s check needs only > 0.7.
+        self.assertEqual(run_gate(EARLY, [0.9, 0.8]), ("complete", 1.2, [0.5, 1.2]))
+        self.assertEqual(run_gate(EARLY, [0.95, 0.7, 0.1, 0.1]), ("ceiling", 2.5, [0.5, 1.2, 1.7, 2.2]))
+
+    def test_resumed_speech_resets_and_the_next_close_starts_with_an_early_check(self):
+        gate, asked = TurnGate(EARLY), []
+
+        def prob(p):
+            return lambda: (asked.append(p), p)[1]
+
+        gate.segment_closed(0)
+        self.assertIsNone(gate.step(int(0.5 * SR), prob(0.9)))  # early check: not sure enough
+        self.assertIsNone(gate.step(int(0.8 * SR), prob(1.0)))  # nothing due before 1.2 s
+        gate.speech_resumed()
+        self.assertIsNone(gate.step(int(1.2 * SR), prob(1.0)))  # speaking: no check
+        gate.segment_closed(int(3.0 * SR))
+        self.assertIsNone(gate.step(int(3.4 * SR), prob(1.0)))  # 0.4 s of the new pause
+        self.assertEqual(gate.step(int(3.5 * SR), prob(0.97)), "complete")
+        self.assertEqual(asked, [0.9, 0.97])
+
+    def test_without_an_early_threshold_nothing_changes(self):
+        self.assertEqual(run_gate(mode_config("smart-p1.2-t0.7-c2.5"), [0.1] * 10)[2], [1.2, 1.7, 2.2])
+
+
 def clip(*parts):
     """(seconds, loud) parts: a 440 Hz tone for speech, silence between."""
     out = []
@@ -171,9 +205,12 @@ class ModeConfigTest(unittest.TestCase):
                          TurnConfig(0.4, smart=True, threshold=0.6, ceiling=1.5))
         self.assertEqual(mode_config("smart-t0.85"), TurnConfig(0.2, smart=True, threshold=0.85))
         self.assertEqual(mode_config("smart-p0.5-t0.7-c2"), MODES["smart-p0.5-t0.7-c2"])
+        self.assertEqual(EARLY, TurnConfig(0.5, smart=True, threshold=0.7, ceiling=2.5,
+                                           early_threshold=0.95, normal_at=1.2))
 
     def test_bad_names(self):
-        for name in ("pause", "pause-x", "smart-x0.5", "smart-t0.5-t0.6", "smart-p", "vad-0.5"):
+        for name in ("pause", "pause-x", "smart-x0.5", "smart-t0.5-t0.6", "smart-p", "vad-0.5",
+                     "smart-p0.5-e0.95", "smart-p0.5-n1.2", "smart-p0.5-e0.95-n0.5"):
             with self.assertRaises(ValueError, msg=name):
                 mode_config(name)
 

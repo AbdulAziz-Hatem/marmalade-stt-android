@@ -96,8 +96,8 @@ android {
         // Written as a plain literal (not the formula as arithmetic):
         // F-Droid's checkupdates parses this line with a regex and only
         // sees the first number of an expression.
-        versionCode = 10010000
-        versionName = "1.1.0"
+        versionCode = 10020000
+        versionName = "1.2.0"
 
         vectorDrawables {
             useSupportLibrary = true
@@ -192,6 +192,14 @@ android {
         debug {
             applicationIdSuffix = ".debug"
             isMinifyEnabled = false
+            // A second debug install next to another session's .debug on a
+            // shared test phone (#91): `-PdebugIdSuffix=.speedaudit` gives it
+            // its own package and its own name in the keyboard list.
+            (project.findProperty("debugIdSuffix") as String?)?.let { suffix ->
+                applicationIdSuffix = suffix
+                resValue("string", "app_name", "STT $suffix")
+                resValue("string", "ime_name", "STT $suffix")
+            }
         }
         release {
             isMinifyEnabled = true
@@ -410,6 +418,7 @@ dependencies {
 
     // Rule-based transcript cleanup (D7), applied to every final utterance.
     implementation(project(":textproc"))
+    implementation(project(":marmalade-ui"))
 
     // Microsoft ONNX Runtime (MIT): the inference runtime under sherpa-onnx,
     // and the Granite engine's through its Java API (#32).

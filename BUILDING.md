@@ -12,7 +12,9 @@ You need JDK 17 or newer and the Android SDK (platform 36) with
 `sdkmanager "ndk;26.3.11579264" "cmake;3.22.1"`).
 
 1. Clone with submodules, or fetch them afterwards. The native speech runtime
-   is built from them:
+   is built from them, and so is the app's design library
+   (`third_party/marmalade-ui-android`, the Gradle module `:marmalade-ui`
+   that Marmalade TTS shares):
 
    ```
    git submodule update --init

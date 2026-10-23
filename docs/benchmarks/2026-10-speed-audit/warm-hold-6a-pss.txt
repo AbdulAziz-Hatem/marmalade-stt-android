@@ -1,0 +1,9 @@
+00:11:21 held 30 s after the last session pss_kb=953211 adj=700
+00:11:27 after trim BACKGROUND pss_kb=933300 adj=700
+00:11:33 after trim HIDDEN pss_kb=930860 adj=700
+00:15:43 4 min 50 s after the last session pss_kb=930462 adj=700
+00:16:14 5 min 20 s after the last session (hold over) pss_kb=136754 adj=700
+00:16:52 held again pss_kb=891392 adj=700
+00:16:58 after trim COMPLETE pss_kb=130272 adj=700
+00:17:43 held again pss_kb=892288 adj=700
+00:17:52 after picking 110M (no explicit release) pss_kb=136624 adj=700

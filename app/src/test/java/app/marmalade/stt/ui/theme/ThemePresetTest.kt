@@ -2,7 +2,15 @@ package app.marmalade.stt.ui.theme
 
 import androidx.compose.material3.ColorScheme
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.compositeOver
 import androidx.compose.ui.graphics.luminance
+import app.marmalade.ui.theme.MarmaladeDarkColors
+import app.marmalade.ui.theme.MarmaladeLightColors
+import app.marmalade.ui.theme.MarmaladeToast
+import app.marmalade.ui.theme.MarmaladeToastInk
+import app.marmalade.ui.theme.buildPresetScheme
+import app.marmalade.ui.theme.darkDepth
+import app.marmalade.ui.theme.lightDepth
 import kotlin.math.max
 import kotlin.math.min
 import org.junit.Assert.assertEquals
@@ -10,11 +18,13 @@ import org.junit.Assert.assertFalse
 import org.junit.Assert.assertSame
 import org.junit.Assert.assertTrue
 import org.junit.Test
+import app.marmalade.ui.theme.ThemePreset as SharedPreset
 
 /**
- * Settings → Appearance's presets (#35) against the marmalade-design rules:
- * no bright orange in dark mode (none at all outside Marmalade), and the
- * accent colours legible where they are drawn.
+ * Settings → Appearance's presets (#35) on the shared design library (#87):
+ * the shared presets are the library's schemes exactly (marmalade-tts-android's
+ * look and text contrast), High contrast is AA everywhere, and this app's
+ * accent colours stay legible where they are drawn.
  */
 class ThemePresetTest {
 
@@ -38,109 +48,186 @@ class ThemePresetTest {
     }
 
     @Test
-    fun `Marmalade is the hand-tuned palette itself`() {
+    fun `the shared presets are the library's schemes exactly`() {
         assertSame(MarmaladeLightColors, presetScheme(ThemePreset.MARMALADE, isDark = false))
         assertSame(MarmaladeDarkColors, presetScheme(ThemePreset.MARMALADE, isDark = true))
-        assertEquals(
-            AccentColors(pill = Toast, pillInk = ToastInk, ink = Toast),
-            accentColors(ThemePreset.MARMALADE, isDark = true, MarmaladeDarkColors),
-        )
-    }
-
-    @Test
-    fun `no preset has bright orange in dark mode`() {
-        for (preset in curated) {
-            val scheme = presetScheme(preset, isDark = true)
-            for ((role, color) in colors(scheme, accentColors(preset, isDark = true, scheme))) {
-                assertFalse("${preset.name} dark $role ${hex(color)} is bright orange", isBrightOrange(color))
-            }
-        }
-    }
-
-    @Test
-    fun `the other presets leave no orange at all in dark mode`() {
-        // High contrast's dark mode is Marmalade's.
         for (preset in curated - ThemePreset.MARMALADE - ThemePreset.HIGH_CONTRAST) {
-            val scheme = presetScheme(preset, isDark = true)
-            for ((role, color) in colors(scheme, accentColors(preset, isDark = true, scheme))) {
-                assertFalse("${preset.name} dark $role ${hex(color)} is orange", isOrange(color))
+            for (dark in listOf(false, true)) {
+                val base = if (dark) MarmaladeDarkColors else MarmaladeLightColors
+                assertEquals(
+                    "${preset.name} dark=$dark",
+                    roles(buildPresetScheme(base, SharedPreset.valueOf(preset.name), dark)),
+                    roles(presetScheme(preset, dark)),
+                )
             }
+        }
+        // Every app preset but High contrast is a library one.
+        assertEquals(listOf(ThemePreset.HIGH_CONTRAST), ThemePreset.entries.filter { it.shared == null })
+    }
+
+    @Test
+    fun `High contrast changes only the roles that fell short of AA`() {
+        val light = presetScheme(ThemePreset.HIGH_CONTRAST, isDark = false)
+        assertEquals(
+            setOf("primary", "surfaceTint", "outline", "onSurfaceVariant"),
+            changed(MarmaladeLightColors, light),
+        )
+        val dark = presetScheme(ThemePreset.HIGH_CONTRAST, isDark = true)
+        assertEquals(setOf("onSurfaceVariant"), changed(MarmaladeDarkColors, dark))
+    }
+
+    @Test
+    fun `Marmalade's pills are toast, and its dark mic and progress bars stay toast`() {
+        for (dark in listOf(false, true)) {
+            val scheme = presetScheme(ThemePreset.MARMALADE, dark)
+            val accent = accentColors(ThemePreset.MARMALADE, dark, scheme)
+            assertEquals(MarmaladeToast, accent.pill)
+            assertEquals(MarmaladeToastInk, accent.pillInk)
+            // Section titles and text buttons: the scheme's primary, as TTS draws them.
+            assertEquals(scheme.primary, accent.text)
+            assertEquals(if (dark) MarmaladeToast else scheme.primary, accent.mic)
+            // Progress bars and busy rings keep their colour from before the library (Max, #87).
+            assertEquals(if (dark) MarmaladeToast else scheme.primary, accent.progress)
         }
     }
 
     @Test
-    fun `accent text is legible on the page and on its pill`() {
+    fun `this app's accent colours are legible on the page and on their pills`() {
         for (preset in curated) {
             for (dark in listOf(false, true)) {
                 val scheme = presetScheme(preset, dark)
                 val accent = accentColors(preset, dark, scheme)
                 val name = "${preset.name} ${if (dark) "dark" else "light"}"
-                assertTrue("$name ink on surface", contrast(accent.ink, scheme.surface) >= TEXT_CONTRAST)
-                assertTrue("$name pill ink", contrast(accent.pillInk, accent.pill) >= TEXT_CONTRAST)
-                assertTrue("$name on primary container", contrast(scheme.onPrimaryContainer, scheme.primaryContainer) >= TEXT_CONTRAST)
-                assertTrue("$name on secondary container", contrast(scheme.onSecondaryContainer, scheme.secondaryContainer) >= TEXT_CONTRAST)
-            }
-        }
-    }
-
-    @Test
-    fun `text roles are legible on every surface they are drawn on`() {
-        for (preset in curated) {
-            for (dark in listOf(false, true)) {
-                val scheme = presetScheme(preset, dark)
-                val accent = accentColors(preset, dark, scheme)
-                val name = "${preset.name} ${if (dark) "dark" else "light"}"
-                // The page, cards and the in-use card, dialogs and sheets (#68).
-                val surfaces = with(scheme) {
-                    mapOf(
-                        "surface" to surface, "surfaceContainerLow" to surfaceContainerLow,
-                        "surfaceContainer" to surfaceContainer, "surfaceContainerHigh" to surfaceContainerHigh,
-                    )
-                }
-                val texts = mapOf(
-                    "onSurface" to scheme.onSurface, "onSurfaceVariant" to scheme.onSurfaceVariant,
-                    "error" to scheme.error, "accent.ink" to accent.ink,
-                ) + if (preset == ThemePreset.MARMALADE && !dark) {
-                    // The brand's orange text in Marmalade's light mode (Max, 2026-10-06).
-                    emptyMap()
-                } else {
-                    mapOf("accent.text" to accent.text)
-                }
-                for ((surfaceName, surface) in surfaces) {
-                    for ((textName, text) in texts) {
-                        val ratio = contrast(text, surface)
-                        assertTrue("$name $textName on $surfaceName: $ratio", ratio >= TEXT_CONTRAST)
+                val depth = if (dark) darkDepth(scheme) else lightDepth(scheme)
+                for (surface in listOf(depth.page, depth.card, depth.raised, depth.sheet)) {
+                    val ratio = contrast(accent.ink, surface)
+                    assertTrue("$name ink on ${hex(surface)}: $ratio", ratio >= TEXT_CONTRAST)
+                    // Section titles too, but for Marmalade's light orange 500 (Max's call).
+                    if (dark || preset != ThemePreset.MARMALADE) {
+                        val title = contrast(accent.text, surface)
+                        assertTrue("$name text on ${hex(surface)}: $title", title >= TEXT_CONTRAST)
                     }
                 }
-                assertTrue("$name on error", contrast(scheme.onError, scheme.error) >= TEXT_CONTRAST)
-                assertTrue("$name on error container", contrast(scheme.onErrorContainer, scheme.errorContainer) >= TEXT_CONTRAST)
+                assertTrue("$name pill ink", contrast(accent.pillInk, accent.pill) >= TEXT_CONTRAST)
+                // The mic, in dark mode and High contrast: its fill against the
+                // page, its icon against the fill. (Light mode keeps the brand's
+                // white on orange 500, Max's call, #68.)
+                if (dark || preset == ThemePreset.HIGH_CONTRAST) {
+                    assertTrue("$name mic", contrast(accent.mic, depth.page) >= UI_CONTRAST)
+                    assertTrue("$name mic icon", contrast(accent.onMic, accent.mic) >= UI_CONTRAST)
+                }
             }
         }
     }
 
     /**
-     * Dark mode is the AA-contrast theme (#68: light mode keeps the brand's
-     * white on orange 500, Max's call): its filled controls (the mic, a
-     * checked switch, a slider) stand out 3:1 from the page, its accent
-     * button's label is 4.5:1, and control edges are 3:1 in both modes.
+     * The selected tab's pill, as the library's
+     * marmaladeNavigationBarItemColors picks it for AppRoot: toast on the
+     * Marmalade palette; otherwise primary in dark mode and the scheme's
+     * secondaryContainer in light. Dark mode: 3:1 on the bar in every preset.
+     * Light mode: no pale pill reaches 3:1 on the cream bar (toast is 1.2:1),
+     * so it is the preset's own pale tone, never the bar's colour or Orange
+     * 50 (#87 review: Orange 50 on the Orange 100 bar, 1.08:1).
      */
     @Test
-    fun `controls meet AA contrast in dark mode, and edges in both`() {
+    fun `the selected tab's pill stands off the nav bar`() {
         for (preset in curated) {
             for (dark in listOf(false, true)) {
                 val scheme = presetScheme(preset, dark)
-                val name = "${preset.name} ${if (dark) "dark" else "light"}"
-                for (surface in listOf(scheme.surface, scheme.surfaceContainer, scheme.surfaceContainerHigh)) {
-                    val edge = contrast(scheme.outline, surface)
-                    assertTrue("$name outline on ${hex(surface)}: $edge", edge >= UI_CONTRAST)
-                    if (dark || preset == ThemePreset.HIGH_CONTRAST) {
-                        val fill = contrast(scheme.primary, surface)
-                        assertTrue("$name primary on ${hex(surface)}: $fill", fill >= UI_CONTRAST)
-                    }
+                val accent = accentColors(preset, dark, scheme)
+                val pill = when {
+                    accent.marmaladePalette -> MarmaladeToast
+                    dark -> scheme.primary
+                    else -> scheme.secondaryContainer
                 }
-                if (dark || preset == ThemePreset.HIGH_CONTRAST) {
-                    val label = contrast(scheme.onPrimary, scheme.primary)
-                    assertTrue("$name onPrimary on primary: $label", label >= TEXT_CONTRAST)
+                val name = "${preset.name} ${if (dark) "dark" else "light"}"
+                if (dark) {
+                    val ratio = contrast(pill, scheme.surfaceContainer)
+                    assertTrue("$name pill on the bar: $ratio", ratio >= UI_CONTRAST)
+                } else {
+                    val own = preset.shared?.takeIf { !accent.marmaladePalette }?.lightPrimaryContainer ?: MarmaladeToast
+                    assertEquals("$name pill", own, pill)
+                    assertTrue("$name pill is the bar's colour", pill != scheme.surfaceContainer && pill != ORANGE_50)
+                }
+            }
+        }
+    }
+
+    /**
+     * Midnight, Forest and Berry carry none of Marmalade's orange in this
+     * app's colours either: pills, links, titles, the mic, progress and the
+     * tab pill (#87 review).
+     */
+    @Test
+    fun `no orange is left in the other presets`() {
+        for (preset in listOf(ThemePreset.MIDNIGHT, ThemePreset.FOREST, ThemePreset.BERRY)) {
+            for (dark in listOf(false, true)) {
+                val scheme = presetScheme(preset, dark)
+                val accent = accentColors(preset, dark, scheme)
+                val colors = mapOf(
+                    "pill" to accent.pill, "ink" to accent.ink, "text" to accent.text, "mic" to accent.mic,
+                    "progress" to accent.progress, "tab pill" to if (dark) scheme.primary else scheme.secondaryContainer,
+                    "default progress track" to scheme.secondaryContainer,
+                    "dots" to scheme.tertiary, "slider track" to scheme.primaryContainer,
+                )
+                for ((role, color) in colors) {
+                    assertFalse("${preset.name} dark=$dark $role is orange: ${hex(color)}", color.isOrange())
+                }
+            }
+        }
+    }
+
+    /** Orange: a saturated hue from 15 to 45 degrees (red is 0, amber 45). */
+    private fun Color.isOrange(): Boolean {
+        val max = maxOf(red, green, blue)
+        val min = minOf(red, green, blue)
+        if (max - min < 0.05f) return false // grey or near it (Orange 50 is 0.07)
+        val hue = when (max) {
+            red -> 60f * (((green - blue) / (max - min)) % 6f)
+            green -> 60f * ((blue - red) / (max - min) + 2f)
+            else -> 60f * ((red - green) / (max - min) + 4f)
+        }.let { if (it < 0f) it + 360f else it }
+        return hue in 15f..45f
+    }
+
+    /**
+     * Dark mode is AA in every preset, as TTS #89 made the library's: text on
+     * every surface it sits on, error text included (the library's red 400
+     * since #87 round 3).
+     */
+    @Test
+    fun `dark mode text meets AA on every surface, in every preset`() {
+        for (preset in curated) {
+            val scheme = presetScheme(preset, isDark = true)
+            val accent = accentColors(preset, isDark = true, scheme)
+            val depth = darkDepth(scheme).let { if (preset == ThemePreset.HIGH_CONTRAST) it.copy(dim = scheme.onSurfaceVariant) else it }
+            val texts = mapOf(
+                "onSurface" to scheme.onSurface, "onSurfaceVariant" to scheme.onSurfaceVariant, "depth.dim" to depth.dim,
+                "accent.ink" to accent.ink, "accent.text" to accent.text, "error" to scheme.error,
+            )
+            val surfaces = listOf(depth.page, depth.card, depth.raised, depth.sheet, scheme.surfaceContainerHigh)
+            for ((role, text) in texts) {
+                for (surface in surfaces) {
+                    val ratio = contrast(text, surface)
+                    assertTrue("${preset.name} $role on ${hex(surface)}: $ratio", ratio >= TEXT_CONTRAST)
+                }
+            }
+        }
+    }
+
+    /** Dark mode's controls: filled buttons' labels at AA, their fills and the control edges at 3:1 on the page and cards. */
+    @Test
+    fun `dark mode controls meet AA in every preset`() {
+        for (preset in curated) {
+            val scheme = presetScheme(preset, isDark = true)
+            val depth = darkDepth(scheme)
+            val name = preset.name
+            assertTrue("$name onPrimary", contrast(scheme.onPrimary, scheme.primary) >= TEXT_CONTRAST)
+            assertTrue("$name onPrimaryContainer", contrast(scheme.onPrimaryContainer, scheme.primaryContainer) >= TEXT_CONTRAST)
+            for (surface in listOf(depth.page, depth.card, depth.raised)) {
+                for ((role, part) in mapOf("primary" to scheme.primary, "outline" to scheme.outline)) {
+                    val ratio = contrast(part, surface)
+                    assertTrue("$name $role on ${hex(surface)}: $ratio", ratio >= UI_CONTRAST)
                 }
             }
         }
@@ -204,8 +291,8 @@ class ThemePresetTest {
         }
     }
 
-    /** Every colour role of [scheme], and the accent colours. */
-    private fun colors(scheme: ColorScheme, accent: AccentColors): Map<String, Color> = with(scheme) {
+    /** Every colour role of [scheme] by name (ColorScheme has no equals). */
+    private fun roles(scheme: ColorScheme): Map<String, Color> = with(scheme) {
         mapOf(
             "primary" to primary, "onPrimary" to onPrimary, "primaryContainer" to primaryContainer,
             "onPrimaryContainer" to onPrimaryContainer, "inversePrimary" to inversePrimary,
@@ -215,41 +302,24 @@ class ThemePresetTest {
             "background" to background, "onBackground" to onBackground, "surface" to surface,
             "onSurface" to onSurface, "surfaceVariant" to surfaceVariant, "onSurfaceVariant" to onSurfaceVariant,
             "surfaceTint" to surfaceTint, "inverseSurface" to inverseSurface, "inverseOnSurface" to inverseOnSurface,
-            "outline" to outline, "outlineVariant" to outlineVariant,
+            "error" to error, "onError" to onError, "errorContainer" to errorContainer,
+            "onErrorContainer" to onErrorContainer, "outline" to outline, "outlineVariant" to outlineVariant,
+            "scrim" to scrim, "surfaceBright" to surfaceBright, "surfaceDim" to surfaceDim,
             "surfaceContainerLowest" to surfaceContainerLowest, "surfaceContainerLow" to surfaceContainerLow,
             "surfaceContainer" to surfaceContainer, "surfaceContainerHigh" to surfaceContainerHigh,
             "surfaceContainerHighest" to surfaceContainerHighest,
-            "accent.pill" to accent.pill, "accent.pillInk" to accent.pillInk, "accent.ink" to accent.ink,
         )
     }
 
-    /** HSL hue in degrees, saturation and lightness. */
-    private fun hsl(c: Color): Triple<Float, Float, Float> {
-        val mx = max(c.red, max(c.green, c.blue))
-        val mn = min(c.red, min(c.green, c.blue))
-        val l = (mx + mn) / 2
-        val d = mx - mn
-        if (d == 0f) return Triple(0f, 0f, l)
-        val s = d / (1 - kotlin.math.abs(2 * l - 1))
-        val h = when (mx) {
-            c.red -> 60 * (((c.green - c.blue) / d) % 6)
-            c.green -> 60 * ((c.blue - c.red) / d + 2)
-            else -> 60 * ((c.red - c.green) / d + 4)
-        }
-        return Triple((h + 360) % 360, s, l)
+    /** The roles [b] sets differently from [a]. */
+    private fun changed(a: ColorScheme, b: ColorScheme): Set<String> {
+        val ra = roles(a)
+        return roles(b).filter { (role, color) -> ra[role] != color }.keys
     }
 
-    /** An orange hue, saturated: toast, peach and rich brown included. */
-    private fun isOrange(c: Color): Boolean {
-        val (h, s, l) = hsl(c)
-        return h in 15f..45f && s >= 0.5f && l in 0.1f..0.95f
-    }
-
-    /** Orange 400–700 territory: the mid tones the brand keeps off dark surfaces (toast and rich brown are allowed). */
-    private fun isBrightOrange(c: Color): Boolean = isOrange(c) && hsl(c).third in 0.3f..0.7f
-
+    /** WCAG contrast of [a] drawn over [b] (a translucent ink composited first). */
     private fun contrast(a: Color, b: Color): Float {
-        val la = a.luminance() + 0.05f
+        val la = a.compositeOver(b).luminance() + 0.05f
         val lb = b.luminance() + 0.05f
         return max(la, lb) / min(la, lb)
     }
@@ -262,5 +332,8 @@ class ThemePresetTest {
 
         /** WCAG AA for icons and the parts of controls (1.4.11). */
         const val UI_CONTRAST = 3f
+
+        /** Marmalade's light secondaryContainer, the pill colour that vanished on the bar. */
+        val ORANGE_50 = Color(0xFFFFF7ED)
     }
 }

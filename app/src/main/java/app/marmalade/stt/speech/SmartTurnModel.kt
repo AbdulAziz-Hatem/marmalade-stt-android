@@ -31,7 +31,7 @@ class SmartTurnModel @Inject constructor(@ApplicationContext private val context
         detector?.let { return it }
         return try {
             val model = context.assets.open(SmartTurnAsset.PATH).use { it.readBytes() }
-            OnnxTurnDetector(model).also {
+            OnnxTurnDetector(model, SpeedKnobs.smartTurnThreads ?: OnnxTurnDetector.DEFAULT_THREADS).also {
                 detector = it
                 Log.i(TAG, "Smart Turn loaded")
             }

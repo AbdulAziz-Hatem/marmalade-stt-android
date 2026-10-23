@@ -19,9 +19,11 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.runCurrent
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.withContext
+import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
+import org.junit.Before
 import org.junit.Test
 
 /**
@@ -32,6 +34,16 @@ import org.junit.Test
  */
 @OptIn(ExperimentalCoroutinesApi::class)
 class SherpaSttEngineTest {
+
+    // These tests follow the main VAD; the early one (#91, SpeedKnobs) has SpeculativeFinalTest and SessionArbiterTest.
+    @Before
+    fun noEarlyVad() {
+        SpeedKnobs.speculativeFinal = false
+        SpeedKnobs.trimAtStop = false
+    }
+
+    @After
+    fun resetKnobs() = SpeedKnobs.reset()
 
     private val transcriber = FakeTranscriber(listOf("unused"))
     private val vadSilences: MutableList<Float> = Collections.synchronizedList(mutableListOf())
@@ -56,7 +68,7 @@ class SherpaSttEngineTest {
                 micOpens.incrementAndGet()
                 mic(engine)
             },
-            newSession = { model, vad, options, openMic -> StreamingSession(model, vad, options, openMic) },
+            newSession = { model, vad, options, openMic, _ -> StreamingSession(model, vad, options, openMic) },
         )
         return engine
     }

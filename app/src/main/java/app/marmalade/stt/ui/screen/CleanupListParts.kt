@@ -11,6 +11,7 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
@@ -26,6 +27,7 @@ import app.marmalade.stt.R
 import app.marmalade.stt.ui.components.DetailTopBar
 import app.marmalade.stt.ui.components.MarmaladeTextButton
 import app.marmalade.stt.ui.components.rememberAnnouncer
+import app.marmalade.ui.theme.depth
 
 // Building blocks shared by DictionaryScreen and SnippetsScreen, which have the
 // same shape: help text, a list, an "Add" button, and an edit dialog.
@@ -33,8 +35,7 @@ import app.marmalade.stt.ui.components.rememberAnnouncer
 /**
  * Detail-screen frame for a cleanup list: back arrow, snackbars, and an
  * extended FAB for adding (the screen's one accent action; the FAB's
- * primaryContainer is toast in light mode and rich brown in dark mode, never
- * orange). The FAB is hidden until the list has loaded ([showAdd]).
+ * primaryContainer is toast in light mode and Orange 800 in dark mode). The FAB is hidden until the list has loaded ([showAdd]).
  */
 @Composable
 internal fun CleanupListScaffold(
@@ -94,6 +95,10 @@ internal fun CleanupHelpText(text: String) {
         modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
     )
 }
+
+/** A list row's colours: it sits on the page (#84). */
+@Composable
+internal fun cleanupRowColors() = ListItemDefaults.colors(containerColor = MaterialTheme.depth.page)
 
 /** Shown in place of the list when it has no entries. */
 @Composable

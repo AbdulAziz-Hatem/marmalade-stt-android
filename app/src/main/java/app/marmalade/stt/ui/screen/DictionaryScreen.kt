@@ -60,6 +60,7 @@ import app.marmalade.stt.ui.components.MarmaladeTextButton
 import app.marmalade.stt.ui.components.rememberAnnouncer
 import app.marmalade.stt.ui.contentDirection
 import app.marmalade.stt.ui.isolate
+import app.marmalade.ui.theme.depth
 import kotlinx.coroutines.launch
 
 // -----------------------------------------------------------------------------
@@ -142,7 +143,7 @@ fun DictionaryScreen(
                 ) { Text(stringResource(R.string.cleanup_export)) }
             }
         }
-        item(key = "divider") { HorizontalDivider(modifier = Modifier.padding(top = 12.dp)) }
+        item(key = "divider") { HorizontalDivider(modifier = Modifier.padding(top = 12.dp), color = MaterialTheme.depth.line) }
 
         if (rules.isEmpty()) {
             item(key = "empty") { CleanupEmptyText(stringResource(R.string.cleanup_dictionary_empty)) }
@@ -221,6 +222,7 @@ private fun RuleRow(rule: Replacement, onClick: () -> Unit) {
             Text(text = text, modifier = Modifier.clearAndSetSemantics { contentDescription = description })
         },
         modifier = Modifier.clickable(onClickLabel = stringResource(R.string.cleanup_edit_action), onClick = onClick),
+        colors = cleanupRowColors(),
     )
 }
 

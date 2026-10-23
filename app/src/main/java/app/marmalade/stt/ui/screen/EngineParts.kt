@@ -1,6 +1,7 @@
 package app.marmalade.stt.ui.screen
 
 import androidx.annotation.StringRes
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -9,18 +10,17 @@ import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.Stable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -48,6 +48,8 @@ import app.marmalade.stt.ui.progressPercent
 import app.marmalade.stt.ui.rememberUiLocale
 import app.marmalade.stt.ui.theme.accent
 import app.marmalade.stt.ui.theme.isDark
+import app.marmalade.ui.components.WorkingDots
+import app.marmalade.ui.theme.MarmaladeMotion
 import java.util.Locale
 
 // Pieces shared by the Engines cards and rows, the engine details dialog and
@@ -132,17 +134,24 @@ private fun corruptText(state: InstallState.Corrupt): String = when (state.probl
 
 /**
  * A download's determinate progress bar, with its percent for TalkBack. The
- * accent ink (toast ink in Marmalade) on toast in light mode, toast on stone in dark (the default track is
- * secondaryContainer, the same toast as the bar in dark mode: 10% looked
- * nearly full on the Pixel).
+ * accent ink (toast ink in Marmalade) on toast in light mode; in dark the
+ * progress colour (toast in Marmalade, Max, #87) on the translucent hairline
+ * ink (a toast track under a toast bar made 10% look nearly full on the
+ * Pixel; surfaceVariant, the track until #84, is now the dark card's own
+ * colour). The bar glides between progress updates (#84).
  */
 @Composable
 fun EngineProgressBar(done: Long, total: Long, modifier: Modifier = Modifier) {
     val colors = MaterialTheme.colorScheme
+    val fraction by animateFloatAsState(
+        targetValue = progressFraction(done, total),
+        animationSpec = MarmaladeMotion.slow(),
+        label = "downloadProgress",
+    )
     LinearProgressIndicator(
-        progress = { progressFraction(done, total) },
-        color = MaterialTheme.accent.ink,
-        trackColor = if (colors.isDark) colors.surfaceVariant else colors.primaryContainer,
+        progress = { fraction },
+        color = if (colors.isDark) MaterialTheme.accent.progress else MaterialTheme.accent.ink,
+        trackColor = if (colors.isDark) colors.outlineVariant else colors.primaryContainer,
         modifier = modifier
             .fillMaxWidth()
             .downloadProgressSemantics(done, total),
@@ -287,9 +296,9 @@ fun ButtonLabel(label: String, spoken: String?) {
 }
 
 /**
- * The Toast button (marmalade-design's default; the orange accent is kept for
- * one CTA per screen): Download, Resume, Use. `primaryContainer` is toast in
- * light mode and the rich brown accent-soft in dark.
+ * The tonal button (marmalade-design's toast default in light mode; the
+ * orange accent is kept for one CTA per screen): Download, Resume, Use. `primaryContainer` is toast in
+ * light mode and Orange 800 in dark (the library's, in Marmalade).
  */
 @Composable
 fun TonalEngineButton(label: String, onClick: () -> Unit, modifier: Modifier = Modifier, spokenLabel: String? = null) {
@@ -303,12 +312,16 @@ fun TonalEngineButton(label: String, onClick: () -> Unit, modifier: Modifier = M
     ) { ButtonLabel(label, spokenLabel) }
 }
 
-/** "Check files", or a spinner and "Checking files…" while [checking] (it can't be pressed again). */
+/**
+ * "Check files", or working dots and "Checking files…" while [checking] (it
+ * can't be pressed again). The dots replace a spinning ring (#84) and keep
+ * its "in progress" for TalkBack.
+ */
 @Composable
 fun CheckFilesButton(checking: Boolean, onClick: () -> Unit, modifier: Modifier = Modifier) {
     MarmaladeOutlinedButton(onClick = onClick, enabled = !checking, modifier = modifier) {
         if (checking) {
-            CircularProgressIndicator(modifier = Modifier.size(16.dp), strokeWidth = 2.dp)
+            WorkingDots(dotSize = 4.dp)
             Spacer(Modifier.width(8.dp))
             Text(stringResource(R.string.engine_action_checking))
         } else {

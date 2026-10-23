@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <img alt="version 1.1.0" src="https://img.shields.io/badge/version-1.1.0-F5A623">
+  <img alt="version 1.2.0" src="https://img.shields.io/badge/version-1.2.0-F5A623">
   &nbsp;<img alt="license MIT" src="https://img.shields.io/badge/license-MIT-3DA639">
   &nbsp;<img alt="Android 9 or later" src="https://img.shields.io/badge/Android-9%2B-3DDC84">
 </p>
@@ -45,10 +45,10 @@ recommends a speech engine for your language and for your phone's memory and
 speed. After that one download, it works without a connection.
 
 <p align="center">
-  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/01-welcome.png" alt="Welcome screen: private by design" width="200">
-  &nbsp;<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/02-keyboard-panel.png" alt="The Marmalade panel typing into a messaging app" width="200">
-  &nbsp;<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/03-engines.png" alt="Engines tab with the recommended engine" width="200">
-  &nbsp;<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/08-dictate-light-stopped.png" alt="Dictate tab with dictated text" width="200">
+  <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/01-keyboard.png" alt="The Marmalade panel typing a reply into a messaging app" width="200">
+  &nbsp;<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/02-keyboards.png" alt="Setup guide: how each of your keyboards reaches Marmalade STT" width="200">
+  &nbsp;<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/05-engines.png" alt="Setup guide: the engine recommended for this phone" width="200">
+  &nbsp;<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/07-private.png" alt="Welcome screen: private by design" width="200">
 </p>
 
 ## Features
@@ -272,7 +272,10 @@ engine (`docs/benchmarks/2026-10-pixel8a-ort.md`).*
 
 Settings → Speech → **Keep engine ready** (off by default) keeps the engine
 in memory while the app is open, so listening starts faster, at the cost of
-about 0.6 to 3 GB of memory.
+about 0.6 to 3 GB of memory. With it off, a phone with 6 GB of memory or
+more keeps the engine for five minutes after you last used it, so the voice
+keyboard opened again within that time listens at once; smaller phones free
+it right away.
 
 Engines still being tried out, and an A/B benchmark to compare engines on
 your own voice, are under Settings → Developer → Developer engines (off by

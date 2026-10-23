@@ -2,7 +2,8 @@
 <resources>
     <!-- The window behind Compose, shown on a cold start before the first
          frame: the theme's background (Orange 50), so launch doesn't flash.
-         values-night has the dark twin. Keep both in step with
-         ui/theme/Color.kt. -->
+         values-night has the dark twin. Keep both in step with the design
+         library's MarmaladeLightColors / MarmaladeDarkColors
+         (third_party/marmalade-ui-android, theme/Color.kt). -->
     <color name="window_background">#FFFFF7ED</color>
 </resources>

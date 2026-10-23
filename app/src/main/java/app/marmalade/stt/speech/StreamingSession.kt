@@ -144,6 +144,19 @@ import kotlinx.coroutines.launch
  * @param isPreSpeechPhantom whether a text is what the engine writes for the
  *   noise before speech, dropped when more speech follows
  *   ([FinishedUtterances], [app.marmalade.stt.install.SttEngineDescriptor.isPreSpeechPhantom]).
+ * @param earlyVad a second VAD with a shorter minimum silence ([EarlyVad],
+ *   #91): when it ends the utterance, the audio the Final would
+ *   decode if [vad] ended it there is decoded at once, and that text is the
+ *   Final when [vad] ends the same range. No partials until speech resumes.
+ * @param trimAtStop with [earlyVad]: a stop in that silence sends the
+ *   speculative text (the speech without the silence up to the stop).
+ * @param partialAtOnset decode the first partial at the onset, not
+ *   [PARTIAL_INTERVAL_MS] later.
+ *   [trimAtStop] and [partialAtOnset] are off here; the app's engines pass
+ *   [SpeedKnobs]' values (#91).
+ * @param verifySpeculation also decode a speculated Final the usual way and
+ *   log whether the texts match (measurement only: it costs the decode the
+ *   speculation saved).
  */
 class StreamingSession(
     private val transcriber: OfflineTranscriber,
@@ -155,6 +168,10 @@ class StreamingSession(
     private val catchUp: Boolean = true,
     private val maxDecodeSamples: Int = UtteranceCap.MAX_DECODE_SAMPLES,
     private val isPreSpeechPhantom: (String) -> Boolean = { false },
+    private val earlyVad: SpeechVad? = null,
+    private val trimAtStop: Boolean = false,
+    private val partialAtOnset: Boolean = false,
+    private val verifySpeculation: Boolean = false,
 ) : ListeningSession {
 
     companion object {
@@ -233,7 +250,7 @@ class StreamingSession(
     /** The session's events. Cold; collect it once. */
     override fun run(): Flow<SttEvent> {
         check(collected.compareAndSet(false, true)) { "A StreamingSession can be collected only once" }
-        return micSession(openMic, { stopRequested }, onStart = vad::reset) { hops, captured ->
+        return micSession(openMic, { stopRequested }, onStart = { vad.reset(); earlyVad?.reset() }) { hops, captured ->
             // A native decode doesn't see coroutine cancellation: without
             // this, a cancelled session would hold the engine until its
             // decode ended (a runaway Whisper decode: up to 224 steps, #49).
@@ -297,17 +314,53 @@ class StreamingSession(
         // (even one starting a little before cutAt) and gets the usual pre-roll.
         var restPending = false
         var turnFromCut = false // Smart Turn: the turn's audio starts at a forced cut
+        val stats = SessionStats()
+        // #91: the Final's audio decoded when the early VAD ended the utterance,
+        // as [from, to) counted like VadSegment.start, and its text.
+        var speculation: Speculation? = null
+        var earlySilence = false // the early VAD ended the utterance: no partials until speech again
 
         suspend fun sendAll(events: List<SttEvent>) {
-            for (event in events) send(event)
+            for (event in events) {
+                if (event is SttEvent.Final) stats.finalSent()
+                send(event)
+            }
         }
 
-        fun decodeFinal(audio: FloatArray): String {
+        /**
+         * [speechEnd]: where the decoded speech ends, counted like
+         * [VadSegment.start], so the log can split end of speech to Final
+         * into the wait for the end (the VAD's silence, Smart Turn, a stop)
+         * and the backlog behind the mic, then this decode.
+         */
+        fun decodeFinal(audio: FloatArray, speechEnd: Int, from: Int = -1): String {
+            val micPast = samplesMs(captured() * MIC_HOP_SAMPLES - speechEnd)
+            val spec = speculation
+            speculation = null
+            earlySilence = false
+            if (spec != null && spec.from == from && spec.to == speechEnd) {
+                Log.d(
+                    TIMING_TAG,
+                    "final decode 0 ms for ${audio.size * 1000L / MIC_SAMPLE_RATE} ms of audio (speculative, decoded ${spec.decodeMs} ms " +
+                        "${samplesMs(spec.decodedAt - speechEnd)} ms after the speech's end); " +
+                        "at its start the VAD was ${samplesMs(fed - speechEnd)} ms past the speech's end, the mic $micPast ms",
+                )
+                if (verifySpeculation) {
+                    val again = transcribe(audio)
+                    Log.d(TIMING_TAG, "speculation parity: ${if (again == spec.text) "same" else "DIFFERENT"}")
+                }
+                return spec.text
+            }
+            if (spec != null) Log.d(TIMING_TAG, "speculation missed: ${spec.from}..${spec.to} against $from..$speechEnd")
             val decodeStart = nowMs()
             val text = transcribe(audio)
             // The VAD closes a segment after its minimum silence, so end of
             // speech to Final = that pause (+ Smart Turn's wait) + this decode.
-            Log.d(TIMING_TAG, "final decode ${nowMs() - decodeStart} ms for ${audio.size * 1000L / MIC_SAMPLE_RATE} ms of audio")
+            Log.d(
+                TIMING_TAG,
+                "final decode ${nowMs() - decodeStart} ms for ${audio.size * 1000L / MIC_SAMPLE_RATE} ms of audio; " +
+                    "at its start the VAD was ${samplesMs(fed - speechEnd)} ms past the speech's end, the mic $micPast ms",
+            )
             return text
         }
 
@@ -323,7 +376,7 @@ class StreamingSession(
             val length = turnEnd - speechStartOffset
             // A turn that is only a cut segment's rest is decoded only if it holds speech.
             if (length > 0 && (!turnFromCut || UtteranceCap.restHasSpeech(length, turnQuiet.nearSilent))) {
-                sendAll(texts.finished(decodeFinal(buffer.copyRange(speechStartOffset, turnEnd)), turnQuiet))
+                sendAll(texts.finished(decodeFinal(buffer.copyRange(speechStartOffset, turnEnd), fed - offset + turnEnd, fed - offset + speechStartOffset), turnQuiet))
             }
             // As after an utterance: samples the VAD hasn't seen yet are kept.
             buffer.dropFirst(offset)
@@ -369,9 +422,22 @@ class StreamingSession(
                 // trimmed to the speech), with the pre-roll in front of it.
                 // The cut segment: its rest, if that holds speech.
                 val text = when {
-                    !isRest -> decodeFinal(capped(withPreroll(buffer, speechStartOffset, segmentStart, segment.samples)))
+                    !isRest -> {
+                        val audio = capped(withPreroll(buffer, speechStartOffset, segmentStart, segment.samples))
+                        val end = segment.start + segment.samples.size
+                        val spec = speculation
+                        if (atStop && trimAtStop && earlySilence && spec != null && spec.from == end - audio.size &&
+                            preGain.rmsDb(spec.to, fed - spec.to) < NearSilence.THRESHOLD_DB
+                        ) {
+                            // Stopped in the early VAD's silence, and nothing but near-silence
+                            // came since: the speech without the silence up to the stop.
+                            decodeFinal(audio, spec.to, spec.from)
+                        } else {
+                            decodeFinal(audio, end, end - audio.size)
+                        }
+                    }
                     UtteranceCap.restHasSpeech(rest, quiet.nearSilent) ->
-                        decodeFinal(segment.samples.copyOfRange(restFrom, segment.samples.size))
+                        decodeFinal(segment.samples.copyOfRange(restFrom, segment.samples.size), segment.start + segment.samples.size)
                     else -> ""
                 }
                 vad.pop()
@@ -397,7 +463,7 @@ class StreamingSession(
             val bufferStart = fed - offset // buffer[0], counted like VadSegment.start
             val length = cut - speechStartOffset
             val quiet = judgeQuiet(preGain.rmsDb(bufferStart + speechStartOffset, length), length)
-            sendAll(texts.cut(decodeFinal(buffer.copyRange(speechStartOffset, cut)), quiet))
+            sendAll(texts.cut(decodeFinal(buffer.copyRange(speechStartOffset, cut), bufferStart + cut), quiet))
             buffer.dropFirst(cut)
             offset -= cut
             onsetOffset -= cut
@@ -415,6 +481,43 @@ class StreamingSession(
             }
         }
 
+        /**
+         * #91: the early VAD ended the utterance while [vad] still holds it.
+         * Decode now what [vad]'s Final will decode if it ends at the same
+         * sample (see decodeFinal), so its wait for more silence hides this
+         * decode. Not after a forced cut (that Final decodes only a rest).
+         */
+        fun speculate() {
+            val early = earlyVad ?: return
+            while (!early.empty()) {
+                val segment = early.front()
+                early.pop()
+                val bufferStart = fed - offset
+                val end = segment.start + segment.samples.size
+                val endInBuffer = end - bufferStart
+                if (!(isSpeechStarted || turnOpen) || restPending || turnFromCut || endInBuffer > offset) continue
+                val from: Int
+                val audio: FloatArray
+                if (gate != null) {
+                    // A turn decodes from its start (the first segment may reach before the pre-roll).
+                    val start = if (turnEnd < 0) minOf(speechStartOffset, (segment.start - bufferStart).coerceAtLeast(0)) else speechStartOffset
+                    if (endInBuffer <= start) continue
+                    from = bufferStart + start
+                    audio = buffer.copyRange(start, endInBuffer)
+                } else {
+                    val segmentStart = segment.start - bufferStart
+                    if (segmentStart < 0) continue // reaches back past the buffer: leave it to the Final
+                    audio = capped(withPreroll(buffer, speechStartOffset, segmentStart, buffer.copyRange(segmentStart, endInBuffer)))
+                    from = end - audio.size
+                }
+                val decodeStart = nowMs()
+                val text = transcribe(audio)
+                speculation = Speculation(from, end, text, nowMs() - decodeStart, captured() * MIC_HOP_SAMPLES)
+                earlySilence = true
+                Log.d(TIMING_TAG, "speculative decode ${nowMs() - decodeStart} ms for ${samplesMs(audio.size)} ms of audio")
+            }
+        }
+
         /** Decode the utterance in progress (or, once it is long, commit its older part) and show it. */
         suspend fun partial() {
             val decodeStart = nowMs()
@@ -426,6 +529,7 @@ class StreamingSession(
                 partialFrom = cut
             } else {
                 val shown = stripTrailingPunctuation(transcribe(buffer.copyRange(partialFrom, offset)))
+                stats.partialAudio(offset - partialFrom, shown.isEmpty())
                 val hypothesis = (committed + shown).filter { it.isNotEmpty() }.joinToString(" ")
                 val utterance = stripTrailingPunctuation(stabilizer.update(hypothesis))
                 if (utterance.isNotEmpty()) {
@@ -438,6 +542,7 @@ class StreamingSession(
             }
             lastPartialAt = nowMs()
             lastPartialMs = lastPartialAt - decodeStart
+            stats.partial(lastPartialMs)
         }
 
         for (hop in hops) {
@@ -449,7 +554,11 @@ class StreamingSession(
 
             while (offset + VAD_WINDOW_SIZE < buffer.size) {
                 val window = buffer.copyRange(offset, offset + VAD_WINDOW_SIZE)
+                val vadStart = System.nanoTime()
                 vad.acceptWaveform(window)
+                earlyVad?.acceptWaveform(window)
+                stats.vadWindow(System.nanoTime() - vadStart)
+                if (earlySilence && earlyVad?.isSpeechDetected() == true) earlySilence = false
                 offset += VAD_WINDOW_SIZE
                 fed += VAD_WINDOW_SIZE
                 if (turnOpen) gate?.append(window)
@@ -474,6 +583,7 @@ class StreamingSession(
                     lastPartialAt = nowMs()
                     lastPartialMs = 0
                     onsetAt = lastPartialAt
+                    if (partialAtOnset) lastPartialAt -= PARTIAL_INTERVAL_MS + 1
                     partialSinceOnset = false
                     send(SttEvent.SpeechStarted)
                 }
@@ -481,6 +591,7 @@ class StreamingSession(
 
             // Before any partial: a Final never waits behind one.
             drainSegments(atStop = false)
+            speculate()
 
             if (gate != null && turnOpen) {
                 if (gate.poll()) {
@@ -489,7 +600,7 @@ class StreamingSession(
                     // The turn has grown to Whisper's window: it ends at its
                     // last segment boundary, and the speech in progress (from
                     // its pre-roll) starts the next turn.
-                    sendAll(texts.finished(decodeFinal(buffer.copyRange(speechStartOffset, turnEnd)), turnQuiet))
+                    sendAll(texts.finished(decodeFinal(buffer.copyRange(speechStartOffset, turnEnd), fed - offset + turnEnd), turnQuiet))
                     val next = maxOf(turnEnd, onsetOffset - PREROLL_SAMPLES)
                     buffer.dropFirst(next)
                     offset -= next
@@ -515,7 +626,7 @@ class StreamingSession(
             // slow model's partials from taking all its time.
             // Behind the mic, partials wait until the session has caught up.
             // (A Smart Turn waiting in silence gets none: isSpeechStarted is off.)
-            if (livePartials && isSpeechStarted && !(catchUp && lag.catchingUp) &&
+            if (livePartials && isSpeechStarted && !earlySilence && !(catchUp && lag.catchingUp) &&
                 nowMs() - lastPartialAt > maxOf(PARTIAL_INTERVAL_MS, lastPartialMs)
             ) {
                 partial()
@@ -544,6 +655,7 @@ class StreamingSession(
 
         lag.logSummary()
         sendAll(texts.ended())
+        stats.log()
     }
 
     /**
@@ -788,3 +900,52 @@ internal class SampleBuffer {
         size -= count
     }
 }
+
+private fun samplesMs(samples: Int): Long = samples * 1000L / MIC_SAMPLE_RATE
+
+/**
+ * Where one session's time went (#91), logged once at its end under
+ * [StreamingSession.TIMING_TAG] at debug level: numbers only. The VAD's cost
+ * (Silero's [SpeechVad.acceptWaveform] per 32 ms window) and each partial's
+ * decode. Finals log their own line ([StreamingSession]'s `decodeFinal`)
+ * and a `final sent` stamp in [android.os.SystemClock.elapsedRealtime], which
+ * the surfaces' `delivered` stamps pair with.
+ */
+internal class SessionStats {
+    private var vadNanos = 0L
+    private var vadWindows = 0
+    private var vadMaxNanos = 0L
+    private val partialMs = mutableListOf<Long>()
+    private val partialAudio = mutableListOf<String>() // ms of audio, "e" when the text was empty
+
+    fun vadWindow(nanos: Long) {
+        vadNanos += nanos
+        vadWindows++
+        if (nanos > vadMaxNanos) vadMaxNanos = nanos
+    }
+
+    fun partial(ms: Long) {
+        partialMs += ms
+    }
+
+    fun partialAudio(samples: Int, empty: Boolean) {
+        partialAudio += samplesMs(samples).toString() + if (empty) "e" else ""
+    }
+
+    fun finalSent() {
+        Log.d(StreamingSession.TIMING_TAG, "final sent t=${android.os.SystemClock.elapsedRealtime()}")
+    }
+
+    fun log() {
+        val sorted = partialMs.sorted()
+        Log.d(
+            StreamingSession.TIMING_TAG,
+            "session vad=${vadNanos / 1_000_000}ms/${vadWindows}win max=${vadMaxNanos / 1000}us " +
+                "partials=${partialMs.size} total=${partialMs.sum()}ms median=${sorted.getOrNull(sorted.size / 2) ?: 0}ms " +
+                "max=${sorted.lastOrNull() ?: 0}ms each=${partialMs.joinToString(",")} audio=${partialAudio.joinToString(",")}",
+        )
+    }
+}
+
+/** #91: a Final decoded ahead ([from], [to]) counted like [VadSegment.start]; [decodedAt] is the mic's position when it finished. */
+private class Speculation(val from: Int, val to: Int, val text: String, val decodeMs: Long, val decodedAt: Int)

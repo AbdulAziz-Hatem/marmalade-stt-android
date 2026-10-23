@@ -43,6 +43,19 @@ internal class ListenTiming(
     fun summary(): String = stages.entries.joinToString(" ") { (stage, ms) -> "$stage=$ms" }
 
     fun log() {
-        Log.i(StreamingSession.TIMING_TAG, "listen $label: ${summary()}")
+        Log.i(StreamingSession.TIMING_TAG, "listen $label at=$requestedAt: ${summary()}")
+    }
+
+    companion object {
+        /**
+         * A surface has applied a Final (#91): its cleanup and commit, which
+         * began at [startedAt], are done. Debug level, stamped in
+         * [android.os.SystemClock.elapsedRealtime] like the session's
+         * `final sent` line.
+         */
+        fun delivered(surface: String, startedAt: Long) {
+            val now = android.os.SystemClock.elapsedRealtime()
+            Log.d(StreamingSession.TIMING_TAG, "$surface delivered t=$now took=${now - startedAt}ms")
+        }
     }
 }

@@ -85,6 +85,7 @@ class SherpaSttEngine<M : LoadedModel> internal constructor(
             vad: SpeechVad,
             options: SessionOptions,
             openMic: (hopSamples: Int, hardwareEffects: Boolean) -> MicCapture,
+            earlyVad: SpeechVad?,
         ): ListeningSession
     }
 
@@ -108,6 +109,8 @@ class SherpaSttEngine<M : LoadedModel> internal constructor(
     private var model: M? = null
     private var vad: SpeechVad? = null
     private var vadMinSilence = Float.NaN
+    private var earlyVad: SpeechVad? = null // #91 SpeedKnobs.earlyVadFor
+    private var earlyVadMinSilence = Float.NaN
     private var sessionActive = false
 
     /** The session's mic, from the moment it opens; [stop] closes it. */
@@ -253,8 +256,10 @@ class SherpaSttEngine<M : LoadedModel> internal constructor(
                     return@channelFlow
                 }
 
+                val minSilence = sessionOptions.await().vadMinSilenceSeconds
+                val sessionEarlyVad = if (SpeedKnobs.earlyVadFor(sessionOptions.await().effectiveEnd)) EarlyVad.minSilenceSeconds(minSilence)?.let { earlyVadFor(it) } else null
                 // The session reads the open mic: the hops kept during the load first.
-                val created = newSession.create(loadedModel, sessionVad, sessionOptions.await()) { _, _ -> early }
+                val created = newSession.create(loadedModel, sessionVad, sessionOptions.await(), { _, _ -> early }, sessionEarlyVad)
                 created.run().collect { send(it) }
             } finally {
                 early.close()
@@ -318,16 +323,43 @@ class SherpaSttEngine<M : LoadedModel> internal constructor(
         generation++
         val t = model
         val v = vad
+        val ev = earlyVad
         model = null
         vad = null
         vadMinSilence = Float.NaN
-        // Release both even if the first throws.
+        earlyVad = null
+        earlyVadMinSilence = Float.NaN
+        // Release all even if one throws.
         try {
             t?.release()
         } finally {
-            v?.release()
+            try {
+                v?.release()
+            } finally {
+                ev?.release()
+            }
         }
         if (t != null) Log.i(TAG, "Released ${descriptor.id}")
+    }
+
+    /** #91: the early VAD ([EarlyVad]) for this session, cached like [vadFor]'s. */
+    private suspend fun earlyVadFor(minSilence: Float): SpeechVad = withContext(Dispatchers.Default) {
+        loadMutex.withLock {
+            val (current, currentMinSilence) = synchronized(lock) { earlyVad to earlyVadMinSilence }
+            if (current != null && currentMinSilence == minSilence) return@withLock current
+            synchronized(lock) {
+                earlyVad = null
+                earlyVadMinSilence = Float.NaN
+            }
+            current?.release()
+            val created = createVad(minSilence)
+            synchronized(lock) {
+                earlyVad = created
+                earlyVadMinSilence = minSilence
+            }
+            Log.i(TAG, "Early Silero VAD ready (minSilence=${minSilence}s)")
+            created
+        }
     }
 
     /**

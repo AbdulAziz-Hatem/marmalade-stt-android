@@ -86,8 +86,9 @@ As built in #4 (`app/.../speech/StreamingSession.kt`):
    Don't lengthen the offline pre-roll without the harness's regression
    check (`python -m asrbench.regress`, #18): at 0.8 s, Parakeet returned
    nothing on 14 of 200 AMI clips (see Parakeet under "Engine families").
-5. **Partials:** during speech, re-decode the audio since onset, at most
-   every 200 ms and never sooner than the last partial's decode took.
+5. **Partials:** during speech, re-decode the audio since onset: the first
+   at the onset itself (#91), then at most every 200 ms and never sooner
+   than the last partial's decode took.
    A decode can't be interrupted, so partials must never stand in front of
    a Final (#20: on the Pixel 8a a 22 s utterance's Final came 14.7 s after
    the speech ended). Each hop drains the VAD's closed segments first, and a
@@ -141,6 +142,14 @@ As built in #4 (`app/.../speech/StreamingSession.kt`):
    Whisper does through its own `tailPaddings`: without silence after the
    last word, Parakeet v3's int8 export drifted into English partway through
    German and Spanish sentences (see "Parakeet and the end of the audio").
+   **The early VAD (#91):** a second Silero whose minimum silence is the
+   main one's less whole windows, about 0.6 s (`EarlyVad`), so both end an
+   utterance at the same sample. When it closes the utterance first, the
+   session decodes at once exactly the audio the Final would decode there,
+   and decodes no more partials until speech resumes. A stop in that
+   silence (Tap stop) sends that text: the speech without the silence up
+   to the tap. Tap stop sessions run it (`SpeedKnobs.earlyVadFor`). A
+   cancelled or pre-empted session (#90) drops it with everything else.
 7. **Near-silence:** each Final carries `nearSilent`, true when the RMS of
    the utterance's VAD segment (without the quiet pre-roll), measured
    **before** `SoftAgc`, is below `NearSilence.THRESHOLD_DB` (−50 dBFS,
@@ -324,12 +333,25 @@ at startup with every other id that left the catalog
   and frees the model after a session when Keep engine ready is off and no
   surface holds it: `hold(preload)` returns a reference-counted
   `EngineHold` (`speech/EngineHolds.kt`, #78) that a surface keeps open
-  while it is on screen. `listen(surface)`
+  while it is on screen. On phones of 6 GB or more (`totalMem` ≥ 5 GiB),
+  "frees" means after a five-minute warm hold with no session or hold in
+  between (#91, Max 2026-10-22, `WarmHold`): only the model stays (no mic,
+  service or wake lock), so reopening the keyboard or popup within it skips
+  the load. `onTrimMemory` at a pressure level (RUNNING_LOW, RUNNING_CRITICAL,
+  MODERATE and up; not UI_HIDDEN or BACKGROUND, which come every time a
+  surface goes away) frees it at once, and so does picking another engine,
+  language or tuning. `listen(surface)`
   builds the surface's `SessionOptions`; when that surface's end is Smart
   Turn it hands over `loadTurnDetector`, which the engine runs once the mic
   is open (`SmartTurnModel`'s first load reads 8.7 MB; null if it failed to
   load). Each listen logs its stages from the user's tap (`ListenTiming`,
   `SttTiming`: `mic`, `ready`, first `level`, `speech`, `partial`, `final`).
+  #91 added debug-level stage marks (each Final's decode and its wait, per
+  session VAD and partial cost, `final sent`, per-surface `delivered`, Smart
+  Turn features vs model). Debug builds can also feed every listen's mic from
+  a clip (`debug/ClipMic.kt` through `MicOverride`) and A/B the prototype
+  switches in `SpeedKnobs` (all off by default); see
+  `docs/benchmarks/2026-10-speed-audit.md`.
 - `install/SttEngineCatalog.kt` lists the engines. Each has a family (which
   runtime builds it) and files, each with a role, name, URL pinned to a
   revision, sha256 and size. When an engine's files change format (#78:
@@ -511,16 +533,74 @@ at startup with every other id that left the catalog
   Light, Dark), stored by `data/AppearanceSettings` under the TTS app's
   keys. `MainActivity`, the voice keyboard and the speech sheet collect it
   and restyle live; `MainActivity` waits for it with the start destination,
-  and keys the system bars' icons off the resolved light/dark. The curated
-  presets recolour Marmalade's accent roles (`buildPresetScheme`: primary,
-  secondary and tertiary families) and keep its surfaces, so dark mode
-  holds no orange outside Marmalade. The brand colours no Material role
-  carries in both modes (Toast pills, the in-use outline, warm-ink links)
-  are `MaterialTheme.accent` (`AccentColors`), per preset.
-  `ThemePresetTest` checks every preset for orange in dark mode and for
-  text contrast. Emulator screenshots of every preset in light and dark
-  (Appearance, the Engines tab, the details dialog, the setup guide's
-  card, the voice keyboard) are in `docs/screenshots/35/` (`index.html`).
+  and keys the system bars' icons off the resolved light/dark. Marmalade,
+  Midnight, Forest, Berry and Wallpaper are the shared design library's
+  presets, drawn exactly as Marmalade TTS draws them (#87, below); High
+  contrast (#68) is this app's own. The brand colours no Material role
+  carries in both modes (Toast pills, the in-use outline, warm-ink links,
+  the mic) are `MaterialTheme.accent` (`AccentColors`), per preset.
+  `ThemePresetTest` checks that the shared presets equal the library's,
+  that High contrast changes only its listed roles and meets AA, and that
+  the accent colours read. Emulator screenshots of every preset in light
+  and dark from before the library (Appearance, the Engines tab, the
+  details dialog, the setup guide's card, the voice keyboard) are in
+  `docs/screenshots/35/` (`index.html`).
+- **Design library (#87).** The theme is the shared Marmalade design
+  library, `marmalade-ui-android`, a git submodule at
+  `third_party/marmalade-ui-android` built from source as the Gradle module
+  `:marmalade-ui` (package `app.marmalade.ui`). It is Marmalade TTS's
+  theme layer lifted as TTS has it (1.3.0 plus TTS #89's dark-mode AA
+  fixes): the colour schemes and presets, the depth ramp
+  (`MaterialTheme.depth`: page → card → raised, sheet, scrim; the ink ramp
+  `dim` / `faint` / `ghost`; hairlines `line` / `line2`; soft CSS-style
+  shadows, `Modifier.softShadow`), `MarmaladeMotion` (easing (0.2, 0.8,
+  0.2, 1) at 150 / 200 / 320 ms, `riseIn`, `rememberReducedMotion`),
+  shapes, typography, Manrope and Momo Trust Display, and the components
+  `MarmaladeCard`, `MarmaladeSheet`, `MarmaladeMenu`, `chevronAngle`,
+  `WorkingDots`, `LiveDot` and the stepped slider track. Rules: the
+  library has no app code; this app's theme (`ui/theme/`) is a thin layer
+  that calls the library's `MarmaladeTheme(colorScheme, darkTheme,
+  wordmarkColor, depth)` hook with its own High contrast scheme (whose
+  depth keeps the full-strength quiet text), its `AccentColors`, the focus
+  ripple and its wordmark family (Momo from the library, Fredoka as the
+  fallback). Where the app draws a style from a shared token, its contrast
+  must equal TTS's: `TextContrastReportTest` checks that and writes the
+  per-style table (`app/build/reports/text-contrast.json`), each row
+  marked `shared`, `library` (a library change since TTS's own theme,
+  260fc1d, that TTS gets when it moves its pin: the AA error reds) or `stt`.
+  The app's own differences are small and listed there: links and text
+  buttons in light mode are the preset's dark ink (#68), and so are light
+  Midnight, Forest and Berry's section titles (their primary is below AA
+  on cards); pills keep this app's preset colours; the dark Marmalade mic,
+  progress bars and busy rings stay toast (#68 P2-B; Max, #87 round 3:
+  `accent.progress`); meters keep their own 3:1 unlit outline. Max's round
+  3 kept three things from before the library: the dark Dictate
+  transcript sits on the page colour inside a hairline, the engine cards
+  are main's outlined cards in light mode, and in dark mode the engine in
+  use has only its outline, no wash (an engine card's outline is the pill
+  colour, toast in Marmalade; an Other engines row's is `accent.ink`).
+  Since round 3 the library's presets recolour the secondary and tertiary
+  roles too (the working dots, a default progress track and the slider
+  track carry no orange outside Marmalade; a dark preset's
+  secondaryContainer is its dark tone, so a default track never matches
+  its bar), the tab pill comes from the library's
+  `marmaladeNavigationBarItemColors` (toast on the Marmalade palette,
+  primary in a dark preset, 3:1 on the bar), and its error red is AA in both modes (Red 700 light, Red 400
+  dark), so High contrast no longer overrides it. Move the pin in its own
+  commit, naming the library commit and what changes on screen; the
+  library's own `CHANGELOG.md` says what each commit brings.
+- Polish (#84, TTS's #83 with Max's picks): the bottom bar has a hairline
+  and the soft bar shadow, and on the Marmalade palette a toast tab pill;
+  the selected tab's label is bold (#89, the library's
+  `MarmaladeNavigationBarLabel`, still capped at 1.5× font scale); tabs crossfade, detail pages rise in, back only fades. Cards are the
+  library's `MarmaladeCard` in both modes, except the light engine cards
+  and the dark transcript (above). Settings, licences and the
+  cleanup lists sit on the page with ink hairlines and faint row icons.
+  Setup steps rise in, download bars glide, Check files and the setup
+  guide's checks show `WorkingDots`; the mics keep their spinning ring
+  (Max skipped the halo). The voice keyboard has a hairline along its top;
+  the speak-now popup is the sheet step over the library's scrim with a
+  hairline edge. The Pause length slider uses the library's stepped track.
 
 **System entry points (#5, D6).**
 - `ime/VoiceInputService` is the voice keyboard: an `InputMethodService`
@@ -800,9 +880,12 @@ the sherpa-onnx config and the session type:
 **Developer engines (#13).** Every engine outside the user lineup is a
 developer engine (`SttEngineDescriptor.developer`): not offered on the
 Engines tab, and never the active engine, unless Settings → Developer engines
-is on (`SttEngineCatalog.runnable`). The exception: the engine recommended
-for the phone (see "Recommendation"). Turning the setting off falls back to
-the default without forgetting the pick. Since #45 they were Granite Speech
+is on (`SttEngineCatalog.runnable`). Turning the setting off falls back to
+the recommendation (or the default) without forgetting the pick. Until #89
+the engine recommended for the phone was an exception, and so was a
+developer engine selected while it was the recommendation (a "kept"
+selection, #50); both existed for Qwen3-ASR, and #89 removed them once it
+was a user engine and the recommender picked only user engines. Since #45 they were Granite Speech
 5.0 470M and Qwen3-ASR 0.6B; Qwen3-ASR became a user engine for Chinese
 and Korean in #50 and for all 30 of its languages in #88, so Granite is
 the only one left. Each has an ethics
@@ -1057,8 +1140,8 @@ one engine for the phone (`install/EngineRecommender.kt`, run by
   both "may be slow"). A test pins every other language's recommendation,
   on every phone class, to the one without Qwen3 in the catalog.
 - The result is stored with the rules version (`SpeechPrefs.recommendedEngineId`,
-  `recommendationRules`): that engine is listed and can run even when it is
-  a developer engine (as Qwen3-ASR was when a version before #37 stored it), and it is
+  `recommendationRules`): always a user engine (the recommender skips
+  developer engines), and it is
   what runs while nothing is selected (`SttEngineCatalog.effective`), so
   leaving the setup guide mid-download doesn't fall back to an uninstalled
   default.
@@ -1071,16 +1154,13 @@ one engine for the phone (`install/EngineRecommender.kt`, run by
   a Japanese phone recommended turbo before #60 gets Parakeet-ja as its
   recommendation but keeps running the turbo it downloaded. Change the
   version whenever a rule or table change moves a recommendation.
-- **Kept selection (#50 review).** A developer engine runs with Developer
-  engines off only as the recommendation (`SttEngineCatalog.runnable`). So
-  that one doesn't stop when the recommendation moves on (a Thai phone that
-  downloaded Qwen3-ASR when it was recommended there, before #37), selecting
-  it while it is the recommendation, by hand or by `keepRunningEngine`'s
-  pin, marks the selection kept (`SpeechPrefs.selectionKept`,
-  `keptEngineId`): it stays runnable and listed. `SpeechPrefs.engineToPin`
-  also re-pins such a selection stored before the mark existed. A developer
-  engine picked with Developer engines on still stops when they are turned
-  off.
+- **Kept selection (#50 review, removed in #89).** A developer engine
+  recommended by an older version (Qwen3-ASR on a Thai phone, before #37)
+  was marked kept when selected (`speech_engine_kept`), so it ran on after
+  the recommendation moved. Qwen3-ASR is a user engine since #50/#88 and
+  runs anyway, so #89 dropped the mark: `forgetUnknownEngines` deletes the
+  stored key, and `SpeechPrefs.engineToPin` pins only when nothing is
+  selected.
 - User engines (#45, 2026-10-02): Parakeet Ultra (the default), Parakeet
   TDT_CTC 110M (the light one), Canary 180M Flash, Nemotron 3.5 Streaming
   (1120 ms; hi/ar/vi since #37) and Whisper Large v3 Turbo.
@@ -1151,7 +1231,9 @@ transcribes (about 100 since #45 made Whisper turbo a user engine). Stored as
   (`SpeechPrefs.languageOverride`) gives it one of its own.
 - The #13 per-engine language pick stays as a developer override: the info
   dialog's "Language for this engine" row shows, and applies, only with
-  Developer engines on, where it beats the recognition language.
+  Developer engines on, where it beats the recognition language. Its
+  picker lists Auto-detect first, then the languages by name in the UI
+  language (`sortedLanguageChoices`, #89).
 
 **Speed benchmark (#23).** Debug builds carry `debug/SpeedBenchmarkService`,
 started only from the adb shell (DUMP permission) and driven by
@@ -1178,10 +1260,11 @@ The audit, per screen and check, is `docs/accessibility-2026-10.md`. The
 conventions it left:
 - **Accent text goes through `MaterialTheme.accent`, never
   `colorScheme.primary`.** `accent.text` (section headers, text buttons,
-  links, the slider's value) is orange 500 in Marmalade's light mode, the
-  brand Max kept (2.6:1 on cream), and ink in every other preset and in dark
+  links, the slider's value) is the scheme's primary in Marmalade (orange
+  500 in light mode, the brand Max kept at 2.6:1 on cream; orange 400 in
+  dark, AA), and an AA ink in High contrast and the other presets' light
   mode; `accent.ink` (Copy / Clear, the engine screens' marks and buttons)
-  is ink everywhere. Quiet buttons are `MarmaladeTextButton` (default
+  is the dark ink in light mode and primary in dark. Quiet buttons are `MarmaladeTextButton` (default
   `accent.text`) / `MarmaladeOutlinedButton` (`ui/components/Buttons.kt`).
   `ButtonContrastSourceTest` fails on a bare `TextButton(` or text in
   `primary`; `ThemePresetTest` checks every text role (error red too) on
@@ -1220,16 +1303,28 @@ conventions it left:
   layer to 32 %, so keyboard and Switch Access focus shows on every
   component.
 - **Motion:** JarMascot and the mic level ring (`rememberMicMeter`) read
-  `MotionDurationScale` and hold still when it is 0.
+  `MotionDurationScale` and hold still when it is 0; so does the library's
+  `WorkingDots` (`rememberReducedMotion`, #84). Finite animations follow
+  the system scale on their own.
+- **Animated status lines** (#84): the Dictate, voice keyboard and speech
+  sheet status lines rise in when they change. The live region and the
+  words TalkBack reads (`clearAndSetSemantics { text }`) sit on an outer
+  node that stays put; the animated lines inside are hidden from it, so the
+  line on its way out is never read.
 - The three mics share `micColors` (`ui/components/MicColors.kt`): the
-  accent button's `primary` / `onPrimary`, so orange in light mode and
-  toast with toast ink in dark mode.
+  preset's `accent.mic` / `accent.onMic`, so orange with white in light
+  mode and toast with toast ink in Marmalade's dark mode.
 - **Contrast claim:** "designed to meet WCAG 2.1 AA; an AA-contrast High
   contrast theme (light and dark) and the dark theme are available; the
   setup guide offers High contrast on its first screen". The default light
   mode keeps the brand's orange (Max's call), so High contrast (both modes)
-  and dark mode must stay AA: `ThemePresetTest` gates their text, filled
-  controls and edges.
+  must stay AA: `ThemePresetTest` gates its text, filled controls and
+  edges. Dark mode is the shared library's, held to AA by its
+  `ThemeContrastTest` (TTS #89) for quiet text, icons, edges, primary text,
+  button labels and, since #87 round 3, error text in both modes; this
+  app's `ThemePresetTest` checks the same in dark mode with its own accent
+  colours, the selected tab's pill (3:1 on the dark bar) and that no
+  orange is left in Midnight, Forest and Berry.
   Meter segments: lit colours and unlit outlines 3:1 (`MeterContrastTest`).
 - Compose semantics tests under Robolectric live in `app/src/testDebug`
   (debug only: `createComposeRule` needs `ui-test-manifest`).

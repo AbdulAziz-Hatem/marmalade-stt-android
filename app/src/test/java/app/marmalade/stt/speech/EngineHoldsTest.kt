@@ -1,5 +1,12 @@
 package app.marmalade.stt.speech
 
+import android.content.ComponentCallbacks2.TRIM_MEMORY_BACKGROUND
+import android.content.ComponentCallbacks2.TRIM_MEMORY_COMPLETE
+import android.content.ComponentCallbacks2.TRIM_MEMORY_MODERATE
+import android.content.ComponentCallbacks2.TRIM_MEMORY_RUNNING_CRITICAL
+import android.content.ComponentCallbacks2.TRIM_MEMORY_RUNNING_LOW
+import android.content.ComponentCallbacks2.TRIM_MEMORY_RUNNING_MODERATE
+import android.content.ComponentCallbacks2.TRIM_MEMORY_UI_HIDDEN
 import app.marmalade.stt.install.SttEngineCatalog
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
@@ -71,11 +78,14 @@ class EngineHoldsTest {
     private var keepLoaded = false
     private var installed = true
 
-    private fun TestScope.holds() = EngineHolds(
+    private var built: SttEngine? = engine
+
+    private fun TestScope.holds(lingerMs: Long = 0L) = EngineHolds(
         scope = this,
         keepLoaded = { keepLoaded },
         activeEngine = { engine.takeIf { installed } },
-        builtEngine = { engine },
+        builtEngine = { built },
+        lingerMs = { lingerMs },
     )
 
     /** One session, ended the way SpeechEngineManager.listen ends it. */
@@ -292,5 +302,135 @@ class EngineHoldsTest {
         val holds = holds()
         holds.hold(preload = false)
         assertEquals(1, engine.keeps)
+    }
+    // The warm hold (#91): a model stays WarmHold.LINGER_MS after its last use on a big enough phone.
+
+    /** One session as SpeechEngineManager.listen runs it: sessionStarting first. */
+    private suspend fun EngineHolds.warmSession() {
+        sessionStarting()
+        session()
+    }
+
+    private fun TestScope.justBefore(ms: Long) {
+        advanceTimeBy(ms - 1)
+        runCurrent()
+    }
+
+    @Test
+    fun `with the warm hold a session's model stays until the hold runs out`() = runTest {
+        val holds = holds(WarmHold.LINGER_MS)
+        holds.warmSession()
+        justBefore(WarmHold.LINGER_MS)
+        assertTrue(engine.isLoaded)
+        assertEquals(0, engine.releases)
+
+        advanceTimeBy(2)
+        runCurrent()
+        assertFalse(engine.isLoaded)
+        assertEquals(1, engine.releases)
+    }
+
+    @Test
+    fun `a session inside the warm hold reuses the model, and the hold starts again from its end`() = runTest {
+        val holds = holds(WarmHold.LINGER_MS)
+        holds.warmSession()
+        advanceTimeBy(WarmHold.LINGER_MS - 1_000)
+        holds.warmSession()
+        assertEquals(1, engine.loads)
+
+        justBefore(WarmHold.LINGER_MS)
+        assertTrue(engine.isLoaded)
+        advanceUntilIdle()
+        assertEquals(1, engine.releases)
+    }
+
+    @Test
+    fun `closing the last surface hold starts the warm hold, and opening one cancels it`() = runTest {
+        val holds = holds(WarmHold.LINGER_MS)
+        val keyboard = holds.hold(preload = false)
+        holds.warmSession()
+        keyboard.close()
+        runCurrent()
+        advanceTimeBy(WarmHold.LINGER_MS / 2)
+        assertTrue(engine.isLoaded)
+
+        val again = holds.hold(preload = false)
+        advanceTimeBy(WarmHold.LINGER_MS)
+        runCurrent()
+        assertTrue("an open hold keeps the model", engine.isLoaded)
+
+        again.close()
+        runCurrent()
+        justBefore(WarmHold.LINGER_MS)
+        assertTrue(engine.isLoaded)
+        advanceUntilIdle()
+        assertFalse(engine.isLoaded)
+        assertEquals(1, engine.releases)
+    }
+
+    @Test
+    fun `memory pressure frees a warm-held model at once, the keyboard going away doesn't`() = runTest {
+        val holds = holds(WarmHold.LINGER_MS)
+        holds.warmSession()
+        @Suppress("DEPRECATION")
+        for (level in listOf(TRIM_MEMORY_UI_HIDDEN, TRIM_MEMORY_BACKGROUND)) {
+            holds.trimMemory(level)
+        }
+        runCurrent()
+        assertTrue(engine.isLoaded)
+
+        holds.trimMemory(TRIM_MEMORY_COMPLETE)
+        assertTrue("freed on the scope, not the caller's thread", engine.isLoaded)
+        runCurrent()
+        assertFalse(engine.isLoaded)
+        assertEquals(1, engine.releases)
+        advanceUntilIdle()
+        assertEquals("the cancelled timer frees nothing more", 1, engine.releases)
+    }
+
+    @Test
+    fun `memory pressure leaves a model a surface holds or Keep engine ready keeps`() = runTest {
+        val holds = holds(WarmHold.LINGER_MS)
+        val hold = holds.hold(preload = false)
+        holds.warmSession()
+        holds.trimMemory(TRIM_MEMORY_COMPLETE)
+        runCurrent()
+        assertTrue(engine.isLoaded)
+        hold.close()
+
+        keepLoaded = true
+        advanceUntilIdle()
+        holds.warmSession()
+        holds.trimMemory(TRIM_MEMORY_COMPLETE)
+        runCurrent()
+        assertTrue(engine.isLoaded)
+        assertEquals(0, engine.releases)
+    }
+
+    @Test
+    fun `an engine that is no longer the built one is freed at once, not held`() = runTest {
+        val holds = holds(WarmHold.LINGER_MS)
+        engine.load()
+        built = null // another engine was picked meanwhile
+        holds.sessionEnded(engine)
+        assertFalse(engine.isLoaded)
+    }
+
+    @Test
+    fun `the warm hold is for phones of 6 GB and more, and only memory pressure ends it early`() {
+        val gib = 1024L * 1024 * 1024
+        assertEquals(WarmHold.LINGER_MS, WarmHold.lingerMs(5_876_191_232L)) // a Pixel 6a's totalMem (6 GB)
+        assertEquals(WarmHold.LINGER_MS, WarmHold.lingerMs(7_600_000_000L)) // an 8 GB phone
+        assertEquals(0L, WarmHold.lingerMs(3_800_000_000L)) // a 4 GB phone
+        assertEquals(0L, WarmHold.lingerMs(5 * gib - 1))
+        assertEquals(0L, WarmHold.lingerMs(null))
+        assertEquals(5 * 60_000L, WarmHold.LINGER_MS)
+
+        @Suppress("DEPRECATION")
+        val pressure = listOf(TRIM_MEMORY_RUNNING_LOW, TRIM_MEMORY_RUNNING_CRITICAL, TRIM_MEMORY_MODERATE, TRIM_MEMORY_COMPLETE)
+        @Suppress("DEPRECATION")
+        val routine = listOf(TRIM_MEMORY_RUNNING_MODERATE, TRIM_MEMORY_UI_HIDDEN, TRIM_MEMORY_BACKGROUND)
+        pressure.forEach { assertTrue("$it", WarmHold.releasesOnTrim(it)) }
+        routine.forEach { assertFalse("$it", WarmHold.releasesOnTrim(it)) }
     }
 }

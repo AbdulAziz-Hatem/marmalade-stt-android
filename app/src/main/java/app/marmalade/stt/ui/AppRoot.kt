@@ -4,20 +4,19 @@ import android.net.Uri
 import androidx.annotation.StringRes
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Build
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -25,10 +24,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -49,6 +49,13 @@ import app.marmalade.stt.ui.screen.LicensesScreen
 import app.marmalade.stt.ui.screen.PrivacyPolicyScreen
 import app.marmalade.stt.ui.screen.SettingsScreen
 import app.marmalade.stt.ui.screen.SnippetsScreen
+import app.marmalade.stt.ui.theme.accent
+import app.marmalade.ui.components.MarmaladeNavigationBarLabel
+import app.marmalade.ui.components.marmaladeNavigationBarItemColors
+import app.marmalade.ui.theme.MarmaladeMotion
+import app.marmalade.ui.theme.depth
+import app.marmalade.ui.theme.riseIn
+import app.marmalade.ui.theme.softShadow
 
 // -----------------------------------------------------------------------------
 // Data flow
@@ -172,28 +179,49 @@ fun AppRoot(startDestination: String, initialTab: String? = null) {
     // destination then, or the bar would slide in (or out) on every cold start.
     val currentRoute = backStackEntry?.destination?.route ?: startDestination
     val showBottomBar = currentRoute in TAB_ROUTES
+    val depth = MaterialTheme.depth
+    // A detail page rises 8 dp into place as it fades in (#84); built here
+    // because riseIn() reads the density, which the NavHost's transition
+    // lambdas can't.
+    val detailEnter = riseIn()
 
     Scaffold(
         bottomBar = {
             AnimatedVisibility(
                 visible = showBottomBar,
-                enter = slideInVertically(initialOffsetY = { it }) + fadeIn(),
-                exit = slideOutVertically(targetOffsetY = { it }) + fadeOut(),
+                enter = slideInVertically(
+                    animationSpec = tween(MarmaladeMotion.SLOW_MS, easing = MarmaladeMotion.Ease),
+                    initialOffsetY = { it },
+                ) + MarmaladeMotion.fadeEnter,
+                exit = slideOutVertically(
+                    animationSpec = tween(MarmaladeMotion.BASE_MS, easing = MarmaladeMotion.Ease),
+                    targetOffsetY = { it },
+                ) + MarmaladeMotion.fadeExit,
             ) {
-                NavigationBar {
-                    NAV_TABS.forEach { tab ->
-                        val selected = backStackEntry?.destination?.hierarchy?.any {
-                            it.route == tab.route
-                        } == true
-                        val label = stringResource(tab.label)
-                        NavigationBarItem(
-                            selected = selected,
-                            onClick = { navController.navigateToTab(tab.route) },
-                            // The label below already names the tab; a
-                            // contentDescription would make TalkBack read it twice.
-                            icon = { Icon(imageVector = tab.icon, contentDescription = null) },
-                            label = { NavLabel(label) },
-                        )
+                // The bar sits on the page with a hairline above it and the
+                // soft bar shadow, not Material's tonal lift (#84).
+                Column(Modifier.softShadow(depth.barShadow, RectangleShape)) {
+                    HorizontalDivider(color = depth.line)
+                    NavigationBar(tonalElevation = 0.dp) {
+                        // The library's tab colours, as TTS's: a toast pill on the
+                        // Marmalade palette, and one that stands off the bar in the
+                        // other presets too (primary in dark mode).
+                        val itemColors = marmaladeNavigationBarItemColors(MaterialTheme.accent.marmaladePalette)
+                        NAV_TABS.forEach { tab ->
+                            val selected = backStackEntry?.destination?.hierarchy?.any {
+                                it.route == tab.route
+                            } == true
+                            val label = stringResource(tab.label)
+                            NavigationBarItem(
+                                selected = selected,
+                                onClick = { navController.navigateToTab(tab.route) },
+                                // The label below already names the tab; a
+                                // contentDescription would make TalkBack read it twice.
+                                icon = { Icon(imageVector = tab.icon, contentDescription = null) },
+                                label = { NavLabel(label, selected) },
+                                colors = itemColors,
+                            )
+                        }
                     }
                 }
             }
@@ -203,8 +231,14 @@ fun AppRoot(startDestination: String, initialTab: String? = null) {
             navController = navController,
             startDestination = startDestination,
             modifier = Modifier.padding(innerPadding),
-            enterTransition = { fadeIn(animationSpec = tween(150)) },
-            exitTransition = { fadeOut(animationSpec = tween(150)) },
+            // Tabs crossfade; a detail page opening rises in. Going back only
+            // fades, so nothing slides sideways or rises on the way out (#84).
+            enterTransition = {
+                if (targetState.destination.route in TAB_ROUTES) MarmaladeMotion.fadeEnter else detailEnter
+            },
+            exitTransition = { MarmaladeMotion.fadeExit },
+            popEnterTransition = { MarmaladeMotion.fadeEnter },
+            popExitTransition = { MarmaladeMotion.fadeExit },
         ) {
             composable(Routes.Dictate) {
                 DictateScreen(onOpenEngines = { navController.navigateToTab(Routes.Engines) })
@@ -313,13 +347,14 @@ private const val NAV_LABEL_MAX_SCALE = 1.5f
  * "Settings" at 200 % font on the largest display size, where it broke
  * mid-word ("Setting / s", #68), so the label grows only up to
  * [NAV_LABEL_MAX_SCALE] and ellipsizes past that (a long translation).
- * The icon beside it and TalkBack (the full text) still name the tab.
+ * The icon beside it and TalkBack (the full text) still name the tab. The
+ * library's label: bold on the selected tab (#89).
  */
 @Composable
-private fun NavLabel(text: String) {
+private fun NavLabel(text: String, selected: Boolean) {
     val fontScale = LocalDensity.current.fontScale
     val style = MaterialTheme.typography.labelMedium.let {
         if (fontScale > NAV_LABEL_MAX_SCALE) it.copy(fontSize = it.fontSize * (NAV_LABEL_MAX_SCALE / fontScale)) else it
     }
-    Text(text, style = style, maxLines = 1, overflow = TextOverflow.Ellipsis)
+    MarmaladeNavigationBarLabel(text, selected, style = style)
 }

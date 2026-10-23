@@ -39,7 +39,7 @@ object SttEngines {
                 loadModel = { SherpaStreamingRecognizer.load(d, installed.dir, language, numThreads, tuning) },
                 createVad = createVad,
                 openMic = openMic,
-                newSession = { model, vad, options, mic -> OnlineSession(model, vad, options, openMic = mic) },
+                newSession = { model, vad, options, mic, _ -> OnlineSession(model, vad, options, openMic = mic) },
             )
         } else {
             SherpaSttEngine(
@@ -47,12 +47,16 @@ object SttEngines {
                 loadModel = { loadOffline(installed, assets, language, numThreads, tuning) },
                 createVad = createVad,
                 openMic = openMic,
-                newSession = { model, vad, options, mic ->
+                newSession = { model, vad, options, mic, earlyVad ->
                     StreamingSession(
                         model, vad, options, mic,
                         livePartials = d.livePartials,
                         maxDecodeSamples = UtteranceCap.maxDecodeSamples(d.family, language),
                         isPreSpeechPhantom = d::isPreSpeechPhantom,
+                        earlyVad = earlyVad,
+                        trimAtStop = SpeedKnobs.trimAtStop,
+                        partialAtOnset = SpeedKnobs.partialAtOnset,
+                        verifySpeculation = SpeedKnobs.verifySpeculation,
                     )
                 },
             )

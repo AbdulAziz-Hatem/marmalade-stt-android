@@ -64,5 +64,5 @@
     <string name="engine_desc_nemotron_35">힌디어, 아랍어, 베트남어용 NVIDIA 스트리밍 모델: 말하는 동안 텍스트가 표시됩니다.</string>
     <string name="engine_desc_whisper_turbo">OpenAI Whisper large-v3-turbo, 다국어. 가장 정확한 Whisper입니다. 말을 멈추면 텍스트가 표시됩니다.</string>
     <string name="engine_desc_granite">IBM의 영어 CTC 모델: 자체 영어 테스트에서 가장 정확했습니다. 대문자와 문장부호는 앱 자체 포매터가 넣습니다.</string>
-    <string name="engine_desc_qwen3">작은 언어 모델 디코더를 갖춘 Alibaba의 오프라인 모델: 30개 언어를 자동으로 감지하며, 중국어에서 가장 정확합니다. 말을 멈추면 텍스트가 표시됩니다.</string>
+    <string name="engine_desc_qwen3">작은 언어 모델 디코더를 갖춘 Alibaba의 오프라인 모델: 30개 언어를 자동으로 감지하며, 중국어와 한국어에 추천하는 모델입니다. 말을 멈추면 텍스트가 표시됩니다.</string>
 </resources>

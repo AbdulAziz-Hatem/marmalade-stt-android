@@ -32,7 +32,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
@@ -67,12 +66,12 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LifecycleEventEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import app.marmalade.stt.R
-import app.marmalade.stt.system.SettingsLink
-import app.marmalade.stt.system.SystemSettings
 import app.marmalade.stt.benchmark.BenchmarkEvent
 import app.marmalade.stt.benchmark.BenchmarkReport
 import app.marmalade.stt.benchmark.TakeRecorder
 import app.marmalade.stt.benchmark.wordErrorRate
+import app.marmalade.stt.system.SettingsLink
+import app.marmalade.stt.system.SystemSettings
 import app.marmalade.stt.ui.MarmaladeIcons
 import app.marmalade.stt.ui.components.DetailTopBar
 import app.marmalade.stt.ui.components.MarmaladeOutlinedButton
@@ -80,6 +79,8 @@ import app.marmalade.stt.ui.components.SectionHeader
 import app.marmalade.stt.ui.components.rememberAnnouncer
 import app.marmalade.stt.ui.contentDirection
 import app.marmalade.stt.ui.isolate
+import app.marmalade.stt.ui.theme.accent
+import app.marmalade.ui.components.MarmaladeCard
 import java.util.Locale
 import kotlinx.coroutines.launch
 
@@ -340,6 +341,9 @@ fun BenchmarkScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                             .semantics { contentDescription = runningText },
+                        color = MaterialTheme.accent.progress,
+                        // The hairline ink: a track that stands off the bar in every preset (ProgressTrackContrastTest).
+                        trackColor = MaterialTheme.colorScheme.outlineVariant,
                     )
                 }
             }
@@ -398,13 +402,15 @@ private fun RecordingMeter(phase: BenchmarkPhase.Recording) {
         modifier = Modifier
             .fillMaxWidth()
             .semantics { contentDescription = levelLabel },
+        color = MaterialTheme.accent.progress,
+        trackColor = MaterialTheme.colorScheme.outlineVariant,
     )
 }
 
 /** One engine: name, cleaned transcript and raw text (or error), and the metrics line. */
 @Composable
 private fun ResultCard(outcome: BenchmarkEvent.Outcome, reference: String) {
-    OutlinedCard(shape = MaterialTheme.shapes.medium, modifier = Modifier.fillMaxWidth()) {
+    MarmaladeCard(modifier = Modifier.fillMaxWidth()) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
                 text = outcome.displayName,
@@ -462,7 +468,7 @@ private fun ResultCard(outcome: BenchmarkEvent.Outcome, reference: String) {
 /** Why the benchmark needs the mic, after the user said no. */
 @Composable
 private fun MicPermissionCard(blocked: Boolean, onAllow: () -> Unit) {
-    OutlinedCard(shape = MaterialTheme.shapes.medium, modifier = Modifier.fillMaxWidth()) {
+    MarmaladeCard(modifier = Modifier.fillMaxWidth()) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
                 text = stringResource(R.string.benchmark_mic_title),

@@ -4,6 +4,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -38,6 +39,8 @@ import app.marmalade.stt.ui.formatBytes
 import app.marmalade.stt.ui.progressPercent
 import app.marmalade.stt.ui.rememberUiLocale
 import app.marmalade.stt.ui.theme.accent
+import app.marmalade.ui.components.MarmaladeCard
+import app.marmalade.ui.theme.depth
 import java.util.Locale
 
 // -----------------------------------------------------------------------------
@@ -65,10 +68,10 @@ import java.util.Locale
  * language note, the size line and "Show more" beside the SPEED / QUALITY /
  * LANGUAGES column; the buttons in a full-width row at the bottom, secondary
  * at the start and primary at the end. The card itself isn't a button: "Use"
- * picks the engine. The card in use gets a cream fill, a Toast outline (the
- * preset's pill colour, [app.marmalade.stt.ui.theme.AccentColors]) and a
- * "✓ In use" pill where "Use" would be; never orange, which the setup guide's
- * Download keeps.
+ * picks the engine. The card in use gets a Toast outline (the preset's pill
+ * colour, [app.marmalade.stt.ui.theme.AccentColors]) and a "✓ In use" pill
+ * where "Use" would be; never orange, which the setup guide's Download
+ * keeps. Its frame: [EngineCardFrame].
  *
  * [prefs] is null until the settings have been read: no Use button, pills or
  * speed then, rather than a guess.
@@ -93,22 +96,8 @@ fun EngineCard(
     val systemLocale = Locale.getDefault().toLanguageTag()
     val note = languageNote(engine, prefs, systemLocale)
     val language = ratingLanguage(prefs, systemLocale)
-    val colors = MaterialTheme.colorScheme
-    OutlinedCard(
-        shape = MaterialTheme.shapes.medium,
-        colors = if (selected) {
-            // contentColor explicitly: light mode's surfaceContainer is the same colour as
-            // surfaceVariant, so contentColorFor() would pick the grey onSurfaceVariant.
-            CardDefaults.outlinedCardColors(containerColor = colors.surfaceContainer, contentColor = colors.onSurface)
-        } else {
-            CardDefaults.outlinedCardColors()
-        },
-        // The pill colour (Toast in Marmalade) in both modes: primaryContainer is toast only in light mode.
-        border = if (selected) {
-            BorderStroke(2.dp, MaterialTheme.accent.pill)
-        } else {
-            CardDefaults.outlinedCardBorder()
-        },
+    EngineCardFrame(
+        selected = selected,
         // One TalkBack stop for the card's text; its links and buttons stay their own.
         modifier = modifier
             .fillMaxWidth()
@@ -135,6 +124,38 @@ fun EngineCard(
             }
             EngineCardActions(engine = engine, state = state, ui = ui, onUse = onUse, onAction = onAction)
         }
+    }
+}
+
+/**
+ * An engine card's frame. Light mode: the outlined card from before the
+ * library (Max, #87 round 3: "I want the before of the stt engine cards"),
+ * the page's colour inside a hairline, the cream container in use. Dark
+ * mode: the library's card (#84), as TTS's Engines tab, with no wash in use
+ * ("the in use engine doesn't get a darker background, just the outline").
+ * In use, both modes: a 2 dp outline in the pill colour (Toast in
+ * Marmalade; primaryContainer is toast only in light mode).
+ */
+@Composable
+private fun EngineCardFrame(selected: Boolean, modifier: Modifier, content: @Composable ColumnScope.() -> Unit) {
+    val colors = MaterialTheme.colorScheme
+    val inUse = if (selected) BorderStroke(2.dp, MaterialTheme.accent.pill) else null
+    if (MaterialTheme.depth.isDark) {
+        MarmaladeCard(border = inUse, modifier = modifier, content = content)
+    } else {
+        OutlinedCard(
+            shape = MaterialTheme.shapes.medium,
+            colors = if (selected) {
+                // contentColor explicitly: light mode's surfaceContainer is the same colour as
+                // surfaceVariant, so contentColorFor() would pick the grey onSurfaceVariant.
+                CardDefaults.outlinedCardColors(containerColor = colors.surfaceContainer, contentColor = colors.onSurface)
+            } else {
+                CardDefaults.outlinedCardColors()
+            },
+            border = inUse ?: CardDefaults.outlinedCardBorder(),
+            modifier = modifier,
+            content = content,
+        )
     }
 }
 

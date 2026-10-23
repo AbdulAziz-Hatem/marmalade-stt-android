@@ -3,6 +3,8 @@ package app.marmalade.stt.speech.turn
 import ai.onnxruntime.OnnxTensor
 import ai.onnxruntime.OrtEnvironment
 import ai.onnxruntime.OrtSession
+import android.util.Log
+import app.marmalade.stt.speech.StreamingSession.Companion.TIMING_TAG
 import java.nio.FloatBuffer
 
 /**
@@ -39,12 +41,16 @@ class OnnxTurnDetector(model: ByteArray, threads: Int = DEFAULT_THREADS) : TurnD
     }
 
     override fun completeProbability(audio: FloatArray): Float {
+        val started = System.nanoTime()
         val mel = WhisperFeatures.logMel(WhisperFeatures.lastWindow(audio))
         val features = FloatBuffer.allocate(WhisperFeatures.N_MELS * WhisperFeatures.N_FRAMES)
         for (row in mel) features.put(row)
         features.rewind()
+        val featuresDone = System.nanoTime()
         OnnxTensor.createTensor(env, features, SHAPE).use { input ->
             session.run(mapOf(INPUT to input)).use { result ->
+                // #91: where a check's time goes (numbers only).
+                Log.d(TIMING_TAG, "smart turn features ${(featuresDone - started) / 1_000_000} ms, model ${(System.nanoTime() - featuresDone) / 1_000_000} ms")
                 return (result.get(0) as OnnxTensor).floatBuffer.get(0)
             }
         }

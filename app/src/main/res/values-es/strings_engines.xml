@@ -66,5 +66,5 @@
     <string name="engine_desc_nemotron_35">El modelo de streaming de NVIDIA para hindi, árabe y vietnamita: el texto aparece mientras hablas.</string>
     <string name="engine_desc_whisper_turbo">OpenAI Whisper large-v3-turbo, multilingüe. El Whisper más preciso. El texto aparece cuando haces una pausa.</string>
     <string name="engine_desc_granite">El modelo CTC de IBM para inglés: el más preciso en nuestras pruebas en inglés. Las mayúsculas y la puntuación las pone el formateador propio de la app.</string>
-    <string name="engine_desc_qwen3">El modelo sin conexión de Alibaba con un pequeño decodificador de modelo de lenguaje: 30 idiomas, detectados automáticamente, y el más preciso para chino. El texto aparece cuando haces una pausa.</string>
+    <string name="engine_desc_qwen3">El modelo sin conexión de Alibaba con un pequeño decodificador de modelo de lenguaje: 30 idiomas, detectados automáticamente, y recomendado para chino y coreano. El texto aparece cuando haces una pausa.</string>
 </resources>

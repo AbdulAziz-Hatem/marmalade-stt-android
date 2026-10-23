@@ -1,6 +1,7 @@
 package app.marmalade.stt
 
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
+import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
@@ -318,9 +319,8 @@ class RemovedEnginesUpgradeTest {
 
         val prefs = settings.current()
         assertEquals("whisper-turbo", prefs.recommendedEngineId)
-        // Pinned: still running, still listed. A user engine since #50, so no kept mark is needed.
+        // Pinned: still running, still listed (a user engine since #50).
         assertEquals(SttEngineCatalog.QWEN3, prefs.selectedEngineId)
-        assertFalse(prefs.selectionKept)
         assertEquals(SttEngineCatalog.QWEN3, prefs.activeEngine.id)
         assertTrue(prefs.visibleEngines.any { it.id == SttEngineCatalog.QWEN3 })
     }
@@ -340,17 +340,29 @@ class RemovedEnginesUpgradeTest {
     }
 
     @Test
-    fun `a Qwen3 picked by a version before #50, without the kept mark, is kept at the re-recommendation`() = runBlocking {
+    fun `a Qwen3 picked by a version before #50 keeps running at the re-recommendation`() = runBlocking {
         install(SttEngineCatalog.QWEN3)
         store(selected = SttEngineCatalog.QWEN3, recommended = SttEngineCatalog.QWEN3, language = "th", rules = null)
-        assertFalse(settings.current().selectionKept)
 
         upgrade(totalMemGb = 12.0)
 
         val prefs = settings.current()
         assertEquals("whisper-turbo", prefs.recommendedEngineId)
-        assertFalse(prefs.selectionKept)
         assertEquals(SttEngineCatalog.QWEN3, prefs.activeEngine.id)
+    }
+
+    @Test
+    fun `a Qwen3 kept by #50's mark keeps running, and the retired mark is dropped`() = runBlocking {
+        install(SttEngineCatalog.QWEN3)
+        store(selected = SttEngineCatalog.QWEN3, recommended = SttEngineCatalog.QWEN3, language = "th", rules = null)
+        store.edit { it[booleanPreferencesKey("speech_engine_kept")] = true }
+
+        upgrade(totalMemGb = 12.0)
+
+        val prefs = settings.current()
+        assertEquals("whisper-turbo", prefs.recommendedEngineId)
+        assertEquals(SttEngineCatalog.QWEN3, prefs.activeEngine.id)
+        assertNull(store.data.first()[booleanPreferencesKey("speech_engine_kept")])
     }
 
     @Test
@@ -361,7 +373,6 @@ class RemovedEnginesUpgradeTest {
 
         // Nothing to keep running: the selection stays as the user left it, a user engine's choice.
         val prefs = settings.current()
-        assertFalse(prefs.selectionKept)
         assertEquals(SttEngineCatalog.QWEN3, prefs.activeEngine.id)
     }
 

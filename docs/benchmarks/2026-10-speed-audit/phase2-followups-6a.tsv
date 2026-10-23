@@ -1,0 +1,61 @@
+trial	surface	engine	loaded	process_ms	mic	ready	load_ms	req_to_clip	onset_to_vad	onset_to_partial	partials	partial_median	partial_max	partial_total	vad_ms	vad_win	vad_max_us	st_checks	st_ms	st_last_silence	eos_to_stop	wait_vad	wait_mic	backlog	final_decode	final_audio	spec_hit	spec_decode	spec_done_after_end	eos_to_sent	stop_to_sent	cleanup_commit	sent_to_delivered	eos_to_delivered	stop_to_delivered	parity_diff
+dictate-parakeet-ultra-onsetA-00	dictate	parakeet-ultra	true	253462	99	125		99	555	950	7	319	531	2370	360	240	6389					1200	1220	20	535	4616				1600		14	15	1615		
+dictate-parakeet-ultra-onsetA-02	dictate	parakeet-ultra	true	282250	66	67		66	364	786	7	386	641	2880	339	256	6188					1232	1240	8	528	5320				1786		16	18	1804		
+dictate-parakeet-ultra-onsetA-04	dictate	parakeet-ultra	true	312060	108	109		108	357	777	7	380	637	2903	351	256	8496					1264	1268	4	555	5192				1912		24	25	1937		
+dictate-parakeet-ultra-onsetA-06	dictate	parakeet-ultra	true	342124	67	68		67	559	998	7	352	627	2670	341	243	9172					1200	1220	20	488	4616				1604		4	5	1609		
+dictate-parakeet-ultra-onsetA-08	dictate	parakeet-ultra	true	371125	121	123		121	365	884	7	399	633	2751	372	262	6298					1232	1240	8	637	5320				1907		4	7	1914		
+dictate-parakeet-ultra-onsetA-10	dictate	parakeet-ultra	true	401810	114	116		114	358	773	7	389	603	2823	357	256	8304					1264	1268	4	594	5192				1966		5	9	1975		
+dictate-parakeet-ultra-onsetB-01	dictate	parakeet-ultra	true	267824	87	88		88	558	733	7	318	544	2406	338	243	9108					1200	1220	20	523	4616				1589		13	14	1603		
+dictate-parakeet-ultra-onsetB-03	dictate	parakeet-ultra	true	297012	57	59		58	358	537	8	375	633	3013	311	262	7081					1232	1240	8	578	5320				1835		4	5	1840		
+dictate-parakeet-ultra-onsetB-05	dictate	parakeet-ultra	true	326889	92	94		92	358	540	8	418	695	3192	361	262	12528					1264	1468	204	572	5192				2158		11	12	2170		
+dictate-parakeet-ultra-onsetB-07	dictate	parakeet-ultra	true	356681	120	122		121	569	770	7	335	585	2483	350	243	6864					1200	1220	20	491	4616				1551		4	4	1555		
+dictate-parakeet-ultra-onsetB-09	dictate	parakeet-ultra	true	386279	94	96		95	356	546	8	411	731	3290	396	274	32231					1232	1540	308	618	5320				2267		3	5	2272		
+dictate-parakeet-ultra-onsetB-11	dictate	parakeet-ultra	true	416723	76	77		76	364	542	8	351	597	3039	368	256	8295					1264	1268	4	506	5192				1878		5	6	1884		
+dictate-parakeet-ultra-pinA-00	dictate	parakeet-ultra	false	431867	83	4399	4288	84	4011	4800	2	624	624	1167	217	249	7579					1200	1420	220	488	4616				1787		11	12	1799		
+dictate-parakeet-ultra-pinA-02	dictate	parakeet-ultra	false	461387	59	4225	4145	59	3840	4574	2	575	575	1095	270	262	10287					1232	1240	8	582	5320				1839		11	12	1851		
+dictate-parakeet-ultra-pinA-04	dictate	parakeet-ultra	false	491367	61	4403	4319	61	4024	4873	2	665	665	1276	288	262	7837					1264	1268	4	575	5192				2015		19	20	2035		
+dictate-parakeet-ultra-pinA-06	dictate	parakeet-ultra	false	521422	68	4384	4290	68	3977	4821	2	652	652	1214	216	256	6100					1200	1520	320	483	4616				1916		3	4	1920		
+dictate-parakeet-ultra-pinA-08	dictate	parakeet-ultra	false	551241	59	4371	4288	59	3997	4828	2	633	633	1198	227	256	6606					1232	1240	8	553	5320				1810		3	5	1815		
+dictate-parakeet-ultra-pinA-10	dictate	parakeet-ultra	false	581268	63	4103	4019	63	3700	4424	2	637	637	1107	244	262	10823					1264	1268	4	617	5192				2028		19	19	2047		
+dictate-parakeet-ultra-pinB-01	dictate	parakeet-ultra	false	446655	71	4290	4197	71	3916	4675	2	638	638	1157	276	249	12637					1200	1320	120	548	4616				1777		13	15	1792		
+dictate-parakeet-ultra-pinB-03	dictate	parakeet-ultra	false	476340	74	4386	4288	74	3977	4784	2	622	622	1152	234	262	6575					1232	1240	8	576	5320				1832		14	16	1848		
+dictate-parakeet-ultra-pinB-05	dictate	parakeet-ultra	false	506378	103	4496	4365	103	4050	4834	2	732	732	1304	278	262	8847					1264	1268	4	576	5192				2006		5	6	2012		
+dictate-parakeet-ultra-pinB-07	dictate	parakeet-ultra	false	536336	47	4390	4318	47	4046	4838	2	623	623	1199	280	256	7085					1200	1520	320	547	4616				1934		15	17	1951		
+dictate-parakeet-ultra-pinB-09	dictate	parakeet-ultra	false	566139	89	4289	4177	90	3858	4694	2	627	627	1163	219	262	7291					1232	1240	8	586	5320				1860		15	16	1876		
+dictate-parakeet-ultra-pinB-11	dictate	parakeet-ultra	false	596343	67	4053	3964	67	3645	4401	2	616	616	1162	265	262	12658					1264	1268	4	628	5192				2000		16	25	2025		
+dictate-parakeet-ultra-thrA-00	dictate	parakeet-ultra	false	611692	66	3975	3887	66	3606	4377	2	581	581	1101	248	243	7520					1200	1220	20	606	4616				1668		15	16	1684		
+dictate-parakeet-ultra-thrA-02	dictate	parakeet-ultra	false	640914	76	3985	3887	77	3568	4376	2	608	608	1128	227	262	8281					1232	1240	8	659	5320				1929		14	15	1944		
+dictate-parakeet-ultra-thrA-04	dictate	parakeet-ultra	false	671238	73	3864	3769	73	3455	4128	3	563	634	1669	288	268	6528					1264	1568	304	549	5192				2249		4	5	2254		
+dictate-parakeet-ultra-thrA-06	dictate	parakeet-ultra	false	702041	68	3842	3754	68	3443	4161	2	622	622	1120	217	243	7653					1200	1220	20	606	4616				1687		3	4	1691		
+dictate-parakeet-ultra-thrA-08	dictate	parakeet-ultra	false	731236	94	3858	3743	94	3422	4125	3	605	717	1789	221	274	7001					1232	1640	408	581	5320				2273		13	15	2288		
+dictate-parakeet-ultra-thrA-10	dictate	parakeet-ultra	false	762574	106	4037	3910	107	3586	4469	2	650	650	1252	175	256	6930					1264	1268	4	581	5192				1942		4	5	1947		
+dictate-parakeet-ultra-thrB-01	dictate	parakeet-ultra	false	626199	77	3998	3896	78	3578	4299	2	629	629	1073	176	249	6096					1200	1220	20	623	4616				1705		12	13	1718		
+dictate-parakeet-ultra-thrB-03	dictate	parakeet-ultra	false	656005	52	3820	3747	52	3425	4247	3	543	580	1643	292	268	10919					1232	1440	208	501	5320				2010		5	6	2016		
+dictate-parakeet-ultra-thrB-05	dictate	parakeet-ultra	false	686530	54	3886	3809	55	3486	4284	3	528	676	1730	225	274	13233					1264	1668	404	612	5192				2461		17	18	2479		
+dictate-parakeet-ultra-thrB-07	dictate	parakeet-ultra	false	716552	58	3822	3743	58	3425	4133	2	600	600	1077	261	249	12265					1200	1220	20	636	4616				1718		14	15	1733		
+dictate-parakeet-ultra-thrB-09	dictate	parakeet-ultra	false	746679	112	3880	3746	112	3424	4176	3	706	736	1952	242	287	9315					1232	1840	608	648	5320				2577		11	11	2588		
+dictate-parakeet-ultra-thrB-11	dictate	parakeet-ultra	false	777481	93	3912	3798	93	3475	4345	2	723	723	1298	233	262	8503					1264	1268	4	663	5192				2035		17	18	2053		
+keyboard-parakeet-ultra-trimA-00	keyboard	parakeet-ultra	false	20874	275	4587	4286	277	3971	4882	2	678	678	1291	120	187	5245				951	0	16	16	624	5720				2168	1217	13	14	2182	1231	
+keyboard-parakeet-ultra-trimA-02	keyboard	parakeet-ultra	false	50258	270	5387	5086	271	4775	5746	1	679	679	679	126	193	5065				869	0	24	24	729	6136				1681	812	13	13	1694	825	
+keyboard-parakeet-ultra-trimA-04	keyboard	parakeet-ultra	false	100703	148	3319	3153	148	2829	3466	3	481	531	1415	160	187	6589				906	0	16	16	616	5944				1571	665	12	13	1584	678	
+keyboard-parakeet-ultra-trimA-06	keyboard	parakeet-ultra	false	140406	100	3885	3761	100	3447	4096	3	493	654	1583	121	187	5911				961	0	16	16	575	5720				2090	1129	10	11	2101	1140	
+keyboard-parakeet-ultra-trimA-08	keyboard	parakeet-ultra	false	169314	134	4066	3910	134	3589	4371	2	625	625	1138	134	190	7753				843	0	20	20	711	6040				1568	725	11	12	1580	737	
+keyboard-parakeet-ultra-trimA-10	keyboard	parakeet-ultra	false	208509	106	4059	3931	106	3613	4292	2	610	610	1045	135	190	14220				1010	0	20	20	618	6040				1678	668	14	17	1695	685	
+keyboard-parakeet-ultra-trimB-01	keyboard	parakeet-ultra	false	36163	243	4547	4256	243	3971	4815	1	556	556	556	177	187	7429				951	1104	1120	16	0	5720	1	556	920	1053	102	14	63	1116	165	
+keyboard-parakeet-ultra-trimB-03	keyboard	parakeet-ultra	false	76498																																
+keyboard-parakeet-ultra-trimB-05	keyboard	parakeet-ultra	false	115647	104	3905	3760	105	3461	4237	2	543	543	1024	211	190	11568				988	848	868	20	0	6040	1	489	868	1075	87	12	39	1114	126	
+keyboard-parakeet-ultra-trimB-07	keyboard	parakeet-ultra	false	155374	133	3929	3756	134	3469	4221	2	499	499	958	222	184	12734				919	1008	1020	12	0	5624	1	473	1020	1064	145	12	13	1077	158	
+keyboard-parakeet-ultra-trimB-09	keyboard	parakeet-ultra	false	194419	108	4069	3921	108	3631	4303	2	566	566	1013	185	193	5528				923	816	840	24	0	6136	1	513	840	981	58	9	75	1056	133	
+keyboard-parakeet-ultra-trimB-11	keyboard	parakeet-ultra	false	233524	101	3912	3771	101	3475	4254	2	592	592	1080	189	190	10293				1017	848	868	20	0	6040	1	478	868	1073	56	13	74	1147	130	
+popup-parakeet-ultra-stA-00	apps	parakeet-ultra	false	2154	132	3756	3596	133	3337	4070	2	551	551	1050	166	215	8538	1	381	1200		1200	1620	420	457	4616				1918		14	15	1933		
+popup-parakeet-ultra-stA-02	apps	parakeet-ultra	false	2154	135	3853	3691	136	3392	4212	3	601	619	1771	215	243	9331	1	325	1232		1232	1940	708	498	5320				2509		15	16	2525		
+popup-parakeet-ultra-stA-04	apps	parakeet-ultra	false	2177	131	3650	3492	132	3189	3951	3	587	590	1670	176	231	7814	1	349	1264		1264	1668	404	500	5192				2310		14	19	2329		
+popup-parakeet-ultra-stA-06	apps	parakeet-ultra	false	2197	131	3754	3596	131	3328	4069	2	572	572	1076	150	218	8057	1	420	1200		1200	1620	420	494	4616				1982		19	20	2002		
+popup-parakeet-ultra-stA-08	apps	parakeet-ultra	false	2164	150	4142	3959	150	3680	4558	2	617	617	1211	196	237	8409	1	390	1232		1232	1640	408	550	5320				2290		35	44	2334		
+popup-parakeet-ultra-stA-10	apps	parakeet-ultra	false	2161	163	4343	4149	163	3854	4747	2	685	685	1334	141	231	4932	1	382	1264		1264	1568	304	550	5192				2291		15	16	2307		
+popup-parakeet-ultra-stB-01	apps	parakeet-ultra	false	2154	134	3688	3528	135	3253	3923	3	573	583	1620	184	228	15635	1	307	1200		1200	2020	820	456	4616				2314		17	21	2335		
+popup-parakeet-ultra-stB-03	apps	parakeet-ultra	false	2172	136	3704	3541	137	3238	3936	3	568	590	1636	189	231	12999	1	296	1232		1232	1540	308	503	5320				2071		22	23	2094		
+popup-parakeet-ultra-stB-05	apps	parakeet-ultra	false	2237	153	3940	3759	154	3463	4266	2	602	602	1179	201	228	7279	1	347	1264		1264	1568	304	506	5192				2229		14	15	2244		
+popup-parakeet-ultra-stB-07	apps	parakeet-ultra	false	2149	141	4070	3900	142	3607	4463	2	604	604	1146	118	215	4362	1	323	1200		1200	1520	320	450	4616				1862		14	16	1878		
+popup-parakeet-ultra-stB-09	apps	parakeet-ultra	false	2171	148	4166	3988	148	3690	4549	2	647	647	1235	150	237	5687	1	384	1232		1232	1640	408	602	5320				2280		14	17	2297		
+popup-parakeet-ultra-stB-11	apps	parakeet-ultra	false	2148	145	4140	3965	145	3668	4533	2	597	597	1171	165	234	4851	1	386	1264		1264	1668	404	594	5192				2391		21	22	2413		

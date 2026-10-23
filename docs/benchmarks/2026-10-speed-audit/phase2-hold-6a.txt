@@ -1,0 +1,20 @@
+22:57:57 released parakeet-ultra t=0 pid=32105 pss_kb=185966 ticks=84875 9607 adj=200 avail=3022004 temp=408
+23:02:58 released parakeet-ultra t=300 pid=32105 pss_kb=173965 ticks=84884 9609 adj=200 avail=2878272 temp=400
+23:03:46 held parakeet-ultra t=0 pid=32105 pss_kb=858296 ticks=85232 9680 adj=200 avail=2235296 temp=399
+23:08:47 held parakeet-ultra t=300 pid=32105 pss_kb=857728 ticks=85239 9681 adj=200 avail=2189916 temp=393
+23:08:56 after com.android.settings pid=32105 pss_kb=854766 ticks=85245 9682 adj=200 avail=2233244 temp=393
+23:09:04 after com.google.android.deskclock pid=32105 pss_kb=854766 ticks=85251 9684 adj=200 avail=2237204 temp=394
+23:09:13 after com.google.android.calculator pid=32105 pss_kb=853212 ticks=85259 9684 adj=200 avail=2193428 temp=392
+23:09:22 after com.google.android.GoogleCamera pid=32105 pss_kb=849882 ticks=85267 9685 adj=200 avail=1514324 temp=392
+23:09:31 after app.organicmaps pid=32105 pss_kb=848683 ticks=85272 9686 adj=200 avail=1638432 temp=392
+23:10:21 held parakeet-tdt-110m-en t=0 pid=32105 pss_kb=314936 ticks=85535 9731 adj=200 avail=2148584 temp=393
+23:15:21 held parakeet-tdt-110m-en t=300 pid=32105 pss_kb=314344 ticks=85543 9732 adj=200 avail=2116816 temp=391
+23:16:11 held whisper-turbo t=0 pid=32105 pss_kb=1177827 ticks=85981 10100 adj=200 avail=1622972 temp=390
+23:21:11 held whisper-turbo t=300 pid=32105 pss_kb=1177078 ticks=85988 10102 adj=200 avail=1563976 temp=382
+# FUTO current (cached process)
+23:22:04 held cached t=0 pid=32105 pss_kb=836846 adj=700 avail=1959452
+23:22:13 after com.android.settings pid=32105 pss_kb=834812 adj=700 avail=1984032
+23:22:22 after com.google.android.deskclock pid=32105 pss_kb=834652 adj=700 avail=1985044
+23:22:31 after com.google.android.calculator pid=32105 pss_kb=829713 adj=900 avail=1952612
+23:22:40 after com.google.android.GoogleCamera pid=32105 pss_kb=794683 adj=910 avail=730560
+23:22:50 after app.organicmaps pid=32105 pss_kb=803345 adj=920 avail=1189760

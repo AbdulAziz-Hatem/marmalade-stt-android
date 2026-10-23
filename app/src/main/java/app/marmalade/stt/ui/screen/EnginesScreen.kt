@@ -10,11 +10,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
-import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
@@ -29,6 +29,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
@@ -42,6 +43,8 @@ import app.marmalade.stt.install.SttEngineCatalog
 import app.marmalade.stt.ui.components.MarmaladeOutlinedButton
 import app.marmalade.stt.ui.components.TopBarTitle
 import app.marmalade.stt.ui.components.rememberAnnouncer
+import app.marmalade.ui.components.chevronAngle
+import app.marmalade.ui.theme.MarmaladeMotion
 
 // -----------------------------------------------------------------------------
 // Data flow
@@ -176,9 +179,7 @@ fun EnginesScreen(
                     onShowMore = { infoEngineId = engine.id },
                     onAction = { onAction(engine.id, it) },
                     // Cards sit 12 dp apart, rows 8.
-                    modifier = Modifier
-                        .animateItem()
-                        .padding(bottom = 4.dp),
+                    modifier = Modifier.itemMotion(this).padding(bottom = 4.dp),
                 )
             }
             if (engines.other.isNotEmpty()) {
@@ -187,9 +188,12 @@ fun EnginesScreen(
                         count = engines.other.size,
                         expanded = otherExpanded,
                         onToggle = { viewModel.setOtherEnginesExpanded(!otherExpanded) },
-                        modifier = Modifier.animateItem(),
+                        modifier = Modifier.itemMotion(this),
                     )
                 }
+                // Opening and closing animate through itemMotion (#84): the rows
+                // fade, the items around them slide. Lazy items animate this
+                // way; AnimatedVisibility would leave collapsed rows in the list.
                 if (otherExpanded) {
                     items(items = engines.other, key = { it.id }) { engine ->
                         val state = states[engine.id] ?: InstallState.NotInstalled
@@ -204,7 +208,7 @@ fun EnginesScreen(
                             },
                             onShowMore = { infoEngineId = engine.id },
                             onAction = { onAction(engine.id, it) },
-                            modifier = Modifier.animateItem(),
+                            modifier = Modifier.itemMotion(this),
                         )
                     }
                 }
@@ -250,7 +254,7 @@ fun EnginesScreen(
 
 /**
  * "Other engines (3)" with a chevron that points down while they are hidden
- * and up while they show; the state is remembered ([EnginesViewModel.setOtherEnginesExpanded]).
+ * and turns up while they show; the state is remembered ([EnginesViewModel.setOtherEnginesExpanded]).
  */
 @Composable
 private fun OtherEnginesButton(count: Int, expanded: Boolean, onToggle: () -> Unit, modifier: Modifier = Modifier) {
@@ -263,12 +267,24 @@ private fun OtherEnginesButton(count: Int, expanded: Boolean, onToggle: () -> Un
     ) {
         Text(stringResource(R.string.engines_other, count))
         Spacer(Modifier.width(8.dp))
+        // One chevron that turns (#84).
         Icon(
-            imageVector = if (expanded) Icons.Filled.KeyboardArrowUp else Icons.Filled.KeyboardArrowDown,
+            imageVector = Icons.Filled.KeyboardArrowDown,
             contentDescription = null,
-            modifier = Modifier.size(18.dp),
+            modifier = Modifier
+                .size(18.dp)
+                .rotate(chevronAngle(expanded)),
         )
     }
+}
+
+/** A list item fading in and out and sliding to its place on the app's motion spec (#84). */
+private fun Modifier.itemMotion(scope: LazyItemScope): Modifier = with(scope) {
+    this@itemMotion.animateItem(
+        fadeInSpec = MarmaladeMotion.base(),
+        placementSpec = MarmaladeMotion.slow(),
+        fadeOutSpec = MarmaladeMotion.fast(),
+    )
 }
 
 private const val OTHER_ENGINES_KEY = "other-engines"

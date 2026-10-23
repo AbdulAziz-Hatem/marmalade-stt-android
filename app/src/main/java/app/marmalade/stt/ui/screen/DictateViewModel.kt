@@ -9,6 +9,7 @@ import app.marmalade.stt.install.InstallState
 import app.marmalade.stt.install.ModelInstaller
 import app.marmalade.stt.speech.EngineHold
 import app.marmalade.stt.speech.ListenSurface
+import app.marmalade.stt.speech.ListenTiming
 import app.marmalade.stt.speech.SpeechEngineManager
 import app.marmalade.stt.speech.SttErrorKind
 import app.marmalade.stt.speech.SttEvent
@@ -136,7 +137,11 @@ class DictateViewModel @Inject constructor(
                 engines.listen(ListenSurface.DICTATE, requestedAt = requestedAt)
                     // Settings read, file probe and releasing the model all stay off the main thread.
                     .flowOn(Dispatchers.Default)
-                    .collect { event -> _state.update { dictation.reduce(it, event) } }
+                    .collect { event ->
+                        val startedAt = SystemClock.elapsedRealtime()
+                        _state.update { dictation.reduce(it, event) }
+                        if (event is SttEvent.Final) ListenTiming.delivered("dictate", startedAt)
+                    }
             } catch (e: CancellationException) {
                 throw e
             } catch (e: Exception) {

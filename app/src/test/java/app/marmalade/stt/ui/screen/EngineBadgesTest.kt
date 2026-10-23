@@ -52,9 +52,6 @@ class EngineBadgesTest {
         assertEquals(EngineUse.UNAVAILABLE, engineUse(granite, InstallState.Corrupt(CorruptProblem.MISSING, "x"), shown))
         // Hidden developer engine: picking it would be ignored, so it isn't offered.
         assertEquals(EngineUse.UNAVAILABLE, engineUse(granite, InstallState.Installed, SpeechPrefs()))
-        // Unless it is the one recommended for this phone, which is visible anyway.
-        val recommendedGranite = SpeechPrefs(selectedEngineId = default.id, recommendedEngineId = granite.id)
-        assertEquals(EngineUse.AVAILABLE, engineUse(granite, InstallState.Installed, recommendedGranite))
         // Back to the default from a developer engine.
         val onGranite = SpeechPrefs(selectedEngineId = granite.id, developerEngines = true)
         assertEquals(EngineUse.AVAILABLE, engineUse(default, InstallState.Installed, onGranite))

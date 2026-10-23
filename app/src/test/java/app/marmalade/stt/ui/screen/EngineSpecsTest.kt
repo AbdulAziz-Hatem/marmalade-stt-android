@@ -3,6 +3,7 @@ package app.marmalade.stt.ui.screen
 import app.marmalade.stt.R
 import app.marmalade.stt.install.QualityRating
 import app.marmalade.stt.install.SpeedTier
+import app.marmalade.stt.install.SttEngineCatalog
 import java.util.Locale
 import org.junit.Assert.assertEquals
 import org.junit.Test
@@ -95,6 +96,28 @@ class EngineSpecsTest {
             listOf("アラビア語", "ドイツ語", "トルコ語", "ベトナム語", "ヘブライ語"),
             sortedLanguageNames(setOf("he", "vi", "tr", "de", "ar"), Locale.JAPANESE),
         )
+    }
+
+    /** #89: the info dialog's language picker lists Auto-detect, then the languages by name in the UI language. */
+    @Test
+    fun `engine language pickers list auto first, then by name`() {
+        fun picker(id: String, locale: Locale) =
+            sortedLanguageChoices(SttEngineCatalog.byId(id)!!.languageOptions!!.codes, locale)
+        assertEquals(
+            listOf("", "ar", "zh", "nl", "en", "fr", "de", "hi", "it", "ja", "ko", "nb", "pl", "pt", "ru", "es", "tr", "vi"),
+            picker("whisper-turbo", Locale.ENGLISH),
+        )
+        assertEquals(
+            listOf("", "ar", "zh", "de", "en", "fr", "hi", "it", "ja", "ko", "nl", "nb", "pl", "pt", "ru", "es", "tr", "vi"),
+            picker("whisper-turbo", Locale.GERMAN),
+        )
+        val qwen3 = picker(SttEngineCatalog.QWEN3, Locale.ENGLISH)
+        assertEquals("", qwen3.first())
+        assertEquals(SttEngineCatalog.byId(SttEngineCatalog.QWEN3)!!.languageOptions!!.codes.toSet(), qwen3.toSet())
+        assertEquals(sortedLanguageNames(qwen3.drop(1), Locale.ENGLISH), qwen3.drop(1).map { languageName(it, Locale.ENGLISH) })
+        // Canary has no Auto-detect: just the four, by name.
+        assertEquals(listOf("en", "fr", "de", "es"), picker("canary-180m-flash", Locale.ENGLISH))
+        assertEquals(listOf("de", "es", "fr", "en"), picker("canary-180m-flash", Locale.forLanguageTag("es")))
     }
 
     /** Names in the UI's language: an English UI on a Russian phone says "German", not "немецкий". */

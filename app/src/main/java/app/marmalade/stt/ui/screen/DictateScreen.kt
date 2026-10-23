@@ -9,10 +9,13 @@ import android.os.Build
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.StringRes
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
@@ -66,6 +69,7 @@ import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
+import androidx.compose.ui.semantics.text
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -91,9 +95,13 @@ import app.marmalade.stt.ui.components.MarmaladeTextButton
 import app.marmalade.stt.ui.components.micColors
 import app.marmalade.stt.ui.components.rememberMicMeter
 import app.marmalade.stt.ui.contentDirection
-import app.marmalade.stt.ui.theme.LocalWordmarkColor
 import app.marmalade.stt.ui.theme.Wordmark
 import app.marmalade.stt.ui.theme.accent
+import app.marmalade.ui.components.MarmaladeCard
+import app.marmalade.ui.theme.LocalWordmarkColor
+import app.marmalade.ui.theme.MarmaladeMotion
+import app.marmalade.ui.theme.depth
+import app.marmalade.ui.theme.riseIn
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
@@ -332,9 +340,24 @@ fun DictateScreen(
 }
 
 /**
+ * The transcript's frame. Light mode: the library's [MarmaladeCard] (#84),
+ * the card step, a hairline and the soft shadow. Dark mode: the page's own
+ * colour inside a hairline, as before the library (Max, #87 round 3: "the
+ * background of the transcription screen should keep its current color").
+ */
+@Composable
+private fun TranscriptFrame(modifier: Modifier = Modifier, content: @Composable ColumnScope.() -> Unit) {
+    if (MaterialTheme.depth.isDark) {
+        OutlinedCard(shape = MaterialTheme.shapes.large, modifier = modifier, content = content)
+    } else {
+        MarmaladeCard(shape = MaterialTheme.shapes.large, modifier = modifier, content = content)
+    }
+}
+
+/**
  * The transcript, then the partial in muted italics. Selectable, and it
  * follows the end of the text as it grows. Empty: the mascot, reacting to
- * the session.
+ * the session. In a [TranscriptFrame].
  */
 @Composable
 private fun TranscriptPanel(
@@ -343,10 +366,10 @@ private fun TranscriptPanel(
     phase: DictationPhase,
     modifier: Modifier = Modifier,
 ) {
-    OutlinedCard(shape = MaterialTheme.shapes.large, modifier = modifier) {
+    TranscriptFrame(modifier = modifier) {
         if (transcript.isEmpty() && partial.isEmpty()) {
             EmptyTranscript(phase = phase)
-            return@OutlinedCard
+            return@TranscriptFrame
         }
         val scroll = rememberScrollState()
         // Content grew (a partial or a Final arrived): show its end. Scrolling
@@ -437,20 +460,40 @@ private fun TranscriptActions(
  * What the session is doing, announced politely by TalkBack. Empty while
  * idle (#67: the mic says "Start dictation"), but still one line tall, so
  * the mic doesn't move when "Loading model…" appears.
+ *
+ * A new status rises in over the old one (#84). The live region and the
+ * words TalkBack reads sit on the outer Box, which stays put; the animated
+ * lines inside are hidden from it, so the line on its way out is never read.
  */
 @Composable
 private fun StatusLine(phase: DictationPhase, catchingUp: Boolean) {
     val res = if (catchingUp && phase.isActive) R.string.dictate_status_catching_up else phase.statusRes()
-    Text(
-        text = res?.let { stringResource(it) }.orEmpty(),
-        minLines = 1,
-        style = MaterialTheme.typography.bodyMedium,
-        color = MaterialTheme.colorScheme.onSurfaceVariant,
-        textAlign = TextAlign.Center,
+    val spoken = res?.let { stringResource(it) }.orEmpty()
+    val enter = riseIn(MarmaladeMotion.BASE_MS)
+    Box(
         modifier = Modifier
             .fillMaxWidth()
-            .semantics { liveRegion = LiveRegionMode.Polite },
-    )
+            .clearAndSetSemantics {
+                liveRegion = LiveRegionMode.Polite
+                text = AnnotatedString(spoken)
+            },
+    ) {
+        AnimatedContent(
+            targetState = res,
+            modifier = Modifier.fillMaxWidth(),
+            transitionSpec = { (enter togetherWith MarmaladeMotion.fadeExit) using null },
+            label = "dictateStatus",
+        ) { shown ->
+            Text(
+                text = shown?.let { stringResource(it) }.orEmpty(),
+                minLines = 1,
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth(),
+            )
+        }
+    }
 }
 
 /**
@@ -492,6 +535,7 @@ private fun MicButton(
                 modifier = Modifier
                     .size(MIC_SIZE + SPINNER_HALO)
                     .clearAndSetSemantics {},
+                color = MaterialTheme.accent.progress,
                 strokeWidth = 3.dp,
             )
         }
@@ -523,7 +567,7 @@ private fun MicButton(
 /** Shown instead of the mic until a speech model is installed. */
 @Composable
 private fun NoModelCard(onOpenEngines: () -> Unit) {
-    OutlinedCard(shape = MaterialTheme.shapes.medium, modifier = Modifier.fillMaxWidth()) {
+    MarmaladeCard(modifier = Modifier.fillMaxWidth()) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
                 text = stringResource(R.string.dictate_no_model_title),
@@ -559,7 +603,7 @@ private fun NoModelCard(onOpenEngines: () -> Unit) {
 /** Why the app needs the mic, after the user said no. */
 @Composable
 private fun MicPermissionCard(blocked: Boolean, onAllow: () -> Unit) {
-    OutlinedCard(shape = MaterialTheme.shapes.medium, modifier = Modifier.fillMaxWidth()) {
+    MarmaladeCard(modifier = Modifier.fillMaxWidth()) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
                 text = stringResource(R.string.dictate_mic_title),

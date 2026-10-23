@@ -12,6 +12,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.MotionDurationScale
 import androidx.compose.ui.graphics.Color
+import app.marmalade.stt.ui.theme.accent
 import kotlinx.coroutines.flow.collectLatest
 
 /** The mic button's fill, its icon, and the level ring behind it. */
@@ -20,22 +21,23 @@ data class MicColors(val container: Color, val content: Color, val ring: Color)
 
 /**
  * Colours for the three mic buttons (Dictate screen, voice keyboard, speech
- * sheet), kept in one place so they stay alike: the accent button's
- * `primary` / `onPrimary`. That is orange with white in light mode (the
- * brand; dark mode is the AA-contrast theme, #68) and toast with toast ink
- * in dark mode, which keeps a big orange disc (the "Halloween"
- * anti-pattern) off the stone page. The rich brown disc it replaced was
- * 1.2:1 against the page (#68, Max's pick P2-B). Disabled (finishing, or
- * blocked) uses the neutral M3 pair. The ring is decorative (the status line
- * and the button's state say the same in words).
+ * sheet), kept in one place so they stay alike: the preset's mic accent
+ * ([app.marmalade.stt.ui.theme.AccentColors.mic]). That is the scheme's
+ * primary, orange with white in light mode, except in Marmalade's dark mode,
+ * where it is toast with toast ink: a big orange disc on the stone page is
+ * the "Halloween" anti-pattern (#68, Max's pick P2-B). Disabled (finishing,
+ * or blocked) uses the neutral M3 pair. The ring is decorative (the status
+ * line and the button's state say the same in words).
  */
 @Composable
 fun micColors(enabled: Boolean): MicColors {
     val colors = MaterialTheme.colorScheme
+    val accent = MaterialTheme.accent
+    val ring = accent.mic.copy(alpha = 0.22f)
     return if (enabled) {
-        MicColors(colors.primary, colors.onPrimary, colors.primary.copy(alpha = 0.22f))
+        MicColors(accent.mic, accent.onMic, ring)
     } else {
-        MicColors(colors.onSurface.copy(alpha = 0.12f), colors.onSurface.copy(alpha = 0.38f), colors.primary.copy(alpha = 0.22f))
+        MicColors(colors.onSurface.copy(alpha = 0.12f), colors.onSurface.copy(alpha = 0.38f), ring)
     }
 }
 

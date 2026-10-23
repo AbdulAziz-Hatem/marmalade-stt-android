@@ -11,6 +11,7 @@ import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.LocalTextStyle
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
@@ -38,6 +39,7 @@ import app.marmalade.stt.ui.components.MarmaladeTextButton
 import app.marmalade.stt.ui.components.rememberAnnouncer
 import app.marmalade.stt.ui.contentDirection
 import app.marmalade.stt.ui.isolate
+import app.marmalade.ui.theme.depth
 
 // -----------------------------------------------------------------------------
 // Data flow
@@ -87,7 +89,7 @@ fun SnippetsScreen(
         item(key = "help") { CleanupHelpText(stringResource(R.string.cleanup_snippets_help)) }
         if (snippets == null) return@CleanupListScaffold
 
-        item(key = "divider") { HorizontalDivider() }
+        item(key = "divider") { HorizontalDivider(color = MaterialTheme.depth.line) }
         if (snippets.isEmpty()) {
             item(key = "empty") { CleanupEmptyText(stringResource(R.string.cleanup_snippets_empty)) }
         } else {
@@ -142,6 +144,7 @@ private fun SnippetRow(snippet: Snippet, onClick: () -> Unit) {
             )
         },
         modifier = Modifier.clickable(onClickLabel = stringResource(R.string.cleanup_edit_action), onClick = onClick),
+        colors = cleanupRowColors(),
     )
 }
 

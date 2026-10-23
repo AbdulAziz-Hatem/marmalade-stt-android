@@ -84,5 +84,5 @@
     <string name="engine_desc_nemotron_35">NVIDIA\'s streaming model for Hindi, Arabic and Vietnamese: text appears as you speak.</string>
     <string name="engine_desc_whisper_turbo">OpenAI Whisper large-v3-turbo, multilingual. The most accurate Whisper. Text appears when you pause.</string>
     <string name="engine_desc_granite">IBM\'s English CTC model: the most accurate in our English tests. Case and punctuation come from the app\'s own formatter.</string>
-    <string name="engine_desc_qwen3">Alibaba\'s offline model with a small language-model decoder: 30 languages, detected automatically, and the most accurate for Chinese. Text appears when you pause.</string>
+    <string name="engine_desc_qwen3">Alibaba\'s offline model with a small language-model decoder: 30 languages, detected automatically, recommended for Chinese and Korean. Text appears when you pause.</string>
 </resources>

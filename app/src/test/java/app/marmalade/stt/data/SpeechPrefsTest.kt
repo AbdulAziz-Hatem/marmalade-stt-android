@@ -322,6 +322,8 @@ class SpeechPrefsTest {
         assertNull(onTiny.engineToPin(tiny) { true })
         // No recommendation yet: the default runs, and is pinned if installed.
         assertEquals(default.id, SpeechPrefs().engineToPin(nemotronId) { true })
+        // A developer pick hidden while Developer engines are off stays the selection (#89).
+        assertNull(onTiny.copy(selectedEngineId = "granite-speech-5-470m").engineToPin(nemotronId) { true })
     }
 
     // ---- DataStore round trip ---------------------------------------------
@@ -475,53 +477,20 @@ class SpeechPrefsTest {
     }
 
     @Test
-    fun `a developer engine picked with Developer engines off is kept, one picked with them on isn't`() = runBlocking {
+    fun `a developer engine runs only while Developer engines are on`() = runBlocking {
         val granite = SttEngineCatalog.byId("granite-speech-5-470m")!! // a developer engine
-        // Off: only the recommended one can be picked, and it stays once the recommendation moves (#50).
-        SpeechSettings(openStore()).setRecommendedEngine(granite.id)
-        SpeechSettings(openStore()).setSelectedEngine(granite.id)
         SpeechSettings(openStore()).setRecommendedEngine(SttEngineCatalog.PARAKEET_ULTRA)
-        var prefs = SpeechSettings(openStore()).current()
-        assertTrue(prefs.selectionKept)
-        assertEquals(granite, prefs.activeEngine)
-        assertTrue(granite in prefs.visibleEngines)
-        // Picking a user engine drops the mark.
-        SpeechSettings(openStore()).setSelectedEngine(canary.id)
-        assertFalse(SpeechSettings(openStore()).current().selectionKept)
-        // On: picked as a developer engine; turning them off stops it, as before.
         SpeechSettings(openStore()).setDeveloperEngines(true)
         SpeechSettings(openStore()).setSelectedEngine(granite.id)
+        var prefs = SpeechSettings(openStore()).current()
+        assertEquals(granite, prefs.activeEngine)
+        assertTrue(granite in prefs.visibleEngines)
+        // Off: the recommendation runs, and the pick comes back when they are turned on again.
         SpeechSettings(openStore()).setDeveloperEngines(false)
         prefs = SpeechSettings(openStore()).current()
-        assertFalse(prefs.selectionKept)
         assertEquals(SttEngineCatalog.PARAKEET_ULTRA, prefs.activeEngine.id)
         assertFalse(granite in prefs.visibleEngines)
-    }
-
-    @Test
-    fun `the running engine is pinned only when it would otherwise stop`() {
-        val granite = "granite-speech-5-470m"
-        val installed = { _: String -> true }
-        // Nothing selected, the recommendation runs: pinned before it moves.
-        assertEquals(granite, SpeechPrefs(recommendedEngineId = granite).engineToPin("whisper-turbo", installed))
-        // A developer engine selected only as the recommendation: pinned again, so it is kept.
-        assertEquals(granite, SpeechPrefs(selectedEngineId = granite, recommendedEngineId = granite).engineToPin("whisper-turbo", installed))
-        // Already kept, or a user engine selected, or Developer engines on: it runs on by itself.
-        assertNull(SpeechPrefs(selectedEngineId = granite, selectionKept = true, recommendedEngineId = granite).engineToPin("whisper-turbo", installed))
-        assertNull(SpeechPrefs(selectedEngineId = canary.id, recommendedEngineId = granite).engineToPin("whisper-turbo", installed))
-        assertNull(SpeechPrefs(selectedEngineId = granite, developerEngines = true, recommendedEngineId = granite).engineToPin("whisper-turbo", installed))
-        // Not downloaded, or the recommendation doesn't change: nothing.
-        assertNull(SpeechPrefs(recommendedEngineId = granite).engineToPin("whisper-turbo") { false })
-        assertNull(SpeechPrefs(recommendedEngineId = granite).engineToPin(granite, installed))
-    }
-
-    @Test
-    fun `a recommended developer engine can run with developer engines off`() = runBlocking {
-        val granite = SttEngineCatalog.byId("granite-speech-5-470m")!! // a developer engine
-        SpeechSettings(openStore()).setSelectedEngine(granite.id)
-        assertEquals(default, SpeechSettings(openStore()).current().activeEngine)
-        SpeechSettings(openStore()).setRecommendedEngine(granite.id)
-        assertEquals(granite, SpeechSettings(openStore()).current().activeEngine)
+        assertEquals(granite.id, prefs.selectedEngineId)
     }
 
     @Test

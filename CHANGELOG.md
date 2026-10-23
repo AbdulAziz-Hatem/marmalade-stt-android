@@ -6,6 +6,50 @@ and this project follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-10-23
+
+### Changed
+- On phones with 6 GB of memory or more, the speech engine stays loaded
+  for five minutes after you last used it, so opening the voice keyboard or
+  the speak-now popup again within that time starts listening without
+  loading the model again (Pixel 6a, Parakeet Ultra: the first words show
+  1.2 s after opening the keyboard instead of 3.3 s). Only the model stays
+  in memory: nothing listens and nothing runs. It is freed sooner if
+  Android runs short of memory or you pick another engine. Smaller phones
+  free it right away, as before (#91).
+- Text appears sooner when you stop speaking: the speech is transcribed
+  during the pause, while the app waits to be sure you have finished,
+  instead of after it (Pixel 6a, Parakeet Ultra: 2.2 s → 1.6 s in Dictate,
+  2.1 s → 1.6 s in the speak-now popup). The text is the same (#91).
+- With Tap to stop (the voice keyboard's default), the text after the tap
+  no longer waits for the pause before it to be transcribed (Parakeet
+  Ultra: 0.74 s → 0.48 s after the tap; Parakeet 110M: 0.30 s → 0.15 s).
+  Transcripts are as accurate or slightly better (#91).
+- The first words show while you speak about 0.3 s sooner (#91).
+- The app now shares its look with Marmalade TTS: the same colours, warm
+  stone dark mode, quieter grey text and lines, cards with soft shadows,
+  and the same small animations, from a design library made from TTS's
+  look. In dark mode buttons, switches and links are orange as in TTS; the mic,
+  progress bars and loading rings stay toast. High contrast keeps its
+  stronger greys and AA colours.
+- The bottom bar has a thin top line and a visible selected tab in light
+  mode. Screens fade between tabs and rise in when opened, setup steps
+  rise in, status lines ease in on Dictate, the voice keyboard and the
+  speak-now popup, and download bars glide. Other small spinners became
+  three pulsing dots.
+- The Pause length slider has no row of dots, a visible track in light
+  mode, and a light tap at each step.
+- Error text is easier to read: a deeper red in light mode and a lighter
+  red in dark mode.
+- Midnight, Forest and Berry no longer show Marmalade orange in the
+  selected tab, chips, sliders or the "working" dots, and their section
+  titles in light mode are dark enough to read easily.
+- With Developer engines on, an engine's language list is in alphabetical
+  order in your language, with Auto-detect first (#89).
+- The selected tab's name in the bottom bar is bold (#89).
+- Qwen3-ASR's description says it is recommended for Chinese and Korean,
+  instead of only "the most accurate for Chinese" (#89).
+
 ## [1.1.0] - 2026-10-21
 
 ### Fixed

@@ -16,15 +16,18 @@ import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Slider
-import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.clearAndSetSemantics
@@ -37,6 +40,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import app.marmalade.stt.R
 import app.marmalade.stt.ui.theme.accent
+import app.marmalade.ui.components.SteppedSliderTrack
+import app.marmalade.ui.theme.depth
 
 // Small building blocks shared by the Settings, About, Licenses and Privacy
 // screens (ported from marmalade-tts-android's SettingsScreen, where they
@@ -64,7 +69,10 @@ fun SectionHeader(label: String) {
  * ListItem: with two supporting lines ListItem becomes "three-line" and pins
  * leadingContent to the top, which reads as misaligned next to rows whose
  * icon floats mid-height. Center-aligning everything is what the list wants.
- * Pass a clickable [modifier] for rows that do something.
+ * Pass a clickable [modifier] for rows that do something. The row sits on
+ * the page with no fill of its own; its leading icon and chevron take the
+ * quiet glyph ink, `depth.faint` (#84; an icon that sets its own tint keeps
+ * it).
  */
 @Composable
 fun SettingsRow(
@@ -84,7 +92,9 @@ fun SettingsRow(
             Box(
                 modifier = Modifier.width(40.dp),
                 contentAlignment = Alignment.CenterStart,
-            ) { leading() }
+            ) {
+                CompositionLocalProvider(LocalContentColor provides MaterialTheme.depth.faint) { leading() }
+            }
             Spacer(Modifier.width(8.dp))
         }
         Column(modifier = Modifier.weight(1f)) {
@@ -100,6 +110,7 @@ fun SettingsRow(
             Icon(
                 imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
                 contentDescription = null,
+                tint = MaterialTheme.depth.faint,
             )
         }
     }
@@ -188,20 +199,20 @@ fun SettingsSliderRow(
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
+        val haptics = LocalHapticFeedback.current
         Slider(
             value = value,
-            onValueChange = onValueChange,
+            onValueChange = {
+                // Each new stop gives a light tick, now that no marks show them.
+                if (it != value) haptics.performHapticFeedback(HapticFeedbackType.TextHandleMove)
+                onValueChange(it)
+            },
             onValueChangeFinished = onValueChangeFinished,
             valueRange = valueRange,
             steps = steps,
-            // Material paints the inactive track with secondaryContainer, which
-            // is also the navigation pill: toast in dark mode (so both halves
-            // looked the same) and the page colour in light mode (so the
-            // inactive half vanished). A neutral outline tone reads in both.
-            colors = SliderDefaults.colors(
-                inactiveTrackColor = MaterialTheme.colorScheme.outlineVariant,
-                inactiveTickColor = MaterialTheme.colorScheme.onSurfaceVariant,
-            ),
+            // The library's stepped track, as TTS's speed slider (#84 S): no stop
+            // marks, and a visible inactive track in light mode.
+            track = { SteppedSliderTrack(it) },
             modifier = Modifier.semantics {
                 contentDescription = label
                 stateDescription = valueDescription

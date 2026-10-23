@@ -77,13 +77,8 @@ import kotlinx.coroutines.flow.map
  *   over the speed budget whatever their reference cost. Cleared by
  *   re-measuring the phone's speed.
  * @property recommendedEngineId the engine recommended for this phone's
- *   language and hardware ([app.marmalade.stt.install.EngineRecommender]).
- *   Listed, and usable, even when it is a developer engine.
- * @property selectionKept [selectedEngineId] is a developer engine picked
- *   (or pinned, [engineToPin]) with Developer engines off while it was the
- *   recommendation: it keeps running after the recommendation moves on
- *   ([keptEngineId], #50). A developer engine picked with Developer
- *   engines on still stops when they are turned off.
+ *   language and hardware ([app.marmalade.stt.install.EngineRecommender]),
+ *   always a user engine.
  * @property recommendationRules the [EngineRecommender.RULES_VERSION] that
  *   [recommendedEngineId] was chosen under; null when stored before #50.
  *   When it isn't the current one, startup recommends again
@@ -102,7 +97,6 @@ data class SpeechPrefs(
     val endWords: List<String> = EndWords.DEFAULT,
     val keepModelLoaded: Boolean = false,
     val selectedEngineId: String? = null,
-    val selectionKept: Boolean = false,
     val developerEngines: Boolean = false,
     val recognitionLanguage: String = AUTO,
     val engineLanguages: Map<String, String> = emptyMap(),
@@ -193,20 +187,16 @@ data class SpeechPrefs(
     val usesEndWord: Boolean
         get() = ListenSurface.entries.any { endFor(it) == EndOfDictation.END_WORD }
 
-    /** The selection when it runs whatever Developer engines says ([selectionKept]); null otherwise. */
-    val keptEngineId: String? get() = selectedEngineId?.takeIf { selectionKept }
-
-    /** The engine that runs: the selected one while it is visible (recommended, or kept), else the recommended one, else the default. */
+    /** The engine that runs: the selected one while it is visible, else the recommended one, else the default. */
     val activeEngine: SttEngineDescriptor
-        get() = SttEngineCatalog.effective(selectedEngineId, developerEngines, recommendedEngineId, keptEngineId)
+        get() = SttEngineCatalog.effective(selectedEngineId, developerEngines, recommendedEngineId)
 
     /** [engine] runs if selected ([SttEngineCatalog.runnable] under these settings). */
-    fun runnable(engine: SttEngineDescriptor): Boolean =
-        SttEngineCatalog.runnable(engine, developerEngines, recommendedEngineId, keptEngineId)
+    fun runnable(engine: SttEngineDescriptor): Boolean = SttEngineCatalog.runnable(engine, developerEngines)
 
     /** The engines listed under these settings ([SttEngineCatalog.visibleTo]). */
     val visibleEngines: List<SttEngineDescriptor>
-        get() = SttEngineCatalog.visibleTo(developerEngines, recommendedEngineId, keptEngineId)
+        get() = SttEngineCatalog.visibleTo(developerEngines)
 
     /**
      * The language the user speaks: [recognitionLanguage], or on Auto the
@@ -308,17 +298,14 @@ data class SpeechPrefs(
     /**
      * The engine to store as the selection before the recommendation becomes
      * [newRecommendation], or null: a new recommendation never switches to
-     * an engine that isn't downloaded. The engine running now is pinned when
-     * it is installed ([isInstalled]) and would stop running: nothing is
-     * selected (the recommended engine runs), or the selection is a
-     * developer engine that runs only because it is the recommendation
-     * (selecting it again keeps it, [SpeechSettings.setSelectedEngine], #50).
+     * an engine that isn't downloaded. With nothing selected the
+     * recommended engine runs, so the engine running now is pinned when it
+     * is installed ([isInstalled]).
      */
     fun engineToPin(newRecommendation: String, isInstalled: (String) -> Boolean): String? {
+        if (selectedEngineId != null) return null
         val running = activeEngine
         if (running.id == newRecommendation) return null
-        val runsOnlyAsRecommended = running.developer && !developerEngines && keptEngineId != running.id
-        if (selectedEngineId != null && !(selectedEngineId == running.id && runsOnlyAsRecommended)) return null
         return running.id.takeIf(isInstalled)
     }
 
@@ -367,7 +354,6 @@ class SpeechSettings @Inject constructor(
             endWords = SpeechPrefs.endWordsFrom(p[END_WORDS]),
             keepModelLoaded = p[KEEP_MODEL_LOADED] ?: false,
             selectedEngineId = p[SELECTED_ENGINE],
-            selectionKept = p[SELECTION_KEPT] ?: false,
             developerEngines = p[DEVELOPER_ENGINES] ?: false,
             recognitionLanguage = p[RECOGNITION_LANGUAGE] ?: SpeechPrefs.AUTO,
             engineLanguages = p.asMap().entries
@@ -422,18 +408,9 @@ class SpeechSettings @Inject constructor(
         dataStore.edit { it[KEEP_MODEL_LOADED] = on }
     }
 
-    /**
-     * Run [engineId] from the next session on. A developer engine selected
-     * with Developer engines off while it is the recommendation (the only
-     * way one can be) is kept ([SpeechPrefs.selectionKept]): it runs on when
-     * the recommendation moves.
-     */
+    /** Run [engineId] from the next session on. */
     suspend fun setSelectedEngine(engineId: String) {
-        dataStore.edit {
-            it[SELECTED_ENGINE] = engineId
-            it[SELECTION_KEPT] = SttEngineCatalog.byId(engineId)?.developer == true &&
-                it[DEVELOPER_ENGINES] != true && it[RECOMMENDED_ENGINE] == engineId
-        }
+        dataStore.edit { it[SELECTED_ENGINE] = engineId }
     }
 
     suspend fun setDeveloperEngines(on: Boolean) {
@@ -495,7 +472,7 @@ class SpeechSettings @Inject constructor(
      * engines that fell behind and per-engine languages. Also drops
      * [NEMOTRON_CHUNK_MS], Settings → Developer's choice between Nemotron
      * 3.5's 560 ms and 1120 ms exports, which went with the 560 ms one
-     * (#37). True when the selection or the recommendation was one of them:
+     * (#37), and [SELECTION_KEPT] (#89). True when the selection or the recommendation was one of them:
      * the caller then
      * recommends again, so what runs is chosen for this phone rather than
      * falling back to the default, which may not be downloaded or may not
@@ -511,12 +488,12 @@ class SpeechSettings @Inject constructor(
                     choiceGone = true
                 }
             }
-            if (p[SELECTED_ENGINE] == null) p.remove(SELECTION_KEPT)
             p[TOO_SLOW_ENGINES]?.let { ids -> if (ids.any(::gone)) p[TOO_SLOW_ENGINES] = ids.filterNot(::gone).toSet() }
             p.asMap().keys
                 .filter { it.name.startsWith(ENGINE_LANGUAGE_PREFIX) && gone(it.name.removePrefix(ENGINE_LANGUAGE_PREFIX)) }
                 .forEach { p.remove(stringPreferencesKey(it.name)) }
             p.remove(NEMOTRON_CHUNK_MS)
+            p.remove(SELECTION_KEPT)
         }
         return choiceGone
     }
@@ -524,6 +501,13 @@ class SpeechSettings @Inject constructor(
     private companion object {
         /** No longer read or written: [forgetUnknownEngines] removes it from older installs (#37). */
         val NEMOTRON_CHUNK_MS = intPreferencesKey("nemotron_chunk_ms")
+
+        /**
+         * No longer read or written: [forgetUnknownEngines] removes it from older installs
+         * (#89). It marked a developer engine selected while it was the recommendation
+         * (#50); the recommender has picked only user engines since Qwen3-ASR became one.
+         */
+        val SELECTION_KEPT = booleanPreferencesKey("speech_engine_kept")
         val ORT_TUNING = stringPreferencesKey("ort_tuning")
         val OTHER_ENGINES_EXPANDED = booleanPreferencesKey("other_engines_expanded")
         val DEVICE_PROBE_MS = longPreferencesKey("device_probe_ms")
@@ -533,7 +517,6 @@ class SpeechSettings @Inject constructor(
         val RECOMMENDATION_RULES = stringPreferencesKey("recommendation_rules")
         val TOO_SLOW_ENGINES = stringSetPreferencesKey("too_slow_engines")
         val SELECTED_ENGINE = stringPreferencesKey("speech_engine")
-        val SELECTION_KEPT = booleanPreferencesKey("speech_engine_kept")
         val DEVELOPER_ENGINES = booleanPreferencesKey("developer_engines")
         val RECOGNITION_LANGUAGE = stringPreferencesKey("recognition_language")
         const val ENGINE_LANGUAGE_PREFIX = "engine_language_"

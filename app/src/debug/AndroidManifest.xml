@@ -47,5 +47,13 @@
             android:name="app.marmalade.stt.debug.SettingsLinkProbeActivity"
             android:exported="true"
             android:theme="@android:style/Theme.NoDisplay" />
+        <!--
+          Installs the clip-fed test mic at process start (#91, ClipMic):
+          inert unless files/debug-mic/clip.wav exists. Not exported.
+        -->
+        <provider
+            android:name="app.marmalade.stt.debug.ClipMicInstaller"
+            android:authorities="${applicationId}.clipmic"
+            android:exported="false" />
     </application>
 </manifest>

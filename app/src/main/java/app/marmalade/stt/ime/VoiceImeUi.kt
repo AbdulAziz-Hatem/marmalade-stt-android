@@ -1,6 +1,8 @@
 package app.marmalade.stt.ime
 
 import androidx.annotation.StringRes
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.combinedClickable
@@ -39,6 +41,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.LiveRegionMode
@@ -48,6 +52,8 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
+import androidx.compose.ui.semantics.text
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -60,6 +66,10 @@ import app.marmalade.stt.ui.contentDirection
 import app.marmalade.stt.ui.screen.DictationNotice
 import app.marmalade.stt.ui.theme.Appearance
 import app.marmalade.stt.ui.theme.MarmaladeSttTheme
+import app.marmalade.stt.ui.theme.accent
+import app.marmalade.ui.theme.MarmaladeMotion
+import app.marmalade.ui.theme.depth
+import app.marmalade.ui.theme.riseIn
 
 private val MIC_SIZE = 72.dp
 
@@ -89,7 +99,20 @@ fun VoiceImePanel(
     onOpenApp: () -> Unit,
 ) {
     MarmaladeSttTheme(appearance) {
-        Surface(color = MaterialTheme.colorScheme.surface, modifier = Modifier.fillMaxWidth()) {
+        // A hairline along the top sets the panel off the app above it (#84).
+        // No bar shadow: the IME window ends at the panel's top edge, and its
+        // frame clips anything drawn above it.
+        val line = MaterialTheme.depth.line
+        Surface(
+            color = MaterialTheme.colorScheme.surface,
+            modifier = Modifier
+                .fillMaxWidth()
+                .drawWithContent {
+                    drawContent()
+                    val stroke = 1.dp.toPx()
+                    drawLine(line, Offset(0f, stroke / 2), Offset(size.width, stroke / 2), stroke)
+                },
+        ) {
             Column(
                 modifier = Modifier
                     .navigationBarsPadding()
@@ -133,6 +156,10 @@ fun VoiceImePanel(
 /**
  * What the session is doing, or what went wrong last time; "Locked: tap to
  * stop" with a lock icon while locked (#43). Announced politely by TalkBack.
+ *
+ * A new status rises in over the old one (#84). The live region and the
+ * words TalkBack reads sit on the outer Row, which stays put; the animated
+ * lines inside are hidden from it, so the line on its way out is never read.
  */
 @Composable
 private fun StatusLine(state: VoiceImeState) {
@@ -143,32 +170,51 @@ private fun StatusLine(state: VoiceImeState) {
         !state.phase.isActive && notice != null -> notice.messageRes()
         else -> state.phase.statusRes()
     }
+    val spoken = stringResource(text)
+    val enter = riseIn(MarmaladeMotion.BASE_MS)
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .semantics(mergeDescendants = true) { liveRegion = LiveRegionMode.Polite },
+            .clearAndSetSemantics {
+                liveRegion = LiveRegionMode.Polite
+                this.text = AnnotatedString(spoken)
+            },
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        if (locked) {
-            Icon(
-                Icons.Filled.Lock,
-                contentDescription = null,
-                tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                modifier = Modifier.size(16.dp),
-            )
-            Spacer(Modifier.width(6.dp))
+        AnimatedContent(
+            targetState = ImeStatus(text, locked),
+            contentAlignment = Alignment.Center,
+            // No size animation: the panel's height drives the app's
+            // insets, so it changes once, not every frame.
+            transitionSpec = { (enter togetherWith MarmaladeMotion.fadeExit) using null },
+            label = "imeStatus",
+        ) { status ->
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                if (status.locked) {
+                    Icon(
+                        Icons.Filled.Lock,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.size(16.dp),
+                    )
+                    Spacer(Modifier.width(6.dp))
+                }
+                Text(
+                    text = stringResource(status.textRes),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    textAlign = TextAlign.Center,
+                    // No maxLines: error notices need three or four lines at large
+                    // font scales, and the panel has room to grow (#68).
+                )
+            }
         }
-        Text(
-            text = stringResource(text),
-            style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-            textAlign = TextAlign.Center,
-            // No maxLines: error notices need three or four lines at large
-            // font scales, and the panel has room to grow (#68).
-        )
     }
 }
+
+/** One status line's look: its words and whether the lock shows. */
+private data class ImeStatus(@StringRes val textRes: Int, val locked: Boolean)
 
 /**
  * The live partial in muted italics, or "Speak now" while the mic waits.
@@ -176,6 +222,9 @@ private fun StatusLine(state: VoiceImeState) {
  * The box holds three lines at any font scale (#68): [BODY_HEIGHT] at 100 %,
  * taller when the font is bigger. Its height doesn't follow the text, so the
  * mic row doesn't jump as a partial comes and goes.
+ *
+ * The hint and the partial fade in and out rather than pop (#84); a partial
+ * growing word by word just updates in place.
  */
 @Composable
 private fun PartialText(state: VoiceImeState) {
@@ -191,17 +240,33 @@ private fun PartialText(state: VoiceImeState) {
             .padding(vertical = BODY_PADDING),
         contentAlignment = Alignment.Center,
     ) {
-        if (hint && state.phase != VoiceImePhase.LISTENING) return@Box
-        Text(
-            text = if (hint) stringResource(R.string.ime_speak_now) else state.partial,
-            style = if (hint) style else style.contentDirection(),
-            fontStyle = if (hint) FontStyle.Normal else FontStyle.Italic,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-            textAlign = TextAlign.Center,
-            modifier = Modifier
-                .fillMaxWidth()
-                .verticalScroll(rememberScrollState(), reverseScrolling = true),
-        )
+        val shown = when {
+            !hint -> PartialShown(PartialKind.PARTIAL, state.partial)
+            state.phase == VoiceImePhase.LISTENING -> PartialShown(PartialKind.HINT, "")
+            else -> PartialShown(PartialKind.NONE, "")
+        }
+        AnimatedContent(
+            targetState = shown,
+            // Keyed on the kind: a new partial is the same content, recomposed
+            // in place. The partial on its way out keeps its last words.
+            contentKey = { it.kind },
+            contentAlignment = Alignment.Center,
+            transitionSpec = { (MarmaladeMotion.fadeEnter togetherWith MarmaladeMotion.fadeExit) using null },
+            label = "imePartial",
+        ) { content ->
+            if (content.kind == PartialKind.NONE) return@AnimatedContent
+            val isHint = content.kind == PartialKind.HINT
+            Text(
+                text = if (isHint) stringResource(R.string.ime_speak_now) else content.text,
+                style = if (isHint) style else style.contentDirection(),
+                fontStyle = if (isHint) FontStyle.Normal else FontStyle.Italic,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .verticalScroll(rememberScrollState(), reverseScrolling = true),
+            )
+        }
     }
 }
 
@@ -286,6 +351,7 @@ private fun MicButton(state: VoiceImeState, level: () -> Float, onClick: () -> U
                 modifier = Modifier
                     .size(MIC_SIZE + 10.dp)
                     .clearAndSetSemantics {},
+                color = MaterialTheme.accent.progress,
                 strokeWidth = 3.dp,
             )
         }
@@ -320,6 +386,10 @@ private fun MicButton(state: VoiceImeState, level: () -> Float, onClick: () -> U
         }
     }
 }
+
+private enum class PartialKind { NONE, HINT, PARTIAL }
+
+private data class PartialShown(val kind: PartialKind, val text: String)
 
 @StringRes
 private fun VoiceImePhase.statusRes(): Int = when (this) {

@@ -1,6 +1,8 @@
 package app.marmalade.stt.speech
 
+import android.content.ComponentCallbacks2
 import android.content.Context
+import android.content.res.Configuration
 import android.os.Process
 import android.os.SystemClock
 import android.util.Log
@@ -29,6 +31,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 /**
@@ -102,7 +105,31 @@ class SpeechEngineManager @Inject constructor(
         keepLoaded = { settings.current().keepModelLoaded },
         activeEngine = ::engineOrNull,
         builtEngine = { synchronized(this) { engine } },
+        lingerMs = { WarmHold.lingerMs(totalMemBytes) },
     )
+
+    init {
+        // The warm hold (#91): another engine, language or tuning picked frees the old model now, not when
+        // the hold runs out or the next session asks; memory pressure frees a warm-held one.
+        scope.launch { choice.collect(::dropIfStale) }
+        context.registerComponentCallbacks(object : ComponentCallbacks2 {
+            override fun onTrimMemory(level: Int) = holds.trimMemory(level)
+            override fun onConfigurationChanged(newConfig: Configuration) = Unit
+
+            @Deprecated("Deprecated in Java")
+            override fun onLowMemory() = holds.trimMemory(ComponentCallbacks2.TRIM_MEMORY_COMPLETE)
+        })
+    }
+
+    @Synchronized
+    private fun dropIfStale(wanted: Choice) {
+        val cached = engine ?: return
+        if (engineChoice == wanted) return
+        Log.i(TAG, "${cached.descriptor.id} is no longer the choice: freeing it")
+        cached.drop()
+        engine = null
+        engineChoice = null
+    }
 
     /**
      * Keep the active engine's model loaded between sessions while the
@@ -137,7 +164,10 @@ class SpeechEngineManager @Inject constructor(
         }
         engine?.let { return it }
         if (wanted.tuning.arena == false) Log.i(TAG, "${wanted.descriptor.id} runs without ONNX Runtime's memory arena on this phone")
-        return SttEngines.create(installed, context.assets, wanted.language, tuning = wanted.tuning).also {
+        // #91: debug builds' speed-audit knobs (off in release: nothing sets them).
+        val threads = SpeedKnobs.threads ?: RecognizerThreads.count
+        val tuning = SpeedKnobs.tuningId?.let { OrtTuning.parse(it) } ?: wanted.tuning
+        return SttEngines.create(installed, context.assets, wanted.language, numThreads = threads, tuning = tuning).also {
             engine = it
             engineChoice = wanted
         }
@@ -318,6 +348,7 @@ class SpeechEngineManager @Inject constructor(
 
     /** Finish the running session, if any, including one still starting up. */
     fun stop() {
+        Log.d(StreamingSession.TIMING_TAG, "stop requested t=${SystemClock.elapsedRealtime()}")
         stopRequested = true
         (sessionEngine ?: synchronized(this) { engine })?.stop()
     }

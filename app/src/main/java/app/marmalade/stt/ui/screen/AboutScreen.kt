@@ -31,6 +31,7 @@ import app.marmalade.stt.ui.components.DetailTopBar
 import app.marmalade.stt.ui.components.JarMascot
 import app.marmalade.stt.ui.components.JarMascotState
 import app.marmalade.stt.ui.components.SettingsRow
+import app.marmalade.ui.theme.depth
 
 /**
  * Settings → About. Identity (mascot, name, version) on top, then the
@@ -83,7 +84,7 @@ fun AboutScreen(
                 )
             }
 
-            HorizontalDivider()
+            HorizontalDivider(color = MaterialTheme.depth.line)
 
             SettingsRow(
                 label = stringResource(R.string.about_privacy),

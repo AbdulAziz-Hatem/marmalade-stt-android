@@ -18,6 +18,10 @@ Two ways the app can decide that a dictation has ended:
   again every `recheck` seconds, and at `ceiling` seconds of silence the turn
   ends regardless. A turn that reaches 28 s ends at its last segment boundary.
   The whole turn is then decoded once.
+- **Smart Turn with an early check** (#91): as Smart Turn, but the check at the
+  propose point ends the turn only if p > `early_threshold`; if it doesn't, the
+  next check comes at `normal_at` seconds of silence, with `threshold`, and the
+  rule goes on as above (rechecks, ceiling).
 
 Both modes cut a turn still going at 28 s plus the pre-roll with no segment
 boundary to end at (#48, mirrored here in #54): at its quietest window in the
@@ -85,6 +89,8 @@ class TurnConfig:
     ceiling: float = 3.0  # silence that ends the turn regardless of the model
     threshold: float = 0.5  # p above this = complete
     max_turn: float = MAX_UTTERANCE_SECONDS  # a turn is cut with no boundary at this plus the pre-roll
+    early_threshold: float = 0.0  # > 0: the check at min_silence ends the turn only above this (#91)
+    normal_at: float = 0.0  # with early_threshold: the silence of the next check, which uses threshold
 
 
 MODES = {
@@ -107,8 +113,9 @@ REFERENCE_MODE = "pause-0.2"
 
 
 def mode_config(name: str) -> TurnConfig:
-    """A mode by name: one of MODES, or `pause-<s>` / `smart[-p<s>][-t<p>][-c<s>]` (propose,
-    threshold, ceiling; unnamed ones keep TurnConfig's defaults), e.g. smart-p0.4-t0.6-c1.5."""
+    """A mode by name: one of MODES, or `pause-<s>` / `smart[-p<s>][-e<p>-n<s>][-t<p>][-c<s>]`
+    (propose, early threshold and the next check's silence, threshold, ceiling; unnamed ones keep
+    TurnConfig's defaults), e.g. smart-p0.4-t0.6-c1.5 or smart-p0.5-e0.95-n1.2-t0.7-c2.5."""
     if name in MODES:
         return MODES[name]
     kind, *parts = name.split("-")
@@ -116,14 +123,18 @@ def mode_config(name: str) -> TurnConfig:
         if kind == "pause" and len(parts) == 1:
             return TurnConfig(float(parts[0]))
         if kind == "smart":
-            keys = {"p": "min_silence", "t": "threshold", "c": "ceiling"}
+            keys = {"p": "min_silence", "e": "early_threshold", "n": "normal_at", "t": "threshold", "c": "ceiling"}
             kw = {}
             for part in parts:
                 key = keys.get(part[:1])
                 if key is None or key in kw:
                     raise ValueError(part)
                 kw[key] = float(part[1:])
-            return TurnConfig(kw.pop("min_silence", 0.2), smart=True, **kw)
+            cfg = TurnConfig(kw.pop("min_silence", 0.2), smart=True, **kw)
+            if ("early_threshold" in kw) != ("normal_at" in kw) or ("normal_at" in kw
+                                                                    and cfg.normal_at <= cfg.min_silence):
+                raise ValueError(name)
+            return cfg
     except ValueError:
         pass
     raise ValueError(f"unknown mode {name!r}")
@@ -141,10 +152,12 @@ class TurnGate:
         self.cfg = cfg
         self.speech_end: int | None = None  # where the pause in progress began; None while speaking
         self.next_check = 0.0  # silence (s) at which the model is asked next
+        self.early = False  # the next check is the early one (early_threshold)
 
     def segment_closed(self, end: int) -> None:
         self.speech_end = end
         self.next_check = self.cfg.min_silence
+        self.early = self.cfg.early_threshold > 0
 
     def speech_resumed(self) -> None:
         self.speech_end = None
@@ -159,7 +172,14 @@ class TurnGate:
             return "ceiling"
         if silence < self.next_check - 1e-9:
             return None
-        if prob() > self.cfg.threshold:
+        p = prob()
+        if self.early:
+            self.early = False
+            if p > self.cfg.early_threshold:
+                return "complete"
+            self.next_check = self.cfg.normal_at
+            return None
+        if p > self.cfg.threshold:
             return "complete"
         self.next_check = silence + self.cfg.recheck
         return None

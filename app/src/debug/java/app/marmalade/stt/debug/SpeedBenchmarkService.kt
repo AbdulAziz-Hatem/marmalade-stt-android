@@ -10,6 +10,8 @@ import android.os.IBinder
 import android.os.PowerManager
 import android.util.Log
 import androidx.core.app.ServiceCompat
+import app.marmalade.stt.data.OnboardingSettings
+import app.marmalade.stt.data.SpeechSettings
 import app.marmalade.stt.install.ModelInstaller
 import app.marmalade.stt.install.SttEngineCatalog
 import app.marmalade.stt.speech.OrtTuning
@@ -53,6 +55,12 @@ import kotlinx.coroutines.launch
  * adb shell am start-foreground-service -n $S --es cmd probe
  *     # the #27 CPU probe (SpeedProbe) 5 times, the fastest counts: the Pixel 8a's is SpeedBudget.PROBE_REFERENCE_MS
  * adb shell am start-foreground-service -n $S --es cmd stop
+ * adb shell am start-foreground-service -n $S --es cmd use --es engine parakeet-ultra [--ez keep false] [--ez setupDone true]
+ *     # #91 timing passes: run that engine from the next listen (frees the loaded one), set Keep engine
+ *     # ready, and mark the setup guide done so MainActivity opens on Dictate.
+ *     # [--es knobs speculativeFinal=true,trimAtStop=false,partialAtOnset=true,threads=4,tuning=cpu-pin]
+ *     # sets SpeedKnobs (files/debug-mic/knobs, kept across restarts); "--es knobs none" clears them.
+ *     # [--ez release false] keeps the loaded model (for knobs a session reads at its start)
  * ```
  *
  * A run holds a partial wake lock so the CPU keeps going with the screen off.
@@ -64,6 +72,10 @@ class SpeedBenchmarkService : Service() {
     @Inject lateinit var installer: ModelInstaller
 
     @Inject lateinit var engines: SpeechEngineManager
+
+    @Inject lateinit var speechSettings: SpeechSettings
+
+    @Inject lateinit var onboarding: OnboardingSettings
 
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
     private var job: Job? = null
@@ -97,6 +109,7 @@ class SpeedBenchmarkService : Service() {
                     "probe" -> probe()
                     "install" -> install(intent.engines(), download = intent.getBooleanExtra("download", false))
                     "run" -> run(intent)
+                    "use" -> use(intent)
                     else -> log("unknown cmd: $cmd")
                 }
             } catch (e: CancellationException) {
@@ -153,6 +166,20 @@ class SpeedBenchmarkService : Service() {
             val result = installer.install(d.id)
             log("install ${d.id}: ${if (result.isSuccess) "OK (sha256 verified)" else "FAILED ${result.exceptionOrNull()?.message}"}")
         }
+    }
+
+    private suspend fun use(intent: Intent) {
+        intent.getStringExtra("engine")?.let { id ->
+            require(installer.installedModel(id) != null) { "$id isn't installed" }
+            speechSettings.setSelectedEngine(id)
+        }
+        if (intent.hasExtra("keep")) speechSettings.setKeepModelLoaded(intent.getBooleanExtra("keep", false))
+        if (intent.getBooleanExtra("setupDone", false)) onboarding.setDone()
+        intent.getStringExtra("knobs")?.let { DebugKnobs.write(this, it) }
+        // Session knobs need no new engine; threads, tuning and the engine do.
+        if (intent.getBooleanExtra("release", true)) engines.releaseModel()
+        val prefs = speechSettings.current()
+        log("use: engine=${prefs.activeEngine.id} keep=${prefs.keepModelLoaded}")
     }
 
     private suspend fun run(intent: Intent) {

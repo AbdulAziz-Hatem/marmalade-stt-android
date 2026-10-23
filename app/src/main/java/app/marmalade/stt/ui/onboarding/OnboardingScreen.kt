@@ -15,31 +15,28 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.StringRes
 import androidx.compose.animation.AnimatedContent
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.slideInHorizontally
-import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.EnterExitState
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.togetherWith
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.consumeWindowInsets
-import androidx.compose.foundation.layout.imePadding
-import androidx.compose.foundation.layout.systemBars
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle
@@ -49,19 +46,17 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CenterAlignedTopAppBar
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedCard
-import androidx.compose.material3.Switch
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -78,6 +73,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.luminance
+import androidx.compose.ui.input.pointer.PointerEventPass
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
@@ -117,6 +114,10 @@ import app.marmalade.stt.ui.screen.DownloadConfirmDialog
 import app.marmalade.stt.ui.screen.EngineAction
 import app.marmalade.stt.ui.screen.downloadOutcomes
 import app.marmalade.stt.ui.theme.accent
+import app.marmalade.ui.components.MarmaladeCard
+import app.marmalade.ui.components.WorkingDots
+import app.marmalade.ui.theme.MarmaladeMotion
+import app.marmalade.ui.theme.riseIn
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -338,92 +339,104 @@ fun OnboardingScreen(
                         .semantics { heading() },
                 )
             }
-            // The title says "Step 2 of 6" in words; the bar just shows it.
+            // The title says "Step 2 of 6" in words; the bar just shows it,
+            // gliding to each new step (#84).
+            val progress by animateFloatAsState(
+                targetValue = (state.index + 1f) / state.steps.size,
+                animationSpec = MarmaladeMotion.slow(),
+                label = "stepProgress",
+            )
             LinearProgressIndicator(
-                progress = { (state.index + 1f) / state.steps.size },
-                // The default track is secondaryContainer, the same toast as
-                // the bar itself in dark mode (see SettingsSliderRow).
+                progress = { progress },
+                // Toast in Marmalade's dark mode, as before the library (Max, #87).
+                color = MaterialTheme.accent.progress,
+                // The hairline ink: the default track (secondaryContainer) is
+                // the page's own cream in light mode.
                 trackColor = MaterialTheme.colorScheme.outlineVariant,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 24.dp)
                     .clearAndSetSemantics {},
             )
+            // Each step rises in (8 dp up and a fade) while the last one fades
+            // out, the same either way (#84, TTS's #83).
+            val stepEnter = riseIn()
             AnimatedContent(
                 targetState = state.step,
-                transitionSpec = {
-                    val forward = targetState.ordinal > initialState.ordinal
-                    val enter = slideInHorizontally(tween(300)) { if (forward) it / 4 else -it / 4 } + fadeIn(tween(300))
-                    val exit = slideOutHorizontally(tween(300)) { if (forward) -it / 4 else it / 4 } + fadeOut(tween(150))
-                    enter togetherWith exit
-                },
+                transitionSpec = { (stepEnter togetherWith MarmaladeMotion.fadeExit).using(null) },
                 label = "onboarding_step",
                 modifier = Modifier.weight(1f),
             ) { step ->
                 // This page's own position: while pages swap, the leaving one keeps its number.
                 val stepOf = stringResource(R.string.onboarding_step_of, state.steps.indexOf(step) + 1, state.steps.size)
+                // The leaving page lies over or under the new one while it
+                // fades; a quick tap meant for the new page must not land on
+                // the old one's Download or Allow (#84).
+                val leaving = transition.targetState == EnterExitState.PostExit
                 CompositionLocalProvider(LocalStepOf provides stepOf) {
-                    when (step) {
-                        OnboardingStep.WELCOME -> WelcomeStep(highContrast == true, viewModel::setHighContrast)
-                        OnboardingStep.MICROPHONE -> MicrophoneStep(
-                            granted = state.micGranted,
-                            denied = micDenied,
-                            blocked = micBlocked,
-                            onAllow = {
-                                if (micBlocked) {
-                                    if (SystemSettings.open(context, SettingsLink.APP_DETAILS) == null) viewModel.show(R.string.onboarding_settings_failed)
-                                } else {
-                                    micLauncher.launch(Manifest.permission.RECORD_AUDIO)
-                                }
-                            },
-                        )
-                        OnboardingStep.MODEL -> ModelStep(
-                            recommendation = recommendation,
-                            installState = modelState,
-                            speedTier = recommendation?.engine?.let { speechPrefs?.speedTier(it) },
-                            onAction = { action ->
-                                when (action) {
-                                    EngineAction.DOWNLOAD -> confirmDownload = true
-                                    EngineAction.RESUME,
-                                    EngineAction.RETRY,
-                                    EngineAction.DOWNLOAD_AGAIN,
-                                    -> viewModel.download()
-                                    EngineAction.CANCEL -> viewModel.cancelDownload()
-                                    EngineAction.REMOVE_DOWNLOAD -> viewModel.removeDownload()
-                                    // Details-dialog actions; engineActions(onDetail = false) never offers them.
-                                    EngineAction.CHECK_FILES, EngineAction.REMOVE -> Unit
-                                }
-                            },
-                        )
-                        OnboardingStep.KEYBOARD -> KeyboardStep(
-                            enabled = state.keyboardEnabled,
-                            onOpenSettings = {
-                                if (SystemSettings.open(context, SettingsLink.KEYBOARDS) == null) viewModel.show(R.string.onboarding_settings_failed)
-                            },
-                        )
-                        OnboardingStep.MIC_KEY -> MicKeyStep(
-                            state = state,
-                            onOpenKeyboardSettings = {
-                                if (SystemSettings.open(context, SettingsLink.KEYBOARDS) == null) viewModel.show(R.string.onboarding_settings_failed)
-                            },
-                            onUseMarmaladeInFuto = {
-                                futoPackage?.let {
-                                    launchFuto(context, futoPopup, it, FutoMode.POPUP, viewModel::onFutoUnavailable)
-                                }
-                            },
-                            onCheckFutoAgain = {
-                                futoPackage?.let {
-                                    launchFuto(context, futoCheck, it, FutoMode.CHECK, viewModel::onFutoUnavailable)
-                                }
-                            },
-                        )
-                        OnboardingStep.SPEECH_SERVICE -> SpeechServiceStep(
-                            selected = state.speechServiceSelected,
-                            onOpenSettings = {
-                                if (SystemSettings.open(context, SettingsLink.VOICE_INPUT) == null) viewModel.show(R.string.onboarding_settings_failed)
-                            },
-                        )
-                        OnboardingStep.DONE -> DoneStep(state = state)
+                    Box(if (leaving) Modifier.fillMaxSize().blockTouches() else Modifier.fillMaxSize()) {
+                        when (step) {
+                            OnboardingStep.WELCOME -> WelcomeStep(highContrast == true, viewModel::setHighContrast)
+                            OnboardingStep.MICROPHONE -> MicrophoneStep(
+                                granted = state.micGranted,
+                                denied = micDenied,
+                                blocked = micBlocked,
+                                onAllow = {
+                                    if (micBlocked) {
+                                        if (SystemSettings.open(context, SettingsLink.APP_DETAILS) == null) viewModel.show(R.string.onboarding_settings_failed)
+                                    } else {
+                                        micLauncher.launch(Manifest.permission.RECORD_AUDIO)
+                                    }
+                                },
+                            )
+                            OnboardingStep.MODEL -> ModelStep(
+                                recommendation = recommendation,
+                                installState = modelState,
+                                speedTier = recommendation?.engine?.let { speechPrefs?.speedTier(it) },
+                                onAction = { action ->
+                                    when (action) {
+                                        EngineAction.DOWNLOAD -> confirmDownload = true
+                                        EngineAction.RESUME,
+                                        EngineAction.RETRY,
+                                        EngineAction.DOWNLOAD_AGAIN,
+                                        -> viewModel.download()
+                                        EngineAction.CANCEL -> viewModel.cancelDownload()
+                                        EngineAction.REMOVE_DOWNLOAD -> viewModel.removeDownload()
+                                        // Details-dialog actions; engineActions(onDetail = false) never offers them.
+                                        EngineAction.CHECK_FILES, EngineAction.REMOVE -> Unit
+                                    }
+                                },
+                            )
+                            OnboardingStep.KEYBOARD -> KeyboardStep(
+                                enabled = state.keyboardEnabled,
+                                onOpenSettings = {
+                                    if (SystemSettings.open(context, SettingsLink.KEYBOARDS) == null) viewModel.show(R.string.onboarding_settings_failed)
+                                },
+                            )
+                            OnboardingStep.MIC_KEY -> MicKeyStep(
+                                state = state,
+                                onOpenKeyboardSettings = {
+                                    if (SystemSettings.open(context, SettingsLink.KEYBOARDS) == null) viewModel.show(R.string.onboarding_settings_failed)
+                                },
+                                onUseMarmaladeInFuto = {
+                                    futoPackage?.let {
+                                        launchFuto(context, futoPopup, it, FutoMode.POPUP, viewModel::onFutoUnavailable)
+                                    }
+                                },
+                                onCheckFutoAgain = {
+                                    futoPackage?.let {
+                                        launchFuto(context, futoCheck, it, FutoMode.CHECK, viewModel::onFutoUnavailable)
+                                    }
+                                },
+                            )
+                            OnboardingStep.SPEECH_SERVICE -> SpeechServiceStep(
+                                selected = state.speechServiceSelected,
+                                onOpenSettings = {
+                                    if (SystemSettings.open(context, SettingsLink.VOICE_INPUT) == null) viewModel.show(R.string.onboarding_settings_failed)
+                                },
+                            )
+                            OnboardingStep.DONE -> DoneStep(state = state)
+                        }
                     }
                 }
             }
@@ -464,6 +477,15 @@ private fun ResizeForKeyboard() {
     DisposableEffect(window) {
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         onDispose { window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN) }
+    }
+}
+
+/** Swallows every touch before the content under it sees one. */
+private fun Modifier.blockTouches(): Modifier = pointerInput(Unit) {
+    awaitPointerEventScope {
+        while (true) {
+            awaitPointerEvent(PointerEventPass.Initial).changes.forEach { it.consume() }
+        }
     }
 }
 
@@ -621,9 +643,9 @@ private fun AnnounceDownload(name: String, installState: InstallState) {
 }
 
 /**
- * marmalade-design's accent button, the one per screen: orange in light
- * mode, rich brown with toast ink in dark mode (primaryContainer there;
- * the theme's dark primary is toast, and orange stays off dark surfaces).
+ * The accent button, the one per screen: orange in light mode, the
+ * library's dark primaryContainer in dark mode (Orange 800 with light ink
+ * in Marmalade, a step quieter than the orange 400 primary).
  */
 @Composable
 internal fun accentButtonColors(): ButtonColors {
@@ -645,7 +667,7 @@ private fun WelcomeStep(highContrast: Boolean, onHighContrastChange: (Boolean) -
         body = stringResource(R.string.onboarding_welcome_body),
         mascotSize = 144.dp,
     ) {
-        OutlinedCard(shape = MaterialTheme.shapes.medium, modifier = Modifier.fillMaxWidth()) {
+        MarmaladeCard(modifier = Modifier.fillMaxWidth()) {
             Column(modifier = Modifier.padding(16.dp)) {
                 Text(
                     text = stringResource(R.string.onboarding_privacy_title),
@@ -665,7 +687,7 @@ private fun WelcomeStep(highContrast: Boolean, onHighContrastChange: (Boolean) -
         // The High contrast preset in one tap, before the orange screens that
         // follow (#68). TalkBack says the switch's own "On" / "Off"; its label
         // already says what it is, so there is no announcement of our own.
-        OutlinedCard(shape = MaterialTheme.shapes.medium, modifier = Modifier.fillMaxWidth()) {
+        MarmaladeCard(modifier = Modifier.fillMaxWidth()) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -770,7 +792,9 @@ private fun ModelStep(
                 modifier = Modifier.semantics(mergeDescendants = true) { liveRegion = LiveRegionMode.Polite },
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                CircularProgressIndicator(modifier = Modifier.size(20.dp), strokeWidth = 2.dp)
+                // Working dots, not a spinning ring (#84); "in progress" for
+                // TalkBack as the ring was.
+                WorkingDots()
                 Spacer(Modifier.width(8.dp))
                 Text(
                     text = stringResource(R.string.onboarding_recommend_checking),
@@ -930,7 +954,7 @@ private fun FutoCard(
     onUseMarmalade: () -> Unit,
     onCheckAgain: () -> Unit,
 ) {
-    OutlinedCard(shape = MaterialTheme.shapes.medium, modifier = Modifier.fillMaxWidth()) {
+    MarmaladeCard(modifier = Modifier.fillMaxWidth()) {
         Column(modifier = Modifier.padding(16.dp)) {
             CardTitle(title)
             Spacer(Modifier.height(8.dp))
@@ -940,7 +964,7 @@ private fun FutoCard(
                     modifier = Modifier.semantics(mergeDescendants = true) { liveRegion = LiveRegionMode.Polite },
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
-                    CircularProgressIndicator(modifier = Modifier.size(20.dp), strokeWidth = 2.dp)
+                    WorkingDots()
                     Spacer(Modifier.width(8.dp))
                     Text(
                         text = stringResource(R.string.onboarding_futo_checking),
@@ -1031,7 +1055,7 @@ private fun SpeechServiceStep(selected: Boolean, onOpenSettings: () -> Unit) {
 /** A titled card of advice, with optional content under the text. */
 @Composable
 private fun InfoCard(title: String, body: String, content: @Composable ColumnScope.() -> Unit = {}) {
-    OutlinedCard(shape = MaterialTheme.shapes.medium, modifier = Modifier.fillMaxWidth()) {
+    MarmaladeCard(modifier = Modifier.fillMaxWidth()) {
         Column(modifier = Modifier.padding(16.dp)) {
             CardTitle(title)
             Spacer(Modifier.height(4.dp))
@@ -1060,7 +1084,7 @@ private fun DoneStep(state: OnboardingState) {
         body = stringResource(if (state.allDone) R.string.onboarding_done_body else R.string.onboarding_done_body_partial),
         mascotSize = 144.dp,
     ) {
-        OutlinedCard(shape = MaterialTheme.shapes.medium, modifier = Modifier.fillMaxWidth()) {
+        MarmaladeCard(modifier = Modifier.fillMaxWidth()) {
             Column(
                 modifier = Modifier.padding(16.dp),
                 verticalArrangement = Arrangement.spacedBy(12.dp),

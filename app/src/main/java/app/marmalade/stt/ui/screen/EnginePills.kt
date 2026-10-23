@@ -26,6 +26,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import app.marmalade.stt.R
 import app.marmalade.stt.ui.theme.accent
+import app.marmalade.ui.theme.depth
 
 // The pills of the Engines card, the details dialog and the setup guide's
 // recommended engine (the design lab's .pill): small non-interactive labels.
@@ -50,7 +51,8 @@ fun EnginePills(facts: List<EngineFact>, modifier: Modifier = Modifier, long: Bo
                 EngineFact.MayBeSlow -> SlowPill(text)
                 is EngineFact.Streaming, EngineFact.Developer -> Pill(
                     text = text,
-                    color = MaterialTheme.colorScheme.surfaceVariant,
+                    // Dark: raised, like the dialog's tiles (#84; surfaceVariant is now the dialog's own colour).
+                    color = if (MaterialTheme.depth.isDark) MaterialTheme.depth.raised else MaterialTheme.colorScheme.surfaceVariant,
                     contentColor = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }

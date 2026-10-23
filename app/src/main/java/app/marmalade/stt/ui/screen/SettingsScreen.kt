@@ -14,6 +14,7 @@ import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
@@ -40,6 +41,7 @@ import app.marmalade.stt.ui.components.SettingsRow
 import app.marmalade.stt.ui.components.SettingsSwitchRow
 import app.marmalade.stt.ui.components.TopBarTitle
 import app.marmalade.stt.ui.rememberUiLocale
+import app.marmalade.ui.theme.depth
 import java.util.Locale
 
 // -----------------------------------------------------------------------------
@@ -155,6 +157,8 @@ fun SettingsScreen(
         },
         snackbarHost = { SnackbarHost(snackbarHostState) },
     ) { innerPadding ->
+        // Section breaks are the quiet row hairline (#84).
+        val line = MaterialTheme.depth.line
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -167,7 +171,7 @@ fun SettingsScreen(
                     onModeChange = viewModel::setThemeMode,
                     onPresetChange = viewModel::setThemePreset,
                 )
-                HorizontalDivider(modifier = Modifier.padding(top = 8.dp))
+                HorizontalDivider(modifier = Modifier.padding(top = 8.dp), color = line)
             }
 
             speech?.let { prefs ->
@@ -176,7 +180,7 @@ fun SettingsScreen(
                     onRecognitionLanguageChange = viewModel::setRecognitionLanguage,
                     onKeepModelLoadedChange = viewModel::setKeepModelLoaded,
                 )
-                HorizontalDivider(modifier = Modifier.padding(top = 8.dp))
+                HorizontalDivider(modifier = Modifier.padding(top = 8.dp), color = line)
                 EndOfSpeechSection(
                     prefs = prefs,
                     onKeyboardEndChange = viewModel::setKeyboardEnd,
@@ -185,7 +189,7 @@ fun SettingsScreen(
                     onPatienceChange = viewModel::setPatience,
                     onEndWordsChange = viewModel::setEndWords,
                 )
-                HorizontalDivider(modifier = Modifier.padding(top = 8.dp))
+                HorizontalDivider(modifier = Modifier.padding(top = 8.dp), color = line)
             }
 
             cleanup?.let { config ->
@@ -199,11 +203,11 @@ fun SettingsScreen(
                     onOpenDictionary = onNavigateToDictionary,
                     onOpenSnippets = onNavigateToSnippets,
                 )
-                HorizontalDivider(modifier = Modifier.padding(top = 8.dp))
+                HorizontalDivider(modifier = Modifier.padding(top = 8.dp), color = line)
             }
 
             SupportSection()
-            HorizontalDivider(modifier = Modifier.padding(top = 8.dp))
+            HorizontalDivider(modifier = Modifier.padding(top = 8.dp), color = line)
 
             SectionHeader(stringResource(R.string.settings_about))
             SettingsRow(
@@ -220,7 +224,7 @@ fun SettingsScreen(
             )
 
             speech?.let { prefs ->
-                HorizontalDivider(modifier = Modifier.padding(top = 8.dp))
+                HorizontalDivider(modifier = Modifier.padding(top = 8.dp), color = line)
                 DeveloperSection(
                     prefs = prefs,
                     onDeveloperEnginesChange = viewModel::setDeveloperEngines,

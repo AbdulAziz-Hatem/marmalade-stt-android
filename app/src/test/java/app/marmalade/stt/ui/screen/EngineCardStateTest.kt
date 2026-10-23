@@ -71,11 +71,6 @@ class EngineCardStateTest {
         assertEquals(EngineCardUi(NONE, listOf(REMOVE)), engineCardUi(canary, installed, prefs = null))
         // A hidden developer engine: picking it would be ignored.
         assertEquals(EngineCardUi(NONE, listOf(REMOVE)), engineCardUi(granite, installed, SpeechPrefs()))
-        // Recommended makes it visible, and so pickable.
-        assertEquals(
-            EngineCardUi(SELECTABLE, listOf(REMOVE)),
-            engineCardUi(granite, installed, SpeechPrefs(selectedEngineId = canary.id, recommendedEngineId = granite.id)),
-        )
     }
 
     private val p110 = SttEngineCatalog.byId("parakeet-tdt-110m-en")!!

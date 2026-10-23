@@ -39,7 +39,7 @@ import app.marmalade.stt.data.LicenseCatalog
 import app.marmalade.stt.ui.components.DetailTopBar
 import app.marmalade.stt.ui.components.SectionHeader
 import app.marmalade.stt.ui.contentDirection
-import app.marmalade.stt.ui.theme.accent
+import app.marmalade.ui.theme.depth
 import app.marmalade.stt.util.openUrl
 import java.io.IOException
 
@@ -96,7 +96,7 @@ fun LicensesScreen(
             })
 
             LicenseCatalog.groupedByLicense().forEach { (license, members) ->
-                HorizontalDivider()
+                HorizontalDivider(color = MaterialTheme.depth.line)
                 SectionHeader(license.id)
                 members.forEach { component ->
                     ComponentRow(
@@ -144,7 +144,7 @@ private fun PostureSection(onOpenSource: () -> Unit) {
                 contentDescription = null,
             )
         },
-        colors = ListItemDefaults.colors(containerColor = MaterialTheme.colorScheme.surface),
+        colors = licenseRowColors(),
     )
 }
 
@@ -179,16 +179,25 @@ private fun ComponentRow(
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                 }
+                // Full ink, a step above the dim copyright lines, not the
+                // accent (#84, as TTS's #83). The whole row is the tap target.
                 Text(
                     text = stringResource(R.string.licenses_view_full),
                     style = MaterialTheme.typography.labelMedium,
-                    color = MaterialTheme.accent.text,
+                    color = MaterialTheme.colorScheme.onSurface,
                 )
             }
         },
-        colors = ListItemDefaults.colors(containerColor = MaterialTheme.colorScheme.surface),
+        colors = licenseRowColors(),
     )
 }
+
+/** Rows sit on the page; the chevron takes the quiet glyph ink (#84). */
+@Composable
+private fun licenseRowColors() = ListItemDefaults.colors(
+    containerColor = MaterialTheme.depth.page,
+    trailingIconColor = MaterialTheme.depth.faint,
+)
 
 /**
  * [LicenseCatalog]'s entries are English: in a right-to-left UI they keep

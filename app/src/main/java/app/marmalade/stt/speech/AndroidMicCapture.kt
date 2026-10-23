@@ -36,9 +36,13 @@ private const val TAG = "MicCapture"
  *   in the foreground and ours is not (#90). Null: the mic is ours.
  * @throws MicCaptureException when the mic can't be opened or started.
  */
+fun openMicCapture(hopSamples: Int, hardwareEffects: Boolean, attribution: Context? = null): MicCapture =
+    MicOverride.factory?.invoke(hopSamples, hardwareEffects) ?: openAndroidMic(hopSamples, hardwareEffects, attribution)
+
+/** The real microphone: [openMicCapture] without [MicOverride]. */
 // Permission is the caller's job; a missing grant is caught below as SecurityException.
 @SuppressLint("MissingPermission")
-fun openMicCapture(hopSamples: Int, hardwareEffects: Boolean, attribution: Context? = null): MicCapture {
+internal fun openAndroidMic(hopSamples: Int, hardwareEffects: Boolean, attribution: Context? = null): MicCapture {
     val minBuf = AudioRecord.getMinBufferSize(
         MIC_SAMPLE_RATE, AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT,
     )

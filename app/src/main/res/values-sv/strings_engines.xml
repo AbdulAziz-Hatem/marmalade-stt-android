@@ -66,5 +66,5 @@
     <string name="engine_desc_nemotron_35">NVIDIA:s strömmande modell för hindi, arabiska och vietnamesiska: texten visas medan du pratar.</string>
     <string name="engine_desc_whisper_turbo">OpenAI Whisper large-v3-turbo, flerspråkig. Den mest exakta Whisper-modellen. Texten visas när du pausar.</string>
     <string name="engine_desc_granite">IBM:s engelska CTC-modell: den mest exakta i våra tester på engelska. Versaler och skiljetecken kommer från appens egen formaterare.</string>
-    <string name="engine_desc_qwen3">Alibabas offlinemodell med en liten språkmodellsavkodare: 30 språk, som identifieras automatiskt, och den mest exakta för kinesiska. Texten visas när du pausar.</string>
+    <string name="engine_desc_qwen3">Alibabas offlinemodell med en liten språkmodellsavkodare: 30 språk, som identifieras automatiskt, och rekommenderad för kinesiska och koreanska. Texten visas när du pausar.</string>
 </resources>

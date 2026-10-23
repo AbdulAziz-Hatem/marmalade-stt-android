@@ -1,0 +1,14 @@
+22:12:06 parakeet-ultra dictate  level: 100  temperature: 362  thermal=Thermal Status: 1
+22:17:05 parakeet-ultra popup  level: 100  temperature: 376  thermal=Thermal Status: 1
+22:21:45 parakeet-ultra keyboard  level: 100  temperature: 385  thermal=Thermal Status: 1
+22:25:09 parakeet-tdt-110m-en dictate  level: 100  temperature: 388  thermal=Thermal Status: 1
+22:30:04 parakeet-tdt-110m-en popup  level: 100  temperature: 394  thermal=Thermal Status: 1
+22:34:42 parakeet-tdt-110m-en keyboard  level: 100  temperature: 396  thermal=Thermal Status: 1
+22:37:50 turbo dictate  level: 100  temperature: 398  thermal=Thermal Status: 1
+22:40:29 end  level: 100  temperature: 400  thermal=Thermal Status: 1
+22:40:50 st threads  level: 100  temperature: 402  thermal=Thermal Status: 1
+22:44:11 kb trim  level: 100  temperature: 404  thermal=Thermal Status: 1
+22:48:02 onset  level: 100  temperature: 404  thermal=Thermal Status: 1
+22:51:06 pin  level: 100  temperature: 406  thermal=Thermal Status: 1
+22:54:06 t3t5  level: 100  temperature: 408  thermal=Thermal Status: 1
+22:57:09 end  level: 100  temperature: 408  thermal=Thermal Status: 1

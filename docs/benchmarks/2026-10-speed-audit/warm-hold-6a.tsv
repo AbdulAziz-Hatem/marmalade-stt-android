@@ -1,0 +1,15 @@
+trial	surface	engine	loaded	process_ms	mic	ready	load_ms	req_to_clip	onset_to_vad	onset_to_partial	partials	partial_median	partial_max	partial_total	vad_ms	vad_win	vad_max_us	st_checks	st_ms	st_last_silence	eos_to_stop	wait_vad	wait_mic	backlog	final_decode	final_audio	spec_hit	spec_decode	spec_done_after_end	eos_to_sent	stop_to_sent	cleanup_commit	sent_to_delivered	eos_to_delivered	stop_to_delivered	parity_diff	spec_decodes	spec_wasted	clip_ms
+keyboard-parakeet-ultra-cold0-00	keyboard	parakeet-ultra	false	70400	309	2999	2657	309	2399	2753	4	407	484	1537	271	184	10978				896	1008	1020	12	0	5624	1	450	1020	1030	134	19	58	1088	192		1	0	4760
+keyboard-parakeet-ultra-cold1-00	keyboard	parakeet-ultra	false	115239	204	3009	2778	205	2472	2787	4	492	506	1668	216	181	10263				830	912	920	8	0	5528	1	550	920	1337	507	12	13	1350	520		1	0	4760
+keyboard-parakeet-ultra-cold2-00	keyboard	parakeet-ultra	false	160384	179	2971	2764	179	2454	2760	4	478	489	1645	270	181	13199				841	912	920	8	0	5528	1	498	920	1162	321	11	13	1175	334		1	0	4760
+keyboard-parakeet-ultra-cold3-00	keyboard	parakeet-ultra	false	194680	92	2942	2821	92	2521	2812	4	467	484	1616	270	184	14957				924	1008	1020	12	0	5624	1	564	1020	1337	413	13	14	1351	427		1	0	4760
+keyboard-parakeet-ultra-cold4-00	keyboard	parakeet-ultra	false	229055	92	2846	2727	92	2414	2701	4	383	438	1425	224	184	10091				932	1008	1020	12	0	5624	1	492	1020	1076	144	12	31	1107	175		1	0	4760
+keyboard-parakeet-ultra-cold5-00	keyboard	parakeet-ultra	false	263626	91	2880	2761	91	2457	2783	4	424	493	1636	215	184	12064				940	1008	1020	12	0	5624	1	502	1020	1270	330	15	15	1285	345		1	0	4760
+keyboard-parakeet-ultra-switch-00	keyboard	parakeet-ultra	false	669961	84	2828	2717	84	2419	2745	4	389	506	1490	276	196	17601				1270	1200	1220	20	0	4616	1	414	1120	1350	80	12	56	1406	136		1	0	4760
+keyboard-parakeet-ultra-trim-00	keyboard	parakeet-ultra	false	622600	122	2847	2693	122	2386	2658	4	424	435	1475	182	187	6332				977	1104	1120	16	0	5720	1	412	1120	1054	77	17	57	1111	134		1	0	4760
+keyboard-parakeet-ultra-warm0-00	keyboard	parakeet-ultra	true	88384																																			
+keyboard-parakeet-ultra-warm1-00	keyboard	parakeet-ultra	true	143600	208	211		208	564	734	8	305	471	2361	414	181	10700				791	912	920	8	0	5528	1	517	920	1097	306	12	13	1110	319		1	0	4760
+keyboard-parakeet-ultra-warm2-00	keyboard	parakeet-ultra	true	178085	134	135		134	561	736	8	355	486	2501	403	184	11841				899	1008	1020	12	0	5624	1	513	1020	1178	279	12	13	1191	292		1	0	4760
+keyboard-parakeet-ultra-warm3-00	keyboard	parakeet-ultra	true	212462	100	102		100	561	714	8	253	465	2295	297	184	12499				932	1008	1020	12	0	5624	1	419	1020	984	52	12	85	1069	137		1	0	4760
+keyboard-parakeet-ultra-warm4-00	keyboard	parakeet-ultra	true	246673	102	103		102	583	778	8	287	501	2525	392	184	12769				914	1008	1020	12	0	5624	1	497	1020	1291	377	15	16	1307	393		1	0	4760
+keyboard-parakeet-ultra-warm5-00	keyboard	parakeet-ultra	true	281457	99	100		99	565	734	8	278	512	2537	517	184	19912				936	1008	1020	12	0	5624	1	497	1020	1295	359	13	15	1310	374		1	0	4760

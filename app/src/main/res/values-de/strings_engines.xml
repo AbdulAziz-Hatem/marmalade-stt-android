@@ -64,5 +64,5 @@
     <string name="engine_desc_nemotron_35">NVIDIAs Streaming-Modell für Hindi, Arabisch und Vietnamesisch: Der Text erscheint, während du sprichst.</string>
     <string name="engine_desc_whisper_turbo">OpenAI Whisper large-v3-turbo, mehrsprachig. Das genaueste Whisper. Der Text erscheint, wenn du eine Pause machst.</string>
     <string name="engine_desc_granite">IBMs englisches CTC-Modell: die genaueste Engine in unseren Tests auf Englisch. Groß- und Kleinschreibung sowie Satzzeichen kommen vom eigenen Formatierer der App.</string>
-    <string name="engine_desc_qwen3">Alibabas Offline-Modell mit kleinem LLM-Decoder: 30 Sprachen, automatisch erkannt, und das genaueste für Chinesisch. Der Text erscheint, wenn du eine Pause machst.</string>
+    <string name="engine_desc_qwen3">Alibabas Offline-Modell mit kleinem LLM-Decoder: 30 Sprachen, automatisch erkannt, empfohlen für Chinesisch und Koreanisch. Der Text erscheint, wenn du eine Pause machst.</string>
 </resources>

@@ -330,3 +330,15 @@ Not changed: de "Barrierefreiheitsmodus" (Android's section is
 "Barrierefreiheit" is the standard term); es/it "El más rápido" / "Il più
 veloce" are correct and masculine like the rest of the ladder, and no longer
 than the de/fr tiles.
+
+## Qwen3-ASR description (#89, 2026-10-22)
+
+`engine_desc_qwen3` changed from "the most accurate for Chinese" to
+"recommended for Chinese and Korean" (Korean is recommended for its cost,
+not its accuracy). One independent Opus reviewer read all 20 locales
+against the glossaries, each locale's `engine_badge_recommended` and the
+store listings' names for Chinese and Korean. 19 OK; applied:
+
+- ko: "중국어와 한국어에 추천합니다" shared the model as its subject with
+  감지하며, so it read as "the model recommends Chinese and Korean"; now
+  "중국어와 한국어에 추천하는 모델입니다".

@@ -44,12 +44,9 @@ fun SupportSection() {
         label = stringResource(R.string.settings_support_dev),
         supporting = stringResource(R.string.settings_support_dev_desc),
         leading = {
-            // A vector heart (not an emoji), tinted primary so the row pops.
-            Icon(
-                imageVector = Icons.Filled.Favorite,
-                contentDescription = null,
-                tint = MaterialTheme.colorScheme.primary,
-            )
+            // A vector heart (not an emoji), in the quiet glyph ink like the
+            // other row icons: a primary tint put orange on the row (#84).
+            Icon(imageVector = Icons.Filled.Favorite, contentDescription = null)
         },
         modifier = Modifier.clickable(role = Role.Button, onClickLabel = openInBrowser) {
             openUrl(context, SPONSORS_URL)
@@ -60,7 +57,13 @@ fun SupportSection() {
         supporting = stringResource(R.string.settings_more_marmalade_desc),
         leading = {
             // Decorative: TalkBack would read "tangerine" before the label (#68).
-            Text(text = "🍊", style = MaterialTheme.typography.titleMedium, modifier = Modifier.clearAndSetSemantics {})
+            // Opaque ink: the row's translucent glyph ink would fade the emoji (#84).
+            Text(
+                text = "🍊",
+                style = MaterialTheme.typography.titleMedium,
+                color = MaterialTheme.colorScheme.onSurface,
+                modifier = Modifier.clearAndSetSemantics {},
+            )
         },
         modifier = Modifier.clickable(role = Role.Button, onClickLabel = openInBrowser) {
             openUrl(context, MORE_MARMALADE_URL)

@@ -15,20 +15,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-
-/**
- * Color for the "marmalade" wordmark, mode-aware per
- * marmalade-design-scheme-v0: orange in light, cream in dark — bright
- * orange on a dark surface is an explicit anti-pattern. Non-Marmalade
- * presets fall back to the scheme primary (same rule as
- * marmalade-android's extended-color fallback). Provided by
- * [MarmaladeSttTheme]; the default matches the light-mode Marmalade value
- * so previews outside the theme still render sanely.
- */
-val LocalWordmarkColor = staticCompositionLocalOf { Color(0xFFF97316) }
+import app.marmalade.ui.theme.MarmaladeTheme
+import app.marmalade.ui.theme.MarmaladeToast
+import app.marmalade.ui.theme.MarmaladeToastInk
+import app.marmalade.ui.theme.darkDepth
+import app.marmalade.ui.theme.lightDepth
 
 /** The preset's accent colours ([AccentColors]), provided by [MarmaladeSttTheme]. */
-val LocalAccentColors = staticCompositionLocalOf { AccentColors(pill = Toast, pillInk = ToastInk, ink = ToastInk) }
+val LocalAccentColors = staticCompositionLocalOf {
+    AccentColors(pill = MarmaladeToast, pillInk = MarmaladeToastInk, ink = MarmaladeToastInk, marmaladePalette = true)
+}
 
 /** The accent colours of the theme in use: `MaterialTheme.accent.ink`. */
 val MaterialTheme.accent: AccentColors
@@ -50,13 +46,14 @@ fun MarmaladeSttTheme(appearance: Appearance, content: @Composable () -> Unit) {
 }
 
 /**
- * Marmalade STT app theme with Material You dynamic colors and curated presets.
+ * Marmalade STT app theme: the shared library's [MarmaladeTheme] (#87) with
+ * this app's presets, accent colours and focus ripple.
  *
  * @param darkTheme Whether to use the dark color scheme.
  * @param themePreset The selected theme preset. [ThemePreset.SYSTEM] uses
  *   Material You dynamic colors on Android 12+, and is Marmalade on older
  *   devices. [ThemePreset.MARMALADE] uses the hand-tuned orange palette.
- *   Other presets recolour its accent roles ([presetScheme]).
+ *   Other presets are the library's, or High contrast ([presetScheme]).
  * @param content The composable content to render within this theme.
  */
 @Composable
@@ -89,14 +86,18 @@ fun MarmaladeSttTheme(
     }
 
     CompositionLocalProvider(
-        LocalWordmarkColor provides wordmarkColor,
         LocalAccentColors provides accentColors(preset, darkTheme, colorScheme),
         LocalRippleConfiguration provides FocusVisibleRipple,
     ) {
-        MaterialTheme(
+        MarmaladeTheme(
             colorScheme = colorScheme,
-            shapes = MarmaladeShapes,
-            typography = MarmaladeTypography,
+            darkTheme = darkTheme,
+            wordmarkColor = wordmarkColor,
+            depth = remember(colorScheme, darkTheme, preset) {
+                val depth = if (darkTheme) darkDepth(colorScheme) else lightDepth(colorScheme)
+                // High contrast keeps its full-strength quiet text in the ramp too.
+                if (preset == ThemePreset.HIGH_CONTRAST) depth.copy(dim = colorScheme.onSurfaceVariant) else depth
+            },
             content = content,
         )
     }

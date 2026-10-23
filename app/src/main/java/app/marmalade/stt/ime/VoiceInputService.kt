@@ -32,6 +32,7 @@ import app.marmalade.stt.data.SpeechSettings
 import app.marmalade.stt.data.TextProcSettings
 import app.marmalade.stt.speech.EngineHold
 import app.marmalade.stt.speech.ListenSurface
+import app.marmalade.stt.speech.ListenTiming
 import app.marmalade.stt.speech.LivePipeline
 import app.marmalade.stt.speech.SpeechEngineManager
 import app.marmalade.stt.speech.SttErrorKind
@@ -337,7 +338,11 @@ class VoiceInputService :
         var committed = false
         when (event) {
             is SttEvent.Partial -> writer.showPartial(event.text)
-            is SttEvent.Final -> committed = writer.commitFinal(event.text, event.nearSilent, pipeline.get(), event.silent)
+            is SttEvent.Final -> {
+                val startedAt = SystemClock.elapsedRealtime()
+                committed = writer.commitFinal(event.text, event.nearSilent, pipeline.get(), event.silent)
+                ListenTiming.delivered("keyboard", startedAt)
+            }
             is SttEvent.NoSpeech, is SttEvent.Error -> writer.clearPartial()
             else -> Unit
         }

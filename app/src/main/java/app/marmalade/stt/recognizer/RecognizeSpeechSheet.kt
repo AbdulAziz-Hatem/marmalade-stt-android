@@ -1,6 +1,9 @@
 package app.marmalade.stt.recognizer
 
 import androidx.annotation.StringRes
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.togetherWith
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -28,9 +31,9 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Lock
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -43,7 +46,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.focus.focusProperties
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.LiveRegionMode
@@ -55,6 +58,8 @@ import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.paneTitle
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
+import androidx.compose.ui.semantics.text
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -68,11 +73,16 @@ import app.marmalade.stt.ui.components.rememberAnnouncer
 import app.marmalade.stt.ui.components.rememberMicMeter
 import app.marmalade.stt.ui.contentDirection
 import app.marmalade.stt.ui.screen.languageNameInText
-import app.marmalade.stt.ui.theme.LocalWordmarkColor
 import app.marmalade.stt.ui.theme.Wordmark
+import app.marmalade.stt.ui.theme.accent
+import app.marmalade.ui.theme.LocalWordmarkColor
+import app.marmalade.ui.theme.MarmaladeMotion
+import app.marmalade.ui.theme.depth
+import app.marmalade.ui.theme.riseIn
 
 private val MIC_SIZE = 64.dp
 private val RING_REACH = 20.dp
+private val SHEET_CORNER = 28.dp
 
 /**
  * The speech-input sheet: a card at the bottom of the screen over a scrim.
@@ -93,10 +103,11 @@ fun RecognizeSpeechSheet(
     onOpenApp: () -> Unit,
     onOpenSettings: () -> Unit,
 ) {
+    val depth = MaterialTheme.depth
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Black.copy(alpha = 0.32f))
+            .background(depth.scrim)
             // The scrim closes the sheet; TalkBack users have the Cancel button.
             // Not focusable either: a keyboard user would Tab onto an invisible
             // stop whose Enter cancels the request (#68).
@@ -118,9 +129,23 @@ fun RecognizeSpeechSheet(
             .windowInsetsPadding(WindowInsets.statusBars),
         contentAlignment = Alignment.BottomCenter,
     ) {
+        // The library's sheet step over its scrim, as TTS's MarmaladeSheet
+        // (#84), plus a hairline along the top edge: this popup floats over
+        // other apps, and in dark mode its edge vanished over a dark app
+        // dimmed to the same tone. The hairline follows the corners and fades
+        // out where they turn down.
+        val shape = RoundedCornerShape(topStart = SHEET_CORNER, topEnd = SHEET_CORNER)
+        val corner = with(LocalDensity.current) { SHEET_CORNER.toPx() }
+        val edge = Brush.verticalGradient(
+            0f to depth.line2,
+            1f to depth.line2.copy(alpha = 0f),
+            startY = corner / 2,
+            endY = corner,
+        )
         Surface(
-            shape = RoundedCornerShape(topStart = 28.dp, topEnd = 28.dp),
-            color = MaterialTheme.colorScheme.surface,
+            shape = shape,
+            color = depth.sheet,
+            border = BorderStroke(1.dp, edge),
             // A pane title tells TalkBack what this dialog-like card is (#68).
             modifier = Modifier
                 .fillMaxWidth()
@@ -171,16 +196,7 @@ private fun ListeningBody(
         modifier = Modifier.semantics { heading() },
     )
     Spacer(Modifier.height(4.dp))
-    if (state.locked) {
-        LockedStatus()
-    } else {
-        Text(
-            text = stringResource(state.phase.statusRes()),
-            style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-            modifier = Modifier.semantics { liveRegion = LiveRegionMode.Polite },
-        )
-    }
+    StatusLine(state)
     Spacer(Modifier.height(12.dp))
     MicButton(state, level, onTap = onDone, onLongPress = onLock)
     Spacer(Modifier.height(12.dp))
@@ -298,6 +314,7 @@ private fun MicButton(state: SheetState, level: () -> Float, onTap: () -> Unit, 
                 modifier = Modifier
                     .size(MIC_SIZE + 10.dp)
                     .clearAndSetSemantics {},
+                color = MaterialTheme.accent.progress,
                 strokeWidth = 3.dp,
             )
         }
@@ -358,24 +375,52 @@ private fun SheetProblem?.messageRes(): Int = when (this) {
     SheetProblem.LANGUAGE_NOT_SUPPORTED -> R.string.recognizer_language_not_supported
 }
 
-/** "Locked: tap to stop" with a lock icon; TalkBack announces it (a polite live region). */
+/**
+ * What the request is doing, or "Locked: tap to stop" with a lock icon while
+ * locked (#43); TalkBack announces it (a polite live region). One node for
+ * both, so locking is announced like any other change (#84: the locked line
+ * used to be a node of its own). A new status rises in over the old one; the
+ * live region and the words TalkBack reads sit on the outer Box, which stays
+ * put, and the animated lines inside are hidden from it.
+ */
 @Composable
-private fun LockedStatus() {
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.semantics(mergeDescendants = true) { liveRegion = LiveRegionMode.Polite },
+private fun StatusLine(state: SheetState) {
+    val textRes = if (state.locked) R.string.lock_status else state.phase.statusRes()
+    val spoken = stringResource(textRes)
+    val enter = riseIn(MarmaladeMotion.BASE_MS)
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier.clearAndSetSemantics {
+            liveRegion = LiveRegionMode.Polite
+            text = AnnotatedString(spoken)
+        },
     ) {
-        Icon(
-            Icons.Filled.Lock,
-            contentDescription = null,
-            tint = MaterialTheme.colorScheme.onSurfaceVariant,
-            modifier = Modifier.size(16.dp),
-        )
-        Spacer(Modifier.width(6.dp))
-        Text(
-            text = stringResource(R.string.lock_status),
-            style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-        )
+        AnimatedContent(
+            targetState = SheetStatus(textRes, state.locked),
+            contentAlignment = Alignment.Center,
+            transitionSpec = { (enter togetherWith MarmaladeMotion.fadeExit) using null },
+            label = "sheetStatus",
+        ) { status ->
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                if (status.locked) {
+                    Icon(
+                        Icons.Filled.Lock,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.size(16.dp),
+                    )
+                    Spacer(Modifier.width(6.dp))
+                }
+                Text(
+                    text = stringResource(status.textRes),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    textAlign = TextAlign.Center,
+                )
+            }
+        }
     }
 }
+
+/** One status line's look: its words and whether the lock shows. */
+private data class SheetStatus(@StringRes val textRes: Int, val locked: Boolean)

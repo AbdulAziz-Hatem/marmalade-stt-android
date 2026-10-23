@@ -184,7 +184,10 @@ time: Pause (Silero's minimum silence ends the utterance; 0.2 / 0.5 / 0.9 /
 v3.2 decides, re-checked every 0.5 s, 3 s ceiling; plus threshold, propose
 and ceiling variants, `turn.MODES`; `--modes` also takes any
 `pause-<s>` or `smart-p<propose>-t<threshold>-c<ceiling>` name, e.g.
-`smart-p0.4-t0.6-c1.5`, via `turn.mode_config`). `TurnGate` is the rule on its own and
+`smart-p0.4-t0.6-c1.5`, via `turn.mode_config`; `-e<p>-n<s>` adds an early
+check at the propose point that ends the turn only above `e`, the next check
+coming at `n` s with the usual threshold, e.g. `smart-p0.5-e0.95-n1.2-t0.7-c2.5`,
+#91). `TurnGate` is the rule on its own and
 `turn_session` the loop around it; like the app, it cuts a turn still going
 at 28.6 s with no segment boundary to end at (#48, mirrored in #54), and
 decodes the rest only if it holds speech (`turn.decodable`). Ground truth
