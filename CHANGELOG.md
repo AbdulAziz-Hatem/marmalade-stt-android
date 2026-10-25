@@ -6,6 +6,19 @@ and this project follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.2.2] - 2026-10-24
+
+### Fixed
+- Apps that stream their own audio, such as Waze's voice commands, get
+  their text at the end of speech (#116, GitHub #7), on phones fast enough
+  for the chosen engine; slower ones still lag (#118). Waze keeps its
+  recording open for 10 s, and the result only arrived when it closed it,
+  4–6 s later than needed. The End of speech setting (Smart Turn or
+  Auto-stop) now ends these requests as it does the microphone's. A
+  recording handed over as a file is still transcribed to its end. The
+  audio format such an app sends is now read whatever number type it uses:
+  Waze's sampling rate was ignored (16 kHz assumed).
+
 ## [1.2.1] - 2026-10-23
 
 ### Fixed

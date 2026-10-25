@@ -88,6 +88,60 @@ class OneShotSessionTest {
     }
 
     @Test
+    fun `an utterance that begins after the first end's stop is not part of the result`() = runTest {
+        // #116: a fast stream is read ahead of the session, so the flush can hold the next sentence.
+        engine.onStop = {
+            engine.send(SttEvent.SpeechStarted, SttEvent.Partial("then"), SttEvent.Final("then call Bob.", nearSilent = false))
+            engine.events.close()
+        }
+        val result = start()
+        engine.send(SttEvent.Ready, SttEvent.SpeechStarted, SttEvent.Final("navigate home.", nearSilent = false))
+        assertEquals(OneShotOutcome.Text("Navigate home."), result.await())
+        // Nor are its partials passed on.
+        assertTrue(seen.none { it is SttEvent.Partial })
+        assertEquals("navigate home.", (result.await() as OneShotOutcome.Text).raw)
+        assertEquals(listOf("Navigate home." to "navigate home."), segments)
+    }
+
+    @Test
+    fun `nor one that begins after an end word`() = runTest {
+        engine.onStop = {
+            engine.send(SttEvent.SpeechStarted, SttEvent.Final("more words.", nearSilent = false))
+            engine.events.close()
+        }
+        val result = start(OneShotEnd.Pause(3_000))
+        engine.send(SttEvent.Ready, SttEvent.SpeechStarted, SttEvent.Final("hello.", nearSilent = false))
+        engine.send(SttEvent.SpeechStarted, SttEvent.Final("", nearSilent = false, endWord = true))
+        assertEquals(OneShotOutcome.Text("Hello."), result.await())
+    }
+
+    @Test
+    fun `nor one that begins after a first end held for the minimum length`() = runTest {
+        engine.onStop = {
+            engine.send(SttEvent.SpeechStarted, SttEvent.Final("late.", nearSilent = false))
+            engine.events.close()
+        }
+        val result = start(minimumLengthMs = 5_000)
+        engine.send(SttEvent.Ready, SttEvent.SpeechStarted, SttEvent.Final("hello.", nearSilent = false))
+        wait(5_000)
+        assertEquals(1, engine.stops)
+        assertEquals(OneShotOutcome.Text("Hello."), result.await())
+    }
+
+    @Test
+    fun `speech that begins as the no-speech timeout stops the engine still counts`() = runTest {
+        // Only a stop at text ends the answer; a timeout's stop heard nothing yet.
+        engine.onStop = {
+            engine.send(SttEvent.SpeechStarted, SttEvent.Final("just in time.", nearSilent = false))
+            engine.events.close()
+        }
+        val result = start()
+        engine.send(SttEvent.Ready)
+        wait(ListenTimeouts.NO_SPEECH_TIMEOUT_MS)
+        assertEquals(OneShotOutcome.Text("Just in time."), result.await())
+    }
+
+    @Test
     fun `nobody speaking times out and reports no match without speech`() = runTest {
         val result = start()
         engine.send(SttEvent.Ready)

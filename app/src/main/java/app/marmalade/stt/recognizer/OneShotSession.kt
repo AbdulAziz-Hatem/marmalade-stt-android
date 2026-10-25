@@ -51,7 +51,8 @@ sealed interface OneShotEnd {
 
     /**
      * Nothing: the request ends when its audio does (the caller stops, or
-     * closes its stream), or the sheet's lock is released. No timeout.
+     * closes its stream), or the sheet's lock is released. No timeout. For a
+     * session segmented by the caller's stream, and a locked sheet.
      */
     data object AudioEnd : OneShotEnd
 }
@@ -66,8 +67,9 @@ sealed interface OneShotEnd {
  *   engine (a hallucination dropped by the filter doesn't count, so
  *   listening goes on), and so does an end word ([SttEvent.Final.endWord]),
  *   even with nothing before it: the user said they are done, so the
- *   request ends with no match. Tap stop never reaches it (#41): the
- *   engine runs the other apps' end of speech
+ *   request ends with no match. An utterance that begins after that stop
+ *   (in the engine's flush) isn't part of the answer (#116). Tap stop never
+ *   reaches it (#41): the engine runs the other apps' end of speech
  *   (`SpeechEngineManager.listen(ListenSurface.APPS)`), which is never Tap
  *   stop, or no utterance would end until the caller stopped;
  * - if nobody speaks for [noSpeechTimeoutMs] after the session starts
@@ -80,7 +82,8 @@ sealed interface OneShotEnd {
  *   stops the engine (the sheet's mic tap or Done).
  *
  * Other apps can ask for other ends (#90, [OneShotEnd]): a segmented
- * session runs to a long pause, a caller's own audio stream to its end.
+ * session runs to a long pause, or to the end of the caller's own audio
+ * stream. A plain request over a caller's stream ends like the mic (#116).
  * [minimumLengthMs] holds every end of its own (first end, end word,
  * timeout) until the request has run that long since [SttEvent.Ready].
  * [maxLengthMs] stops the engine however the request was asked to end, the
@@ -149,6 +152,13 @@ class OneShotSession(
         var heardSpeech = false
         var failure: SttErrorKind? = null
         var minimumLength: Job? = null
+        // The session stopped the engine at a first end or an end word (#116). The engine flushes on
+        // its own thread, and from a caller's stream (read as fast as it is consumed) that can include
+        // an utterance that began after the end: it isn't this request's. A Final with no onset of its
+        // own (the rest of an utterance cut at the length cap) still joins.
+        var endedAtText = false
+        var heldAtText = false
+        var lateSpeech = false
         val cap = maxLengthMs?.let {
             launch {
                 delay(it)
@@ -156,9 +166,16 @@ class OneShotSession(
             }
         }
 
-        // Every end of the session's own goes through here, so the minimum length holds it.
-        fun endNow() {
-            if (longEnough) stopEngine() else stopHeld = true
+        // Every end of the session's own goes through here, so the minimum length holds it. [atText]:
+        // a first end or an end word, not a timeout.
+        fun endNow(atText: Boolean = false) {
+            if (longEnough) {
+                stopEngine()
+                endedAtText = endedAtText || atText
+            } else {
+                stopHeld = true
+                heldAtText = atText
+            }
         }
 
         fun armTimeout(afterSpeech: Boolean) {
@@ -180,18 +197,22 @@ class OneShotSession(
                             minimumLength = launch {
                                 delay(minimumLengthMs)
                                 longEnough = true
-                                if (stopHeld) stopEngine()
+                                if (stopHeld) {
+                                    stopEngine()
+                                    endedAtText = heldAtText
+                                }
                             }
                         }
                         armTimeout(afterSpeech = false)
                     }
                     SttEvent.SpeechStarted -> {
+                        if (endedAtText) lateSpeech = true
                         heardSpeech = true
                         disarmTimeout()
                         // More speech: an end held for the minimum length no longer stands (the next Final decides).
                         stopHeld = false
                     }
-                    is SttEvent.Final -> {
+                    is SttEvent.Final -> if (!lateSpeech) {
                         val startedAt = android.os.SystemClock.elapsedRealtime()
                         val edit = pipeline().process(event.text, before = text, nearSilent = event.nearSilent, silent = event.silent)
                         text = edit.applyTo(text)
@@ -204,14 +225,15 @@ class OneShotSession(
                         }
                         when (end) {
                             OneShotEnd.AudioEnd -> Unit
-                            OneShotEnd.FirstEnd -> if (event.endWord || text.isNotBlank()) endNow() else armTimeout(afterSpeech = true)
-                            is OneShotEnd.Pause -> if (event.endWord) endNow() else armTimeout(afterSpeech = true)
+                            OneShotEnd.FirstEnd -> if (event.endWord || text.isNotBlank()) endNow(atText = true) else armTimeout(afterSpeech = true)
+                            is OneShotEnd.Pause -> if (event.endWord) endNow(atText = true) else armTimeout(afterSpeech = true)
                         }
                     }
                     is SttEvent.Error -> failure = event.kind
                     else -> Unit
                 }
-                onEvent(event)
+                // A late utterance's partials would show the caller words its result won't have.
+                if (!(lateSpeech && event is SttEvent.Partial)) onEvent(event)
             }
         } finally {
             disarmTimeout()

@@ -209,6 +209,40 @@ class RecognitionRequestTest {
     }
 
     @Test
+    fun `a stream's format extras are read whatever number type the caller used`() {
+        // #116: Waze's sampling rate arrived as a Parcel LazyValue (a Serializable), and getIntExtra
+        // fell back to 16 kHz. Over a parcel, as from another app.
+        val intent = Intent().apply {
+            withAudioSource()
+            putExtra(RecognizerIntent.EXTRA_AUDIO_SOURCE_SAMPLING_RATE, java.math.BigDecimal(48_000))
+            putExtra(RecognizerIntent.EXTRA_AUDIO_SOURCE_CHANNEL_COUNT, 2L)
+            putExtra(RecognizerIntent.EXTRA_AUDIO_SOURCE_ENCODING, java.util.concurrent.atomic.AtomicInteger(AudioFormat.ENCODING_PCM_FLOAT))
+        }
+        val parcel = android.os.Parcel.obtain()
+        val received = try {
+            intent.writeToParcel(parcel, 0)
+            parcel.setDataPosition(0)
+            Intent.CREATOR.createFromParcel(parcel)
+        } finally {
+            parcel.recycle()
+        }
+        assertEquals(PcmFormat(48_000, 2, AudioFormat.ENCODING_PCM_FLOAT), RecognitionRequest.from(received).audioSource)
+        received.getParcelableExtra(RecognizerIntent.EXTRA_AUDIO_SOURCE, ParcelFileDescriptor::class.java)?.close()
+    }
+
+    @Test
+    fun `a stream's format extra that isn't a usable number - the default, or a format we refuse`() {
+        val r = request {
+            withAudioSource()
+            putExtra(RecognizerIntent.EXTRA_AUDIO_SOURCE_SAMPLING_RATE, 0)
+            putExtra(RecognizerIntent.EXTRA_AUDIO_SOURCE_CHANNEL_COUNT, "2")
+            // Beyond Int: never wrapped round into a rate that looks valid.
+            putExtra(RecognizerIntent.EXTRA_AUDIO_SOURCE_ENCODING, (1L shl 32) + AudioFormat.ENCODING_PCM_16BIT)
+        }
+        assertEquals(PcmFormat(16_000, 1, Int.MAX_VALUE), r.audioSource)
+    }
+
+    @Test
     fun `hypotheses - the raw text follows only with formatting and room for two`() {
         assertEquals(listOf("Hello."), RecognitionRequest().hypotheses("Hello.", "hello"))
         assertEquals(listOf("Hello.", "hello"), RecognitionRequest(formatting = true).hypotheses("Hello.", "hello"))

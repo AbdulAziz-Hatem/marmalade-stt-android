@@ -316,8 +316,13 @@ public class ProbeActivity extends Activity {
      * and keeps the pipe open for a minute (a stalled caller), or with
      * "trickleMs" writes one byte that often for a minute (a caller keeping
      * the pipe busy with next to no audio; a failed write is logged with its
-     * time: the reader closed); "stopAfterMs" / "cancelAfterMs":
-     * stopListening / cancel after that long.
+     * time: the reader closed); "holdMs": after the clip, silence in real
+     * time until that long after the first write, then the pipe closes (Waze
+     * holds its pipe 10 s, #116); "formatAs" "serializable": the sampling
+     * rate as a BigDecimal (Waze's arrives as a Serializable, #116);
+     * "stopAfterMs" / "cancelAfterMs": stopListening / cancel after that long;
+     * "fileSource": the clip's PCM as a regular file instead of a pipe (#116:
+     * a recording runs to its end).
      */
     private void audioSource() {
         if (Build.VERSION.SDK_INT < 33) {
@@ -337,13 +342,33 @@ public class ProbeActivity extends Activity {
         }
         Wav w = Wav.parse(wav);
         log("wav rate=" + w.rate + " channels=" + w.channels + " bits=" + w.bits + " dataBytes=" + w.dataLength);
+        boolean fileSource = args.getBoolean("fileSource", false);
+        ParcelFileDescriptor file = null;
+        if (fileSource) {
+            try {
+                java.io.File pcm = new java.io.File(getCacheDir(), "probe.pcm");
+                try (OutputStream out = new java.io.FileOutputStream(pcm)) {
+                    out.write(wav, w.dataOffset, w.dataLength);
+                }
+                file = ParcelFileDescriptor.open(pcm, ParcelFileDescriptor.MODE_READ_ONLY);
+                pipe[0].close();
+                pipe[1].close();
+            } catch (IOException e) {
+                log("audioSource file setup failed: " + e);
+                return;
+            }
+        }
         SpeechRecognizer r = recognizer("A");
         Intent i = request()
-            .putExtra(RecognizerIntent.EXTRA_AUDIO_SOURCE, pipe[0])
+            .putExtra(RecognizerIntent.EXTRA_AUDIO_SOURCE, fileSource ? file : pipe[0])
             .putExtra(RecognizerIntent.EXTRA_AUDIO_SOURCE_CHANNEL_COUNT, w.channels)
             .putExtra(RecognizerIntent.EXTRA_AUDIO_SOURCE_ENCODING,
-                w.bits == 8 ? android.media.AudioFormat.ENCODING_PCM_8BIT : android.media.AudioFormat.ENCODING_PCM_16BIT)
-            .putExtra(RecognizerIntent.EXTRA_AUDIO_SOURCE_SAMPLING_RATE, w.rate);
+                w.bits == 8 ? android.media.AudioFormat.ENCODING_PCM_8BIT : android.media.AudioFormat.ENCODING_PCM_16BIT);
+        if ("serializable".equals(args.getString("formatAs"))) {
+            i.putExtra(RecognizerIntent.EXTRA_AUDIO_SOURCE_SAMPLING_RATE, new java.math.BigDecimal(w.rate));
+        } else {
+            i.putExtra(RecognizerIntent.EXTRA_AUDIO_SOURCE_SAMPLING_RATE, w.rate);
+        }
         log("A startListening (audio source)");
         r.startListening(i);
         afterMs("stopAfterMs", () -> { log("A stopListening"); r.stopListening(); });
@@ -351,6 +376,20 @@ public class ProbeActivity extends Activity {
         boolean fast = args.getBoolean("fast", false);
         int stallAfterMs = args.getInt("stallAfterMs", -1);
         int trickleMs = args.getInt("trickleMs", 0);
+        int holdMs = args.getInt("holdMs", 0);
+        if (fileSource) {
+            // The recognizer has its own descriptor once the request has gone out, which waits for a
+            // cold service to start: closing ours at 500 ms failed the parcel ("Bad file descriptor").
+            final ParcelFileDescriptor ours = file;
+            main.postDelayed(() -> {
+                try {
+                    ours.close();
+                } catch (IOException ignored) {
+                }
+            }, 30_000);
+            log("A audio source: a regular file of " + w.dataLength + " bytes");
+            return;
+        }
         new Thread(() -> {
             // Our read end: the recognizer has its own once the request has gone out. Closed so
             // that a write after the recognizer closes its end fails.
@@ -376,6 +415,16 @@ public class ProbeActivity extends Activity {
                     }
                     out.write(wav, off, Math.min(chunk, w.dataOffset + w.dataLength - off));
                     if (!fast) SystemClock.sleep(100);
+                }
+                if (holdMs > 0) {
+                    log("A audio source: clip written, silence until " + holdMs + " ms after the first write");
+                    byte[] silence = new byte[chunk];
+                    // 8-bit PCM is unsigned: its silence is 0x80.
+                    if (w.bits == 8) Arrays.fill(silence, (byte) 0x80);
+                    while (SystemClock.elapsedRealtime() - started < holdMs) {
+                        out.write(silence);
+                        SystemClock.sleep(100);
+                    }
                 }
                 log("A audio source: all " + w.dataLength + " bytes written, closing the pipe");
             } catch (IOException e) {

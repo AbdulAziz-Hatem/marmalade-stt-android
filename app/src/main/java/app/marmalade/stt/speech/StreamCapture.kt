@@ -1,6 +1,9 @@
 package app.marmalade.stt.speech
 
 import android.media.AudioFormat
+import android.system.Os
+import android.system.OsConstants
+import java.io.FileDescriptor
 import java.io.IOException
 import java.io.InputStream
 import java.util.concurrent.atomic.AtomicBoolean
@@ -101,6 +104,14 @@ class StreamCapture(
          */
         fun supports(format: PcmFormat): Boolean =
             sampleBytes(format.encoding) > 0 && format.channels in 1..8 && format.sampleRate in 8_000..192_000
+
+        /**
+         * Whether [fd] is a regular file (a recording handed over whole), not a
+         * pipe or socket a caller writes into as it goes (#116). False if it
+         * can't be told.
+         */
+        fun isRegularFile(fd: FileDescriptor): Boolean =
+            runCatching { OsConstants.S_ISREG(Os.fstat(fd).st_mode) }.getOrDefault(false)
     }
 
     init {

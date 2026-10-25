@@ -1,6 +1,8 @@
 package app.marmalade.stt.recognizer
 
 import android.speech.SpeechRecognizer
+import app.marmalade.stt.speech.ListenTimeouts
+import app.marmalade.stt.speech.PcmFormat
 import app.marmalade.stt.speech.SttErrorKind
 import app.marmalade.stt.speech.SttEvent
 import app.marmalade.stt.textproc.TextPipeline
@@ -140,6 +142,109 @@ class ServiceSessionTest {
             ),
             client.calls,
         )
+    }
+
+    // ---- A caller's stream (#116) ------------------------------------------
+
+    @Test
+    fun `a live stream held open after the speech - results at the end of speech, the engine stopped`() = runTest {
+        // Waze: the pipe stays open (the flow goes on) until it closes it 10 s in.
+        start(RecognitionRequest(audioSource = PcmFormat()))
+        send(SttEvent.Ready, SttEvent.SpeechStarted, SttEvent.Final("navigate home.", nearSilent = false))
+        runCurrent()
+        assertEquals(1, stops)
+        assertEquals(listOf("ready", "begin", "end", "results [Navigate home.]"), client.calls)
+    }
+
+    @Test
+    fun `a stream that closes before the end of speech - its flushed words are the results`() = runTest {
+        // A caller that stops writing mid-sentence: the engine flushes at the end of the audio, which
+        // is the request's first end (before #116 nothing ended a stream request but its stream).
+        start(RecognitionRequest(audioSource = PcmFormat()))
+        send(SttEvent.Ready, SttEvent.SpeechStarted)
+        runCurrent()
+        events.trySend(SttEvent.Final("navigate", nearSilent = false))
+        runCurrent()
+        assertEquals(1, stops)
+        assertEquals(listOf("ready", "begin", "end", "results [Navigate]"), client.calls)
+    }
+
+    @Test
+    fun `a file runs to its end - every utterance, nothing after the first stops it`() = runTest {
+        // A recording handed over whole (a regular-file descriptor) wants all of it, as before #116.
+        service = ServiceSession(RecognitionRequest(audioSource = PcmFormat()), client)
+        val oneShot = OneShotSession(
+            listen = { events.receiveAsFlow() },
+            stopEngine = {
+                stops++
+                events.close()
+            },
+            pipeline = { TextPipeline(TextProcConfig()) },
+            end = RecognitionRequest(audioSource = PcmFormat()).end(fromFile = true),
+        )
+        launch { service.run(oneShot) }
+        send(
+            SttEvent.Ready,
+            SttEvent.SpeechStarted,
+            SttEvent.Final("navigate home.", nearSilent = false),
+            SttEvent.SpeechStarted,
+            SttEvent.Final("then call Bob.", nearSilent = false),
+        )
+        testScheduler.advanceTimeBy(ListenTimeouts.NO_SPEECH_TIMEOUT_MS * 10)
+        runCurrent()
+        assertEquals(0, stops)
+        events.close()
+        runCurrent()
+        assertEquals(listOf("ready", "begin", "end", "results [Navigate home. Then call Bob.]"), client.calls)
+    }
+
+    @Test
+    fun `a fast stream whose flush holds the next sentence - only the first is the result`() = runTest {
+        // #116 review: a pipe read ahead of the session; the engine's flush at the stop has begun
+        // the next utterance.
+        service = ServiceSession(RecognitionRequest(audioSource = PcmFormat()), client)
+        val oneShot = OneShotSession(
+            listen = { events.receiveAsFlow() },
+            stopEngine = {
+                stops++
+                send(SttEvent.SpeechStarted, SttEvent.Final("then", nearSilent = false))
+                events.close()
+            },
+            pipeline = { TextPipeline(TextProcConfig()) },
+            end = RecognitionRequest(audioSource = PcmFormat()).end(),
+        )
+        launch { service.run(oneShot) }
+        send(SttEvent.Ready, SttEvent.SpeechStarted, SttEvent.Final("navigate home.", nearSilent = false))
+        runCurrent()
+        assertEquals(listOf("ready", "begin", "end", "results [Navigate home.]"), client.calls)
+    }
+
+    @Test
+    fun `a stream with nobody speaking - a speech timeout, not a wait for the stream`() = runTest {
+        start(RecognitionRequest(audioSource = PcmFormat()))
+        send(SttEvent.Ready)
+        testScheduler.advanceTimeBy(ListenTimeouts.NO_SPEECH_TIMEOUT_MS + 1)
+        runCurrent()
+        assertEquals(1, stops)
+        assertEquals(listOf("ready", "error ${SpeechRecognizer.ERROR_SPEECH_TIMEOUT}"), client.calls)
+    }
+
+    @Test
+    fun `a session segmented by the stream - every utterance, until the stream ends`() = runTest {
+        start(RecognitionRequest(audioSource = PcmFormat(), segmented = RecognitionRequest.Segmented.AUDIO_SOURCE))
+        send(
+            SttEvent.Ready,
+            SttEvent.SpeechStarted,
+            SttEvent.Final("one.", nearSilent = false),
+            SttEvent.SpeechStarted,
+            SttEvent.Final("two.", nearSilent = false),
+        )
+        testScheduler.advanceTimeBy(ListenTimeouts.NO_SPEECH_TIMEOUT_MS * 10)
+        runCurrent()
+        assertEquals(0, stops)
+        events.close()
+        runCurrent()
+        assertEquals(listOf("ready", "begin", "segment [One.]", "segment [Two.]", "end", "endOfSegmentedSession"), client.calls)
     }
 
     @Test

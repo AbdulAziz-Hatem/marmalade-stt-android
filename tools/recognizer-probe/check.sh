@@ -56,6 +56,12 @@ if (( sdk >= 33 )); then
   run "support check"              10 'onSupportResult installed=\[[a-z]' --es scenario support
   run "audio source"               60 'onResults \{results_recognition=\[[^]]' --es scenario audioSource --ez fast true
   run "audio source, segmented"    60 'onSegmentResults.*onEndOfSegmentedSession' --es scenario audioSource --ez fast true --ez segmented true
+  # Waze (#116): the pipe stays open 10 s (silence after the clip), the rate comes as a Serializable,
+  # and the caller stops at 10 s. The result must come at the end of speech, before that stop.
+  # Needs speech.wav to end well within 10 s.
+  run "held audio source ends at end of speech" 25 'onResults \{results_recognition=\[[^]].*A stopListening' --es scenario audioSource --ei holdMs 10000 --ei stopAfterMs 10000 --es formatAs serializable
+  # A recording handed over as a regular file runs to its end (#116).
+  run "file audio source"          60 'regular file.*onResults \{results_recognition=\[[^]]' --es scenario audioSource --ez fileSource true
   # A caller that stops writing but never closes its pipe: the stream ends 10 s later, with what came.
   run "stalled audio source ends"  40 'stalling.*onResults \{results_recognition=\[[^]]' --es scenario audioSource --ei stallAfterMs 3000
   # A caller trickling a byte every 2 s keeps the pipe busy with next to no audio: it ends too.

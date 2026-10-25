@@ -30,7 +30,7 @@ is briefly visible either way, so wait a little before measuring.
 `check.sh <adb serial> <our package> <speech.wav>` runs the scenarios that
 need nobody speaking (the mic opening for another app, an unknown language,
 a restart after cancel, language details, the support and download checks,
-`EXTRA_AUDIO_SOURCE` plain, segmented, stalled, trickled and stopped while stalled) and checks how each ends; exit
+`EXTRA_AUDIO_SOURCE` plain, held open after the speech like Waze, segmented, stalled, trickled and stopped while stalled) and checks how each ends; exit
 status 0 when all pass. It needs an engine installed in our app.
 
 ## Extras
@@ -56,6 +56,9 @@ status 0 when all pass. It needs an engine installed in our app.
 | `--ei gapMs`, `--ei restartMs` | timing for the restart scenarios |
 | `--es wav`, `--ez fast` | `audioSource`: the WAV in the probe's files dir (default `probe.wav`), streamed in real time unless `fast` |
 | `--ei stallAfterMs` | `audioSource`: stop writing after this long, keeping the pipe open for a minute (a stalled caller) |
+| `--ei holdMs` | `audioSource`: after the clip, write silence in real time until this long after the first write, then close the pipe (Waze holds its pipe 10 s, #116) |
+| `--ez fileSource` | `audioSource`: the clip's PCM as a regular file, not a pipe (#116: a recording runs to its end, every utterance) |
+| `--es formatAs` | `audioSource`: `serializable` sends the sampling rate as a `BigDecimal` (Waze's arrives as a Serializable, #116) |
 | `--ei trickleMs` | with `stallAfterMs`: write one byte this often instead of nothing (a caller keeping the pipe busy); a write after the recognizer closed its end is logged as failed |
 
 ## Scenarios

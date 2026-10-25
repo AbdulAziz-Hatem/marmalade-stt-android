@@ -59,9 +59,17 @@ data class RecognitionRequest(
         COMPLETE_SILENCE,
     }
 
-    /** What ends the request on its own ([OneShotEnd]). */
-    fun end(): OneShotEnd = when {
-        audioSource != null -> OneShotEnd.AudioEnd
+    /**
+     * What ends the request on its own ([OneShotEnd]). A caller's stream ends
+     * like the mic (#116): a live one may stay open long after the speech
+     * (Waze holds its pipe 10 s and leaves the end of speech to us), and one
+     * that closes first ends the request anyway, with what was heard. A
+     * session segmented by the stream runs to the stream's end, and so does
+     * a [fromFile] stream (the descriptor is a regular file): a recording has
+     * no latency to win, and its caller wants all of it, as before #116.
+     */
+    fun end(fromFile: Boolean = false): OneShotEnd = when {
+        segmented == Segmented.AUDIO_SOURCE || (audioSource != null && fromFile) -> OneShotEnd.AudioEnd
         segmented == Segmented.COMPLETE_SILENCE && completeSilenceMs != null -> OneShotEnd.Pause(completeSilenceMs)
         else -> OneShotEnd.FirstEnd
     }
@@ -160,15 +168,18 @@ data class RecognitionRequest(
         // The API 33+ extra names are plain strings: on older versions they are simply absent.
         @SuppressLint("InlinedApi")
         fun from(intent: Intent, sdkInt: Int = Build.VERSION.SDK_INT): RecognitionRequest {
-            // Callers pass these as Int or Long (the docs say both). Typed on Android 13+, so a caller
-            // can't make us deserialise a class of its choosing (Android checks the class before
-            // reading it); anything that isn't a number counts as absent, and so does one that
-            // can't be read at all.
+            // Callers pass these as Int or Long (the docs say both), or another Number: Waze's sampling
+            // rate arrives as a Serializable (#116, `getIntExtra` logged "expected Integer but value
+            // was a android.os.Parcel$LazyValue"). Typed on Android 13+, so a caller can't make us
+            // deserialise a class of its choosing (Android checks the class before reading it);
+            // anything that isn't a number counts as absent, and so does one that can't be read at all.
             fun long(key: String): Long? = runCatching {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                     intent.getSerializableExtra(key, Number::class.java)?.toLong()
                 } else {
-                    intent.getLongExtra(key, 0).takeIf { it > 0 } ?: intent.getIntExtra(key, 0).toLong()
+                    // Untyped: before Android 13 the first read unparcels every extra anyway.
+                    @Suppress("DEPRECATION")
+                    (intent.getSerializableExtra(key) as? Number)?.toLong()
                 }
             }.getOrNull()?.takeIf { it > 0 }
             val segmented = when (intent.getStringExtra(RecognizerIntent.EXTRA_SEGMENTED_SESSION)) {
@@ -178,10 +189,13 @@ data class RecognitionRequest(
                 else -> null
             }
             val audioSource = if (intent.hasExtra(RecognizerIntent.EXTRA_AUDIO_SOURCE)) {
+                // Read like the lengths: zero or less counts as absent; beyond Int is a format
+                // StreamCapture refuses (ERROR_AUDIO), never one wrapped round into range.
+                fun int(key: String, default: Int): Int = long(key)?.coerceAtMost(Int.MAX_VALUE.toLong())?.toInt() ?: default
                 PcmFormat(
-                    sampleRate = intent.getIntExtra(RecognizerIntent.EXTRA_AUDIO_SOURCE_SAMPLING_RATE, MIC_SAMPLE_RATE),
-                    channels = intent.getIntExtra(RecognizerIntent.EXTRA_AUDIO_SOURCE_CHANNEL_COUNT, 1),
-                    encoding = intent.getIntExtra(RecognizerIntent.EXTRA_AUDIO_SOURCE_ENCODING, AudioFormat.ENCODING_PCM_16BIT),
+                    sampleRate = int(RecognizerIntent.EXTRA_AUDIO_SOURCE_SAMPLING_RATE, MIC_SAMPLE_RATE),
+                    channels = int(RecognizerIntent.EXTRA_AUDIO_SOURCE_CHANNEL_COUNT, 1),
+                    encoding = int(RecognizerIntent.EXTRA_AUDIO_SOURCE_ENCODING, AudioFormat.ENCODING_PCM_16BIT),
                 )
             } else {
                 null

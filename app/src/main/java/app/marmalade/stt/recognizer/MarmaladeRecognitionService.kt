@@ -87,6 +87,7 @@ class MarmaladeRecognitionService : RecognitionService() {
         // Ours to close from here on. Taken before anything copies the extras (the debug log
         // below): see RecognitionRequest.from.
         val descriptor = request.audioSource?.let { audioSource(recognizerIntent) }
+        val fromFile = descriptor?.let { StreamCapture.isRegularFile(it.fileDescriptor) } ?: false
         debugLog { "startListening uid=${listener.callingUid} extras=${describe(recognizerIntent.extras)}" }
         val audio = audioInputFor(request, descriptor, listener) ?: return
         val client = CallbackClient(listener)
@@ -118,7 +119,7 @@ class MarmaladeRecognitionService : RecognitionService() {
                 },
                 stopEngine = engines::stop,
                 pipeline = { if (cleanupLanguage != null) pipeline.get(cleanupLanguage) else pipeline.get() },
-                end = request.end(),
+                end = request.end(fromFile),
                 minimumLengthMs = request.minimumLengthMs ?: 0,
                 maxLengthMs = request.maxLengthMs(),
             )

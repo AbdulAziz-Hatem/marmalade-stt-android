@@ -27,13 +27,30 @@ class RequestEndTest {
     }
 
     @Test
-    fun `a caller's stream ends with the stream, whatever else it asks`() {
-        assertEquals(OneShotEnd.AudioEnd, RecognitionRequest(audioSource = PcmFormat()).end())
+    fun `a caller's stream ends like the mic, only a session segmented by the stream runs to its end`() {
+        // #116: Waze holds its pipe open 10 s and leaves the end of speech to us.
+        assertEquals(OneShotEnd.FirstEnd, RecognitionRequest(audioSource = PcmFormat()).end())
+        assertEquals(OneShotEnd.FirstEnd, RecognitionRequest(audioSource = PcmFormat(), completeSilenceMs = 3_000).end())
         assertEquals(
-            OneShotEnd.AudioEnd,
+            OneShotEnd.Pause(3_000),
             RecognitionRequest(audioSource = PcmFormat(), segmented = Segmented.COMPLETE_SILENCE, completeSilenceMs = 3_000).end(),
         )
+        assertEquals(
+            OneShotEnd.FirstEnd,
+            RecognitionRequest(audioSource = PcmFormat(), segmented = Segmented.MINIMUM_LENGTH, minimumLengthMs = 9_000).end(),
+        )
         assertEquals(OneShotEnd.AudioEnd, RecognitionRequest(audioSource = PcmFormat(), segmented = Segmented.AUDIO_SOURCE).end())
+    }
+
+    @Test
+    fun `a regular file runs to its end, whatever else it asks`() {
+        assertEquals(OneShotEnd.AudioEnd, RecognitionRequest(audioSource = PcmFormat()).end(fromFile = true))
+        assertEquals(
+            OneShotEnd.AudioEnd,
+            RecognitionRequest(audioSource = PcmFormat(), segmented = Segmented.COMPLETE_SILENCE, completeSilenceMs = 3_000).end(fromFile = true),
+        )
+        // Without a stream there is no file.
+        assertEquals(OneShotEnd.FirstEnd, RecognitionRequest().end(fromFile = true))
     }
 
     @Test
