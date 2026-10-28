@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <img alt="version 1.2.2" src="https://img.shields.io/badge/version-1.2.2-F5A623">
+  <img alt="version 1.2.3" src="https://img.shields.io/badge/version-1.2.3-F5A623">
   &nbsp;<img alt="license MIT" src="https://img.shields.io/badge/license-MIT-3DA639">
   &nbsp;<img alt="Android 9 or later" src="https://img.shields.io/badge/Android-9%2B-3DDC84">
 </p>

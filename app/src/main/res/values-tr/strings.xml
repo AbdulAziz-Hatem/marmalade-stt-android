@@ -106,6 +106,7 @@
     <string name="settings_end">Konuşmanın sonu</string>
     <string name="settings_end_keyboard">Sesli klavye</string>
     <string name="settings_end_apps">Diğer uygulamalar ve “Şimdi konuşun” penceresi</string>
+    <string name="settings_end_apps_commands">Siz bir seçim yapana kadar, kendi sesini kaydeden uygulamalardan gelen sesli komutlar ve aramalar “Duraklamadan sonra otomatik durdur” seçeneğini kullanır.</string>
     <string name="settings_end_tap">Durdurmak için dokunun</string>
     <string name="settings_end_tap_desc">Siz dokunana kadar mikrofon açık kalır. Söyledikleriniz durdurduğunuzda yazılır.</string>
     <string name="settings_end_smart_turn">Smart Turn ile otomatik durdur</string>

@@ -142,6 +142,17 @@ sealed interface SttEvent {
     data object SpeechStarted : SttEvent
 
     /**
+     * The utterance [SpeechStarted] began is over (#124): the VAD's pause
+     * closed it, Smart Turn judged its turn complete, or a stop flushed it.
+     * Sent as soon as that is decided, before the decode, so its [Final] (if
+     * it leaves text) follows. In Smart Turn mode once per turn: a pause the
+     * turn goes on after doesn't end it. Neither does a split while the user
+     * is still speaking (an utterance at the decode cap, a turn at 28 s): its
+     * Final comes before the end.
+     */
+    data object SpeechEnded : SttEvent
+
+    /**
      * Best guess at the utterance so far. Replaces the previous partial. In
      * [EndOfDictation.TAP_STOP] and [EndOfDictation.END_WORD] modes it
      * includes the utterances kept so far in this session.

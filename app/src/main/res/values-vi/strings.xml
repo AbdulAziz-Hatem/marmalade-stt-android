@@ -105,6 +105,7 @@
     <string name="settings_end">Cách dừng</string>
     <string name="settings_end_keyboard">Bàn phím giọng nói</string>
     <string name="settings_end_apps">Ứng dụng khác và cửa sổ “Hãy nói”</string>
+    <string name="settings_end_apps_commands">Cho đến khi bạn chọn, lệnh thoại từ các ứng dụng tự ghi âm và các lượt tìm kiếm sẽ dùng “Tự dừng khi ngừng nói”.</string>
     <string name="settings_end_tap">Nhấn để dừng</string>
     <string name="settings_end_tap_desc">Micrô vẫn bật cho đến khi bạn nhấn vào. Lời bạn nói được nhập khi bạn dừng.</string>
     <string name="settings_end_smart_turn">Tự dừng bằng Smart Turn</string>

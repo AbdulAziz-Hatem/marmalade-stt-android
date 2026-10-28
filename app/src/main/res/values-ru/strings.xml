@@ -107,6 +107,7 @@
     <string name="settings_end">Конец речи</string>
     <string name="settings_end_keyboard">Голосовая клавиатура</string>
     <string name="settings_end_apps">Другие приложения и окно «Говорите»</string>
+    <string name="settings_end_apps_commands">Пока вы ничего не выбрали, голосовые команды из приложений, которые сами записывают звук, и поисковые запросы используют режим «Автоостановка после паузы».</string>
     <string name="settings_end_tap">Остановка нажатием</string>
     <string name="settings_end_tap_desc">Микрофон работает, пока вы его не нажмёте. Слова печатаются, когда вы останавливаете запись.</string>
     <string name="settings_end_smart_turn">Автоостановка со Smart Turn</string>

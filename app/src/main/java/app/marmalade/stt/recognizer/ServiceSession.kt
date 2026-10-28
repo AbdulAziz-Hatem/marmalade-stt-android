@@ -31,8 +31,17 @@ interface RecognitionClient {
  * | first SpeechStarted         | beginningOfSpeech                                |
  * | Level                       | rmsChanged                                       |
  * | Partial                     | partialResults, if asked for                     |
+ * | segmented: SpeechStarted    | beginningOfSpeech, for each utterance            |
+ * | segmented: SpeechEnded      | endOfSpeech, for each utterance (#124)           |
  * | each utterance, segmented   | segmentResults                                   |
- * | the end                     | endOfSpeech (if speech was heard), then results, endOfSegmentedSession or error |
+ * | the end                     | endOfSpeech (if speech was heard and it hasn't gone out), then results, endOfSegmentedSession or error |
+ *
+ * A segmented session reports each utterance's end as soon as the engine
+ * decides it, before its decode (#124): Waze asks for one and stops its
+ * recording at the first `onEndOfSpeech`, so waiting for the session's end
+ * (its own `stopListening`, 10 s in) delayed its command by that long. A
+ * plain request keeps one begin and one end: its first utterance may turn
+ * out to be noise, and listening goes on.
  *
  * Result lists come from [RecognitionRequest.hypotheses]: the text after
  * `:textproc`, and its raw words after it when the caller asked for
@@ -41,11 +50,17 @@ interface RecognitionClient {
  */
 class ServiceSession(private val request: RecognitionRequest, private val client: RecognitionClient) {
 
-    /** `beginningOfSpeech` went out: once per request, also when speech is flushed after a stop. */
+    /**
+     * `beginningOfSpeech` went out: once per request (per utterance when
+     * segmented), also when speech is flushed after a stop.
+     */
     private var begun = false
 
     /** Speech was heard and `endOfSpeech` hasn't been sent. */
     private var speechOpen = false
+
+    /** The caller stopped ([stopped]): what the engine flushes after it begins no new utterance. */
+    private var callerStopped = false
 
     suspend fun run(oneShot: OneShotSession) {
         val ready = ReadyForSpeech()
@@ -55,11 +70,12 @@ class ServiceSession(private val request: RecognitionRequest, private val client
         ) { event ->
             if (ready.isDue(event)) client.readyForSpeech()
             when (event) {
-                SttEvent.SpeechStarted -> if (!begun) {
+                SttEvent.SpeechStarted -> if (!begun || (segmented && !speechOpen && !callerStopped)) {
                     begun = true
                     speechOpen = true
                     client.beginningOfSpeech()
                 }
+                SttEvent.SpeechEnded -> if (segmented) endOfSpeech()
                 is SttEvent.Level -> client.rmsChanged(event.rmsDb)
                 // A blank partial too: the last one turned out to be noise (`cleanPartial`). With
                 // formatting the raw hypothesis repeats it: the engine's own partial isn't kept.
@@ -77,7 +93,10 @@ class ServiceSession(private val request: RecognitionRequest, private val client
     }
 
     /** The caller stopped: no more speech is coming (`onStopListening`). The result follows. */
-    fun stopped() = endOfSpeech()
+    fun stopped() {
+        callerStopped = true
+        endOfSpeech()
+    }
 
     private fun endOfSpeech() {
         if (!speechOpen) return

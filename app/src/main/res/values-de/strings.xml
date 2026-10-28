@@ -107,6 +107,7 @@
     <string name="settings_end">Ende des Sprechens</string>
     <string name="settings_end_keyboard">Sprachtastatur</string>
     <string name="settings_end_apps">Andere Apps und „Jetzt sprechen“-Fenster</string>
+    <string name="settings_end_apps_commands">Solange du nichts auswählst, nutzen Sprachbefehle von Apps, die ihren Ton selbst aufnehmen, und Suchanfragen „Auto-Stopp nach einer Pause“.</string>
     <string name="settings_end_tap">Zum Stoppen tippen</string>
     <string name="settings_end_tap_desc">Das Mikrofon bleibt an, bis du darauf tippst. Deine Worte werden eingegeben, wenn du stoppst.</string>
     <string name="settings_end_smart_turn">Auto-Stopp mit Smart Turn</string>

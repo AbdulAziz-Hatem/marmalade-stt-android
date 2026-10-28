@@ -166,6 +166,30 @@ class SpeechPrefsTest {
     }
 
     @Test
+    fun `other apps' short commands get Pause until the user chooses an end for other apps`() {
+        // #120 (Max, 2026-10-25): Waze-style commands and searches end with Auto-stop, longer speech with Smart Turn.
+        val defaults = SpeechPrefs()
+        assertEquals(EndOfDictation.PAUSE, defaults.endFor(ListenSurface.APPS, shortCommand = true))
+        assertEquals(EndOfDictation.SMART_TURN, defaults.endFor(ListenSurface.APPS))
+        // The keyboard and Dictate never see one.
+        assertEquals(EndOfDictation.TAP_STOP, defaults.endFor(ListenSurface.KEYBOARD, shortCommand = true))
+        assertEquals(EndOfDictation.PAUSE, defaults.endFor(ListenSurface.DICTATE, shortCommand = true))
+        // A choice the user made wins, Smart Turn and End word included.
+        for (mode in SpeechPrefs.APPS_ENDS) {
+            val chosen = SpeechPrefs(appsEnd = mode, appsEndChosen = true)
+            assertEquals(mode, chosen.endFor(ListenSurface.APPS, shortCommand = true))
+            assertEquals(mode, chosen.endFor(ListenSurface.APPS))
+        }
+        // No Smart Turn detector for a short command's session.
+        val detector = TurnDetector { 1f }
+        defaults.sessionOptions(ListenSurface.APPS, shortCommand = true, turnDetector = detector).let {
+            assertEquals(EndOfDictation.PAUSE, it.end)
+            assertNull(it.turnDetector)
+        }
+        assertEquals(detector, defaults.sessionOptions(ListenSurface.APPS, turnDetector = detector).turnDetector)
+    }
+
+    @Test
     fun `a stored end is read only when the surface allows it, else its default`() {
         assertEquals(EndOfDictation.END_WORD, SpeechPrefs.endFrom("END_WORD", SpeechPrefs.KEYBOARD_ENDS))
         assertEquals(EndOfDictation.TAP_STOP, SpeechPrefs.endFrom(null, SpeechPrefs.KEYBOARD_ENDS))
@@ -206,10 +230,10 @@ class SpeechPrefsTest {
         // The detector goes only to Smart Turn sessions: never Dictate.
         val detector = TurnDetector { 1f }
         val smart = SpeechPrefs(keyboardEnd = EndOfDictation.SMART_TURN)
-        assertEquals(detector, smart.sessionOptions(ListenSurface.KEYBOARD, detector).turnDetector)
-        assertEquals(detector, smart.sessionOptions(ListenSurface.APPS, detector).turnDetector)
-        assertNull(smart.sessionOptions(ListenSurface.DICTATE, detector).turnDetector)
-        assertNull(SpeechPrefs().sessionOptions(ListenSurface.KEYBOARD, detector).turnDetector)
+        assertEquals(detector, smart.sessionOptions(ListenSurface.KEYBOARD, turnDetector = detector).turnDetector)
+        assertEquals(detector, smart.sessionOptions(ListenSurface.APPS, turnDetector = detector).turnDetector)
+        assertNull(smart.sessionOptions(ListenSurface.DICTATE, turnDetector = detector).turnDetector)
+        assertNull(SpeechPrefs().sessionOptions(ListenSurface.KEYBOARD, turnDetector = detector).turnDetector)
     }
 
     @Test
@@ -534,5 +558,19 @@ class SpeechPrefsTest {
         // Parses, but a benchmark-only core override isn't a Settings choice.
         openStore().edit { it[stringPreferencesKey("ort_tuning")] = "cpu-pin:0.1" }
         assertNull(SpeechSettings(openStore()).current().ortTuningId)
+    }
+
+    @Test
+    fun `only an end chosen in Settings counts as the user's choice`() = runBlocking {
+        assertFalse(SpeechSettings(openStore()).current().appsEndChosen)
+        // Choosing the default is a choice too.
+        SpeechSettings(openStore()).setAppsEnd(EndOfDictation.SMART_TURN)
+        SpeechSettings(openStore()).current().let {
+            assertTrue(it.appsEndChosen)
+            assertEquals(EndOfDictation.SMART_TURN, it.endFor(ListenSurface.APPS, shortCommand = true))
+        }
+        // A stored value Settings doesn't offer reads as the default, and isn't a choice.
+        openStore().edit { it[stringPreferencesKey("speech_apps_end")] = "TAP_STOP" }
+        assertFalse(SpeechSettings(openStore()).current().appsEndChosen)
     }
 }

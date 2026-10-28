@@ -143,7 +143,7 @@ class SherpaSttEngineTest {
         finishLoad.countDown()
         job.join()
         assertEquals(
-            listOf(SttEvent.Listening, SttEvent.Ready, SttEvent.SpeechStarted, SttEvent.Final("hello", nearSilent = false)),
+            listOf(SttEvent.Listening, SttEvent.Ready, SttEvent.SpeechStarted, SttEvent.SpeechEnded, SttEvent.Final("hello", nearSilent = false)),
             events.filterNot { it is SttEvent.Level || it is SttEvent.Partial },
         )
         // One level per hop: the session doesn't repeat the ones sent during the load.

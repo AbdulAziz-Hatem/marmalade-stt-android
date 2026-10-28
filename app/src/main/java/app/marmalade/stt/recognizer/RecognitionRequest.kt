@@ -35,6 +35,8 @@ import kotlin.math.roundToLong
  * @property audioSource the format of the caller's `EXTRA_AUDIO_SOURCE`
  *   stream ([PcmFormat]: Android's defaults where an extra is missing), or
  *   null to use the mic. The descriptor itself stays in the intent.
+ * @property webSearch `EXTRA_LANGUAGE_MODEL` is `LANGUAGE_MODEL_WEB_SEARCH`:
+ *   Android's hint for a short query ([shortCommand]).
  */
 data class RecognitionRequest(
     val language: String? = null,
@@ -46,6 +48,7 @@ data class RecognitionRequest(
     val minimumLengthMs: Long? = null,
     val segmented: Segmented? = null,
     val audioSource: PcmFormat? = null,
+    val webSearch: Boolean = false,
 ) {
     /** The kind of segmented session asked for (the extra's value names the extra that ends it). */
     enum class Segmented {
@@ -72,6 +75,21 @@ data class RecognitionRequest(
         segmented == Segmented.AUDIO_SOURCE || (audioSource != null && fromFile) -> OneShotEnd.AudioEnd
         segmented == Segmented.COMPLETE_SILENCE && completeSilenceMs != null -> OneShotEnd.Pause(completeSilenceMs)
         else -> OneShotEnd.FirstEnd
+    }
+
+    /**
+     * A short command (#120), which ends with Pause unless the user chose an
+     * end of speech for other apps (`SpeechPrefs.endFor`): a caller's own
+     * live audio (a pipe or socket, not a [fromFile] recording: Waze, car and
+     * assistant apps send commands this way), or a [webSearch] request. A
+     * session segmented by that live stream is one too (#124: Waze asks for
+     * one and stops at our first `onEndOfSpeech`); one segmented by a pause
+     * or a minimum length asked for many utterances, and isn't.
+     */
+    fun shortCommand(fromFile: Boolean = false): Boolean = when (segmented) {
+        null -> webSearch || (audioSource != null && !fromFile)
+        Segmented.AUDIO_SOURCE -> audioSource != null && !fromFile
+        else -> false
     }
 
     /**
@@ -214,6 +232,7 @@ data class RecognitionRequest(
                 // sessions have their callbacks from Android 13.
                 segmented = segmented?.takeUnless { (it == Segmented.AUDIO_SOURCE && audioSource == null) || sdkInt < Build.VERSION_CODES.TIRAMISU },
                 audioSource = audioSource,
+                webSearch = intent.getStringExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL) == RecognizerIntent.LANGUAGE_MODEL_WEB_SEARCH,
             )
         }
 

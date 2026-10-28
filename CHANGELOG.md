@@ -6,6 +6,27 @@ and this project follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.2.3] - 2026-10-27
+
+### Changed
+- Short voice commands from other apps end with Auto-stop after a pause,
+  not Smart Turn (#120, #124): commands from apps that record their own
+  audio, such as Waze, and searches. A command has no pause to think in,
+  so Smart Turn's extra check at its end gains nothing (it costs more on
+  slower phones). Longer speech keeps Smart Turn. Once you choose an End
+  of speech for other apps in Settings, your choice applies to these too.
+
+### Fixed
+- Waze's voice commands finish soon after you stop talking, not 10 seconds
+  in (#124, GitHub #7). Waze stops listening when the recognizer reports
+  the end of speech, and asks for several sentences in a row, where
+  Marmalade STT reported it only when the whole request ended (Waze's own
+  10 s limit). Apps that ask for several sentences now hear the end of each
+  one as soon as it is detected, before it is transcribed.
+- Where the chosen engine can't keep up with the audio an app streams to
+  it, the words shown while speaking are skipped to catch up, as they are
+  for the microphone (#118).
+
 ## [1.2.2] - 2026-10-24
 
 ### Fixed

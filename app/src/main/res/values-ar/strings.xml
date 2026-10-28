@@ -106,6 +106,7 @@
     <string name="settings_end">نهاية الكلام</string>
     <string name="settings_end_keyboard">لوحة المفاتيح الصوتية</string>
     <string name="settings_end_apps">التطبيقات الأخرى ونافذة «تحدّث الآن»</string>
+    <string name="settings_end_apps_commands">حتى تختار أحدها، تستخدم الأوامر الصوتية من التطبيقات التي تسجّل صوتها بنفسها، وعمليات البحث، «إيقاف تلقائي بعد وقفة».</string>
     <string name="settings_end_tap">النقر للإيقاف</string>
     <string name="settings_end_tap_desc">يبقى الميكروفون مفعّلاً حتى تنقر عليه. تُكتب كلماتك عند الإيقاف.</string>
     <string name="settings_end_smart_turn">إيقاف تلقائي باستخدام Smart Turn</string>

@@ -173,6 +173,7 @@ class RecognizeSpeechActivity : ComponentActivity() {
                         requestedAt = requestedAt,
                         engine = engine,
                         pauseSeconds = request.enginePauseSeconds(),
+                        shortCommand = request.shortCommand(),
                     ).flowOn(Dispatchers.Default)
                 },
                 stopEngine = engines::stop,

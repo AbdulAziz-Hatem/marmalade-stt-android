@@ -106,6 +106,7 @@
     <string name="settings_end">Akhir ucapan</string>
     <string name="settings_end_keyboard">Keyboard suara</string>
     <string name="settings_end_apps">Aplikasi lain dan pop-up “Bicaralah sekarang”</string>
+    <string name="settings_end_apps_commands">Sampai Anda memilih salah satu, perintah suara dari aplikasi yang merekam audionya sendiri, dan penelusuran, memakai “Berhenti otomatis setelah jeda”.</string>
     <string name="settings_end_tap">Ketuk untuk berhenti</string>
     <string name="settings_end_tap_desc">Mikrofon tetap aktif sampai Anda mengetuknya. Kata-kata Anda diketik saat Anda berhenti.</string>
     <string name="settings_end_smart_turn">Berhenti otomatis dengan Smart Turn</string>

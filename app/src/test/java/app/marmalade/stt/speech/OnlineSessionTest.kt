@@ -102,6 +102,9 @@ class OnlineSessionTest {
         assertTrue(partials.none { "end" in it })
         val final = shown.last() as SttEvent.Final
         assertTrue(final.text, final.text.endsWith("end"))
+        // #124: the utterance's end comes as soon as the segment closes, before its Final.
+        assertEquals(SttEvent.SpeechEnded, shown[shown.lastIndex - 1])
+        assertEquals(1, shown.count { it == SttEvent.SpeechEnded })
         assertFalse(final.nearSilent)
         assertEquals(1, vad.resetCalls)
         assertTrue(mic.closed)

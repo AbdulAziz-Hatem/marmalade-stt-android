@@ -17,7 +17,7 @@ def num(pat, txt, cast=float, default=None):
 
 def parse(path):
     txt = open(path, errors="replace").read()
-    m = re.search(r"listen (\w+) (\S+) loaded=(\w+) process=(-?\d+)ms at=(\d+): (.*)", txt)
+    m = re.search(r"listen (\w+) (\S+) loaded=(\w+) process=(-?\d+)ms(?: end=\w+)? at=(\d+): (.*)", txt)
     if not m:
         return None
     surface, engine, loaded, proc, req, stages = m.groups()

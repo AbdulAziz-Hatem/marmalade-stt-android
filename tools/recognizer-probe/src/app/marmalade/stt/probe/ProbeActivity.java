@@ -47,6 +47,8 @@ public class ProbeActivity extends Activity {
     private TextView view;
     private long t0;
     private Bundle args;
+    /** audioSource's read end of the pipe, held until the recognizer first calls back (main thread). */
+    private ParcelFileDescriptor heldReadEnd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -201,7 +203,8 @@ public class ProbeActivity extends Activity {
     /** The request intent, from the run's extras. */
     private Intent request() {
         Intent i = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
-            .putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
+            .putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, "web_search".equals(args.getString("languageModel"))
+                ? RecognizerIntent.LANGUAGE_MODEL_WEB_SEARCH : RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
             .putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, getPackageName());
         if (args.containsKey("lang")) i.putExtra(RecognizerIntent.EXTRA_LANGUAGE, args.getString("lang"));
         if (args.getBoolean("partials", true)) i.putExtra(RecognizerIntent.EXTRA_PARTIAL_RESULTS, true);
@@ -240,11 +243,21 @@ public class ProbeActivity extends Activity {
         r.startListening(request());
     }
 
+    /** The recognizer has the request, and its own copy of the pipe's read end: ours can go. */
+    private void releaseReadEnd() {
+        if (heldReadEnd == null) return;
+        try {
+            heldReadEnd.close();
+        } catch (IOException ignored) {
+        }
+        heldReadEnd = null;
+    }
+
     private RecognitionListener listener(String name) {
         return new RecognitionListener() {
             private int rms;
 
-            @Override public void onReadyForSpeech(Bundle params) { log(name + " onReadyForSpeech " + describe(params)); }
+            @Override public void onReadyForSpeech(Bundle params) { releaseReadEnd(); log(name + " onReadyForSpeech " + describe(params)); }
             @Override public void onBeginningOfSpeech() { log(name + " onBeginningOfSpeech"); }
             @Override public void onRmsChanged(float rmsdB) {
                 // Ten a second: every tenth.
@@ -252,7 +265,7 @@ public class ProbeActivity extends Activity {
             }
             @Override public void onBufferReceived(byte[] buffer) { log(name + " onBufferReceived " + buffer.length); }
             @Override public void onEndOfSpeech() { log(name + " onEndOfSpeech"); }
-            @Override public void onError(int error) { log(name + " onError " + error + " " + errorName(error)); }
+            @Override public void onError(int error) { releaseReadEnd(); log(name + " onError " + error + " " + errorName(error)); }
             @Override public void onResults(Bundle results) { log(name + " onResults " + describe(results)); }
             @Override public void onPartialResults(Bundle partial) { log(name + " onPartialResults " + describe(partial)); }
             @Override public void onEvent(int eventType, Bundle params) { log(name + " onEvent " + eventType + " " + describe(params)); }
@@ -390,14 +403,11 @@ public class ProbeActivity extends Activity {
             log("A audio source: a regular file of " + w.dataLength + " bytes");
             return;
         }
+        // Our read end: the recognizer has its own once the request has reached it, which waits for a
+        // cold service to start (#118: closing ours at 500 ms failed the parcel, "Bad file
+        // descriptor"). Closed at its first callback, so that a write after it closes its end fails.
+        heldReadEnd = pipe[0];
         new Thread(() -> {
-            // Our read end: the recognizer has its own once the request has gone out. Closed so
-            // that a write after the recognizer closes its end fails.
-            SystemClock.sleep(500);
-            try {
-                pipe[0].close();
-            } catch (IOException ignored) {
-            }
             int bytesPerSecond = w.rate * w.channels * (w.bits / 8);
             int chunk = bytesPerSecond / 10;
             long started = SystemClock.elapsedRealtime();

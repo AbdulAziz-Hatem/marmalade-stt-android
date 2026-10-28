@@ -260,7 +260,8 @@ class SherpaSttEngine<M : LoadedModel> internal constructor(
                 val sessionEarlyVad = if (SpeedKnobs.earlyVadFor(sessionOptions.await().effectiveEnd)) EarlyVad.minSilenceSeconds(minSilence)?.let { earlyVadFor(it) } else null
                 // The session reads the open mic: the hops kept during the load first.
                 val created = newSession.create(loadedModel, sessionVad, sessionOptions.await(), { _, _ -> early }, sessionEarlyVad)
-                created.run().collect { send(it) }
+                // Only the mic judges the engine's speed: a caller's stream is timed by the caller (#118).
+                created.run().collect { if (it != SttEvent.TooSlow || capture.live) send(it) }
             } finally {
                 early.close()
             }

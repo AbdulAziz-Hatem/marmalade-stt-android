@@ -96,8 +96,8 @@ android {
         // Written as a plain literal (not the formula as arithmetic):
         // F-Droid's checkupdates parses this line with a regex and only
         // sees the first number of an expression.
-        versionCode = 10020020
-        versionName = "1.2.2"
+        versionCode = 10020030
+        versionName = "1.2.3"
 
         vectorDrawables {
             useSupportLibrary = true

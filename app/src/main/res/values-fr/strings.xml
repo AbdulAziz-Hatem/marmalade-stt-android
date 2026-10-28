@@ -105,6 +105,7 @@
     <string name="settings_end">Fin de la dictée</string>
     <string name="settings_end_keyboard">Clavier vocal</string>
     <string name="settings_end_apps">Autres applications et fenêtre «&#160;Parlez maintenant&#160;»</string>
+    <string name="settings_end_apps_commands">Tant que vous n\'en choisissez pas, les commandes vocales des applications qui enregistrent leur propre audio et les recherches utilisent «&#160;Arrêt automatique après une pause&#160;».</string>
     <string name="settings_end_tap">Appuyer pour arrêter</string>
     <string name="settings_end_tap_desc">Le micro reste allumé jusqu\'à ce que vous appuyiez dessus. Vos mots sont saisis quand vous arrêtez.</string>
     <string name="settings_end_smart_turn">Arrêt automatique avec Smart Turn</string>

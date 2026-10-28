@@ -105,6 +105,7 @@
     <string name="settings_end">停止方式</string>
     <string name="settings_end_keyboard">語音鍵盤</string>
     <string name="settings_end_apps">其他應用程式和「請說話」視窗</string>
+    <string name="settings_end_apps_commands">在你做出選擇之前，自行錄音的應用程式所發出的語音指令和搜尋會使用「停頓後自動停止」。</string>
     <string name="settings_end_tap">輕觸停止</string>
     <string name="settings_end_tap_desc">麥克風會持續開啟，直到你輕觸它為止。停止後才會輸入你說的話。</string>
     <string name="settings_end_smart_turn">透過 Smart Turn 自動停止</string>

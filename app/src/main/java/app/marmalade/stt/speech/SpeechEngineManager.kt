@@ -242,6 +242,9 @@ class SpeechEngineManager @Inject constructor(
      * @param pauseSeconds a caller's end of speech for this session only
      *   (`EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS`, #90): Pause
      *   with this silence, whatever the surface's end of speech.
+     * @param shortCommand another app's short command (#120,
+     *   `RecognitionRequest.shortCommand`): Pause unless the user chose an
+     *   end of speech for other apps ([SpeechPrefs.endFor]).
      * @param preemptible another app's RecognitionService session: the user
      *   starting one of their own surfaces ends it ([SessionArbiter]: it gets
      *   [SttErrorKind.BUSY]) instead of being turned away busy. A session
@@ -255,6 +258,7 @@ class SpeechEngineManager @Inject constructor(
         audioInput: ((hopSamples: Int) -> MicCapture)? = null,
         engine: SttEngineDescriptor? = null,
         pauseSeconds: Float? = null,
+        shortCommand: Boolean = false,
         preemptible: Boolean = false,
     ): Flow<SttEvent> = flow {
         // The reverse never happens: before anything else (the stop flag, the engine choice), another
@@ -265,7 +269,7 @@ class SpeechEngineManager @Inject constructor(
         }
         if (!preemptible) arbiter.userStarting()
         try {
-            listenAs(surface, language, requestedAt, audioInput, engine, pauseSeconds, preemptible)
+            listenAs(surface, language, requestedAt, audioInput, engine, pauseSeconds, shortCommand, preemptible)
         } finally {
             if (!preemptible) arbiter.userEnded()
         }
@@ -278,6 +282,7 @@ class SpeechEngineManager @Inject constructor(
         audioInput: ((hopSamples: Int) -> MicCapture)?,
         engine: SttEngineDescriptor?,
         pauseSeconds: Float?,
+        shortCommand: Boolean,
         preemptible: Boolean,
     ) {
         stopRequested = false
@@ -302,10 +307,14 @@ class SpeechEngineManager @Inject constructor(
         sessionEngine = e
         // The process's age tells a cold start (the keyboard's process just launched) from a warm one.
         val processAge = requestedAt - Process.getStartElapsedRealtime()
-        val timing = ListenTiming("${surface.name.lowercase()} ${e.descriptor.id} loaded=${e.isLoaded} process=${processAge}ms", requestedAt)
-        val options = prefs.sessionOptions(surface).let {
+        val options = prefs.sessionOptions(surface, shortCommand = shortCommand).let {
             if (pauseSeconds != null) it.copy(end = EndOfDictation.PAUSE, minSilenceSeconds = pauseSeconds) else it
         }
+        // The end of speech too: recognizer-probe's check.sh reads it (#120).
+        val timing = ListenTiming(
+            "${surface.name.lowercase()} ${e.descriptor.id} loaded=${e.isLoaded} process=${processAge}ms end=${options.end}",
+            requestedAt,
+        )
         // Smart Turn's model loads once the engine has opened the mic (#78): its first load mustn't delay it.
         val smartTurnDetector = if (options.end == EndOfDictation.SMART_TURN) ::smartTurnDetector else null
         // Pre-empted: the user's own session takes this engine (and its loaded model) next.

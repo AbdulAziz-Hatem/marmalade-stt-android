@@ -108,6 +108,7 @@
     <string name="settings_end">Einde van het spreken</string>
     <string name="settings_end_keyboard">Spraaktoetsenbord</string>
     <string name="settings_end_apps">Andere apps en het venster “Nu spreken”</string>
+    <string name="settings_end_apps_commands">Tot je er een kiest, gebruiken spraakopdrachten van apps die hun eigen audio opnemen, en zoekopdrachten “Automatisch stoppen na een pauze”.</string>
     <string name="settings_end_tap">Tik om te stoppen</string>
     <string name="settings_end_tap_desc">De microfoon blijft aan tot je erop tikt. Je woorden worden getypt als je stopt.</string>
     <string name="settings_end_smart_turn">Automatisch stoppen met Smart Turn</string>

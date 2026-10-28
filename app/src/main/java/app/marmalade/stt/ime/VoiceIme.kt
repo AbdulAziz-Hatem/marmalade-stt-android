@@ -176,6 +176,9 @@ object VoiceIme {
 
         is SttEvent.Partial -> state.copy(partial = event.text)
 
+        // Its Final follows once decoded, and moves the phase on.
+        SttEvent.SpeechEnded -> state
+
         // The text itself goes to the editor (ImeTextWriter); the panel only drops the partial.
         is SttEvent.Final -> state.copy(
             partial = "",

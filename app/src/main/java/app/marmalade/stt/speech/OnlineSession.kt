@@ -15,14 +15,16 @@ package app.marmalade.stt.speech
  *          and everything buffered since
  *     -> while an utterance runs: every hop goes to the stream, decode(),
  *          changed text -> SttEvent.Partial (straight from the model)
- *     -> VAD segment complete: inputFinished() + decode() flushes the model's
+ *     -> VAD segment complete: SttEvent.SpeechEnded (#124), then
+ *          inputFinished() + decode() flushes the model's
  *          lookahead -> FinishedUtterances per end mode (#43; see
  *          StreamingSession) -> Final, or keep it
  *          the stream is released; the next onset opens a new one
  *        Smart Turn instead: the segment proposes the end of the turn
  *          (SmartTurnGate) and the stream stays open, fed the pause; speech
  *          again continues the turn in the same stream. Complete (or the
- *          patience's ceiling of silence): flush the stream -> one Final for the turn
+ *          patience's ceiling of silence): SpeechEnded, flush the stream ->
+ *          one Final for the turn
  *   stop() -> queue closes -> flush the VAD and the utterance in progress
  *     the same way (a Smart Turn in progress ends) -> Final of the kept
  *     utterances, or NoSpeech
@@ -146,6 +148,7 @@ class OnlineSession(
 
         /** Smart Turn: the turn is over; its stream's text is one Final. */
         suspend fun endTurn() {
+            send(SttEvent.SpeechEnded)
             sendAll(texts.finished(finishUtterance(), turnQuiet))
             turnQuiet = Quiet.SILENT
         }
@@ -167,6 +170,7 @@ class OnlineSession(
                     if (ended) endTurn()
                     continue
                 }
+                send(SttEvent.SpeechEnded)
                 sendAll(texts.finished(finishUtterance(), quiet, atStop))
             }
         }

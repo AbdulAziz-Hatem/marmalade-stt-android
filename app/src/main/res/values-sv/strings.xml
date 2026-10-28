@@ -108,6 +108,7 @@
     <string name="settings_end">Talets slut</string>
     <string name="settings_end_keyboard">Rösttangentbord</string>
     <string name="settings_end_apps">Andra appar och fönstret ”Tala nu”</string>
+    <string name="settings_end_apps_commands">Tills du väljer ett läge används ”Autostopp efter paus” för röstkommandon från appar som spelar in sitt eget ljud och för sökningar.</string>
     <string name="settings_end_tap">Tryck för att stoppa</string>
     <string name="settings_end_tap_desc">Mikrofonen är på tills du trycker på den. Dina ord skrivs när du stoppar.</string>
     <string name="settings_end_smart_turn">Autostopp med Smart Turn</string>

@@ -99,6 +99,9 @@ class Dictation(private val pipeline: TextPipeline = TextPipeline(TextProcConfig
         // Loops and noise captions come out now; the rest of the cleanup waits for the Final.
         is SttEvent.Partial -> state.copy(partial = pipeline.cleanPartial(event.text))
 
+        // Its Final follows once decoded, and moves the phase on.
+        SttEvent.SpeechEnded -> state
+
         // A Final only finalises text; only the mic tap stops the Dictate
         // screen (#43: it always runs Pause, a Final at each pause).
         is SttEvent.Final -> {

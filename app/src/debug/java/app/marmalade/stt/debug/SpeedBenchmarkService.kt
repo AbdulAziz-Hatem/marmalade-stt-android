@@ -14,6 +14,7 @@ import app.marmalade.stt.data.OnboardingSettings
 import app.marmalade.stt.data.SpeechSettings
 import app.marmalade.stt.install.ModelInstaller
 import app.marmalade.stt.install.SttEngineCatalog
+import app.marmalade.stt.speech.EndOfDictation
 import app.marmalade.stt.speech.OrtTuning
 import app.marmalade.stt.speech.RecognizerThreads
 import app.marmalade.stt.speech.SpeechEngineManager
@@ -60,6 +61,7 @@ import kotlinx.coroutines.launch
  *     # ready, and mark the setup guide done so MainActivity opens on Dictate.
  *     # [--es knobs speculativeFinal=true,trimAtStop=false,partialAtOnset=true,threads=4,tuning=cpu-pin]
  *     # sets SpeedKnobs (files/debug-mic/knobs, kept across restarts); "--es knobs none" clears them.
+ *     # [--es appsEnd SMART_TURN|PAUSE|END_WORD] sets Settings → End of speech → Other apps (#118).
  *     # [--ez release false] keeps the loaded model (for knobs a session reads at its start)
  * ```
  *
@@ -174,12 +176,13 @@ class SpeedBenchmarkService : Service() {
             speechSettings.setSelectedEngine(id)
         }
         if (intent.hasExtra("keep")) speechSettings.setKeepModelLoaded(intent.getBooleanExtra("keep", false))
+        intent.getStringExtra("appsEnd")?.let { speechSettings.setAppsEnd(EndOfDictation.valueOf(it)) }
         if (intent.getBooleanExtra("setupDone", false)) onboarding.setDone()
         intent.getStringExtra("knobs")?.let { DebugKnobs.write(this, it) }
         // Session knobs need no new engine; threads, tuning and the engine do.
         if (intent.getBooleanExtra("release", true)) engines.releaseModel()
         val prefs = speechSettings.current()
-        log("use: engine=${prefs.activeEngine.id} keep=${prefs.keepModelLoaded}")
+        log("use: engine=${prefs.activeEngine.id} keep=${prefs.keepModelLoaded} appsEnd=${prefs.appsEnd}")
     }
 
     private suspend fun run(intent: Intent) {

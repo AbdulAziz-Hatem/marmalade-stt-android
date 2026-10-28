@@ -82,7 +82,7 @@ class StreamingSessionTest {
         val (events, _) = runScripted(List(3) { loudHop }, FakeTranscriber(listOf("   ")), vad)
 
         assertEquals(
-            listOf(SttEvent.Ready, SttEvent.SpeechStarted, SttEvent.NoSpeech),
+            listOf(SttEvent.Ready, SttEvent.SpeechStarted, SttEvent.SpeechEnded, SttEvent.NoSpeech),
             events.withoutLevels(),
         )
     }

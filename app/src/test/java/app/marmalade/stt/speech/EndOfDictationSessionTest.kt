@@ -52,6 +52,16 @@ class EndOfDictationSessionTest {
 
     private fun List<SttEvent>.finals() = filterIsInstance<SttEvent.Final>()
 
+    /** Each utterance's start, end (#124) and Final, as short names. */
+    private fun List<SttEvent>.speech() = mapNotNull {
+        when (it) {
+            SttEvent.SpeechStarted -> "start"
+            SttEvent.SpeechEnded -> "end"
+            is SttEvent.Final -> it.text
+            else -> null
+        }
+    }
+
     // ── End word, offline session ───────────────────────────────────────────
 
     @Test
@@ -138,6 +148,8 @@ class EndOfDictationSessionTest {
 
         val pause = runOffline(List(5) { loudHop }, FakeTranscriber(listOf("one.", "Over.")), vad(), SessionOptions())
         assertEquals(listOf(SttEvent.Final("one.", false), SttEvent.Final("Over.", false)), pause.finals())
+        // #124: each segment's end goes out before its decode, so before its Final.
+        assertEquals(listOf("start", "end", "one.", "start", "end", "Over."), pause.speech())
     }
 
     // ── Smart Turn, offline session ─────────────────────────────────────────
@@ -184,6 +196,8 @@ class EndOfDictationSessionTest {
 
         assertEquals(listOf(SttEvent.Final("I went to the shop and bought milk.", nearSilent = false)), events.finals())
         assertEquals("a new SpeechStarted is fine", 2, events.count { it == SttEvent.SpeechStarted })
+        // The pause the turn went on after didn't end it: one end, for the turn, before its Final (#124).
+        assertEquals(listOf("start", "start", "end", "I went to the shop and bought milk."), events.speech())
         // One decode, of the whole turn: both segments and the gap between them.
         assertEquals(1, transcriber.calls.size)
         assertTrue("${transcriber.calls.single().size}", transcriber.calls.single().size >= 6 * HOP)
@@ -307,6 +321,7 @@ class EndOfDictationSessionTest {
         val events = runOnline(List(7) { loudHop } + List(4) { silentHop }, recognizer, vad, smartTurn(detector))
 
         assertEquals(listOf(SttEvent.Final("I went to the shop and bought milk.", false)), events.finals())
+        assertEquals(listOf("start", "start", "end", "I went to the shop and bought milk."), events.speech())
         assertEquals(1, recognizer.streams.size)
         assertTrue(recognizer.streams.single().finished && recognizer.streams.single().released)
         assertEquals(2, detector.calls.size)

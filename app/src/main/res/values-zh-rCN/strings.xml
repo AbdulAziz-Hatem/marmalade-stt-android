@@ -105,6 +105,7 @@
     <string name="settings_end">停止方式</string>
     <string name="settings_end_keyboard">语音键盘</string>
     <string name="settings_end_apps">其他应用和“请说话”弹窗</string>
+    <string name="settings_end_apps_commands">在你做出选择之前，自行录音的应用发出的语音指令和搜索会使用“停顿后自动停止”。</string>
     <string name="settings_end_tap">点按停止</string>
     <string name="settings_end_tap_desc">麦克风会一直开着，直到你点按它。停止时才会输入你说的话。</string>
     <string name="settings_end_smart_turn">用 Smart Turn 自动停止</string>

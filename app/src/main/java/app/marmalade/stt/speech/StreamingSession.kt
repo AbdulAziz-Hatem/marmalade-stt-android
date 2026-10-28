@@ -17,7 +17,8 @@ package app.marmalade.stt.speech
  *        and PreGainAudio (the same audio before gain, for nearSilent)
  *     -> SpeechVad in 512-sample windows
  *          onset: SttEvent.SpeechStarted; the utterance starts 0.6 s earlier
- *     -> VAD segment complete: transcribe the pre-roll + the VAD's segment,
+ *     -> VAD segment complete: SttEvent.SpeechEnded (#124), transcribe the
+ *        pre-roll + the VAD's segment,
  *        then reset the buffer for the next utterance; FinishedUtterances
  *        decides per end mode (#43):
  *          Pause:      SttEvent.Final(text, nearSilent)
@@ -29,8 +30,8 @@ package app.marmalade.stt.speech
  *        from the Patience setting, Normal: 1.2 s). The turn's audio stays in
  *        the buffer; the model scores its last 8 s (trailing silence
  *        included) now and after every further 0.5 s of silence, up to the
- *        patience's ceiling (Normal: 2.5 s). Complete:
- *        transcribe the whole turn once, SttEvent.Final. Speech first: the
+ *        patience's ceiling (Normal: 2.5 s). Complete: SttEvent.SpeechEnded,
+ *        then transcribe the whole turn once, SttEvent.Final. Speech first: the
  *        turn goes on. A turn reaching 28 s ends at its last segment.
  *     -> an utterance (or a turn with no segment closed yet) still going at
  *        the cap (28 s plus the pre-roll, #48, UtteranceCap; 21 s for Whisper
@@ -373,6 +374,7 @@ class StreamingSession(
 
         /** Smart Turn: the turn is over. Decode it once, from its pre-roll to its last segment's end, and send it. */
         suspend fun endTurn() {
+            send(SttEvent.SpeechEnded)
             val length = turnEnd - speechStartOffset
             // A turn that is only a cut segment's rest is decoded only if it holds speech.
             if (length > 0 && (!turnFromCut || UtteranceCap.restHasSpeech(length, turnQuiet.nearSilent))) {
@@ -418,6 +420,7 @@ class StreamingSession(
                     continue
                 }
 
+                send(SttEvent.SpeechEnded)
                 // Final text comes from the VAD's own segment (its end is
                 // trimmed to the speech), with the pre-roll in front of it.
                 // The cut segment: its rest, if that holds speech.
@@ -702,11 +705,14 @@ internal class MicHop(val audio: FloatArray, val preGain: FloatArray, val index:
  * The queue is unbounded for a live mic, which won't wait. A non-live capture
  * ([MicCapture.live], a caller's stream, #90) gets [NON_LIVE_QUEUED_HOPS]
  * instead: the producer then reads it only as fast as [consume] takes hops,
- * so the captured count stays within a few hops of what was consumed, and
- * the [LagMonitor] never sees the session as behind (no partials skipped,
- * no [SttEvent.CatchingUp], above all no [SttEvent.TooSlow], which would
- * mark the engine too slow for the phone). Its backlog isn't added up front
- * either: its hops are counted as they pass.
+ * so the captured count stays within a few hops of what was consumed. Its
+ * backlog isn't added up front either: its hops are counted as they pass.
+ * A file then never registers as lag. A [paced][MicCapture.paced] stream
+ * (a caller's pipe, written as it records, #118) adds what waits read but
+ * untaken in the engine's [EarlyMic] ([MicCapture.pendingHops]), so the
+ * [LagMonitor] sees the session fall behind the caller and partials are
+ * skipped as for the mic. A stream never marks the engine too slow:
+ * `SherpaSttEngine` drops its [SttEvent.TooSlow].
  *
  * @param isStopRequested polled per hop; true ends capture and closes the queue,
  *   so [consume] can flush and return.
@@ -756,7 +762,7 @@ internal fun micSession(
             }
         }
         // A live backlog was captured before the session started, so it counts from the start.
-        consume(hops) { if (capture.live) maxOf(captured.get(), capture.backlogHops) else captured.get() }
+        consume(hops) { if (capture.live) maxOf(captured.get(), capture.backlogHops) else captured.get() + capture.pendingHops }
         null
     } catch (e: CancellationException) {
         throw e // the collector went away: no Error, just clean up

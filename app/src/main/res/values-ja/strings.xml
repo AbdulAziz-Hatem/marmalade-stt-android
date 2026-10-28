@@ -105,6 +105,7 @@
     <string name="settings_end">話し終わりの判定</string>
     <string name="settings_end_keyboard">音声キーボード</string>
     <string name="settings_end_apps">他のアプリと音声入力ポップアップ</string>
+    <string name="settings_end_apps_commands">ここで選ぶまでは、自分で音声を録音するアプリの音声コマンドと検索には「無音で自動停止」を使います。</string>
     <string name="settings_end_tap">タップで停止</string>
     <string name="settings_end_tap_desc">タップするまでマイクはオンのままです。停止すると文字が入力されます。</string>
     <string name="settings_end_smart_turn">Smart Turn で自動停止</string>

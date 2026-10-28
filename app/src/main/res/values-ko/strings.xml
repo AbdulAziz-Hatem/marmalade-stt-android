@@ -105,6 +105,7 @@
     <string name="settings_end">중지 방식</string>
     <string name="settings_end_keyboard">음성 키보드</string>
     <string name="settings_end_apps">다른 앱 및 “말하세요” 팝업</string>
+    <string name="settings_end_apps_commands">직접 고르기 전까지는 자체적으로 오디오를 녹음하는 앱의 음성 명령과 검색에 “말을 멈추면 자동 중지”가 사용됩니다.</string>
     <string name="settings_end_tap">탭하여 중지</string>
     <string name="settings_end_tap_desc">마이크를 탭할 때까지 계속 켜져 있습니다. 중지하면 말한 내용이 입력됩니다.</string>
     <string name="settings_end_smart_turn">Smart Turn으로 자동 중지</string>

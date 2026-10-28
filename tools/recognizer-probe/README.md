@@ -31,7 +31,11 @@ is briefly visible either way, so wait a little before measuring.
 need nobody speaking (the mic opening for another app, an unknown language,
 a restart after cancel, language details, the support and download checks,
 `EXTRA_AUDIO_SOURCE` plain, held open after the speech like Waze, segmented, stalled, trickled and stopped while stalled) and checks how each ends; exit
-status 0 when all pass. It needs an engine installed in our app.
+status 0 when all pass. It needs an engine installed in our app. It also
+checks each request's end of speech from our `listen apps … end=` timing
+line (#120: a web search and a caller's own live audio get Auto-stop, a
+free-form request Smart Turn), which assumes Settings → End of speech →
+Other apps was never chosen, as on a fresh install.
 
 ## Extras
 
@@ -41,6 +45,7 @@ status 0 when all pass. It needs an engine installed in our app.
 | `--es target` | `default`: `createSpeechRecognizer(context)`, the phone's chosen service; `ours` (default): our component by name |
 | `--es pkg` | our package for `target ours` and `details` (default `app.marmalade.stt`; `app.marmalade.stt.debug` for debug builds) |
 | `--es lang` | `EXTRA_LANGUAGE`, e.g. `es-ES` |
+| `--es languageModel` | `EXTRA_LANGUAGE_MODEL`: `web_search` or `free_form` (the default). A web search is a short command (#120): Auto-stop unless the user chose an end of speech for other apps |
 | `--ez partials` | `EXTRA_PARTIAL_RESULTS` (default true) |
 | `--ei maxResults` | `EXTRA_MAX_RESULTS` |
 | `--ez preferOffline` | `EXTRA_PREFER_OFFLINE` |

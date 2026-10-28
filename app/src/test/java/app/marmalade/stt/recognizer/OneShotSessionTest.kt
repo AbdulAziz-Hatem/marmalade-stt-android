@@ -91,14 +91,21 @@ class OneShotSessionTest {
     fun `an utterance that begins after the first end's stop is not part of the result`() = runTest {
         // #116: a fast stream is read ahead of the session, so the flush can hold the next sentence.
         engine.onStop = {
-            engine.send(SttEvent.SpeechStarted, SttEvent.Partial("then"), SttEvent.Final("then call Bob.", nearSilent = false))
+            engine.send(
+                SttEvent.SpeechStarted,
+                SttEvent.Partial("then"),
+                SttEvent.SpeechEnded,
+                SttEvent.Final("then call Bob.", nearSilent = false),
+            )
             engine.events.close()
         }
         val result = start()
-        engine.send(SttEvent.Ready, SttEvent.SpeechStarted, SttEvent.Final("navigate home.", nearSilent = false))
+        engine.send(SttEvent.Ready, SttEvent.SpeechStarted, SttEvent.SpeechEnded, SttEvent.Final("navigate home.", nearSilent = false))
         assertEquals(OneShotOutcome.Text("Navigate home."), result.await())
-        // Nor are its partials passed on.
+        // Nor are its partials, start and end passed on (#124: a segmented caller would get begin/end for it).
         assertTrue(seen.none { it is SttEvent.Partial })
+        assertEquals(1, seen.count { it == SttEvent.SpeechStarted })
+        assertEquals(1, seen.count { it == SttEvent.SpeechEnded })
         assertEquals("navigate home.", (result.await() as OneShotOutcome.Text).raw)
         assertEquals(listOf("Navigate home." to "navigate home."), segments)
     }

@@ -69,6 +69,11 @@ internal class EarlyMic(
 
     override val live: Boolean get() = mic.live
 
+    override val paced: Boolean get() = mic.paced
+
+    // A live mic's queue only holds the load's backlog, counted as backlogHops.
+    override val pendingHops: Int get() = if (!mic.live && mic.paced) synchronized(lock) { queue.size } else 0
+
     @Volatile
     override var backlogHops: Int = 0
         private set

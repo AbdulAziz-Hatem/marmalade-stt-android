@@ -235,8 +235,10 @@ class ServiceSessionTest {
         send(
             SttEvent.Ready,
             SttEvent.SpeechStarted,
+            SttEvent.SpeechEnded,
             SttEvent.Final("one.", nearSilent = false),
             SttEvent.SpeechStarted,
+            SttEvent.SpeechEnded,
             SttEvent.Final("two.", nearSilent = false),
         )
         testScheduler.advanceTimeBy(ListenTimeouts.NO_SPEECH_TIMEOUT_MS * 10)
@@ -244,7 +246,68 @@ class ServiceSessionTest {
         assertEquals(0, stops)
         events.close()
         runCurrent()
-        assertEquals(listOf("ready", "begin", "segment [One.]", "segment [Two.]", "end", "endOfSegmentedSession"), client.calls)
+        // #124: each utterance's end goes out at once, before its result (Waze stops recording on it).
+        assertEquals(
+            listOf("ready", "begin", "end", "segment [One.]", "begin", "end", "segment [Two.]", "endOfSegmentedSession"),
+            client.calls,
+        )
+    }
+
+    @Test
+    fun `segmented - an utterance's end goes out when it is decided, not after its decode`() = runTest {
+        start(RecognitionRequest(audioSource = PcmFormat(), segmented = RecognitionRequest.Segmented.AUDIO_SOURCE))
+        send(SttEvent.Ready, SttEvent.SpeechStarted, SttEvent.SpeechEnded)
+        runCurrent()
+        assertEquals(listOf("ready", "begin", "end"), client.calls)
+        events.close()
+        runCurrent()
+    }
+
+    @Test
+    fun `segmented - the caller's stop after an utterance ended sends no second end`() = runTest {
+        start(RecognitionRequest(audioSource = PcmFormat(), segmented = RecognitionRequest.Segmented.AUDIO_SOURCE))
+        send(SttEvent.Ready, SttEvent.SpeechStarted, SttEvent.SpeechEnded, SttEvent.Final("one.", nearSilent = false))
+        runCurrent()
+        service.stopped()
+        events.close()
+        runCurrent()
+        assertEquals(listOf("ready", "begin", "end", "segment [One.]", "endOfSegmentedSession"), client.calls)
+    }
+
+    @Test
+    fun `segmented - a stop mid-utterance ends it once, and the flush begins no other`() = runTest {
+        start(RecognitionRequest(audioSource = PcmFormat(), segmented = RecognitionRequest.Segmented.AUDIO_SOURCE))
+        send(SttEvent.Ready, SttEvent.SpeechStarted)
+        runCurrent()
+        service.stopped()
+        // The engine flushes what it had read: the utterance in progress, and one after it.
+        send(
+            SttEvent.SpeechEnded,
+            SttEvent.Final("one.", nearSilent = false),
+            SttEvent.SpeechStarted,
+            SttEvent.SpeechEnded,
+            SttEvent.Final("two.", nearSilent = false),
+        )
+        events.close()
+        runCurrent()
+        assertEquals(listOf("ready", "begin", "end", "segment [One.]", "segment [Two.]", "endOfSegmentedSession"), client.calls)
+    }
+
+    @Test
+    fun `a plain request - one beginning and one end, also over utterances that leave no text`() = runTest {
+        start(RecognitionRequest(audioSource = PcmFormat()))
+        send(
+            SttEvent.Ready,
+            SttEvent.SpeechStarted,
+            SttEvent.SpeechEnded,
+            // Noise: no text, so listening goes on.
+            SttEvent.Final(" ", nearSilent = true),
+            SttEvent.SpeechStarted,
+            SttEvent.SpeechEnded,
+            SttEvent.Final("navigate home.", nearSilent = false),
+        )
+        runCurrent()
+        assertEquals(listOf("ready", "begin", "end", "results [Navigate home.]"), client.calls)
     }
 
     @Test

@@ -105,6 +105,7 @@
     <string name="settings_end">Fine del parlato</string>
     <string name="settings_end_keyboard">Tastiera vocale</string>
     <string name="settings_end_apps">Altre app e la finestra “Parla ora”</string>
+    <string name="settings_end_apps_commands">Finché non ne scegli una, i comandi vocali delle app che registrano il proprio audio e le ricerche usano “Stop automatico dopo una pausa”.</string>
     <string name="settings_end_tap">Tocca per fermare</string>
     <string name="settings_end_tap_desc">Il microfono resta attivo finché non lo tocchi. Le parole vengono scritte quando ti fermi.</string>
     <string name="settings_end_smart_turn">Stop automatico con Smart Turn</string>

@@ -40,7 +40,8 @@ data class PcmFormat(
  * any byte count) are put back together.
  *
  * Not [live][MicCapture.live]: a caller may hand over a file, read as fast
- * as the session consumes it.
+ * as the session consumes it. [paced] when the caller writes as it records
+ * (a pipe or socket, not a file, #118): the session then measures its lag.
  *
  * No platform AGC ([hasPlatformAgc] false), so the session runs [SoftAgc]:
  * the caller's audio may be anything (a quiet file, or its own mic, which on
@@ -72,6 +73,7 @@ class StreamCapture(
     private val idleTimeoutMs: Long = IDLE_TIMEOUT_MS,
     private val maxAudioMs: Long = MAX_AUDIO_MS,
     private val maxWallMs: Long = MAX_WALL_MS,
+    override val paced: Boolean = false,
 ) : MicCapture {
 
     companion object {

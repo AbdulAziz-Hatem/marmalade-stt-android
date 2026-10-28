@@ -81,6 +81,15 @@ fun EndOfSpeechSection(
         selected = prefs.endFor(ListenSurface.APPS),
         onSelect = onAppsEndChange,
     )
+    // Until a choice is stored, short commands from other apps get Auto-stop (#120, SpeechPrefs.endFor).
+    if (!prefs.appsEndChosen) {
+        Text(
+            text = stringResource(R.string.settings_end_apps_commands),
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 8.dp),
+        )
+    }
     PauseSlider(prefs.minSilenceSeconds, onMinSilenceChange)
     if (prefs.usesSmartTurn) PatienceRow(prefs.patience, onPatienceChange)
     if (prefs.usesEndWord) EndWordsField(prefs.endWords, onEndWordsChange)

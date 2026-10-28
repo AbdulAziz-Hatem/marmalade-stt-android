@@ -63,6 +63,16 @@ class RecognitionRequestTest {
     }
 
     @Test
+    fun `only the web-search language model marks a web search`() {
+        fun webSearch(model: String?) = request { putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, model) }.webSearch
+        assertTrue(webSearch(RecognizerIntent.LANGUAGE_MODEL_WEB_SEARCH))
+        assertFalse(webSearch(RecognizerIntent.LANGUAGE_MODEL_FREE_FORM))
+        assertFalse(webSearch(null))
+        assertFalse(webSearch("something else"))
+        assertFalse(request().webSearch)
+    }
+
+    @Test
     fun `max results - absent, zero or negative is the recognizer's choice, else as asked`() {
         fun max(value: Int?) = request { if (value != null) putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, value) }.maxResults
         assertEquals(5, max(null))

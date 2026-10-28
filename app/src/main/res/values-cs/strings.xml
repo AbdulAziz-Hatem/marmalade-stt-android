@@ -108,6 +108,7 @@
     <string name="settings_end">Konec promluvy</string>
     <string name="settings_end_keyboard">Hlasová klávesnice</string>
     <string name="settings_end_apps">Ostatní aplikace a okno „Mluvte“</string>
+    <string name="settings_end_apps_commands">Dokud žádnou nevyberete, hlasové příkazy z aplikací, které nahrávají vlastní zvuk, a vyhledávání používají „Automaticky zastavit po pauze“.</string>
     <string name="settings_end_tap">Zastavit klepnutím</string>
     <string name="settings_end_tap_desc">Mikrofon zůstane zapnutý, dokud na něj neklepnete. Slova se napíšou, až poslech zastavíte.</string>
     <string name="settings_end_smart_turn">Automaticky zastavit pomocí Smart Turn</string>

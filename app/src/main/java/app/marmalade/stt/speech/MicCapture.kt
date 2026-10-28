@@ -37,13 +37,27 @@ interface MicCapture : AutoCloseable {
      * A live source delivers audio in real time, whether or not it is read,
      * so it is read at once and kept in a queue (the mic). A non-live one (a
      * caller's stream, #90, possibly a file read as fast as possible) is read
-     * only as fast as the session consumes it: nothing is dropped, and no lag
-     * is measured against it, since being behind it says nothing about the
-     * engine's speed ([EarlyMic], [micSession]). A caller streaming its own
-     * mic in real time is fine as non-live too: waiting for the session never
-     * holds a real-time producer up for long.
+     * only as fast as the session consumes it: nothing is dropped, and it
+     * never judges the engine's speed ([EarlyMic], [micSession]). A non-live
+     * source that is [paced] still has its lag measured.
      */
     val live: Boolean get() = true
+
+    /**
+     * Audio arrives in real time: the mic, or a caller writing its own audio
+     * into a pipe as it records (#118, Waze). Being behind a paced source is
+     * lag, so the session skips partials to catch up ([LagMonitor]); a
+     * non-live paced source counts what waits read but untaken
+     * ([pendingHops]). A file is never paced: it waits for its reader.
+     */
+    val paced: Boolean get() = live
+
+    /**
+     * Hops read from a non-live [paced] source and not yet handed to the
+     * session ([EarlyMic]'s queue): how far the session is behind the
+     * caller's audio, beyond the hops it has taken. 0 otherwise.
+     */
+    val pendingHops: Int get() = 0
 
     /**
      * Hops at the start of [hops] that were captured before it was collected

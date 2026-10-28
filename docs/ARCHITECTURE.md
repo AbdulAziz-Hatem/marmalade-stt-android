@@ -184,7 +184,13 @@ As built in #4 (`app/.../speech/StreamingSession.kt`):
    loaded (#78) arrives in a burst but counts as captured from the
    session's start (`MicCapture.backlogHops`), so the session starts that
    far behind and catches up, and only a lag that grows from there is
-   `TooSlow`; a long load alone never is.
+   `TooSlow`; a long load alone never is. A caller's pipe written as it
+   records (`EXTRA_AUDIO_SOURCE`, #118) is *paced* (`MicCapture.paced`):
+   its lag is the hops waiting in the engine's `EarlyMic` queue
+   (`MicCapture.pendingHops`), so the session catches up behind it as
+   behind the mic. A regular file isn't paced and never lags. Only the mic
+   reports `TooSlow` (`SherpaSttEngine` drops a stream's): a caller's
+   timing isn't ours to judge, and must never change the recommendation.
 9. **Text pipeline:** send the final text through `:textproc`
    (`TextPipeline.process(text, before, nearSilent, silent)`) before committing or
    returning it.
@@ -200,7 +206,7 @@ finalised. Each listening surface has its own (`ListenSurface`,
 |---|---|---|---|
 | Voice keyboard (`KEYBOARD`) | `keyboardEnd`, default **Tap to stop** | Tap to stop, Smart Turn, Pause, End word | In the auto modes (all but Tap to stop) the first committed Final acts as Done, unless locked |
 | Dictate screen (`DICTATE`) | always **Pause** | none | Never: only the mic tap stops |
-| Speak-now sheet + RecognitionService (`APPS`) | `appsEnd`, default **Smart Turn** | Smart Turn, Pause, End word | Yes: the request ends at the first end (#41), unless the sheet is locked |
+| Speak-now sheet + RecognitionService (`APPS`) | `appsEnd`, default **Smart Turn**; a short command gets **Pause** until the user chooses (#120) | Smart Turn, Pause, End word | Yes: the request ends at the first end (#41), unless the sheet is locked |
 
 The engine-level mode only decides when Finals come; whether a Final ends
 the session is the surface's decision (`VoiceIme.actsAsDone`,
@@ -212,7 +218,26 @@ text early, it never stops listening. A stored `appsEnd` outside its choices
 reads as Smart Turn, so a one-shot request never runs Tap stop (no utterance
 would end until the caller stopped, holding the mic). Patient mode (before
 #43) isn't read: whoever had it on gets Tap to stop on the keyboard, the
-default. The pause slider's default is **1.2 s**
+default.
+
+Other apps' short commands (#120, `RecognitionRequest.shortCommand`) end
+with Pause while the user hasn't chosen an end for other apps
+(`SpeechPrefs.appsEndChosen`: only a choice made in Settings is stored,
+choosing Smart Turn included): a caller's own live audio
+(`EXTRA_AUDIO_SOURCE` over a pipe or socket, not a regular file; Waze, car
+and assistant apps send commands this way; also a session segmented by that
+stream, as Waze's is, #124, but not one segmented by a pause or a minimum
+length)
+and a `LANGUAGE_MODEL_WEB_SEARCH` request, from the mic, a stream or the
+speak-now sheet. Max, 2026-10-25: "for the waze short commands I think
+auto-stop is better. Longer speech yes smart turn". A finished sentence
+ends at about the same time under both (1.3 vs 1.25 s,
+`docs/benchmarks/2026-10-smart-turn-defaults.md`), but a command has no
+pause to think in that Smart Turn would protect, so its extra check at the
+end of each command gains nothing, and it costs more on slower phones (on a
+Pixel 6a 0.23 s with the screen on, 0.9 s with it off, #118). A chosen end always
+wins; Settings says so under the Other apps row until the user chooses. The
+`listen apps …` timing line logs each session's `end=`. The pause slider's default is **1.2 s**
 (`SessionOptions.DEFAULT_MIN_SILENCE_SECONDS`; it was 0.9 s): only a moved
 slider is stored, so everyone else follows the default and a stored value
 is kept.
@@ -246,9 +271,10 @@ use them.
   sees a longer pause). Probability above the threshold ends the turn;
   otherwise it is checked again after every further 0.5 s of silence, and
   the ceiling's silence ends it regardless. Speech first: the turn goes on
-  (a new `SpeechStarted`, partials continue). An ended turn is decoded
-  once, pre-roll to the end of its last segment, and sent as one Final, as
-  Pause sends one utterance. A turn that grows to 28 s ends at its last
+  (a new `SpeechStarted`, partials continue). An ended turn sends
+  `SpeechEnded` (#124: once per turn, as Pause sends it once per segment,
+  before the decode), is decoded once, pre-roll to the end of its last
+  segment, and sent as one Final, as Pause sends one utterance. A turn that grows to 28 s ends at its last
   segment boundary and the speech in progress starts the next turn
   (Whisper's window); one with no closed segment yet is cut at the cap as
   in step 3. No partials are decoded while a turn only waits in
@@ -715,9 +741,10 @@ A request with `EXTRA_AUDIO_SOURCE` skips the preflight.
 | API | Status | What we do / why not |
 |---|---|---|
 | `startListening` from another app | **added (#90, #96)** | the mic is opened for the caller, and apps with a launcher icon, keyboards and accessibility services are visible to us so Android's preflight passes (above) |
-| `readyForSpeech`, `beginningOfSpeech`, `rmsChanged`, `endOfSpeech` | supported | ready at `Listening` (#78); beginning once per request; rms on Google's -2..10 scale |
+| `readyForSpeech`, `beginningOfSpeech`, `rmsChanged`, `endOfSpeech` | supported | ready at `Listening` (#78); rms on Google's -2..10 scale. A plain request: beginning once, end once (at the session's end or the caller's stop; its first utterance may be noise, and listening goes on). A segmented session: beginning and end per utterance (#124), the end as soon as the engine decides it (`SttEvent.SpeechEnded`: the VAD's pause, Smart Turn's verdict, a stop's flush), before its decode and its `onSegmentResults`; never twice, and none begins after the caller's stop. Waze asks for a session segmented by its stream and stops its recording at the first `onEndOfSpeech`: up to 1.2.2 that came only when its own 10 s `stopListening` ended the session (GitHub #7) |
 | `RESULTS_RECOGNITION` | supported | one hypothesis (two with formatting) |
 | `CONFIDENCE_SCORES` | **added** | -1 per hypothesis, Android's "unavailable": sherpa-onnx's offline results carry no probabilities, and an app reading the array unguarded mustn't crash on a missing one. Also `EXTRA_CONFIDENCE_SCORES` on the sheet |
+| `EXTRA_LANGUAGE_MODEL` | **added: web search ends with Auto-stop** | `LANGUAGE_MODEL_WEB_SEARCH` (Android's hint for a short query) is a short command: Pause unless the user chose an end of speech for other apps ("End of speech", #120). `LANGUAGE_MODEL_FREE_FORM`, or none, keeps the setting. The model itself is the same for both |
 | `EXTRA_MAX_RESULTS` | **added** | a cap; we never have more than two hypotheses |
 | `EXTRA_PARTIAL_RESULTS` | supported | `cleanPartial`ed partials, blank ones too (the last turned out to be noise) |
 | `EXTRA_PREFER_OFFLINE` | n/a | always offline |
@@ -728,8 +755,8 @@ A request with `EXTRA_AUDIO_SOURCE` skips the preflight.
 | The user's own use while another app listens | **pre-empts (Max, 2026-10-21)** | starting the voice keyboard's mic, Dictate or the speak-now sheet while another app's RecognitionService request holds the engine (mic or stream) ends that request at once (`SessionArbiter`): it is cancelled, its mic or stream closes, and the app gets `ERROR_RECOGNIZER_BUSY`; what it had heard is dropped, segments already sent stay sent. BUSY rather than `ERROR_CLIENT`: Android documents BUSY as "RecognitionService busy" and apps already handle it for a second client (retry later), while CLIENT means the app misused the API. Google's recognizer has no such hand-over to copy: on the emulator, when our Dictate took the mic during its session it heard silence and ended at its own timeout (`ERROR_NO_MATCH`). A release deferred behind the pre-empted session (a surface's hold closed meanwhile) is undone (`SttEngine.keep`), so the model isn't unloaded and reloaded under the user. The user's session then starts without a busy error, and on the same engine without reloading its model. Never the reverse: another app's request gets BUSY while the user's own session starts or runs, before it picks an engine (routed to another engine or hint it would otherwise build a second engine beside the user's: two mics, two models) |
 | How long a request may run | **bounded** | no caller holds the mic or the engine (the keyboard and Dictate would get busy) for ever: a request from the mic is stopped after 10 min (`RecognitionRequest.MAX_MIC_LENGTH_MS`; what was heard is still transcribed), whatever its extras asked; a stream by its audio (next row) |
 | `EXTRA_SPEECH_INPUT_POSSIBLY_COMPLETE_SILENCE_LENGTH_MILLIS` | not honoured | Smart Turn and Pause decide when speech is complete; Android documents the extra as possibly ignored |
-| `EXTRA_SEGMENTED_SESSION` (33+) | **added** | `onSegmentResults` per utterance, then `onEndOfSegmentedSession` (also with nothing heard); all three kinds. A spoken edit ("delete that") can't take back a segment already sent |
-| `EXTRA_AUDIO_SOURCE` + `_CHANNEL_COUNT`/`_ENCODING`/`_SAMPLING_RATE` (33+) | **added** | `speech/StreamCapture`: 8/16/24/32-bit and float PCM, 1–8 channels, 8–192 kHz, resampled to 16 kHz in memory, never written. The format extras are read as any `Number` (Int, Long, or a Serializable one: Waze's sampling rate arrives as a `Parcel$LazyValue`, which `getIntExtra` ignored, #116); zero or less counts as absent (Android's default), beyond Int is refused. A plain request over a pipe or socket ends like the mic's (#116): the user's end of speech, an end word, or the no-speech timeout (speech starting more than 6 s after ready gets `ERROR_SPEECH_TIMEOUT`, as from the mic), with the stream's end as the fallback (a caller that stops writing early still gets what was heard). An utterance the engine's flush begins after that end isn't added (a fast pipe is read ahead of the session). A regular file (`Os.fstat`, `S_ISREG`) runs to its end as before: a recording has no latency to win and its caller wants all of it. Waze holds its pipe open a fixed 10 s and leaves the end to the recognizer; up to 1.2.1 its result waited for that. A session segmented by the stream (`EXTRA_SEGMENTED_SESSION` = `EXTRA_AUDIO_SOURCE`) also runs to the stream's end; segmented by a pause or a minimum length, a pipe ends as from the mic. Read up to 60 s ahead of the session (the engine's `EarlyMic` queue), then only as fast as the engine consumes it (not live: no drops, no too-slow evidence), so a real-time writer is never blocked, a fast pipe is read well ahead (a stop flushes what was read), partials are never skipped for a stream and an engine slower than a live caller's audio reaches its end of speech late: on a Pixel 6a, Parakeet Ultra with Smart Turn ran about 3 s behind Waze-style audio (#116; eager reading for live pipes is #118). The stream also ends when we have waited 10 s for audio without 1 s of it arriving (a stalled writer, a pipe never closed, one trickling bytes to keep it open; only time waiting on the caller counts, not decoding), after 1 h of audio (`/dev/zero`), or 1 h after its first read whatever it does (decoding included: a 1 h file on an engine slower than real time is cut short, with what was decoded by then). So a live streamer that only writes while someone speaks is ended by 10 s of not writing: it should send its silence too. A read returning no bytes (a non-blocking descriptor) waits 20 ms before the next. What came before is transcribed. The descriptor unparcelled from the intent is ours: taken before anything copies the extras (a copy keeps the incoming parcel's duplicate open until GC; `RecognitionRequest.from` reads with the intent's accessors), and closed when the request ends, however it ends (`ServiceRequests`). Needs no mic permission. Other formats: `ERROR_AUDIO` |
+| `EXTRA_SEGMENTED_SESSION` (33+) | **added** | `onBeginningOfSpeech`, `onEndOfSpeech` (#124) and `onSegmentResults` per utterance, then `onEndOfSegmentedSession` (also with nothing heard); all three kinds. A spoken edit ("delete that") can't take back a segment already sent |
+| `EXTRA_AUDIO_SOURCE` + `_CHANNEL_COUNT`/`_ENCODING`/`_SAMPLING_RATE` (33+) | **added** | `speech/StreamCapture`: 8/16/24/32-bit and float PCM, 1–8 channels, 8–192 kHz, resampled to 16 kHz in memory, never written. The format extras are read as any `Number` (Int, Long, or a Serializable one: Waze's sampling rate arrives as a `Parcel$LazyValue`, which `getIntExtra` ignored, #116); zero or less counts as absent (Android's default), beyond Int is refused. A plain request over a pipe or socket ends like the mic's (#116): the user's end of speech (Pause, as a short command, until the user chooses one for other apps, #120), an end word, or the no-speech timeout (speech starting more than 6 s after ready gets `ERROR_SPEECH_TIMEOUT`, as from the mic), with the stream's end as the fallback (a caller that stops writing early still gets what was heard). An utterance the engine's flush begins after that end isn't added (a fast pipe is read ahead of the session). A regular file (`Os.fstat`, `S_ISREG`) runs to its end as before: a recording has no latency to win and its caller wants all of it. Waze holds its pipe open a fixed 10 s and leaves the end to the recognizer; up to 1.2.1 its result waited for that. A session segmented by the stream (`EXTRA_SEGMENTED_SESSION` = `EXTRA_AUDIO_SOURCE`) also runs to the stream's end; segmented by a pause or a minimum length, a pipe ends as from the mic. Read up to 60 s ahead of the session (the engine's `EarlyMic` queue), then only as fast as the engine consumes it (not live: no drops, no too-slow evidence), so a real-time writer is never blocked and a fast pipe is read well ahead (a stop flushes what was read). A pipe or socket is paced (#118): the hops waiting in that queue are its lag, and behind it the session skips partials to catch up, as behind the mic ("Stage-1 pipeline", step 8). Speculative decodes aren't skipped, for the mic either: one is the Final's own decode, done early. On a Pixel 6a with the caller in the foreground, Parakeet Ultra with Smart Turn keeps up with Waze-style audio (its result 1.3–2.2 s after the speech's end, before and after #118). With the screen off and the caller in the background, Android runs our service on the slow cores and the engine falls 3 s or more behind; there the time goes to the speculative decodes (a short pause mid-sentence starts one), not to partials, and skipping partials gains little. A stream never reports `TooSlow`. At the queue's bound (60 s behind) the reader waits and the writer blocks, as before: nothing is dropped, and partials are already all skipped by then. The stream also ends when we have waited 10 s for audio without 1 s of it arriving (a stalled writer, a pipe never closed, one trickling bytes to keep it open; only time waiting on the caller counts, not decoding), after 1 h of audio (`/dev/zero`), or 1 h after its first read whatever it does (decoding included: a 1 h file on an engine slower than real time is cut short, with what was decoded by then). So a live streamer that only writes while someone speaks is ended by 10 s of not writing: it should send its silence too. A read returning no bytes (a non-blocking descriptor) waits 20 ms before the next. What came before is transcribed. The descriptor unparcelled from the intent is ours: taken before anything copies the extras (a copy keeps the incoming parcel's duplicate open until GC; `RecognitionRequest.from` reads with the intent's accessors), and closed when the request ends, however it ends (`ServiceRequests`). Needs no mic permission. Other formats: `ERROR_AUDIO` |
 | `EXTRA_ENABLE_FORMATTING` (33+) | **added** | we always format (`:textproc`); with the extra the lists are [formatted, raw]. Partials repeat the cleaned text as raw (the engine's own partial isn't kept) |
 | `EXTRA_HIDE_PARTIAL_TRAILING_PUNCTUATION` (33+) | **added** | trailing `.,;:!?。、，！？…` cut from partials |
 | `EXTRA_MASK_OFFENSIVE_WORDS` (33+, default true) | not supported | we never change what was said; no word lists |

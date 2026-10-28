@@ -232,8 +232,10 @@ class OneShotSession(
                     is SttEvent.Error -> failure = event.kind
                     else -> Unit
                 }
-                // A late utterance's partials would show the caller words its result won't have.
-                if (!(lateSpeech && event is SttEvent.Partial)) onEvent(event)
+                // A late utterance's partials would show the caller words its result won't have, and
+                // its start and end an utterance it won't get.
+                val late = lateSpeech && (event is SttEvent.Partial || event == SttEvent.SpeechStarted || event == SttEvent.SpeechEnded)
+                if (!late) onEvent(event)
             }
         } finally {
             disarmTimeout()

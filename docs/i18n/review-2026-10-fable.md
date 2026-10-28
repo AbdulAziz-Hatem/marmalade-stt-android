@@ -342,3 +342,20 @@ store listings' names for Chinese and Korean. 19 OK; applied:
 - ko: "중국어와 한국어에 추천합니다" shared the model as its subject with
   감지하며, so it read as "the model recommends Chinese and Korean"; now
   "중국어와 한국어에 추천하는 모델입니다".
+
+## Short commands use Auto-stop (#120, 2026-10-25)
+
+New `settings_end_apps_commands`, the line under Settings → End of speech →
+Other apps until the user chooses there. One Fable reviewer read all 20
+locales against each one's `settings_end_pause` (the label it quotes) and
+register. 16 OK; applied, all the same case problem (a quoted label as the
+verb's object):
+
+- pl: "używają „…”" needs the genitive; now "korzystają z trybu „…”", as
+  `settings_speech_pause_desc`'s "w trybie „…”".
+- ru, uk: a quoted name after "используют" / "використовують" would have to
+  decline; now "режим «…»", as the existing "в режиме" / "у режимі".
+- tr: a bare quoted object needs the accusative; now "“…” seçeneğini kullanır".
+
+Not applied: the reviewer's optional English rewording (mode first); it
+judged the English OK as written.

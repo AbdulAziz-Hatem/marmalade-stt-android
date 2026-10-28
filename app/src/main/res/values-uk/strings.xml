@@ -107,6 +107,7 @@
     <string name="settings_end">Кінець мовлення</string>
     <string name="settings_end_keyboard">Голосова клавіатура</string>
     <string name="settings_end_apps">Інші додатки й вікно «Говоріть»</string>
+    <string name="settings_end_apps_commands">Доки ви нічого не вибрали, голосові команди з додатків, які самі записують звук, і пошукові запити використовують режим «Автозупинка після паузи».</string>
     <string name="settings_end_tap">Зупинка натисканням</string>
     <string name="settings_end_tap_desc">Мікрофон працює, доки ви його не натиснете. Слова друкуються, коли ви зупиняєте запис.</string>
     <string name="settings_end_smart_turn">Автозупинка зі Smart Turn</string>

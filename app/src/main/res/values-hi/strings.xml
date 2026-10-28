@@ -106,6 +106,7 @@
     <string name="settings_end">बोलने का अंत</string>
     <string name="settings_end_keyboard">वॉइस कीबोर्ड</string>
     <string name="settings_end_apps">दूसरे ऐप्स और “अभी बोलें” पॉपअप</string>
+    <string name="settings_end_apps_commands">जब तक आप कोई विकल्प नहीं चुनते, अपना ऑडियो खुद रिकॉर्ड करने वाले ऐप्स के वॉइस कमांड और खोजें “ठहराव के बाद अपने आप रुकें” का इस्तेमाल करते हैं।</string>
     <string name="settings_end_tap">रोकने के लिए टैप करें</string>
     <string name="settings_end_tap_desc">माइक तब तक चालू रहता है, जब तक आप उस पर टैप न करें। रोकने पर आपके शब्द टाइप होते हैं।</string>
     <string name="settings_end_smart_turn">Smart Turn से अपने आप रुकें</string>

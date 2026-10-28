@@ -5,7 +5,9 @@ import app.marmalade.stt.speech.EndOfDictation
 import app.marmalade.stt.speech.PcmFormat
 import app.marmalade.stt.speech.SessionOptions
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNull
+import org.junit.Assert.assertTrue
 import org.junit.Test
 
 /** What ends a RecognitionService request, and the engine's pause for it (#90). */
@@ -68,5 +70,26 @@ class RequestEndTest {
         assertEquals(2.5f, vad(2.5f))
         assertEquals(SessionOptions.MAX_CALLER_SILENCE_SECONDS, vad(30f))
         assertEquals(SessionOptions.MIN_SILENCE_RANGE_START, vad(0.05f))
+    }
+
+    @Test
+    fun `short commands - a caller's live stream or a web search, never a file or a session segmented by pause or length`() {
+        // #120: these end with Auto-stop unless the user chose otherwise (SpeechPrefs.endFor).
+        assertTrue(RecognitionRequest(audioSource = PcmFormat()).shortCommand())
+        assertTrue(RecognitionRequest(webSearch = true).shortCommand())
+        assertTrue(RecognitionRequest(audioSource = PcmFormat(), webSearch = true).shortCommand())
+        // Free form, or no hint, from the mic: the setting.
+        assertFalse(RecognitionRequest().shortCommand())
+        assertFalse(RecognitionRequest(completeSilenceMs = 3_000).shortCommand())
+        // #124: a session segmented by the live stream (Waze's) is a command too, a recording isn't.
+        assertTrue(RecognitionRequest(audioSource = PcmFormat(), segmented = Segmented.AUDIO_SOURCE).shortCommand())
+        assertFalse(RecognitionRequest(audioSource = PcmFormat(), segmented = Segmented.AUDIO_SOURCE).shortCommand(fromFile = true))
+        // A recording runs to its end (#116), and a session segmented otherwise asked for many utterances.
+        assertFalse(RecognitionRequest(audioSource = PcmFormat()).shortCommand(fromFile = true))
+        assertFalse(RecognitionRequest(audioSource = PcmFormat(), segmented = Segmented.COMPLETE_SILENCE, completeSilenceMs = 3_000).shortCommand())
+        assertFalse(RecognitionRequest(webSearch = true, segmented = Segmented.MINIMUM_LENGTH).shortCommand())
+        // The speak-now sheet is the mic: only the web-search hint counts there.
+        assertFalse(RecognitionRequest(audioSource = PcmFormat()).forSheet().shortCommand())
+        assertTrue(RecognitionRequest(webSearch = true, segmented = Segmented.AUDIO_SOURCE).forSheet().shortCommand())
     }
 }

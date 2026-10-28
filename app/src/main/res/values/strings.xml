@@ -121,6 +121,7 @@
     <string name="settings_end">End of speech</string>
     <string name="settings_end_keyboard">Voice keyboard</string>
     <string name="settings_end_apps">Other apps and the speak-now popup</string>
+    <string name="settings_end_apps_commands">Until you choose one, voice commands from apps that record their own audio, and searches, use Auto-stop after a pause.</string>
     <string name="settings_end_tap">Tap to stop</string>
     <string name="settings_end_tap_desc">The mic stays on until you tap it. Your words are typed when you stop.</string>
     <string name="settings_end_smart_turn">Auto-stop with Smart Turn</string>

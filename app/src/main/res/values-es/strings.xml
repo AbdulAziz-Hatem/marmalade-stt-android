@@ -105,6 +105,7 @@
     <string name="settings_end">Fin del dictado</string>
     <string name="settings_end_keyboard">Teclado de voz</string>
     <string name="settings_end_apps">Otras apps y la ventana para hablar</string>
+    <string name="settings_end_apps_commands">Hasta que elijas una, los comandos de voz de apps que graban su propio audio y las búsquedas usan “Parada automática tras una pausa”.</string>
     <string name="settings_end_tap">Tocar para detener</string>
     <string name="settings_end_tap_desc">El micrófono sigue activo hasta que lo tocas. Tus palabras se escriben cuando paras.</string>
     <string name="settings_end_smart_turn">Parada automática con Smart Turn</string>

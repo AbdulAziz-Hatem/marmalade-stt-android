@@ -107,6 +107,7 @@
     <string name="settings_end">Koniec wypowiedzi</string>
     <string name="settings_end_keyboard">Klawiatura głosowa</string>
     <string name="settings_end_apps">Inne aplikacje i okno „Mów teraz”</string>
+    <string name="settings_end_apps_commands">Dopóki nie wybierzesz opcji, polecenia głosowe z aplikacji, które same nagrywają dźwięk, i wyszukiwania korzystają z trybu „Automatyczne zatrzymanie po pauzie”.</string>
     <string name="settings_end_tap">Zatrzymanie kliknięciem</string>
     <string name="settings_end_tap_desc">Mikrofon działa, dopóki go nie klikniesz. Słowa są wpisywane po zatrzymaniu.</string>
     <string name="settings_end_smart_turn">Automatyczne zatrzymanie ze Smart Turn</string>

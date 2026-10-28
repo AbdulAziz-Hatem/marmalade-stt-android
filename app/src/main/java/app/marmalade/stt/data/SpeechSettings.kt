@@ -46,6 +46,8 @@ import kotlinx.coroutines.flow.map
  * @property appsEnd Settings → End of speech → Other apps (#43): the
  *   speak-now sheet and the RecognitionService. [EndOfDictation.SMART_TURN]
  *   by default; one of [APPS_ENDS].
+ * @property appsEndChosen the user chose [appsEnd] in Settings (it is
+ *   stored): short commands then get it too ([endFor], #120).
  * @property patience how patient Smart Turn is, on every surface that uses it.
  * @property endWords the end words for [EndOfDictation.END_WORD], lower case;
  *   never empty.
@@ -93,6 +95,7 @@ data class SpeechPrefs(
     val minSilenceSeconds: Float = SessionOptions.DEFAULT_MIN_SILENCE_SECONDS,
     val keyboardEnd: EndOfDictation = EndOfDictation.TAP_STOP,
     val appsEnd: EndOfDictation = EndOfDictation.SMART_TURN,
+    val appsEndChosen: Boolean = false,
     val patience: Patience = Patience.NORMAL,
     val endWords: List<String> = EndWords.DEFAULT,
     val keepModelLoaded: Boolean = false,
@@ -154,22 +157,33 @@ data class SpeechPrefs(
      * requests never get Tap stop or anything outside [APPS_ENDS] (#41: with
      * Tap stop no utterance would end until the caller stopped, holding the
      * mic open).
+     *
+     * A [shortCommand] from another app (#120: its own audio stream, or a
+     * web-search hint) gets Pause while the user hasn't chosen an end of
+     * speech for other apps: Max, 2026-10-25, "for the waze short commands
+     * I think auto-stop is better. Longer speech yes smart turn". Smart
+     * Turn's check costs about 0.9 s on a Pixel 6a, and a command has no
+     * pause to think in. A choice the user made always wins.
      */
-    fun endFor(surface: ListenSurface): EndOfDictation = when (surface) {
+    fun endFor(surface: ListenSurface, shortCommand: Boolean = false): EndOfDictation = when (surface) {
         ListenSurface.DICTATE -> EndOfDictation.PAUSE
         ListenSurface.KEYBOARD -> keyboardEnd
-        ListenSurface.APPS -> appsEnd.takeIf { it in APPS_ENDS } ?: DEFAULT_APPS_END
+        ListenSurface.APPS -> when {
+            shortCommand && !appsEndChosen -> EndOfDictation.PAUSE
+            else -> appsEnd.takeIf { it in APPS_ENDS } ?: DEFAULT_APPS_END
+        }
     }
 
     /**
      * The engine's options for one session on [surface] ([endFor]).
      *
+     * @param shortCommand see [endFor].
      * @param turnDetector the loaded Smart Turn model (`SmartTurnModel`), or
      *   null if it failed to load: Smart Turn then behaves as Pause.
      *   Passed on only in Smart Turn mode.
      */
-    fun sessionOptions(surface: ListenSurface, turnDetector: TurnDetector? = null): SessionOptions {
-        val end = endFor(surface)
+    fun sessionOptions(surface: ListenSurface, shortCommand: Boolean = false, turnDetector: TurnDetector? = null): SessionOptions {
+        val end = endFor(surface, shortCommand)
         return SessionOptions(
             end = end,
             minSilenceSeconds = minSilenceSeconds,
@@ -350,6 +364,8 @@ class SpeechSettings @Inject constructor(
                 .coerceIn(SessionOptions.MIN_SILENCE_RANGE_START, SessionOptions.MIN_SILENCE_RANGE_END),
             keyboardEnd = SpeechPrefs.endFrom(p[KEYBOARD_END], SpeechPrefs.KEYBOARD_ENDS),
             appsEnd = SpeechPrefs.endFrom(p[APPS_END], SpeechPrefs.APPS_ENDS),
+            // Only a choice made in Settings is stored (setAppsEnd); one we can't read isn't a choice.
+            appsEndChosen = SpeechPrefs.APPS_ENDS.any { it.name == p[APPS_END] },
             patience = SpeechPrefs.patienceFrom(p[PATIENCE]),
             endWords = SpeechPrefs.endWordsFrom(p[END_WORDS]),
             keepModelLoaded = p[KEEP_MODEL_LOADED] ?: false,

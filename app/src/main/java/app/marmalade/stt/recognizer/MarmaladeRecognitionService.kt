@@ -89,7 +89,7 @@ class MarmaladeRecognitionService : RecognitionService() {
         val descriptor = request.audioSource?.let { audioSource(recognizerIntent) }
         val fromFile = descriptor?.let { StreamCapture.isRegularFile(it.fileDescriptor) } ?: false
         debugLog { "startListening uid=${listener.callingUid} extras=${describe(recognizerIntent.extras)}" }
-        val audio = audioInputFor(request, descriptor, listener) ?: return
+        val audio = audioInputFor(request, descriptor, fromFile, listener) ?: return
         val client = CallbackClient(listener)
         val run = ServiceSession(request, client)
         requests.start(audio.stream, onStop = run::stopped) {
@@ -112,6 +112,7 @@ class MarmaladeRecognitionService : RecognitionService() {
                             audioInput = audio.open,
                             engine = engine,
                             pauseSeconds = request.enginePauseSeconds(),
+                            shortCommand = request.shortCommand(fromFile),
                             // The user's own use wins (Max, 2026-10-21): their keyboard, Dictate or sheet ends this.
                             preemptible = true,
                         ),
@@ -210,7 +211,7 @@ class MarmaladeRecognitionService : RecognitionService() {
      * `EXTRA_AUDIO_SOURCE`), or the mic opened for the caller. Null, with an
      * error sent (and the descriptor closed), when the stream can't be read.
      */
-    private fun audioInputFor(request: RecognitionRequest, descriptor: ParcelFileDescriptor?, listener: Callback): AudioInput? {
+    private fun audioInputFor(request: RecognitionRequest, descriptor: ParcelFileDescriptor?, fromFile: Boolean, listener: Callback): AudioInput? {
         // Also for a stream: the framework then skips its own mic-permission check, which a
         // caller that only hands us audio (a file) needn't pass.
         val attribution = callerAttribution(listener)
@@ -232,7 +233,8 @@ class MarmaladeRecognitionService : RecognitionService() {
         }
         // Closed by the capture when the engine is done with it, and by ServiceRequests when the request ends.
         val stream = ParcelFileDescriptor.AutoCloseInputStream(descriptor)
-        return AudioInput(stream) { hop -> StreamCapture(stream, format, hop) }
+        // A pipe or socket is written as the caller records (Waze): its lag is measured (#118).
+        return AudioInput(stream) { hop -> StreamCapture(stream, format, hop, paced = !fromFile) }
     }
 
     // Only called for a request that has the extra, which callers send from Android 13. Reading it

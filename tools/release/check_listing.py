@@ -24,7 +24,7 @@ ALLOWED_TAGS = {"p", "b", "i", "u", "em", "strong", "ul", "ol", "li", "br", "a"}
 PROTECTED = [
     "Marmalade STT", "FUTO", "HeliBoard", "FlorisBoard", "AnySoftKeyboard", "Unexpected Keyboard",
     "Smart Turn", "Parakeet", "Canary", "Nemotron", "Whisper", "Qwen3-ASR", "Granite", "GitHub",
-    "GitHub Sponsors", "Hugging Face", "1.0.0", "1.0.1", "1.1.0", "Duolingo", "1.2.0", "Marmalade TTS", "1.2.1", "1.2.2", "Waze",
+    "GitHub Sponsors", "Hugging Face", "1.0.0", "1.0.1", "1.1.0", "Duolingo", "1.2.0", "Marmalade TTS", "1.2.1", "1.2.2", "Waze", "1.2.3",
 ]
 TAG = re.compile(r"</?([a-zA-Z0-9]+)[^>]*>")
 
