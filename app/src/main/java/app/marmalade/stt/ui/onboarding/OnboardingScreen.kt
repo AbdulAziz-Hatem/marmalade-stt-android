@@ -403,7 +403,7 @@ fun OnboardingScreen(
                                         EngineAction.CANCEL -> viewModel.cancelDownload()
                                         EngineAction.REMOVE_DOWNLOAD -> viewModel.removeDownload()
                                         // Details-dialog actions; engineActions(onDetail = false) never offers them.
-                                        EngineAction.CHECK_FILES, EngineAction.REMOVE -> Unit
+                                        EngineAction.CHECK_FILES, EngineAction.REMOVE, EngineAction.IMPORT, EngineAction.EXPORT -> Unit
                                     }
                                 },
                             )

@@ -165,6 +165,7 @@ class EnginesViewModel @Inject constructor(
      */
     /** Import an engine from a local .zip archive selected via SAF. */
     fun importArchive(engineId: String, uri: Uri, contentResolver: ContentResolver) {
+        if (downloads.isRunning(engineId)) downloads.cancel(engineId)
         if (engineId in _checking.value) return
         _checking.update { it + engineId }
         viewModelScope.launch {
@@ -178,7 +179,7 @@ class EnginesViewModel @Inject constructor(
                             Log.w(TAG, "Failed to import $engineId", e)
                             val res = when ((e as? InstallException)?.failure) {
                                 InstallFailure.CHECKSUM -> R.string.engine_import_checksum_error
-                                InstallFailure.NO_SPACE -> R.string.engine_install_failed_no_space
+                                InstallFailure.NO_SPACE -> R.string.engine_failure_no_space
                                 else -> R.string.engine_import_failed
                             }
                             show(res)

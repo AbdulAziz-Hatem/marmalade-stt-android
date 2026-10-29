@@ -168,6 +168,29 @@ class ModelInstallerTest {
     }
 
     @Test
+    fun importArchiveCleansUpAnyExistingPartialDownloadAndInstallsSuccessfully() = runTest {
+        val staging = File(models, "$ENGINE.partial")
+        staging.mkdirs()
+        val leftoverPart = File(staging, "enc.onnx.part")
+        leftoverPart.writeBytes(Random(99).nextBytes(50_000))
+        assertTrue(leftoverPart.exists())
+
+        val zipBytes = createTestZip(
+            "enc.onnx" to encoder,
+            "dec.onnx" to decoder,
+            "tokens.txt" to tokens,
+        )
+
+        val result = installer.importArchive(ENGINE, ByteArrayInputStream(zipBytes))
+        assertTrue(result.isSuccess)
+
+        assertInstalledCorrectly()
+        assertEquals(InstallState.Installed, installer.state(ENGINE).value)
+        assertFalse(staging.exists())
+        assertFalse(File(finalDir, "enc.onnx.part").exists())
+    }
+
+    @Test
     fun exportArchiveWritesValidZipOfInstalledFiles() = runTest {
         assertTrue(installer.install(ENGINE).isSuccess)
 
