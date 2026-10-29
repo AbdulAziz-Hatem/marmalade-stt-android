@@ -86,16 +86,18 @@
     <string name="engine_action_check_files">Check files</string>
     <string name="engine_action_checking">Checking files…</string>
     <string name="engine_action_remove">Remove</string>
-    <string name="engine_action_import">Import archive</string>
-    <string name="engine_action_export">Export backup</string>
-    <string name="engine_detail_download_links">Download links</string>
-    <string name="engine_copy_download_links">Copy links to clipboard</string>
-    <string name="engine_import_success">Model installed from archive</string>
-    <string name="engine_import_failed">Failed to import model archive</string>
-    <string name="engine_import_checksum_error">The archive files did not match the expected checksums</string>
-    <string name="engine_export_success">Model backup exported</string>
-    <string name="engine_export_failed">Failed to export model backup</string>
-    <string name="engine_links_copied">Download links copied to clipboard</string>
+    <string name="engine_action_import" translatable="false">Import archive</string>
+    <string name="engine_action_export" translatable="false">Export backup</string>
+    <string name="engine_detail_backup" translatable="false">Backup</string>
+    <string name="engine_detail_backup_desc" translatable="false">Save .zip archive to storage</string>
+    <string name="engine_detail_download_links" translatable="false">Download links</string>
+    <string name="engine_copy_download_links" translatable="false">Copy links to clipboard</string>
+    <string name="engine_import_success" translatable="false">Model installed from archive</string>
+    <string name="engine_import_failed" translatable="false">Failed to import model archive</string>
+    <string name="engine_import_checksum_error" translatable="false">The archive files did not match the expected checksums</string>
+    <string name="engine_export_success" translatable="false">Model backup exported</string>
+    <string name="engine_export_failed" translatable="false">Failed to export model backup</string>
+    <string name="engine_links_copied" translatable="false">Download links copied to clipboard</string>
     <string name="engine_dialog_cancel">Cancel</string>
     <string name="engine_download_confirm_title">Download %1$s?</string>
     <string name="engine_download_confirm_body">This downloads %1$s from the internet, once. After that the engine works offline, and nothing you say leaves your phone.</string>

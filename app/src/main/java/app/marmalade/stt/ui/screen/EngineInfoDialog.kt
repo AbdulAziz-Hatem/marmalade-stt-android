@@ -278,19 +278,27 @@ private fun EngineDetailsBody(
     // Files are stored as downloaded, so the download size is the size on disk.
     val onDisk = state is InstallState.Installed || state is InstallState.Corrupt
     val checkFiles = EngineAction.CHECK_FILES in engineActions(state, onDetail = true)
-    // At large font sizes the button goes under the size: beside it, it left
-    // the label and value a narrow column (#68).
     val checkFilesBelow = stackSpecs()
     DetailParagraph(
         label = stringResource(if (onDisk) R.string.engine_detail_size_on_disk else R.string.engine_detail_download_size),
         value = formatBytes(engine.sizeBytes),
     ) {
-        if (checkFiles && !checkFilesBelow) {
+        if (!onDisk) {
+            ImportArchiveButton(importing = checking, onClick = { onAction(EngineAction.IMPORT) })
+        } else if (checkFiles && !checkFilesBelow) {
             CheckFilesButton(checking = checking, onClick = { onAction(EngineAction.CHECK_FILES) })
         }
     }
     if (checkFiles && checkFilesBelow) {
         CheckFilesButton(checking = checking, onClick = { onAction(EngineAction.CHECK_FILES) })
+    }
+    if (state is InstallState.Installed) {
+        DetailParagraph(
+            label = stringResource(R.string.engine_detail_backup),
+            value = stringResource(R.string.engine_detail_backup_desc),
+        ) {
+            ExportBackupButton(exporting = checking, onClick = { onAction(EngineAction.EXPORT) })
+        }
     }
     DetailParagraph(
         label = stringResource(R.string.engine_detail_license),

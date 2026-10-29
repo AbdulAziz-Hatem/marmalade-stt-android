@@ -330,6 +330,20 @@ fun CheckFilesButton(checking: Boolean, onClick: () -> Unit, modifier: Modifier 
     }
 }
 
+@Composable
+fun ImportArchiveButton(importing: Boolean, onClick: () -> Unit, modifier: Modifier = Modifier) {
+    MarmaladeOutlinedButton(onClick = onClick, enabled = !importing, modifier = modifier) {
+        Text(stringResource(R.string.engine_action_import))
+    }
+}
+
+@Composable
+fun ExportBackupButton(exporting: Boolean, onClick: () -> Unit, modifier: Modifier = Modifier) {
+    MarmaladeOutlinedButton(onClick = onClick, enabled = !exporting, modifier = modifier) {
+        Text(stringResource(R.string.engine_action_export))
+    }
+}
+
 /** A text button in the warm ink (Cancel, Close), not Material's orange `primary`. */
 @Composable
 fun EngineTextButton(label: String, onClick: () -> Unit, modifier: Modifier = Modifier, spokenLabel: String? = null) {
