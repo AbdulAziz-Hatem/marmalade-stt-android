@@ -275,7 +275,7 @@ class EnginesViewModel @Inject constructor(
         _message.value = null
     }
 
-    private fun show(@StringRes message: Int) {
+    fun show(@StringRes message: Int) {
         _message.value = message
     }
 
