@@ -3,6 +3,8 @@ package app.marmalade.stt.ui.screen
 import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
@@ -115,6 +117,7 @@ fun EnginesScreen(
     var pendingImportEngineId by rememberSaveable { mutableStateOf<String?>(null) }
     var pendingExportEngineId by rememberSaveable { mutableStateOf<String?>(null) }
     val contentResolver = LocalContext.current.contentResolver
+    val clipboard = LocalClipboardManager.current
 
     val importLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.OpenDocument()
@@ -179,6 +182,11 @@ fun EnginesScreen(
             EngineAction.EXPORT -> {
                 pendingExportEngineId = id
                 exportLauncher.launch("$id.zip")
+            }
+            EngineAction.COPY_LINKS -> {
+                val urls = SttEngineCatalog.byId(id)?.files?.joinToString("\n") { it.url }.orEmpty()
+                clipboard.setText(AnnotatedString(urls))
+                viewModel.show(R.string.engine_links_copied)
             }
         }
     }
