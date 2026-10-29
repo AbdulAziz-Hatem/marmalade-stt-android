@@ -1,6 +1,7 @@
 package app.marmalade.stt.ui.onboarding
 
 import android.Manifest
+import android.net.Uri
 import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Context
