@@ -364,6 +364,7 @@ fun EngineAction.labelRes(): Int = when (this) {
     EngineAction.REMOVE -> R.string.engine_action_remove
     EngineAction.IMPORT -> R.string.engine_action_import
     EngineAction.EXPORT -> R.string.engine_action_export
+    EngineAction.COPY_LINKS -> R.string.engine_copy_download_links
 }
 
 /**

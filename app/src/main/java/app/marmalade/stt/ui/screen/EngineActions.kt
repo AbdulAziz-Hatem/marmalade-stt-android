@@ -38,6 +38,9 @@ enum class EngineAction(val primary: Boolean) {
 
     /** Export installed model files into a local .zip archive (info dialog only). */
     EXPORT(false),
+
+    /** Copy direct download links to clipboard. */
+    COPY_LINKS(false),
 }
 
 /**

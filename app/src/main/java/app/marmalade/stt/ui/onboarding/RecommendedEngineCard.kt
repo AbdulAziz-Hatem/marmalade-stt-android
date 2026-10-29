@@ -34,6 +34,7 @@ import app.marmalade.stt.ui.screen.engineActions
 import app.marmalade.stt.ui.screen.rememberResumeFocus
 import app.marmalade.stt.ui.theme.MarmaladeSttTheme
 import app.marmalade.stt.ui.components.MarmaladeOutlinedButton
+import app.marmalade.stt.ui.screen.EngineTextButton
 import app.marmalade.ui.components.MarmaladeCard
 
 // -----------------------------------------------------------------------------
@@ -110,6 +111,12 @@ internal fun RecommendedEngineCard(
                 ) {
                     Text(stringResource(R.string.engine_action_import))
                 }
+                Spacer(Modifier.height(4.dp))
+                EngineTextButton(
+                    label = stringResource(R.string.engine_copy_download_links),
+                    onClick = { onAction(EngineAction.COPY_LINKS) },
+                    modifier = Modifier.fillMaxWidth(),
+                )
             } else {
                 EngineStatus(state = installState)
                 val actions = engineActions(installState, onDetail = false)

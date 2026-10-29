@@ -14,6 +14,8 @@ import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.ui.text.AnnotatedString
 import androidx.annotation.StringRes
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.EnterExitState
@@ -243,6 +245,7 @@ fun OnboardingScreen(
     }
 
     val contentResolver = context.contentResolver
+    val clipboard = LocalClipboardManager.current
     val importLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.OpenDocument()
     ) { uri: Uri? ->
@@ -413,6 +416,11 @@ fun OnboardingScreen(
                                         EngineAction.CANCEL -> viewModel.cancelDownload()
                                         EngineAction.REMOVE_DOWNLOAD -> viewModel.removeDownload()
                                         EngineAction.IMPORT -> importLauncher.launch(arrayOf("application/zip", "application/octet-stream", "*/*"))
+                                        EngineAction.COPY_LINKS -> {
+                                            val urls = recommendation?.engine?.files?.joinToString("\n") { it.url }.orEmpty()
+                                            clipboard.setText(AnnotatedString(urls))
+                                            viewModel.show(R.string.engine_links_copied)
+                                        }
                                         // Details-dialog actions; engineActions(onDetail = false) never offers them.
                                         EngineAction.CHECK_FILES, EngineAction.REMOVE, EngineAction.EXPORT -> Unit
                                     }

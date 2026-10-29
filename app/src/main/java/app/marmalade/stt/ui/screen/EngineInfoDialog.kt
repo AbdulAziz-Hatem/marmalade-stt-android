@@ -55,6 +55,8 @@ import app.marmalade.stt.install.InstallState
 import app.marmalade.stt.install.LanguageOptions
 import app.marmalade.stt.install.SttEngineDescriptor
 import app.marmalade.stt.ui.formatBytes
+import app.marmalade.stt.util.openUrl
+import androidx.compose.ui.platform.LocalContext
 import app.marmalade.stt.ui.rememberUiLocale
 import app.marmalade.stt.ui.theme.isDark
 import app.marmalade.ui.theme.depth
@@ -305,9 +307,15 @@ private fun EngineDetailsBody(
         value = engine.licenseId,
         onClick = { onOpenLicense(engine.licenseKey) },
     )
+    val context = LocalContext.current
     DetailParagraph(
         label = stringResource(R.string.engine_detail_source),
         value = modelSourceLabel(engine.files.first().url),
+        onClick = {
+            val url = engine.files.first().url
+            val releaseUrl = if ("/releases/download/" in url) url.substringBefore("/download/") else url.substringBeforeLast('/')
+            openUrl(context, releaseUrl)
+        },
     )
     val clipboard = LocalClipboardManager.current
     DetailParagraph(
