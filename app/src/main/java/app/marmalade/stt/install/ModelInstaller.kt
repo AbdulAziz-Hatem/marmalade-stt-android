@@ -38,6 +38,10 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import java.io.InputStream
+import java.io.OutputStream
+import java.util.zip.ZipEntry
+import java.util.zip.ZipInputStream
+import java.util.zip.ZipOutputStream
 import java.security.MessageDigest
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -132,6 +136,23 @@ open class ModelInstaller @Inject constructor(
     suspend fun install(engineId: String): Result<Unit> {
         val descriptor = descriptor(engineId) ?: return unknownEngine(engineId)
         return withContext(Dispatchers.IO) { mutex(engineId).withLock { runInstall(descriptor) } }
+    }
+
+    /**
+     * Import [engineId]'s files from a [zipInput] stream, verifying their sizes
+     * and SHA-256 hashes against the catalog before activating them.
+     */
+    suspend fun importArchive(engineId: String, zipInput: InputStream): Result<Unit> {
+        val descriptor = descriptor(engineId) ?: return unknownEngine(engineId)
+        return withContext(Dispatchers.IO) { mutex(engineId).withLock { runImport(descriptor, zipInput) } }
+    }
+
+    /**
+     * Export [engineId]'s installed files into a [zipOutput] stream.
+     */
+    suspend fun exportArchive(engineId: String, zipOutput: OutputStream): Result<Unit> {
+        val descriptor = descriptor(engineId) ?: return unknownEngine(engineId)
+        return withContext(Dispatchers.IO) { mutex(engineId).withLock { runExport(descriptor, zipOutput) } }
     }
 
     /** Release the engine, then delete its installed files and any partial download. */
@@ -500,6 +521,147 @@ open class ModelInstaller @Inject constructor(
         return runCatching {
             RECORD_ENTRY.findAll(file.readText()).associate { it.groupValues[1] to it.groupValues[2].lowercase() }
         }.getOrNull()
+    }
+
+    // -- import / export -------------------------------------------------------
+
+    private suspend fun runImport(d: SttEngineDescriptor, zipInput: InputStream): Result<Unit> {
+        val sf = stateFlow(d.id)
+        val staging = stagingDir(d.id)
+        val final = finalDir(d.id)
+        return try {
+            if (!staging.isDirectory && !staging.mkdirs()) throw IOException("Could not create $staging")
+            staging.listFiles().orEmpty().forEach { it.deleteRecursively() }
+            requireFreeSpace(d, staging)
+
+            val wantedFiles = d.files.associateBy { it.name }
+            val extractedFiles = mutableSetOf<String>()
+
+            ZipInputStream(zipInput).use { zis ->
+                while (true) {
+                    coroutineContext.ensureActive()
+                    val entry = zis.nextEntry ?: break
+                    if (entry.isDirectory) {
+                        zis.closeEntry()
+                        continue
+                    }
+                    val entryName = File(entry.name).name
+                    val modelFile = wantedFiles[entryName]
+                    if (modelFile == null) {
+                        zis.closeEntry()
+                        continue
+                    }
+
+                    val targetFile = File(staging, modelFile.name)
+                    if (!targetFile.canonicalPath.startsWith(staging.canonicalPath)) {
+                        zis.closeEntry()
+                        continue
+                    }
+
+                    val part = File(staging, modelFile.name + PART_SUFFIX)
+                    val digest = MessageDigest.getInstance("SHA-256")
+                    var bytesWritten = 0L
+                    FileOutputStream(part).use { out ->
+                        val buf = ByteArray(BUFFER_SIZE)
+                        while (true) {
+                            coroutineContext.ensureActive()
+                            val n = zis.read(buf)
+                            if (n == -1) break
+                            out.write(buf, 0, n)
+                            digest.update(buf, 0, n)
+                            bytesWritten += n
+                        }
+                    }
+                    zis.closeEntry()
+
+                    if (bytesWritten != modelFile.sizeBytes) {
+                        part.delete()
+                        Log.w(TAG, "Imported file size mismatch for ${d.id}/${modelFile.name}: expected ${modelFile.sizeBytes}, got $bytesWritten")
+                        throw InstallException(InstallFailure.CHECKSUM, CHECKSUM_MESSAGE)
+                    }
+
+                    val actualSha = digest.digest().toHex()
+                    if (!actualSha.equals(modelFile.sha256, ignoreCase = true)) {
+                        part.delete()
+                        Log.w(TAG, "Imported file SHA mismatch for ${d.id}/${modelFile.name}: expected ${modelFile.sha256}, got $actualSha")
+                        throw InstallException(InstallFailure.CHECKSUM, CHECKSUM_MESSAGE)
+                    }
+
+                    if (!part.renameTo(targetFile)) {
+                        throw IOException("Could not rename $part to $targetFile")
+                    }
+                    extractedFiles.add(modelFile.name)
+                }
+            }
+
+            val missing = d.files.filter { it.name !in extractedFiles }
+            if (missing.isNotEmpty()) {
+                Log.w(TAG, "Archive missing files for ${d.id}: ${missing.map { it.name }}")
+                deleteDir(staging)
+                throw InstallException(InstallFailure.CHECKSUM, "Archive is missing required files for ${d.displayName}.")
+            }
+
+            writeRecord(d, staging)
+            if (final.exists()) {
+                release.release(d.id)
+                if (!final.deleteRecursively()) throw IOException("Could not delete old $final")
+            }
+            if (!staging.renameTo(final)) throw IOException("Could not rename $staging to $final")
+
+            sf.value = InstallState.Installed
+            Log.i(TAG, "Successfully imported ${d.id} from archive")
+            Result.success(Unit)
+        } catch (t: Throwable) {
+            deleteDir(staging)
+            if (t is CancellationException || !coroutineContext.isActive) {
+                sf.value = probe(d)
+                throw t as? CancellationException ?: CancellationException("Import cancelled").apply { initCause(t) }
+            }
+            Log.w(TAG, "Import of ${d.id} failed", t)
+            val failure = if (t.isOutOfSpace()) InstallFailure.NO_SPACE else (t as? InstallException)?.failure
+            val reason = when {
+                failure == InstallFailure.NO_SPACE -> NO_SPACE_MESSAGE
+                t is InstallException -> t.message ?: GENERIC_FAILURE_MESSAGE
+                else -> GENERIC_FAILURE_MESSAGE
+            }
+            sf.value = InstallState.Failed(reason, failure, 0L)
+            val sameKind = t is InstallException && t.failure == failure
+            Result.failure(if (failure == null || sameKind) t else InstallException(failure, reason, t))
+        }
+    }
+
+    private fun runExport(d: SttEngineDescriptor, zipOutput: OutputStream): Result<Unit> {
+        val final = finalDir(d.id)
+        if (probeFinal(d, final) != InstallState.Installed) {
+            return Result.failure(IOException("${d.displayName} is not installed."))
+        }
+        return try {
+            ZipOutputStream(zipOutput.buffered()).use { zos ->
+                val buf = ByteArray(BUFFER_SIZE)
+                for (file in d.files) {
+                    val src = File(final, file.name)
+                    if (!src.isFile) throw IOException("Missing file ${file.name}")
+                    val entry = ZipEntry(file.name).apply {
+                        size = src.length()
+                        time = src.lastModified()
+                    }
+                    zos.putNextEntry(entry)
+                    src.inputStream().use { input ->
+                        while (true) {
+                            val n = input.read(buf)
+                            if (n == -1) break
+                            zos.write(buf, 0, n)
+                        }
+                    }
+                    zos.closeEntry()
+                }
+            }
+            Log.i(TAG, "Successfully exported ${d.id}")
+            Result.success(Unit)
+        } catch (e: Exception) {
+            Log.w(TAG, "Failed to export ${d.id}", e)
+            Result.failure(e)
+        }
     }
 
     // -- helpers ---------------------------------------------------------------

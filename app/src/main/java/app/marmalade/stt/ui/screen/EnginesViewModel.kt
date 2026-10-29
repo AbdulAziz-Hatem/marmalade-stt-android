@@ -1,6 +1,10 @@
 package app.marmalade.stt.ui.screen
 
+import android.content.ContentResolver
+import android.net.Uri
 import android.util.Log
+import app.marmalade.stt.install.InstallException
+import app.marmalade.stt.install.InstallFailure
 import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -159,6 +163,63 @@ class EnginesViewModel @Inject constructor(
      * waits for it to stop. Removing the selected engine selects the default
      * again ([selectionAfterRemoving]), so the app falls back to the user engine.
      */
+    /** Import an engine from a local .zip archive selected via SAF. */
+    fun importArchive(engineId: String, uri: Uri, contentResolver: ContentResolver) {
+        if (engineId in _checking.value) return
+        _checking.update { it + engineId }
+        viewModelScope.launch {
+            try {
+                contentResolver.openInputStream(uri)?.use { stream ->
+                    installer.importArchive(engineId, stream).fold(
+                        onSuccess = {
+                            show(R.string.engine_import_success)
+                        },
+                        onFailure = { e ->
+                            Log.w(TAG, "Failed to import $engineId", e)
+                            val res = when ((e as? InstallException)?.failure) {
+                                InstallFailure.CHECKSUM -> R.string.engine_import_checksum_error
+                                InstallFailure.NO_SPACE -> R.string.engine_install_failed_no_space
+                                else -> R.string.engine_import_failed
+                            }
+                            show(res)
+                        }
+                    )
+                } ?: show(R.string.engine_import_failed)
+            } catch (t: Throwable) {
+                Log.w(TAG, "Import error for $engineId", t)
+                show(R.string.engine_import_failed)
+            } finally {
+                _checking.update { it - engineId }
+            }
+        }
+    }
+
+    /** Export an installed engine's files into a local .zip archive via SAF. */
+    fun exportArchive(engineId: String, uri: Uri, contentResolver: ContentResolver) {
+        if (engineId in _checking.value) return
+        _checking.update { it + engineId }
+        viewModelScope.launch {
+            try {
+                contentResolver.openOutputStream(uri)?.use { stream ->
+                    installer.exportArchive(engineId, stream).fold(
+                        onSuccess = {
+                            show(R.string.engine_export_success)
+                        },
+                        onFailure = { e ->
+                            Log.w(TAG, "Failed to export $engineId", e)
+                            show(R.string.engine_export_failed)
+                        }
+                    )
+                } ?: show(R.string.engine_export_failed)
+            } catch (t: Throwable) {
+                Log.w(TAG, "Export error for $engineId", t)
+                show(R.string.engine_export_failed)
+            } finally {
+                _checking.update { it - engineId }
+            }
+        }
+    }
+
     fun remove(engineId: String) {
         if (downloads.isRunning(engineId)) downloads.cancel(engineId)
         viewModelScope.launch {

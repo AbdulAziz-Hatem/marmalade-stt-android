@@ -127,6 +127,83 @@ class ModelInstallerTest {
         assertEquals(emptyList<String>(), installer.removeUnknownModels())
     }
 
+    // -- import / export ---------------------------------------------------
+
+    @Test
+    fun importArchiveInstallsEveryFileAndRenamesStagingIntoPlace() = runTest {
+        assertEquals(InstallState.NotInstalled, installer.state(ENGINE).value)
+
+        val zipBytes = createTestZip(
+            "enc.onnx" to encoder,
+            "dec.onnx" to decoder,
+            "tokens.txt" to tokens,
+        )
+
+        val result = installer.importArchive(ENGINE, ByteArrayInputStream(zipBytes))
+        assertTrue(result.isSuccess)
+
+        assertInstalledCorrectly()
+        assertEquals(InstallState.Installed, installer.state(ENGINE).value)
+        assertEquals(finalDir, installer.installedModel(ENGINE)!!.dir)
+        val record = File(finalDir, ".install.json").readText()
+        engine.files.forEach { assertTrue(record.contains("\"${it.name}\": \"${it.sha256}\"")) }
+        // The network was never touched
+        assertTrue(fetcher.requests.isEmpty())
+    }
+
+    @Test
+    fun importArchiveWithChecksumMismatchFailsAndCleansStaging() = runTest {
+        val tamperedEncoder = encoder.copyOf().also { it[0] = (it[0] + 1).toByte() }
+        val zipBytes = createTestZip(
+            "enc.onnx" to tamperedEncoder,
+            "dec.onnx" to decoder,
+            "tokens.txt" to tokens,
+        )
+
+        val result = installer.importArchive(ENGINE, ByteArrayInputStream(zipBytes))
+        assertFalse(result.isSuccess)
+        assertEquals(InstallFailure.CHECKSUM, (result.exceptionOrNull() as InstallException).failure)
+        assertFalse(staging.exists())
+        assertFalse(finalDir.exists())
+    }
+
+    @Test
+    fun exportArchiveWritesValidZipOfInstalledFiles() = runTest {
+        assertTrue(installer.install(ENGINE).isSuccess)
+
+        val out = java.io.ByteArrayOutputStream()
+        val result = installer.exportArchive(ENGINE, out)
+        assertTrue(result.isSuccess)
+
+        val exportedBytes = out.toByteArray()
+        assertTrue(exportedBytes.isNotEmpty())
+
+        val readEntries = mutableMapOf<String, ByteArray>()
+        java.util.zip.ZipInputStream(ByteArrayInputStream(exportedBytes)).use { zis ->
+            while (true) {
+                val entry = zis.nextEntry ?: break
+                readEntries[entry.name] = zis.readBytes()
+                zis.closeEntry()
+            }
+        }
+
+        assertArrayEquals(encoder, readEntries["enc.onnx"])
+        assertArrayEquals(decoder, readEntries["dec.onnx"])
+        assertArrayEquals(tokens, readEntries["tokens.txt"])
+    }
+
+    private fun createTestZip(vararg entries: Pair<String, ByteArray>): ByteArray {
+        val bos = java.io.ByteArrayOutputStream()
+        java.util.zip.ZipOutputStream(bos).use { zos ->
+            for ((name, data) in entries) {
+                zos.putNextEntry(java.util.zip.ZipEntry(name))
+                zos.write(data)
+                zos.closeEntry()
+            }
+        }
+        return bos.toByteArray()
+    }
+
     // -- happy path --------------------------------------------------------
 
     @Test

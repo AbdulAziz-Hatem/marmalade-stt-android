@@ -34,7 +34,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
@@ -298,6 +300,15 @@ private fun EngineDetailsBody(
     DetailParagraph(
         label = stringResource(R.string.engine_detail_source),
         value = modelSourceLabel(engine.files.first().url),
+    )
+    val clipboard = LocalClipboardManager.current
+    DetailParagraph(
+        label = stringResource(R.string.engine_detail_download_links),
+        value = stringResource(R.string.engine_copy_download_links),
+        onClick = {
+            val urls = engine.files.joinToString("\n") { it.url }
+            clipboard.setText(AnnotatedString(urls))
+        },
     )
     Spacer(Modifier.height(8.dp))
 }

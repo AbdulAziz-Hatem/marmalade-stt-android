@@ -32,6 +32,12 @@ enum class EngineAction(val primary: Boolean) {
 
     /** Delete the installed model (asks for confirmation). Not in the setup guide. */
     REMOVE(false),
+
+    /** Import model files from a local .zip archive (info dialog only). */
+    IMPORT(false),
+
+    /** Export installed model files into a local .zip archive (info dialog only). */
+    EXPORT(false),
 }
 
 /**
@@ -46,7 +52,7 @@ enum class EngineAction(val primary: Boolean) {
  * Engines cards use [engineCardUi], which drops "Check files".
  */
 fun engineActions(state: InstallState, onDetail: Boolean): List<EngineAction> = when (state) {
-    InstallState.NotInstalled -> listOf(EngineAction.DOWNLOAD)
+    InstallState.NotInstalled -> if (onDetail) listOf(EngineAction.IMPORT, EngineAction.DOWNLOAD) else listOf(EngineAction.DOWNLOAD)
     is InstallState.Downloading -> listOf(EngineAction.CANCEL)
     is InstallState.Paused -> listOf(EngineAction.REMOVE_DOWNLOAD, EngineAction.RESUME)
     is InstallState.Failed ->
@@ -58,7 +64,7 @@ fun engineActions(state: InstallState, onDetail: Boolean): List<EngineAction> = 
     is InstallState.Corrupt ->
         if (onDetail) listOf(EngineAction.REMOVE, EngineAction.DOWNLOAD_AGAIN) else listOf(EngineAction.DOWNLOAD_AGAIN)
     InstallState.Installed ->
-        if (onDetail) listOf(EngineAction.REMOVE, EngineAction.CHECK_FILES) else emptyList()
+        if (onDetail) listOf(EngineAction.EXPORT, EngineAction.REMOVE, EngineAction.CHECK_FILES) else emptyList()
 }
 
 /**

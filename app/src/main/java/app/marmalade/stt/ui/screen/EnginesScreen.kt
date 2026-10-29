@@ -1,5 +1,8 @@
 package app.marmalade.stt.ui.screen
 
+import android.net.Uri
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
@@ -109,6 +112,29 @@ fun EnginesScreen(
     var pendingDownloadId by rememberSaveable { mutableStateOf<String?>(null) }
     var pendingRemoveId by rememberSaveable { mutableStateOf<String?>(null) }
     var infoEngineId by rememberSaveable { mutableStateOf<String?>(null) }
+    var pendingImportEngineId by rememberSaveable { mutableStateOf<String?>(null) }
+    var pendingExportEngineId by rememberSaveable { mutableStateOf<String?>(null) }
+    val contentResolver = LocalContext.current.contentResolver
+
+    val importLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.OpenDocument()
+    ) { uri: Uri? ->
+        val id = pendingImportEngineId
+        if (uri != null && id != null) {
+            viewModel.importArchive(id, uri, contentResolver)
+        }
+        pendingImportEngineId = null
+    }
+
+    val exportLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.CreateDocument("application/zip")
+    ) { uri: Uri? ->
+        val id = pendingExportEngineId
+        if (uri != null && id != null) {
+            viewModel.exportArchive(id, uri, contentResolver)
+        }
+        pendingExportEngineId = null
+    }
 
     LaunchedEffect(Unit) { viewModel.refresh() }
 
@@ -146,6 +172,14 @@ fun EnginesScreen(
             EngineAction.REMOVE_DOWNLOAD -> viewModel.removeDownload(id)
             EngineAction.CHECK_FILES -> viewModel.checkFiles(id)
             EngineAction.REMOVE -> pendingRemoveId = id
+            EngineAction.IMPORT -> {
+                pendingImportEngineId = id
+                importLauncher.launch(arrayOf("application/zip", "application/octet-stream", "*/*"))
+            }
+            EngineAction.EXPORT -> {
+                pendingExportEngineId = id
+                exportLauncher.launch("$id.zip")
+            }
         }
     }
     val otherExpanded = prefs?.otherEnginesExpanded == true
