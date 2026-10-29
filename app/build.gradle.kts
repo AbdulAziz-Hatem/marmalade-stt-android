@@ -222,6 +222,8 @@ android {
             if (project.hasProperty("smokeRelease")) {
                 applicationIdSuffix = ".rc"
                 signingConfig = signingConfigs.getByName("debug")
+                resValue("string", "app_name", "Marmalade STT (RC)")
+                resValue("string", "ime_name", "Marmalade voice typing (RC)")
             }
         }
     }
