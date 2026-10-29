@@ -6,7 +6,11 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
 import android.provider.Settings
+import android.content.ContentResolver
+import android.net.Uri
 import android.util.Log
+import app.marmalade.stt.install.InstallException
+import app.marmalade.stt.install.InstallFailure
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
@@ -230,6 +234,35 @@ class OnboardingViewModel @Inject constructor(
     /** Start, resume or retry the download. It outlives this screen (ModelDownloads). */
     fun download() {
         engineId?.let(downloads::start)
+    }
+
+    /** Import the recommended engine from a local .zip archive via SAF. */
+    fun importArchive(uri: Uri, contentResolver: ContentResolver) {
+        val id = engineId ?: return
+        if (downloads.isRunning(id)) downloads.cancel(id)
+        viewModelScope.launch {
+            try {
+                contentResolver.openInputStream(uri)?.use { stream ->
+                    installer.importArchive(id, stream).fold(
+                        onSuccess = {
+                            show(R.string.engine_import_success)
+                        },
+                        onFailure = { e ->
+                            Log.w(TAG, "Failed to import $id during onboarding", e)
+                            val res = when ((e as? InstallException)?.failure) {
+                                InstallFailure.CHECKSUM -> R.string.engine_import_checksum_error
+                                InstallFailure.NO_SPACE -> R.string.engine_failure_no_space
+                                else -> R.string.engine_import_failed
+                            }
+                            show(res)
+                        }
+                    )
+                } ?: show(R.string.engine_import_failed)
+            } catch (t: Throwable) {
+                Log.w(TAG, "Import error for $id in onboarding", t)
+                show(R.string.engine_import_failed)
+            }
+        }
     }
 
     fun cancelDownload() {

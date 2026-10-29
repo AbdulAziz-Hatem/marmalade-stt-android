@@ -33,6 +33,7 @@ import app.marmalade.stt.ui.screen.SpecTiles
 import app.marmalade.stt.ui.screen.engineActions
 import app.marmalade.stt.ui.screen.rememberResumeFocus
 import app.marmalade.stt.ui.theme.MarmaladeSttTheme
+import app.marmalade.stt.ui.components.MarmaladeOutlinedButton
 import app.marmalade.ui.components.MarmaladeCard
 
 // -----------------------------------------------------------------------------
@@ -102,12 +103,28 @@ internal fun RecommendedEngineCard(
                 ) {
                     Text(stringResource(R.string.engine_action_download_size, formatBytes(engine.sizeBytes)))
                 }
+                Spacer(Modifier.height(8.dp))
+                MarmaladeOutlinedButton(
+                    onClick = { onAction(EngineAction.IMPORT) },
+                    modifier = Modifier.fillMaxWidth(),
+                ) {
+                    Text(stringResource(R.string.engine_action_import))
+                }
             } else {
                 EngineStatus(state = installState)
                 val actions = engineActions(installState, onDetail = false)
                 if (actions.isNotEmpty()) {
                     Spacer(Modifier.height(12.dp))
                     EngineActionBar(actions = actions, onAction = onAction, resumeFocus = resumeFocus)
+                }
+                if (installState is InstallState.Failed || installState is InstallState.Paused) {
+                    Spacer(Modifier.height(8.dp))
+                    MarmaladeOutlinedButton(
+                        onClick = { onAction(EngineAction.IMPORT) },
+                        modifier = Modifier.fillMaxWidth(),
+                    ) {
+                        Text(stringResource(R.string.engine_action_import))
+                    }
                 }
             }
         }

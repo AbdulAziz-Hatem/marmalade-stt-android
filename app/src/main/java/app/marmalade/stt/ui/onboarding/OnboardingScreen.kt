@@ -241,6 +241,15 @@ fun OnboardingScreen(
         } ?: false
     }
 
+    val contentResolver = context.contentResolver
+    val importLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.OpenDocument()
+    ) { uri: Uri? ->
+        if (uri != null) {
+            viewModel.importArchive(uri, contentResolver)
+        }
+    }
+
     // --- FUTO Keyboard --------------------------------------------------------
     val futoCheck = rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         viewModel.onFutoResult(FutoMode.CHECK, result.resultCode)
@@ -402,8 +411,9 @@ fun OnboardingScreen(
                                         -> viewModel.download()
                                         EngineAction.CANCEL -> viewModel.cancelDownload()
                                         EngineAction.REMOVE_DOWNLOAD -> viewModel.removeDownload()
+                                        EngineAction.IMPORT -> importLauncher.launch(arrayOf("application/zip", "application/octet-stream", "*/*"))
                                         // Details-dialog actions; engineActions(onDetail = false) never offers them.
-                                        EngineAction.CHECK_FILES, EngineAction.REMOVE, EngineAction.IMPORT, EngineAction.EXPORT -> Unit
+                                        EngineAction.CHECK_FILES, EngineAction.REMOVE, EngineAction.EXPORT -> Unit
                                     }
                                 },
                             )
